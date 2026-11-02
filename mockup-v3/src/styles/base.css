@@ -58,6 +58,33 @@ body {
 .rounded-field { border-radius: var(--radius-field); }
 .text-shadow { text-shadow: 0 1px 2px rgb(0 0 0 / .35), 0 2px 18px rgb(0 0 0 / .35); }
 
+/* Hero: sharp figure column (720×1180 video) over the blurred ambient still.
+   Portrait (phones, portrait tablets): the stage is the free space above the
+   text block; the column is centred in it, reaches ~6rem into the block's top
+   padding and fades out at the bottom, so face and hands stay above the copy.
+   Landscape ≥ 768 px: the stage is static and the column spans the full hero
+   height at the right, its right edge on the content edge; feathered sides. */
+.hero-stage { position: relative; flex: 1 1 0%; min-height: 0; }
+.hero-figure {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  height: calc(100% + 6rem); max-width: 100%; aspect-ratio: 720 / 1180;
+  object-fit: cover; object-position: 50% 0%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 78%, transparent 98%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 78%, transparent 98%);
+  mask-composite: intersect;
+}
+@media (max-height: 740px) { .hero-figure { height: calc(100% + 5.5rem); } }
+@media (min-width: 768px) and (orientation: landscape) {
+  .hero-stage { position: static; flex: none; }
+  .hero-figure {
+    top: 0; bottom: 0; left: auto; transform: none; height: 100%;
+    right: max(clamp(20px, 4vw, 64px), calc((100vw - 1400px) / 2 + 64px));
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+}
+
 h1, h2, h3, h4 { text-wrap: balance; }
 p { text-wrap: pretty; }
 

@@ -10,11 +10,12 @@ export const srcset = (name: string) => {
   return sm ? `${sm} 900w, ${full} 1800w` : undefined
 }
 
-import heroDesktop from '../assets/hero-desktop.mp4'
-import heroMobile from '../assets/hero-mobile.mp4'
-import heroDesktopPoster from '../assets/hero-desktop-poster.jpg'
-import heroMobilePoster from '../assets/hero-mobile-poster.jpg'
-export const hero = { desktop: heroDesktop, mobile: heroMobile, desktopPoster: heroDesktopPoster, mobilePoster: heroMobilePoster }
+import heroFigure from '../assets/hero-figure.mp4'
+import heroFigurePoster from '../assets/hero-figure-poster.jpg'
+import heroAmbientWide from '../assets/hero-ambient-wide.jpg'
+import heroAmbientTall from '../assets/hero-ambient-tall.jpg'
+/** Hero: one sharp 720×1180 column (source minus the watermark strip) + blurred ambient stills (wide for landscape, tall for portrait). */
+export const hero = { figure: heroFigure, figurePoster: heroFigurePoster, ambientWide: heroAmbientWide, ambientTall: heroAmbientTall }
 
 export const months = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
 export const monthsLong = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']
