@@ -1,6 +1,14 @@
-// Single source of truth for real facts and copy (from the original site data).
-const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
-export const img = (name: string) => imgs[`../assets/img/${name}.jpg`]
+// Single source of truth for real facts and copy (taken from the original site:
+// lib/products.ts, lib/site-config.ts, components/about-section.tsx,
+// faq-section.tsx, app/groothandel/page.tsx). Nothing here is invented.
+const imgs = import.meta.glob('../assets/img/*.webp', { eager: true, import: 'default' }) as Record<string, string>
+export const img = (name: string) => imgs[`../assets/img/${name}.webp`]
+/** srcset for photos that have a -sm (≤900px) variant next to the full (≤1800px) one. */
+export const srcset = (name: string) => {
+  const full = imgs[`../assets/img/${name}.webp`]
+  const sm = imgs[`../assets/img/${name}-sm.webp`]
+  return sm ? `${sm} 900w, ${full} 1800w` : undefined
+}
 
 import heroDesktop from '../assets/hero-desktop.mp4'
 import heroMobile from '../assets/hero-mobile.mp4'
@@ -16,6 +24,7 @@ export type Variety = {
   bloei: string
   standplaats: string
   hoogte: string
+  breedte: string
   groei: string
   from: string
   short: string
@@ -24,37 +33,37 @@ export type Variety = {
 }
 
 export const varieties: Variety[] = [
-  { slug: 'nova-zembla', name: 'Nova Zembla', color: 'Helderrood', hex: '#b8273a', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon', hoogte: 'tot 3 m', groei: 'Matig', from: '29',
-    short: 'Vuurrode bloemtrossen, de meest geplante rhododendron van Nederland.',
-    long: 'De vuurrode bloemtrossen zijn imposant en rijkelijk, en de plant bloeit betrouwbaar elk jaar in mei en juni. Uitstekend winterhard, geschikt als solitair of haag, en zontoleranter dan de meeste soorten.',
+  { slug: 'nova-zembla', name: 'Nova Zembla', color: 'Helderrood', hex: '#b8273a', bloei: 'Mei – juni', standplaats: 'Halfschaduw, zontoleranter dan de meeste soorten', hoogte: 'tot 3 m', breedte: 'tot 2,5 m', groei: 'Matig', from: '29',
+    short: 'Opvallende helderrode bloemen, de meest populaire rhododendron van Nederland.',
+    long: 'Nova Zembla is de bestverkopende rhododendron van Nederland, en niet zonder reden. De vuurrode bloemtrossen zijn imposant en rijkelijk, en de plant bloeit betrouwbaar elk jaar in mei en juni. Uitstekend winterhard, geschikt als solitair of haag, en zontoleranter dan de meeste soorten.',
     sizes: [{ label: '40–60 cm', price: '29,00' }, { label: '60–80 cm', price: '45,00' }, { label: '80–100 cm', price: '65,00' }, { label: '100–120 cm', price: '89,00' }] },
-  { slug: 'cunninghams-white', name: "Cunningham's White", color: 'Wit / lichtroze', hex: '#efe9df', bloei: 'April – mei', standplaats: 'Halfschaduw', hoogte: 'tot 2 m', groei: 'Langzaam', from: '25',
-    short: 'Elegante witte bloemen met zachte roze accenten; de vroegste bloeier.',
-    long: 'Een klassieke rhododendron die als eerste van alle soorten bloeit: al in april kleuren de witte bloemen met subtiele lichtroze tinten uw tuin. Groeit gestaag en vormt een mooie volle struik.',
+  { slug: 'cunninghams-white', name: "Cunningham's White", color: 'Wit / lichtroze', hex: '#efe9df', bloei: 'April – mei', standplaats: 'Halfschaduw', hoogte: 'tot 2 m', breedte: 'tot 2 m', groei: 'Langzaam', from: '25',
+    short: 'Elegante witte bloemen met subtiele roze accenten, vroegste bloei van alle soorten.',
+    long: "Cunningham's White is een klassieke rhododendron die als eerste van alle soorten bloeit: al in april kleuren de witte bloemen met subtiele lichtroze tinten uw tuin. De plant groeit gestaag en vormt een mooie volle struik, ideaal als solitair of als haag. Tijdloze schoonheid, uitstekende winterhardheid, weinig onderhoud.",
     sizes: [{ label: '40–60 cm', price: '25,00' }, { label: '60–80 cm', price: '39,00' }, { label: '80–100 cm', price: '55,00' }, { label: '100–120 cm', price: '75,00' }] },
-  { slug: 'roseum-elegans', name: 'Roseum Elegans', color: 'Warm roze', hex: '#d9679a', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon en hitte', hoogte: 'tot 2,5 m', groei: 'Matig – snel', from: '27',
-    short: 'Klassieke warmroze bloemen, hitte- en winterhard, uitstekend als haag.',
-    long: 'Een tijdloze klassieker met warme roze bloemtrossen die rijkelijk bloeien in mei en juni. Groeit krachtig en breed, is uitstekend winterhard én hittebestendig.',
+  { slug: 'roseum-elegans', name: 'Roseum Elegans', color: 'Warm roze', hex: '#d9679a', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon en hitte', hoogte: 'tot 2,5 m', breedte: 'tot 2,5 m', groei: 'Matig – snel', from: '27',
+    short: 'Klassieke warm roze bloemen, hitte- en koudewinterhard, uitstekend als haag.',
+    long: 'Roseum Elegans is een tijdloze klassieker met warme roze bloemtrossen die imposant en rijkelijk bloeien in mei en juni. De plant groeit krachtig en breed, is uitstekend winterhard én hittebestendig. Ideaal als solitair of als haag in grotere tuinen.',
     sizes: [{ label: '40–60 cm', price: '27,00' }, { label: '60–80 cm', price: '42,00' }, { label: '80–100 cm', price: '60,00' }, { label: '100–120 cm', price: '82,00' }] },
-  { slug: 'catawbiense-boursault', name: 'Catawbiense Boursault', color: 'Paars-lavendel', hex: '#9b6cc4', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon', hoogte: 'tot 2,5 m', groei: 'Matig', from: '27',
-    short: 'Paars-lavendel bloemen, ijzersterk en betrouwbaar; trekt vlinders en bijen.',
-    long: 'Een van de meest betrouwbare rhododendrons voor de Nederlandse tuin. Bloeit rijkelijk in mei en juni, trekt vlinders en bijen, en vormt een compacte, goed vertakte struik.',
+  { slug: 'catawbiense-boursault', name: 'Catawbiense Boursault', color: 'Paars-lavendel', hex: '#9b6cc4', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon', hoogte: 'tot 2,5 m', breedte: 'tot 2,5 m', groei: 'Matig', from: '27',
+    short: 'Prachtige paars-lavendel bloemen, ijzersterk en betrouwbaar.',
+    long: 'De Catawbiense Boursault is een van de meest betrouwbare rhododendrons voor de Nederlandse tuin. Met zijn opvallende paars-lavendel bloemen en uitstekende winterhardheid is deze soort ideaal voor vrijwel elke situatie. De plant bloeit rijkelijk in mei en juni, trekt vlinders en bijen, en vormt een compacte, goed vertakte struik.',
     sizes: [{ label: '40–60 cm', price: '27,00' }, { label: '60–80 cm', price: '42,00' }, { label: '80–100 cm', price: '60,00' }, { label: '100–120 cm', price: '82,00' }] },
-  { slug: 'catawbiense-grandiflorum', name: 'Catawbiense Grandiflorum', color: 'Lila-roze', hex: '#b98fcf', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon', hoogte: 'tot 3 m', groei: 'Matig – snel', from: '29',
-    short: 'Lila-roze bloemen op indrukwekkend formaat; de keuze voor grote tuinen.',
-    long: 'De kolos van ons assortiment: groot, krachtig en indrukwekkend. Ideaal voor haagvorming, privacyschermen of grootschalige beplanting. Populair bij hoveniers.',
+  { slug: 'catawbiense-grandiflorum', name: 'Catawbiense Grandiflorum', color: 'Lila-roze', hex: '#b98fcf', bloei: 'Mei – juni', standplaats: 'Halfschaduw, verdraagt zon', hoogte: 'tot 3 m', breedte: 'tot 3 m', groei: 'Matig – snel', from: '29',
+    short: 'Lila-roze bloemen op indrukwekkend formaat, de beste keuze voor grote tuinen.',
+    long: 'De Catawbiense Grandiflorum is de kolos van ons assortiment: groot, krachtig en indrukwekkend. Met zijn lila-roze bloemtrossen en snelle groei is dit de ideale soort voor haagvorming, privacyschermen of grootschalige beplanting. Uitstekend winterhard en vrijwel onderhoudsloos. Populair bij hoveniers en tuineigenaren met ruimte voor iets groots.',
     sizes: [{ label: '40–60 cm', price: '29,00' }, { label: '60–80 cm', price: '45,00' }, { label: '80–100 cm', price: '65,00' }, { label: '100–120 cm', price: '89,00' }] },
-  { slug: 'ponticum-roseum', name: 'Ponticum Roseum', color: 'Roze / lichtpaars', hex: '#e3a2c3', bloei: 'Mei – juni', standplaats: 'Halfschaduw / schaduw', hoogte: 'tot 4 m', groei: 'Snel', from: '22',
-    short: 'Robuust en snelgroeiend, met decoratieve rode jonge stelen.',
-    long: 'Combineert de groeikracht van de Ponticum met zachte roze-lichtpaarse bloemen en decoratieve rode jonge stelen. Groeit snel tot indrukwekkende hoogte; het hele jaar sierwaarde.',
+  { slug: 'ponticum-roseum', name: 'Ponticum Roseum', color: 'Roze / lichtpaars', hex: '#e3a2c3', bloei: 'Mei – juni', standplaats: 'Halfschaduw / schaduw', hoogte: 'tot 4 m', breedte: 'tot 3,5 m', groei: 'Snel', from: '22',
+    short: 'Roze-lichtpaarse bloemen, robuust en snel groeiend met decoratieve rode stelen.',
+    long: 'Ponticum Roseum combineert de groeikracht van de Ponticum met zachte roze-lichtpaarse bloemen en decoratieve rode jonge stelen. Deze robuuste soort groeit snel tot indrukwekkende hoogte en is uitstekend geschikt als haag of privacyscherm. Weinig onderhoud, uitstekend winterhard, en het hele jaar door sierwaarde.',
     sizes: [{ label: '40–60 cm', price: '22,00' }, { label: '60–80 cm', price: '35,00' }, { label: '80–100 cm', price: '50,00' }, { label: '100–120 cm', price: '70,00' }] },
-  { slug: 'ponticum', name: 'Ponticum', color: 'Violet-paars', hex: '#7b5ea7', bloei: 'Mei – juni', standplaats: 'Halfschaduw / schaduw', hoogte: 'tot 4 m', groei: 'Snel', from: '22',
-    short: 'De krachtigste soort: violet-paars, voor grote tuinen en bosranden.',
-    long: 'De krachtigste soort uit ons assortiment. Ideaal voor grote tuinen, bosranden en privacyschermen. Kan tot 4 meter hoog worden en vergt weinig onderhoud.',
+  { slug: 'ponticum', name: 'Ponticum', color: 'Violet-paars', hex: '#7b5ea7', bloei: 'Mei – juni', standplaats: 'Halfschaduw / schaduw', hoogte: 'tot 4 m', breedte: 'tot 4 m', groei: 'Snel', from: '22',
+    short: 'Violet-paarse bloemen op een robuuste, snel groeiende struik voor grote tuinen.',
+    long: 'Rhododendron Ponticum is de krachtigste soort uit ons assortiment. Met zijn violet-paarse bloemen en indrukwekkende groeikracht is deze plant ideaal voor grote tuinen, bosranden en privacyschermen. De plant kan tot 4 meter hoog worden en vergt weinig onderhoud. Uitstekend winterhard en geschikt voor zowel halfschaduw als schaduwrijke plekken.',
     sizes: [{ label: '40–60 cm', price: '22,00' }, { label: '60–80 cm', price: '35,00' }, { label: '80–100 cm', price: '50,00' }, { label: '100–120 cm', price: '70,00' }] },
 ]
 
-export const tuinturf = { name: 'Tuinturf-substraat', price: '14,95', unit: 'per 40 L zak', text: 'Speciaal samengesteld substraat voor optimale groei en aanslag van rhododendrons. Zuurminnend, vochtregelend en rijk aan voedingsstoffen.' }
+export const tuinturf = { name: 'Tuinturf-substraat', price: '14,95', unit: 'per 40 L zak', text: 'Speciaal samengesteld substraat voor optimale groei en aanslag van rhododendrons. Zuurminnend, vochtregelend en voedingsstoffen-rijk.' }
 
 export const company = {
   name: 'Top Rhododendrons',
@@ -72,6 +81,9 @@ export const company = {
   whatsapp: 'https://wa.me/31620297849',
   instagram: 'https://www.instagram.com/toprhododendrons',
   maps: 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo',
+  voorwaarden: 'https://toprhododendrons.nl/voorwaarden',
+  privacy: 'https://toprhododendrons.nl/privacy',
+  pickup: 'Afhalen in Otterlo mogelijk: wij zetten uw bestelling klaar.',
   hours: [['Maandag – vrijdag', '08:00 – 17:00'], ['Zaterdag', '09:00 – 13:00'], ['Zondag', 'Gesloten']],
 }
 
@@ -86,27 +98,28 @@ export const story = {
   h: 'Wij kweken rhododendrons. Niet meer, niet minder.',
   p1: 'Familiebedrijf in Otterlo, op de Veluwe. 10.000 planten op voorraad, direct van het veld naar uw tuin.',
   p2: 'Dankzij onze veenrijke bodem en een uitgebalanceerde watergift ontwikkelen onze planten een sterk wortelstelsel. Daardoor passen ze zich moeiteloos aan in uw tuin, met aangroeigarantie.',
+  p3: 'Uw planten staan niet onnodig te wachten: we rooien ze vers voor uw geplande bezorging, of voor het moment dat u ze komt afhalen. Zo komt elke plant in optimale conditie aan.',
   quote: 'Een gezonde plant is geen toeval. Dat is onze standaard.',
 }
 
 export const facts = [
-  { k: 'Otterlo, Veluwe', v: 'Veenrijke, zure bodem' },
+  { k: 'Otterlo, Veluwe', v: 'Veenrijke bodem' },
   { k: 'Sinds 2001', v: 'Familiebedrijf' },
-  { k: '10.000 planten', v: 'Op stam, 40 – 120+ cm' },
+  { k: '10.000 planten', v: 'Op ons veld, 40 – 120+ cm' },
   { k: 'Aangroeigarantie', v: 'Op elke plant' },
 ]
 
 export const faq = [
-  { q: 'Hoe en wanneer wordt mijn rhododendron geleverd?', a: 'Wij leveren met eigen transport door heel Nederland. Na uw bestelling nemen wij contact met u op om een leveringsmoment af te stemmen. Uw plant wordt vers gerooid en direct geleverd, zo komt hij in optimale conditie aan.' },
-  { q: 'Wanneer kan ik een rhododendron aanplanten?', a: 'Het hele jaar door, behalve tijdens vorstperiodes. De ideale momenten zijn vroege lente (maart–april) en herfst (september–oktober). Plant u in de zomer, zorg dan voor voldoende water in de eerste weken.' },
-  { q: 'Welke grond heeft een rhododendron nodig?', a: 'Zure, luchtige grond: zandgrond of veengrond met een pH tussen 4,5 en 6. Op zware kleigrond groeit de plant minder goed. Voeg bij het aanplanten tuinturf-substraat toe voor de beste start.' },
-  { q: 'Wat houdt de aangroeigarantie in?', a: 'Al onze planten worden geleverd met aangroeigarantie. Groeit een plant niet aan ondanks de juiste verzorging? Neem contact met ons op, wij zoeken samen naar een passende oplossing.' },
-  { q: 'Kan ik ook één plant bestellen?', a: 'Ja. Voor particulieren geldt geen minimumbestelling. Heeft u als hovenier een kleinere opdracht? Neem contact op, we denken graag mee.' },
-  { q: 'Moet ik mijn rhododendron snoeien?', a: 'Snoeien is niet noodzakelijk. Snoei bij voorkeur direct na de bloei, van eind april tot half juni. Radicaal snoeien raden wij af: dit vertraagt de bloei met twee tot drie jaar.' },
+  { q: 'Hoe en wanneer wordt mijn rhododendron geleverd?', a: 'Wij leveren met eigen transport door heel Nederland. Na uw bestelling nemen wij contact met u op om een leveringsmoment af te stemmen dat voor u uitkomt. Uw plant wordt vers gerooid en direct geleverd, zo komt hij in optimale conditie aan.' },
+  { q: 'Wanneer kan ik een rhododendron aanplanten?', a: 'Een rhododendron kunt u het hele jaar door aanplanten, behalve tijdens vorstperiodes. De ideale momenten zijn vroege lente (maart–april) en herfst (september–oktober). Plant u in de zomer, zorg dan voor voldoende water in de eerste weken na het planten.' },
+  { q: 'Welke grond heeft een rhododendron nodig?', a: 'De rhododendron gedijt het beste op zure, luchtige grond: denk aan zandgrond of veengrond met een pH tussen 4,5 en 6. Op zware kleigrond groeit de plant minder goed. Voeg bij het aanplanten rododendrongrond toe voor de beste start. Twijfelt u? Wij geven graag advies op maat.' },
+  { q: 'Wat houdt de aangroeigarantie in?', a: 'Al onze planten worden geleverd met aangroeigarantie. Slaat een plant niet aan in het eerste seizoen, ondanks de juiste verzorging? Neem dan contact met ons op: wij vervangen kosteloos. Onze reputatie is gebouwd op kwaliteit, en die nemen wij serieus.' },
+  { q: 'Kan ik ook één plant bestellen?', a: 'Ja. Voor particulieren geldt geen minimumbestelling; u kunt gewoon 1 plant bestellen. Heeft u een kleinere opdracht als hovenier? Neem contact op, we denken graag mee.' },
+  { q: 'Moet ik mijn rhododendron snoeien?', a: 'Snoeien is niet noodzakelijk, maar kan wel. Snoei bij voorkeur direct na de bloei, van eind april tot halverwege juni. Zo heeft de plant de rest van het seizoen tijd om nieuwe bloemknoppen te vormen voor volgend jaar. Radicaal snoeien raden wij af: dit vertraagt de bloei met twee tot drie jaar.' },
 ]
 
 export const b2b = {
-  intro: '10.000 rhododendrons op stam. Voor hoveniers, gemeenten en projectontwikkelaars. Aangroeigarantie, eigen transport, scherpe partijprijzen vanaf 25 stuks.',
+  intro: '10.000 rhododendrons op stam. Aangroeigarantie, eigen transport en scherpe partijprijzen vanaf 25 stuks.',
   groups: [
     { title: 'Hoveniers en tuinarchitecten', text: 'Voor tuin- en landschapsprojecten', rows: [['Volume per project', '30 – 150 stuks'], ['Levering', 'Op afgesproken datum'], ['Voorwaarden', 'Factuur 30 dagen']] },
     { title: 'Openbaar groen en gemeenten', text: 'Voor parken, plantsoenen en wijken', rows: [['Volume per project', '100 – 500 stuks'], ['Levering', 'Gefaseerd mogelijk'], ['Voorwaarden', 'Plantpaspoort + fytosanitair']] },
@@ -136,6 +149,7 @@ export const b2b = {
     { range: '50 – 149 planten', text: 'Voor grotere projecten. Vaste contactpersoon en voorranglevering inbegrepen.' },
     { range: '150+ planten', text: 'Maatwerkprijs voor gemeenten en grote projecten. Inclusief plantpaspoort en fyto.' },
   ],
+  facts: [['10.000 planten', 'op stam, 40 – 120+ cm'], ['Vanaf 25 stuks', 'scherpe partijprijzen'], ['Factuur 30 dagen', 'btw verlegd mogelijk'], ['NAK Tuinbouw', 'plantpaspoort bij elke partij']],
   faq: [
     { q: 'Geldt de aangroeigarantie ook bij grote partijen?', a: 'Ja. De aangroeigarantie geldt op elke plant, ook bij projectorders van 100 of 1.000 stuks. Slaat een plant niet aan in het eerste seizoen? Wij vervangen kosteloos.' },
     { q: 'Verzorgen jullie ook de aanplant op locatie?', a: 'Ja, plantservice is optioneel beschikbaar. Wij komen met eigen team, inclusief grondverbetering met tuinturf-substraat indien gewenst. Vraag in de offerte naar het tarief per plant.' },

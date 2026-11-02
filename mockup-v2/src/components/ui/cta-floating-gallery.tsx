@@ -16,7 +16,7 @@ export function CtaFloatingGallery({ eyebrow, title, description, actions, image
     </motion.div>
   )
   return (
-    <section className={cn('container-x grid items-center gap-12 py-20 md:grid-cols-2 md:gap-16 md:py-28', dark && 'on-dark', className)}>
+    <section className={cn('container-x grid grid-cols-1 items-center gap-12 py-20 md:grid-cols-2 md:gap-16 md:py-28', dark && 'on-dark', className)}>
       <div className="max-w-xl">
         {eyebrow && <p className={cn('eyebrow mb-5', dark ? 'text-white/60' : 'text-muted')}>{eyebrow}</p>}
         <h2 className="font-display text-[clamp(34px,4.2vw,56px)] leading-[1.02] text-balance">

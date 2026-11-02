@@ -8,7 +8,7 @@ export type SplitPanel = { eyebrow: string; title: string; text: string; action:
 
 export function SplitCta({ panels, className, minH = 'min-h-[460px]' }: { panels: [SplitPanel, SplitPanel]; className?: string; minH?: string }) {
   return (
-    <section className={cn('grid md:grid-cols-2', className)}>
+    <section className={cn('grid grid-cols-1 md:grid-cols-2', className)}>
       {panels.map((p) => (
         <div key={p.title} className={cn('relative flex flex-col justify-end overflow-hidden p-8 md:p-12', minH, p.dark && 'on-dark text-white', p.className)}>
           {p.image && (<><img src={p.image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover img-treat" /><div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" /></>)}

@@ -4,8 +4,8 @@
   --color-bg: #f1efea;
   --color-bg-2: #e6e3dc;
   --color-fg: #141413;
-  --color-fg-2: #4b4a46;
-  --color-muted: #74736d;
+  --color-fg-2: #45443f;
+  --color-muted: #5f5e58;
   --color-line: #d6d3cb;
   --color-surface: #fbfaf8;
   --color-accent: #3f4a37;
@@ -15,6 +15,7 @@
   --font-body: "Manrope", system-ui, sans-serif;
   --radius-ui: 999px;
   --radius-img: 28px;
+  --radius-field: 14px;
 }
 .font-display { font-weight: 500; letter-spacing: -0.035em; }
 .rounded-img { border-radius: var(--radius-img); }

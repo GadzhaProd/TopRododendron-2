@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { SiteHeader } from '@/components/ui/site-header'
+import { SiteHeader, useCartCount } from '@/components/ui/site-header'
 import { Button } from '@/components/ui/button'
 import { FooterSuite } from '@/components/ui/footer-suite'
 import { company } from '@/data/content'
@@ -16,12 +16,15 @@ export function MarkC({ className }: { className?: string }) {
     </svg>
   )
 }
-export function LogoC({ dark = false, size = 'md' }: { dark?: boolean; size?: 'sm' | 'md' | 'lg' }) {
-  const s = { sm: ['size-8', 'text-[17px]'], md: ['size-10', 'text-[20px]'], lg: ['size-14', 'text-[26px]'] }[size]
+export function LogoC({ dark = false, size = 'md', caption = false }: { dark?: boolean; size?: 'sm' | 'md' | 'lg'; caption?: boolean }) {
+  const s = { sm: ['size-8', 'text-[17px]', 'text-[10px]'], md: ['size-10', 'text-[20px]', 'text-[10px]'], lg: ['size-14', 'text-[26px]', 'text-[11px]'] }[size]
   return (
     <span className={cn('inline-flex items-center gap-2.5', dark ? 'text-white' : 'text-fg')}>
       <MarkC className={s[0]} />
-      <span className={cn('font-display font-semibold tracking-[-0.03em]', s[1])}>top rhododendrons</span>
+      <span className="flex flex-col leading-none">
+        <span className={cn('font-display font-semibold tracking-[-0.02em]', s[1])}>Top Rhododendrons</span>
+        {caption && <span className={cn('mt-1.5 tracking-[0.18em] uppercase opacity-80', s[2])}>Kwekerij Otterlo · sinds 2001</span>}
+      </span>
     </span>
   )
 }
@@ -30,7 +33,7 @@ const navHome = [
   { label: 'Planten', href: '#planten' },
   { label: 'Waarom wij', href: '#waarom' },
   { label: 'De kweker', href: '#kweker' },
-  { label: 'Plantgids', href: '#plantgids' },
+  { label: 'Advies', href: '#advies' },
   { label: 'Groothandel', href: 'groothandel.html', strong: true },
 ]
 const navB2b = [
@@ -41,27 +44,32 @@ const navB2b = [
   { label: 'Particulier', href: 'index.html', strong: true },
 ]
 
+function CartCta() {
+  const n = useCartCount()
+  return <Button href="#planten" variant="solid" size="sm">{n > 0 ? `Winkelwagen (${n})` : 'Bestellen'}</Button>
+}
+
 export function HeaderC({ b2b = false }: { b2b?: boolean }) {
   return (
     <SiteHeader
       mode="capsule"
-      logo={({ dark }) => <LogoC dark={dark} size="sm" />}
+      tone="light"
+      logo={() => <LogoC size="sm" />}
       links={b2b ? navB2b : navHome}
-      solidClassName="border-fg/10 bg-surface/85 shadow-[0_16px_50px_-28px_rgba(0,0,0,.45)]"
-      cta={({ dark }) => (b2b
-        ? <Button href="#offerte" variant={dark ? 'white' : 'solid'} size="sm">Offerte aanvragen</Button>
-        : <Button href="#planten" variant={dark ? 'white' : 'solid'} size="sm">Bestellen</Button>)}
+      cta={() => (b2b ? <Button href="#offerte" variant="solid" size="sm">Offerte aanvragen</Button> : <CartCta />)}
     />
   )
 }
 
-export function FooterC() {
+export function FooterC({ compact = false }: { compact?: boolean }) {
   return (
     <FooterSuite
-      logo={<LogoC size="sm" />}
-      wordmark="top rhododendrons"
+      compact={compact}
+      logo={<LogoC size="sm" caption />}
+      wordmark="Top Rhododendrons"
+      wordmarkSize="clamp(2.2rem, 10.6vw, 11.2rem)"
       wordmarkClassName="font-semibold tracking-[-0.05em]"
-      links={[{ label: 'Planten', href: 'index.html#planten' }, { label: 'Waarom wij', href: 'index.html#waarom' }, { label: 'De kweker', href: 'index.html#kweker' }, { label: 'Plantgids', href: 'index.html#plantgids' }, { label: 'Groothandel', href: 'groothandel.html' }]}
+      links={[{ label: 'Planten', href: 'index.html#planten' }, { label: 'Waarom wij', href: 'index.html#waarom' }, { label: 'De kweker', href: 'index.html#kweker' }, { label: 'Advies', href: 'index.html#advies' }, { label: 'Groothandel', href: 'groothandel.html' }]}
       className="bg-bg-2"
     />
   )
@@ -70,23 +78,23 @@ export function FooterC() {
 export function HeadC({ eyebrow, title, text, className, align = 'left', dark = false, size = 'md' }: { eyebrow?: string; title: ReactNode; text?: ReactNode; className?: string; align?: 'left' | 'center'; dark?: boolean; size?: 'md' | 'lg' }) {
   return (
     <div className={cn('flex flex-col gap-4', align === 'center' && 'items-center text-center', className)}>
-      {eyebrow && <p className={cn('eyebrow', dark ? 'text-white/60' : 'text-muted')}>{eyebrow}</p>}
-      <h2 className={cn('font-display text-balance max-w-[20ch] leading-[1.02]', size === 'lg' ? 'text-[clamp(36px,5vw,68px)]' : 'text-[clamp(30px,3.8vw,52px)]')}>{title}</h2>
-      {text && <p className={cn('max-w-[52ch] text-[16px] leading-relaxed md:text-[17px]', dark ? 'text-white/70' : 'text-fg-2')}>{text}</p>}
+      {eyebrow && <p className={cn('eyebrow', dark ? 'text-white/75' : 'text-muted')}>{eyebrow}</p>}
+      <h2 className={cn('max-w-[min(20ch,100%)] font-display text-balance', size === 'lg' ? 'text-[clamp(36px,5vw,68px)]' : 'text-[clamp(30px,3.8vw,52px)]', 'leading-[1.02]')}>{title}</h2>
+      {text && <p className={cn('max-w-[52ch] text-[16px] leading-relaxed md:text-[17px]', dark ? 'text-white/80' : 'text-fg-2')}>{text}</p>}
     </div>
   )
 }
 
 export function Pill({ children, className }: { children: ReactNode; className?: string }) {
-  return <span className={cn('inline-flex h-8 items-center rounded-full border border-fg/12 bg-surface px-3.5 text-[12.5px] font-medium text-fg-2', className)}>{children}</span>
+  return <span className={cn('inline-flex h-8 items-center rounded-full border border-fg/15 bg-surface px-3.5 text-[12.5px] font-medium text-fg-2', className)}>{children}</span>
 }
 
 export function ContactC({ dark = false }: { dark?: boolean }) {
   const t = dark ? 'text-white' : 'text-fg'
-  const m = dark ? 'text-white/60' : 'text-muted'
+  const m = dark ? 'text-white/75' : 'text-muted'
   return (
-    <div className={cn('grid gap-8 md:grid-cols-3', t)}>
-      <div><p className={cn('eyebrow mb-3', m)}>Kwekerij &amp; kantoor</p><a href={company.maps} className="font-display text-[22px] leading-tight">{company.street}<br />{company.postal}</a><p className={cn('mt-2 text-[14px]', m)}>Afhalen op afspraak.</p></div>
+    <div className={cn('grid grid-cols-1 gap-8 md:grid-cols-3', t)}>
+      <div><p className={cn('eyebrow mb-3', m)}>Kwekerij &amp; kantoor</p><a href={company.maps} className="font-display text-[22px] leading-tight">{company.street}<br />{company.postal}</a><p className={cn('mt-2 text-[14px]', m)}>{company.pickup}</p></div>
       <div><p className={cn('eyebrow mb-3', m)}>Bereikbaar</p><a href={company.phone1Href} className="block font-display text-[22px] leading-tight">{company.phone1}</a><a href={company.phone2Href} className="block font-display text-[22px] leading-tight">{company.phone2}</a><a href={`mailto:${company.email}`} className={cn('mt-2 block text-[14px]', m)}>{company.email}</a></div>
       <div><p className={cn('eyebrow mb-3', m)}>Openingstijden</p>{company.hours.map(([d, h]) => <p key={d} className={cn('flex justify-between gap-6 border-b py-1.5 text-[14px]', dark ? 'border-white/10' : 'border-fg/10')}><span className={m}>{d}</span><span>{h}</span></p>)}</div>
     </div>

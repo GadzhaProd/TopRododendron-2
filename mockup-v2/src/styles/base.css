@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
+@custom-variant short (@media (max-height: 740px));
+@custom-variant tall (@media (min-height: 741px));
+
 @theme {
   --color-bg: #f6f4ef;
   --color-bg-2: #ecE9e2;
   --color-fg: #16161a;
   --color-fg-2: #4a4a50;
-  --color-muted: #7a7a82;
+  --color-muted: #5f5e58;
   --color-line: #dcd8cf;
   --color-surface: #ffffff;
   --color-accent: #3f2a3a;
   --color-accent-fg: #ffffff;
   --color-accent-2: #c9b89a;
+  --color-night: #0f1412;
   --font-display: "Instrument Serif", Georgia, serif;
   --font-body: "Geist", system-ui, sans-serif;
   --radius-ui: 0px;
   --radius-img: 0px;
+  --radius-field: 0px;
 }
 
 html { scroll-behavior: smooth; }
@@ -30,17 +35,22 @@ body {
 
 .font-display { font-family: var(--font-display); }
 .container-x { padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); }
-.eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+.eyebrow { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
 .hairline { border-color: var(--color-line); }
 .img-treat { filter: saturate(0.94) contrast(1.03); }
 
-/* focus */
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
-.on-dark :focus-visible { outline-color: #fff; }
+/* focus: dark + light ring so it reads on video and on light backgrounds */
+:focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #141414; }
+.on-dark :focus-visible { box-shadow: 0 0 0 2px #141414, 0 0 0 4px #fff; }
 
-/* scrollbar-free horizontal rows */
+/* skip link */
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: #141414; color: #fff; padding: 10px 14px; font-size: 14px; }
+.skip-link:focus { top: 12px; }
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+[inert] { pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

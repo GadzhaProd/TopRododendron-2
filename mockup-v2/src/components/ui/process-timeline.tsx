@@ -9,7 +9,7 @@ export function ProcessTimeline({ steps, horizontal = false, dark = false, class
   const muted = dark ? 'text-white/70' : 'text-fg-2'
   if (horizontal) {
     return (
-      <ol className={cn('grid gap-8 md:grid-cols-4', className)}>
+      <ol className={cn('grid grid-cols-1 gap-8 md:grid-cols-4', className)}>
         {steps.map((s, i) => (
           <li key={s.title} className="relative">
             <div className="flex items-center gap-4">
