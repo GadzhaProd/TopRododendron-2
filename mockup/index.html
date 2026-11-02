@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Rhododendrons — три направления дизайна</title>
+<meta name="description" content="Обзор трёх направлений дизайна главной страницы для Top Rhododendrons (Otterlo).">
+<style>
+:root{--bg:#f6f4ef;--ink:#1c1a17;--ink-2:#55504a;--line:#d8d3c8;--acc:#5e4674}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--ink:#f1eee8;--ink-2:#b5b0a6;--line:#35353b;--acc:#c9b3e2}}
+:root[data-theme="dark"]{--bg:#17171a;--ink:#f1eee8;--ink-2:#b5b0a6;--line:#35353b;--acc:#c9b3e2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 16px 80px}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 12px;letter-spacing:-.01em}
+.lead{color:var(--ink-2);max-width:70ch;margin:0 0 40px}
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.dirs{grid-template-columns:1fr}}
+.dir{border:1px solid var(--line);text-decoration:none;color:inherit;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.dir:hover{border-color:var(--ink)}
+.dir img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);display:block}
+.dir .body{padding:18px 18px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.dir .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.dir h2{margin:0;font-size:22px;line-height:1.2}
+.dir p{margin:0;color:var(--ink-2);font-size:15px}
+.dir .meta{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.dir .open{font-weight:600;color:var(--ink);margin-top:6px;display:block}
+.notes{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;color:var(--ink-2);max-width:75ch}
+.notes h3{margin:0 0 8px;font-size:16px;color:var(--ink)}
+.notes ul{padding-left:20px;margin:0 0 16px}
+.notes li{margin:4px 0}
+.shots{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
+.shots a{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Top Rhododendrons — три направления главной страницы</h1>
+  <p class="lead">Кликабельные статические макеты. Все три построены с нуля и сознательно не повторяют старый сайт (ни палитру, ни шрифты, ни структуру хиро). Контент, фото, видео и факты — только реальные, из старого репозитория. Откройте каждый макет на десктопе и на телефоне.</p>
+
+  <div class="dirs">
+    <a class="dir" href="a/index.html">
+      <img src="screenshots/a-desktop-1440.jpg" alt="Направление A, десктоп">
+      <div class="body">
+        <span class="tag">A · сохраняет позиционирование</span>
+        <h2>«Het Veld» — каталог питомника</h2>
+        <p>Спокойный «домен»-регистр: бумага, торфяно-коричневый, вересково-лиловый акцент. Шрифты Newsreader + IBM Plex Mono. Линованная сетка как у каталога винодельни. Хиро — текст слева, вертикальное видео справа как колонна. Ассортимент — список-реестр с большим фото, календарь цветения, тёмный блок groothandel.</p>
+        <div class="meta">Для домовладельцев и оптовиков — «две двери, один дом». <span class="open">Открыть макет A →</span></div>
+      </div>
+    </a>
+    <a class="dir" href="b/index.html">
+      <img src="screenshots/b-desktop-1440.jpg" alt="Направление B, десктоп">
+      <div class="body">
+        <span class="tag">B · свободная концепция</span>
+        <h2>«Zeven Kleuren» — семь цветов, одно поле</h2>
+        <p>Смелый плакатный язык: плоские цветовые поля, взятые из реальных оттенков семи сортов, толстые линии, крупный узкий гротеск Bricolage Grotesque + Instrument Sans. Хиро-триптих: заголовок / видео / две цветные «двери». Ассортимент — полосы-свотчи по цвету цветения. Бегущая строка с фактами.</p>
+        <div class="meta">Эмоциональнее и заметнее, но без «распродажного» шума. <span class="open">Открыть макет B →</span></div>
+      </div>
+    </a>
+    <a class="dir" href="c/index.html">
+      <img src="screenshots/c-desktop-1440.jpg" alt="Направление C, десктоп">
+      <div class="body">
+        <span class="tag">C · свободная концепция</span>
+        <h2>«Het Seizoen» — журнал о сезоне</h2>
+        <p>Тёмный журнальный номер: обложка «Otterlo, mei.» с Bodoni Moda, видео как обложечное фото, оглавление и шесть глав — земля, садовод, семь сортов (горизонтальная галерея), год растения, для профессионалов, визит. Янтарный акцент из «золотого часа» видео, Work Sans для текста.</p>
+        <div class="meta">Сторителлинг и фотография на первом плане. <span class="open">Открыть макет C →</span></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="notes">
+    <h3>Что общего у всех трёх</h3>
+    <ul>
+      <li>Реальные тексты на нидерландском (сокращены/переписаны там, где нужно), реальные фото 7 сортов, владелец, поле, видео-хиро.</li>
+      <li>Обе аудитории на одной странице: путь «для сада» (ассортимент, цены от … за 40–60 см) и путь «для проекта» (groothandel, offerte, WhatsApp, телефон).</li>
+      <li>Факты: Otterlo, с 2001, торфяная почва, 10.000 растений, aangroeigarantie, свежая выкопка, собственный транспорт, NAK Tuinbouw, KvK, часы, адрес.</li>
+      <li>Адаптив 1440 → 390, контраст WCAG AA, уважение к <code>prefers-reduced-motion</code> (видео заменяется кадром).</li>
+    </ul>
+    <h3>Скриншоты</h3>
+    <p class="shots">
+      <a href="screenshots/a-desktop-1440.jpg">A · 1440</a><a href="screenshots/a-mobile-390.jpg">A · 390</a>
+      <a href="screenshots/b-desktop-1440.jpg">B · 1440</a><a href="screenshots/b-mobile-390.jpg">B · 390</a>
+      <a href="screenshots/c-desktop-1440.jpg">C · 1440</a><a href="screenshots/c-mobile-390.jpg">C · 390</a>
+    </p>
+    <h3>Важно</h3>
+    <ul>
+      <li>Хиро-видео из старого репозитория — вертикальное (720×1280) и, судя по водяному знаку «Veo», сгенерировано ИИ. Во всех макетах оно используется как вертикальная колонна, водяной знак обрезан. Для продакшена рекомендуем снять настоящее видео на поле в мае — PRODUCT.md прямо называет ИИ-изображения «фатальными» для бренда.</li>
+      <li>Логотипа у старого сайта нет (icon.svg — заглушка шаблона), поэтому в каждом направлении свой текстовый знак.</li>
+      <li>Отзывы и «примеры проектов» со старого сайта не использованы — их подлинность не подтверждена.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
