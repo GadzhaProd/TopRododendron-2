@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { company } from '@/data/content'
 
-export function FooterSuite({ links, wordmark, logo, dark = false, className, wordmarkClassName }: { links: { label: string; href: string }[]; wordmark: string; logo?: ReactNode; dark?: boolean; className?: string; wordmarkClassName?: string }) {
+export function FooterSuite({ links, wordmark, logo, dark = false, className, wordmarkClassName, wordmarkSize = 'clamp(2.6rem, 9.6vw, 11rem)' }: { links: { label: string; href: string }[]; wordmark: string; logo?: ReactNode; dark?: boolean; className?: string; wordmarkClassName?: string; wordmarkSize?: string }) {
   const t = dark ? 'text-white' : 'text-fg'
   const m = dark ? 'text-white/55' : 'text-muted'
   const l = dark ? 'border-white/15' : 'border-fg/10'
@@ -28,7 +28,7 @@ export function FooterSuite({ links, wordmark, logo, dark = false, className, wo
           <a href={company.instagram} className={cn('mt-3 text-[14px]', t)}>Instagram · @toprhododendrons</a>
         </div>
       </div>
-      <p aria-hidden="true" className={cn('container-x select-none font-display leading-[0.85] tracking-[-0.02em] whitespace-nowrap', t, wordmarkClassName)} style={{ fontSize: 'clamp(2.6rem, 9.6vw, 11rem)' }}>{wordmark}</p>
+      <p aria-hidden="true" className={cn('container-x select-none font-display leading-[0.85] tracking-[-0.02em] whitespace-nowrap', t, wordmarkClassName)} style={{ fontSize: wordmarkSize }}>{wordmark}</p>
       <div className={cn('container-x mt-4 flex flex-wrap items-center justify-between gap-3 border-t py-4', l)}>
         <p className={cn('text-[11px] tracking-[0.14em] uppercase', m)}>© 2026 {company.name} · KvK {company.kvk}</p>
         <p className={cn('text-[11px] tracking-[0.14em] uppercase', m)}><a href="#" className="hover:opacity-70">Voorwaarden</a> · <a href="#" className="hover:opacity-70">Privacy</a></p>

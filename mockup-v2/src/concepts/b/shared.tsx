@@ -67,6 +67,7 @@ export function FooterB() {
       dark
       logo={<LogoB size="sm" />}
       wordmark="TOP RHODODENDRONS"
+      wordmarkSize="clamp(1.6rem, 7.4vw, 8.5rem)"
       wordmarkClassName="text-accent/90 uppercase tracking-[0.04em]"
       links={[{ label: 'Collectie', href: 'index.html#collectie' }, { label: 'Het landgoed', href: 'index.html#kwekerij' }, { label: 'Advies', href: 'index.html#advies' }, { label: 'Groothandel', href: 'groothandel.html' }, { label: 'Bezoek', href: 'index.html#bezoek' }]}
       className="border-t border-white/10 bg-[#0b0f0d] text-white"
