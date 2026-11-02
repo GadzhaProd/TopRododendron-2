@@ -1,0 +1,22 @@
+@import "../../styles/base.css";
+
+:root {
+  --color-bg: #0f1412;
+  --color-bg-2: #161c19;
+  --color-fg: #f1ece3;
+  --color-fg-2: #c9c2b4;
+  --color-muted: #9a968c;
+  --color-line: #2b332e;
+  --color-surface: #1b221e;
+  --color-accent: #cdb17c;
+  --color-accent-fg: #11130f;
+  --color-accent-2: #e6d9c0;
+  --font-display: "Marcellus", "Trajan Pro", Georgia, serif;
+  --font-body: "Figtree", system-ui, sans-serif;
+  --radius-ui: 0px;
+  --radius-img: 0px;
+}
+body { background: var(--color-bg); }
+.font-display { letter-spacing: 0.01em; }
+.frame { outline: 1px solid rgba(205, 177, 124, 0.35); outline-offset: 10px; }
+.gold-rule { background: linear-gradient(90deg, transparent, var(--color-accent), transparent); height: 1px; }

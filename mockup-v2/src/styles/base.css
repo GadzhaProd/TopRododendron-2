@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f6f4ef;
+  --color-bg-2: #ecE9e2;
+  --color-fg: #16161a;
+  --color-fg-2: #4a4a50;
+  --color-muted: #7a7a82;
+  --color-line: #dcd8cf;
+  --color-surface: #ffffff;
+  --color-accent: #3f2a3a;
+  --color-accent-fg: #ffffff;
+  --color-accent-2: #c9b89a;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Geist", system-ui, sans-serif;
+  --radius-ui: 0px;
+  --radius-img: 0px;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display { font-family: var(--font-display); }
+.container-x { padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); }
+.eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+.hairline { border-color: var(--color-line); }
+.img-treat { filter: saturate(0.94) contrast(1.03); }
+
+/* focus */
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.on-dark :focus-visible { outline-color: #fff; }
+
+/* scrollbar-free horizontal rows */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

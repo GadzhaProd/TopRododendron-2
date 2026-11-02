@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Rhododendrons — три концепции (v2)</title>
+<meta name="description" content="Обзор трёх премиальных концепций сайта Top Rhododendrons: главная страница (retail) и отдельная страница groothandel (B2B) для каждой.">
+<style>
+:root{--bg:#f6f4ef;--ink:#17161a;--ink2:#56534e;--line:#dcd8cf;--acc:#3a2430}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:56px 20px 80px}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 12px;letter-spacing:-.01em}
+.lead{color:var(--ink2);max-width:76ch;margin:0 0 36px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:960px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;overflow:hidden}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);display:block}
+.body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h2{margin:0;font-size:22px;line-height:1.2}
+.body p{margin:0;color:var(--ink2);font-size:14.5px}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.links a{display:inline-flex;align-items:center;height:40px;padding:0 16px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:600;font-size:14px}
+.links a.primary{background:var(--ink);color:#fff}
+.links a:hover{opacity:.8}
+.comp{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.comp b{color:var(--ink);font-weight:600}
+.notes{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;color:var(--ink2);max-width:80ch}
+.notes h3{margin:0 0 8px;font-size:16px;color:var(--ink)}
+.notes ul{padding-left:20px;margin:0 0 18px}
+.notes li{margin:5px 0}
+code{font-size:13px;background:#eeebe4;padding:1px 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Top Rhododendrons — три концепции, версия 2</h1>
+  <p class="lead">Каждая концепция = главная страница для частных покупателей (видео на весь первый экран) + отдельная страница <b>Groothandel</b> для B2B со своим сценарием (offerte-форма, WhatsApp, телефон). Логотипы нарисованы заново (SVG), использованы только реальные фото, видео, тексты и факты. Собрано на React + Vite + Tailwind из компонентов 21st.dev, адаптированных под бренд.</p>
+
+  <div class="grid">
+    <div class="card">
+      <img src="shots/a-index-desktop-1440-hero.jpg" alt="Концепция A">
+      <div class="body">
+        <span class="tag">Концепция A · Maison</span>
+        <h2>Светлая галерея: слоновая кость, сливовый акцент</h2>
+        <p>Регистр дорогого «дома» (как у парфюмерного или винного бренда): много воздуха, тонкие линии, Instrument Serif + Geist, прямые углы. Логотип — «Truss»: семь лепестков в кольце. Ассортимент — «липкое» фото, которое меняется при прокрутке списка сортов. Доверие через портрет Гертa Топа, четыре нумерованных обещания и фото поля.</p>
+        <p class="comp"><b>21st.dev:</b> PrismaHero (видео-хиро), Header 1 (efferd), Scroll 01 (sticky media), Shop by Category Grid, Reveal, How-It-Works Timeline, Contact Form, Footer with Suite, Accordion plus/minus.</p>
+        <div class="links"><a class="primary" href="a/index.html">Главная</a><a href="a/groothandel.html">Groothandel (B2B)</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="shots/b-index-desktop-1440-hero.jpg" alt="Концепция B">
+      <div class="body">
+        <span class="tag">Концепция B · Estate</span>
+        <h2>Тёмный «эстейт»: ночной зелёно-чёрный, шампань и латунь</h2>
+        <p>Наследие и статус: симметричная, центрированная композиция, римские капители Marcellus + Figtree, печать-эмблема «TR · Otterlo MMI». Видео-хиро с эмблемой по центру, горизонтальная галерея сортов, которая едет при прокрутке, портрет садовода в рамке, CTA с «плавающей» галереей фото. Groothandel — тёмная страница с формой.</p>
+        <p class="comp"><b>21st.dev:</b> PrismaHero, Header 1 + Morphing Scroll Navbar (капсула), Scroll Horizontal Gallery (motion.dev), CTA with Floating Gallery, Reveal, Process Timeline, Contact Form, Footer with Suite, Accordion.</p>
+        <div class="links"><a class="primary" href="b/index.html">Главная</a><a href="b/groothandel.html">Groothandel (B2B)</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="shots/c-index-desktop-1440-hero.jpg" alt="Концепция C">
+      <div class="body">
+        <span class="tag">Концепция C · Veld</span>
+        <h2>Современный минимализм: тёплый камень, олива, скруглённые фото</h2>
+        <p>Самый «технологично-современный» вариант: один гротеск Manrope, крупные скруглённые фотоблоки, bento-сетка преимуществ с реальными фото, карточки сортов с ценой, сплит-CTA «для сада / для профессионалов». Логотип — геометрический лист-монограмма. Видео-хиро с крупным заголовком и двумя «пилюлями».</p>
+        <p class="comp"><b>21st.dev:</b> PrismaHero, Header 1 (капсульный режим), Bento-подход + Shop by Category Grid, Split Feature Section, Reveal, Process Timeline, Contact Form, Footer with Suite, Accordion.</p>
+        <div class="links"><a class="primary" href="c/index.html">Главная</a><a href="c/groothandel.html">Groothandel (B2B)</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h3>Что общего</h3>
+    <ul>
+      <li>Видео на весь первый экран. Для десктопа из вертикального исходника (720×1280) вырезана горизонтальная полоса (кусты + руки с цветами), апскейл с лёгкой резкостью; для телефона — вертикальный ролик с обрезанным низом, где стоял водяной знак «Veo». Оба варианта без знака.</li>
+      <li>Retail и B2B разведены по разным страницам; навигация ведёт туда и обратно. Форма offerte: bedrijf, contact, soort, maat, aantal (от 25), leverdatum.</li>
+      <li>Только реальные факты: Otterlo, с 2001, veenrijke bodem, 10.000 растений, aangroeigarantie, vers gerooid, eigen transport, NAK Tuinbouw, factuur 30 dagen, KvK, часы, адрес; цены из каталога старого сайта. Отзывы и «примеры проектов» не использованы.</li>
+      <li>Адаптив 1440/390, без горизонтального скролла, контраст AA, <code>prefers-reduced-motion</code> (видео заменяется кадром, анимации отключаются).</li>
+    </ul>
+    <h3>Как открыть</h3>
+    <p>Сборка — ES-модули, поэтому страницы нужно открывать по http(s) (как опубликованный артефакт или через любой статический сервер), а не двойным кликом по файлу с диска.</p>
+  </div>
+</div>
+</body>
+</html>
