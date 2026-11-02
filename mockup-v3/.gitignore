@@ -2,3 +2,5 @@
 .preview-tmp*/
 .shots/
 node_modules
+.dist-rec/
+.dist-rec-index/

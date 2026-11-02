@@ -193,14 +193,14 @@ export const trust = [
   { k: 'Ervaring', v: 'Sinds 2001' },
   { k: 'Levering', v: 'Eigen transport' },
   { k: 'Voorraad', v: '10.000+ planten' },
-  { k: 'Advies', v: 'Persoonlijk, van de kweker' },
+  { k: 'Advies', v: 'Persoonlijk advies' },
 ]
 
 export const promises = [
   { title: 'Aangroeigarantie op elke plant', text: 'Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.' },
   { title: 'Vers gerooid, flexibel geleverd', text: 'Uw planten staan niet onnodig te wachten. We rooien ze vers voor uw geplande bezorging of het moment dat u ze komt afhalen.' },
-  { title: 'Levering wanneer het u uitkomt', text: 'Eigen transport door heel Nederland. Wij stemmen de levering af op uw planning, of zetten uw bestelling klaar voor afhaal in Otterlo.' },
-  { title: 'Direct contact met de kweker', text: 'Voor uw tuin, voor uw bedrijf, voor het resultaat. U spreekt rechtstreeks met de kweker: één aanspreekpunt, van vraag tot levering.' },
+  { title: 'Direct contact. Direct voordeel.', text: 'Voor uw tuin. Voor uw bedrijf. Voor het resultaat.' },
+  { title: 'Levering wanneer het u uitkomt', text: 'Wij stemmen de levering af op uw planning of zetten uw bestelling klaar voor afhaal.' },
 ]
 
 export const story = {
@@ -216,7 +216,7 @@ export const faq = [
   { q: 'Hoe en wanneer wordt mijn rhododendron geleverd?', a: 'Wij leveren met eigen transport door heel Nederland. Na uw bestelling nemen wij contact met u op om een leveringsmoment af te stemmen dat voor u uitkomt. Uw plant wordt vers gerooid en direct geleverd, zo komt hij in optimale conditie aan.' },
   { q: 'Wanneer kan ik een rhododendron aanplanten?', a: 'Een rhododendron kunt u het hele jaar door aanplanten, behalve tijdens vorstperiodes. De ideale momenten zijn vroege lente (maart–april) en herfst (september–oktober). Plant u in de zomer, zorg dan voor voldoende water in de eerste weken na het planten.' },
   { q: 'Welke grond heeft een rhododendron nodig?', a: 'De rhododendron gedijt het beste op zure, luchtige grond: denk aan zandgrond of veengrond met een pH tussen 4,5 en 6. Op zware kleigrond groeit de plant minder goed. Voeg bij het aanplanten rododendrongrond toe voor de beste start. Twijfelt u? Wij geven graag advies op maat.' },
-  { q: 'Wat houdt de aangroeigarantie in?', a: 'Al onze planten worden geleverd met aangroeigarantie. Slaat een plant niet aan in het eerste seizoen, ondanks de juiste verzorging? Neem dan contact met ons op: wij vervangen kosteloos. Onze reputatie is gebouwd op kwaliteit, en die nemen wij serieus.' },
+  { q: 'Wat houdt de aangroeigarantie in?', a: 'Al onze planten worden geleverd met aangroeigarantie. Groeit een plant niet aan ondanks de juiste verzorging? Neem dan contact met ons op, wij zoeken samen naar een passende oplossing. Onze reputatie is gebouwd op kwaliteit, en die nemen wij serieus.' },
   { q: 'Kan ik ook één plant bestellen?', a: 'Ja. Voor particulieren geldt geen minimumbestelling; u kunt gewoon één plant bestellen. Heeft u een kleinere opdracht als hovenier? Neem contact op, we denken graag mee.' },
   { q: 'Moet ik mijn rhododendron snoeien?', a: 'Snoeien is niet noodzakelijk, maar kan wel. Snoei bij voorkeur direct na de bloei, van eind april tot halverwege juni. Zo heeft de plant de rest van het seizoen tijd om nieuwe bloemknoppen te vormen voor volgend jaar. Radicaal snoeien raden wij af: dit vertraagt de bloei met twee tot drie jaar.' },
 ]
@@ -243,7 +243,7 @@ export const b2b = {
   title: 'Rhododendrons op stam. Rechtstreeks van onze kwekerij in Otterlo.',
   sub: 'Vers gerooid op uw leverdatum. Levering afgestemd op uw project.',
   intro: 'Voor hoveniers, gemeenten en projectontwikkelaars: 10.000 rhododendrons op stam, aangroeigarantie, eigen transport en scherpe partijprijzen vanaf 25 stuks.',
-  facts: [['10.000+', 'planten op stam, 40 – 120+ cm'], ['Vanaf 25 stuks', 'scherpe partijprijzen'], ['Factuur 30 dagen', 'btw verlegd mogelijk'], ['NAK Tuinbouw', 'plantpaspoort bij elke partij']],
+  facts: [['10.000+', 'planten op stam, vers gerooid uit Otterlo'], ['Vanaf 25 stuks', 'scherpe partijprijzen'], ['100% aangroeigarantie', 'bij correcte aanplant'], ['Factuur 30 dagen', 'btw verlegd mogelijk']],
   groups: [
     { title: 'Hoveniers en tuinarchitecten', text: 'Voor tuin- en landschapsprojecten', rows: [['Volume per project', '30 – 150 stuks'], ['Levering', 'Op afgesproken datum'], ['Voorwaarden', 'Factuur 30 dagen']] },
     { title: 'Openbaar groen en gemeenten', text: 'Voor parken, plantsoenen en wijken', rows: [['Volume per project', '100 – 500 stuks'], ['Levering', 'Gefaseerd mogelijk'], ['Voorwaarden', 'Plantpaspoort + fytosanitair']] },
@@ -260,8 +260,9 @@ export const b2b = {
     ['60–80 cm', 'Ruim op voorraad', 'Haag · solitair'],
     ['80–100 cm', 'Op voorraad', 'Solitair · accent'],
     ['100–120 cm', 'Op voorraad', 'Solitair · openbaar groen'],
-    ['120 cm +', 'Op aanvraag', 'Grootformaat'],
+    ['120 cm +', 'Op aanvraag', 'Statussoorten · grootformaat'],
   ] as [string, string, string][],
+  heroMetrics: [['25+', 'Jaar specialist', 'In rhododendrons sinds 2001'], ['10.000+', 'Planten op stam', 'Vers gerooid uit Otterlo'], ['100%', 'Aangroeigarantie', 'Bij correcte aanplant']],
   sizesNote: "Hoofdsoorten: Nova Zembla, Cunningham's White, Roseum Elegans, Catawbiense Boursault, Catawbiense Grandiflorum, Ponticum Roseum, Ponticum. Andere soorten op aanvraag.",
   steps: [
     { title: 'U vraagt aan', text: 'Via het formulier of telefonisch. U geeft soorten, maten, aantallen en gewenste leverdatum door.' },
@@ -286,5 +287,6 @@ export const b2b = {
   ],
 }
 
+/** Copy that differs from the old site is listed in README ("Правки текстов"). */
 export const fmtEur = (n: number) => '€ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 export const parsePrice = (s: string) => parseFloat(s.replace('.', '').replace(',', '.'))

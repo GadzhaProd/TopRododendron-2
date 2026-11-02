@@ -2,23 +2,24 @@ import * as React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type Variant = 'solid' | 'ink' | 'outline' | 'ghost' | 'paper' | 'outline-white' | 'link'
+type Variant = 'solid' | 'moss' | 'outline' | 'ghost' | 'white' | 'outline-white' | 'flower' | 'link'
 type Size = 'sm' | 'md' | 'lg'
 
-const base = 'inline-flex items-center justify-center gap-2 whitespace-nowrap font-body font-medium transition-colors duration-200 disabled:opacity-60 disabled:pointer-events-none select-none rounded-ui'
+const base = 'inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none select-none rounded-ui'
 const variants: Record<Variant, string> = {
-  solid: 'bg-moss text-white hover:bg-moss-2',
-  ink: 'bg-ink text-paper hover:bg-ink-2',
-  outline: 'border border-ink/40 text-ink hover:border-ink hover:bg-ink hover:text-paper',
-  ghost: 'text-ink hover:bg-ink/5',
-  paper: 'bg-paper text-ink hover:bg-white',
-  'outline-white': 'border border-white/70 text-white hover:bg-white hover:text-ink hover:border-white',
-  link: 'text-ink underline underline-offset-4 decoration-line-2 hover:decoration-ink px-0',
+  solid: 'bg-night text-white hover:bg-moss-2',
+  moss: 'bg-moss text-white hover:bg-moss-2',
+  outline: 'border border-ink/35 text-ink hover:border-ink hover:bg-ink hover:text-white',
+  ghost: 'text-ink hover:bg-ink/6',
+  white: 'bg-white text-ink hover:bg-bg',
+  'outline-white': 'border border-white/60 text-white hover:bg-white hover:text-ink hover:border-white',
+  flower: 'bg-flower text-white hover:bg-[#a92c60]',
+  link: 'text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink px-0',
 }
 const sizes: Record<Size, string> = {
-  sm: 'h-10 px-4 text-[13.5px]',
-  md: 'h-12 px-6 text-[14.5px]',
-  lg: 'h-13 px-7 text-[15px] md:h-14 md:px-8',
+  sm: 'h-10 px-4 text-[14px]',
+  md: 'h-12 px-5 text-[15px]',
+  lg: 'h-13 px-6 text-[15.5px] md:h-14 md:px-7',
 }
 
 export interface ButtonProps extends Omit<React.ComponentProps<'a'>, 'onClick'> {
@@ -42,3 +43,6 @@ export function Button({ className, variant = 'solid', size = 'md', arrow, as = 
   if (as === 'button') return <button type={type ?? 'button'} className={cls} onClick={onClick as any} disabled={disabled} {...(props as any)}>{inner}</button>
   return <a className={cls} onClick={onClick as any} {...props}>{inner}</a>
 }
+
+/** External link helper: every https link opens in a new tab (artifact viewer sandbox). */
+export const ext = { target: '_blank', rel: 'noopener noreferrer' } as const

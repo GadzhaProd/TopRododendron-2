@@ -4,7 +4,7 @@ const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
-const dist = path.join(__dirname, '..', 'dist')
+const dist = process.env.DIST || path.join(__dirname, '..', 'dist')
 const CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' blob:"
 const types = { '.html': 'text/html; charset=utf-8', '.mp4': 'video/mp4', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.js': 'text/javascript', '.css': 'text/css' }
 
