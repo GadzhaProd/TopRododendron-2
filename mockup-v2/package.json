@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node build-single.mjs",
+    "preview": "vite preview",
+    "build:modules": "vite build"
   },
   "dependencies": {
     "clsx": "^2.1.1",
