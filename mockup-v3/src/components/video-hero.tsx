@@ -1,12 +1,8 @@
 // Full-screen video hero (adapted from 21st.dev "PrismaHero" in round 2).
-// "Zoomed-out" framing: the vertical source (720×1180, watermark trimmed) plays
-// as one sharp column with feathered edges over a blurred, darkened still of the
-// same scene (the "ambient"). On landscape screens the column stands full-height
-// at the right, clear of the text; on phones and portrait tablets it is centred
-// in the space above the text block, so face and hands stay visible while the
-// copy sits over the ambient. Poster under prefers-reduced-motion. Dark scrim
-// at the top (for the transparent header) and a heavier one under the text;
-// text-shadow on the small lines so AA holds on bright frames.
+// Vertical source on phones, landscape band on larger screens (both without the
+// watermark), poster under prefers-reduced-motion. Dark scrim at the top (for
+// the transparent header) and a heavier one under the text; text-shadow on the
+// small lines so AA holds on bright frames.
 import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
@@ -23,23 +19,19 @@ export function useIsMobile(bp = 768) {
   return m
 }
 
-/** Blurred, darkened still of the scene filling the whole hero (wide crop on landscape, tall on portrait). */
-export function HeroAmbient() {
-  return (
-    <picture className="pointer-events-none absolute inset-0 block" aria-hidden="true">
-      <source media="(min-width: 768px) and (orientation: landscape)" srcSet={hero.ambientWide} />
-      <img src={hero.ambientTall} alt="" className="h-full w-full object-cover" />
-    </picture>
-  )
-}
-
-/** The sharp figure column (video, or its poster under reduced motion). Position and mask live in `.hero-figure` (base.css). */
 export function HeroVideo({ className }: { className?: string }) {
+  const mobile = useIsMobile()
+  const narrowDesktop = useIsMobile(1280) && !mobile
   const reduce = useReducedMotion()
-  if (reduce) return <img src={hero.figurePoster} alt="" aria-hidden="true" className={cn('hero-figure', className)} />
+  const src = mobile ? hero.mobile : hero.desktop
+  const poster = mobile ? hero.mobilePoster : hero.desktopPoster
+  // on 768–1279 the band is cropped at the sides: keep the right side (the face
+  // lives there in the second half of the loop) away from the headline
+  const pos = mobile ? '50% 35%' : narrowDesktop ? '90% 40%' : '50% 40%'
+  if (reduce) return <img src={poster} alt="" aria-hidden="true" className={cn('absolute inset-0 h-full w-full object-cover', className)} style={{ objectPosition: pos }} />
   return (
-    <video autoPlay loop muted playsInline poster={hero.figurePoster} aria-hidden="true" className={cn('hero-figure', className)}>
-      <source src={hero.figure} type="video/mp4" />
+    <video key={src} autoPlay loop muted playsInline poster={poster} aria-hidden="true" className={cn('absolute inset-0 h-full w-full object-cover', className)} style={{ objectPosition: pos }}>
+      <source src={src} type="video/mp4" />
     </video>
   )
 }
@@ -61,9 +53,7 @@ export function VideoHero({ eyebrow, title, text, actions, bottomBar }: { eyebro
   const fade = (d: number) => ({ initial: reduce ? false : { y: 14, opacity: 0 }, animate: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: d, ease: [0.16, 1, 0.3, 1] as any } })
   return (
     <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-night text-white on-dark">
-      <HeroAmbient />
-      {/* in-flow stage: on portrait screens it is the free space above the text block and sizes the figure; on landscape it is static and the figure spans the section */}
-      <div className="hero-stage" aria-hidden="true"><HeroVideo /></div>
+      <HeroVideo />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[32%] bg-gradient-to-b from-night/75 via-night/30 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[88%] bg-gradient-to-t from-night/95 via-night/65 to-transparent md:h-[82%] md:via-night/60" />
       <div className="relative wrap container-x w-full pb-8 pt-28 md:pb-10 short:pt-24 short:pb-6">
