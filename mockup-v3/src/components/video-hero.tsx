@@ -68,6 +68,11 @@ export function VideoHero({ eyebrow, title, text, actions }: { eyebrow?: ReactNo
         <HeroVideo />
         {/* phones: light veil + scrim under the text block (lower 55 %); tablets in portrait: scrim at the top */}
         <div className="pointer-events-none absolute inset-0 bg-black/10 split:hidden" />
+        {/* split: the video dissolves into the moss panel. The panel colour runs
+            over the video's left edge with an eased fade, so there is no hard seam;
+            a soft vignette at the top and bottom ties the frame into the panel. */}
+        <div aria-hidden="true" className="hero-seam pointer-events-none absolute inset-y-0 left-0 hidden w-[28%] split:block" />
+        <div aria-hidden="true" className="hero-vignette pointer-events-none absolute inset-0 hidden split:block" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/90 via-black/55 to-transparent tabp:hidden split:hidden" />
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[62%] bg-gradient-to-b from-black/80 via-black/45 to-transparent tabp:block" />
       </div>
