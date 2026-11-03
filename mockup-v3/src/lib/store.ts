@@ -51,6 +51,11 @@ if (typeof window !== 'undefined') {
   window.addEventListener('hashchange', () => { productSlug.set(readHash()); window.scrollTo({ top: 0 }) })
 }
 
+/** Product sheet on the homepage (concept C): the variety whose sheet is open. */
+export const sheetStore = createStore<string | null>(null)
+export const openSheet = (slug: string) => sheetStore.set(slug)
+export const closeSheet = () => sheetStore.set(null)
+
 /** Modal dialogs (prijslijst). */
 export const modal = createStore<string | null>(null)
 export const openModal = (id: string) => modal.set(id)

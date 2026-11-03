@@ -1,3 +1,5 @@
+// Pill button of concept C (round 2, post-audit). The v3 variant names `moss`
+// and `flower` stay as aliases so the other pages keep working.
 import * as React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -5,21 +7,21 @@ import { cn } from '@/lib/utils'
 type Variant = 'solid' | 'moss' | 'outline' | 'ghost' | 'white' | 'outline-white' | 'flower' | 'link'
 type Size = 'sm' | 'md' | 'lg'
 
-const base = 'inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none select-none rounded-ui'
+const base = 'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none select-none'
 const variants: Record<Variant, string> = {
-  solid: 'bg-night text-white hover:bg-moss-2',
-  moss: 'bg-moss text-white hover:bg-moss-2',
-  outline: 'border border-ink/35 text-ink hover:border-ink hover:bg-ink hover:text-white',
-  ghost: 'text-ink hover:bg-ink/6',
-  white: 'bg-white text-ink hover:bg-bg',
-  'outline-white': 'border border-white/60 text-white hover:bg-white hover:text-ink hover:border-white',
-  flower: 'bg-flower text-white hover:bg-[#a92c60]',
-  link: 'text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink px-0',
+  solid: 'bg-accent text-accent-fg hover:opacity-90',
+  moss: 'bg-accent text-accent-fg hover:opacity-90',
+  outline: 'border border-fg/35 text-fg hover:bg-fg hover:text-bg hover:border-fg',
+  ghost: 'text-fg hover:bg-fg/5',
+  white: 'bg-white text-[#141414] hover:bg-white/90',
+  'outline-white': 'border border-white/70 text-white hover:bg-white hover:text-[#141414] hover:border-white',
+  flower: 'bg-fg text-bg hover:opacity-90',
+  link: 'text-fg underline-offset-4 hover:underline px-0',
 }
 const sizes: Record<Size, string> = {
-  sm: 'h-10 px-4 text-[14px]',
-  md: 'h-12 px-5 text-[15px]',
-  lg: 'h-13 px-6 text-[15.5px] md:h-14 md:px-7',
+  sm: 'h-10 px-4 text-[13px] rounded-ui',
+  md: 'h-12 px-6 text-[14px] rounded-ui',
+  lg: 'h-13 px-7 text-[15px] rounded-ui md:h-14 md:px-8',
 }
 
 export interface ButtonProps extends Omit<React.ComponentProps<'a'>, 'onClick'> {
@@ -29,6 +31,7 @@ export interface ButtonProps extends Omit<React.ComponentProps<'a'>, 'onClick'> 
   as?: 'a' | 'button'
   type?: 'button' | 'submit'
   disabled?: boolean
+  tabIndex?: number
   onClick?: React.MouseEventHandler<HTMLElement>
 }
 

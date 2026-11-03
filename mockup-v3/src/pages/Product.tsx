@@ -239,7 +239,7 @@ export default function Product() {
     <>
       <a href="#main" className="skip-link">Naar de inhoud</a>
       <SiteHeader page="product" />
-      <main id="main" className="pt-[68px] md:pt-20">
+      <main id="main" className="pt-16 md:pt-20">
         {isTurf ? <TurfView /> : v ? <PlantView v={v} /> : <NotFound slug={slug} />}
       </main>
       <SiteFooter />

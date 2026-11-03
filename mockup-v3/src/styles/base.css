@@ -1,71 +1,94 @@
 @import "tailwindcss";
 
-@custom-variant short (@media (max-height: 740px));
+/* phones in portrait that are short (text block in the hero loses its paragraph) */
+@custom-variant shortphone (@media (max-height: 740px) and (max-width: 767px));
+/* desktop and tablets in landscape: split hero (dark panel + video) */
+@custom-variant split {
+  @media (min-width: 1024px) { @slot; }
+  @media (min-width: 768px) and (orientation: landscape) { @slot; }
+}
+/* tablets in portrait: full-screen video, text block top-left (face and hands stay free) */
+@custom-variant tabp (@media (min-width: 640px) and (max-width: 1023px) and (orientation: portrait));
 
 /* ------------------------------------------------------------------
-   Top Rhododendrons · v3 "Veld" — one grotesk, deep moss & night,
-   sage-stone light surfaces, flower colours only from the photos.
+   Top Rhododendrons · concept C "Veld" (round 2, post-audit) tokens.
+   Manrope, warm stone surfaces, charcoal text, moss accent, pill
+   buttons, 28 px image radius (20 px on phones), 14 px fields.
+   The v3 names (ink, night, moss, leaf, flower) stay as aliases so the
+   other pages keep their structure and simply pick up C's palette.
    ------------------------------------------------------------------ */
 @theme {
-  --color-bg: #e7eae2;
-  --color-bg-2: #d8ddd0;
-  --color-surface: #f4f5f1;
-  --color-ink: #0f1a14;
-  --color-ink-2: #36423a;
-  --color-muted: #55615a;
-  --color-line: #c9d0c3;
-  --color-night: #0f1a14;
-  --color-moss: #1c3326;
-  --color-moss-2: #27452f;
-  --color-moss-3: #16291e;
-  --color-leaf: #8fb08a;
-  --color-flower: #c43a72;
-  --color-flower-2: #f08cb6;
+  --color-bg: #f1efea;
+  --color-bg-2: #e6e3dc;
+  --color-surface: #fbfaf8;
+  --color-fg: #141413;
+  --color-fg-2: #45443f;
+  --color-muted: #5f5e58;
+  --color-line: #d6d3cb;
+  --color-accent: #3f4a37;
+  --color-accent-fg: #ffffff;
+  --color-accent-2: #8b9a7c;
+  /* aliases (v3 names) */
+  --color-ink: #141413;
+  --color-ink-2: #45443f;
+  --color-night: #141413;
+  --color-moss: #3f4a37;
+  --color-moss-2: #4b5742;
+  --color-moss-3: #333c2d;
+  --color-leaf: #8b9a7c;
+  --color-flower: #a33a52;
+  --color-flower-2: #e0a3b6;
   --color-white: #ffffff;
-  --font-sans: "Bricolage Grotesque", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --radius-ui: 8px;
-  --radius-img: 14px;
-  --radius-panel: 20px;
-  --radius-field: 8px;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --radius-ui: 999px;
+  --radius-img: 28px;
+  --radius-panel: 28px;
+  --radius-field: 14px;
   --breakpoint-xs: 420px;
 }
+@media (max-width: 640px) { :root { --radius-img: 20px; --radius-panel: 20px; } }
 
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   background: var(--color-bg);
-  color: var(--color-ink);
+  color: var(--color-fg);
   font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-optical-sizing: auto;
   overflow-x: hidden;
 }
 
-.display { font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
-.title { font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+.font-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.035em; }
+.display { font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+.title { font-weight: 500; letter-spacing: -0.035em; line-height: 1.02; }
+.eyebrow { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
 .label { font-size: 13px; font-weight: 600; letter-spacing: 0.01em; }
 .container-x { padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); }
 .wrap { max-width: 1400px; margin-left: auto; margin-right: auto; }
 .num { font-variant-numeric: lining-nums tabular-nums; }
-.img-treat { filter: saturate(1.02) contrast(1.02); }
+.hairline { border-color: var(--color-line); }
+.img-treat { filter: saturate(0.94) contrast(1.03); }
 .rounded-img { border-radius: var(--radius-img); }
+.rounded-t-img { border-top-left-radius: var(--radius-img); border-top-right-radius: var(--radius-img); }
 .rounded-panel { border-radius: var(--radius-panel); }
+.rounded-t-panel { border-top-left-radius: var(--radius-panel); border-top-right-radius: var(--radius-panel); }
 .rounded-ui { border-radius: var(--radius-ui); }
 .rounded-field { border-radius: var(--radius-field); }
 .text-shadow { text-shadow: 0 1px 2px rgb(0 0 0 / .35), 0 2px 18px rgb(0 0 0 / .35); }
 
-h1, h2, h3, h4 { text-wrap: balance; }
-p { text-wrap: pretty; }
+@layer base {
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
 
 /* focus: dark + light ring so it reads on video and on light backgrounds */
-:focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f1a14; }
-.on-dark :focus-visible { box-shadow: 0 0 0 2px #0f1a14, 0 0 0 4px #fff; }
+:focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #141414; }
+.on-dark :focus-visible { box-shadow: 0 0 0 2px #141414, 0 0 0 4px #fff; }
 
-.skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: #0f1a14; color: #fff; padding: 10px 14px; font-size: 14px; border-radius: 8px; }
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: #141414; color: #fff; padding: 10px 14px; font-size: 14px; }
 .skip-link:focus { top: 12px; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -76,7 +99,7 @@ p { text-wrap: pretty; }
 select { background-image: none; }
 
 /* hatched fill for "plant period" (light and dark variants) */
-.hatch { background-image: repeating-linear-gradient(135deg, rgba(15,26,20,.45) 0 1.5px, transparent 1.5px 6px); }
+.hatch { background-image: repeating-linear-gradient(135deg, rgba(20,20,19,.45) 0 1.5px, transparent 1.5px 6px); }
 .on-dark .hatch { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.55) 0 1.5px, transparent 1.5px 6px); }
 
 @media (prefers-reduced-motion: reduce) {

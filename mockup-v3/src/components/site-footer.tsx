@@ -1,58 +1,57 @@
-import { Instagram } from 'lucide-react'
+// Footer of concept C ("Footer with Suite", round 2, post-audit): link columns,
+// an oversized brand wordmark and a bottom bar. Compact on the homepage (the
+// contact block sits right above it), full on the other pages.
+import { cn } from '@/lib/utils'
 import { Logo } from './logo'
 import { ext } from './button'
 import { company } from '@/data/content'
 
 export function SiteFooter({ home = false }: { home?: boolean }) {
-  const year = new Date().getFullYear()
-  const col = 'flex flex-col gap-2.5 text-[14.5px] text-white/80 [&_a]:transition-colors [&_a:hover]:text-white'
-  const h = 'label mb-4 text-white/55'
+  const compact = home
+  const p = home ? '' : 'index.html'
+  const links = [
+    { label: 'Planten', href: home ? '#planten' : 'assortiment.html' },
+    { label: 'Waarom wij', href: `${p}#waarom` },
+    { label: 'De kweker', href: `${p}#kweker` },
+    { label: 'Advies', href: `${p}#advies` },
+    { label: 'Plantgids', href: 'plantgids.html' },
+    { label: 'Groothandel', href: 'groothandel.html' },
+  ]
+  const t = 'text-fg', m = 'text-muted'
+  const link = cn('py-1 text-[14px] transition-colors hover:opacity-60', t)
   return (
-    <footer className="bg-night text-white on-dark">
-      <div className="wrap container-x py-14 md:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr] lg:gap-10">
-          <div>
-            <Logo dark size="md" caption />
-            <p className="mt-6 max-w-[34ch] text-[14.5px] leading-relaxed text-white/75">{company.description}</p>
-            <a href={company.instagram} {...ext} className="mt-6 inline-flex items-center gap-2 text-[14px] text-white/80 hover:text-white"><Instagram className="size-4" strokeWidth={1.7} aria-hidden="true" />{company.instagramHandle}</a>
+    <footer className="relative w-full overflow-hidden bg-bg-2">
+      <div className={cn('container-x grid gap-10 pt-14 pb-6', compact ? 'md:grid-cols-[1.4fr_1fr_1fr]' : 'md:grid-cols-4')}>
+        <div className="flex flex-col gap-4"><Logo size="sm" caption /><p className={cn('max-w-[30ch] text-[14px] leading-relaxed', m)}>Familiekwekerij van rhododendrons op de Veluwe. Veenrijke bodem, sterk wortelstelsel, aangroeigarantie.</p></div>
+        <div className="flex flex-col"><p className={cn('eyebrow mb-2', m)}>Navigatie</p>{links.map((x) => <a key={x.label} href={x.href} className={link}>{x.label}</a>)}</div>
+        {compact ? (
+          <div className="flex flex-col gap-1">
+            <p className={cn('eyebrow mb-2', m)}>Contact</p>
+            <a href={company.phone1Href} className={cn('text-[14px]', t)}>{company.phone1}</a>
+            <a href={`mailto:${company.email}`} className={cn('text-[14px]', t)}>{company.email}</a>
+            <a href={company.instagram} {...ext} className={cn('text-[14px]', t)}>Instagram · {company.instagramHandle}</a>
           </div>
-          <div>
-            <p className={h}>Navigatie</p>
-            <div className={col}>
-              <a href="index.html">Home</a>
-              <a href="assortiment.html">Assortiment</a>
-              <a href="plantgids.html">Plantgids</a>
-              <a href={home ? '#kwekerij' : 'index.html#kwekerij'}>De kwekerij</a>
-              <a href="groothandel.html">Groothandel</a>
-              <a href={home ? '#contact' : 'index.html#contact'}>Contact</a>
+        ) : (
+          <>
+            <div className="flex flex-col gap-1">
+              <p className={cn('eyebrow mb-2', m)}>Kwekerij</p>
+              <a href={company.maps} {...ext} className={cn('text-[14px] leading-relaxed', t)}>{company.street}<br />{company.postal}</a>
+              <a href={`mailto:${company.email}`} className={cn('mt-2 text-[14px]', t)}>{company.email}</a>
+              <a href={company.phone1Href} className={cn('text-[14px]', t)}>{company.phone1}</a>
+              <a href={company.phone2Href} className={cn('text-[14px]', t)}>{company.phone2}</a>
             </div>
-          </div>
-          <div>
-            <p className={h}>Openingstijden</p>
-            <dl className="flex flex-col gap-2 text-[14.5px]">
-              {company.hours.map(([d, t]) => (
-                <div key={d} className="flex justify-between gap-4 border-b border-white/10 pb-2"><dt className="text-white/70">{d}</dt><dd className={t === 'Gesloten' ? 'text-white/55' : 'num font-medium text-white'}>{t}</dd></div>
-              ))}
-            </dl>
-          </div>
-          <div>
-            <p className={h}>Kwekerij &amp; kantoor</p>
-            <div className={col}>
-              <a href={company.maps} {...ext}>{company.street}<br />{company.postal}</a>
-              <a href={`mailto:${company.email}`}>{company.email}</a>
-              <a href={company.phone1Href} className="num">{company.phone1}</a>
-              <a href={company.phone2Href} className="num">{company.phone2}</a>
-              <a href={company.whatsapp} {...ext}>WhatsApp</a>
+            <div className="flex flex-col gap-1">
+              <p className={cn('eyebrow mb-2', m)}>Open</p>
+              {company.hours.map(([d, h]) => <p key={d} className={cn('flex justify-between gap-4 text-[14px]', t)}><span className={m}>{d}</span><span>{h}</span></p>)}
+              <a href={company.instagram} {...ext} className={cn('mt-3 text-[14px]', t)}>Instagram · {company.instagramHandle}</a>
             </div>
-          </div>
-        </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/12 pt-6 text-[13px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {company.name} · KvK {company.kvk} · Otterlo, Veluwe</p>
-          <div className="flex gap-6">
-            <a href={company.voorwaarden} {...ext} className="hover:text-white">Algemene voorwaarden</a>
-            <a href={company.privacy} {...ext} className="hover:text-white">Privacybeleid</a>
-          </div>
-        </div>
+          </>
+        )}
+      </div>
+      <p aria-hidden="true" className={cn('container-x select-none font-display font-semibold leading-[0.85] tracking-[-0.05em] whitespace-nowrap', t)} style={{ fontSize: 'clamp(2.2rem, 10.6vw, 11.2rem)' }}>Top Rhododendrons</p>
+      <div className="container-x mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-fg/10 py-4">
+        <p className={cn('text-[13px]', m)}>© 2026 {company.name} · KvK {company.kvk}</p>
+        <p className={cn('text-[13px]', m)}><a href={company.voorwaarden} {...ext} className="hover:opacity-70">Voorwaarden</a> · <a href={company.privacy} {...ext} className="hover:opacity-70">Privacy</a></p>
       </div>
     </footer>
   )

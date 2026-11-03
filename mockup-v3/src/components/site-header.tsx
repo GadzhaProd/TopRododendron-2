@@ -1,10 +1,12 @@
-// Header: transparent over the hero (the hero carries a dark top scrim so the
-// white logo and menu keep AA on every frame), a frosted night bar after
-// scrolling and on all non-hero pages. Mobile menu is a real dialog.
+// Header of concept C (round 2, post-audit): a translucent frosted light strip
+// from the very first pixel (dark text, AA over the video), which compacts into a
+// floating capsule after scrolling. The mobile menu is a real dialog (Escape,
+// focus trap, inert page, measured top offset). Retail pages carry the cart CTA
+// ("Bestellen" / "Winkelwagen (n)"), the B2B page "Offerte aanvragen".
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Phone, ShoppingBag } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { cn, lockPage, trapTab } from '@/lib/utils'
 import { Logo } from './logo'
 import { Button, ext } from './button'
@@ -12,9 +14,9 @@ import { WhatsAppIcon } from './whatsapp-float'
 import { company } from '@/data/content'
 import { openCart, useCartCount } from '@/lib/store'
 
-export type NavLink = { label: string; href: string; current?: boolean }
+export type NavLink = { label: string; href: string; strong?: boolean; current?: boolean }
 
-function useScrolled(threshold = 40) {
+export function useScrolled(threshold = 24) {
   const [s, setS] = React.useState(false)
   React.useEffect(() => {
     const h = () => setS(window.scrollY > threshold)
@@ -24,21 +26,16 @@ function useScrolled(threshold = 40) {
   return s
 }
 
-export function CartButton() {
+function CartCta({ home, onClick }: { home: boolean; onClick?: () => void }) {
   const n = useCartCount()
-  return (
-    <button type="button" onClick={openCart} aria-label={`Winkelwagen, ${n} ${n === 1 ? 'artikel' : 'artikelen'}`} className="relative flex h-11 items-center gap-2 rounded-ui px-2.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-white/12">
-      <ShoppingBag className="size-[19px]" strokeWidth={1.7} aria-hidden="true" />
-      <span className="hidden sm:inline">Winkelwagen</span>
-      {n > 0 && <span className="num grid min-w-[20px] place-items-center rounded-full bg-white px-1.5 text-[11.5px] font-bold leading-[20px] text-ink">{n}</span>}
-    </button>
-  )
+  if (n > 0 || !home) return <Button as="button" variant="solid" size="sm" onClick={() => { onClick?.(); openCart() }}>{n > 0 ? `Winkelwagen (${n})` : 'Winkelwagen'}</Button>
+  return <Button href="#planten" variant="solid" size="sm" onClick={onClick}>Bestellen</Button>
 }
 
-/** `hero`: page starts with a full-bleed dark hero (header transparent at top). `page`: 'home' | 'assortiment' | 'plantgids' | 'product'. */
-export function SiteHeader({ variant = 'retail', page, hero = false }: { variant?: 'retail' | 'b2b'; page?: string; hero?: boolean }) {
+/** `page`: 'home' | 'assortiment' | 'plantgids' | 'product'. `hero` is kept for API compatibility (the C bar is frosted everywhere). */
+export function SiteHeader({ variant = 'retail', page }: { variant?: 'retail' | 'b2b'; page?: string; hero?: boolean }) {
   const [open, setOpen] = React.useState(false)
-  const scrolled = useScrolled()
+  const scrolled = useScrolled(24)
   const headerRef = React.useRef<HTMLElement>(null)
   const [top, setTop] = React.useState(64)
   const b2b = variant === 'b2b'
@@ -52,45 +49,48 @@ export function SiteHeader({ variant = 'retail', page, hero = false }: { variant
 
   // same-page anchors stay bare "#id" so they work inside the artifact viewer
   const links: NavLink[] = b2b
-    ? [{ label: 'Afnemers', href: '#doelgroepen' }, { label: 'Werkwijze', href: '#werkwijze' }, { label: 'Voorraad', href: '#voorraad' }, { label: 'Tarieven', href: '#tarieven' }, { label: 'Vragen', href: '#faq' }]
-    : [
-        { label: 'Assortiment', href: 'assortiment.html', current: page === 'assortiment' || page === 'product' },
-        { label: 'Plantgids', href: 'plantgids.html', current: page === 'plantgids' },
-        { label: 'De kwekerij', href: home ? '#kwekerij' : 'index.html#kwekerij' },
-        { label: 'Contact', href: home ? '#contact' : 'index.html#contact' },
-      ]
-  const solid = scrolled || !hero || open
-  const linkCls = 'relative text-[14.5px] font-medium text-white/85 transition-colors hover:text-white after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100'
+    ? [{ label: 'Projecten', href: '#doelgroepen' }, { label: 'Werkwijze', href: '#werkwijze' }, { label: 'Voorraad', href: '#voorraad' }, { label: 'Offerte', href: '#offerte' }, { label: 'Particulier', href: 'index.html', strong: true }]
+    : home
+      ? [{ label: 'Planten', href: '#planten' }, { label: 'Waarom wij', href: '#waarom' }, { label: 'De kweker', href: '#kweker' }, { label: 'Advies', href: '#advies' }, { label: 'Groothandel', href: 'groothandel.html', strong: true }]
+      : [
+          { label: 'Assortiment', href: 'assortiment.html', current: page === 'assortiment' || page === 'product' },
+          { label: 'Plantgids', href: 'plantgids.html', current: page === 'plantgids' },
+          { label: 'De kweker', href: 'index.html#kweker' },
+          { label: 'Advies', href: 'index.html#advies' },
+          { label: 'Groothandel', href: 'groothandel.html', strong: true },
+        ]
+  const cta = (onClick?: () => void) => (b2b ? <Button href="#offerte" variant="solid" size="sm" onClick={onClick}>Offerte aanvragen</Button> : <CartCta home={home} onClick={onClick} />)
+  const linkCls = 'text-[14px] tracking-[0.01em] transition-colors text-fg-2 hover:text-fg'
+  const capsule = scrolled && !open
 
   return (
-    <header ref={headerRef} className="on-dark fixed inset-x-0 top-0 z-50 text-white">
-      <div className={cn('transition-colors duration-300', solid ? 'border-b border-white/10 bg-night/88 backdrop-blur-xl' : 'bg-transparent')}>
-        <div className={cn('wrap container-x flex items-center justify-between transition-[height] duration-300', scrolled ? 'h-16' : 'h-[68px] md:h-20')}>
-          <a href="index.html" aria-label="Top Rhododendrons, naar de homepage" className="flex items-center"><Logo size="sm" dark /></a>
-          <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Hoofdnavigatie">
-            {links.map((l) => <a key={l.label} href={l.href} aria-current={l.current ? 'page' : undefined} className={cn(linkCls, l.current && 'text-white after:scale-x-100')}>{l.label}</a>)}
-            {!b2b && <a href="groothandel.html" className={cn(linkCls, 'font-semibold text-white')}>Groothandel</a>}
-            {b2b && <a href="index.html" className={cn(linkCls, 'font-semibold text-white')}>Particulier</a>}
+    <header ref={headerRef} className="fixed inset-x-0 top-0 z-50">
+      <div className={cn('transition-all duration-500', capsule && 'px-3 pt-3 md:px-6')}>
+        <div
+          className={cn(
+            'mx-auto flex items-center justify-between border-b border-fg/10 bg-bg/90 text-fg backdrop-blur-xl transition-all duration-500 supports-[backdrop-filter]:bg-bg/80',
+            capsule ? 'h-14 max-w-5xl rounded-full border px-4 shadow-[0_12px_40px_-24px_rgba(0,0,0,.5)] md:px-6' : cn('w-full container-x', scrolled ? 'h-14 md:h-16' : 'h-16 md:h-20'),
+          )}
+        >
+          <a href="index.html" aria-label="Top Rhododendrons, naar de homepage" className="flex items-center"><Logo size="sm" /></a>
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Hoofdnavigatie">
+            {links.map((l) => <a key={l.label} href={l.href} aria-current={l.current ? 'page' : undefined} className={cn(linkCls, (l.strong || l.current) && 'font-medium text-fg')}>{l.label}</a>)}
           </nav>
-          <div className="flex items-center gap-0.5 sm:gap-1.5">
-            <a href={company.whatsapp} {...ext} aria-label="WhatsApp" className="hidden size-11 place-items-center rounded-ui text-white hover:bg-white/12 xl:grid"><WhatsAppIcon className="size-5" /></a>
-            <a href={company.phone1Href} aria-label={`Bel ${company.phone1}`} className="flex h-11 items-center gap-2 rounded-ui px-2.5 text-[14.5px] font-semibold text-white hover:bg-white/12">
-              <Phone className="size-[18px]" strokeWidth={1.7} aria-hidden="true" /><span className="num hidden xl:inline">{company.phone1}</span>
-            </a>
-            {b2b ? <Button href="#offerte" variant="white" size="sm" className="hidden md:inline-flex">Offerte aanvragen</Button> : <CartButton />}
-            <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Menu sluiten' : 'Menu openen'} className="relative ml-1 flex size-11 items-center justify-center rounded-ui border border-white/40 text-white lg:hidden">
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:block">{cta()}</div>
+            <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Menu sluiten' : 'Menu openen'} className="relative flex size-11 items-center justify-center rounded-full border border-fg/25 text-fg lg:hidden">
               <span className={cn('absolute h-px w-5 bg-current transition-transform duration-300', open ? 'rotate-45' : '-translate-y-[3px]')} />
               <span className={cn('absolute h-px w-5 bg-current transition-transform duration-300', open ? '-rotate-45' : 'translate-y-[3px]')} />
             </button>
           </div>
         </div>
       </div>
-      <MobileMenu open={open} top={top} links={[...links, b2b ? { label: 'Particulier', href: 'index.html' } : { label: 'Groothandel', href: 'groothandel.html' }]} b2b={b2b} onClose={() => setOpen(false)} />
+      <MobileMenu open={open} top={top} links={links} cta={cta(() => setOpen(false))} onClose={() => setOpen(false)} />
     </header>
   )
 }
 
-function MobileMenu({ open, top, links, b2b, onClose }: { open: boolean; top: number; links: NavLink[]; b2b: boolean; onClose: () => void }) {
+function MobileMenu({ open, top, links, cta, onClose }: { open: boolean; top: number; links: NavLink[]; cta: React.ReactNode; onClose: () => void }) {
   const ref = React.useRef<HTMLDivElement>(null)
   React.useEffect(() => {
     if (!open) return
@@ -107,17 +107,17 @@ function MobileMenu({ open, top, links, b2b, onClose }: { open: boolean; top: nu
   return createPortal(
     <AnimatePresence>
       {open && (
-        <motion.div ref={ref} id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} style={{ top }} className="on-dark fixed inset-x-0 bottom-0 z-40 flex flex-col justify-between overflow-y-auto bg-night px-6 pb-8 pt-2 text-white lg:hidden">
+        <motion.div ref={ref} id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} style={{ top }} className="fixed inset-x-0 bottom-0 z-40 flex flex-col justify-between overflow-y-auto bg-bg px-6 pb-8 pt-4 text-fg lg:hidden">
           <nav className="flex flex-col" aria-label="Mobiele navigatie">
             {links.map((l, i) => (
-              <motion.a key={l.label} href={l.href} onClick={onClose} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 + i * 0.035 }} className="border-b border-white/12 py-4 text-[28px] font-semibold tracking-[-0.02em] leading-none">{l.label}</motion.a>
+              <motion.a key={l.label} href={l.href} onClick={onClose} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 + i * 0.04 }} className="border-b border-fg/10 py-4 font-display text-[26px] leading-none">{l.label}</motion.a>
             ))}
           </nav>
-          <div className="mt-8 flex flex-col gap-2.5">
-            {b2b ? <Button href="#offerte" variant="white" size="lg" onClick={onClose}>Offerte aanvragen</Button> : <Button href="assortiment.html" variant="white" size="lg" onClick={onClose}>Bekijk het assortiment</Button>}
-            <div className="grid grid-cols-2 gap-2.5">
-              <Button href={company.phone1Href} variant="outline-white" size="lg"><Phone className="size-4" aria-hidden="true" />Bel ons</Button>
-              <Button href={company.whatsapp} {...ext} variant="outline-white" size="lg"><WhatsAppIcon className="size-4" />WhatsApp</Button>
+          <div className="mt-6 flex flex-col gap-3 [&>a]:w-full [&>button]:w-full">
+            {cta}
+            <div className="grid grid-cols-2 gap-3">
+              <Button href={company.phone1Href} variant="outline" size="md"><Phone className="size-4" aria-hidden="true" />Bel ons</Button>
+              <Button href={company.whatsapp} {...ext} variant="outline" size="md"><WhatsAppIcon className="size-4" />WhatsApp</Button>
             </div>
           </div>
         </motion.div>

@@ -68,7 +68,7 @@ export default function Assortiment() {
     <>
       <a href="#main" className="skip-link">Naar de inhoud</a>
       <SiteHeader page="assortiment" />
-      <main id="main" className="pt-[68px] md:pt-20">
+      <main id="main" className="pt-16 md:pt-20">
         <section className="bg-night text-white on-dark">
           <div className="wrap container-x py-12 md:py-20">
             <SectionHead dark as="h1" size="xl" title="Alle rhododendrons." text={`${varieties.length} variëteiten op voorraad, in vier maten van 40 tot 120 cm. Dagvers gerooid bij uw bestelling, rechtstreeks vanaf onze kwekerij in Otterlo. Geen minimumbestelling.`} />

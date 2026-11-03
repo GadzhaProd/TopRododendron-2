@@ -1,22 +1,30 @@
 // Interaction + contrast verification under the strict CSP server:
-// lightbox closes by click/tap and returns focus, cart/prijslijst return focus,
-// product switcher works in-page, form errors bind to fields, and pixel-based
-// contrast (5th percentile) of white text over the hero video and door photos.
+// lightbox closes by click/tap and returns focus, cart/prijslijst/product sheet
+// return focus, product switcher works in-page, form errors bind to fields, no
+// overflow at 360, and pixel-based contrast (5th percentile against white text)
+// of the hero text over the video/panel and of the door panels' text.
 const { chromium } = require('playwright')
 const { serve } = require('./server.cjs')
 
-const lum = (r, g, b) => { const f = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4) }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b) }
-async function contrastOf(page, selector, label) {
-  // hide the text, screenshot its box, compute contrast of white against each pixel, report 5th percentile
-  await page.$eval(selector, (el) => { document.documentElement.style.scrollBehavior = 'auto'; el.scrollIntoView({ block: 'center' }) }); await page.waitForTimeout(700)
+async function contrastOf(page, selector, label, minRatio = 4.5) {
+  // hide the text, screenshot its box, compute contrast of white against each pixel, report the 5th percentile
+  await page.$eval(selector, (el) => { document.documentElement.style.scrollBehavior = 'auto'; el.scrollIntoView({ block: 'center' }) }); await page.waitForTimeout(500)
   const box = await page.$eval(selector, (el) => { const r = el.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height } })
   await page.$eval(selector, (el) => { el.style.visibility = 'hidden' })
-  const fs = require('fs'); const path = require('path')
-  const dir = path.join(__dirname, '..', '.shots', 'contrast'); fs.mkdirSync(dir, { recursive: true })
-  const file = path.join(dir, label.replace(/[^a-z0-9]+/gi, '_') + '.png')
-  await page.screenshot({ path: file, clip: { x: box.x, y: box.y, width: Math.max(1, box.w), height: Math.max(1, box.h) }, type: 'png' })
+  const png = await page.screenshot({ clip: { x: box.x, y: box.y, width: Math.max(1, box.w), height: Math.max(1, box.h) }, type: 'png' })
   await page.$eval(selector, (el) => { el.style.visibility = '' })
-  console.log('saved contrast sample', label)
+  const ratio = await page.evaluate(async (b64) => {
+    const im = new Image(); im.src = 'data:image/png;base64,' + b64; await im.decode()
+    const c = document.createElement('canvas'); c.width = im.width; c.height = im.height
+    const ctx = c.getContext('2d'); ctx.drawImage(im, 0, 0)
+    const d = ctx.getImageData(0, 0, c.width, c.height).data
+    const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4) }
+    const rs = []
+    for (let i = 0; i < d.length; i += 16) { const L = 0.2126 * f(d[i]) + 0.7152 * f(d[i + 1]) + 0.0722 * f(d[i + 2]); rs.push(1.05 / (L + 0.05)) }
+    rs.sort((a, b) => a - b)
+    return rs[Math.floor(rs.length * 0.05)]
+  }, png.toString('base64'))
+  console.log((ratio >= minRatio ? 'ok   ' : 'FAIL ') + `${label}: 5th-percentile contrast of white text ${ratio.toFixed(2)}:1`)
 }
 
 ;(async () => {
@@ -46,12 +54,16 @@ async function contrastOf(page, selector, label) {
   await p.click('button:has-text("In winkelwagen") >> nth=0'); await p.waitForTimeout(500)
   await p.keyboard.press('Escape'); await p.waitForTimeout(300)
   ok((await p.evaluate(() => document.activeElement?.textContent || ''))?.includes('winkelwagen'), 'cart focus returned to opener')
-  // --- contact form errors bound ---
+  // --- product sheet on the homepage: opens, adds to cart, Escape returns focus ---
   await p.goto(`${base}/index.html`); await p.waitForTimeout(800)
-  await p.click('form button[type="submit"]'); await p.waitForTimeout(200)
-  const inv = await p.$$eval('[aria-invalid="true"]', (els) => els.map((e) => e.getAttribute('aria-describedby')))
-  ok(inv.length === 3 && inv.every(Boolean), `contact errors bound (${inv.length} invalid fields)`)
-  ok(await p.evaluate(() => document.activeElement?.getAttribute('name')) === 'naam', 'focus on first invalid field')
+  await p.evaluate(() => document.querySelector('#planten button')?.scrollIntoView({ block: 'center' })); await p.waitForTimeout(400)
+  await p.tap('#planten button >> nth=0'); await p.waitForTimeout(500)
+  ok(await p.$('[role="dialog"][aria-labelledby="sheet-title"]') !== null, 'product sheet opened from a card')
+  await p.tap('[role="dialog"] button:has-text("In winkelwagen")'); await p.waitForTimeout(300)
+  ok((await p.textContent('[role="dialog"]')).includes('Toegevoegd'), 'sheet: added to cart')
+  await p.keyboard.press('Escape'); await p.waitForTimeout(400)
+  ok(await p.$('[role="dialog"][aria-labelledby="sheet-title"]') === null, 'sheet closed by Escape')
+  ok(await p.evaluate(() => document.activeElement?.closest('#planten') !== null), 'sheet focus returned to the card')
   // --- 360 overflow ---
   await p.close()
   p = await page(360, 640)
@@ -66,28 +78,33 @@ async function contrastOf(page, selector, label) {
   await p.click('button:has-text("Prijslijst ontvangen") >> nth=0'); await p.waitForTimeout(400)
   await p.keyboard.press('Escape'); await p.waitForTimeout(300)
   ok((await p.evaluate(() => document.activeElement?.textContent || '')).includes('Prijslijst'), 'prijslijst focus returned to opener')
-  // --- contrast over video (several frames) and doors ---
-  await p.goto(`${base}/index.html`); await p.waitForTimeout(600)
-  for (const t of [1.5, 4, 6.5]) {
-    await p.evaluate((t) => { const v = document.querySelector('video'); v.pause(); v.currentTime = t }, t); await p.waitForTimeout(400)
-    await contrastOf(p, '#hero p.label', `hero eyebrow 1440 t=${t}`)
-    await contrastOf(p, '#hero h1 + p', `hero lead 1440 t=${t}`)
-  }
-  await p.evaluate(() => document.querySelector('a[href="groothandel.html"].group\\/d')?.scrollIntoView({ block: 'center' })); await p.waitForTimeout(500)
-  await contrastOf(p, 'a[href="groothandel.html"].group\\/d p.label', 'door professionals label 1440')
-  await contrastOf(p, 'a[href="groothandel.html"].group\\/d h3 + p', 'door professionals lead 1440')
-  await contrastOf(p, 'a[href="assortiment.html"].group\\/d p.label', 'door tuin label 1440')
+  // --- contact form errors are bound to fields (homepage, desktop) ---
+  // (the C homepage has no form; the retail form lives in the B2B page's offerte section)
+  await p.click('form button[type="submit"]'); await p.waitForTimeout(200)
+  const inv = await p.$$eval('[aria-invalid="true"]', (els) => els.map((e) => e.getAttribute('aria-describedby')))
+  ok(inv.length === 4 && inv.every(Boolean), `offerte errors bound (${inv.length} invalid fields)`)
+  ok(await p.evaluate(() => document.activeElement?.getAttribute('name')) === 'bedrijf', 'focus on first invalid field')
+  // --- contrast: hero text (split hero = solid panel), doors, phone hero over the video (several frames) ---
+  await p.goto(`${base}/index.html`); await p.waitForTimeout(800)
+  await contrastOf(p, '#hero .eyebrow', 'hero eyebrow 1440')
+  await contrastOf(p, '#hero h1 + p', 'hero lead 1440')
+  await contrastOf(p, '[data-door="pro"] .eyebrow', 'door professionals eyebrow 1440')
+  await contrastOf(p, '[data-door="pro"] h2 + p', 'door professionals lead 1440')
+  await contrastOf(p, '[data-door="tuin"] .eyebrow', 'door tuin eyebrow 1440')
+  await contrastOf(p, '[data-door="tuin"] h2 + p', 'door tuin lead 1440')
   await p.close()
-  p = await page(390, 844)
-  await p.goto(`${base}/index.html`); await p.waitForTimeout(600)
-  for (const t of [2, 6]) {
-    await p.evaluate((t) => { const v = document.querySelector('video'); v.pause(); v.currentTime = t }, t); await p.waitForTimeout(400)
-    await contrastOf(p, '#hero p.label', `hero eyebrow 390 t=${t}`)
-    await contrastOf(p, '#hero h1 + p', `hero lead 390 t=${t}`)
+  for (const [w, h] of [[390, 844], [360, 640]]) {
+    p = await page(w, h)
+    await p.goto(`${base}/index.html`); await p.waitForTimeout(800)
+    for (const t of [1, 4, 6.5]) {
+      await p.evaluate((t) => { const v = document.querySelector('video'); v.pause(); v.currentTime = t }, t); await p.waitForTimeout(400)
+      await contrastOf(p, '#hero .eyebrow', `hero eyebrow ${w} t=${t}`)
+      if (w >= 390) await contrastOf(p, '#hero h1 + p', `hero lead ${w} t=${t}`)
+      await contrastOf(p, '#hero h1', `hero h1 ${w} t=${t}`, 3)
+    }
+    await contrastOf(p, '[data-door="pro"] .eyebrow', `door professionals eyebrow ${w}`)
+    await contrastOf(p, '[data-door="pro"] h2 + p', `door professionals lead ${w}`)
+    await p.close()
   }
-  await p.evaluate(() => document.querySelector('a[href="groothandel.html"].group\\/d')?.scrollIntoView({ block: 'center' })); await p.waitForTimeout(500)
-  await contrastOf(p, 'a[href="groothandel.html"].group\\/d p.label', 'door professionals label 390')
-  await contrastOf(p, 'a[href="groothandel.html"].group\\/d h3 + p', 'door professionals lead 390')
-  await p.close()
   await browser.close(); srv.close()
 })()

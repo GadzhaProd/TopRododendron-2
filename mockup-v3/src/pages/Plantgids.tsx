@@ -19,7 +19,7 @@ export default function Plantgids() {
     <>
       <a href="#main" className="skip-link">Naar de inhoud</a>
       <SiteHeader page="plantgids" />
-      <main id="main" className="pt-[68px] md:pt-20">
+      <main id="main" className="pt-16 md:pt-20">
         {/* head on the field photo */}
         <section className="relative overflow-hidden bg-night text-white on-dark">
           <img src={img('B2BHERO')} srcSet={srcset('B2BHERO')} sizes="100vw" alt="" className="absolute inset-0 h-full w-full object-cover object-[50%_45%] img-treat opacity-70" />
@@ -43,7 +43,7 @@ export default function Plantgids() {
         <section id="kalender" className="scroll-mt-20 bg-night py-14 text-white on-dark md:py-20">
           <div className="wrap container-x">
             <Reveal><SectionHead dark title="Wanneer bloeit wat, en wanneer plant u." text="Cunningham's White opent het seizoen in april; de overige soorten bloeien in mei en juni. Planten kan het hele jaar door, behalve bij strenge vorst of droogte; maart–april en september–oktober zijn ideaal." /></Reveal>
-            <Reveal index={1} className="mt-8 rounded-panel bg-white/[0.04] p-4 ring-1 ring-white/10 sm:p-6 md:p-8"><BloomCalendar rows={ordered} photos /><BloomLegend className="mt-6" /></Reveal>
+            <Reveal index={1} className="mt-8 rounded-panel bg-white/[0.04] p-4 ring-1 ring-white/10 sm:p-6 md:p-8"><BloomCalendar rows={ordered} photos dark /><BloomLegend className="mt-6" dark /></Reveal>
           </div>
         </section>
 

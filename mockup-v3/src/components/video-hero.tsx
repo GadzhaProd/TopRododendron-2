@@ -1,69 +1,85 @@
-// Full-screen video hero (adapted from 21st.dev "PrismaHero" in round 2).
-// Vertical source on phones, landscape band on larger screens (both without the
-// watermark), poster under prefers-reduced-motion. Dark scrim at the top (for
-// the transparent header) and a heavier one under the text; text-shadow on the
-// small lines so AA holds on bright frames.
-import { motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useState, type ReactNode } from 'react'
+// Hero. Desktop and tablets in landscape ("split" media query): a solid dark panel
+// in concept C's moss accent with the text on the left, the video at full viewport
+// height on the right, edge to edge, cut from the vertical source so that the
+// woman's face and hands stay in frame for the whole loop (source y 90–930).
+// Phones and tablets in portrait: the video fills the viewport (source y 0–1200,
+// the figure in the upper ~65 %, a soft dark ground below); the text block sits
+// compact at the bottom over a gradient scrim (phones) or top-left (tablets in
+// portrait), never over the face or the hands. prefers-reduced-motion: poster
+// frame (t ≈ 6.5 s, hands on the flowers). The "Veo" mark (source y ≥ 1222) is
+// outside both cuts.
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { hero } from '@/data/content'
 
-export function useIsMobile(bp = 768) {
-  const [m, setM] = useState(() => (typeof window !== 'undefined' ? window.innerWidth < bp : false))
+export const SPLIT_QUERY = '(min-width: 1024px), (min-width: 768px) and (orientation: landscape)'
+
+export function useMedia(query: string) {
+  const [m, setM] = useState(() => (typeof window !== 'undefined' ? window.matchMedia(query).matches : false))
   useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${bp - 1}px)`)
+    const mq = window.matchMedia(query)
     const h = () => setM(mq.matches)
     h(); mq.addEventListener('change', h)
     return () => mq.removeEventListener('change', h)
-  }, [bp])
+  }, [query])
   return m
 }
+export const useIsMobile = (bp = 768) => useMedia(`(max-width: ${bp - 1}px)`)
 
-export function HeroVideo({ className }: { className?: string }) {
-  const mobile = useIsMobile()
-  const narrowDesktop = useIsMobile(1280) && !mobile
-  const reduce = useReducedMotion()
-  const src = mobile ? hero.mobile : hero.desktop
-  const poster = mobile ? hero.mobilePoster : hero.desktopPoster
-  // on 768–1279 the band is cropped at the sides: keep the right side (the face
-  // lives there in the second half of the loop) away from the headline
-  const pos = mobile ? '50% 35%' : narrowDesktop ? '90% 40%' : '50% 40%'
-  if (reduce) return <img src={poster} alt="" aria-hidden="true" className={cn('absolute inset-0 h-full w-full object-cover', className)} style={{ objectPosition: pos }} />
-  return (
-    <video key={src} autoPlay loop muted playsInline poster={poster} aria-hidden="true" className={cn('absolute inset-0 h-full w-full object-cover', className)} style={{ objectPosition: pos }}>
-      <source src={src} type="video/mp4" />
-    </video>
-  )
-}
-
-export function Words({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+export function WordsPullUp({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true })
   const reduce = useReducedMotion()
   const words = text.split(' ')
   return (
-    <span className={cn('inline', className)}>
+    <span ref={ref} className={cn('inline-flex flex-wrap', className)}>
       {words.map((word, i) => (
-        <motion.span key={i} initial={reduce ? false : { y: 22, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.75, delay: delay + i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="inline-block" style={{ marginRight: i === words.length - 1 ? 0 : '0.24em' }}>{word}</motion.span>
+        <motion.span key={i} initial={reduce ? false : { y: 24, opacity: 0 }} animate={isInView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 0.7, delay: delay + i * 0.07, ease: [0.16, 1, 0.3, 1] }} className="inline-block" style={{ marginRight: i === words.length - 1 ? 0 : '0.26em' }}>
+          {word}
+        </motion.span>
       ))}
     </span>
   )
 }
 
-export function VideoHero({ eyebrow, title, text, actions, bottomBar }: { eyebrow?: ReactNode; title: string; text?: ReactNode; actions?: ReactNode; bottomBar?: ReactNode }) {
+export function HeroVideo({ className }: { className?: string }) {
+  const split = useMedia(SPLIT_QUERY)
   const reduce = useReducedMotion()
-  const fade = (d: number) => ({ initial: reduce ? false : { y: 14, opacity: 0 }, animate: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: d, ease: [0.16, 1, 0.3, 1] as any } })
+  const src = split ? hero.split : hero.portrait
+  const poster = split ? hero.splitPoster : hero.portraitPoster
+  // portrait: top-aligned, so short phones crop the dark ground, never the face
+  const pos = split ? '50% 50%' : '50% 0%'
+  const cls = cn('absolute inset-0 h-full w-full object-cover', className)
+  if (reduce) return <img src={poster} alt="" aria-hidden="true" className={cls} style={{ objectPosition: pos }} />
   return (
-    <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-night text-white on-dark">
-      <HeroVideo />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[32%] bg-gradient-to-b from-night/75 via-night/30 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[88%] bg-gradient-to-t from-night/95 via-night/65 to-transparent md:h-[82%] md:via-night/60" />
-      <div className="relative wrap container-x w-full pb-8 pt-28 md:pb-10 short:pt-24 short:pb-6">
-        <div className="flex max-w-[48rem] flex-col items-start gap-5 md:gap-6">
-          {eyebrow && <motion.p {...fade(0.1)} className="label text-shadow text-white">{eyebrow}</motion.p>}
-          <h1 className="display text-shadow text-balance text-[clamp(46px,8.6vw,124px)] short:text-[clamp(38px,6vw,76px)]"><Words text={title} delay={0.25} /></h1>
-          {text && <motion.p {...fade(0.8)} className="text-shadow max-w-[38rem] text-[16.5px] font-medium leading-relaxed text-white md:text-[19px]">{text}</motion.p>}
-          {actions && <motion.div {...fade(0.95)} className="mt-1 flex flex-wrap gap-3">{actions}</motion.div>}
+    <video key={src} autoPlay loop muted playsInline poster={poster} aria-hidden="true" className={cls} style={{ objectPosition: pos }}>
+      <source src={src} type="video/mp4" />
+    </video>
+  )
+}
+
+export function VideoHero({ eyebrow, title, text, actions }: { eyebrow?: ReactNode; title: string; text?: ReactNode; actions?: ReactNode }) {
+  const reduce = useReducedMotion()
+  const fade = (d: number) => ({ initial: reduce ? false : { y: 18, opacity: 0 }, animate: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: d, ease: [0.16, 1, 0.3, 1] as any } })
+  return (
+    <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-black text-white on-dark tabp:justify-start split:grid split:grid-cols-[54fr_46fr] split:items-stretch split:bg-accent">
+      <div className="absolute inset-0 split:relative split:col-start-2 split:row-start-1 split:h-full split:min-h-[100svh]">
+        <HeroVideo />
+        {/* phones: light veil + scrim under the text block (lower 55 %); tablets in portrait: scrim at the top */}
+        <div className="pointer-events-none absolute inset-0 bg-black/10 split:hidden" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/90 via-black/55 to-transparent tabp:hidden split:hidden" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[62%] bg-gradient-to-b from-black/80 via-black/45 to-transparent tabp:block" />
+      </div>
+      <div className="relative w-full container-x pt-28 pb-7 shortphone:pb-5 tabp:pt-32 split:col-start-1 split:row-start-1 split:flex split:flex-col split:justify-center split:py-28">
+        <div className="flex max-w-4xl flex-col items-start gap-3 md:gap-5 tabp:max-w-[21.5rem] split:max-w-[36rem]">
+          {eyebrow && <motion.div {...fade(0.1)} className="eyebrow text-white/85">{eyebrow}</motion.div>}
+          <h1 className="font-display text-balance text-[clamp(30px,8.4vw,38px)] font-medium leading-[0.98] tracking-[-0.04em] tabp:text-[36px] split:text-[clamp(38px,4.6vw,72px)]">
+            <WordsPullUp text={title} delay={0.2} />
+          </h1>
+          {text && <motion.p {...fade(0.7)} className="max-w-xl text-[15px] leading-relaxed text-white/90 shortphone:hidden md:text-lg split:text-[17px]">{text}</motion.p>}
+          {actions && <motion.div {...fade(0.85)} className="mt-1 flex flex-wrap gap-3">{actions}</motion.div>}
         </div>
-        {bottomBar && <motion.div {...fade(1.1)} className="mt-10 hidden border-t border-white/20 pt-5 md:block">{bottomBar}</motion.div>}
       </div>
     </section>
   )
