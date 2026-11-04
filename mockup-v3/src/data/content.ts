@@ -13,11 +13,11 @@ export const srcset = (name: string) => {
 /* Hero video, two cuts of the same vertical source (720×1280, "Veo" mark at y ≥ 1222 trimmed off in both):
    split  = source y 40–930 (720×890) for the split hero on desktop / tablets in landscape;
    portrait = source y 0–1200 plus a soft dark ground (720×1460) for the full-screen phone hero. */
-import heroSplit from '../assets/hero-split.mp4'
 import heroPortrait from '../assets/hero-portrait.mp4'
-import heroSplitPoster from '../assets/hero-split-poster.jpg'
 import heroPortraitPoster from '../assets/hero-portrait-poster.jpg'
-export const hero = { split: heroSplit, portrait: heroPortrait, splitPoster: heroSplitPoster, portraitPoster: heroPortraitPoster }
+import heroWide from '../assets/hero-wide.mp4'
+import heroWidePoster from '../assets/hero-wide-poster.jpg'
+export const hero = { portrait: heroPortrait, portraitPoster: heroPortraitPoster, wide: heroWide, widePoster: heroWidePoster }
 
 export const months = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
 export const monthsLong = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']

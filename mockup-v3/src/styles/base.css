@@ -106,21 +106,9 @@ select { background-image: none; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-/* Split hero: eased fade from the moss panel into the video (no hard seam). */
-.hero-seam {
-  background: linear-gradient(
-    to right,
-    var(--color-accent) 0%,
-    color-mix(in srgb, var(--color-accent) 92%, transparent) 10%,
-    color-mix(in srgb, var(--color-accent) 74%, transparent) 24%,
-    color-mix(in srgb, var(--color-accent) 50%, transparent) 42%,
-    color-mix(in srgb, var(--color-accent) 26%, transparent) 62%,
-    color-mix(in srgb, var(--color-accent) 9%, transparent) 82%,
-    transparent 100%
-  );
-}
-.hero-vignette {
+/* Wide hero: soft dark scrim from the left (text over white flowers stays AA). */
+.hero-scrim {
   background:
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-accent) 35%, transparent) 0%, transparent 16%),
-    linear-gradient(to top, color-mix(in srgb, var(--color-accent) 40%, transparent) 0%, transparent 18%);
+    linear-gradient(to right, rgb(12 14 11 / 0.78) 0%, rgb(12 14 11 / 0.62) 28%, rgb(12 14 11 / 0.32) 48%, rgb(12 14 11 / 0.08) 64%, transparent 76%),
+    linear-gradient(to top, rgb(12 14 11 / 0.35) 0%, transparent 30%);
 }

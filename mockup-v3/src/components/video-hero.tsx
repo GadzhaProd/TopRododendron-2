@@ -1,7 +1,6 @@
-// Hero. Desktop and tablets in landscape ("split" media query): a solid dark panel
-// in concept C's moss accent with the text on the left, the video at full viewport
-// height on the right, edge to edge, cut from the vertical source so that the
-// woman's face and hands stay in frame for the whole loop (source y 90–930).
+// Hero. Desktop and tablets in landscape ("split" media query): full-bleed 16:9
+// video (the vertical source extended to 16:9, seamless loop), the woman right of
+// centre, the text on the left over a soft dark scrim.
 // Phones and tablets in portrait: the video fills the viewport (source y 0–1200,
 // the figure in the upper ~65 %, a soft dark ground below); the text block sits
 // compact at the bottom over a gradient scrim (phones) or top-left (tablets in
@@ -46,10 +45,11 @@ export function WordsPullUp({ text, className = '', delay = 0 }: { text: string;
 export function HeroVideo({ className }: { className?: string }) {
   const split = useMedia(SPLIT_QUERY)
   const reduce = useReducedMotion()
-  const src = split ? hero.split : hero.portrait
-  const poster = split ? hero.splitPoster : hero.portraitPoster
+  const src = split ? hero.wide : hero.portrait
+  const poster = split ? hero.widePoster : hero.portraitPoster
+  // wide (16:9, full bleed): the woman stays right of centre, the text sits left.
   // portrait: top-aligned, so short phones crop the dark ground, never the face
-  const pos = split ? '50% 50%' : '50% 0%'
+  const pos = split ? '62% 50%' : '50% 0%'
   const cls = cn('absolute inset-0 h-full w-full object-cover', className)
   if (reduce) return <img src={poster} alt="" aria-hidden="true" className={cls} style={{ objectPosition: pos }} />
   return (
@@ -63,20 +63,17 @@ export function VideoHero({ eyebrow, title, text, actions }: { eyebrow?: ReactNo
   const reduce = useReducedMotion()
   const fade = (d: number) => ({ initial: reduce ? false : { y: 18, opacity: 0 }, animate: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: d, ease: [0.16, 1, 0.3, 1] as any } })
   return (
-    <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-black text-white on-dark tabp:justify-start split:grid split:grid-cols-[54fr_46fr] split:items-stretch split:bg-accent">
-      <div className="absolute inset-0 split:relative split:col-start-2 split:row-start-1 split:h-full split:min-h-[100svh]">
+    <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-black text-white on-dark tabp:justify-start split:justify-center">
+      <div className="absolute inset-0">
         <HeroVideo />
         {/* phones: light veil + scrim under the text block (lower 55 %); tablets in portrait: scrim at the top */}
         <div className="pointer-events-none absolute inset-0 bg-black/10 split:hidden" />
-        {/* split: the video dissolves into the moss panel. The panel colour runs
-            over the video's left edge with an eased fade, so there is no hard seam;
-            a soft vignette at the top and bottom ties the frame into the panel. */}
-        <div aria-hidden="true" className="hero-seam pointer-events-none absolute inset-y-0 left-0 hidden w-[28%] split:block" />
-        <div aria-hidden="true" className="hero-vignette pointer-events-none absolute inset-0 hidden split:block" />
+        {/* desktop: full-bleed 16:9 video; a soft scrim from the left keeps the text readable over the white flowers */}
+        <div aria-hidden="true" className="hero-scrim pointer-events-none absolute inset-0 hidden split:block" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/90 via-black/55 to-transparent tabp:hidden split:hidden" />
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[62%] bg-gradient-to-b from-black/80 via-black/45 to-transparent tabp:block" />
       </div>
-      <div className="relative w-full container-x pt-28 pb-7 shortphone:pb-5 tabp:pt-32 split:col-start-1 split:row-start-1 split:flex split:flex-col split:justify-center split:py-28">
+      <div className="relative w-full container-x pt-28 pb-7 shortphone:pb-5 tabp:pt-32 split:py-28">
         <div className="flex max-w-4xl flex-col items-start gap-3 md:gap-5 tabp:max-w-[21.5rem] split:max-w-[36rem]">
           {eyebrow && <motion.div {...fade(0.1)} className="eyebrow text-white/85">{eyebrow}</motion.div>}
           <h1 className="font-display text-balance text-[clamp(30px,8.4vw,38px)] font-medium leading-[0.98] tracking-[-0.04em] tabp:text-[36px] split:text-[clamp(38px,4.6vw,72px)]">
