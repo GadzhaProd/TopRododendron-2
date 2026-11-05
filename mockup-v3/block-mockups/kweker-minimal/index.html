@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De kweker · minimaal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+/* Mockup: "De kweker" as one calm statement — portrait, quote, name, one line, one action.
+   Promises live in a separate thin band below. Tokens = concept C "Veld". */
+:root{--bg:#f1efea;--bg2:#e6e3dc;--fg:#141413;--fg2:#45443f;--muted:#5f5e58;--line:#d6d3cb;--accent:#3f4a37;--gut:clamp(20px,4vw,64px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:var(--gut)}
+.kweker{padding-block:clamp(72px,10vw,160px)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gut);align-items:center}
+.photo{grid-column:1/7;margin:0}
+.photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:28px}
+.text{grid-column:8/13}
+.label{font-size:14px;font-weight:500;color:var(--muted);margin:0 0 28px}
+blockquote{margin:0;font-size:clamp(34px,3.9vw,56px);line-height:1.08;letter-spacing:-.035em;font-weight:500;text-wrap:balance}
+.who{margin:32px 0 0;display:flex;flex-direction:column;gap:4px}
+.who b{font-size:17px;font-weight:600}
+.who span{font-size:15px;color:var(--muted)}
+.lead{margin:28px 0 0;max-width:36ch;font-size:17px;line-height:1.6;color:var(--fg2)}
+.cta{margin-top:36px;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 26px;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:15px}
+.cta small{font-weight:400;opacity:.8;font-size:14px}
+.promises{border-top:1px solid var(--line)}
+.promises ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.promises li{padding:28px 0;font-size:16px;font-weight:500;display:flex;align-items:center;gap:12px}
+.promises li+li{padding-left:var(--gut);border-left:1px solid var(--line)}
+.promises li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+@media (max-width:900px){
+  .photo,.text{grid-column:1/-1}
+  .text{padding-top:8px}
+  .promises ul{grid-template-columns:1fr}
+  .promises li{padding:20px 0}
+  .promises li+li{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:600px){ .photo img{border-radius:20px} .cta{width:100%;justify-content:center} }
+</style>
+</head>
+<body>
+<section class="kweker" id="kweker">
+  <div class="wrap grid">
+    <figure class="photo"><img src="img/owner-portrait.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons"></figure>
+    <div class="text">
+      <p class="label">De kweker</p>
+      <blockquote>„Een gezonde plant is geen toeval. Dat is onze standaard.”</blockquote>
+      <p class="who"><b>Gert Top</b><span>Oprichter en kweker · Otterlo, sinds 2001</span></p>
+      <p class="lead">Wij kweken rhododendrons. Niet meer, niet minder. Op de veenrijke bodem van de Veluwe, met een sterk wortelstelsel.</p>
+      <a class="cta" href="tel:+31620104312">Bel de kweker <small>06 20 10 43 12</small></a>
+    </div>
+  </div>
+</section>
+<div class="promises"><div class="wrap"><ul>
+  <li>Aangroeigarantie op elke plant</li>
+  <li>Vers gerooid voor uw levering</li>
+  <li>Persoonlijk advies van de kweker</li>
+</ul></div></div>
+<div style="height:120px"></div>
+</body>
+</html>
