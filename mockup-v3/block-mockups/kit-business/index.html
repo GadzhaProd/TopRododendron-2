@@ -107,10 +107,10 @@ button{font:inherit}
 .tab{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .tab__name{background:var(--ink);color:#fff;font-family:var(--mono);font-size:clamp(20px,2.5vw,32px);letter-spacing:.03em;padding:clamp(22px,2.8vw,34px) var(--gut);margin:0;font-weight:400;white-space:nowrap}
 .tab__fill{flex:1;background:#2b2b28;background-image:repeating-linear-gradient(180deg,transparent 0 5px,rgba(0,0,0,.28) 5px 6px)}
-.head{padding:clamp(32px,4vw,44px) 0 clamp(28px,3.5vw,40px);border-bottom:1px solid var(--line)}
+.head{padding-top:clamp(32px,4vw,44px);padding-bottom:clamp(28px,3.5vw,40px);border-bottom:1px solid var(--line)}
 .head h2{font-size:clamp(28px,3.2vw,40px);line-height:1.15;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
 .head p{margin-top:12px;max-width:66ch;color:var(--muted);font-size:17px}
-.body{padding:clamp(28px,3.5vw,44px) 0 clamp(56px,6vw,84px)}
+.body{padding-top:clamp(28px,3.5vw,44px);padding-bottom:clamp(56px,6vw,84px)}
 
 /* panels */
 .panel{border:1px solid var(--line);background:#fff;display:grid;grid-template-columns:1fr 1fr}
@@ -140,7 +140,7 @@ button{font:inherit}
 
 /* dark band */
 .band{background:var(--ink-2);color:#fff}
-.band__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(28px,4vw,64px);padding:clamp(48px,6vw,80px) 0}
+.band__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(28px,4vw,64px);padding-top:clamp(48px,6vw,80px);padding-bottom:clamp(48px,6vw,80px)}
 .band h2{font-size:clamp(28px,3vw,38px);line-height:1.15;letter-spacing:-.025em;font-weight:500;max-width:14ch;text-wrap:balance}
 .band__right{border-left:1px solid var(--line-dark);padding-left:clamp(28px,4vw,48px)}
 .band__right p{font-size:clamp(17px,1.5vw,21px);line-height:1.5;color:#d6d4ce;max-width:50ch}
