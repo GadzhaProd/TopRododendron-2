@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De kwekerij · trimmed (review proposal)</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1efea;--fg:#141413;--fg2:#45443f;--muted:#5f5e58;--line:#d6d3cb;--accent:#3f4a37;--gut:clamp(20px,4vw,80px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,112px) var(--gut)}
+.top{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:clamp(48px,7vw,104px);align-items:start}
+.text{max-width:720px}
+.eyebrow{margin:0;font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+h2{margin:18px 0 0;font-size:clamp(34px,4.2vw,58px);line-height:1.04;letter-spacing:-.035em;font-weight:600;text-wrap:balance}
+h2 .nb{white-space:nowrap}
+.p{margin:22px 0 0;max-width:54ch;font-size:17px;line-height:1.65;color:var(--fg2)}
+dl{margin:36px 0 0;border-top:1px solid var(--line)}
+dl div{padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,18rem) minmax(0,1fr);gap:24px;align-items:baseline}
+dt{font-size:18px;font-weight:600;letter-spacing:-.01em}
+dd{margin:0;font-size:16px;line-height:1.55;color:var(--muted)}
+figure{margin:0}
+.photo{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:28px}
+.cap{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.cap q{display:block;quotes:"„" "”";font-size:19px;line-height:1.4;font-weight:500;letter-spacing:-.01em}
+.cap .who{margin-top:12px;font-size:15px;color:var(--muted)}
+.cap .who b{color:var(--fg);font-weight:600}
+.facts{margin-top:clamp(56px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.facts div{padding:24px 24px 0 0}
+.facts div+div{padding-left:24px;border-left:1px solid var(--line)}
+.facts b{display:block;font-size:28px;font-weight:600;letter-spacing:-.02em}
+.facts span{display:block;margin-top:6px;font-size:15px;color:var(--muted)}
+.m-only{display:none}
+@media (max-width:1100px){.top{grid-template-columns:minmax(0,1fr) 360px} dl div{grid-template-columns:1fr;gap:6px}}
+@media (max-width:860px){
+  .top{display:block}
+  .head-d{display:none}.m-only{display:block}
+  h2 .nb{white-space:normal}
+  figure{margin-top:28px}
+  .photo{border-radius:20px;aspect-ratio:1/1;object-position:50% 30%}
+  dl{margin-top:32px}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div{padding:20px 12px 20px 0}
+  .facts div+div{padding-left:0;border-left:0}
+  .facts div:nth-child(2n){padding-left:16px;border-left:1px solid var(--line)}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .facts b{font-size:24px}
+}
+</style>
+</head>
+<body>
+<section class="sec">
+  <div class="top">
+    <div class="text">
+      <p class="eyebrow">DE KWEKERIJ</p>
+      <h2>Wij kweken rhododendrons. <span class="nb">Niet meer, niet minder.</span></h2>
+      <p class="p">Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>
+      <figure class="m-only">
+        <img class="photo" src="img/owner-portrait.webp" alt="Gert Top, eigenaar van Top Rhododendrons" width="1200" height="1418">
+        <figcaption class="cap"><q>Een gezonde plant is geen toeval. Dat is onze standaard.</q><div class="who"><b>Gert Top</b> · eigenaar</div></figcaption>
+      </figure>
+      <dl>
+        <div><dt>Aangroeigarantie op elke plant</dt><dd>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</dd></div>
+        <div><dt>Vers gerooid voor uw levering</dt><dd>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</dd></div>
+        <div><dt>Persoonlijk advies van de kweker</dt><dd>U spreekt rechtstreeks met Gert, van vraag tot levering.</dd></div>
+      </dl>
+    </div>
+    <figure class="head-d">
+      <img class="photo" src="img/owner-portrait.webp" alt="Gert Top, eigenaar van Top Rhododendrons" width="1200" height="1418">
+      <figcaption class="cap"><q>Een gezonde plant is geen toeval. Dat is onze standaard.</q><div class="who"><b>Gert Top</b> · eigenaar</div></figcaption>
+    </figure>
+  </div>
+  <div class="facts">
+    <div><b>Sinds 2001</b><span>Familiebedrijf in Otterlo</span></div>
+    <div><b>10.000 planten</b><span>In de volle grond</span></div>
+    <div><b>7 soorten</b><span>Winterhard en groenblijvend</span></div>
+    <div><b>Vanaf 1 plant</b><span>Geen minimumbestelling</span></div>
+  </div>
+</section>
+</body></html>
