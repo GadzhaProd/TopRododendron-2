@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waarom wij · variant 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1efea;--bg2:#e6e3dc;--card:#fbfaf8;--fg:#141413;--fg2:#45443f;--muted:#5f5e58;--line:#d6d3cb;--accent:#3f4a37;--accent2:#8b9a7c;--r:28px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01"}
+img{display:block;max-width:100%}
+/* ── mockup chrome ───────────────────────────────── */
+.tag{background:var(--fg);color:#fff;font-size:14px;line-height:1.4;padding:11px 28px}
+.tag b{font-weight:700}
+.hero-stub{height:200px;background:url(img/hero-field.jpg) center 78%/cover no-repeat;position:relative}
+.hero-stub::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.42))}
+/* ── section ─────────────────────────────────────── */
+.sec{padding:96px 80px 104px;max-width:1440px;margin:0 auto}
+.top{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:96px;align-items:center}
+.eyebrow{margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:600}
+.lead{margin:22px 0 0;font-size:19px;line-height:1.6;color:var(--fg2);max-width:48ch}
+.lead b{font-weight:600;color:var(--fg)}
+.v1 h2{font-size:56px}
+.v1 .lead{font-size:20px;max-width:44ch}
+/* portrait + caption */
+.fig{margin:0}
+.photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:var(--r)}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+.cap .name{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.cap .role{font-size:14.5px;color:var(--muted);text-align:right}
+/* quote under the photo — structure of 21st #18912 (blockquote + figcaption on a hairline, author right) */
+.quote{margin:22px 0 0;padding:0}
+.quote p{margin:0;font-size:19px;line-height:1.45;letter-spacing:-.015em;font-weight:500;color:var(--fg);text-wrap:pretty}
+.quote .cap{margin-top:16px}
+/* ── strip: card with bordered cells — structure of 21st #29195 ── */
+.strip{margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.strip>div{padding:30px 32px 32px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.strip>div:first-child{border-left:0}
+/* V1 reason cards */
+.rc .n{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--accent)}
+.rc h3{margin:30px 0 0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:600}
+.rc p{margin:10px 0 0;font-size:15px;line-height:1.55;color:var(--muted);text-wrap:pretty}
+.rc .proof{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--accent)}
+.rc .proof i{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex:none}
+/* V2 numeric facts */
+.fc .big{font-size:34px;line-height:1;font-weight:600;letter-spacing:-.03em}
+.fc .lab{margin-top:10px;font-size:14.5px;line-height:1.45;color:var(--muted)}
+/* V2 reason list in the left column — structure of 21st #1017 (grid of marker + title + text) */
+.reasons{margin:38px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;border-top:1px solid var(--line);padding-top:32px}
+.reasons li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start}
+.reasons .n{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--accent);padding-top:5px}
+.reasons h3{margin:0;font-size:17.5px;line-height:1.3;letter-spacing:-.02em;font-weight:600}
+.reasons p{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.addr{margin:12px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+/* ── 1024 ───────────────────────────────────────── */
+@media (max-width:1180px){
+  .sec{padding:80px 48px 88px}
+  .top{grid-template-columns:minmax(0,1fr) 360px;gap:56px}
+  h2{font-size:38px}
+  .v1 h2{font-size:40px}
+  .v1 .lead{font-size:17.5px}
+  .lead{font-size:17px}
+  .strip{margin-top:56px;grid-template-columns:repeat(2,1fr)}
+  .strip>div{padding:26px 28px 28px}
+  .strip>div:nth-child(3){border-left:0}
+  .strip>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .rc h3{margin-top:26px;font-size:20px}
+  .reasons{grid-template-columns:1fr;gap:22px;padding-top:26px;margin-top:30px}
+  .quote p{font-size:17px}
+}
+/* ── phone ──────────────────────────────────────── */
+@media (max-width:700px){
+  :root{--r:20px}
+  .tag{padding:10px 16px;font-size:13px}
+  .hero-stub{height:160px}
+  .sec{padding:56px 16px 64px}
+  .top{display:block}
+  .eyebrow{margin-bottom:14px;font-size:12px}
+  h2,.v1 h2{font-size:34px;letter-spacing:-.03em}
+  .lead,.v1 .lead{font-size:16px}
+  h2 br{display:none}
+  .lead{margin-top:16px;font-size:16px}
+  .fig{margin-top:36px}
+  .photo{aspect-ratio:4/4.3;object-position:50% 18%}
+  .cap{margin-top:14px;padding-top:12px}
+  .cap .name{font-size:17px}.cap .role{font-size:13.5px}
+  .quote{margin-top:18px}.quote p{font-size:17px}
+  .strip{margin-top:36px;grid-template-columns:1fr}
+  .strip>div{border-left:0;border-top:1px solid var(--line);padding:22px 22px 24px}
+  .strip>div:first-child{border-top:0}
+  .rc .n{font-size:12px}
+  .rc h3{margin-top:14px;font-size:19px}
+  .rc p{font-size:14.5px}
+  .rc .proof{padding-top:18px;font-size:13px}
+  /* V2 phone: facts as 2×2 */
+  .strip.facts{grid-template-columns:1fr 1fr}
+  .strip.facts>div{padding:20px 18px 22px}
+  .strip.facts>div:nth-child(2){border-top:0;border-left:1px solid var(--line)}
+  .strip.facts>div:nth-child(4){border-left:1px solid var(--line)}
+  .fc .big{font-size:28px}.fc .lab{font-size:13.5px}
+  .reasons{margin-top:28px;padding-top:24px;gap:20px}
+  .reasons li{grid-template-columns:26px 1fr;gap:10px}
+  .reasons h3{font-size:16.5px}.reasons p{font-size:14.5px}
+  .v2 .fig{margin-top:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ VARIANT 1 ═══════════════ -->
+<div class="tag"><b>Вариант 1</b> — слева заголовок и одна вводная фраза; справа портрет, под ним цитата Герта и подпись; внизу четыре причины как карточки в одной рамке, в каждой — факт-доказательство</div>
+<div class="hero-stub"></div>
+<section class="sec v1" id="v1">
+  <div class="top">
+    <div>
+      <p class="eyebrow">Waarom Top Rhododendrons</p>
+      <h2>Wij kweken rhododendrons.<br> Niet meer, niet minder.</h2>
+      <p class="lead">Geen tuincentrum, geen tussenhandel. Eén familie, één gewas en één veld in Otterlo. Vier redenen om uw rhododendron rechtstreeks bij de kweker te halen.</p>
+    </div>
+    <figure class="fig">
+      <img class="photo" src="img/owner-portrait.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" width="1200" height="1418">
+      <figcaption>
+        <blockquote class="quote"><p>„Een gezonde plant is geen toeval. Dat is onze standaard.”</p></blockquote>
+        <div class="cap"><span class="name">Gert Top</span><span class="role">Oprichter en kweker</span></div>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="strip">
+    <div class="rc"><span class="n">01</span><h3>Eén gewas, al sinds 2001</h3><p>Wij doen één ding: winterharde rhododendrons kweken op de Veluwe. Die ervaring ziet u terug in elke plant.</p><span class="proof"><i></i>7 soorten, 40 tot 120 cm</span></div>
+    <div class="rc"><span class="n">02</span><h3>Wortels die aanslaan</h3><p>Sterke wortels slaan aan. Daarom durven wij garantie te geven: niet aangeslagen in het eerste seizoen, dan vervangen wij kosteloos.</p><span class="proof"><i></i>Aangroeigarantie op elke plant</span></div>
+    <div class="rc"><span class="n">03</span><h3>Gerooid op uw leverdatum</h3><p>Uw planten blijven in de grond staan tot de dag van bezorging of afhalen. Geen wachttijd, geen droogtestress.</p><span class="proof"><i></i>Eigen transport door heel Nederland</span></div>
+    <div class="rc"><span class="n">04</span><h3>U spreekt de kweker zelf</h3><p>Advies over soort, maat en standplaats krijgt u van wie de planten kweekt. Voor één plant in uw tuin of een partij voor uw project.</p><span class="proof"><i></i>Geen minimumbestelling</span></div>
+  </div>
+</section>
+
+</body>
+</html>
