@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@source "./";
+/* shadcn-style tokens mapped to the site's concept C "Veld" palette */
+@theme {
+  --color-background: #f1efea;
+  --color-foreground: #141413;
+  --color-card: #fbfaf8;
+  --color-muted: #e6e3dc;
+  --color-muted-foreground: #5f5e58;
+  --color-border: #d6d3cb;
+  --color-primary: #3f4a37;
+  --color-primary-foreground: #ffffff;
+  --color-accent-soft: #e9ece4;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --radius-md: 14px;
+  --radius-xl: 28px;
+}
+@utility container { margin-inline: auto; width: 100%; max-width: 1280px; padding-inline: clamp(20px, 4vw, 64px); }
+html, body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+* { border-color: var(--color-border); }
