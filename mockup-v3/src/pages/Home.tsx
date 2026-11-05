@@ -40,17 +40,21 @@ export default function Home({ heroMedia = 'photo' }: { heroMedia?: 'video' | 'p
           actions={<><Button href="#planten" variant="white" size="md" arrow className="px-5 split:h-14 split:px-8 split:text-[15px]">Bekijk de planten</Button><Button href="groothandel.html" variant="outline-white" size="md" className="px-5 split:h-14 split:px-8 split:text-[15px]">Groothandel</Button></>}
         />
 
-        {/* Waarom: calm two-column */}
-        <section id="waarom" className="container-x py-20 md:py-28">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
-            <Reveal className="relative min-h-[380px] overflow-hidden rounded-img bg-bg-2 md:min-h-full">
-              <img src={img('B2BHERO')} srcSet={srcset('B2BHERO')} sizes="(min-width: 768px) 50vw, 100vw" alt="Het veld van de kwekerij in Otterlo" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_60%] img-treat" />
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8"><span className="inline-block rounded-full bg-bg/90 px-3.5 py-1.5 text-[12px] font-medium text-fg">Het veld van de kwekerij, Otterlo</span></div>
+        {/* De kwekerij: Gert + why the plants take root (former "Waarom" and "De kweker" merged into one block) */}
+        <section id="kweker" className="container-x scroll-mt-24 py-20 md:py-28">
+          <span id="waarom" className="block -translate-y-24" aria-hidden="true" />
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="md:self-start lg:col-span-5 lg:sticky lg:top-28">
+              <figure className="relative aspect-[4/5] overflow-hidden rounded-img bg-bg-2">
+                <img src={img('owner-portrait')} alt={`${company.founder}, oprichter van ${company.name}`} loading="lazy" className="h-full w-full object-cover object-[50%_15%] img-treat" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5 md:p-6"><span className="inline-block rounded-full bg-bg/90 px-3.5 py-1.5 text-[12px] font-medium text-fg">{company.founder} · oprichter &amp; kweker</span></figcaption>
+              </figure>
             </Reveal>
-            <div>
-              <Reveal><HeadC eyebrow="Waarom Top Rhododendrons" title="Vier redenen waarom onze planten aanslaan." size="lg" /></Reveal>
-              <Reveal index={1}><p className="mt-6 max-w-[56ch] text-[16.5px] leading-relaxed text-fg-2">{story.p2}</p></Reveal>
-              <ol className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
+            <div className="lg:col-span-7">
+              <Reveal><HeadC eyebrow="Familiekwekerij · Otterlo, sinds 2001" title={story.h} size="lg" /></Reveal>
+              <Reveal index={1}><p className="mt-7 max-w-[58ch] text-[17px] leading-relaxed text-fg-2">{story.p1} {story.p2}</p></Reveal>
+              <Reveal index={2} className="mt-8 rounded-img border border-fg/10 bg-surface p-6 md:p-7"><p className="font-display text-[22px] leading-snug md:text-[24px]">„{story.quote}”</p><p className="mt-3 text-[13.5px] text-muted">{company.founder}, {company.name}</p></Reveal>
+              <ol className="mt-10 divide-y divide-fg/10 border-y border-fg/10">
                 {promises.map((p, i) => (
                   <Reveal as="li" key={p.title} index={i} className="grid grid-cols-1 gap-2 py-5 md:grid-cols-[48px_1fr]">
                     <span className="font-display text-[15px] text-muted">0{i + 1}</span>
@@ -59,6 +63,7 @@ export default function Home({ heroMedia = 'photo' }: { heroMedia?: 'video' | 'p
                 ))}
               </ol>
               <Reveal index={4}><p className="mt-6 text-[14.5px] text-muted">10.000 planten op ons veld, zeven soorten in maten van 40 tot 120 cm. Geen minimumbestelling voor particulieren.</p></Reveal>
+              <Reveal index={5} className="mt-8 flex flex-wrap gap-3"><Button href={company.phone1Href} variant="solid" size="md">Bel de kweker</Button><Button href={company.whatsapp} {...ext} variant="outline" size="md">WhatsApp</Button></Reveal>
             </div>
           </div>
         </section>
@@ -106,19 +111,6 @@ export default function Home({ heroMedia = 'photo' }: { heroMedia?: 'video' | 'p
                 <BloomCalendar rows={ordered} />
                 <BloomLegend className="mt-6" />
               </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* Kweker */}
-        <section id="kweker" className="container-x py-20 md:py-28">
-          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-12 lg:gap-16">
-            <Reveal className="lg:col-span-5"><div className="aspect-[4/5] overflow-hidden rounded-img bg-bg-2"><img src={img('owner-portrait')} alt={`${company.founder}, oprichter van ${company.name}`} loading="lazy" className="h-full w-full object-cover object-[50%_15%] img-treat" /></div></Reveal>
-            <div className="lg:col-span-7">
-              <Reveal><HeadC eyebrow={`${company.founder} · oprichter & kweker`} title={story.h} size="lg" /></Reveal>
-              <Reveal index={1}><p className="mt-7 max-w-[58ch] text-[17px] leading-relaxed text-fg-2">{story.p1}</p><p className="mt-4 max-w-[58ch] text-[16px] leading-relaxed text-fg-2">{story.p3} U spreekt rechtstreeks met de kweker, van vraag tot levering.</p></Reveal>
-              <Reveal index={2} className="mt-8 rounded-img border border-fg/10 bg-surface p-6 md:p-7"><p className="font-display text-[22px] leading-snug md:text-[24px]">„{story.quote}”</p><p className="mt-3 text-[13.5px] text-muted">{company.founder}, {company.name}</p></Reveal>
-              <Reveal index={3} className="mt-8 flex flex-wrap gap-3"><Button href={company.phone1Href} variant="solid" size="md">Bel de kweker</Button><Button href={company.whatsapp} {...ext} variant="outline" size="md">WhatsApp</Button></Reveal>
             </div>
           </div>
         </section>

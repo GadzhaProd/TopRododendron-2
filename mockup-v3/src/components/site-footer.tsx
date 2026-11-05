@@ -11,7 +11,6 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
   const p = home ? '' : 'index.html'
   const links = [
     { label: 'Planten', href: home ? '#planten' : 'assortiment.html' },
-    { label: 'Waarom wij', href: `${p}#waarom` },
     { label: 'De kweker', href: `${p}#kweker` },
     { label: 'Advies', href: `${p}#advies` },
     { label: 'Plantgids', href: 'plantgids.html' },

@@ -51,7 +51,7 @@ export function SiteHeader({ variant = 'retail', page }: { variant?: 'retail' | 
   const links: NavLink[] = b2b
     ? [{ label: 'Projecten', href: '#doelgroepen' }, { label: 'Werkwijze', href: '#werkwijze' }, { label: 'Voorraad', href: '#voorraad' }, { label: 'Offerte', href: '#offerte' }, { label: 'Particulier', href: 'index.html', strong: true }]
     : home
-      ? [{ label: 'Planten', href: '#planten' }, { label: 'Waarom wij', href: '#waarom' }, { label: 'De kweker', href: '#kweker' }, { label: 'Advies', href: '#advies' }, { label: 'Groothandel', href: 'groothandel.html', strong: true }]
+      ? [{ label: 'Planten', href: '#planten' }, { label: 'De kweker', href: '#kweker' }, { label: 'Advies', href: '#advies' }, { label: 'Groothandel', href: 'groothandel.html', strong: true }]
       : [
           { label: 'Assortiment', href: 'assortiment.html', current: page === 'assortiment' || page === 'product' },
           { label: 'Plantgids', href: 'plantgids.html', current: page === 'plantgids' },
