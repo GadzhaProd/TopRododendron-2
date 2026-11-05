@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De kweker · schema's</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1efea;--bg2:#e6e3dc;--card:#fbfaf8;--fg:#141413;--fg2:#45443f;--muted:#5f5e58;--line:#d6d3cb;--accent:#3f4a37}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.tag{background:var(--fg);color:#fff;font-size:15px;padding:12px 28px}.tag b{font-weight:700}
+.sec{padding:72px 80px 88px;max-width:1440px;margin:0 auto}
+h2{margin:0;font-size:44px;line-height:1.05;letter-spacing:-.035em;font-weight:600}
+.lead{margin:18px 0 0;font-size:17px;line-height:1.6;color:var(--fg2);max-width:46ch}
+.eyebrow{font-size:14px;color:var(--muted);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px}
+.photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:20px}
+.name{font-size:22px;font-weight:600;letter-spacing:-.02em}.role{font-size:15px;color:var(--muted);margin-top:4px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none}
+.btn.p{background:var(--accent);color:#fff}.btn.o{border:1px solid rgba(20,20,19,.25);color:var(--fg)}
+.info{padding:24px}.info h3{margin:12px 0 0;font-size:17px;font-weight:600}.info p{margin:6px 0 0;font-size:14.5px;line-height:1.5;color:var(--muted)}
+.ico{width:36px;height:36px;border-radius:12px;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.ico svg{width:18px;height:18px}
+.facts{display:flex;gap:8px;flex-wrap:wrap}.chip{font-size:13px;padding:7px 12px;border-radius:999px;background:var(--bg2);color:var(--fg2)}
+</style>
+</head>
+<body>
+<!-- icons -->
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></symbol>
+<symbol id="i3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+<symbol id="i4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1-4.8A8 8 0 1 1 21 12z"/></symbol>
+</defs></svg>
+
+<!-- A -->
+<div class="tag"><b>Схема A</b> · карточка садовода слева (фото, под ним имя, должность, факты, кнопки) · справа заголовок, текст и три обещания карточками в столбик</div>
+<section class="sec" id="A" style="display:grid;grid-template-columns:420px 1fr;gap:56px;align-items:start">
+  <div class="card" style="padding:16px 16px 24px">
+    <img class="photo" src="img/owner-portrait.webp" alt="Gert Top">
+    <div style="padding:20px 8px 0"><div class="name">Gert Top</div><div class="role">Oprichter en kweker</div>
+      <div class="facts" style="margin-top:16px"><span class="chip">Otterlo, Veluwe</span><span class="chip">Sinds 2001</span><span class="chip">10.000 planten</span></div>
+      <div class="btns" style="margin-top:20px"><a class="btn p" href="#">Bel de kweker</a><a class="btn o" href="#">WhatsApp</a></div></div>
+  </div>
+  <div style="padding-top:24px">
+    <p class="eyebrow">De kwekerij</p><h2>Wij kweken rhododendrons. Niet meer, niet minder.</h2>
+    <p class="lead">Familiebedrijf in Otterlo, op de Veluwe. Dankzij onze veenrijke bodem ontwikkelen onze planten een sterk wortelstelsel.</p>
+    <div style="display:grid;gap:12px;margin-top:32px">
+      <div class="card info" style="display:flex;gap:16px;align-items:flex-start"><div class="ico"><svg><use href="#i1"/></svg></div><div><h3 style="margin:0">Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></div>
+      <div class="card info" style="display:flex;gap:16px;align-items:flex-start"><div class="ico"><svg><use href="#i2"/></svg></div><div><h3 style="margin:0">Vers gerooid voor uw levering</h3><p>We rooien uw planten vers voor de bezorging of het afhalen.</p></div></div>
+      <div class="card info" style="display:flex;gap:16px;align-items:flex-start"><div class="ico"><svg><use href="#i4"/></svg></div><div><h3 style="margin:0">Persoonlijk advies van de kweker</h3><p>U spreekt rechtstreeks met de kweker, van vraag tot levering.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<div class="tag"><b>Схема B</b> · заголовок по центру · одна большая карточка: фото слева, справа имя, должность, короткий текст и кнопки · ниже три обещания в ряд</div>
+<section class="sec" id="B">
+  <div style="text-align:center;max-width:760px;margin:0 auto"><p class="eyebrow">De kwekerij</p><h2>Wij kweken rhododendrons. Niet meer, niet minder.</h2></div>
+  <div class="card" style="margin-top:40px;padding:16px;display:grid;grid-template-columns:360px 1fr;gap:48px;align-items:center">
+    <img class="photo" src="img/owner-portrait.webp" alt="Gert Top">
+    <div style="padding-right:40px">
+      <div class="name" style="font-size:30px">Gert Top</div><div class="role">Oprichter en kweker · Otterlo, sinds 2001</div>
+      <p class="lead" style="margin-top:20px">Familiebedrijf op de Veluwe. Dankzij onze veenrijke bodem en een uitgebalanceerde watergift ontwikkelen onze planten een sterk wortelstelsel, met aangroeigarantie.</p>
+      <div class="facts" style="margin-top:22px"><span class="chip">10.000 planten op voorraad</span><span class="chip">7 soorten</span><span class="chip">40–120 cm</span></div>
+      <div class="btns" style="margin-top:26px"><a class="btn p" href="#">Bel de kweker</a><a class="btn o" href="#">WhatsApp</a></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+    <div class="card info"><div class="ico"><svg><use href="#i1"/></svg></div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen? Wij vervangen kosteloos.</p></div>
+    <div class="card info"><div class="ico"><svg><use href="#i2"/></svg></div><h3>Vers gerooid voor uw levering</h3><p>Gerooid voor de bezorging of het afhalen.</p></div>
+    <div class="card info"><div class="ico"><svg><use href="#i4"/></svg></div><h3>Persoonlijk advies van de kweker</h3><p>Rechtstreeks contact, van vraag tot levering.</p></div>
+  </div>
+</section>
+
+<!-- C -->
+<div class="tag"><b>Схема C</b> · слева заголовок, текст и кнопки · справа фото садовода, под фото подпись с именем и должностью · ниже полоса из четырёх фактов</div>
+<section class="sec" id="C">
+  <div style="display:grid;grid-template-columns:1fr 440px;gap:80px;align-items:center">
+    <div><p class="eyebrow">De kwekerij</p><h2 style="font-size:52px">Wij kweken rhododendrons. Niet meer, niet minder.</h2>
+      <p class="lead">Familiebedrijf in Otterlo, op de Veluwe. Dankzij onze veenrijke bodem ontwikkelen onze planten een sterk wortelstelsel. Vers gerooid voor uw levering, met aangroeigarantie op elke plant.</p>
+      <div class="btns" style="margin-top:28px"><a class="btn p" href="#">Bel de kweker</a><a class="btn o" href="#">WhatsApp</a></div></div>
+    <figure style="margin:0"><img class="photo" src="img/owner-portrait.webp" alt="Gert Top" style="border-radius:28px">
+      <figcaption style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:16px;padding-top:14px"><span class="name" style="font-size:18px">Gert Top</span><span class="role" style="margin:0">Oprichter en kweker</span></figcaption></figure>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line)">
+    <div style="padding:22px 0"><div style="font-size:28px;font-weight:600">2001</div><div class="role">Familiekwekerij in Otterlo</div></div>
+    <div style="padding:22px 0 22px 24px;border-left:1px solid var(--line)"><div style="font-size:28px;font-weight:600">10.000</div><div class="role">Planten op voorraad</div></div>
+    <div style="padding:22px 0 22px 24px;border-left:1px solid var(--line)"><div style="font-size:28px;font-weight:600">7 soorten</div><div class="role">In maten van 40 tot 120 cm</div></div>
+    <div style="padding:22px 0 22px 24px;border-left:1px solid var(--line)"><div style="font-size:28px;font-weight:600">Garantie</div><div class="role">Aangroeigarantie op elke plant</div></div>
+  </div>
+</section>
+
+<!-- D -->
+<div class="tag"><b>Схема D</b> · тёмная карточка во всю ширину: фото слева на всю высоту карточки, справа имя, должность, текст, факты и кнопки · обещания мелкой строкой внизу карточки</div>
+<section class="sec" id="D">
+  <div style="background:var(--accent);color:#fff;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:5fr 7fr">
+    <img src="img/owner-portrait.webp" alt="Gert Top" style="width:100%;height:100%;min-height:560px;object-fit:cover;object-position:50% 22%;display:block">
+    <div style="padding:56px 64px;display:flex;flex-direction:column">
+      <p class="eyebrow" style="color:rgba(255,255,255,.7)">De kweker</p>
+      <h2 style="color:#fff">Wij kweken rhododendrons. Niet meer, niet minder.</h2>
+      <p class="lead" style="color:rgba(255,255,255,.85)">Familiebedrijf in Otterlo, op de veenrijke bodem van de Veluwe, sinds 2001.</p>
+      <div style="margin-top:28px"><div class="name" style="color:#fff">Gert Top</div><div class="role" style="color:rgba(255,255,255,.7)">Oprichter en kweker</div></div>
+      <div class="btns" style="margin-top:26px"><a class="btn" style="background:#fff;color:var(--fg)" href="#">Bel de kweker</a><a class="btn" style="border:1px solid rgba(255,255,255,.4);color:#fff" href="#">WhatsApp</a></div>
+      <div style="margin-top:auto;padding-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:rgba(255,255,255,.85)">
+        <span style="padding-top:18px">Aangroeigarantie op elke plant</span><span style="padding-top:18px">Vers gerooid voor uw levering</span><span style="padding-top:18px">Persoonlijk advies</span></div>
+    </div>
+  </div>
+</section>
+</body></html>
