@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Rhododendrons · Kwekerij in Otterlo</title>
+<meta name="description" content="Rhododendrons die aanslaan, met aangroeigarantie. Familiekwekerij in Otterlo, Veluwe, sinds 2001. Zeven soorten, vers gerooid, bezorgd of af te halen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink-2:#2b2b28; --ink-3:#3a3a37;
+  --paper:#f4f3f0; --white:#ffffff; --line:#dcdad5; --line-dark:rgba(255,255,255,.16);
+  --fg:#141414; --fg-2:#4a4946; --muted:#6b6a66; --muted-dark:#b7b5ae; --label-dark:#9d9b95;
+  --gut:clamp(16px,4.5vw,65px); --max:1310px;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *,*::before,*::after{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4,p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+button{font:inherit}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.light :focus-visible,.paper :focus-visible{outline-color:var(--ink)}
+.skip{position:absolute;left:12px;top:-60px;background:#fff;color:var(--ink);padding:10px 14px;z-index:100;border-radius:6px;font-weight:600}
+.skip:focus{top:12px}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;border-radius:4px;line-height:1;transition:background .15s,color .15s,border-color .15s;white-space:nowrap}
+.btn--white{background:#fff;color:var(--ink)}
+.btn--white:hover{background:#e9e8e4}
+.btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn--ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.btn--ink{background:var(--ink);color:#fff}
+.btn--ink:hover{background:#333}
+.btn--outline{background:transparent;color:var(--ink);border-color:#bdbbb5}
+.btn--outline:hover{border-color:var(--ink)}
+.btn--block{width:100%;justify-content:center}
+
+/* header */
+.hdr{background:var(--ink);color:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line-dark)}
+.hdr__in{display:flex;align-items:center;gap:28px;min-height:64px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:20px;letter-spacing:-.01em;white-space:nowrap}
+.brand__mark{width:26px;height:26px;background:#fff;color:var(--ink);display:grid;place-items:center;border-radius:5px}
+.nav{display:flex;gap:22px;font-size:15px;color:#cfcdc7}
+.nav a{text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;white-space:nowrap}
+.nav a:hover{color:#fff;border-color:#fff}
+.hdr__right{margin-left:auto;display:flex;align-items:center;gap:18px}
+.hdr__tel{font-size:14px;font-weight:600;text-decoration:none;color:#fff;white-space:nowrap}
+.hdr .btn{min-height:40px;padding:0 18px;font-size:14px}
+.menu{display:none}
+.menu summary{list-style:none;cursor:pointer;font-size:14px;font-weight:600;padding:8px 0;color:#fff}
+.menu summary::-webkit-details-marker{display:none}
+.menu:not([open]) .menu__list{display:none}
+.menu__list{position:fixed;left:0;right:0;top:58px;background:var(--ink);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:8px var(--gut) 16px;display:grid}
+.menu__list a{text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line-dark);font-size:16px}
+.menu__list a:last-child{border:0}
+@media (max-width:1199px){.nav{display:none}.hdr__tel{display:none}.menu{display:block;position:static}.hdr__in{position:relative}}
+@media (max-width:639px){.hdr .btn{display:none}.hdr__in{min-height:58px}.brand{font-size:18px}}
+
+/* hero */
+.hero{position:relative;background:var(--ink);color:#fff;display:grid;grid-template-columns:minmax(0,1.72fr) minmax(0,1fr) minmax(0,1fr);min-height:min(88vh,780px);isolation:isolate}
+.hero__photo{grid-area:1/1/2/4;position:relative;min-height:0;z-index:0}
+.hero__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero__col{position:relative;z-index:1;padding:56px var(--gut) 48px;border-right:1px solid var(--line-dark);background:linear-gradient(180deg,rgba(20,20,20,.9) 0,rgba(20,20,20,.9) calc(100% - 300px),rgba(20,20,20,.08) 100%)}
+.hero__col:last-child{border-right:0}
+.hero__col--promise{grid-area:1/1/2/2;display:flex;flex-direction:column;justify-content:flex-start}
+.hero__col--facts{grid-area:1/2/2/3}
+.hero__col--promises{grid-area:1/3/2/4}
+.hero__col--facts,.hero__col--promises{padding-left:36px;padding-right:36px}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);background:rgba(20,20,20,.55);padding:11px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#e4e2dc;max-width:100%}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;flex:none}
+.hero h1{margin-top:28px;font-size:clamp(38px,4.7vw,66px);line-height:1.02;letter-spacing:-.035em;font-weight:700;max-width:12ch;text-wrap:balance}
+.hero__lead{margin-top:22px;font-size:clamp(16px,1.25vw,18px);line-height:1.55;color:#cfcdc7;max-width:54ch}
+.hero__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.hlabel{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label-dark)}
+.hlabel::before{content:"";width:0;height:0;border-left:5px solid var(--label-dark);border-top:4px solid transparent;border-bottom:4px solid transparent}
+.facts{margin-top:22px;border-top:1px solid var(--line-dark)}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-dark);font-size:15px;color:#e8e6e0}
+.facts dd{margin:0;font-family:var(--mono);font-size:13.5px;color:#fff;white-space:nowrap}
+.icons{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:26px 16px}
+.icons li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:#dedcd6;line-height:1.35}
+.icons svg{width:38px;height:38px;color:#fff}
+
+/* mono strip */
+.strip{background:var(--ink);color:#fff;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);display:flex;font-family:var(--mono);font-size:13px}
+.strip__label{flex:none;padding:12px var(--gut);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label-dark);border-right:1px solid var(--line-dark);display:flex;align-items:center}
+.strip ul{display:flex;flex:1;flex-wrap:wrap}
+.strip li{display:flex;align-items:center;gap:10px;padding:12px 18px;border-right:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);margin-bottom:-1px;flex:1 0 auto;justify-content:center}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+
+/* claim */
+.claim{padding:clamp(48px,6vw,80px) 0;border-bottom:1px solid var(--line)}
+.claim p{font-size:clamp(24px,2.9vw,38px);line-height:1.22;letter-spacing:-.02em;font-weight:500;max-width:30ch;text-wrap:pretty}
+.claim p span{color:var(--muted);font-weight:400}
+
+/* section tab + head */
+.tab{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tab__name{background:var(--ink);color:#fff;font-family:var(--mono);font-size:clamp(20px,2.5vw,32px);letter-spacing:.03em;padding:clamp(22px,2.8vw,34px) var(--gut);margin:0;font-weight:400;white-space:nowrap}
+.tab__fill{flex:1;background:#2b2b28;background-image:repeating-linear-gradient(180deg,transparent 0 5px,rgba(0,0,0,.28) 5px 6px)}
+.head{padding:clamp(32px,4vw,44px) 0 clamp(28px,3.5vw,40px);border-bottom:1px solid var(--line)}
+.head h2{font-size:clamp(28px,3.2vw,40px);line-height:1.15;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
+.head p{margin-top:12px;max-width:66ch;color:var(--muted);font-size:17px}
+.body{padding:clamp(28px,3.5vw,44px) 0 clamp(56px,6vw,84px)}
+
+/* panels */
+.panel{border:1px solid var(--line);background:#fff;display:grid;grid-template-columns:1fr 1fr}
+.panel__text{padding:clamp(20px,2.2vw,32px) clamp(16px,2.5vw,36px)}
+.panel__ui{border-left:1px solid var(--line);background:#f7f6f3;background-image:repeating-linear-gradient(180deg,transparent 0 7px,rgba(20,20,20,.045) 7px 8px);padding:clamp(24px,3vw,40px);display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,20,20,.08);width:100%;min-width:0}
+
+/* accordion */
+.acc details{border-bottom:1px solid var(--line)}
+.acc details:last-of-type{border-bottom:0}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 0;font-weight:500;font-size:17px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary svg.ic{width:20px;height:20px;color:var(--muted);flex:none}
+.acc summary .chev{margin-left:auto;width:16px;height:16px;color:var(--muted);transition:transform .2s}
+.acc details[open] summary .chev{transform:rotate(180deg)}
+.acc .acc__body{padding:0 0 18px 34px;color:var(--fg-2);font-size:15.5px;max-width:52ch}
+.closing{margin-top:22px;padding-top:4px}
+.closing h3{font-size:22px;font-weight:500;letter-spacing:-.015em;line-height:1.25}
+.closing p{margin-top:8px;color:var(--muted);font-size:17px;max-width:46ch}
+
+/* portrait card */
+.panel__ui > *{min-width:0}
+.portrait{width:100%;max-width:360px;min-width:0}
+.portrait img{aspect-ratio:4/5;width:100%;height:auto;object-fit:cover;object-position:50% 18%}
+.portrait figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid var(--line);font-size:14px}
+.portrait figcaption span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* dark band */
+.band{background:var(--ink-2);color:#fff}
+.band__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(28px,4vw,64px);padding:clamp(48px,6vw,80px) 0}
+.band h2{font-size:clamp(28px,3vw,38px);line-height:1.15;letter-spacing:-.025em;font-weight:500;max-width:14ch;text-wrap:balance}
+.band__right{border-left:1px solid var(--line-dark);padding-left:clamp(28px,4vw,48px)}
+.band__right p{font-size:clamp(17px,1.5vw,21px);line-height:1.5;color:#d6d4ce;max-width:50ch}
+.band__facts{display:flex;flex-wrap:wrap;gap:28px 40px;margin-top:36px}
+.band__facts li{display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;color:#d6d4ce;text-align:center}
+.band__facts svg{width:34px;height:34px;color:#fff}
+
+/* assortment grid */
+.grid{border:1px solid var(--line);background:var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px}
+.v{background:#fff;display:grid;grid-template-rows:auto 1fr}
+.v img{aspect-ratio:4/3;width:100%;height:auto;object-fit:cover}
+.v__in{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.v h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.v h3 a{text-decoration:none}
+.v h3 a:hover{text-decoration:underline}
+.v__color{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;color:var(--fg-2)}
+.v dl{margin:14px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;font-family:var(--mono);color:var(--muted)}
+.v dl dd{margin:0;color:var(--fg);text-align:right}
+.v__price{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:15px}
+.v__price small{font-weight:400;color:var(--muted);font-size:12.5px}
+.v--dark{background:var(--ink);color:#fff}
+.v--dark .v__color,.v--dark dl,.v--dark .v__price small{color:#c9c7c1}
+.v--dark dl dd{color:#fff}
+.v--dark img{aspect-ratio:4/3}
+.v--dark .v__in{padding-top:18px}
+.v--dark .btn{margin-top:18px}
+
+/* tabs row (steps) */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;font-size:16px;color:var(--muted);font-weight:500}
+.tabs li{padding:10px 8px 14px}
+.tabs li:first-child{color:var(--fg)}
+.tabs b{font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:4px}
+.ruler{height:14px;background-image:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 10px);background-size:100% 8px;background-repeat:no-repeat;background-position:bottom;border-bottom:1px solid var(--line);position:relative}
+.ruler::after{content:"";position:absolute;left:12.5%;bottom:0;width:2px;height:14px;background:var(--ink)}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps b{font-family:var(--mono);font-weight:400;font-size:13px;color:var(--muted);padding-top:3px}
+.steps h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.steps p{margin-top:4px;color:var(--fg-2);font-size:15px;max-width:46ch}
+.panel__text .big{font-size:clamp(24px,2.4vw,32px);font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.panel__text .big + p{margin-top:10px;color:var(--muted);font-size:16.5px;max-width:46ch}
+.order{max-width:380px}
+.order__hd{padding:14px 18px;border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;font-size:14px}
+.order__hd span{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.order__row{display:flex;justify-content:space-between;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.order__row em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.order__row .mono{font-size:13px}
+.order__foot{padding:16px 18px}
+.order__foot .btn{min-height:40px;font-size:14px}
+.order__note{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-align:center;margin-top:10px}
+
+/* 3-col cells */
+.cells{border:1px solid var(--line);background:var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px}
+.cell{background:#fff;padding:clamp(22px,2.5vw,32px)}
+.cell h3{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.cell h3 svg{width:20px;height:20px;color:var(--muted);flex:none}
+.cell p{margin-top:10px;color:var(--fg-2);font-size:15.5px}
+.cell .mono{font-size:13px;color:var(--muted)}
+.cell dl{margin:14px 0 0;display:grid;grid-template-columns:1fr auto;gap:6px 16px;font-size:14px}
+.cell dl dt{color:var(--fg-2)}
+.cell dl dd{margin:0;font-family:var(--mono);font-size:13px;text-align:right}
+.cell a.lnk{font-weight:600;text-decoration:none;border-bottom:1px solid var(--ink)}
+.cell a.lnk:hover{border-color:transparent}
+.reassure{border:1px solid var(--line);border-top:0;background:#fff;text-align:center;padding:clamp(32px,4vw,48px) var(--gut)}
+.reassure .label{color:var(--fg)}
+.reassure h3{margin:14px auto 0;font-size:clamp(19px,2vw,24px);font-weight:500;letter-spacing:-.015em;max-width:44ch;text-wrap:balance}
+.reassure p{margin:10px auto 0;color:var(--muted);max-width:60ch}
+
+/* flagship */
+.offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.56fr);border:1px solid var(--line)}
+.flag{background:var(--ink);color:#fff;padding:clamp(28px,3vw,44px)}
+.flag .label{color:var(--label-dark)}
+.flag .num{margin-top:18px;font-size:clamp(40px,4.4vw,60px);line-height:1;letter-spacing:-.035em;font-weight:700}
+.flag .num small{font-size:.42em;font-weight:500;letter-spacing:-.01em;color:#cfcdc7}
+.flag h3{margin-top:18px;font-size:18px;font-weight:600}
+.flag > p{margin-top:8px;color:#c9c7c1;font-size:15.5px;max-width:40ch}
+.note{margin-top:24px;border:1px solid var(--line-dark);background:#1f1f1e;padding:18px 20px}
+.note .label{color:var(--label-dark)}
+.note p{margin-top:8px;font-size:14.5px;color:#dedcd6}
+.flag .btn{margin-top:28px}
+.infos{display:grid;grid-template-columns:1fr 1fr;background:var(--line);gap:1px;border-left:1px solid var(--line)}
+.info{background:#fff;padding:clamp(20px,2.4vw,32px) clamp(18px,2.4vw,34px)}
+.info__k{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2)}
+.info__k span{color:var(--muted);letter-spacing:0}
+.info h3{margin-top:22px;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.info p{margin-top:6px;color:var(--fg-2);font-size:15px}
+
+/* faq */
+.faqgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-weight:500;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:16px;height:16px;flex:none;color:var(--muted);transition:transform .2s}
+.faq details[open] summary svg{transform:rotate(180deg)}
+.faq .a{padding:0 0 20px;color:var(--fg-2);font-size:15.5px;max-width:60ch}
+.faqgrid h2{font-size:clamp(28px,3vw,36px);font-weight:500;letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
+.faqgrid .lead{margin-top:12px;color:var(--muted);font-size:17px;max-width:40ch}
+.faqgrid .btn{margin-top:24px}
+
+/* footer */
+.ftr{background:var(--ink);color:#fff}
+.ftr__in{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:36px;padding:clamp(44px,5vw,64px) 0 40px}
+.ftr .brand{font-size:24px}
+.ftr__about{margin-top:18px;color:var(--muted-dark);font-size:15px;max-width:30ch}
+.ftr h3{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label-dark);font-weight:400}
+.ftr ul{margin-top:16px;display:grid;gap:10px;font-size:15px}
+.ftr ul a{text-decoration:none;color:#e4e2dc}
+.ftr ul a:hover{text-decoration:underline}
+.ftr__bot{border-top:1px solid var(--line-dark);padding:20px 0 28px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:13px;color:var(--muted-dark)}
+.ftr__bot a{text-decoration:none}
+.ftr__bot a:hover{text-decoration:underline}
+
+/* responsive */
+@media (max-width:1180px){
+  .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)}
+  .hero__col--facts,.hero__col--promises{padding-left:24px;padding-right:24px}
+  .hero h1{font-size:clamp(34px,4.1vw,54px)}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:1023px){
+  .hero{grid-template-columns:1fr 1fr;min-height:0}
+  .hero__photo{grid-area:1/1/2/3}
+  .hero__col--promise{grid-area:1/1/2/3;border-right:0;min-height:min(78vh,640px);justify-content:flex-end;padding-top:140px;background:linear-gradient(180deg,rgba(20,20,20,.2) 0,rgba(20,20,20,.5) 40%,rgba(20,20,20,.9) 100%);border-bottom:1px solid var(--line-dark)}
+  .hero__col--facts{grid-area:2/1/3/2;background:var(--ink)}
+  .hero__col--promises{grid-area:2/2/3/3;background:var(--ink)}
+  .hero__col--facts,.hero__col--promises{padding:28px var(--gut) 32px}
+  .hero h1{max-width:16ch}
+  .offer{grid-template-columns:1fr}
+  .infos{border-left:0;border-top:1px solid var(--line)}
+  .faqgrid{grid-template-columns:1fr}
+  .ftr__in{grid-template-columns:1fr 1fr}
+}
+@media (max-width:767px){
+  .hero__col--facts{grid-area:2/1/3/3;border-right:0;border-bottom:1px solid var(--line-dark)}
+  .hero__col--promises{grid-area:3/1/4/3}
+  .panel{grid-template-columns:1fr}
+  .panel__ui{border-left:0;border-top:1px solid var(--line)}
+  .band__in{grid-template-columns:1fr}
+  .band__right{border-left:0;padding-left:0;border-top:1px solid var(--line-dark);padding-top:28px}
+  .grid{grid-template-columns:1fr 1fr}
+  .cells{grid-template-columns:1fr}
+  .tabs{grid-template-columns:repeat(2,1fr);text-align:left}
+  .tabs li{padding:8px 0 10px}
+  .ruler::after{left:0}
+  .strip{flex-direction:column}
+  .strip__label{border-right:0;border-bottom:1px solid var(--line-dark)}
+  .strip li{padding:11px 14px;font-size:12.5px}
+  .head p{font-size:16px}
+  .ftr__in{grid-template-columns:1fr;gap:28px}
+  .ftr ul{margin-top:12px}
+}
+@media (max-width:479px){
+  .grid{grid-template-columns:1fr}
+  .v img{aspect-ratio:16/10}
+  .hero__actions .btn{flex:1 1 100%;justify-content:center}
+  .icons{gap:22px 10px}
+  .infos{grid-template-columns:1fr}
+  .flag .btn,.band .btn{width:100%;justify-content:center}
+  .claim p{font-size:24px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="#top" aria-label="Top Rhododendrons, naar boven">
+      <span class="brand__mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6M6 12l6-6 6 6"/></svg></span>
+      Top Rhododendrons
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <a href="#planten">Planten</a>
+      <a href="#kwekerij">De kwekerij</a>
+      <a href="#werkwijze">Hoe het werkt</a>
+      <a href="#plantgids">Plantgids</a>
+      <a href="#groothandel">Groothandel</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr__right">
+      <a class="hdr__tel" href="tel:+31620104312">06 20 10 43 12</a>
+      <a class="btn btn--white" href="#planten">Bekijk de planten</a>
+      <details class="menu">
+        <summary aria-label="Menu openen">Menu</summary>
+        <nav class="menu__list" aria-label="Menu">
+          <a href="#planten">Planten</a>
+          <a href="#kwekerij">De kwekerij</a>
+          <a href="#werkwijze">Hoe het werkt</a>
+          <a href="#plantgids">Plantgids</a>
+          <a href="#groothandel">Groothandel</a>
+          <a href="#vragen">Veelgestelde vragen</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:+31620104312">Bel 06 20 10 43 12</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO: three columns with hairline dividers over the field photo -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="hero__photo">
+    <img src="img/hero-field.jpg" alt="Rijen witte rhododendrons in volle bloei op het veld van de kwekerij in Otterlo" fetchpriority="high">
+  </div>
+  <div class="hero__col hero__col--promise">
+    <p class="pill">Familiekwekerij · Otterlo, Veluwe · sinds 2001</p>
+    <h1 id="h1">Rhododendrons die aanslaan. Met aangroeigarantie.</h1>
+    <p class="hero__lead">Gekweekt op veenrijke bodem, met een sterk wortelstelsel. Vers gerooid voor uw levering, bezorgd met eigen transport of af te halen in Otterlo.</p>
+    <div class="hero__actions">
+      <a class="btn btn--white" href="#planten">Bekijk de planten</a>
+      <a class="btn btn--ghost" href="#groothandel">Groothandel <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="hero__col hero__col--facts">
+    <p class="hlabel">De feiten</p>
+    <dl class="facts">
+      <div><dt>Planten op voorraad</dt><dd>10.000</dd></div>
+      <div><dt>Kwekerij sinds</dt><dd>2001</dd></div>
+      <div><dt>Soorten</dt><dd>7</dd></div>
+      <div><dt>Maten</dt><dd>40–120 cm</dd></div>
+      <div><dt>Minimumbestelling</dt><dd>geen</dd></div>
+      <div><dt>Levering</dt><dd>eigen transport</dd></div>
+    </dl>
+  </div>
+  <div class="hero__col hero__col--promises">
+    <p class="hlabel">Onze beloften</p>
+    <ul class="icons">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Aangroeigarantie</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5 0-8-4-8-9 0-3 1-5 1-5s2 1 4 1c4 0 7-3 7-3s1 3 1 6c0 5-2 10-5 10z"/><path d="M12 21c0-5 1-9 4-13"/></svg>Vers gerooid</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>Advies van de kweker</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Bezorgd of afhalen</li>
+    </ul>
+  </div>
+</section>
+
+<!-- mono strip: the seven varieties -->
+<div class="strip" aria-label="Onze zeven soorten">
+  <span class="strip__label">Onze soorten</span>
+  <ul>
+    <li><span class="dot" style="background:#b9293d"></span>Nova Zembla</li>
+    <li><span class="dot" style="background:#f1ece3"></span>Cunningham's White</li>
+    <li><span class="dot" style="background:#d9679a"></span>Roseum Elegans</li>
+    <li><span class="dot" style="background:#9a6cc4"></span>Catawbiense Boursault</li>
+    <li><span class="dot" style="background:#b98fcf"></span>Catawbiense Grandiflorum</li>
+    <li><span class="dot" style="background:#e2a0c2"></span>Ponticum Roseum</li>
+    <li><span class="dot" style="background:#7b5ea7"></span>Ponticum</li>
+  </ul>
+</div>
+
+<!-- bold claim -->
+<section class="claim">
+  <div class="wrap">
+    <p>„Een gezonde plant is geen toeval. Dat is onze standaard.” <span>Gert Top, oprichter en kweker. Familiebedrijf in Otterlo, op de Veluwe: 10.000 planten op voorraad, direct van het veld naar uw tuin.</span></p>
+  </div>
+</section>
+
+<!-- DE KWEKERIJ -->
+<section id="kwekerij" aria-labelledby="h-kwekerij">
+  <div class="tab"><p class="tab__name" aria-hidden="true">DE KWEKERIJ</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-kwekerij">Gekweekt in de volle grond, gerooid met kluit.</h2>
+    <p>Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>
+  </div>
+  <div class="wrap body">
+    <div class="panel">
+      <div class="panel__text">
+        <div class="acc">
+          <details open>
+            <summary><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Aangroeigarantie op elke plant<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <p class="acc__body">Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p>
+          </details>
+          <details open>
+            <summary><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5 0-8-4-8-9 0-3 1-5 1-5s2 1 4 1c4 0 7-3 7-3s1 3 1 6c0 5-2 10-5 10z"/><path d="M12 21c0-5 1-9 4-13"/></svg>Vers gerooid voor uw levering<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <p class="acc__body">Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>
+          </details>
+          <details open>
+            <summary><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>Persoonlijk advies van de kweker<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <p class="acc__body">U spreekt rechtstreeks met Gert, van vraag tot levering.</p>
+          </details>
+        </div>
+        <div class="closing">
+          <h3>Zeven soorten, maten van 40 tot 120 cm.</h3>
+          <p>Geen minimumbestelling voor particulieren. Bel Gert voor advies over soort, maat en standplaats.</p>
+          <p style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn--ink" href="tel:+31620104312">Bel de kweker</a><a class="btn btn--outline" href="https://wa.me/31620297849" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+      </div>
+      <div class="panel__ui">
+        <figure class="card portrait" style="margin:0 auto">
+          <img src="img/owner-portrait.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" loading="lazy" width="1200" height="1418">
+          <figcaption><strong>Gert Top</strong><span>Oprichter · kweker</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- dark band -->
+<section class="band" aria-labelledby="h-band">
+  <div class="wrap band__in">
+    <h2 id="h-band">Wij kweken rhododendrons. Niet meer, niet minder.</h2>
+    <div class="band__right">
+      <p>Dankzij onze veenrijke bodem en een uitgebalanceerde watergift ontwikkelen onze planten een sterk wortelstelsel. Daardoor passen ze zich moeiteloos aan in uw tuin, met aangroeigarantie.</p>
+      <ul class="band__facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.2-6-11a6 6 0 0112 0c0 5.8-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Otterlo · Veluwe</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M3 21h18M6 17c0-3 1-6 6-9 5 3 6 6 6 9"/><path d="M12 8V3"/></svg>Volle grond</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 6 7 6 11a6 6 0 01-12 0c0-4 3-7 6-11z"/></svg>Veenrijke bodem</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v8"/><path d="M8 7c-3 3-3 8 0 11h8c3-3 3-8 0-11"/><path d="M9 18l3 3 3-3"/></svg>Gerooid met kluit</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ASSORTIMENT -->
+<section id="planten" aria-labelledby="h-planten">
+  <div class="tab"><p class="tab__name" aria-hidden="true">ASSORTIMENT</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-planten">Zeven soorten. Alle winterhard.</h2>
+    <p>Prijs per plant in 40–60 cm, ook leverbaar tot 120 cm. Bezorgd door heel Nederland of af te halen in Otterlo.</p>
+  </div>
+  <div class="wrap body">
+    <ul class="grid">
+      <li class="v">
+        <img src="img/nova-zembla-2-sm.webp" alt="Nova Zembla, helderrode bloemtrossen" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Nova Zembla</a></h3>
+          <p class="v__color"><span class="dot" style="background:#b9293d"></span>Helderrood</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 3 m</dd><dt>Standplaats</dt><dd>halfschaduw</dd></dl>
+          <p class="v__price"><span>vanaf € 29</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/cunninghams-white-2-sm.webp" alt="Cunningham's White, witte bloemen met lichtroze accent" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Cunningham's White</a></h3>
+          <p class="v__color"><span class="dot" style="background:#f1ece3"></span>Wit / lichtroze</p>
+          <dl><dt>Bloei</dt><dd>april – mei</dd><dt>Hoogte</dt><dd>tot 2 m</dd><dt>Standplaats</dt><dd>halfschaduw</dd></dl>
+          <p class="v__price"><span>vanaf € 25</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/roseum-elegans-2-sm.webp" alt="Roseum Elegans, warm roze bloemtrossen" loading="lazy" width="900" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Roseum Elegans</a></h3>
+          <p class="v__color"><span class="dot" style="background:#d9679a"></span>Warm roze</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 2,5 m</dd><dt>Standplaats</dt><dd>halfschaduw / zon</dd></dl>
+          <p class="v__price"><span>vanaf € 27</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/catawbiense-boursault-2-sm.webp" alt="Catawbiense Boursault, paars-lavendel bloemen" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Catawbiense Boursault</a></h3>
+          <p class="v__color"><span class="dot" style="background:#9a6cc4"></span>Paars-lavendel</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 2,5 m</dd><dt>Standplaats</dt><dd>halfschaduw / zon</dd></dl>
+          <p class="v__price"><span>vanaf € 27</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/catawbiense-grandiflorum-2-sm.webp" alt="Catawbiense Grandiflorum, lila-roze bloemen" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Catawbiense Grandiflorum</a></h3>
+          <p class="v__color"><span class="dot" style="background:#b98fcf"></span>Lila-roze / lavendel</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 3 m</dd><dt>Standplaats</dt><dd>halfschaduw / zon</dd></dl>
+          <p class="v__price"><span>vanaf € 29</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/ponticum-roseum-2-sm.webp" alt="Ponticum Roseum, roze-lichtpaarse bloemen" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Ponticum Roseum</a></h3>
+          <p class="v__color"><span class="dot" style="background:#e2a0c2"></span>Roze / lichtpaars</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 4 m</dd><dt>Standplaats</dt><dd>halfschaduw / schaduw</dd></dl>
+          <p class="v__price"><span>vanaf € 22</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v">
+        <img src="img/ponticum-2-sm.webp" alt="Ponticum, violet-paarse bloemen" loading="lazy" width="672" height="900">
+        <div class="v__in">
+          <h3><a href="#planten">Ponticum</a></h3>
+          <p class="v__color"><span class="dot" style="background:#7b5ea7"></span>Violet-paars</p>
+          <dl><dt>Bloei</dt><dd>mei – juni</dd><dt>Hoogte</dt><dd>tot 4 m</dd><dt>Standplaats</dt><dd>halfschaduw / schaduw</dd></dl>
+          <p class="v__price"><span>vanaf € 22</span><small>40–60 cm</small></p>
+        </div>
+      </li>
+      <li class="v v--dark">
+        <img src="img/tuinturf-sm.webp" alt="Zak tuinturf-substraat voor rhododendrons" loading="lazy" width="900" height="900">
+        <div class="v__in">
+          <p class="label" style="color:#9d9b95">Bij het planten</p>
+          <h3 style="margin-top:8px">Tuinturf-substraat</h3>
+          <p class="v__color" style="color:#c9c7c1">Zuurminnend, vochtregelend, voedingsrijk. Bevordert een sterk wortelstelsel.</p>
+          <p class="v__price"><span>€ 14,95</span><small>per zak van 40 liter</small></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOE HET WERKT -->
+<section id="werkwijze" aria-labelledby="h-werkwijze">
+  <div class="tab"><p class="tab__name" aria-hidden="true">HOE HET WERKT</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-werkwijze">Van keuze tot aanplant, in vier stappen.</h2>
+    <p>Geen minimumbestelling. U kiest, wij rooien vers en bezorgen met eigen transport of zetten uw bestelling klaar in Otterlo.</p>
+  </div>
+  <div class="wrap body">
+    <ol class="tabs" aria-label="Stappen">
+      <li><b>01</b>Kiezen</li>
+      <li><b>02</b>Bestellen</li>
+      <li><b>03</b>Vers gerooid</li>
+      <li><b>04</b>Bezorgd of afhalen</li>
+    </ol>
+    <div class="ruler" aria-hidden="true"></div>
+    <div class="panel" style="border-top:0">
+      <div class="panel__text">
+        <p class="big">Uw planten staan niet onnodig te wachten.</p>
+        <p>We rooien pas vlak voor uw bezorging of afhaal. Zo komt elke plant in optimale conditie aan.</p>
+        <ol class="steps" style="margin-top:22px">
+          <li><b>01</b><div><h3>Kiezen</h3><p>Kies een van de zeven soorten en een maat van 40 tot 120 cm. Twijfelt u? Gert adviseert over soort, maat en standplaats.</p></div></li>
+          <li><b>02</b><div><h3>Bestellen</h3><p>Vanaf één plant. Na uw bestelling nemen wij contact op om een leveringsmoment af te stemmen dat u uitkomt.</p></div></li>
+          <li><b>03</b><div><h3>Vers gerooid</h3><p>Op het afgesproken moment rooien wij uw planten met kluit, direct van het veld.</p></div></li>
+          <li><b>04</b><div><h3>Bezorgd of afhalen</h3><p>Met eigen transport door heel Nederland, of af te halen in Otterlo: wij zetten uw bestelling klaar.</p></div></li>
+        </ol>
+      </div>
+      <div class="panel__ui">
+        <div class="card order" aria-label="Voorbeeld van een bestelling">
+          <div class="order__hd">Uw bestelling <span>voorbeeld</span></div>
+          <div class="order__row"><div>Nova Zembla<em>60–80 cm · met kluit</em></div><span class="mono">€ 45,00</span></div>
+          <div class="order__row"><div>Tuinturf-substraat<em>zak van 40 liter</em></div><span class="mono">€ 14,95</span></div>
+          <div class="order__row"><div>Levering<em>afgestemd op uw planning</em></div><span class="mono">eigen transport</span></div>
+          <div class="order__row"><div>Gerooid<em>vlak voor levering</em></div><span class="mono">met kluit</span></div>
+          <div class="order__row" style="border-bottom:0"><div>Garantie</div><span class="mono">aangroeigarantie</span></div>
+          <div class="order__foot">
+            <a class="btn btn--ink btn--block" href="#planten">Bekijk de planten <span aria-hidden="true">→</span></a>
+            <p class="order__note">Geen minimumbestelling · afhalen in Otterlo mogelijk</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANTGIDS -->
+<section id="plantgids" aria-labelledby="h-plantgids">
+  <div class="tab"><p class="tab__name" aria-hidden="true">PLANTGIDS</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-plantgids">Wanneer planten, welke grond, hoe snoeien.</h2>
+    <p>De drie belangrijkste antwoorden uit onze plantgids. De volledige gids leest u op de plantgids-pagina.</p>
+  </div>
+  <div class="wrap body">
+    <div class="cells">
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Wanneer planten</h3>
+        <p>Het hele jaar door, behalve tijdens vorstperiodes. De ideale momenten zijn vroege lente (maart–april) en herfst (september–oktober). Plant u in de zomer, geef dan voldoende water in de eerste weken.</p>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 6 7 6 11a6 6 0 01-12 0c0-4 3-7 6-11z"/></svg>Welke grond</h3>
+        <p>Zure, luchtige grond: zandgrond of veengrond met een pH tussen 4,5 en 6. Op zware kleigrond groeit de plant minder goed. Voeg bij het planten rododendrongrond of ons tuinturf-substraat toe voor de beste start.</p>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 8L20 19M8.5 16L20 5"/></svg>Snoeien</h3>
+        <p>Niet noodzakelijk, maar het kan. Snoei direct na de bloei, van eind april tot half juni, zodat de plant nieuwe bloemknoppen kan vormen. Radicaal snoeien vertraagt de bloei met twee tot drie jaar.</p>
+      </div>
+    </div>
+    <div class="reassure">
+      <p class="label">Bloeikalender</p>
+      <h3>Cunningham's White bloeit als eerste, in april en mei. De andere zes soorten bloeien in mei en juni.</h3>
+      <p>Alle zeven soorten zijn groenblijvend en winterhard. <a href="#plantgids" style="font-weight:600">Lees de plantgids</a> voor de geheimen van de kweker.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VOOR PROFESSIONALS -->
+<section id="groothandel" aria-labelledby="h-groothandel">
+  <div class="tab"><p class="tab__name" aria-hidden="true">VOOR PROFESSIONALS</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-groothandel">Hoveniers, gemeenten en projectontwikkelaars.</h2>
+    <p>10.000 rhododendrons op stam, aangroeigarantie, eigen transport en partijprijzen vanaf 25 stuks. Alles over levering en voorwaarden staat op de groothandelspagina.</p>
+  </div>
+  <div class="wrap body">
+    <div class="offer">
+      <div class="flag">
+        <p class="label">Groothandel</p>
+        <p class="num">Vanaf 25 <small>stuks</small></p>
+        <h3>Partijprijzen voor uw project.</h3>
+        <p>Vers gerooid op uw leverdatum, bezorgd met eigen transport. Eén aanspreekpunt van offerte tot levering: de kweker zelf.</p>
+        <div class="note">
+          <p class="label">Voor wie</p>
+          <p>Hoveniers en tuinarchitecten, openbaar groen en gemeenten, vastgoed en wooncomplexen, tuincentra. Kleinere opdracht? Neem contact op, we denken graag mee.</p>
+        </div>
+        <a class="btn btn--white" href="#groothandel">Naar de groothandel <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="infos">
+        <div class="info"><p class="info__k">Voorraad <span>/01</span></p><h3>10.000+ planten op stam</h3><p>Vers gerooid uit Otterlo, op de afgesproken leverdatum.</p></div>
+        <div class="info"><p class="info__k">Partijprijzen <span>/02</span></p><h3>Vanaf 25 stuks</h3><p>Gespecificeerde offerte met partijprijzen, levering en planning.</p></div>
+        <div class="info"><p class="info__k">Garantie <span>/03</span></p><h3>Aangroeigarantie</h3><p>Op elke plant, ook bij projectorders. Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div>
+        <div class="info"><p class="info__k">Facturatie <span>/04</span></p><h3>Factuur 30 dagen</h3><p>Voor geregistreerde bedrijven, btw verlegd mogelijk.</p></div>
+        <div class="info"><p class="info__k">Levering <span>/05</span></p><h3>Eigen transport</h3><p>Op de afgesproken datum, gefaseerd mogelijk. Plantservice op locatie optioneel.</p></div>
+        <div class="info"><p class="info__k">Documenten <span>/06</span></p><h3>Plantpaspoort</h3><p>Bij elke partij. Fytosanitaire certificaten voor export op aanvraag.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VRAGEN -->
+<section id="vragen" aria-labelledby="h-vragen">
+  <div class="tab"><p class="tab__name" aria-hidden="true">VRAGEN</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap body" style="padding-top:clamp(36px,4.5vw,56px)">
+    <div class="faqgrid">
+      <div>
+        <h2 id="h-vragen">Wat u wilt weten voordat u plant.</h2>
+        <p class="lead">Twijfelt u over soort, maat of standplaats? Bel ons, wij adviseren graag persoonlijk.</p>
+        <a class="btn btn--outline" href="tel:+31620104312">Bel voor advies</a>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Hoe en wanneer wordt mijn rhododendron geleverd?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">Wij leveren met eigen transport door heel Nederland. Na uw bestelling nemen wij contact met u op om een leveringsmoment af te stemmen dat voor u uitkomt. Uw plant wordt vers gerooid en direct geleverd, zo komt hij in optimale conditie aan.</p>
+        </details>
+        <details>
+          <summary>Wanneer kan ik een rhododendron aanplanten?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">Een rhododendron kunt u het hele jaar door aanplanten, behalve tijdens vorstperiodes. De ideale momenten zijn vroege lente (maart–april) en herfst (september–oktober). Plant u in de zomer, zorg dan voor voldoende water in de eerste weken na het planten.</p>
+        </details>
+        <details>
+          <summary>Welke grond heeft een rhododendron nodig?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">De rhododendron gedijt het beste op zure, luchtige grond: denk aan zandgrond of veengrond met een pH tussen 4,5 en 6. Op zware kleigrond groeit de plant minder goed. Voeg bij het aanplanten rododendrongrond toe voor de beste start. Twijfelt u? Wij geven graag advies op maat.</p>
+        </details>
+        <details>
+          <summary>Wat houdt de aangroeigarantie in?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">Al onze planten worden geleverd met aangroeigarantie. Groeit een plant niet aan ondanks de juiste verzorging? Neem dan contact met ons op, wij zoeken samen naar een passende oplossing. Onze reputatie is gebouwd op kwaliteit, en die nemen wij serieus.</p>
+        </details>
+        <details>
+          <summary>Kan ik ook één plant bestellen?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">Ja. Voor particulieren geldt geen minimumbestelling; u kunt gewoon één plant bestellen. Heeft u een kleinere opdracht als hovenier? Neem contact op, we denken graag mee.</p>
+        </details>
+        <details>
+          <summary>Moet ik mijn rhododendron snoeien?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="a">Snoeien is niet noodzakelijk, maar kan wel. Snoei bij voorkeur direct na de bloei, van eind april tot halverwege juni. Zo heeft de plant de rest van het seizoen tijd om nieuwe bloemknoppen te vormen voor volgend jaar. Radicaal snoeien raden wij af: dit vertraagt de bloei met twee tot drie jaar.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="h-contact">
+  <div class="tab"><p class="tab__name" aria-hidden="true">CONTACT</p><div class="tab__fill" aria-hidden="true"></div></div>
+  <div class="wrap head">
+    <h2 id="h-contact">Kom langs op de kwekerij, of bel ons.</h2>
+    <p>Wilt u advies over de juiste soort voor uw tuin? Wij helpen u graag persoonlijk. Afhalen in Otterlo mogelijk: wij zetten uw bestelling klaar.</p>
+  </div>
+  <div class="wrap body">
+    <div class="cells">
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>Bellen</h3>
+        <p>U spreekt rechtstreeks met de kweker.</p>
+        <dl><dt><a class="lnk" href="tel:+31620104312">06 20 10 43 12</a></dt><dd>Gert</dd><dt><a class="lnk" href="tel:+31620297849">06 20 29 78 49</a></dt><dd>kwekerij</dd></dl>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.5-4A8 8 0 1112 20a8 8 0 01-4-1z"/></svg>WhatsApp en e-mail</h3>
+        <p>Stuur een foto van uw tuin, dan denken wij mee over soort en maat.</p>
+        <dl><dt><a class="lnk" href="https://wa.me/31620297849" target="_blank" rel="noopener">+31 (0)6 20 29 78 49</a></dt><dd>WhatsApp</dd><dt><a class="lnk" href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a></dt><dd>e-mail</dd></dl>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.2-6-11a6 6 0 0112 0c0 5.8-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Bezoek de kwekerij</h3>
+        <p><a class="lnk" href="https://www.google.com/maps/search/Esserbroekweg+2+Otterlo" target="_blank" rel="noopener">Esserbroekweg 2, 6731 DB Otterlo</a><br>Veluwe, Gelderland</p>
+        <dl><dt>Maandag – vrijdag</dt><dd>08:00 – 17:00</dd><dt>Zaterdag</dt><dd>09:00 – 13:00</dd><dt>Zondag</dt><dd>gesloten</dd></dl>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__in">
+      <div>
+        <a class="brand" href="#top">Top Rhododendrons</a>
+        <p class="ftr__about">Rhododendrons direct van eigen kwekerij in Otterlo. Kwaliteit en vakmanschap sinds 2001.</p>
+      </div>
+      <div>
+        <h3>Planten</h3>
+        <ul>
+          <li><a href="#planten">Nova Zembla</a></li>
+          <li><a href="#planten">Cunningham's White</a></li>
+          <li><a href="#planten">Roseum Elegans</a></li>
+          <li><a href="#planten">Catawbiense Boursault</a></li>
+          <li><a href="#planten">Catawbiense Grandiflorum</a></li>
+          <li><a href="#planten">Ponticum Roseum</a></li>
+          <li><a href="#planten">Ponticum</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kwekerij</h3>
+        <ul>
+          <li><a href="#kwekerij">De kwekerij</a></li>
+          <li><a href="#werkwijze">Hoe het werkt</a></li>
+          <li><a href="#plantgids">Plantgids</a></li>
+          <li><a href="#groothandel">Groothandel</a></li>
+          <li><a href="#vragen">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+31620104312">06 20 10 43 12</a></li>
+          <li><a href="https://wa.me/31620297849" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a></li>
+          <li><a href="https://www.google.com/maps/search/Esserbroekweg+2+Otterlo" target="_blank" rel="noopener">Esserbroekweg 2, Otterlo</a></li>
+          <li><a href="https://www.instagram.com/toprhododendrons" target="_blank" rel="noopener">@toprhododendrons</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__bot">
+      <span>© 2026 Top Rhododendrons · KvK 82480273</span>
+      <span><a href="https://toprhododendrons.nl/voorwaarden">Voorwaarden</a> · <a href="https://toprhododendrons.nl/privacy">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
