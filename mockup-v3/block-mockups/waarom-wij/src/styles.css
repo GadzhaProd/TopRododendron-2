@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@source "./";
+/* shadcn-style token names mapped to the site's palette ("Veld") so the
+   21st.dev components keep their class names and only the values change. */
+@theme {
+  --color-background: #f1efea;
+  --color-background-2: #e6e3dc;
+  --color-foreground: #141413;
+  --color-foreground-2: #45443f;
+  --color-card: #fbfaf8;
+  --color-muted: #e6e3dc;
+  --color-muted-foreground: #5f5e58;
+  --color-border: #d6d3cb;
+  --color-primary: #3f4a37;
+  --color-primary-foreground: #ffffff;
+  --color-accent: #3f4a37;
+  --color-accent-2: #8b9a7c;
+  --color-warm: #8b9a7c;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-serif: "Manrope", system-ui, sans-serif; /* one typeface on the whole site */
+  --font-mono: "Manrope", system-ui, sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+:root { --r-img: 28px; --warm-glow: color-mix(in oklab, #8b9a7c 10%, transparent); }
+@media (max-width: 700px) { :root { --r-img: 20px; } }
+@utility container { margin-inline: auto; width: 100%; max-width: 1280px; padding-inline: clamp(16px, 4vw, 64px); }
+@utility rounded-img { border-radius: var(--r-img); }
+/* In @layer base so Tailwind utilities (h-52, aspect-*) still win; height:auto
+   keeps the <img> width/height attributes from stretching a photo. */
+@layer base {
+  html, body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; font-feature-settings: "ss01"; }
+  * { border-color: var(--color-border); }
+  img { display: block; max-width: 100%; height: auto; }
+}
+
+/* Frame of 21st #28310 (Split Content Section): copy left, media right.
+   The reasons sit under the copy on desktop and after the portrait on phones. */
+.c06-grid { display: grid; grid-template-areas: "copy" "media" "reasons"; gap: 36px; }
+.c06-copy { grid-area: copy; min-width: 0; }
+.c06-media { grid-area: media; min-width: 0; }
+.c06-reasons { grid-area: reasons; min-width: 0; }
+@media (min-width: 900px) {
+  .c06-grid { grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: auto 1fr; grid-template-areas: "copy media" "reasons media"; column-gap: 56px; row-gap: 40px; }
+  .c06-media { align-self: center; }
+}
+@media (min-width: 1280px) {
+  .c06-grid { grid-template-columns: minmax(0, 1fr) 420px; column-gap: 96px; row-gap: 44px; }
+}
+/* Comparison panels (#26826) stack under 1280px because they live in the left column */
+.cmp-panels { display: grid; gap: 1px; }
+@media (min-width: 1280px) { .cmp-panels { grid-template-columns: 1fr 1fr; } }
+/* Services list (#33903): 4-column row only when the left column is wide enough */
+.svc-row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 560px) { .svc-row { grid-template-columns: 2.5rem 1fr; column-gap: 20px; } .svc-desc { grid-column: 2; } }
+@media (min-width: 1280px) { .svc-row { grid-template-columns: 2.5rem minmax(0, 1.2fr) minmax(0, 1.3fr); column-gap: 28px; } .svc-desc { grid-column: auto; } }
+/* Outcome strip (#26826): 2x2 grid until the four pairs fit on one line */
+.cmp-outcomes { display: grid; grid-template-columns: 1fr; gap: 18px 40px; }
+@media (min-width: 560px) { .cmp-outcomes { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1280px) { .cmp-outcomes { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; } }
+/* Key-value list (#25162) as a two-column fact sheet on wide screens */
+.kv-grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .kv-grid { grid-template-columns: 1fr 1fr; } .kv-grid > div:nth-child(2) { border-top: 0; } .kv-grid > div:nth-child(even) { border-left: 1px solid var(--color-border); } }
