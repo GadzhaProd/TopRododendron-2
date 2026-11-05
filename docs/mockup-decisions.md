@@ -41,4 +41,4 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 
 ## Rejected (do not offer again)
 
-- 21st.dev colour themes for the block; template-based full homepages (Portfolio / Business / Personal); the Royal Blue store skill; facts bar in / on / under the hero; dissolve transition.
+- 21st.dev colour themes for the block; the Royal Blue store skill (owner: work on our own concept C instead); the dissolve transition from the hero; a facts / trust bar directly under the hero.
