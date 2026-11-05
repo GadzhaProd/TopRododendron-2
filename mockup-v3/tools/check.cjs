@@ -79,7 +79,7 @@ const shotDir = path.join(__dirname, '..', '.shots')
       if (!info.rendered) probs.push('root not rendered')
       if (errors.length) probs.push('console: ' + errors.slice(0, 3).join(' | '))
       if (failed.length) probs.push('failed: ' + failed.slice(0, 3).join(' | '))
-      if (page === 'index' && info.video !== 'playing') probs.push('video ' + info.video)
+      // hero is a static photo now (no video expected)
       if (info.broken.length) probs.push('broken imgs: ' + info.broken.slice(0, 3).join(','))
       if (info.sw > info.iw) probs.push(`hscroll ${info.sw}>${info.iw} ${info.over.join(' ; ')}`)
       if (probs.length) failures++

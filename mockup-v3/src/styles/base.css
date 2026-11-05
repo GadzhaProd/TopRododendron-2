@@ -113,10 +113,6 @@ select { background-image: none; }
     linear-gradient(to top, rgb(12 14 11 / 0.35) 0%, transparent 30%);
 }
 
-/* Variant 2 hero: slow living-photo zoom on the real field photo. */
-.hero-kenburns { transform-origin: 45% 65%; animation: hero-kenburns 22s ease-in-out infinite alternate; will-change: transform; }
-@keyframes hero-kenburns { from { transform: scale(1) translate3d(0,0,0); } to { transform: scale(1.09) translate3d(-1.2%,-0.8%,0); } }
-@media (prefers-reduced-motion: reduce) { .hero-kenburns { animation: none; } }
 .hero-scrim-photo {
   background:
     linear-gradient(to right, rgb(12 14 11 / 0.86) 0%, rgb(12 14 11 / 0.78) 38%, rgb(12 14 11 / 0.56) 56%, rgb(12 14 11 / 0.2) 72%, transparent 86%),

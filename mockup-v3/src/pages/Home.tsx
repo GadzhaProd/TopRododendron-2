@@ -25,7 +25,7 @@ import { varieties, story, promises, faq, img, srcset, company, tuinturf } from 
 // C's order of the varieties (content array), also used for the calendar rows
 const ordered = varieties
 
-export default function Home({ heroMedia = 'video' }: { heroMedia?: 'video' | 'photo' }) {
+export default function Home({ heroMedia = 'photo' }: { heroMedia?: 'video' | 'photo' }) {
   const [turfAdded, setTurfAdded] = useState(false)
   return (
     <>

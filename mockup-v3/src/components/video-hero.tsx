@@ -59,10 +59,9 @@ export function HeroVideo({ className }: { className?: string }) {
   )
 }
 
-// Variant 2: the real field photo of the nursery, full bleed, with a slow
-// "living photo" zoom (Ken Burns). prefers-reduced-motion keeps it still.
+// Chosen hero: the real field photo of the nursery (all white rows), full bleed, static.
 export function HeroPhoto() {
-  return <img src={hero.field} alt="" aria-hidden="true" className="hero-kenburns absolute inset-0 h-full w-full object-cover" style={{ objectPosition: '45% 60%' }} />
+  return <img src={hero.field} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: '45% 60%' }} />
 }
 
 export function VideoHero({ eyebrow, title, text, actions, media = 'video' }: { eyebrow?: ReactNode; title: string; text?: ReactNode; actions?: ReactNode; media?: 'video' | 'photo' }) {

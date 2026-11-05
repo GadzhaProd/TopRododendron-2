@@ -97,7 +97,7 @@ async function contrastOf(page, selector, label, minRatio = 4.5) {
     p = await page(w, h)
     await p.goto(`${base}/index.html`); await p.waitForTimeout(800)
     for (const t of [1, 4, 6.5]) {
-      await p.evaluate((t) => { const v = document.querySelector('video'); v.pause(); v.currentTime = t }, t); await p.waitForTimeout(400)
+      await p.evaluate((t) => { const v = document.querySelector('video'); if (v) { v.pause(); v.currentTime = t } }, t); await p.waitForTimeout(400)
       await contrastOf(p, '#hero .eyebrow', `hero eyebrow ${w} t=${t}`)
       if (w >= 390) await contrastOf(p, '#hero h1 + p', `hero lead ${w} t=${t}`)
       await contrastOf(p, '#hero h1', `hero h1 ${w} t=${t}`, 3)
