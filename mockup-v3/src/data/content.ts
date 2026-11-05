@@ -17,7 +17,8 @@ import heroPortrait from '../assets/hero-portrait.mp4'
 import heroPortraitPoster from '../assets/hero-portrait-poster.jpg'
 import heroWide from '../assets/hero-wide.mp4'
 import heroWidePoster from '../assets/hero-wide-poster.jpg'
-export const hero = { portrait: heroPortrait, portraitPoster: heroPortraitPoster, wide: heroWide, widePoster: heroWidePoster }
+import heroField from '../assets/hero-field.jpg'
+export const hero = { portrait: heroPortrait, portraitPoster: heroPortraitPoster, wide: heroWide, widePoster: heroWidePoster, field: heroField }
 
 export const months = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
 export const monthsLong = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']

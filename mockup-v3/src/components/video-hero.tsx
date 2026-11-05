@@ -59,18 +59,24 @@ export function HeroVideo({ className }: { className?: string }) {
   )
 }
 
-export function VideoHero({ eyebrow, title, text, actions }: { eyebrow?: ReactNode; title: string; text?: ReactNode; actions?: ReactNode }) {
+// Variant 2: the real field photo of the nursery, full bleed, with a slow
+// "living photo" zoom (Ken Burns). prefers-reduced-motion keeps it still.
+export function HeroPhoto() {
+  return <img src={hero.field} alt="" aria-hidden="true" className="hero-kenburns absolute inset-0 h-full w-full object-cover" style={{ objectPosition: '55% 60%' }} />
+}
+
+export function VideoHero({ eyebrow, title, text, actions, media = 'video' }: { eyebrow?: ReactNode; title: string; text?: ReactNode; actions?: ReactNode; media?: 'video' | 'photo' }) {
   const reduce = useReducedMotion()
   const fade = (d: number) => ({ initial: reduce ? false : { y: 18, opacity: 0 }, animate: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: d, ease: [0.16, 1, 0.3, 1] as any } })
   return (
     <section id="hero" className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-black text-white on-dark tabp:justify-start split:justify-center">
       <div className="absolute inset-0">
-        <HeroVideo />
+        {media === 'photo' ? <HeroPhoto /> : <HeroVideo />}
         {/* phones: light veil + scrim under the text block (lower 55 %); tablets in portrait: scrim at the top */}
         <div className="pointer-events-none absolute inset-0 bg-black/10 split:hidden" />
         {/* desktop: full-bleed 16:9 video; a soft scrim from the left keeps the text readable over the white flowers */}
-        <div aria-hidden="true" className="hero-scrim pointer-events-none absolute inset-0 hidden split:block" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/90 via-black/55 to-transparent tabp:hidden split:hidden" />
+        <div aria-hidden="true" className={`${media === 'photo' ? 'hero-scrim hero-scrim-photo' : 'hero-scrim'} pointer-events-none absolute inset-0 hidden split:block`} />
+        <div className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent tabp:hidden split:hidden ${media === 'photo' ? 'h-[68%] from-black/90 via-black/72' : 'h-[55%] from-black/90 via-black/55'}`} />
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[62%] bg-gradient-to-b from-black/80 via-black/45 to-transparent tabp:block" />
       </div>
       <div className="relative w-full container-x pt-28 pb-7 shortphone:pb-5 tabp:pt-32 split:py-28">

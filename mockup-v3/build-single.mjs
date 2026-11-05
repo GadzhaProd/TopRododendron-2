@@ -12,7 +12,7 @@ const root = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(root, 'dist')
 const tmp = path.join(root, '.build-tmp')
 
-const pages = ['index.html', 'assortiment.html', 'product.html', 'plantgids.html', 'groothandel.html']
+const pages = ['index.html', 'index-foto.html', 'assortiment.html', 'product.html', 'plantgids.html', 'groothandel.html']
 
 fs.rmSync(out, { recursive: true, force: true })
 fs.rmSync(tmp, { recursive: true, force: true })

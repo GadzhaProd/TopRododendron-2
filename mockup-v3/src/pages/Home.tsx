@@ -25,7 +25,7 @@ import { varieties, story, promises, faq, img, srcset, company, tuinturf } from 
 // C's order of the varieties (content array), also used for the calendar rows
 const ordered = varieties
 
-export default function Home() {
+export default function Home({ heroMedia = 'video' }: { heroMedia?: 'video' | 'photo' }) {
   const [turfAdded, setTurfAdded] = useState(false)
   return (
     <>
@@ -33,6 +33,7 @@ export default function Home() {
       <SiteHeader page="home" hero />
       <main id="main">
         <VideoHero
+          media={heroMedia}
           eyebrow={<><span className="hidden sm:inline">Familiekwekerij · </span>Otterlo, Veluwe · sinds 2001</>}
           title="Rhododendrons die aanslaan. Met aangroeigarantie."
           text="Gekweekt op veenrijke bodem, met een sterk wortelstelsel. Vers gerooid voor uw levering, bezorgd met eigen transport of af te halen in Otterlo."
