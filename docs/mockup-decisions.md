@@ -44,11 +44,10 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 ## Founder block "De kweker" — desktop approved (6 Nov)
 
 - Mockup: `mockup-v3/block-mockups/waarom-kweker/` (lower block). Placed after "Hoe het werkt", separate from "Waarom wij".
-- Layout: 21st "Testimonial" (id 4152) pattern: Gert's portrait left, quote panel right as one card (radius 28px).
-- Glass backdrop matched to the portrait background: card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 (top to bottom) with a soft pink glow rgba(224,198,209,.42) at 44% 96%; panel veil to the right rgba(240,241,238,0 → .5 → .82). The photo's right edge dissolves into it with a slanted mask (85deg: opaque to 69 %, transparent by 91 %), so the fade starts later at the shoulder and the edge is fully gone at every height.
-- Portrait: column width clamp(400px, 40vw, 580px), min-height = width × 1.06, object-position 50% 58%, so the chin and collar stay visible; rounded card corners 28px.
-- Copy: quote "Een gezonde plant is geen toeval. Dat is onze standaard.", H2 "Gert Top", "Familiekwekerij in Otterlo, op de Veluwe, sinds 2001", short text, buttons "Bel Gert · 06 20 10 43 12" (moss) and "WhatsApp". No role caption on the photo.
-- Phone: being reworked; current proposal = clean inset photo (no fade over the face) inside the same glass card, text below.
+- Base = the first glass version the owner liked: card columns .9fr / 1.1fr, radius 28px, min-height clamp(560px, 44vw, 640px); card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 with a pink glow rgba(224,198,209,.42) at 44% 96%; panel veil rgba(240,241,238,0 → .5 at 30% → .82).
+- Changes the owner asked for: frame lowered (manual cover, vertical position 30 %) so the chin and collar are visible; the photo dissolves exactly as in the first version (to right, #000 78 % → transparent), plus a feathered keep-zone along the shoulder line (image coords 71,73.5 → 75,71.5 → 80,73.6 → 86,76.6 → 93,80.2 → 100,83.6) so the shoulder is not faded; only the jacket's outer edge (last ~10 %) is softened.
+- Copy: quote, H2 "Gert Top", "Familiekwekerij in Otterlo, op de Veluwe, sinds 2001", short text, buttons "Bel Gert · 06 20 10 43 12" (moss) and "WhatsApp". No role caption on the photo.
+- Phone: still open; current proposal = clean inset photo inside the same glass card, text below.
 
 ## De kwekerij (block 2) — in progress
 
