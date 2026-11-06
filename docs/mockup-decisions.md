@@ -41,13 +41,16 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 - Facts: 10.000 planten op voorraad · Kwekerij sinds 2001 · 7 soorten, 4 maten · Vanaf 1 plant, geen minimumbestelling.
 - Open: which of the three variants.
 
-## Founder block "De kweker" — desktop approved (6 Nov)
+## Founder block "De kweker" — desktop in review (6 Nov)
 
 - Mockup: `mockup-v3/block-mockups/waarom-kweker/` (lower block). Placed after "Hoe het werkt", separate from "Waarom wij".
-- Base = the first glass version the owner liked: card columns .9fr / 1.1fr, radius 28px, min-height clamp(560px, 44vw, 640px); card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 with a pink glow rgba(224,198,209,.42) at 44% 96%; panel veil rgba(240,241,238,0 → .5 at 30% → .82).
-- Changes the owner asked for: frame lowered (manual cover, vertical position 30 %) so the chin and collar are visible; the photo dissolves exactly as in the first version (to right, #000 78 % → transparent), plus a feathered keep-zone along the shoulder line (image coords 71,73.5 → 75,71.5 → 80,73.6 → 86,76.6 → 93,80.2 → 100,83.6) so the shoulder is not faded; only the jacket's outer edge (last ~10 %) is softened.
+- Base = the first glass version the owner liked: card columns .9fr / 1.1fr, radius 28px; card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 with a pink glow rgba(224,198,209,.42) at 44% 96%; panel veil rgba(240,241,238,0 → .5 at 30% → .82).
+- Owner's idea "дорисовать плечо": `img/owner-portrait-ext.webp` (1580×1418) = the original portrait plus 380 px drawn on at the right: backdrop continued, jacket/shoulder continued down to the bottom edge. Face and everything left of x≈1130 untouched. Used from 861 px up (`<picture>`); the phone keeps the original.
+- Frame: the original 1200 px part is as wide as the photo column (or wider when the card is taller), top cropped 3.2 %, bottom always at 89 % of the image height: chin and a little collar visible. Card min-height = photo column width × 1.02.
+- Dissolve: same as the first version (#000 at the original 78 % point, then transparent by 84 % of the extended canvas), plus a feathered keep-zone along the shoulder (polygon in extended-canvas %, lifted 1.2 % above the jacket edge) so the shoulder is never faded; it runs down to the card bottom on its own, no cut.
 - Copy: quote, H2 "Gert Top", "Familiekwekerij in Otterlo, op de Veluwe, sinds 2001", short text, buttons "Bel Gert · 06 20 10 43 12" (moss) and "WhatsApp". No role caption on the photo.
 - Phone: still open; current proposal = clean inset photo inside the same glass card, text below.
+- If a cleaner extension is ever needed: redo the right 380 px with Photoshop Generative Expand on the original file.
 
 ## De kwekerij (block 2) — in progress
 
