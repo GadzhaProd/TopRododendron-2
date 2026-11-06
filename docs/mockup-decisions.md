@@ -44,10 +44,11 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 ## Founder block "De kweker" — desktop in review (6 Nov)
 
 - Mockup: `mockup-v3/block-mockups/waarom-kweker/` (lower block). Placed after "Hoe het werkt", separate from "Waarom wij".
-- Base = the first glass version the owner liked: card columns .9fr / 1.1fr, radius 28px; card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 with a pink glow rgba(224,198,209,.42) at 44% 96%; panel veil rgba(240,241,238,0 → .5 at 30% → .82).
+- Base = the first glass version the owner liked: card columns .9fr / 1.1fr, radius 28px; card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 with a pink glow rgba(224,198,209,.42) at 44% 96%; panel veil rgba(240,241,238,0 → .5 → .82).
 - Owner's idea "дорисовать плечо": `img/owner-portrait-ext.webp` (1580×1418) = the original portrait plus 380 px drawn on at the right: backdrop continued, jacket/shoulder continued down to the bottom edge. Face and everything left of x≈1130 untouched. Used from 861 px up (`<picture>`); the phone keeps the original.
-- Frame: the original 1200 px part is as wide as the photo column (or wider when the card is taller), top cropped 3.2 %, bottom always at 89 % of the image height: chin and a little collar visible. Card min-height = photo column width × 1.02.
-- Dissolve: same as the first version (#000 at the original 78 % point, then transparent by 84 % of the extended canvas), plus a feathered keep-zone along the shoulder (polygon in extended-canvas %, lifted 1.2 % above the jacket edge) so the shoulder is never faded; it runs down to the card bottom on its own, no cut.
+- Frame (7 Nov, owner: "чуть ниже, больше места подбородку и шее"): the original 1200 px part is 93.5 % of the card height wide, top cropped 3 % (just above the hair), bottom at 93.5 % of the image: chin, neck and collar have room. Card min-height = photo column width × 1.05.
+- Shoulder (7 Nov, owner: "уголок на стыке"): the jacket edge from x 1150 is redrawn as one smooth curve that continues the original slope (no step at the old 1200 px edge).
+- Dissolve: baked into the WebP alpha, no CSS mask: same fade as the first version (opaque to the original 78 % point, transparent by 84 % of the extended canvas), while the jacket keeps full opacity along its exact outline, so no wedge of backdrop is left above the shoulder. Panel veil now starts at 11 % (0 → .5 at 34 % → .82) so the shoulder tip under the panel stays dark.
 - Copy: quote, H2 "Gert Top", "Familiekwekerij in Otterlo, op de Veluwe, sinds 2001", short text, buttons "Bel Gert · 06 20 10 43 12" (moss) and "WhatsApp". No role caption on the photo.
 - Phone: still open; current proposal = clean inset photo inside the same glass card, text below.
 - If a cleaner extension is ever needed: redo the right 380 px with Photoshop Generative Expand on the original file.

@@ -47,11 +47,12 @@
 /* ---------- De kweker (founder): 21st "Testimonial" (id 4152) layout, photo beside the quote ---------- */
 .fd{background:var(--page)}
 .fd > .in{padding-top:clamp(64px,7vw,112px);padding-bottom:clamp(64px,7vw,112px)}
-.fd-card{--colw:calc((min(100vw,1440px) - 2 * clamp(20px,4vw,80px)) * .45);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border-radius:28px;overflow:hidden;min-height:calc(var(--colw) * 1.02)}
+.fd-card{--colw:calc((min(100vw,1440px) - 2 * clamp(20px,4vw,80px)) * .45);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border-radius:28px;overflow:hidden;min-height:calc(var(--colw) * 1.05)}
 .fd-ph{margin:0;position:relative;background:transparent;overflow:visible;container-type:size}
-/* extended portrait (1580x1418: backdrop + shoulder drawn on beyond the original 1200px edge; face untouched).
-   W = width of the original 1200px part = max(column width, height-driven) so the frame always ends just below the chin (~89%). */
-.fd-ph .ph-in{position:absolute;--w:max(100cqw,98.6cqh);width:calc(var(--w) * 1.31667);aspect-ratio:1580/1418;left:calc((100cqw - var(--w)) / 2);top:calc(var(--w) * -.0378)}
+/* extended portrait (1580x1418): backdrop + shoulder drawn on beyond the original 1200px edge (face untouched);
+   the dissolve and the shoulder keep-zone are baked into its alpha channel. W = width of the original 1200px part,
+   set by the card height so the frame runs from just above the hair (3%) to 93.5% of the image: chin and neck have room. */
+.fd-ph .ph-in{position:absolute;--w:93.5cqh;width:calc(var(--w) * 1.31667);aspect-ratio:1580/1418;left:min(0px,calc((100cqw - var(--w)) / 2));top:calc(var(--w) * -.03545)}
 .fd-ph picture{display:contents}
 .fd-ph .ph-in img{display:block;width:100%;height:100%;object-fit:cover}
 .fd-ph figcaption{position:absolute;left:20px;bottom:18px;padding:6px 12px;border-radius:999px;background:rgba(12,14,11,.55);color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.02em}
@@ -67,12 +68,11 @@
 .fb{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none}
 /* glass panel: colours sampled from the portrait backdrop (top #e0e1e3, middle #c5cab2, bottom #a0ae8b), lightening away from the photo */
 .fd-card{background:radial-gradient(40% 50% at 44% 96%,rgba(224,198,209,.42),transparent 70%),linear-gradient(to bottom,#e0e1e3 0%,#d4d8cc 42%,#c5cab2 70%,#aab696 100%)}
-.fd-pn{position:relative;color:#141413;background:linear-gradient(to right,rgba(240,241,238,0) 0%,rgba(240,241,238,.5) 30%,rgba(242,243,240,.82) 100%)}
+.fd-pn{position:relative;color:#141413;background:linear-gradient(to right,rgba(240,241,238,0) 0%,rgba(240,241,238,0) 11%,rgba(240,241,238,.5) 34%,rgba(242,243,240,.82) 100%)}
 .fd-pn .q{color:var(--moss)}
 .fd-role,.fd-txt{color:#3d3c37}
 .fb-1{background:var(--moss);color:#fff}
 .fb-2{border:1px solid rgba(20,20,19,.28);color:#141413;background:rgba(255,255,255,.35)}
-.fd-ph .ph-in{-webkit-mask-image:linear-gradient(to right,#000 59.2%,transparent 84%),url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='0.9'/%3E%3C/filter%3E%3C/defs%3E%3Cpolygon points='54.43,69.71 56.96,71.27 59.49,72.84 62.03,74.40 64.56,75.97 67.09,77.53 69.62,79.10 72.15,80.67 74.68,82.23 75.95,83.00 77.22,83.82 78.48,84.71 79.75,85.65 81.01,86.66 82.28,87.73 83.54,88.86 84.81,90.05 86.08,91.31 87.34,92.63 88.61,94.00 89.87,95.45 91.14,96.95 92.41,98.52 93.67,98.80 95.67,101.00 54.43,101.00' fill='black' filter='url(%23b)'/%3E%3C/svg%3E");mask-image:linear-gradient(to right,#000 59.2%,transparent 84%),url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='0.9'/%3E%3C/filter%3E%3C/defs%3E%3Cpolygon points='54.43,69.71 56.96,71.27 59.49,72.84 62.03,74.40 64.56,75.97 67.09,77.53 69.62,79.10 72.15,80.67 74.68,82.23 75.95,83.00 77.22,83.82 78.48,84.71 79.75,85.65 81.01,86.66 82.28,87.73 83.54,88.86 84.81,90.05 86.08,91.31 87.34,92.63 88.61,94.00 89.87,95.45 91.14,96.95 92.41,98.52 93.67,98.80 95.67,101.00 54.43,101.00' fill='black' filter='url(%23b)'/%3E%3C/svg%3E");-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 @media (max-width:860px){
   .fd-card{background:linear-gradient(to bottom,#c9cdbb 0%,#dcdfd5 40%,#e6e8e2 100%)}
   .fd-pn{background:radial-gradient(70% 40% at 0% 0%,rgba(224,198,209,.3),transparent 70%)}
