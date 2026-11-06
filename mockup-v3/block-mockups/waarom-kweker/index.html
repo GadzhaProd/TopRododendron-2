@@ -47,9 +47,9 @@
 /* ---------- De kweker (founder): 21st "Testimonial" (id 4152) layout, photo beside the quote ---------- */
 .fd{background:var(--page)}
 .fd > .in{padding-top:clamp(64px,7vw,112px);padding-bottom:clamp(64px,7vw,112px)}
-.fd-card{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border-radius:28px;overflow:hidden;min-height:560px}
-.fd-ph{margin:0;position:relative;background:transparent}
-.fd-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.fd-card{display:grid;grid-template-columns:auto minmax(0,1fr);border-radius:28px;overflow:hidden}
+.fd-ph{margin:0;position:relative;background:transparent;width:clamp(360px,36vw,520px);min-height:calc(clamp(360px,36vw,520px) * 1.1817);align-self:stretch}
+.fd-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .fd-ph figcaption{position:absolute;left:20px;bottom:18px;padding:6px 12px;border-radius:999px;background:rgba(12,14,11,.55);color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.02em}
 .fd-pn{display:flex;flex-direction:column;padding:clamp(32px,4vw,64px)}
 .fd-pn .q{width:38px;height:38px}
@@ -68,14 +68,17 @@
 .fd-role,.fd-txt{color:#3d3c37}
 .fb-1{background:var(--moss);color:#fff}
 .fb-2{border:1px solid rgba(20,20,19,.28);color:#141413;background:rgba(255,255,255,.35)}
-.fd-ph img{-webkit-mask-image:linear-gradient(to right,#000 78%,transparent 100%);mask-image:linear-gradient(to right,#000 78%,transparent 100%)}
+.fd-ph img{-webkit-mask-image:linear-gradient(to right,#000 86%,transparent 100%);mask-image:linear-gradient(to right,#000 86%,transparent 100%)}
 @media (max-width:860px){
   .fd-card{background:linear-gradient(to bottom,#c9cdbb 0%,#dcdfd5 40%,#e6e8e2 100%)}
   .fd-pn{background:radial-gradient(70% 40% at 0% 0%,rgba(224,198,209,.3),transparent 70%)}
-  .fd-ph img{-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 100%);mask-image:linear-gradient(to bottom,#000 80%,transparent 100%)}
+  .fd-card{padding:12px}
+  .fd-ph{width:auto;min-height:0;aspect-ratio:1200/1418;border-radius:18px;overflow:hidden}
+  .fd-ph img{-webkit-mask-image:none;mask-image:none}
+  .fd-pn{padding:26px 14px 18px}
 }
 a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
-@media (max-width:1100px){.adv{grid-template-columns:repeat(2,minmax(0,1fr))}.fd-card{min-height:0}}
+@media (max-width:1100px){.adv{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.srow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}.srow li:nth-child(3){border-left:0;padding-left:0}.el li{grid-template-columns:40px minmax(0,1fr)}.el-note{display:none}}
 @media (max-width:860px){
   .wh-head{grid-template-columns:1fr;gap:16px}
@@ -83,7 +86,6 @@ a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
   .adv li{flex-direction:row;gap:16px}
   .adv .ic{width:26px;height:26px;margin-top:2px}
   .fd-card{grid-template-columns:1fr;border-radius:22px}
-  .fd-ph{aspect-ratio:4/4.4}
   .fd-name{padding-top:28px}
 }
 @media (max-width:420px){.wh-head h2{font-size:8.6vw}.srow b{font-size:clamp(20px,6.4vw,26px);white-space:normal}.srow li{padding:0 12px}.srow li:nth-child(odd){padding-left:0}.srow span{font-size:13.5px}}
