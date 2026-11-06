@@ -41,6 +41,15 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 - Facts: 10.000 planten op voorraad · Kwekerij sinds 2001 · 7 soorten, 4 maten · Vanaf 1 plant, geen minimumbestelling.
 - Open: which of the three variants.
 
+## Founder block "De kweker" — desktop approved (6 Nov)
+
+- Mockup: `mockup-v3/block-mockups/waarom-kweker/` (lower block). Placed after "Hoe het werkt", separate from "Waarom wij".
+- Layout: 21st "Testimonial" (id 4152) pattern: Gert's portrait left, quote panel right as one card (radius 28px).
+- Glass backdrop matched to the portrait background: card gradient #e0e1e3 → #d4d8cc → #c5cab2 → #aab696 (top to bottom) with a soft pink glow rgba(224,198,209,.42) at 44% 96%; panel veil to the right rgba(240,241,238,0 → .5 → .82). The photo's right edge dissolves into it (mask from 86%).
+- Portrait shown at full height (width clamp(360px, 36vw, 520px), min-height = width × 1.1817), so the chin and collar are never cut; on wider/taller cards only the sides crop.
+- Copy: quote "Een gezonde plant is geen toeval. Dat is onze standaard.", H2 "Gert Top", "Familiekwekerij in Otterlo, op de Veluwe, sinds 2001", short text, buttons "Bel Gert · 06 20 10 43 12" (moss) and "WhatsApp". No role caption on the photo.
+- Phone: being reworked; current proposal = clean inset photo (no fade over the face) inside the same glass card, text below.
+
 ## De kwekerij (block 2) — in progress
 
 - Scheme C: text left, Gert's portrait right, quote card overlapping only the lower part of the photo (face never covered), no eyebrow, no "eigenaar", no CTA buttons.
