@@ -95,9 +95,10 @@
   /* 1 = first version: fade from 86 %, text pulled up 14px */
   .m-n1 .fd-ph .ph-in{-webkit-mask-image:linear-gradient(to bottom,#000 86%,rgba(0,0,0,.84) 89%,rgba(0,0,0,.55) 92.5%,rgba(0,0,0,.26) 96%,rgba(0,0,0,.08) 98.5%,transparent 100%);mask-image:linear-gradient(to bottom,#000 86%,rgba(0,0,0,.84) 89%,rgba(0,0,0,.55) 92.5%,rgba(0,0,0,.26) 96%,rgba(0,0,0,.08) 98.5%,transparent 100%)}
   .m-n1 .fd-pn{margin-top:-14px}
-  /* 3 = phone portrait img/owner-portrait-m.webp (1200x1628), one treatment across the full width: below the chin the photo
-     goes progressively soft and fades out (from 89 %, smoothstep) over a broad gradient in the jacket's own tones
-     (lit left, shadow right), which then fades into the card over 61px. No zones, masks or cut-outs. */
+  /* 3 = phone portrait img/owner-portrait-m.webp (1200x1628), like the shoulder keep-zone: the fade reaches everything
+     except the neck and collars. Keep-zone = the collar opening between the lapel edges, closed by an arc from lapel to
+     lapel along the bottom of the neck. Outside it the photo fades (from 89 %) over a broad gradient in the jacket's own
+     tones, which then fades into the card over 61px. No blur. */
   .m-n3 .fd-ph{aspect-ratio:1200/1628}
   .m-n3 .fd-ph picture{display:none}
   .m-n3 .fd-ph .ph-in{-webkit-mask-image:none;mask-image:none}
