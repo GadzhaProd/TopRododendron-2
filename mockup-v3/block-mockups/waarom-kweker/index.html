@@ -94,14 +94,11 @@
   /* 1 = first version: fade from 86 %, text pulled up 14px */
   .m-n1 .fd-ph .ph-in{-webkit-mask-image:linear-gradient(to bottom,#000 86%,rgba(0,0,0,.84) 89%,rgba(0,0,0,.55) 92.5%,rgba(0,0,0,.26) 96%,rgba(0,0,0,.08) 98.5%,transparent 100%);mask-image:linear-gradient(to bottom,#000 86%,rgba(0,0,0,.84) 89%,rgba(0,0,0,.55) 92.5%,rgba(0,0,0,.26) 96%,rgba(0,0,0,.08) 98.5%,transparent 100%)}
   .m-n1 .fd-pn{margin-top:-14px}
-  /* 3 = as 2, plus the jacket's own colour continues under the photo (lit left, shadow right; alpha 0 under the neck),
-     so on the jacket the photo runs into the card without a visible change; it settles into the card navy over 72px */
+  /* 3 = as 2, plus each column's own bottom colour continues under the photo (img/photo-fade.png, alpha baked in): the jacket
+     (lit left / shadow right) settles into the card navy over 72px; under the neck a muted skin tone ends after ~32px */
   .m-n3 .fd-ph{overflow:visible}
   .m-n3 .fd-ph .ph-in{z-index:1}
-  .m-n3 .fd-ph::before{content:"";position:absolute;left:0;right:0;top:88%;height:calc(12% + 72px);z-index:0;pointer-events:none;
-    background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAABCAYAAABkOJMpAAABVElEQVR42u2TTU4bQRCFv9eNE7BiAYYTsGSVfRacIoscJ+fJWXIMNpGQZYJlbFz1spi2PWMcIbHmabqrq6df/0j16eu3HzYGQ+v4f35E23Xer+6+vccHZqFeMsiGW/vY+YbmkEBdhyREi2o/aePdfNcoBakMvEeldtcj8eCieNsySQeOdGaQsSFik5lpHJmZgb1Js5a9srzELMCPWHNgZnmG9WDxYJhJOZM1V/ox8aJ+OlmWpVewWi8WbK6vn+L3zU3y69bwM/nQeyT4Xu7u/uj+/qz+HcfJ6Xw9KpPnz/nCmWM0DjEpNc8j86JmmSKmSV5JTG1dIi6ACeaLYSz7FGkEHhmq7NqKXxg1LjSoH2evhoKIwPnSYmAnNC62NaxSUKldXkRRaVypccCOgzflA1r9Cgh6mA957zH7yrfDXb1zDE4yE3v/vm4PIxVKEVKl1opU+QePLeZNZGVO9AAAAABJRU5ErkJggg==") 0 0/100% 100% no-repeat;
-    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 72px),rgba(0,0,0,.6) calc(100% - 50px),rgba(0,0,0,.26) calc(100% - 26px),rgba(0,0,0,.07) calc(100% - 9px),transparent 100%);
-    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 72px),rgba(0,0,0,.6) calc(100% - 50px),rgba(0,0,0,.26) calc(100% - 26px),rgba(0,0,0,.07) calc(100% - 9px),transparent 100%)}
+  .m-n3 .fd-ph::before{content:"";position:absolute;left:0;right:0;top:88%;height:calc(12% + 72px);z-index:0;pointer-events:none;background:url("img/photo-fade.png") 0 0/100% 100% no-repeat}
 }
 a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
 @media (max-width:1100px){.adv{grid-template-columns:repeat(2,minmax(0,1fr))}}
