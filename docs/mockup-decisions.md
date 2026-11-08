@@ -76,13 +76,10 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 - Rows: 01 Aangroeigarantie op elke plant; 02 Vers gerooid voor uw levering; 03 Persoonlijk advies van de kweker; 04 Eigen transport of afhalen.
 - Row 03 text, for now (owner, 7 Nov): the old site's "De kweker helpt u persoonlijk, ma–za 09:00–17:00." (note "Ma–za 09:00–17:00"), replacing "U spreekt rechtstreeks met Gert, van vraag tot levering", which the owner disliked. May be rewritten later.
 - "Sinds 2001" lives only here, in the facts row (removed from the founder text).
-- Design, in review (8 Nov, owner: "одну большую карточку, эффект с цветами"): the whole block (heading, lead, facts row, rows 01–04) sits in one big card, radius 28 px (22 on phone). The background uses the technique of the `bs-soft-gradient-deck` skill: four pastel radial blobs over a pale paper, plus an SVG feTurbulence grain (opacity .38, overlay). It is recoloured to the site palette, with three options in the review bar:
-  - 1 · Шалфей: paper #edefe6; blobs sage #b9c8a0, pink #e9c6d1, sage #c6d3b0, linen #eadabd. Same family as the founder card.
+- Design, in review (8 Nov). Owner: no gradient over the whole block, only a separate card for the facts. Heading, lead and rows 01–04 stay on the page background (as variant A). The facts row (10.000 / Sinds 2001 / 7 soorten / Vanaf 1 plant) sits in its own gradient card: radius 24 px (20 on phone), 4 columns with hairline dividers (2×2 on phone).
+  - Background: the `bs-soft-gradient-deck` skill technique, i.e. pastel radial blobs over a pale paper plus an SVG feTurbulence grain (opacity .38, overlay). Blob shapes are adapted to a wide, low card (tall ellipses at the corners, so they don't flatten into stripes); on phones there are corner ellipses.
+  - 1 · Шалфей: paper #edefe6; blobs sage #b9c8a0, pink #e9c6d1, sage #c6d3b0, linen #eadabd.
   - 2 · Цветение: paper #f3eee5; blobs rhododendron pink #ecbcc9, lilac #d3c4e4, peach-linen #ecd0b2, sage #c6d3b3.
-  - 3 · Мох (lighter and softer, owner 8 Nov): paper #3c4834; blobs #4f5e43 / #566449 / #46543d / #536148. Light text #f8f6f0 / #eceee5 / #e1e4d8; grain .22 soft-light.
-  - Phone: wide flat blobs stacked down the card (corner ellipses turn into vertical stripes on a tall card).
-  - Worst-case contrast (lightest/darkest pixel under each text): ≥ 5.8:1 in 1 and 2, ≥ 4.8:1 in 3.
-- Hero → Waarom wij, in review (8 Nov). Owner: the full-width hero followed by a contained rounded card changes how the site feels. Options in the review bar ("Переход"):
-  - 0 · Сейчас: as before.
-  - A · Карточка: the hero becomes a card of the same width and radius as the cards below (side edge = the site gutter, 12 px on phones ≤ 640 px for all stacked cards so the hero buttons keep one line). The header sits on the page above it, with a 12–20 px gap between header, hero and card.
-  - B · Лист: the hero stays full width. Waarom wij becomes a full-width sheet with rounded top corners (36 px, 26 px on phones) that rides 36 px up over the bottom of the hero. Its content is on the site grid; its colour fades into the page at the bottom; the hero gets 36 px extra bottom padding so the buttons stay clear.
+  - 3 · Мох (lighter and softer, owner 8 Nov): paper #3c4834; blobs #4f5e43 / #566449 / #46543d / #536148; light text #f8f6f0 / #e1e4d8; grain .22 soft-light.
+  - Worst-case contrast in the card: ≥ 6.3:1 in 1 and 2, ≥ 5.5:1 in 3.
+- Hero: stays full width as before (owner: "работаем так, как есть"). The option "A · Карточка" (hero as a rounded card of the same width) is still in the review bar for comparison. The full-block sheet option was dropped together with the full-block card.
