@@ -79,6 +79,10 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 - Design, in review (8 Nov, owner: "одну большую карточку, эффект с цветами"): the whole block (heading, lead, facts row, rows 01–04) sits in one big card, radius 28 px (22 on phone). The background uses the technique of the `bs-soft-gradient-deck` skill: four pastel radial blobs over a pale paper, plus an SVG feTurbulence grain (opacity .38, overlay). It is recoloured to the site palette, with three options in the review bar:
   - 1 · Шалфей: paper #edefe6; blobs sage #b9c8a0, pink #e9c6d1, sage #c6d3b0, linen #eadabd. Same family as the founder card.
   - 2 · Цветение: paper #f3eee5; blobs rhododendron pink #ecbcc9, lilac #d3c4e4, peach-linen #ecd0b2, sage #c6d3b3.
-  - 3 · Мох: dark, paper #29321f; blobs #43523a / #4a5741 / #36432f / #4e5b43. Light text #f6f4ee / #e4e6dc / #d3d7c9; grain .22 soft-light.
+  - 3 · Мох (lighter and softer, owner 8 Nov): paper #3c4834; blobs #4f5e43 / #566449 / #46543d / #536148. Light text #f8f6f0 / #eceee5 / #e1e4d8; grain .22 soft-light.
   - Phone: wide flat blobs stacked down the card (corner ellipses turn into vertical stripes on a tall card).
-  - Worst-case contrast (lightest/darkest pixel under each text): ≥ 5.8:1 in 1 and 2, ≥ 4.7:1 in 3.
+  - Worst-case contrast (lightest/darkest pixel under each text): ≥ 5.8:1 in 1 and 2, ≥ 4.8:1 in 3.
+- Hero → Waarom wij, in review (8 Nov). Owner: the full-width hero followed by a contained rounded card changes how the site feels. Options in the review bar ("Переход"):
+  - 0 · Сейчас: as before.
+  - A · Карточка: the hero becomes a card of the same width and radius as the cards below (side edge = the site gutter, 12 px on phones ≤ 640 px for all stacked cards so the hero buttons keep one line). The header sits on the page above it, with a 12–20 px gap between header, hero and card.
+  - B · Лист: the hero stays full width. Waarom wij becomes a full-width sheet with rounded top corners (36 px, 26 px on phones) that rides 36 px up over the bottom of the hero. Its content is on the site grid; its colour fades into the page at the bottom; the hero gets 36 px extra bottom padding so the buttons stay clear.
