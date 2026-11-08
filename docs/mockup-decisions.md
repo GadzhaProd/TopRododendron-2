@@ -69,10 +69,16 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 
 - 21st.dev colour themes for the block; the Royal Blue store skill (owner: work on our own concept C instead); the dissolve transition of the photo; the dark (charcoal) trust bar.
 
-## Waarom wij — variant A chosen (7 Nov), design still to come
+## Waarom wij — variant A chosen (7 Nov), design in review
 
 - Mockup: `mockup-v3/block-mockups/waarom-kweker/` (upper block). Owner chose A "Список" (numbered rows 01–04 on hairlines). B "Преимущества" (icon grid) is dropped, and so is the review bar. The owner will say how A should be designed.
 - Copy: H2 "Wij kweken rhododendrons. Niet meer, niet minder."; lead "Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin."; facts row 10.000 planten op voorraad / Sinds 2001 familiekwekerij in Otterlo / 7 soorten in 4 maten, 40 tot 120 cm / Vanaf 1 plant geen minimumbestelling.
 - Rows: 01 Aangroeigarantie op elke plant; 02 Vers gerooid voor uw levering; 03 Persoonlijk advies van de kweker; 04 Eigen transport of afhalen.
 - Row 03 text, for now (owner, 7 Nov): the old site's "De kweker helpt u persoonlijk, ma–za 09:00–17:00." (note "Ma–za 09:00–17:00"), replacing "U spreekt rechtstreeks met Gert, van vraag tot levering", which the owner disliked. May be rewritten later.
 - "Sinds 2001" lives only here, in the facts row (removed from the founder text).
+- Design, in review (8 Nov, owner: "одну большую карточку, эффект с цветами"): the whole block (heading, lead, facts row, rows 01–04) sits in one big card, radius 28 px (22 on phone). The background uses the technique of the `bs-soft-gradient-deck` skill: four pastel radial blobs over a pale paper, plus an SVG feTurbulence grain (opacity .38, overlay). It is recoloured to the site palette, with three options in the review bar:
+  - 1 · Шалфей: paper #edefe6; blobs sage #b9c8a0, pink #e9c6d1, sage #c6d3b0, linen #eadabd. Same family as the founder card.
+  - 2 · Цветение: paper #f3eee5; blobs rhododendron pink #ecbcc9, lilac #d3c4e4, peach-linen #ecd0b2, sage #c6d3b3.
+  - 3 · Мох: dark, paper #29321f; blobs #43523a / #4a5741 / #36432f / #4e5b43. Light text #f6f4ee / #e4e6dc / #d3d7c9; grain .22 soft-light.
+  - Phone: wide flat blobs stacked down the card (corner ellipses turn into vertical stripes on a tall card).
+  - Worst-case contrast (lightest/darkest pixel under each text): ≥ 5.8:1 in 1 and 2, ≥ 4.7:1 in 3.
