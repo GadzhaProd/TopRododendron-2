@@ -144,13 +144,13 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 s = s.replace('</head>', '<style id="kritiek">' + CSS + '</style></head>', 1)
 RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Блок</i>'
       '<button type="button" data-g="v" data-v="0" aria-pressed="false">0<span class="l"> · Сейчас</span></button>'
-      '<button type="button" data-g="v" data-v="1" aria-pressed="true">1<span class="l"> · Текст</span></button>'
+      '<button type="button" data-g="v" data-v="1" aria-pressed="false">1<span class="l"> · Текст</span></button>'
       '<button type="button" data-g="v" data-v="2" aria-pressed="false">2<span class="l"> · Фото</span></button>'
       '<button type="button" data-g="v" data-v="3" aria-pressed="false">3<span class="l"> · Герт</span></button>'
       '<button type="button" data-g="v" data-v="4" aria-pressed="false">4<span class="l"> · Карточка Герта</span></button>'
-      '<button type="button" data-g="v" data-v="5" aria-pressed="false">5<span class="l"> · Герт + преимущества</span></button></div></div>')
+      '<button type="button" data-g="v" data-v="5" aria-pressed="true">5<span class="l"> · Герт + преимущества</span></button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-1">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))
