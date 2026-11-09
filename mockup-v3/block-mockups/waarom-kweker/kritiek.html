@@ -457,6 +457,8 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .kv5 .kv5-q{margin:clamp(20px,2vw,28px) 0 0}
 /* quote one step quieter (owner, 9 Nov): Gert's voice under his name, below the guarantee title in weight and size, above the reason lines */
 .kv5 .kv5-q p{font-size:clamp(17px,1.25vw,19px);line-height:1.4;font-weight:400;letter-spacing:-.01em;max-width:34ch;color:#2f2e2a}
+/* owner, 9 Nov: the quote on one line where the panel is wide enough (it wraps naturally below that) */
+@media (min-width:1200px){.kv5 .kv5-q p{max-width:none;white-space:nowrap}}
 .fd-why{list-style:none;margin:clamp(24px,2.6vw,36px) 0 0;padding:0;border-top:1px solid rgba(20,20,19,.14)}
 .fd-why li{padding:clamp(12px,1.25vw,17px) 0;border-bottom:1px solid rgba(20,20,19,.12)}
 .fd-why h3{display:flex;align-items:center;gap:10px;margin:0;font-size:clamp(16.5px,1.3vw,19px);line-height:1.25;font-weight:600;letter-spacing:-.01em}

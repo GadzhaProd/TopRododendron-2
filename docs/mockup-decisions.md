@@ -207,4 +207,5 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - Impeccable's other flags, not acted on and left for the owner: it bans eyebrows above headings ("Waarom Top Rhododendrons"), and it lists "big number + small label" fact strips as a category default.
     - Impeccable is installed as a Claude Code skill (`~/.claude/skills/impeccable`, v4.8.2, from github.com/pbakaus/impeccable). Its engine binary (detector, context loader) was not run: it downloads code, and auto mode blocked that. The skill's playbooks (layout, craft-floor) were used directly.
   - 5, quote one step quieter (owner, 9 Nov): the quote is now clamp(17px,1.25vw,19px), weight 400, #2f2e2a (#eef0f4 on the phone's navy card). Order of weight: name, guarantee title, quote, other reasons. Contrast ≥ 9.6:1. Shoulder clearance ≥ 41 px.
+  - 5, quote on one line (owner, 9 Nov): at ≥ 1200 px the quote runs on one line (nowrap, max-width none; it fits at 1200–1920); below 1200 it wraps to two lines as before.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
