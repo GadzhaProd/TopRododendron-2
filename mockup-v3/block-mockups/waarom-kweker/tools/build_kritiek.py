@@ -61,8 +61,8 @@ why_in_card = '<ul class="fd-why">' + ''.join(
     for n, (t, d) in enumerate(WHY)) + '</ul>'
 card5 = card.replace('id="h-kweker-4"', 'id="h-kweker-5"')
 card5 = re.sub(r'<p class="fd-txt">.*?</p>', '', card5, count=1, flags=re.S)
-card5 = re.sub(r'<div class="fd-qw">.*?</blockquote></div>', why_in_card, card5, count=1, flags=re.S)
-assert 'fd-why' in card5 and 'fd-qw' not in card5 and 'fd-txt' not in card5
+card5 = re.sub(r'<div class="fd-qw">.*?</blockquote></div>', '<blockquote class="fd-q kv5-q"><p>Een gezonde plant is geen toeval. Dat is onze standaard.</p></blockquote>' + why_in_card, card5, count=1, flags=re.S)
+assert 'fd-why' in card5 and 'kv5-q' in card5 and 'fd-qw' not in card5 and 'fd-txt' not in card5
 v5 = (f'<section class="kv kh kv5" id="waarom-5" aria-labelledby="h-waarom-5"><div class="in">'
       f'<div class="kh-top kh-top5"><div class="kh-head">{EB}<h2 id="h-waarom-5">{H2}</h2><p class="kv-lead">{LEAD}</p></div></div>'
       f'<div class="kv4-card">{card5}</div>' + facts + '</div></section>')
@@ -113,7 +113,11 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .kh-facts span{font-size:15px;line-height:1.4;color:var(--soft)}
 @media (max-width:1100px){.kh-why{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* 5 · founder card with the reasons inside: name + role, then the reasons on hairlines; the guarantee first with a check */
-.kv5 .fd-name h2{font-size:clamp(40px,4.4vw,64px)}
+/* owner, 9 Nov (review point 1): the quote links the portrait and the reasons; the name steps down so the card stops reading as a business card */
+.kv5 .fd-name h2{font-size:clamp(32px,2.8vw,40px);letter-spacing:-.035em}
+.kv5 .fd-role{margin-top:8px}
+.kv5 .kv5-q{margin:clamp(20px,2vw,28px) 0 0}
+.kv5 .kv5-q p{font-size:clamp(19px,1.5vw,22px);line-height:1.3;font-weight:500;letter-spacing:-.015em;max-width:30ch}
 .fd-why{list-style:none;margin:clamp(24px,2.6vw,36px) 0 0;padding:0;border-top:1px solid rgba(20,20,19,.14)}
 .fd-why li{padding:clamp(12px,1.25vw,17px) 0;border-bottom:1px solid rgba(20,20,19,.12)}
 .fd-why h3{display:flex;align-items:center;gap:10px;margin:0;font-size:clamp(16.5px,1.3vw,19px);line-height:1.25;font-weight:600;letter-spacing:-.01em}
@@ -127,6 +131,10 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   .kv5 .fd-pn{padding-left:clamp(8px,1vw,20px);padding-right:clamp(40px,4.4vw,72px)}
   .kv5 .fd-why p{max-width:none}
 }
+/* keep the last reason clear of the drawn-on shoulder (the quote made the card taller, so the photo and shoulder grow too) */
+@media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .21)}}
+@media (min-width:861px) and (max-width:1199px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .32)}}
+@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .44)}}
 @media (max-width:860px){
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why{border-top-color:rgba(245,242,234,.2)}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why li{border-bottom-color:rgba(245,242,234,.16)}
@@ -134,6 +142,7 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .fd-hl h3,:is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .kv-ic{color:#cdd6b8}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why p{color:#c9cfdb}
   .kv5 .fd-why li:last-child{border-bottom:0}
+  .kv5 .fd-name h2{font-size:30px}
 }
 /* the second H2 sentence is too long to stay on one line on phones */
 @media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
