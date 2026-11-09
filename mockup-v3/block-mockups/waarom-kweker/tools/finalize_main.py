@@ -22,5 +22,8 @@ assert s.count('<section') == 3, s.count('<section')
 # approved card colours ("Veld", 9 Nov): appended after the page CSS so they override the baseline card
 card = (D / 'tools' / 'card-veld.css').read_text()
 s = s.replace('</head>', '<style>' + card + '</style></head>', 1)
+# hero text block in the bottom-left corner on desktop + landscape tablets (approved 9 Nov); phones / portrait tablets unchanged
+hero = (D / 'tools' / 'hero-bottom-left.css').read_text()
+s = s.replace('</head>', '<style id="hero-bottom-left">' + hero + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

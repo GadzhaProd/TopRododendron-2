@@ -153,3 +153,14 @@ Owner: the block is approved, but he wants to work further on the card's colours
 - 2 · Стекло: the founder card's language, so the two cards read as a pair: a vertical grey-sage gradient (#e6e7e8 → #dcdfd5 → #d0d5c1 → #c4ccb1), a pink glow at the bottom, a white highlight top-left, a 1 px white inner edge, two blur depths; grain .20 soft-light. Min 6.20 / 5.92.
 - 3 · Цветение: the seven varieties' colours, lightened, gathered into a soft bloom at the bottom right, with foliage holding the left. Paper #ecefe6; foliage #b3c19f / #c3ceac; white #eff0ea; pink #e7ccd5; Nova Zembla core #e2bec8; lilac #dfd2e0; lavender #dcd8e6; grain .30. Min 5.57 / 5.89. The reviewer notes it is the closest to the lilac gradients rejected earlier.
 - APPROVED (owner, 9 Nov: "берём Поле, переноси в основной макет"): 1 · Поле is now the card in the main mockup. Its CSS is in `tools/card-veld.css`; `tools/finalize_main.py` appends it to the page. The main card renders pixel-identical to variant 1 on `kaart.html` at 1440/1024/390/360. No horizontal scroll. Contrast min 5.61:1 (desktop) / 5.43:1 (phone).
+
+## Hero — text block bottom-left (9 Nov): APPROVED
+
+Owner: move the hero text block (H1, paragraph, buttons) lower, toward the bottom-left corner, but not stuck to it; the designer decides the exact layout. Approved: "да, переноси в основной макет".
+- Desktop and landscape tablets (`split`): `justify-content:flex-end`; left edge on the container gutter as before; bottom padding = max(48px, gutter × 1.25): 51 px at 1024, 64 at 1280, 68 at 1366, 72 at 1440, 80 at 1920. Top padding 7rem as a safety margin under the header. At least 280 px to the header even at 1366×768.
+- Why: the top of the photo (forest, far rows) stays clean; the big flower cluster stays the focal point; the eye runs forest → cluster → H1 → buttons → next section.
+- Scrim: the same text-column gradient, now masked to the bottom (full in the lower 54 %, gone by 94 %). Edges .80 / .72 / .62 at `--tc`, bottom band .24 → 26 %.
+- Contrast on real pixels: paragraph 5.45–5.80:1, H1 5.45–5.65:1. Before the change the paragraph dipped to 4.18–4.52:1 on a few pixels at 1024–1440.
+- Phones and portrait tablets unchanged: on phones the text was already at the bottom; on portrait tablets it stays at the top on the dark forest band (moving it down would mean darkening the big white cluster).
+- CSS: `waarom-kweker/tools/hero-bottom-left.css`, appended by `tools/finalize_main.py`. Main mockup renders pixel-identical to the preview `hero-onder.html` at 360–1920. For the code transfer: replace `split:justify-center` with `split:justify-end` and set the padding instead of the override.
+- Side note (not changed): at 1920 the H1 wraps to 4 lines; raising `split:max-w-[36rem]` to about 40rem at ≥ 1600 px would give 3.
