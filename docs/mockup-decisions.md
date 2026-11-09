@@ -145,10 +145,11 @@ Owner: "да, берём K, переноси в основной макет".
 - Kept for reference: `varianten.html` (all earlier variants, K + U as default) and `concepten.html` (the three fresh concepts). `waarom-schetsen/` holds the bold sketches.
 - For the code transfer: the page CSS still carries rules for the earlier variants (O/M/F/1–3, bento, C/P/R) that this page no longer uses; transfer only the K rules (`.wh2-*`, `.wh-grain`, `.lp-u`).
 
-## Waarom wij K — colour treatments for the facts card, in review (9 Nov)
+## Waarom wij K — colour treatments for the facts card (9 Nov): «Поле» approved
 
 Owner: the block is approved, but he wants to work further on the card's colours and blur in a separate mockup (not the main one). Separate page: `waarom-kweker/kaart.html` (copy of the main mockup; only the card CSS differs; review bar: 0–3, class `k-0…k-3`). All values stay moss #3f4a37; contrast is measured on real pixels.
 - 0 · Сейчас: the approved card (sage, linen, pale sage, pink glow). Min contrast 6.07 / 5.90 (1440 / 390).
 - 1 · Поле: colours sampled from the hero photo and laid out like it: flower light at the top, foliage on the left, the sandy path along the bottom, a faint bud blush. Paper #ebece3; foliage #adbb98 / #c2cca9; light #f1f0e8; sand #d9cbb0 → #c7b893; blush #ecd6d2; base #e8e3d4; grain .32 overlay. Min 5.61 / 5.43. The reviewer's recommendation: it ties the card to the hero photo.
 - 2 · Стекло: the founder card's language, so the two cards read as a pair: a vertical grey-sage gradient (#e6e7e8 → #dcdfd5 → #d0d5c1 → #c4ccb1), a pink glow at the bottom, a white highlight top-left, a 1 px white inner edge, two blur depths; grain .20 soft-light. Min 6.20 / 5.92.
 - 3 · Цветение: the seven varieties' colours, lightened, gathered into a soft bloom at the bottom right, with foliage holding the left. Paper #ecefe6; foliage #b3c19f / #c3ceac; white #eff0ea; pink #e7ccd5; Nova Zembla core #e2bec8; lilac #dfd2e0; lavender #dcd8e6; grain .30. Min 5.57 / 5.89. The reviewer notes it is the closest to the lilac gradients rejected earlier.
+- APPROVED (owner, 9 Nov: "берём Поле, переноси в основной макет"): 1 · Поле is now the card in the main mockup. Its CSS is in `tools/card-veld.css`; `tools/finalize_main.py` appends it to the page. The main card renders pixel-identical to variant 1 on `kaart.html` at 1440/1024/390/360. No horizontal scroll. Contrast min 5.61:1 (desktop) / 5.43:1 (phone).

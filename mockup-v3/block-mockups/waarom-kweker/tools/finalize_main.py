@@ -19,5 +19,8 @@ s = s[:i] + s[j:]
 s = re.sub(r'<html lang="nl" class="[^"]*">', '<html lang="nl" class="m-n3 t-0 d-k lp-u">', s, count=1)
 s = s.replace('<title>Waarom wij · eerdere varianten</title>', '<title>Waarom wij · De kweker</title>', 1)
 assert s.count('<section') == 3, s.count('<section')
+# approved card colours ("Veld", 9 Nov): appended after the page CSS so they override the baseline card
+card = (D / 'tools' / 'card-veld.css').read_text()
+s = s.replace('</head>', '<style>' + card + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
