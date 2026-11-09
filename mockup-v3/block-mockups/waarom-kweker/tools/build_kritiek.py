@@ -55,14 +55,25 @@ v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><d
       f'<div class="kh-top kh-top4"><div class="kh-head">{EB}<h2 id="h-waarom-4">{H2}</h2></div><p class="kv-lead">{LEAD}</p></div>'
       f'<div class="kv4-card">{card}</div>' + tiles() + facts + '</div></section>')
 
-s = s.replace(k, k + v1 + v2 + v3 + v4, 1)
+# 5 · Герт + преимущества: the founder card keeps only the name and role; the four reasons sit in the same card; facts strip below
+why_in_card = '<ul class="fd-why">' + ''.join(
+    (f'<li class="fd-hl"><h3>{CHECK}<span>{t}</span></h3><p>{d}</p></li>' if n == 0 else f'<li><h3>{t}</h3><p>{d}</p></li>')
+    for n, (t, d) in enumerate(WHY)) + '</ul>'
+card5 = card.replace('id="h-kweker-4"', 'id="h-kweker-5"')
+card5 = re.sub(r'<p class="fd-txt">.*?</p>', '', card5, count=1, flags=re.S)
+card5 = re.sub(r'<div class="fd-qw">.*?</blockquote></div>', why_in_card, card5, count=1, flags=re.S)
+assert 'fd-why' in card5 and 'fd-qw' not in card5 and 'fd-txt' not in card5
+v5 = (f'<section class="kv kh kv5" id="waarom-5" aria-labelledby="h-waarom-5"><div class="in">'
+      f'<div class="kh-top kh-top4"><div class="kh-head">{EB}<h2 id="h-waarom-5">{H2}</h2></div><p class="kv-lead">{LEAD}</p></div>'
+      f'<div class="kv4-card">{card5}</div>' + facts + '</div></section>')
+s = s.replace(k, k + v1 + v2 + v3 + v4 + v5, 1)
 
 CSS = r'''
 /* ===== critic round (9 Nov): four Waarom wij variants; switch via html.v-0..v-4 ===== */
 body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
-#waarom,#waarom-1,#waarom-2,#waarom-3,#waarom-4{display:none}
-.v-0 #waarom,.v-1 #waarom-1,.v-2 #waarom-2,.v-3 #waarom-3,.v-4 #waarom-4{display:block}
-.v-3 #kweker,.v-4 #kweker{display:none}
+#waarom,#waarom-1,#waarom-2,#waarom-3,#waarom-4,#waarom-5{display:none}
+.v-0 #waarom,.v-1 #waarom-1,.v-2 #waarom-2,.v-3 #waarom-3,.v-4 #waarom-4,.v-5 #waarom-5{display:block}
+.v-3 #kweker,.v-4 #kweker,.v-5 #kweker{display:none}
 .kv-eb{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:12.5px!important;line-height:1.4!important;font-weight:600!important;letter-spacing:.16em!important;text-transform:uppercase;color:var(--moss)}
 .kv-eb::after{content:"";width:72px;height:1px;background:currentColor;opacity:.45}
 .kv-ic{width:26px;height:26px;color:var(--moss)}
@@ -101,6 +112,23 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .kh-facts b{font-size:clamp(26px,2.6vw,40px);line-height:1;font-weight:600;letter-spacing:-.03em;color:var(--moss)}
 .kh-facts span{font-size:15px;line-height:1.4;color:var(--soft)}
 @media (max-width:1100px){.kh-why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* 5 · founder card with the reasons inside: name + role, then the reasons on hairlines; the guarantee first with a check */
+.kv5 .fd-name h2{font-size:clamp(40px,4.4vw,64px)}
+.fd-why{list-style:none;margin:clamp(24px,2.6vw,36px) 0 0;padding:0;border-top:1px solid rgba(20,20,19,.14)}
+.fd-why li{padding:clamp(12px,1.25vw,17px) 0;border-bottom:1px solid rgba(20,20,19,.12)}
+.fd-why h3{display:flex;align-items:center;gap:10px;margin:0;font-size:clamp(16.5px,1.3vw,19px);line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.fd-why p{margin:4px 0 0;font-size:clamp(14px,1.05vw,15px);line-height:1.5;color:#3d3c37;max-width:52ch}
+.fd-why .fd-hl h3{color:var(--moss)}
+.fd-why .kv-ic{width:22px;height:22px;flex:none}
+.kv5 .kh-facts{margin-top:clamp(36px,4vw,56px)}
+@media (max-width:860px){
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why{border-top-color:rgba(245,242,234,.2)}
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why li{border-bottom-color:rgba(245,242,234,.16)}
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why h3{color:#f5f2ea}
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .fd-hl h3,:is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .kv-ic{color:#cdd6b8}
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why p{color:#c9cfdb}
+  .kv5 .fd-why li:last-child{border-bottom:0}
+}
 /* the second H2 sentence is too long to stay on one line on phones */
 @media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
 @media (max-width:860px){
@@ -119,7 +147,8 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="v" data-v="1" aria-pressed="true">1<span class="l"> · Текст</span></button>'
       '<button type="button" data-g="v" data-v="2" aria-pressed="false">2<span class="l"> · Фото</span></button>'
       '<button type="button" data-g="v" data-v="3" aria-pressed="false">3<span class="l"> · Герт</span></button>'
-      '<button type="button" data-g="v" data-v="4" aria-pressed="false">4<span class="l"> · Карточка Герта</span></button></div></div>')
+      '<button type="button" data-g="v" data-v="4" aria-pressed="false">4<span class="l"> · Карточка Герта</span></button>'
+      '<button type="button" data-g="v" data-v="5" aria-pressed="false">5<span class="l"> · Герт + преимущества</span></button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
 s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-1">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)

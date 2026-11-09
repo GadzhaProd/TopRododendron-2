@@ -196,4 +196,5 @@ The variants:
 - 4 · Карточка Герта: the approved founder card placed inside this block, between the head and the tiles; the separate founder block is hidden.
 
 Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5.6:1, guarantee tile title 6.0:1.
+- 5 · Герт + преимущества (owner's idea, 9 Nov): the approved founder card keeps only the name and role ("Gert Top", "Oprichter van Top Rhododendrons"); the four reasons sit inside the same card on hairlines (the guarantee first, with a check, in moss), and the facts strip is below. Quote and the "Eén gewas" line are dropped. The separate founder block is hidden. The phone uses the navy card with light reasons. The card grows to 681 px at 1440. Text-to-shoulder clearance is ≥ 34 px at 900–1440. Contrast on real pixels: reason text ≥ 5.9:1, titles ≥ 6.5:1.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
