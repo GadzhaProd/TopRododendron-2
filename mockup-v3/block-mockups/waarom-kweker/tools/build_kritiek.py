@@ -117,7 +117,8 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .kv5 .fd-name h2{font-size:clamp(32px,2.8vw,40px);letter-spacing:-.035em}
 .kv5 .fd-role{margin-top:8px}
 .kv5 .kv5-q{margin:clamp(20px,2vw,28px) 0 0}
-.kv5 .kv5-q p{font-size:clamp(19px,1.5vw,22px);line-height:1.3;font-weight:500;letter-spacing:-.015em;max-width:30ch}
+/* quote one step quieter (owner, 9 Nov): Gert's voice under his name, below the guarantee title in weight and size, above the reason lines */
+.kv5 .kv5-q p{font-size:clamp(17px,1.25vw,19px);line-height:1.4;font-weight:400;letter-spacing:-.01em;max-width:34ch;color:#2f2e2a}
 .fd-why{list-style:none;margin:clamp(24px,2.6vw,36px) 0 0;padding:0;border-top:1px solid rgba(20,20,19,.14)}
 .fd-why li{padding:clamp(12px,1.25vw,17px) 0;border-bottom:1px solid rgba(20,20,19,.12)}
 .fd-why h3{display:flex;align-items:center;gap:10px;margin:0;font-size:clamp(16.5px,1.3vw,19px);line-height:1.25;font-weight:600;letter-spacing:-.01em}
@@ -142,6 +143,7 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .fd-hl h3,:is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .kv-ic{color:#cdd6b8}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why p{color:#c9cfdb}
   .kv5 .fd-why li:last-child{border-bottom:0}
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .kv5-q p{color:#eef0f4}
   .kv5 .fd-name h2{font-size:30px}
 }
 /* review point 2 (9 Nov): three ways to lead with the guarantee, no icon; switch via html.e-a / e-b / e-c

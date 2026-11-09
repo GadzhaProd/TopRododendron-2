@@ -206,4 +206,5 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - More bottom room keeps every option ≥ 40 px from the shoulder: padding-bottom colw × .24 (≥ 1200), .32 (1024–1199), .54 (861–1023). The card is now about 735–757 px at 1440. Contrast: guarantee title ≥ 8.8:1, its line ≥ 6.2:1.
     - Impeccable's other flags, not acted on and left for the owner: it bans eyebrows above headings ("Waarom Top Rhododendrons"), and it lists "big number + small label" fact strips as a category default.
     - Impeccable is installed as a Claude Code skill (`~/.claude/skills/impeccable`, v4.8.2, from github.com/pbakaus/impeccable). Its engine binary (detector, context loader) was not run: it downloads code, and auto mode blocked that. The skill's playbooks (layout, craft-floor) were used directly.
+  - 5, quote one step quieter (owner, 9 Nov): the quote is now clamp(17px,1.25vw,19px), weight 400, #2f2e2a (#eef0f4 on the phone's navy card). Order of weight: name, guarantee title, quote, other reasons. Contrast ≥ 9.6:1. Shoulder clearance ≥ 41 px.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
