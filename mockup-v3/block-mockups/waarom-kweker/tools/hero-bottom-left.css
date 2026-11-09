@@ -1,0 +1,11 @@
+@media (min-width:1024px),(min-width:768px) and (orientation:landscape){
+  :root #hero{justify-content:flex-end}
+  :root #hero > .container-x{padding-top:7rem;padding-bottom:max(48px,calc(clamp(20px,4vw,64px) * 1.25))}
+  :root .hero-scrim-photo{
+    background:
+      linear-gradient(to right,rgb(12 14 11/.80) 0,rgb(12 14 11/.72) calc(var(--tc) - 160px),rgb(12 14 11/.62) var(--tc),rgb(12 14 11/.22) calc(var(--tc) + 170px),transparent calc(var(--tc) + 320px)),
+      linear-gradient(to top,rgb(12 14 11/.24) 0%,transparent 26%);
+    -webkit-mask-image:linear-gradient(to top,#000 0,#000 54%,rgb(0 0 0/.5) 72%,transparent 94%);
+            mask-image:linear-gradient(to top,#000 0,#000 54%,rgb(0 0 0/.5) 72%,transparent 94%);
+  }
+}
