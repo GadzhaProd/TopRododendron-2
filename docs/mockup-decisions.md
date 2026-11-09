@@ -208,4 +208,11 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - Impeccable is installed as a Claude Code skill (`~/.claude/skills/impeccable`, v4.8.2, from github.com/pbakaus/impeccable). Its engine binary (detector, context loader) was not run: it downloads code, and auto mode blocked that. The skill's playbooks (layout, craft-floor) were used directly.
   - 5, quote one step quieter (owner, 9 Nov): the quote is now clamp(17px,1.25vw,19px), weight 400, #2f2e2a (#eef0f4 on the phone's navy card). Order of weight: name, guarantee title, quote, other reasons. Contrast ≥ 9.6:1. Shoulder clearance ≥ 41 px.
   - 5, quote on one line (owner, 9 Nov): at ≥ 1200 px the quote runs on one line (nowrap, max-width none; it fits at 1200–1920); below 1200 it wraps to two lines as before.
+  - 5, shorter copy (owner, 9 Nov, after the density review: "сократи текст и сразу убирай «Waarom Top Rhododendrons»"):
+    - eyebrow removed;
+    - lead cut to "Voor uw tuin of uw project kiest u uit eigen kweek.";
+    - reason lines shortened, facts unchanged: Vers gerooid → "Wij rooien pas vlak voor uw levering."; Persoonlijk advies → "Ma–za 09:00–17:00."; Eigen transport of afhalen → "Bezorgd door heel Nederland.";
+    - guarantee line, name, role ("Oprichter van Top Rhododendrons", kept because the eyebrow is gone), quote and facts strip unchanged.
+
+    About 100 words instead of 140. Panel padding-bottom at ≥ 1200 px is colw × .20. Card 702 px at 1440 (was 726); on phones 979 px (was 1063). Shoulder clearance ≥ 32 px. The face is still about 85–90 % of the card height (the next step per the review: draw on a soft background above the head).
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.

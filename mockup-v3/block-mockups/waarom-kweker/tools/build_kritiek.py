@@ -56,15 +56,21 @@ v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><d
       f'<div class="kv4-card">{card}</div>' + tiles() + facts + '</div></section>')
 
 # 5 · Герт + преимущества: the founder card keeps only the name and role; the four reasons sit in the same card; facts strip below
+# owner, 9 Nov: shorter copy in variant 5 (no repeats of "advies", "familiekwekerij in Otterlo", "eigen transport"); eyebrow removed
+LEAD5 = 'Voor uw tuin of uw project kiest u uit eigen kweek.'
+WHY5 = [('Aangroeigarantie op elke plant', 'Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.'),
+        ('Vers gerooid voor uw levering', 'Wij rooien pas vlak voor uw levering.'),
+        ('Persoonlijk advies van de kweker', '<span class="nb">Ma–za 09:00–17:00</span>.'),
+        ('Eigen transport of afhalen', 'Bezorgd door heel Nederland.')]
 why_in_card = '<ul class="fd-why">' + ''.join(
     (f'<li class="fd-hl"><h3>{t}</h3><p>{d}</p></li>' if n == 0 else f'<li><h3>{t}</h3><p>{d}</p></li>')
-    for n, (t, d) in enumerate(WHY)) + '</ul>'
+    for n, (t, d) in enumerate(WHY5)) + '</ul>'
 card5 = card.replace('id="h-kweker-4"', 'id="h-kweker-5"')
 card5 = re.sub(r'<p class="fd-txt">.*?</p>', '', card5, count=1, flags=re.S)
 card5 = re.sub(r'<div class="fd-qw">.*?</blockquote></div>', '<blockquote class="fd-q kv5-q"><p>Een gezonde plant is geen toeval. Dat is onze standaard.</p></blockquote>' + why_in_card, card5, count=1, flags=re.S)
 assert 'fd-why' in card5 and 'kv5-q' in card5 and 'fd-qw' not in card5 and 'fd-txt' not in card5
 v5 = (f'<section class="kv kh kv5" id="waarom-5" aria-labelledby="h-waarom-5"><div class="in">'
-      f'<div class="kh-top kh-top5"><div class="kh-head">{EB}<h2 id="h-waarom-5">{H2}</h2><p class="kv-lead">{LEAD}</p></div></div>'
+      f'<div class="kh-top kh-top5"><div class="kh-head"><h2 id="h-waarom-5">{H2}</h2><p class="kv-lead">{LEAD5}</p></div></div>'
       f'<div class="kv4-card">{card5}</div>' + facts + '</div></section>')
 s = s.replace(k, k + v1 + v2 + v3 + v4 + v5, 1)
 
@@ -135,7 +141,7 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   .kv5 .fd-why p{max-width:none}
 }
 /* keep the last reason clear of the drawn-on shoulder (the quote made the card taller, so the photo and shoulder grow too) */
-@media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .24)}}
+@media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .2)}}
 @media (min-width:861px) and (max-width:1199px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .32)}}
 @media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .54)}}
 @media (max-width:860px){
