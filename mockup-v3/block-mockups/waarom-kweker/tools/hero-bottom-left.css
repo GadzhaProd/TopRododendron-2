@@ -9,3 +9,9 @@
             mask-image:linear-gradient(to top,#000 0,#000 54%,rgb(0 0 0/.5) 72%,transparent 94%);
   }
 }
+/* wide screens (owner, 9 Nov: "3 строки"): at 72px the H1 wrapped to 4 lines in a 36rem column from about 1600px wide.
+   Give the H1 column 40rem there and move the scrim's text-column edge (--tc) with it. The paragraph keeps its own max-width. */
+@media (min-width:1600px){
+  :root{--tc:calc(clamp(20px,4vw,64px) + 40rem)}
+  :root #hero .split\:max-w-\[36rem\]{max-width:40rem}
+}
