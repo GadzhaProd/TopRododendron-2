@@ -69,7 +69,7 @@ background: linear-gradient(to bottom, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 52%,
 
 - 21st.dev colour themes for the block; the Royal Blue store skill (owner: work on our own concept C instead); the dissolve transition of the photo; the dark (charcoal) trust bar.
 
-## Waarom wij — variant A chosen (7 Nov), design in review
+## Waarom wij — variant A chosen (7 Nov); final design = K (see the end of this file)
 
 - Mockup: `mockup-v3/block-mockups/waarom-kweker/` (upper block). Owner chose A "Список" (numbered rows 01–04 on hairlines). B "Преимущества" (icon grid) is dropped, and so is the review bar. The owner will say how A should be designed.
 - Copy: H2 "Wij kweken rhododendrons. Niet meer, niet minder."; lead "Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin."; facts row 10.000 planten op voorraad / Sinds 2001 familiekwekerij in Otterlo / 7 soorten in 4 maten, 40 tot 120 cm / Vanaf 1 plant geen minimumbestelling.
@@ -135,3 +135,12 @@ Fixes applied in `waarom-kweker/varianten.html` (K + U are now the default there
 - `.lp-u .wh2-list{margin-top:clamp(44px,5vw,72px)}`.
 - `.lp-u .wh2-facts{justify-content:center}`, `li{flex:0 0 auto;padding:clamp(26px,2.8vw,40px) 0}`, `b{font-size:clamp(36px,3.4vw,48px)}`: facts as a compact centred group instead of spread out.
 - The card keeps the full height, from the top of the H2 to the last hairline of the list.
+
+## Waarom wij — APPROVED: K with the lead under the heading (9 Nov)
+
+Owner: "да, берём K, переноси в основной макет".
+- Main mockup `mockup-v3/block-mockups/waarom-kweker/index.html` = header, hero (full width), Waarom wij K (lead under the H2, readability fixes above), placeholder for Assortiment / Hoe het werkt, founder block. No review bar. Built from `varianten.html` by `tools/finalize_main.py`.
+- K, final: the H2 and, under it, the lead (max 44ch); then the four reasons as rows on hairlines (title + one line, no numbers, no icons). On the right, the soft-gradient facts card (paper #eef0e8; blobs sage #b9c8a0, linen #eadabd, pale sage #c6d3b0, pink glow #e9cfd6; grain .32 overlay), as tall as the whole block, facts grouped in the middle, values in moss clamp(36px,3.4vw,48px). Phones: H2, lead, card as a ledger, list.
+- Checks: no horizontal scroll at 360/390/768/1024/1440. Contrast on real pixels: card values ≥ 6.1:1, labels ≥ 8.0:1, list text 5.7:1, lead 8.5:1.
+- Kept for reference: `varianten.html` (all earlier variants, K + U as default) and `concepten.html` (the three fresh concepts). `waarom-schetsen/` holds the bold sketches.
+- For the code transfer: the page CSS still carries rules for the earlier variants (O/M/F/1–3, bento, C/P/R) that this page no longer uses; transfer only the K rules (`.wh2-*`, `.wh-grain`, `.lp-u`).
