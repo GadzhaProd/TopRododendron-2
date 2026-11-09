@@ -132,9 +132,9 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   .kv5 .fd-why p{max-width:none}
 }
 /* keep the last reason clear of the drawn-on shoulder (the quote made the card taller, so the photo and shoulder grow too) */
-@media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .21)}}
+@media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .24)}}
 @media (min-width:861px) and (max-width:1199px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .32)}}
-@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .44)}}
+@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .54)}}
 @media (max-width:860px){
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why{border-top-color:rgba(245,242,234,.2)}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why li{border-bottom-color:rgba(245,242,234,.16)}
@@ -143,6 +143,26 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why p{color:#c9cfdb}
   .kv5 .fd-why li:last-child{border-bottom:0}
   .kv5 .fd-name h2{font-size:30px}
+}
+/* review point 2 (9 Nov): three ways to lead with the guarantee, no icon; switch via html.e-a / e-b / e-c
+   A · Typografie (Impeccable: emphasis from size, weight and rhythm): a bigger ink title, a slightly larger line, more air after it
+   B · Band (21st 27506 "Feature List Showcase": the active row on a soft tint): the guarantee row on a light field-colour wash
+   C · Lijn (the reviewer's suggestion): a 2px moss rule on the left; Impeccable lists coloured side rules as a category default */
+.kv5 .fd-why .fd-hl h3{color:#141413}
+.e-a .kv5 .fd-hl{padding:clamp(16px,1.6vw,22px) 0 clamp(18px,1.9vw,26px)}
+.e-a .kv5 .fd-hl h3{font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;line-height:1.2}
+.e-a .kv5 .fd-hl p{margin-top:6px;font-size:clamp(15px,1.15vw,16.5px);color:#2f2e2a}
+.e-b .kv5 .fd-hl{margin:10px calc(-1 * clamp(12px,1.2vw,18px)) 6px;padding:clamp(14px,1.3vw,18px) clamp(12px,1.2vw,18px);border-radius:14px;border-bottom-color:transparent;
+  background:linear-gradient(100deg,rgba(173,187,152,.55) 0%,rgba(222,206,176,.5) 62%,rgba(236,214,210,.45) 100%)}
+.e-b .kv5 .fd-why{border-top-color:transparent}
+.e-b .kv5 .fd-hl h3{font-size:clamp(18px,1.45vw,21px)}
+.e-c .kv5 .fd-hl{padding-left:16px;border-left:2px solid var(--moss)}
+.e-c .kv5 .fd-hl h3{font-size:clamp(18px,1.5vw,21px)}
+@media (max-width:860px){
+  :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why .fd-hl h3{color:#f5f2ea}
+  :is(.m-n1,.m-n2,.m-n3).e-a .kv5 .fd-hl p{color:#dde2ea}
+  :is(.m-n1,.m-n2,.m-n3).e-b .kv5 .fd-hl{background:rgba(245,242,234,.08);margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
+  :is(.m-n1,.m-n2,.m-n3).e-c .kv5 .fd-hl{border-left-color:#a9b894}
 }
 /* the second H2 sentence is too long to stay on one line on phones */
 @media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
@@ -163,9 +183,13 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="v" data-v="2" aria-pressed="false">2<span class="l"> · Фото</span></button>'
       '<button type="button" data-g="v" data-v="3" aria-pressed="false">3<span class="l"> · Герт</span></button>'
       '<button type="button" data-g="v" data-v="4" aria-pressed="false">4<span class="l"> · Карточка Герта</span></button>'
-      '<button type="button" data-g="v" data-v="5" aria-pressed="true">5<span class="l"> · Герт + преимущества</span></button></div></div>')
+      '<button type="button" data-g="v" data-v="5" aria-pressed="true">5<span class="l"> · Герт + преимущества</span></button></div>'
+      '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Гарантия</i>'
+      '<button type="button" data-g="e" data-v="a" aria-pressed="true">A<span class="l"> · Шрифт</span></button>'
+      '<button type="button" data-g="e" data-v="b" aria-pressed="false">B<span class="l"> · Полоса</span></button>'
+      '<button type="button" data-g="e" data-v="c" aria-pressed="false">C<span class="l"> · Линия</span></button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))
