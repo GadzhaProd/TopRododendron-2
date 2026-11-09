@@ -122,3 +122,16 @@ Mockup: `mockup-v3/block-mockups/waarom-schetsen/` (standalone sketches, one per
 - 1 · Zeven soorten: the 7 real varieties as 7 tall arch-topped close-ups in a row (Cunningham's White, Nova Zembla, Catawbiense Boursault, Catawbiense Grandiflorum, Ponticum, Ponticum Roseum, Roseum Elegans; photos from the old site's images), headed "7 soorten in 4 maten, 40 tot 120 cm". Other facts in one quiet line, the 4 reasons in columns below. On phones the arches are a swipeable row.
 - 2 · Boven en onder de grond: one wide plate. Above the ground line, the real Cunningham's White photo; below it, peat soil (the old site's tuinturf photo) with a drawn root ball (kluit) and roots. Callouts: Aangroeigarantie, 7 soorten in 4 maten, Volle grond / veenrijke bodem, Sterk wortelstelsel, Gerooid met kluit vlak voor uw levering. Shows why the guarantee holds. The roots are a generated line drawing; a real photo or an illustrator would be better for production.
 - 3 · 10.000: the number set huge across the full width with the field photo inside the letters (background-clip), then "planten op voorraad, in de volle grond in Otterlo…", then H2 + lead and the reasons list. The number is decorative (aria-hidden); the same fact is in the text below.
+
+## Waarom wij K — lead placement (9 Nov, readability review)
+
+Recommendation: U (lead under the H2, the card on the right spanning the whole block), with fixes. Reasons:
+- After the hero the eye enters top-left and reads H2 → lead → list (F pattern). In R the lead sits about 180 px away from the H2 and reads as a caption to the card.
+- R line length breaks down at 1280/1024 (4 lines, 33–41 chars at 1024).
+- In U, text changes only lengthen the left column; in R a 3-line H2 or a longer lead breaks the top alignment.
+
+Fixes applied in `waarom-kweker/varianten.html` (K + U are now the default there):
+- `.lp-u .wh2-lead{margin-top:24px;max-width:44ch}`: 3 lines of about 57/56/40 chars at 1440, 1280 and 1024, no orphan.
+- `.lp-u .wh2-list{margin-top:clamp(44px,5vw,72px)}`.
+- `.lp-u .wh2-facts{justify-content:center}`, `li{flex:0 0 auto;padding:clamp(26px,2.8vw,40px) 0}`, `b{font-size:clamp(36px,3.4vw,48px)}`: facts as a compact centred group instead of spread out.
+- The card keeps the full height, from the top of the H2 to the last hairline of the list.
