@@ -1,0 +1,127 @@
+# Mockup tool (not site code): kritiek.html = main mockup + four Waarom wij variants from the critic round (9 Nov).
+import re, pathlib, sys
+D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
+s = (D / 'index.html').read_text()
+
+EB = '<p class="kv-eb">Waarom Top Rhododendrons</p>'
+H2 = 'Wij kweken alleen rhododendrons. <span class="nb">Dat merkt u aan elke plant.</span>'
+LEAD = 'Een familiekwekerij in Otterlo, gericht op één gewas. Voor uw tuin of uw project kiest u uit eigen kweek, met advies van de kweker zelf.'
+WHY = [('Aangroeigarantie op elke plant', 'Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.'),
+       ('Vers gerooid voor uw levering', 'Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.'),
+       ('Persoonlijk advies van de kweker', 'De kweker helpt u persoonlijk, <span class="nb">ma–za 09:00–17:00</span>.'),
+       ('Eigen transport of afhalen', 'Bezorgd met eigen transport door heel Nederland, of af te halen in Otterlo.')]
+FACTS = [('10.000', 'planten op voorraad'), ('Sinds 2001', 'familiekwekerij in Otterlo'), ('7 soorten', 'in 4 maten, 40 tot 120&nbsp;cm'), ('Vanaf 1&nbsp;plant', 'geen minimumbestelling')]
+CHECK = ('<svg class="ic kv-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" data-accent="" style="fill:var(--wash);fill-opacity:.55"/>'
+         '<path d="m9 12 2 2 4-4" data-accent=""/><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>')
+GRAIN = '<div class="wh-grain" aria-hidden="true"></div>'
+
+def sec(h, sid):
+    i = h.index(f'id="{sid}"'); i = h.rfind('<section', 0, i); j = h.index('</section>', i) + len('</section>'); return h[i:j]
+
+# 1 · Текст: K layout and field card kept; eyebrow, benefit H2, new lead; guarantee first and highlighted; phone: reasons before the card
+k = sec(s, 'waarom')
+v1 = (k.replace('id="waarom"', 'id="waarom-1"').replace('aria-labelledby="h-waarom"', 'aria-labelledby="h-waarom-1"')
+       .replace('class="wh wh2"', 'class="wh wh2 kv1"'))
+v1 = re.sub(r'<h2 id="h-waarom" class="wh2-h">.*?</h2>', f'<div class="wh2-h">{EB}<h2 id="h-waarom-1">{H2}</h2></div>', v1, count=1, flags=re.S)
+v1 = re.sub(r'<p class="wh2-lead">.*?</p>', f'<p class="wh2-lead">{LEAD}</p>', v1, count=1, flags=re.S)
+v1 = v1.replace('<li><div><h3>Aangroeigarantie op elke plant</h3>', f'<li class="kv-hl">{CHECK}<div><h3>Aangroeigarantie op elke plant</h3>', 1)
+assert 'kv-hl' in v1 and 'kv-eb' in v1
+
+def tiles():
+    out = []
+    for n, (t, d) in enumerate(WHY):
+        if n == 0:
+            out.append(f'<li class="kh-hl"><div class="kh-bg" aria-hidden="true"></div>{GRAIN}{CHECK}<h3>{t}</h3><p>{d}</p></li>')
+        else:
+            out.append(f'<li><h3>{t}</h3><p>{d}</p></li>')
+    return '<ul class="kh-why">' + ''.join(out) + '</ul>'
+facts = '<ul class="kh-facts" aria-label="Feiten">' + ''.join(f'<li><b>{v}</b><span>{l}</span></li>' for v, l in FACTS) + '</ul>'
+
+def hybrid(n, figure, extra_head=''):
+    return (f'<section class="kv kh kv{n}" id="waarom-{n}" aria-labelledby="h-waarom-{n}"><div class="in">'
+            f'<div class="kh-top"><div class="kh-head">{EB}<h2 id="h-waarom-{n}">{H2}</h2><p class="kv-lead">{LEAD}</p>{extra_head}</div>{figure}</div>'
+            + tiles() + facts + '</div></section>')
+
+# 2 · Фото: the critic's structure with a real photo (Cunningham's White bush)
+v2 = hybrid(2, '<figure class="kh-ph"><img src="img/cw-bush.webp" alt="Rhododendron Cunningham\'s White in bloei" width="1200" height="1607" loading="lazy"></figure>')
+# 3 · Герт: the same structure with Gert's portrait and his quote, so the separate founder block can go
+QUOTE = '<blockquote class="kh-q"><p>Een gezonde plant is geen toeval. Dat is onze standaard.</p><footer>Gert Top, oprichter</footer></blockquote>'
+v3 = hybrid(3, '<figure class="kh-ph kh-gert"><img src="img/owner-portrait.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" width="1200" height="1418" loading="lazy"></figure>', QUOTE)
+# 4 · Карточка Герта: the approved founder card placed inside the block, between the heading and the reasons
+fdcard = sec(s, 'kweker')
+i = fdcard.index('<div class="fd-card">'); j = fdcard.rindex('</div></div></section>')
+card = fdcard[i:j + len('</div>')].replace('id="h-kweker"', 'id="h-kweker-4"')
+v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><div class="in">'
+      f'<div class="kh-top kh-top4"><div class="kh-head">{EB}<h2 id="h-waarom-4">{H2}</h2></div><p class="kv-lead">{LEAD}</p></div>'
+      f'<div class="kv4-card">{card}</div>' + tiles() + facts + '</div></section>')
+
+s = s.replace(k, k + v1 + v2 + v3 + v4, 1)
+
+CSS = r'''
+/* ===== critic round (9 Nov): four Waarom wij variants; switch via html.v-0..v-4 ===== */
+body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
+#waarom,#waarom-1,#waarom-2,#waarom-3,#waarom-4{display:none}
+.v-0 #waarom,.v-1 #waarom-1,.v-2 #waarom-2,.v-3 #waarom-3,.v-4 #waarom-4{display:block}
+.v-3 #kweker,.v-4 #kweker{display:none}
+.kv-eb{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:12.5px!important;line-height:1.4!important;font-weight:600!important;letter-spacing:.16em!important;text-transform:uppercase;color:var(--moss)}
+.kv-eb::after{content:"";width:72px;height:1px;background:currentColor;opacity:.45}
+.kv-ic{width:26px;height:26px;color:var(--moss)}
+/* 1 · Текст */
+.kv1 .wh2-list li.kv-hl{grid-template-columns:34px minmax(0,1fr);align-items:start}
+.kv1 .wh2-list li.kv-hl .kv-ic{margin-top:3px}
+.kv1 .wh2-list li.kv-hl h3{color:var(--moss)}
+@media (max-width:860px){.kv1 .wh2-grid{grid-template-areas:"h" "l" "list" "card"}.kv1 .wh2-list{margin-top:36px}.kv1 .wh2-card{margin-top:36px}}
+/* 2–4 · hybrid: head + photo, reasons as soft tiles (guarantee on the field gradient), facts strip */
+.kv{background:var(--page);color:var(--ink)}
+.kv > .in{padding-top:clamp(64px,7vw,112px);padding-bottom:clamp(64px,7vw,112px)}
+.kv h2{margin:0;font-size:clamp(34px,4.2vw,58px);line-height:1.04;letter-spacing:-.035em;font-weight:600;text-wrap:balance}
+.kv h3{margin:0;font-size:clamp(18px,1.5vw,20px);line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.kv-lead{margin:22px 0 0;font-size:17.5px;line-height:1.65;color:var(--ink2);max-width:46ch;text-wrap:pretty}
+.kh-top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,88px);align-items:center}
+.kh-ph{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:5/4;background:#dfe3d6}
+.kh-ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.kh-gert{aspect-ratio:1/1}.kh-gert img{object-position:50% 18%}
+.kh-q{margin:28px 0 0;padding-left:clamp(18px,1.6vw,24px);border-left:2px solid var(--moss)}
+.kh-q p{margin:0;font-size:clamp(20px,1.8vw,26px);line-height:1.25;font-weight:500;letter-spacing:-.02em;max-width:24ch}
+.kh-q footer{margin-top:10px;font-size:14px;color:var(--soft)}
+.kh-top4{align-items:end}.kh-top4 .kv-lead{margin:0}
+.kv4-card{margin-top:clamp(40px,4.5vw,64px)}
+.kh-why{list-style:none;margin:clamp(44px,5vw,72px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.kh-why li{position:relative;isolation:isolate;overflow:hidden;padding:26px 24px 28px;border-radius:20px;background:var(--card);border:1px solid rgba(20,20,19,.07)}
+.kh-why p{margin:8px 0 0;font-size:15px;line-height:1.55;color:var(--soft)}
+.kh-why .kh-hl{border-color:transparent}
+.kh-hl .kv-ic{display:block;margin-bottom:14px}
+.kh-hl h3{color:var(--moss)}
+.kh-hl p{color:#3d3c37}
+.kh-bg{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse 80% 70% at 50% -10%,#f1f0e8 0%,transparent 70%),radial-gradient(ellipse 70% 80% at -10% 50%,#adbb98 0%,transparent 68%),radial-gradient(ellipse 120% 60% at 50% 115%,#d9cbb0 0%,transparent 72%),radial-gradient(ellipse 50% 50% at 100% 0%,#ecd6d2 0%,transparent 70%),#ebece3}
+.kh-hl .wh-grain{--gr:.3;--gb:overlay}
+.kh-facts{list-style:none;margin:clamp(40px,4.5vw,64px) 0 0;padding:28px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.kh-facts li{display:flex;flex-direction:column;gap:6px;padding:0 clamp(16px,2vw,28px)}
+.kh-facts li:first-child{padding-left:0}.kh-facts li+li{border-left:1px solid var(--line)}
+.kh-facts b{font-size:clamp(26px,2.6vw,40px);line-height:1;font-weight:600;letter-spacing:-.03em;color:var(--moss)}
+.kh-facts span{font-size:15px;line-height:1.4;color:var(--soft)}
+@media (max-width:1100px){.kh-why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* the second H2 sentence is too long to stay on one line on phones */
+@media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
+@media (max-width:860px){
+  .kh-top{grid-template-columns:1fr;gap:28px}
+  .kh-ph{aspect-ratio:4/3}.kh-gert{aspect-ratio:4/5}
+  .kh-why{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .kh-why li{padding:20px}
+  .kh-facts{grid-template-columns:1fr 1fr;row-gap:22px}
+  .kh-facts li:nth-child(3){border-left:0;padding-left:0}
+  .kh-facts b{font-size:26px;white-space:normal}
+}
+'''
+s = s.replace('</head>', '<style id="kritiek">' + CSS + '</style></head>', 1)
+RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Блок</i>'
+      '<button type="button" data-g="v" data-v="0" aria-pressed="false">0<span class="l"> · Сейчас</span></button>'
+      '<button type="button" data-g="v" data-v="1" aria-pressed="true">1<span class="l"> · Текст</span></button>'
+      '<button type="button" data-g="v" data-v="2" aria-pressed="false">2<span class="l"> · Фото</span></button>'
+      '<button type="button" data-g="v" data-v="3" aria-pressed="false">3<span class="l"> · Герт</span></button>'
+      '<button type="button" data-g="v" data-v="4" aria-pressed="false">4<span class="l"> · Карточка Герта</span></button></div></div>')
+s = s.replace('<div id="root">', RV + '<div id="root">', 1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-1">', s, count=1)
+s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
+(D / 'kritiek.html').write_text(s)
+print('ok', len(s))

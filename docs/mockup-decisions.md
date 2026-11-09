@@ -164,3 +164,36 @@ Owner: move the hero text block (H1, paragraph, buttons) lower, toward the botto
 - Phones and portrait tablets unchanged: on phones the text was already at the bottom; on portrait tablets it stays at the top on the dark forest band (moving it down would mean darkening the big white cluster).
 - CSS: `waarom-kweker/tools/hero-bottom-left.css`, appended by `tools/finalize_main.py`. Main mockup renders pixel-identical to the preview `hero-onder.html` at 360–1920. For the code transfer: replace `split:justify-center` with `split:justify-end` and set the padding instead of the override.
 - H1 on wide screens (owner, 9 Nov: "3 строки"): from about 1600 px the H1 (72 px) wrapped to 4 lines in the 36rem column. At ≥ 1600 px the H1 column is now 40rem and the scrim's text-column edge `--tc` moves with it (in `tools/hero-bottom-left.css`). Result: 3 lines at every width checked, 1024–2560 ("Rhododendrons / die aanslaan. Met / aangroeigarantie."; up to 1366 "Rhododendrons die / aanslaan. Met / aangroeigarantie."). The paragraph width is unchanged, there is no horizontal scroll, and contrast stays above AA.
+
+## Waarom wij — critic round (9 Nov), in review
+
+An outside critic said the approved K "reads more like an information section than an explanation of why a buyer should choose Top Rhododendrons" and sent a mock (eyebrow "Waarom Top Rhododendrons", H2 "Rechtstreeks van de kweker. Sterk vanaf de wortel.", a root-ball photo with a tractor, three icon cards, a facts row). An independent review (Fable) and my own review agree on the diagnosis:
+- the H2 is about us, not the buyer;
+- the lead repeats the hero;
+- the facts card takes the strongest spot;
+- the guarantee is not emphasised;
+- on phones the reasons come after the facts.
+
+Not usable as is:
+- the critic's photo is very likely generated (a perfectly round ball with thick woody roots; rhododendrons have fine, shallow roots), which breaks the real-photos rule;
+- it repeats the hero even more;
+- it drops personal advice and own transport;
+- it overstates the facts: "10.000+", and the guarantee without "first season" / "kosteloos";
+- "Rechtstreeks" hints at "no middlemen";
+- its icons are generic.
+
+Variants on a separate page `waarom-kweker/kritiek.html` (built by `tools/build_kritiek.py` from the main mockup; review bar 0–4). Shared new copy in 1–4 (draft):
+- eyebrow "Waarom Top Rhododendrons";
+- H2 "Wij kweken alleen rhododendrons. Dat merkt u aan elke plant.";
+- lead "Een familiekwekerij in Otterlo, gericht op één gewas. Voor uw tuin of uw project kiest u uit eigen kweek, met advies van de kweker zelf." (no hero repeat);
+- the guarantee first and emphasised; all four real reasons and exact wording kept.
+
+The variants:
+- 0 · Сейчас: the approved K.
+- 1 · Текст: K layout and the field card kept; new copy; the guarantee row gets a duotone check and moss title; on phones the reasons come before the card.
+- 2 · Фото: the critic's structure with a real photo. Head left, the Cunningham's White bush right (img/cw-bush.webp, from the old site); four soft tiles (the guarantee tile on the field gradient + grain); a facts strip at the bottom.
+- 3 · Герт: as 2 with Gert's portrait and his quote in the head. The separate founder block is hidden in this variant (could be dropped if chosen).
+- 4 · Карточка Герта: the approved founder card placed inside this block, between the head and the tiles; the separate founder block is hidden.
+
+Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5.6:1, guarantee tile title 6.0:1.
+Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
