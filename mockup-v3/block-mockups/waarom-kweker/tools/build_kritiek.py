@@ -57,14 +57,14 @@ v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><d
 
 # 5 · Герт + преимущества: the founder card keeps only the name and role; the four reasons sit in the same card; facts strip below
 why_in_card = '<ul class="fd-why">' + ''.join(
-    (f'<li class="fd-hl"><h3>{CHECK}<span>{t}</span></h3><p>{d}</p></li>' if n == 0 else f'<li><h3>{t}</h3><p>{d}</p></li>')
+    (f'<li class="fd-hl"><h3>{t}</h3><p>{d}</p></li>' if n == 0 else f'<li><h3>{t}</h3><p>{d}</p></li>')
     for n, (t, d) in enumerate(WHY)) + '</ul>'
 card5 = card.replace('id="h-kweker-4"', 'id="h-kweker-5"')
 card5 = re.sub(r'<p class="fd-txt">.*?</p>', '', card5, count=1, flags=re.S)
 card5 = re.sub(r'<div class="fd-qw">.*?</blockquote></div>', why_in_card, card5, count=1, flags=re.S)
 assert 'fd-why' in card5 and 'fd-qw' not in card5 and 'fd-txt' not in card5
 v5 = (f'<section class="kv kh kv5" id="waarom-5" aria-labelledby="h-waarom-5"><div class="in">'
-      f'<div class="kh-top kh-top4"><div class="kh-head">{EB}<h2 id="h-waarom-5">{H2}</h2></div><p class="kv-lead">{LEAD}</p></div>'
+      f'<div class="kh-top kh-top5"><div class="kh-head">{EB}<h2 id="h-waarom-5">{H2}</h2><p class="kv-lead">{LEAD}</p></div></div>'
       f'<div class="kv4-card">{card5}</div>' + facts + '</div></section>')
 s = s.replace(k, k + v1 + v2 + v3 + v4 + v5, 1)
 
@@ -121,6 +121,12 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .fd-why .fd-hl h3{color:var(--moss)}
 .fd-why .kv-ic{width:22px;height:22px;flex:none}
 .kv5 .kh-facts{margin-top:clamp(36px,4vw,56px)}
+.kh-top5{grid-template-columns:minmax(0,1fr)}
+.kh-top5 .kv-lead{max-width:44ch}
+@media (min-width:1200px){
+  .kv5 .fd-pn{padding-left:clamp(8px,1vw,20px);padding-right:clamp(40px,4.4vw,72px)}
+  .kv5 .fd-why p{max-width:none}
+}
 @media (max-width:860px){
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why{border-top-color:rgba(245,242,234,.2)}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why li{border-bottom-color:rgba(245,242,234,.16)}

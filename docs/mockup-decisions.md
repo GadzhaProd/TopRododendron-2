@@ -197,4 +197,5 @@ The variants:
 
 Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5.6:1, guarantee tile title 6.0:1.
 - 5 · Герт + преимущества (owner's idea, 9 Nov): the approved founder card keeps only the name and role ("Gert Top", "Oprichter van Top Rhododendrons"); the four reasons sit inside the same card on hairlines (the guarantee first, with a check, in moss), and the facts strip is below. Quote and the "Eén gewas" line are dropped. The separate founder block is hidden. The phone uses the navy card with light reasons. The card grows to 681 px at 1440. Text-to-shoulder clearance is ≥ 34 px at 900–1440. Contrast on real pixels: reason text ≥ 5.9:1, titles ≥ 6.5:1.
+  - 5, revised (owner, 9 Nov): the check icon is removed (the guarantee title stays moss); the lead moves under the H2 (nothing top-right, max 44ch); at ≥ 1200 px the card text starts further left (panel padding-left clamp(8px,1vw,20px)) and the reason lines may run wider, because the right half of the panel was empty. The card is now 636 px at 1440. Shoulder clearance is ≥ 32 px.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
