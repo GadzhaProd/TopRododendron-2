@@ -1,6 +1,6 @@
-# Mockup tool (not site code): k-tekst.html = the main mockup (K + field card, as approved visually) with only the copy/order
-# changes from the critic round: benefit-led H2, no lead that repeats the hero, the guarantee first and set larger, and on
-# phones the reasons before the facts card. Card, numbers, layout and the founder block are unchanged.
+# Mockup tool (not site code), kept for the record: built k-tekst.html (the 10 Nov review page) from the main mockup as it
+# was before that copy was approved. The approved copy now lives in finalize_main.py + k-tekst.css, so re-running this
+# against the current index.html stops at the first assert; k-tekst.html stays as the review snapshot.
 import pathlib, sys
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 s = (D / 'index.html').read_text()

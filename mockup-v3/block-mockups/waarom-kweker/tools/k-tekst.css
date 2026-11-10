@@ -1,0 +1,11 @@
+/* Waarom wij K, new copy (approved 10 Nov): no lead, so the list follows the H2 directly; the guarantee leads by size; phones: reasons before the card */
+.wh2 .wh2-grid{grid-template-areas:"h card" "list card";grid-template-rows:auto 1fr}
+.wh2 .wh2-list{margin-top:clamp(40px,4.5vw,64px);align-self:start}
+.wh2 .kt-hl h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.025em}
+.wh2 .kt-hl p{font-size:clamp(16px,1.2vw,17.5px);color:#2f2e2a}
+@media (max-width:860px){
+  .wh2 .wh2-grid{grid-template-areas:"h" "list" "card"}
+  .wh2 .wh2-list{margin-top:28px}
+  .wh2 .wh2-h .nb{white-space:normal;display:block}
+  .wh2 .wh2-card{margin-top:32px}
+}

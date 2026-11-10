@@ -1,5 +1,6 @@
 # Mockup tool (not site code): builds the main mockup index.html from varianten.html with only the approved
-# Waarom wij K (lead under the heading) between the hero and the founder block; review bar removed.
+# Waarom wij K between the hero and the founder block; review bar removed. Since 10 Nov K carries the approved new copy:
+# benefit-led H2, no lead under it, the guarantee first and larger, root ball in the fresh-dug line, phones: reasons before the card.
 import re, pathlib, sys
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 s = (D / 'varianten.html').read_text()
@@ -25,5 +26,18 @@ s = s.replace('</head>', '<style>' + card + '</style></head>', 1)
 # hero text block in the bottom-left corner on desktop + landscape tablets (approved 9 Nov); phones / portrait tablets unchanged
 hero = (D / 'tools' / 'hero-bottom-left.css').read_text()
 s = s.replace('</head>', '<style id="hero-bottom-left">' + hero + '</style></head>', 1)
+def rep(a, b):
+    global s
+    assert s.count(a) == 1, (s.count(a), a[:70]); s = s.replace(a, b)
+# Waarom wij K, new copy (approved 10 Nov; reviewed as k-tekst.html)
+rep('<h2 id="h-waarom" class="wh2-h">Wij kweken rhododendrons. <span class="nb">Niet meer, niet minder.</span></h2>',
+    '<h2 id="h-waarom" class="wh2-h">Wij kweken alleen rhododendrons. <span class="nb">Dat merkt u aan elke plant.</span></h2>')
+rep('<p class="wh2-lead">Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>', '')
+rep('<li><div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></li>',
+    '<li class="kt-hl"><div><h3>Aangroeigarantie op elke plant</h3><p>Slaat een plant in het eerste seizoen <span class="nb">niet aan?</span> Dan vervangen wij hem kosteloos.</p></div></li>')
+rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>',
+    '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')
+kt = (D / 'tools' / 'k-tekst.css').read_text()
+s = s.replace('</head>', '<style id="k-tekst">' + kt + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
