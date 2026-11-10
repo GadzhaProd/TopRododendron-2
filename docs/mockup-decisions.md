@@ -215,4 +215,8 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - guarantee line, name, role ("Oprichter van Top Rhododendrons", kept because the eyebrow is gone), quote and facts strip unchanged.
 
     About 100 words instead of 140. Panel padding-bottom at ≥ 1200 px is colw × .20. Card 702 px at 1440 (was 726); on phones 979 px (was 1063). Shoulder clearance ≥ 32 px. The face is still about 85–90 % of the card height (the next step per the review: draw on a soft background above the head).
+  - 5, review points 1–2 (owner, 10 Nov: "делай пункты 1 и 2, цитату средний вариант"):
+    - Portrait: at ≥ 1200 px the photo column is about 36 % (grid .72fr / 1.28fr). The portrait is 72 % of the card height (--w:72cqh), anchored to the bottom with the same chin and neck crop, and its top fades into the card (mask 0 → 16 %), whose top colour matches the portrait backdrop. The head is about 66 % of the card height, with about 200 px of air above the hair. Tablets keep a wider column so the face is never cropped: 1024–1199 .9fr / 1.1fr; 861–1023 1fr / 1fr with --w 66cqh. Card 696 px at 1440, 635 at 1024. Shoulder clearance ≥ 33 px. The phone portrait is unchanged.
+    - Text: reason titles clamp(17px,1.4vw,20px); lines clamp(15px,1.12vw,16px) #2f2e2a; guarantee title (A) clamp(22px,1.95vw,28px), its line up to 17 px. Quote (the middle option): clamp(18px,1.4vw,20px), #262521, one line on desktop. Contrast ≥ 7.2:1.
+    - Copy: guarantee "Slaat een plant in het eerste seizoen niet aan? Dan vervangen wij hem kosteloos." Transport line restored: "Bezorgd door heel Nederland, of af te halen in Otterlo."
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.

@@ -58,10 +58,10 @@ v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><d
 # 5 · Герт + преимущества: the founder card keeps only the name and role; the four reasons sit in the same card; facts strip below
 # owner, 9 Nov: shorter copy in variant 5 (no repeats of "advies", "familiekwekerij in Otterlo", "eigen transport"); eyebrow removed
 LEAD5 = 'Voor uw tuin of uw project kiest u uit eigen kweek.'
-WHY5 = [('Aangroeigarantie op elke plant', 'Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.'),
+WHY5 = [('Aangroeigarantie op elke plant', 'Slaat een plant in het eerste seizoen niet aan? Dan vervangen wij hem kosteloos.'),
         ('Vers gerooid voor uw levering', 'Wij rooien pas vlak voor uw levering.'),
         ('Persoonlijk advies van de kweker', '<span class="nb">Ma–za 09:00–17:00</span>.'),
-        ('Eigen transport of afhalen', 'Bezorgd door heel Nederland.')]
+        ('Eigen transport of afhalen', 'Bezorgd door heel Nederland, of af te halen in Otterlo.')]
 why_in_card = '<ul class="fd-why">' + ''.join(
     (f'<li class="fd-hl"><h3>{t}</h3><p>{d}</p></li>' if n == 0 else f'<li><h3>{t}</h3><p>{d}</p></li>')
     for n, (t, d) in enumerate(WHY5)) + '</ul>'
@@ -142,8 +142,8 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 }
 /* keep the last reason clear of the drawn-on shoulder (the quote made the card taller, so the photo and shoulder grow too) */
 @media (min-width:861px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .2)}}
-@media (min-width:861px) and (max-width:1199px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .32)}}
-@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .54)}}
+@media (min-width:861px) and (max-width:1199px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .22)}}
+@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .2)}}
 @media (max-width:860px){
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why{border-top-color:rgba(245,242,234,.2)}
   :is(.m-n1,.m-n2,.m-n3) .kv5 .fd-why li{border-bottom-color:rgba(245,242,234,.16)}
@@ -174,6 +174,23 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   :is(.m-n1,.m-n2,.m-n3).e-b .kv5 .fd-hl{background:rgba(245,242,234,.08);margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
   :is(.m-n1,.m-n2,.m-n3).e-c .kv5 .fd-hl{border-left-color:#a9b894}
 }
+/* review (9–10 Nov), points 1–2: smaller portrait, larger and darker text; guarantee and quote lead the card */
+/* 1 · the photo column narrows to ~36 % and the portrait shrinks to 72 % of the card height, anchored to the bottom (same chin/neck crop);
+   its top fades into the card, whose top colour was sampled from the portrait backdrop, so the head gets air above it */
+@media (min-width:861px){
+  .kv5 .fd-card{--colw:calc((min(100vw,1440px) - 2 * clamp(20px,4vw,80px)) * .36);grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)}
+  .kv5 .fd-ph .ph-in{--w:72cqh;top:auto;bottom:calc(var(--w) * -.0768);left:calc((100cqw - var(--w)) / 2);
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%);mask-image:linear-gradient(to bottom,transparent 0,#000 16%)}
+}
+/* tablets: a narrow photo column would crop the side of the face, so the column stays at ~45 % there */
+@media (min-width:861px) and (max-width:1199px){.kv5 .fd-card{--colw:calc((100vw - 2 * clamp(20px,4vw,80px)) * .45);grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
+@media (min-width:861px) and (max-width:1023px){.kv5 .fd-card{--colw:calc((100vw - 2 * clamp(20px,4vw,80px)) * .5);grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.kv5 .fd-ph .ph-in{--w:66cqh}}
+.kv5 .fd-why h3{font-size:clamp(17px,1.4vw,20px)}
+.kv5 .fd-why p{font-size:clamp(15px,1.12vw,16px);color:#2f2e2a}
+.e-a .kv5 .fd-hl h3{font-size:clamp(22px,1.95vw,28px)}
+.e-a .kv5 .fd-hl p{font-size:clamp(15.5px,1.2vw,17px)}
+/* 2 · quote, the middle option the owner chose: 20 px and darker, still one line on desktop */
+.kv5 .kv5-q p{font-size:clamp(18px,1.4vw,20px)!important;color:#262521}
 /* the second H2 sentence is too long to stay on one line on phones */
 @media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
 @media (max-width:860px){
