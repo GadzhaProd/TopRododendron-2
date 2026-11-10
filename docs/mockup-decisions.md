@@ -234,4 +234,6 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - Bottom inset 80 px at 1200–1365 px. Tablets 861–1199: 48 px insets, same scale.
 
     Card 651 px at 1440 (was 696). Shoulder clearance ≥ 38 px. Worst contrast 5.66:1. Phone unchanged (pixel-identical). Optional html.fl-l1 puts the first fact under the portrait and the others on the text line (not recommended). The comparison page renders pixel-identical to the reviewer's copy at 390–1440.
+  - APPROVED (owner, 10 Nov: "расстановку утверждаем"): the reviewer's desktop text layout (fl-y) for variant 5.
+  - Guarantee emphasis, final round, on the approved layout: A · Шрифт (title 28 px step, no decoration) vs B · Полоса (the same title on a soft field-colour band; band inset 24 px with −24 px margins so the text stays on the column line; radius 16; line 16 px). B: shoulder ≥ 33 px, contrast ≥ 6.6:1. The reviewer is asked to pick the stronger one, or propose another.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.

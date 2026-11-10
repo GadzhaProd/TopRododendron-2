@@ -193,6 +193,15 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .e-a .kv5 .fd-hl p{font-size:clamp(15.5px,1.2vw,17px)}
 /* 2 · quote, the middle option the owner chose: 20 px and darker, still one line on desktop */
 .kv5 .kv5-q p{font-size:clamp(18px,1.4vw,20px)!important;color:#262521}
+/* B · Полоса on the approved layout (owner, 10 Nov): the band keeps the text on the column line (negative margin = padding),
+   the title on the same 28 px step as A, the line on the 16 px step */
+@media (min-width:861px){
+  .fl-y.e-b .kv5 .fd-why li.fd-hl{margin:16px -24px 8px;padding:24px;border-radius:16px;border-bottom:0}
+  .fl-y.e-b .kv5 .fd-why{border-top:0}
+  .fl-y.e-b .kv5 .fd-hl h3{font-size:clamp(22px,2.03vw,28px);line-height:1.2}
+  .fl-y.e-b .kv5 .fd-hl p{margin-top:8px;font-size:16px;line-height:1.5;color:#2f2e2a}
+  .fl-y.e-b .kv5 .fd-hl + li{border-top:0}
+}
 /* review bar on phones: the variant buttons are hidden (desktop-only comparisons); the bar scrolls if it still overflows */
 @media (max-width:600px){.rv{justify-content:flex-start;overflow-x:auto}.rv .rv-g button{min-width:34px;padding:0 9px}}
 /* the second H2 sentence is too long to stay on one line on phones */
