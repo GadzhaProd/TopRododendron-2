@@ -220,4 +220,18 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
     - Text: reason titles clamp(17px,1.4vw,20px); lines clamp(15px,1.12vw,16px) #2f2e2a; guarantee title (A) clamp(22px,1.95vw,28px), its line up to 17 px. Quote (the middle option): clamp(18px,1.4vw,20px), #262521, one line on desktop. Contrast ≥ 7.2:1.
     - Copy: guarantee "Slaat een plant in het eerste seizoen niet aan? Dan vervangen wij hem kosteloos." Transport line restored: "Bezorgd door heel Nederland, of af te halen in Otterlo."
   - 5, hair (owner, 10 Nov: "убрать дымку с волос, на макушке она залазит на волосы"): the top fade is now an inline alpha mask (395×354, data URI). It fades the photo's top over 18 % but keeps the head fully opaque; the matte is taken from the portrait itself (pixels darker than the backdrop), dilated about 12 px and feathered. The backdrop dissolves around the crown, not over it. Hair pixels vs the unmasked photo: 99th percentile difference 6.7/255, i.e. visually identical. (A plain short fade ending at 3 % also cleared the hair but left a visible light band above the head; a mask loaded from a separate file did not render from file://, hence the inline data URI.)
+  - 5, desktop text layout by the reviewer (10 Nov; owner: "в веб версии что-то не то"). Diagnosis:
+    - the text column sat right against the face, with empty space on its right (the rules ran 770 px, the longest text 625 px);
+    - the column hung at the top (58 px above, 95 px below, the list ending on a floating rule);
+    - blurred type steps (quote = reason titles; fact numbers 37 vs name 40; the lead at 17.5 under a 58 H2);
+    - spacing without a scale.
+
+    Fix (`tools/fable-layout.css`, applied under html.fl-y; the review bar "Текст": Fable / Было):
+    - The text column starts at 5/12 of the container (610 px at 1440) with 64 px insets on top, right and bottom, and is vertically centred.
+    - The list ends on text (no last rule).
+    - Type scale 58 / 40 / 28 / 20 / 16: the lead, quote and reason titles are 20; all small text is 16; fact numbers are 28.
+    - Spacing scale 8 · 16 · 24 · 32 · 64: lead 24 px under the H2, card 64 px lower, facts 40 px under the card.
+    - Bottom inset 80 px at 1200–1365 px. Tablets 861–1199: 48 px insets, same scale.
+
+    Card 651 px at 1440 (was 696). Shoulder clearance ≥ 38 px. Worst contrast 5.66:1. Phone unchanged (pixel-identical). Optional html.fl-l1 puts the first fact under the portrait and the others on the text line (not recommended). The comparison page renders pixel-identical to the reviewer's copy at 390–1440.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.

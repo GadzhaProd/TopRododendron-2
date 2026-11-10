@@ -193,6 +193,8 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 .e-a .kv5 .fd-hl p{font-size:clamp(15.5px,1.2vw,17px)}
 /* 2 · quote, the middle option the owner chose: 20 px and darker, still one line on desktop */
 .kv5 .kv5-q p{font-size:clamp(18px,1.4vw,20px)!important;color:#262521}
+/* review bar on phones: the variant buttons are hidden (desktop-only comparisons); the bar scrolls if it still overflows */
+@media (max-width:600px){.rv{justify-content:flex-start;overflow-x:auto}.rv .rv-g button{min-width:34px;padding:0 9px}}
 /* the second H2 sentence is too long to stay on one line on phones */
 @media (max-width:600px){.kv h2 .nb,.kv1 h2 .nb{white-space:normal}}
 @media (max-width:860px){
@@ -206,6 +208,26 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 }
 '''
 s = s.replace('</head>', '<style id="kritiek">' + CSS + '</style></head>', 1)
+# reviewer's desktop text layout for variant 5 (10 Nov), scoped to html.fl-y so it can be compared with the previous layout
+def scope(css):
+    out = []
+    for line in css.split('\n'):
+        def fix(sel):
+            sel = sel.strip()
+            if not sel: return sel
+            if sel.startswith('.e-a ') or sel.startswith('.fl-l1 '):
+                head, rest = sel.split(' ', 1); return f'.fl-y{head} {rest}'
+            return f'.fl-y {sel}'
+        m = re.match(r'^(\s*)([^@{}/][^{}]*)\{(.*)$', line)
+        if m and not m.group(2).strip().startswith('/*'):
+            sels = ','.join(fix(x) for x in m.group(2).split(','))
+            line = m.group(1) + sels + '{' + m.group(3)
+        # selectors inside one-line @media blocks
+        line = re.sub(r'(@media[^{]*\{)([^{}]+)\{', lambda mm: mm.group(1) + ','.join(fix(x) for x in mm.group(2).split(',')) + '{', line)
+        out.append(line)
+    return '\n'.join(out)
+FL = scope((D / 'tools' / 'fable-layout.css').read_text())
+s = s.replace('</head>', '<style id="fable-layout">' + FL + '</style></head>', 1)
 RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Блок</i>'
       '<button type="button" data-g="v" data-v="0" aria-pressed="false">0<span class="l"> · Сейчас</span></button>'
       '<button type="button" data-g="v" data-v="1" aria-pressed="false">1<span class="l"> · Текст</span></button>'
@@ -216,9 +238,12 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Гарантия</i>'
       '<button type="button" data-g="e" data-v="a" aria-pressed="true">A<span class="l"> · Шрифт</span></button>'
       '<button type="button" data-g="e" data-v="b" aria-pressed="false">B<span class="l"> · Полоса</span></button>'
-      '<button type="button" data-g="e" data-v="c" aria-pressed="false">C<span class="l"> · Линия</span></button></div></div>')
+      '<button type="button" data-g="e" data-v="c" aria-pressed="false">C<span class="l"> · Линия</span></button></div>'
+      '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Текст</i>'
+      '<button type="button" data-g="fl" data-v="y" aria-pressed="true">Fable</button>'
+      '<button type="button" data-g="fl" data-v="n" aria-pressed="false">Было</button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))

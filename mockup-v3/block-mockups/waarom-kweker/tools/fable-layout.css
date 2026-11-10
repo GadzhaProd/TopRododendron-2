@@ -1,0 +1,42 @@
+/* ===== FABLE LAYOUT OVERRIDE · variant 5, desktop only (min-width:861px) =====
+   One system: two vertical lines (L0 = container edge, L1 = 5/12 of the container), one type scale
+   (58 / 40 / 28 / 20 / 16), one spacing scale (8 · 16 · 24 · 32 · 64). Phone (<=860px) is untouched.
+   Facts strip stays on four equal columns (recommended). Toggle: html.fl-l1 = first fact under the portrait, the other three from L1. */
+@media (min-width:861px){
+  #waarom-5{--W:calc(min(100vw,1440px) - 2 * var(--gut))}
+  /* header: the lead is a real second level (20 px, same step as the quote), closer to the H2 */
+  .kh-top5 .kv-lead{margin-top:24px;font-size:clamp(18px,1.45vw,20px);line-height:1.5;letter-spacing:-.01em;max-width:none}
+  .kv5 .kv4-card{margin-top:64px}
+  /* type scale inside the card */
+  .kv5 .fd-name h2{font-size:clamp(32px,2.9vw,40px);line-height:1.05}
+  .kv5 .fd-role{margin-top:8px;font-size:16px;line-height:1.5}
+  .kv5 .kv5-q p{font-size:clamp(18px,1.45vw,20px)!important;line-height:1.4;max-width:none;text-wrap:balance}
+  .e-a .kv5 .fd-hl h3{font-size:clamp(22px,2.03vw,28px);line-height:1.2}
+  .kv5 .fd-why li:not(.fd-hl) h3{font-size:clamp(18px,1.45vw,20px);line-height:1.25}
+  .kv5 .fd-why p,.e-a .kv5 .fd-hl p{font-size:16px;line-height:1.5;text-wrap:balance}
+  /* rhythm: 8 inside a pair, 32 between groups, 16 / 24 inside rows; the list ends on text, not on a floating rule */
+  .kv5 .kv5-q{margin-top:32px;padding-left:24px}
+  .kv5 .fd-why{margin-top:32px}
+  .kv5 .fd-why li{padding:16px 0}
+  .e-a .kv5 .fd-hl{padding:24px 0}
+  .e-a .kv5 .fd-hl p{margin-top:8px}
+  .kv5 .fd-why li:last-child{padding-bottom:0;border-bottom:0}
+  /* facts: sit closer to the card as its footer; labels on the 16 px step */
+  .kv5 .kh-facts{margin-top:40px;padding-top:32px}
+  .kv5 .kh-facts li{gap:8px}
+}
+@media (min-width:1024px){.kv5 .kh-facts span{font-size:16px;line-height:1.4}}
+@media (min-width:1200px){
+  /* text column starts on L1 (5/12 of the container) and keeps the same 64 px inset on top, right and bottom */
+  .kv5 .fd-pn{padding:64px 64px 64px calc(var(--W) * (5 / 12 - .36));justify-content:center}
+  /* optional (html.fl-l1): facts on the card's lines: first fact under the portrait (L0), the other three share the text column from L1 */
+  .fl-l1 .kv5 .kh-facts{grid-template-columns:calc(var(--W) * 5 / 12) repeat(3,minmax(0,1fr))}
+  .fl-l1 .kv5 .kh-facts li{padding:0 24px 0 0;border-left:0}
+  .kv5 .kh-facts b{font-size:28px;letter-spacing:-.025em}
+}
+/* narrower desktops: the shoulder reaches further under the text, so the bottom inset grows one step (keeps >= 30 px clearance) */
+@media (min-width:1200px) and (max-width:1365px){.kv5 .fd-pn{padding-bottom:80px}}
+@media (min-width:861px) and (max-width:1199px){
+  .kv5 .fd-pn{padding-top:48px;padding-right:48px;padding-left:48px}
+}
+@media (min-width:861px) and (max-width:1023px){.kv5 .fd-pn{padding-bottom:calc(var(--colw) * .24)}}
