@@ -377,5 +377,6 @@ ch.forEach(function(b){b.addEventListener('click',function(){var q=b.getAttribut
 clr.addEventListener('click',function(){sel={};upd()});})();</script>'''
 rep('</body>', JS + '</body>')
 
+rep('<title>Waarom wij · De kweker</title>', '<title>Assortiment · varianten</title>')
 (D / 'assortiment.html').write_text(s)
 print('assortiment.html', len(s), 'bytes;', len(V), 'varieties')
