@@ -256,3 +256,11 @@ The owner's UX friend (senior) preferred the main mockup's K: "reads easily, bri
 - The founder block stays separate below, as approved. Variant 5 (Gert inside this block) remains on `kritiek.html`.
 - No horizontal scroll at 360/390/1024/1440/1920.
 - For the code transfer: the lead rule `.wh2-lead` is no longer used by K.
+
+## Founder block, phone — new card treatments (10 Nov), in review
+
+Owner: the navy phone card was made before the soft-gradient card style existed; redo the part the photo melts into, and as a second variant show the photo and the card as two separate parts. Desktop unchanged (pixel-identical).
+- Page: `waarom-kweker/fd-telefoon.html`, built from `index.html` by `tools/build_fd_telefoon.py`. Review bar: 0 · Сейчас (approved navy v4), 1 · Накладка, 2 · Две части; colour Синий / Поле.
+- 1 · Накладка: the same v4 phone photo melts into a navy soft-gradient card with grain (lit dusty blue under the photo, moss glow bottom-left, heather glow right; grain .26 overlay, not on the photo). Navy only: a light card under the dark jacket was tried and dropped, the jacket fades into it only through a grey haze band.
+- 2 · Две части: the original photo (1200×1418, no fade) with 22 px corners, a 10 px gap, then the text card with the same corners. Синий = navy soft gradient; Поле = the Waarom wij facts card palette.
+- Contrast on real pixels at 360/390: every text ≥ 6.1:1. No horizontal scroll.
