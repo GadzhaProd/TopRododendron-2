@@ -265,10 +265,10 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="fl" data-v="y" aria-pressed="true">Fable</button>'
       '<button type="button" data-g="fl" data-v="n" aria-pressed="false">Было</button></div>'
       '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Цитата</i>'
-      '<button type="button" data-g="q" data-v="l" aria-pressed="false">Линия</button>'
-      '<button type="button" data-g="q" data-v="b" aria-pressed="true">Карточка</button></div></div>')
+      '<button type="button" data-g="q" data-v="l" aria-pressed="true">Линия</button>'
+      '<button type="button" data-g="q" data-v="b" aria-pressed="false">Карточка</button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y q-b">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y q-l">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))
