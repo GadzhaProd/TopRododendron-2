@@ -243,3 +243,14 @@ Checks: no horizontal scroll at 360/390/1024/1440. Contrast on real pixels ≥ 5
   - Quote polish applied (owner, 10 Nov; html.qp-y; review bar "Правки": До / После). At ≥ 861 px the rule is site sage #8b9a7c (was dark moss #3f4a37) and hangs 22 px into the margin (2 px, rounded), so the quote text sits on the same column line as the name and the reasons (552 px at 1440; it was 26 px further right). The card height and shoulder clearance are unchanged. The phone keeps its light rule.
   - Reviewer on the polish (10 Nov): "После" is better. Before, the quote created a second left edge (26 px in) and the eye tripped on it. After, every line of text sits on one edge, and the rule hangs in the margin like hanging punctuation or list markers; the eye aligns on the text mass, not the thin mark. The site-sage rule was too faint (the quote read as a third line under the role), so the rule is now #6b7a5e, between the dark moss and the sage; 2 px, 22 px hang unchanged.
 Next best asset: a real photo of a lifted rhododendron with its root ball, shot at the nursery.
+
+## Waarom wij — K with new copy (10 Nov), in review
+
+The owner's UX friend (senior) preferred the main mockup's K: "reads easily, bright card, accented numbers". The outside critic's point (reads like information, not "why us") is addressed with copy and order only, keeping K's layout, the field card and its large numbers.
+- Page: `waarom-kweker/k-tekst.html`, built from `index.html` by `tools/build_k_tekst.py`.
+- H2 "Wij kweken alleen rhododendrons. Dat merkt u aan elke plant."
+- The lead is removed: it repeated the hero. The list follows the H2 directly.
+- Guarantee first and larger: title clamp(26px,2.6vw,36px), line "Slaat een plant in het eerste seizoen niet aan? Dan vervangen wij hem kosteloos." at 16–17.5 px #2f2e2a. The other reasons are unchanged.
+- Phones: the reasons come before the facts card.
+- The founder block stays separate below, as approved. Variant 5 (Gert inside this block) remains on `kritiek.html`.
+- No horizontal scroll at 390/1024/1440.
