@@ -1,0 +1,25 @@
+/* Founder block, phone (≤860 px): "Подпись" (approved 10 Nov; reviewed as 4 on fd-fable.html). One light card: name, role, line and the
+   quote first, on the photo's own backdrop continued upward; Gert rises from the bottom edge, the jacket cut by the card edge as on desktop.
+   The name leads by size; the bust is the desktop's approved extended portrait: the phone <img class="ph-m"> shows
+   img/fd-podpis-bust.webp (1440x1718, built by tools/build_fd_fable.py). The quote's second sentence starts its own line (span added by script on phones).
+   Scoped to html.fd-podpis with the same specificity as on the review page. Desktop is untouched. */
+@media (max-width:860px){
+  html.fd-podpis .fd-card{position:relative;isolation:isolate;padding:0;max-width:520px;margin-inline:auto;grid-template-columns:minmax(0,1fr);
+    background:radial-gradient(ellipse 80% 190px at -10% 40px,rgba(183,198,160,.7) 0%,transparent 72%),radial-gradient(ellipse 60% 150px at 106% 150px,rgba(236,214,210,.65) 0%,transparent 72%),#e6e8e5}
+  html.fd-podpis .fd-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
+  html.fd-podpis .fd-card > *,html.fd-podpis .fd-pn > *{position:relative;z-index:2}
+  html.fd-podpis .fd-pn{display:contents}
+  html.fd-podpis .fd-name{order:1;padding:28px 22px 0}
+  html.fd-podpis .fd-name h2{font-size:clamp(48px,14.4vw,64px);line-height:.95;letter-spacing:-.045em;color:#141413}
+  html.fd-podpis .fd-role{margin:10px 0 0;font-size:15px;color:#3d3c37}
+  html.fd-podpis .fd-txt{order:2;margin:16px 0 0;padding:0 22px;font-size:16.5px;line-height:1.5;color:#3d3c37;max-width:34ch}
+  html.fd-podpis .fd-qw{order:3;padding:24px 22px 0}
+  html.fd-podpis .fd-q{border-left-color:var(--moss);padding-left:18px}
+  html.fd-podpis .fd-q p{max-width:none;text-wrap:balance;color:#141413;font-size:clamp(25px,7.1vw,34px);line-height:1.12;letter-spacing:-.035em;font-weight:600}
+  html.fd-podpis .fd-q .q2{display:block}
+  /* the photo's top is its own backdrop fading out, so it slides 9% under the quote; the same air above the hair as on the review page */
+  html.fd-podpis .fd-ph{order:4;z-index:1;border-radius:0;overflow:hidden;aspect-ratio:1440/1718;margin-top:-9%}
+  html.fd-podpis .fd-ph picture{display:none}
+  html.fd-podpis .fd-ph .ph-in{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:none;mask-image:none}
+  html.fd-podpis .fd-ph .ph-in img.ph-m{display:block;width:100%;height:100%;object-fit:cover}
+}

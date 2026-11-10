@@ -39,5 +39,16 @@ rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten p
     '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')
 kt = (D / 'tools' / 'k-tekst.css').read_text()
 s = s.replace('</head>', '<style id="k-tekst">' + kt + '</style></head>', 1)
+# Founder block, phone: "Подпись" (approved 10 Nov; reviewed as 4 on fd-fable.html). Desktop unchanged.
+rep('<img class="ph-m" src="img/owner-portrait-m.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" width="1200" height="1628" loading="lazy">',
+    '<img class="ph-m" src="img/fd-podpis-bust.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" width="1440" height="1718" loading="lazy">')
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} fd-podpis">', s, count=1)
+fp = (D / 'tools' / 'fd-podpis.css').read_text()
+s = s.replace('</head>', '<style id="fd-podpis">' + fp + '</style></head>', 1)
+# the quote's second sentence starts its own line on phones; a span in the markup would shift the desktop glyphs by a fraction of
+# a pixel, so it is added by script on phone widths only (for the code transfer: render the span in the phone layout only)
+rep('</body>', "<script>(function(){var p=document.querySelector('#kweker .fd-q p'),m=matchMedia('(max-width:860px)');if(!p)return;"
+    "function f(){var t=p.textContent,i=t.indexOf('. ');if(m.matches&&i>0){p.textContent=t.slice(0,i+2);var s=document.createElement('span');"
+    "s.className='q2';s.textContent=t.slice(i+2);p.appendChild(s)}else{p.textContent=t}}f();m.addEventListener('change',f)})();</script></body>")
 (D / 'index.html').write_text(s)
 print('ok', len(s))
