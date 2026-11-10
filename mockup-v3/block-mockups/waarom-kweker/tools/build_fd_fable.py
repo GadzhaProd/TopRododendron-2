@@ -8,9 +8,12 @@
 #                 corner, then the line and the quote full width in large type. Glass-sage card as on desktop.
 #   3 · Подпись   all light: name, line and the large quote first, the portrait rises from the bottom edge of the card
 #                 (the jacket is cut by the card edge as on desktop, nothing fades below the chin).
+#   4 · Подпись, правки (owner picked 3, 10 Nov): the name leads by size as on desktop; a wider bust from the desktop's
+#                 approved extended portrait, so the right shoulder slopes out of the frame instead of being cut under the chin.
 # Derived photos (real photo only; the light backdrop above the hair is continued upward and fades out):
 #   img/fd-fable-portrait-top.webp   = backdrop extension + owner-portrait-m.webp   (variant 1)
 #   img/fd-fable-portrait-bust.webp  = backdrop extension + owner-portrait.webp     (variant 3)
+#   img/fd-podpis-bust.webp          = backdrop extension + owner-portrait-ext.webp, first 1440 px (variant 4)
 # Switch via html.ff-0/1/2/3. Usage: python3 tools/build_fd_fable.py [dir]
 import re, pathlib, sys
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
@@ -37,6 +40,19 @@ def build_photos():
         Image.fromarray(np.clip(res, 0, 255).astype(np.uint8), 'RGBA').save(D / 'img' / out, 'WEBP', quality=86, alpha_quality=100, method=6)
         return res.shape
     print(extend('owner-portrait-m.webp', 'fd-fable-portrait-top.webp'), extend('owner-portrait.webp', 'fd-fable-portrait-bust.webp'))
+    # variant 4: the extended portrait has transparency right of the head, so the continued backdrop is averaged
+    # premultiplied and keeps the source's own alpha (no dark band where the source is transparent)
+    im = np.asarray(Image.open(D / 'img' / 'owner-portrait-ext.webp').convert('RGBA')).astype(float)[:, :1440]
+    H, W, _ = im.shape
+    a = im[0:10, :, 3:4] / 255
+    pm = g1((im[0:10, :, :3] * a).mean(0), 40); am = g1(np.repeat(a.mean(0), 3, 1), 40)[:, :1]
+    ext = np.zeros((EXT, W, 4)); ext[..., :3] = (pm / np.maximum(am, 1e-3))[None]
+    ext[..., :3] += np.random.default_rng(7).normal(0, 1.1, (EXT, W, 1))
+    t = np.clip((np.arange(EXT) - 20) / (EXT - 20 - 30), 0, 1)
+    ext[..., 3] = (255 * (3 * t * t - 2 * t ** 3))[:, None] * np.clip(am[:, 0], 0, 1)[None]
+    res = np.concatenate([ext, im], 0)
+    Image.fromarray(np.clip(res, 0, 255).astype(np.uint8), 'RGBA').save(D / 'img' / 'fd-podpis-bust.webp', 'WEBP', quality=86, alpha_quality=100, method=6)
+    print(res.shape)
 build_photos()
 
 # ---------- page ----------
@@ -62,16 +78,16 @@ CSS = r'''
 body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
 @media (max-width:860px){
   /* shared by 1-3 */
-  html:is(.ff-1,.ff-2,.ff-3) .fd-card{position:relative;isolation:isolate;padding:0;max-width:520px;margin-inline:auto}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-pn{display:contents}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-ph{border-radius:0;overflow:hidden}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-ph picture{display:none}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-ph .ph-in{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:none;mask-image:none}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-ph .ph-in img.ph-m{display:block;width:100%;height:100%;object-fit:cover}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-q .q2{display:block}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-q p{max-width:none;text-wrap:balance}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:GRAIN;background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
-  html:is(.ff-1,.ff-2,.ff-3) .fd-card > *,html:is(.ff-1,.ff-2,.ff-3) .fd-pn > *{position:relative;z-index:2}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-card{position:relative;isolation:isolate;padding:0;max-width:520px;margin-inline:auto}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-pn{display:contents}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-ph{border-radius:0;overflow:hidden}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-ph picture{display:none}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-ph .ph-in{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:none;mask-image:none}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-ph .ph-in img.ph-m{display:block;width:100%;height:100%;object-fit:cover}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-q .q2{display:block}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-q p{max-width:none;text-wrap:balance}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:GRAIN;background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
+  html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-card > *,html:is(.ff-1,.ff-2,.ff-3,.ff-4) .fd-pn > *{position:relative;z-index:2}
 
   /* ---------- 1 · Обложка: light top -> portrait -> navy bottom ---------- */
   html.ff-1 .fd-card{grid-template-columns:minmax(0,1fr);
@@ -109,21 +125,27 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   html.ff-2 .fd-q p{color:#141413;font-size:clamp(25px,7.1vw,34px);line-height:1.14;letter-spacing:-.03em;font-weight:600}
 
   /* ---------- 3 · Подпись: the words first, Gert under them, all light ---------- */
-  html.ff-3 .fd-card{grid-template-columns:minmax(0,1fr);
+  html:is(.ff-3,.ff-4) .fd-card{grid-template-columns:minmax(0,1fr);
     background:
       radial-gradient(ellipse 80% 190px at -10% 40px,rgba(183,198,160,.7) 0%,transparent 72%),
       radial-gradient(ellipse 60% 150px at 106% 150px,rgba(236,214,210,.65) 0%,transparent 72%),
       #e6e8e5}
-  html.ff-3 .fd-name{order:1;padding:28px 22px 0}
-  html.ff-3 .fd-name h2{font-size:30px;line-height:1.05;letter-spacing:-.035em;color:#141413}
-  html.ff-3 .fd-role{margin:6px 0 0;font-size:14.5px;color:#3d3c37}
-  html.ff-3 .fd-txt{order:2;margin:16px 0 0;padding:0 22px;font-size:16.5px;line-height:1.5;color:#3d3c37;max-width:34ch}
-  html.ff-3 .fd-qw{order:3;padding:24px 22px 0}
-  html.ff-3 .fd-q{border-left-color:var(--moss);padding-left:18px}
-  html.ff-3 .fd-q p{color:#141413;font-size:clamp(25px,7.1vw,34px);line-height:1.12;letter-spacing:-.035em;font-weight:600}
-  html.ff-3 .fd-ph{order:4;z-index:1;aspect-ratio:1200/1718;margin-top:-14%}
-  html.ff-3 .fd-ph .ph-in img.ph-m{content:url(img/fd-fable-portrait-bust.webp)}
+  html:is(.ff-3,.ff-4) .fd-name{order:1;padding:28px 22px 0}
+  html:is(.ff-3,.ff-4) .fd-name h2{font-size:30px;line-height:1.05;letter-spacing:-.035em;color:#141413}
+  html:is(.ff-3,.ff-4) .fd-role{margin:6px 0 0;font-size:14.5px;color:#3d3c37}
+  html:is(.ff-3,.ff-4) .fd-txt{order:2;margin:16px 0 0;padding:0 22px;font-size:16.5px;line-height:1.5;color:#3d3c37;max-width:34ch}
+  html:is(.ff-3,.ff-4) .fd-qw{order:3;padding:24px 22px 0}
+  html:is(.ff-3,.ff-4) .fd-q{border-left-color:var(--moss);padding-left:18px}
+  html:is(.ff-3,.ff-4) .fd-q p{color:#141413;font-size:clamp(25px,7.1vw,34px);line-height:1.12;letter-spacing:-.035em;font-weight:600}
+  html:is(.ff-3,.ff-4) .fd-ph{order:4;z-index:1;aspect-ratio:1200/1718;margin-top:-14%}
+  html:is(.ff-3,.ff-4) .fd-ph .ph-in img.ph-m{content:url(img/fd-fable-portrait-bust.webp)}
   html.ff-1 .fd-ph .ph-in img.ph-m{content:url(img/fd-fable-portrait-top.webp)}
+
+  /* ---------- 4 · Подпись, правки: the name leads as on desktop; the wider bust ---------- */
+  html.ff-4 .fd-name h2{font-size:clamp(48px,14.4vw,64px);line-height:.95;letter-spacing:-.045em}
+  html.ff-4 .fd-role{margin-top:10px;font-size:15px}
+  html.ff-4 .fd-ph{aspect-ratio:1440/1718;margin-top:-9%}   /* the smaller bust keeps the same air above the hair as 3 */
+  html.ff-4 .fd-ph .ph-in img.ph-m{content:url(img/fd-podpis-bust.webp)}
 }
 @media (min-width:861px){.rv::after{content:"Варианты только для телефона";font:500 12px/1 Manrope,system-ui,sans-serif;color:#a9a79f;margin-left:8px}}
 '''.replace('GRAIN', GRAIN)
@@ -132,7 +154,8 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="ff" data-v="0" aria-pressed="false">0<span class="l"> · Сейчас</span></button>'
       '<button type="button" data-g="ff" data-v="1" aria-pressed="true">1<span class="l"> · Обложка</span></button>'
       '<button type="button" data-g="ff" data-v="2" aria-pressed="false">2<span class="l"> · Разворот</span></button>'
-      '<button type="button" data-g="ff" data-v="3" aria-pressed="false">3<span class="l"> · Подпись</span></button></div></div>')
+      '<button type="button" data-g="ff" data-v="3" aria-pressed="false">3<span class="l"> · Подпись</span></button>'
+      '<button type="button" data-g="ff" data-v="4" aria-pressed="false">4<span class="l"> · Подпись, правки</span></button></div></div>')
 rep('<div id="root">', RV + '<div id="root">')
 s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} ff-1">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Gert Top · telefoon · Fable</title>', 1)
