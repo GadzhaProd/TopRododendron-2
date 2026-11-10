@@ -212,6 +212,12 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 @media (max-width:860px){
   :is(.m-n1,.m-n2,.m-n3).q-b .kv5 .kv5-q{margin:22px -12px 0;padding:16px 12px;border-left:0;border-radius:14px;background:rgba(245,242,234,.09)}
 }
+/* quote polish (owner, 10 Nov; html.qp-y): the rule is lighter (site sage instead of dark moss) and hangs in the margin,
+   so the quote text sits on the same column line as the name and the reasons */
+@media (min-width:861px){
+  .qp-y.q-l .kv5 .kv5-q{position:relative;border-left:0;padding-left:0}
+  .qp-y.q-l .kv5 .kv5-q::before{content:"";position:absolute;left:-22px;top:.15em;bottom:.15em;width:2px;border-radius:2px;background:var(--wash)}
+}
 /* the guarantee line breaks after the question when it does not fit on one line (never inside "niet aan") */
 .kv5 .hl-br{display:none}
 @media (max-width:1279px){.kv5 .hl-br{display:inline}}
@@ -266,9 +272,12 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="fl" data-v="n" aria-pressed="false">Было</button></div>'
       '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Цитата</i>'
       '<button type="button" data-g="q" data-v="l" aria-pressed="true">Линия</button>'
-      '<button type="button" data-g="q" data-v="b" aria-pressed="false">Карточка</button></div></div>')
+      '<button type="button" data-g="q" data-v="b" aria-pressed="false">Карточка</button></div>'
+      '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Правки</i>'
+      '<button type="button" data-g="qp" data-v="n" aria-pressed="false">До</button>'
+      '<button type="button" data-g="qp" data-v="y" aria-pressed="true">После</button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y q-l">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y q-l qp-y">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))
