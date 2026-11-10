@@ -202,6 +202,16 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   .fl-y.e-b .kv5 .fd-hl p{margin-top:8px;font-size:16px;line-height:1.5;color:#2f2e2a}
   .fl-y.e-b .kv5 .fd-hl + li{border-top:0}
 }
+/* owner, 10 Nov: the band from B, but for the quote (html.q-b). The quote sits on the soft field-colour band instead of the moss rule;
+   the guarantee keeps the A treatment. Text stays on the column line (negative margin = padding). */
+@media (min-width:861px){
+  .fl-y.q-b .kv5 .kv5-q{margin:28px -24px 0;padding:20px 24px;border-left:0;border-radius:16px;
+    background:linear-gradient(100deg,rgba(173,187,152,.55) 0%,rgba(222,206,176,.5) 62%,rgba(236,214,210,.45) 100%)}
+  .fl-y.q-b .kv5 .fd-why{margin-top:28px}
+}
+@media (max-width:860px){
+  :is(.m-n1,.m-n2,.m-n3).q-b .kv5 .kv5-q{margin:22px -12px 0;padding:16px 12px;border-left:0;border-radius:14px;background:rgba(245,242,234,.09)}
+}
 /* the guarantee line breaks after the question when it does not fit on one line (never inside "niet aan") */
 .kv5 .hl-br{display:none}
 @media (max-width:1279px){.kv5 .hl-br{display:inline}}
@@ -253,9 +263,12 @@ RV = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv
       '<button type="button" data-g="e" data-v="c" aria-pressed="false">C<span class="l"> · Линия</span></button></div>'
       '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Текст</i>'
       '<button type="button" data-g="fl" data-v="y" aria-pressed="true">Fable</button>'
-      '<button type="button" data-g="fl" data-v="n" aria-pressed="false">Было</button></div></div>')
+      '<button type="button" data-g="fl" data-v="n" aria-pressed="false">Было</button></div>'
+      '<span class="sep" aria-hidden="true"></span><div class="rv-g"><i>Цитата</i>'
+      '<button type="button" data-g="q" data-v="l" aria-pressed="false">Линия</button>'
+      '<button type="button" data-g="q" data-v="b" aria-pressed="true">Карточка</button></div></div>')
 s = s.replace('<div id="root">', RV + '<div id="root">', 1)
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} v-5 e-a fl-y q-b">', s, count=1)
 s = s.replace('<title>Waarom wij · De kweker</title>', '<title>Waarom wij · kritiek</title>', 1)
 (D / 'kritiek.html').write_text(s)
 print('ok', len(s))
