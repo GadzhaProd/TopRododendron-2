@@ -58,7 +58,7 @@ v4 = (f'<section class="kv kh kv4" id="waarom-4" aria-labelledby="h-waarom-4"><d
 # 5 · Герт + преимущества: the founder card keeps only the name and role; the four reasons sit in the same card; facts strip below
 # owner, 9 Nov: shorter copy in variant 5 (no repeats of "advies", "familiekwekerij in Otterlo", "eigen transport"); eyebrow removed
 LEAD5 = 'Voor uw tuin of uw project kiest u uit eigen kweek.'
-WHY5 = [('Aangroeigarantie op elke plant', 'Slaat een plant in het eerste seizoen niet aan? Dan vervangen wij hem kosteloos.'),
+WHY5 = [('Aangroeigarantie op elke plant', 'Slaat een plant in het eerste seizoen <span class="nb">niet aan?</span><br class="hl-br"> Dan vervangen wij hem kosteloos.'),
         ('Vers gerooid voor uw levering', 'Wij rooien pas vlak voor uw levering.'),
         ('Persoonlijk advies van de kweker', '<span class="nb">Ma–za 09:00–17:00</span>.'),
         ('Eigen transport of afhalen', 'Bezorgd door heel Nederland, of af te halen in Otterlo.')]
@@ -202,6 +202,9 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
   .fl-y.e-b .kv5 .fd-hl p{margin-top:8px;font-size:16px;line-height:1.5;color:#2f2e2a}
   .fl-y.e-b .kv5 .fd-hl + li{border-top:0}
 }
+/* the guarantee line breaks after the question when it does not fit on one line (never inside "niet aan") */
+.kv5 .hl-br{display:none}
+@media (max-width:1279px){.kv5 .hl-br{display:inline}}
 /* review bar on phones: the variant buttons are hidden (desktop-only comparisons); the bar scrolls if it still overflows */
 @media (max-width:600px){.rv{justify-content:flex-start;overflow-x:auto}.rv .rv-g button{min-width:34px;padding:0 9px}}
 /* the second H2 sentence is too long to stay on one line on phones */
