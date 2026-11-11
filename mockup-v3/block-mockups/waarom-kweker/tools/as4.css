@@ -109,29 +109,29 @@
 
 /* ===== C · Заголовок-карточка =====
    The heading cell is a «Поле» card (same gradient and grain as the facts card in Waarom wij) with a large moss 7. */
-:is(.iz-c,.iz-ac) .sd-hd{position:relative;isolation:isolate;overflow:hidden;border-radius:22px;--gr:.3;--gb:overlay;
+:is(.iz-c,.iz-ac,.iz-dc) .sd-hd{position:relative;isolation:isolate;overflow:hidden;border-radius:22px;--gr:.3;--gb:overlay;
   --p:#ebece3;--b1:#adbb98;--b2:#f1f0e8;--b3:#d9cbb0;--b4:#c7b893;--b5:#ecd6d2;
   padding:clamp(20px,1.9vw,28px);margin-bottom:clamp(40px,3.6vw,56px)}
-:is(.iz-c,.iz-ac) :is(.sd-hbg,.sd-hd .sd-gr,.sd-tile .sd-gr){display:block}
-:is(.iz-c,.iz-ac) .sd-zv{display:none}
-:is(.iz-c,.iz-ac) .sd-7{display:block;margin:0 0 .16em -.05em;font-size:clamp(132px,13vw,196px);line-height:.74;letter-spacing:-.06em;color:var(--moss);font-variant-numeric:lining-nums}
-:is(.iz-c,.iz-ac) .sd-hd h2{font-size:clamp(25px,2.25vw,33px);line-height:1.1;letter-spacing:-.03em}
-:is(.iz-c,.iz-ac) .sd-ht{display:block}
-:is(.iz-c,.iz-ac) .sd-lead{margin-top:14px!important;font-size:15.5px;color:#3d3c37}
-:is(.iz-c,.iz-ac) .sd-all{border-color:rgba(20,20,19,.38)}
-:is(.iz-c,.iz-ac) .sd-all:hover{background:rgba(255,255,255,.4)}
+:is(.iz-c,.iz-ac,.iz-dc) :is(.sd-hbg,.sd-hd .sd-gr,.sd-tile .sd-gr){display:block}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-zv{display:none}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-7{display:block;margin:0 0 .16em -.05em;font-size:clamp(132px,13vw,196px);line-height:.74;letter-spacing:-.06em;color:var(--moss);font-variant-numeric:lining-nums}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-hd h2{font-size:clamp(25px,2.25vw,33px);line-height:1.1;letter-spacing:-.03em}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-ht{display:block}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-lead{margin-top:14px!important;font-size:15.5px;color:#3d3c37}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-all{border-color:rgba(20,20,19,.38)}
+:is(.iz-c,.iz-ac,.iz-dc) .sd-all:hover{background:rgba(255,255,255,.4)}
 @media (max-width:1199px){
-  :is(.iz-c,.iz-ac) .sd-all{align-self:stretch;justify-content:space-between;padding:0 16px;font-size:14.5px;gap:6px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-all{align-self:stretch;justify-content:space-between;padding:0 16px;font-size:14.5px;gap:6px}
 }
 @media (max-width:999px){
-  :is(.iz-c,.iz-ac) .sd-hd{padding:20px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-hd{padding:20px}
 }
 @media (max-width:599px){
-  :is(.iz-c,.iz-ac) .sd-hd{padding:20px 20px 22px;margin-bottom:22px;border-radius:20px}
-  :is(.iz-c,.iz-ac) .sd-hd h2{display:flex;align-items:flex-end;gap:16px;font-size:clamp(23px,6.6vw,27px)}
-  :is(.iz-c,.iz-ac) .sd-7{flex:none;margin:0 0 -.02em -.04em;font-size:104px}
-  :is(.iz-c,.iz-ac) .sd-ht{max-width:9em;padding-bottom:1px}
-  :is(.iz-c,.iz-ac) .sd-lead{margin-top:16px!important;font-size:15px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-hd{padding:20px 20px 22px;margin-bottom:22px;border-radius:20px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-hd h2{display:flex;align-items:flex-end;gap:16px;font-size:clamp(23px,6.6vw,27px)}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-7{flex:none;margin:0 0 -.02em -.04em;font-size:104px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-ht{max-width:9em;padding-bottom:1px}
+  :is(.iz-c,.iz-ac,.iz-dc) .sd-lead{margin-top:16px!important;font-size:15px}
 }
 
 /* ===== Субстрат: a slim line under the grid. An accessory, not an eighth variety: horizontal, a small round thumb,
@@ -173,3 +173,33 @@
   .iz-b .sd-hd{padding-bottom:22px}
   .iz-b .sd-tile{margin-bottom:12px}
 }
+
+/* ===== D · Общий фон (owner, 11 Nov): instead of a colour per variety, one light «Поле» gradient behind the whole grid.
+   No hard card edge: the field is feathered on all four sides by two intersected masks, so it dissolves into the page.
+   The photos and the text stay on it; the grain lies in the field only. D+C adds the heading card on top. ===== */
+.sd-field{display:none}
+:is(.iz-d,.iz-dc) .sd{overflow-x:clip}   /* only sideways: the feathered top may fade into the gap above the block */
+:is(.iz-d,.iz-dc) .sd > .in{position:relative;isolation:isolate}
+:is(.iz-d,.iz-dc) .sd-field{--f:clamp(56px,7vw,120px);display:block;position:absolute;z-index:-1;pointer-events:none;
+  left:calc(var(--gut) - var(--f) * .7);right:calc(var(--gut) - var(--f) * .7);top:calc(var(--f) * -.55);bottom:calc(var(--f) * -.35);
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent),linear-gradient(to bottom,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent),linear-gradient(to bottom,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent);
+  mask-composite:intersect;--gr:.26;--gb:overlay}
+:is(.iz-d,.iz-dc) .sd-fbg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 42% 58% at 4% 40%,#c4ceb0 0%,transparent 70%),
+  radial-gradient(ellipse 30% 34% at 90% 10%,#efdcd8 0%,transparent 70%),
+  radial-gradient(ellipse 38% 46% at 100% 66%,#d3dbc4 0%,transparent 70%),
+  radial-gradient(ellipse 62% 40% at 50% 104%,#e2d6bf 0%,transparent 72%),
+  radial-gradient(ellipse 46% 40% at 46% 30%,#f2f1ea 0%,transparent 70%),
+  linear-gradient(to bottom,#ebede5 0%,#eaebe2 52%,#e9e4d7 100%)}
+:is(.iz-d,.iz-dc) .sd-field .sd-gr{display:block;z-index:0}
+/* secondary text one step darker on the field */
+:is(.iz-d,.iz-dc) :is(.sd-c,.sd-b,.sd-v,.sd-s){color:var(--ink2)}
+:is(.iz-d,.iz-dc) .sd-c i{box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+:is(.iz-d,.iz-dc) .sd-c i.lt{box-shadow:inset 0 0 0 1px #bdb9ae}
+/* the closing tile would vanish into the field: a quiet translucent panel instead of a second gradient */
+:is(.iz-d,.iz-dc) .sd-tile{background:rgba(255,255,255,.42);box-shadow:inset 0 0 0 1px rgba(20,20,19,.08)}
+:is(.iz-d,.iz-dc) .sd-tile .sd-gr{display:none}
+:is(.iz-d,.iz-dc) .sd-all{border-color:rgba(20,20,19,.38)}
+:is(.iz-d,.iz-dc) .sd-all:hover{background:rgba(255,255,255,.45)}
+@media (max-width:599px){:is(.iz-d,.iz-dc) .sd-field{--f:44px;left:0;right:0}}

@@ -5,6 +5,8 @@
 #   html.iz-b   B · Цвет сорта: every card is a soft grained gradient in its own flower colour (hex from the data, softened)
 #   html.iz-c   C · Заголовок-карточка: the heading cell is a «Поле» gradient card with a large moss "7"
 #   html.iz-ac  A + C
+#   html.iz-d   D · Общий фон (owner, 11 Nov): one light «Поле» gradient behind the whole grid, feathered edges, no card edge
+#   html.iz-dc  D + C. The medallion states (A, A+C) stay in the CSS but are off the review bar: the owner rejected them.
 #   html.sb-n / html.sb-y   the substrate line under the grid, off / on
 # The base markup and CSS are copies of tools/build_as3_sad.py and tools/as3-sad.css (those files are not touched);
 # the additions live in tools/as4.css. All plant and substrate data is read from mockup-v3/src/data/content.ts.
@@ -74,7 +76,7 @@ SUB = ('<a class="sd-sub" href="#assortiment" aria-label="' + e(T['name']) + ', 
        '<span class="sb-t"><b>' + e(T['name']) + '</b><span>' + e(T['upsell']) + '</span></span>'
        '<span class="sb-p"><b>€&nbsp;' + T['price'] + '</b><span>' + e(T['unit']).replace(' van ', ' van&nbsp;').replace('40 liter', '40&nbsp;liter') + '</span></span>'
        '<span class="sb-go">Bekijk substraat' + ARW + '</span></a>')
-BLOCK = ('<section id="as4" class="sd" aria-labelledby="h-sd"><div class="in"><div class="sd-grid">'
+BLOCK = ('<section id="as4" class="sd" aria-labelledby="h-sd"><div class="in"><div class="sd-field" aria-hidden="true"><span class="sd-fbg"></span>' + GRAIN + '</div><div class="sd-grid">'
          '<div class="sd-hd"><span class="wh2-bg sd-hbg" aria-hidden="true"></span>' + GRAIN +
          '<h2 id="h-sd"><span class="sd-zv">Zeven</span><span class="sd-7">7</span> <span class="sd-ht">soorten uit eigen kweek.</span></h2>'
          '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p>' + ALL + '</div>'
@@ -86,7 +88,7 @@ rep('<div class="between"><div class="in"><span>… hier volgen Assortiment en H
     '<div id="assortiment">' + BLOCK + '</div>')
 
 # ---------- review bar ----------
-rep('<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis">', '<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis iz-a sb-n">')
+rep('<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis">', '<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis iz-d sb-n">')
 
 
 def btns(g, default, pairs):
@@ -94,7 +96,7 @@ def btns(g, default, pairs):
 
 
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g">'
-    + btns('iz', 'a', [('0', '0 · Как есть'), ('a', 'A · Медальон'), ('b', 'B · Цвет сорта'), ('c', 'C · Карточка'), ('ac', 'A+C')])
+    + btns('iz', 'd', [('0', '0 · Как есть'), ('b', 'B · Цвет сорта'), ('c', 'C · Карточка'), ('d', 'D · Общий фон'), ('dc', 'D+C')])
     + '</div><span class="sep"></span><div class="rv-g">' + btns('sb', 'n', [('n', 'Субстрат: нет'), ('y', 'да')]) + '</div></div><div id="root">')
 
 CSS = ('\n/* ===== homepage Assortiment block · «Сад» + изюминка (tools/build_assortiment4.py) ===== */\n'
