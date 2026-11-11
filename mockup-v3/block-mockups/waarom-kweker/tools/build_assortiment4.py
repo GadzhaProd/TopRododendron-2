@@ -99,7 +99,7 @@ def btns(g, default, pairs):
 
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g">'
     + btns('iz', 'd', [('0', '0 · Как есть'), ('b', 'B · Цвет сорта'), ('c', 'C · Карточка'), ('d', 'D · Общий фон'), ('dc', 'D+C')])
-    + '</div><span class="sep"></span><div class="rv-g rv-fp">' + btns('fp', '1', [('1', 'Палитра 1 · Поле'), ('2', '2 · Цветение'), ('3', '3 · Листва'), ('4', '4 · Рассвет'), ('5', '5 · Дымка'), ('6', '6 · Роса')])
+    + '</div><span class="sep"></span><div class="rv-g rv-fp">' + btns('fp', '1', [('1', 'Палитра 1 · Поле'), ('2', '2 · Цветение'), ('3', '3 · Листва'), ('4', '4 · Рассвет'), ('5', '5 · Дымка'), ('7', '5+ · Дымка, правки'), ('6', '6 · Роса')])
     + '</div><span class="sep"></span><div class="rv-g">' + btns('sb', 'n', [('n', 'Субстрат: нет'), ('y', 'да')]) + '</div></div><div id="root">')
 
 CSS = ('\n/* ===== homepage Assortiment block · «Сад» + изюминка (tools/build_assortiment4.py) ===== */\n'
