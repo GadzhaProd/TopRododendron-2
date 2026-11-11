@@ -3,7 +3,8 @@
 # Variant 1 is round 2's «Сад» corrected on professional grounds:
 #   - all seven varieties at once, in an aligned grid: no stagger, so names and prices can be compared along a line;
 #   - one photo frame for all (4:5), each photo positioned so the bush stays whole;
-#   - name, colour, bloom and price sit on shared rows (CSS subgrid), whatever the name length;
+#   - name, bloom and price sit on shared rows (CSS subgrid), whatever the name length (the colour line was removed
+#     on 11 Nov at the owner's request: the photo shows the colour);
 #   - the price always carries its size and "met kluit"; the whole card links to the variety;
 #   - the grid closes without orphans: desktop 4 columns = heading + 7; tablet 3 columns = heading + 7 + link tile;
 #     phone 2 columns = 7 + link tile, with the heading above.
@@ -34,12 +35,10 @@ ARW = '<svg class="sd-arw" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h
 
 items = ''
 for v in V:
-    light = v['hex'].lower() in ('#f1ece3',)
     items += ('<article class="sd-it"><a href="#assortiment" aria-label="' + e(v['name']) + ', vanaf € ' + v['frm'] + ' voor 40–60 cm">'
               '<div class="sd-ph"><img src="img/' + v['slug'] + '-2-sm.webp" alt="' + e(v['name']) + ', bloeiende struik" loading="lazy"'
               + (' style="object-position:' + POS[v['slug']] + '"' if v['slug'] in POS else '') + '></div>'
               '<h3>' + e(v['name']) + '</h3>'
-              '<p class="sd-c"><i' + (' class="lt"' if light else '') + ' style="background:' + v['hex'] + '" aria-hidden="true"></i>' + e(v['color']) + '</p>'
               '<p class="sd-b">Bloeit ' + e(v['bloei'].lower()) + '</p>'
               '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">40–60&nbsp;cm, met kluit</span></p>'
               '</a></article>')

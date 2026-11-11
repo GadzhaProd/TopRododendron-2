@@ -346,3 +346,8 @@ Owner: "да, переноси в основной макет". The main mockup 
 - Checks: the block matches the approved review state pixel for pixel at 360/768/1024/1440/1920 (at 390 only sub-pixel text antialiasing differs); header, hero, Waarom wij and the founder block are unchanged in sizes and computed styles; no horizontal scroll at 360–1920.
 - Review pages (`assortiment.html`, `-2`, `-3`, `-4`) stay as snapshots; their build scripts expect the old placeholder in `index.html`, so they no longer rebuild from the current main mockup.
 - For the code transfer: card links point to `#assortiment` in the mockup; on the site they go to the product pages.
+- Owner (11 Nov): remove the colour (name and dot) from the cards everywhere; the heading corner on desktop has too much empty space between the lead and the button. Colour removed in the main mockup (`build_as3_sad.py`, `assortiment.css`): desktop cards are photo, name, bloom, price (4 subgrid rows); phone cards photo, name, price.
+- Heading corner, in review on `waarom-kweker/assortiment-5.html` (built by `tools/build_assortiment5.py` from index.html; html.hd-0|1|2):
+  - 1 · Над сеткой: the heading row spans the full width, H2 at the section size (clamp(34px,4.2vw,58px)) on the left and the lead on the right on its baseline; the grid is 4 columns from 768 px and 2 below, 7 cards + the «Bekijk alle planten» tile, so it closes without a gap at every width. +110 px at 1440; at 768 the block gets shorter (920 vs 1360 px). Recommended.
+  - 2 · Собрать в ячейке: heading, lead and button together at the top of the first cell; the free space moves below the button.
+  - Phone is the same in all three (the heading is already above the grid there).
