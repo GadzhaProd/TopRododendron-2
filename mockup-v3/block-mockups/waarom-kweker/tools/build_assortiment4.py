@@ -7,6 +7,7 @@
 #   html.iz-ac  A + C
 #   html.iz-d   D · Общий фон (owner, 11 Nov): one light «Поле» gradient behind the whole grid, feathered edges, no card edge
 #   html.fp-1..4  the field palette for D and D+C (Поле, Цветение, Листва, Рассвет).
+#   html.fp-5, fp-6  the designer's field variants (Дымка, Роса): own blob layout and feather, scoped in as4.css.
 #   html.iz-dc  D + C. The medallion states (A, A+C) stay in the CSS but are off the review bar: the owner rejected them.
 #   html.sb-n / html.sb-y   the substrate line under the grid, off / on
 # The base markup and CSS are copies of tools/build_as3_sad.py and tools/as3-sad.css (those files are not touched);
@@ -98,7 +99,7 @@ def btns(g, default, pairs):
 
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g">'
     + btns('iz', 'd', [('0', '0 · Как есть'), ('b', 'B · Цвет сорта'), ('c', 'C · Карточка'), ('d', 'D · Общий фон'), ('dc', 'D+C')])
-    + '</div><span class="sep"></span><div class="rv-g rv-fp">' + btns('fp', '1', [('1', 'Палитра 1 · Поле'), ('2', '2 · Цветение'), ('3', '3 · Листва'), ('4', '4 · Рассвет')])
+    + '</div><span class="sep"></span><div class="rv-g rv-fp">' + btns('fp', '1', [('1', 'Палитра 1 · Поле'), ('2', '2 · Цветение'), ('3', '3 · Листва'), ('4', '4 · Рассвет'), ('5', '5 · Дымка'), ('6', '6 · Роса')])
     + '</div><span class="sep"></span><div class="rv-g">' + btns('sb', 'n', [('n', 'Субстрат: нет'), ('y', 'да')]) + '</div></div><div id="root">')
 
 CSS = ('\n/* ===== homepage Assortiment block · «Сад» + изюминка (tools/build_assortiment4.py) ===== */\n'
