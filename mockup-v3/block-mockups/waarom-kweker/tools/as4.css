@@ -269,31 +269,17 @@ html.fp-6:is(.iz-d,.iz-dc) .sd-fbg{background:
     linear-gradient(to bottom,var(--b1) 0%,var(--b2) 52%,var(--b3) 100%)}
 }
 
-/* ===== 5+ · Дымка, правки (owner, 11 Nov). The facts card in Waarom wij above is an object with edges, this field is the
-   section's ground without edges; so that the difference reads as intended: (1) more air under the card, the field starts
-   at the block's own top and its colour builds up slowly over a long eased top ramp, no band right under the card;
-   (2) the field is quieter where it meets the card: the base is lighter at the top and the sage moves down behind the
-   photos, so the card stays the densest colour. ===== */
-html.fp-7{--c1:#bdd2a7;--c3:#c3d8ac;--c4:#ebdfac;--c5:#f2f4e6;--b1:#e9eedf;--b2:#e3e9d1;--b3:#ece5c4}
-html.fp-7:is(.iz-d,.iz-dc) .sd-field{top:0;--t:calc(var(--f)*1.8);
-  --top:transparent 0,rgba(0,0,0,.05) calc(var(--t)*.2),rgba(0,0,0,.18) calc(var(--t)*.4),rgba(0,0,0,.45) calc(var(--t)*.6),rgba(0,0,0,.78) calc(var(--t)*.8),#000 var(--t),
+/* ===== 5+ · Дымка, нежнее (owner, 11 Nov): the same field as 5 (same layout and colour story), only gentler. The colours
+   are about 20 % closer to the page, and the top ramp is longer and eased, so the green builds up under the facts card
+   instead of starting as a band. A first pass that moved the colour down behind the photos was rejected: "за много убрал,
+   просто нежнее". ===== */
+html.fp-7{--c1:#c3d5ae;--c3:#cddfba;--c4:#ece2b9;--c5:#f2f4e6;--b1:#e2e9d6;--b2:#e6ebd9;--b3:#ede7cf}
+html.fp-7:is(.iz-d,.iz-dc) .sd-field{--t:calc(var(--f)*1.5);
+  --top:transparent 0,rgba(0,0,0,.05) calc(var(--t)*.2),rgba(0,0,0,.2) calc(var(--t)*.4),rgba(0,0,0,.48) calc(var(--t)*.6),rgba(0,0,0,.8) calc(var(--t)*.8),#000 var(--t),
     #000 calc(100% - var(--f)),rgba(0,0,0,.84) calc(100% - var(--f)*.7),rgba(0,0,0,.5) calc(100% - var(--f)*.5),rgba(0,0,0,.16) calc(100% - var(--f)*.3),rgba(0,0,0,.04) calc(100% - var(--f)*.14),transparent 100%;
   -webkit-mask-image:linear-gradient(to right,var(--e)),linear-gradient(to bottom,var(--top));
   mask-image:linear-gradient(to right,var(--e)),linear-gradient(to bottom,var(--top))}
-html.fp-7:is(.iz-d,.iz-dc) .sd-fbg{background:
-  radial-gradient(ellipse 60% 70% at 14% 52%,var(--c1) 0%,transparent 72%),
-  radial-gradient(ellipse 64% 70% at 88% 86%,var(--c4) 0%,transparent 72%),
-  radial-gradient(ellipse 50% 46% at 56% 16%,var(--c5) 0%,transparent 70%),
-  radial-gradient(ellipse 44% 46% at 32% 98%,var(--c3) 0%,transparent 70%),
-  linear-gradient(170deg,var(--b1) 0%,var(--b2) 45%,var(--b3) 100%)}
 @media (max-width:599px){
-  html.fp-7:is(.iz-d,.iz-dc) .sd-field{top:0;--t:170px;
+  html.fp-7:is(.iz-d,.iz-dc) .sd-field{--t:120px;top:-56px;
     -webkit-mask-image:linear-gradient(to bottom,var(--top));mask-image:linear-gradient(to bottom,var(--top))}
-  html.fp-7:is(.iz-d,.iz-dc) .sd-fbg{background:
-    radial-gradient(380px 340px at 100% 6%,var(--c5) 0%,transparent 70%),
-    radial-gradient(440px 460px at 0% 30%,var(--c1) 0%,transparent 72%),
-    radial-gradient(420px 460px at 100% 58%,var(--c3) 0%,transparent 72%),
-    radial-gradient(420px 460px at 0% 80%,var(--c1) 0%,transparent 72%),
-    radial-gradient(480px 440px at 100% 99%,var(--c4) 0%,transparent 72%),
-    linear-gradient(to bottom,var(--b1) 0%,var(--b2) 30%,var(--b2) 60%,var(--b3) 100%)}
 }
