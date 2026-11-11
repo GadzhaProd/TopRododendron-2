@@ -50,5 +50,14 @@ s = s.replace('</head>', '<style id="fd-podpis">' + fp + '</style></head>', 1)
 rep('</body>', "<script>(function(){var p=document.querySelector('#kweker .fd-q p'),m=matchMedia('(max-width:860px)');if(!p)return;"
     "function f(){var t=p.textContent,i=t.indexOf('. ');if(m.matches&&i>0){p.textContent=t.slice(0,i+2);var s=document.createElement('span');"
     "s.className='q2';s.textContent=t.slice(i+2);p.appendChild(s)}else{p.textContent=t}}f();m.addEventListener('change',f)})();</script></body>")
+# Assortiment «Сад» on the «Дымка, нежнее» field (approved 11 Nov; reviewed as iz-d fp-7 on assortiment-4.html).
+# Markup from tools/as3-sad.html (written by tools/build_as3_sad.py from content.ts) plus the field layer; CSS in tools/assortiment.css.
+sad = (D / 'tools' / 'as3-sad.html').read_text().replace('<section id="as3-1" class="sd"', '<section class="sd"', 1)
+sad = sad.replace('<div class="in"><div class="sd-grid">', '<div class="in"><div class="sd-field" aria-hidden="true"><span class="sd-fbg"></span>'
+                  '<span class="wh-grain"></span></div><div class="sd-grid">', 1)
+assert 'sd-field' in sad and 'as3-1' not in sad
+rep('<div class="between"><div class="in"><span>… hier volgen Assortiment en Hoe het werkt …</span></div></div>',
+    '<div id="assortiment">' + sad + '</div><div class="between"><div class="in"><span>… hier volgt Hoe het werkt …</span></div></div>')
+s = s.replace('</head>', '<style id="assortiment-css">' + (D / 'tools' / 'assortiment.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

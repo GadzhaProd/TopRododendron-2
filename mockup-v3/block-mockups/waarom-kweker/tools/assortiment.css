@@ -1,0 +1,115 @@
+/* ===== Homepage Assortiment · «Сад» on the «Дымка, нежнее» field (approved 11 Nov) =====
+   All seven varieties at once in an aligned grid (heading cell + 7 on desktop; heading + 7 + link tile on tablet; 7 + tile
+   on phone). One 4:5 bush photo per card; name, colour, bloom and "vanaf € … · 40–60 cm, met kluit" on shared rows (subgrid);
+   the whole card is one link. Behind the grid: one light gradient field without a card edge, sage top left flowing into
+   butter bottom right, feathered on the sides and bottom and with a long eased ramp at the top (it builds up under the
+   Waarom wij facts card instead of starting as a band). Flattened from the review page assortiment-4.html (iz-d fp-7 sb-n). */
+#assortiment{scroll-margin-top:120px;background:var(--page)}
+.sd{background:var(--page);color:var(--ink)}
+/* the block follows Waarom wij on the same background: one section gap, not two stacked paddings */
+.sd > .in{padding-top:clamp(16px,2.2vw,40px);padding-bottom:clamp(48px,5vw,80px)}
+.sd :is(h2,h3,p){margin:0}
+.sd a{color:inherit;text-decoration:none}
+.sd-arw{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.sd-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(18px,1.8vw,28px);row-gap:0}
+.sd-it{display:contents}
+.sd-it > a{grid-row:span 5;display:grid;grid-template-rows:subgrid;row-gap:0;padding-bottom:clamp(40px,3.6vw,56px);border-radius:22px}
+.sd-it > a:focus-visible,.sd-all:focus-visible,.sd-tile:focus-visible{outline:2px solid var(--moss);outline-offset:4px}
+
+.sd-ph{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#dcd9d0}
+.sd-ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.sd-it > a:hover .sd-ph img{transform:scale(1.03)}
+.sd-it h3{margin-top:16px;font-size:clamp(18px,1.45vw,21px);line-height:1.2;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.sd-it > a:hover h3{color:var(--moss)}
+.sd-c,.sd-b{font-size:14.5px;line-height:1.45;color:var(--soft)}
+.sd-c{margin-top:6px;display:flex;align-items:flex-start;gap:8px}
+.sd-c i{flex:none;width:9px;height:9px;margin-top:.5lh;translate:0 -50%;border-radius:50%}
+.sd-c i.lt{box-shadow:inset 0 0 0 1px #bdb9ae}
+.sd-pr{margin-top:12px;display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:6px}
+.sd-v{font-size:13.5px;color:var(--soft)}
+.sd-pr b{font-size:clamp(24px,2vw,29px);line-height:1.1;font-weight:600;letter-spacing:-.03em;color:var(--moss);font-variant-numeric:tabular-nums}
+.sd-s{grid-column:1/-1;margin-top:3px;font-size:13px;line-height:1.35;color:var(--soft)}
+
+/* the heading is the grid's first cell; its link sits on the price row of the cards */
+.sd-hd{grid-row:span 5;display:flex;flex-direction:column;align-items:flex-start;padding:0 clamp(4px,1vw,16px) clamp(40px,3.6vw,56px) 0}
+.sd-hd h2{font-size:clamp(32px,3.4vw,50px);line-height:1.04;letter-spacing:-.035em;font-weight:600;text-wrap:balance}
+.sd-lead{margin-top:18px!important;font-size:16px;line-height:1.55;color:var(--ink2);max-width:30ch;text-wrap:pretty}
+.sd-all{margin-top:auto;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border:1px solid #a9a69c;border-radius:999px;font-size:15.5px;font-weight:600;white-space:nowrap}
+.sd-all:hover{background:#e7e4dc}
+
+/* closing tile: only where heading + 7 would leave an empty cell (tablet, phone) */
+.sd-tile{display:none;grid-row:span 5;position:relative;isolation:isolate;overflow:hidden;flex-direction:column;justify-content:flex-end;gap:14px;
+  margin-bottom:clamp(40px,3.6vw,56px);padding:22px;border-radius:20px;--gr:.3;--gb:overlay;
+  background:radial-gradient(ellipse 90% 50% at 50% -10%,#f1f0e8 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 96% 20%,#ecd6d2 0%,transparent 70%),
+    radial-gradient(ellipse 70% 70% at -6% 50%,#adbb98 0%,transparent 68%),radial-gradient(ellipse 120% 50% at 50% 108%,#d9cbb0 0%,transparent 72%),
+    linear-gradient(to bottom,#eceee6 0%,#ebece3 46%,#e8e3d4 100%)}
+.sd-tile > span{font-size:16px;line-height:1.4;color:var(--ink2);max-width:16ch}
+.sd-tile b{display:block;padding:12px 0;font-size:15.5px;line-height:1.3;font-weight:600;color:var(--moss)}
+.sd-tile .nw{white-space:nowrap}
+.sd-tile .sd-arw{display:inline-block;vertical-align:-3px;margin-left:8px}
+
+/* tablet: 3 columns = heading + 7 + tile */
+@media (max-width:999px){
+  .sd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sd-hd .sd-all{display:none}
+  .sd-tile{display:flex}
+}
+/* phone: 2 columns = 7 + tile, heading above; the bloom line moves to the product page */
+@media (max-width:599px){
+  .sd-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
+  .sd-hd{grid-column:1/-1;grid-row:auto;padding:0 0 26px}
+  .sd-hd h2{font-size:clamp(30px,8.6vw,40px)}
+  .sd-lead{margin-top:12px!important;max-width:none}
+  .sd-it > a{grid-row:span 4;padding-bottom:28px}
+  .sd-b{display:none}
+  .sd-ph{border-radius:16px}
+  .sd-it h3{margin-top:12px;font-size:16.5px}
+  .sd-c{font-size:13.5px;gap:7px;margin-top:4px}
+  .sd-pr{margin-top:8px}
+  .sd-pr b{font-size:22px}
+  .sd-s{font-size:12.5px}
+  .sd-tile{grid-row:span 4;margin-bottom:28px;padding:16px;border-radius:16px;gap:8px}
+  .sd-tile > span{font-size:15px}
+  .sd-tile b{font-size:14.5px}
+}
+
+/* ---------- the field ---------- */
+.sd{overflow-x:clip}   /* only sideways: the feathered top fades into the gap above the block */
+.sd > .in{position:relative;isolation:isolate}
+.sd-field{--f:clamp(84px,9vw,150px);--t:calc(var(--f)*1.5);--gr:.26;--gb:overlay;
+  --c1:#c3d5ae;--c3:#cddfba;--c4:#ece2b9;--c5:#f2f4e6;--b1:#e2e9d6;--b2:#e6ebd9;--b3:#ede7cf;
+  position:absolute;z-index:-1;pointer-events:none;
+  left:calc(var(--gut) - var(--f)*.62);right:calc(var(--gut) - var(--f)*.62);top:calc(var(--f)*-.5);bottom:calc(var(--f)*-.3);
+  /* eased feathers: the sides and bottom over --f, the top over the longer --t */
+  --e:transparent 0,rgba(0,0,0,.04) calc(var(--f)*.14),rgba(0,0,0,.16) calc(var(--f)*.3),rgba(0,0,0,.5) calc(var(--f)*.5),rgba(0,0,0,.84) calc(var(--f)*.7),rgba(0,0,0,.96) calc(var(--f)*.86),#000 var(--f),
+    #000 calc(100% - var(--f)),rgba(0,0,0,.96) calc(100% - var(--f)*.86),rgba(0,0,0,.84) calc(100% - var(--f)*.7),rgba(0,0,0,.5) calc(100% - var(--f)*.5),rgba(0,0,0,.16) calc(100% - var(--f)*.3),rgba(0,0,0,.04) calc(100% - var(--f)*.14),transparent 100%;
+  --top:transparent 0,rgba(0,0,0,.05) calc(var(--t)*.2),rgba(0,0,0,.2) calc(var(--t)*.4),rgba(0,0,0,.48) calc(var(--t)*.6),rgba(0,0,0,.8) calc(var(--t)*.8),#000 var(--t),
+    #000 calc(100% - var(--f)),rgba(0,0,0,.84) calc(100% - var(--f)*.7),rgba(0,0,0,.5) calc(100% - var(--f)*.5),rgba(0,0,0,.16) calc(100% - var(--f)*.3),rgba(0,0,0,.04) calc(100% - var(--f)*.14),transparent 100%;
+  -webkit-mask-image:linear-gradient(to right,var(--e)),linear-gradient(to bottom,var(--top));-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,var(--e)),linear-gradient(to bottom,var(--top));mask-composite:intersect}
+.sd-fbg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 80% at 15% 32%,var(--c1) 0%,transparent 72%),
+  radial-gradient(ellipse 64% 70% at 88% 84%,var(--c4) 0%,transparent 72%),
+  radial-gradient(ellipse 46% 50% at 62% 20%,var(--c5) 0%,transparent 70%),
+  radial-gradient(ellipse 44% 46% at 32% 98%,var(--c3) 0%,transparent 70%),
+  linear-gradient(105deg,var(--b1) 0%,var(--b2) 50%,var(--b3) 100%)}
+.sd-field .wh-grain{z-index:0;border-radius:inherit}
+/* on the field: secondary text one step darker, the colour dot ringed, the link tile a quiet translucent panel */
+.sd :is(.sd-c,.sd-b,.sd-v,.sd-s){color:var(--ink2)}
+.sd .sd-c i{box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.sd .sd-c i.lt{box-shadow:inset 0 0 0 1px #bdb9ae}
+.sd .sd-tile{background:rgba(255,255,255,.42);box-shadow:inset 0 0 0 1px rgba(20,20,19,.08)}
+.sd .sd-all{border-color:rgba(20,20,19,.38)}
+.sd .sd-all:hover{background:rgba(255,255,255,.45)}
+/* phone: the field runs the full screen width and fades only at the top and bottom; round blobs in px down the tall field */
+@media (max-width:599px){
+  .sd-field{--f:76px;--t:120px;left:0;right:0;top:-56px;bottom:calc(var(--f)*-.35);
+    -webkit-mask-image:linear-gradient(to bottom,var(--top));mask-image:linear-gradient(to bottom,var(--top))}
+  .sd-fbg{background:
+    radial-gradient(440px 440px at 0% 8%,var(--c1) 0%,transparent 72%),
+    radial-gradient(380px 440px at 100% 34%,var(--c5) 0%,transparent 70%),
+    radial-gradient(420px 460px at 0% 62%,var(--c3) 0%,transparent 72%),
+    radial-gradient(480px 440px at 100% 98%,var(--c4) 0%,transparent 72%),
+    linear-gradient(to bottom,var(--b1) 0%,var(--b2) 55%,var(--b3) 100%)}
+}
