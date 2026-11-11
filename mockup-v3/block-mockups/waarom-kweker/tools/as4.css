@@ -1,0 +1,175 @@
+/* ===== Assortiment · «Сад» + изюминка (round 4, 11 Nov). Part 1 is a copy of tools/as3-sad.css (the settled base);
+   part 2 adds the three ideas and the substrate line. States come from the review bar: html.iz-0|a|b|c|ac, html.sb-n|y. ===== */
+
+/* ---------- part 1 · base «Сад» (copied) ---------- */
+.sd{background:var(--page);color:var(--ink)}
+/* the block follows Waarom wij on the same background: one section gap, not two stacked paddings */
+.sd > .in{padding-top:clamp(16px,2.2vw,40px);padding-bottom:clamp(48px,5vw,80px)}
+.sd :is(h2,h3,p){margin:0}
+.sd a{color:inherit;text-decoration:none}
+.sd-arw{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.sd-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(18px,1.8vw,28px);row-gap:0}
+.sd-it{display:contents}
+.sd-it > a{grid-row:span 5;display:grid;grid-template-rows:subgrid;row-gap:0;padding-bottom:clamp(40px,3.6vw,56px);border-radius:22px}
+.sd-it > a:focus-visible,.sd-all:focus-visible,.sd-tile:focus-visible{outline:2px solid var(--moss);outline-offset:4px}
+
+.sd-ph{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#dcd9d0}
+.sd-ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.sd-it > a:hover .sd-ph img{transform:scale(1.03)}
+.sd-it h3{margin-top:16px;font-size:clamp(18px,1.45vw,21px);line-height:1.2;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.sd-it > a:hover h3{color:var(--moss)}
+.sd-c,.sd-b{font-size:14.5px;line-height:1.45;color:var(--soft)}
+.sd-c{margin-top:6px;display:flex;align-items:flex-start;gap:8px}
+.sd-c i{flex:none;width:9px;height:9px;margin-top:.5lh;translate:0 -50%;border-radius:50%}
+.sd-c i.lt{box-shadow:inset 0 0 0 1px #bdb9ae}
+.sd-pr{margin-top:12px;display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:6px}
+.sd-v{font-size:13.5px;color:var(--soft)}
+.sd-pr b{font-size:clamp(24px,2vw,29px);line-height:1.1;font-weight:600;letter-spacing:-.03em;color:var(--moss);font-variant-numeric:tabular-nums}
+.sd-s{grid-column:1/-1;margin-top:3px;font-size:13px;line-height:1.35;color:var(--soft)}
+
+/* the heading is the grid's first cell; its link sits on the price row of the cards */
+.sd-hd{grid-row:span 5;display:flex;flex-direction:column;align-items:flex-start;padding:0 clamp(4px,1vw,16px) clamp(40px,3.6vw,56px) 0}
+.sd-hd h2{font-size:clamp(32px,3.4vw,50px);line-height:1.04;letter-spacing:-.035em;font-weight:600;text-wrap:balance}
+.sd-lead{margin-top:18px!important;font-size:16px;line-height:1.55;color:var(--ink2);max-width:30ch;text-wrap:pretty}
+.sd-all{margin-top:auto;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border:1px solid #a9a69c;border-radius:999px;font-size:15.5px;font-weight:600;white-space:nowrap}
+.sd-all:hover{background:#e7e4dc}
+
+/* closing tile: only where heading + 7 would leave an empty cell (tablet, phone) */
+.sd-tile{display:none;grid-row:span 5;position:relative;isolation:isolate;overflow:hidden;flex-direction:column;justify-content:flex-end;gap:14px;
+  margin-bottom:clamp(40px,3.6vw,56px);padding:22px;border-radius:20px;--gr:.3;--gb:overlay;
+  background:radial-gradient(ellipse 90% 50% at 50% -10%,#f1f0e8 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 96% 20%,#ecd6d2 0%,transparent 70%),
+    radial-gradient(ellipse 70% 70% at -6% 50%,#adbb98 0%,transparent 68%),radial-gradient(ellipse 120% 50% at 50% 108%,#d9cbb0 0%,transparent 72%),
+    linear-gradient(to bottom,#eceee6 0%,#ebece3 46%,#e8e3d4 100%)}
+.sd-tile > span{font-size:16px;line-height:1.4;color:var(--ink2);max-width:16ch}
+.sd-tile b{display:block;padding:12px 0;font-size:15.5px;line-height:1.3;font-weight:600;color:var(--moss)}
+.sd-tile .nw{white-space:nowrap}
+.sd-tile .sd-arw{display:inline-block;vertical-align:-3px;margin-left:8px}
+
+/* tablet: 3 columns = heading + 7 + tile */
+@media (max-width:999px){
+  .sd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sd-hd .sd-all{display:none}
+  .sd-tile{display:flex}
+}
+/* phone: 2 columns = 7 + tile, heading above; the bloom line moves to the product page */
+@media (max-width:599px){
+  .sd-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
+  .sd-hd{grid-column:1/-1;grid-row:auto;padding:0 0 26px}
+  .sd-hd h2{font-size:clamp(30px,8.6vw,40px)}
+  .sd-lead{margin-top:12px!important;max-width:none}
+  .sd-it > a{grid-row:span 4;padding-bottom:28px}
+  .sd-b{display:none}
+  .sd-ph{border-radius:16px}
+  .sd-it h3{margin-top:12px;font-size:16.5px}
+  .sd-c{font-size:13.5px;gap:7px;margin-top:4px}
+  .sd-pr{margin-top:8px}
+  .sd-pr b{font-size:22px}
+  .sd-s{font-size:12.5px}
+  .sd-tile{grid-row:span 4;margin-bottom:28px;padding:16px;border-radius:16px;gap:8px}
+  .sd-tile > span{font-size:15px}
+  .sd-tile b{font-size:14.5px}
+}
+
+/* ---------- part 2 · additions ---------- */
+.sd-fig{position:relative;container-type:inline-size}
+.sd-md,.sd-gr,.sd-hbg,.sd-7,.sd-sub{display:none}
+.sd .sd-gr{border-radius:inherit}
+
+/* ===== A · Цветок-медальон =====
+   A round close-up of the flower on the lower right corner of the bush photo. It hangs a quarter of its height below the
+   photo edge, so it covers ground and lower leaves, not the heart of the bush; a ring in the page colour cuts it out of
+   the photo. The name moves down by the overhang, so no name can run into the circle. */
+:is(.iz-a,.iz-ac) .sd-md{--md:clamp(64px,31cqw,100px);display:block;position:absolute;right:calc(var(--md)*.14);bottom:calc(var(--md)*-.25);
+  width:var(--md);height:var(--md);border-radius:50%;overflow:hidden;background:#dcd9d0;box-shadow:0 0 0 4px var(--page)}
+.sd-md img{display:block;width:100%;height:100%;object-fit:cover}
+:is(.iz-a,.iz-ac) .sd-it h3{margin-top:calc(clamp(64px,31cqw,100px)*.25 + 5px)}
+:is(.iz-a,.iz-ac) .sd-it > a{container-type:inline-size}
+
+/* ===== B · Цвет сорта =====
+   Each card becomes a soft grained panel in its own flower colour: the photo sits in it like in a mat, the colour is
+   strongest right under the photo and fades to the page tone at the bottom. Secondary text goes one step darker (ink2). */
+.iz-b .sd-it > a{position:relative;isolation:isolate;overflow:hidden;--gr:.28;--gb:overlay;
+  --t1:color-mix(in oklab,var(--hx) 11%,#f0eee8);--t2:color-mix(in oklab,var(--hx) 34%,#efede6);--t3:color-mix(in oklab,var(--hx) 20%,#ece6d8);
+  padding:8px 8px 20px;margin-bottom:clamp(20px,2vw,28px);
+  background:radial-gradient(ellipse 80% 34% at 50% -6%,#f6f4ee 0%,transparent 70%),
+    radial-gradient(ellipse 95% 40% at 4% 66%,var(--t2) 0%,transparent 72%),
+    radial-gradient(ellipse 70% 30% at 104% 78%,var(--t3) 0%,transparent 70%),
+    radial-gradient(ellipse 120% 26% at 50% 106%,#e6dcc6 0%,transparent 72%),
+    linear-gradient(to bottom,var(--t1) 0%,var(--t1) 100%)}
+.iz-b .sd-lt > a{--t1:#f8f6f0;--t2:#fdfcf8;--t3:#f3eee2}
+.iz-b .sd-gr{display:block}
+.iz-b .sd-ph{border-radius:15px}
+.iz-b .sd-it :is(h3,p){padding-inline:10px}
+.iz-b :is(.sd-c,.sd-b,.sd-v,.sd-s){color:var(--ink2)}
+.iz-b .sd-c i{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
+.iz-b .sd-c i.lt{box-shadow:inset 0 0 0 1px #bdb9ae}
+.iz-b .sd-hd{padding-bottom:clamp(20px,2vw,28px)}
+.iz-b .sd-tile{margin-bottom:clamp(20px,2vw,28px)}
+
+/* ===== C · Заголовок-карточка =====
+   The heading cell is a «Поле» card (same gradient and grain as the facts card in Waarom wij) with a large moss 7. */
+:is(.iz-c,.iz-ac) .sd-hd{position:relative;isolation:isolate;overflow:hidden;border-radius:22px;--gr:.3;--gb:overlay;
+  --p:#ebece3;--b1:#adbb98;--b2:#f1f0e8;--b3:#d9cbb0;--b4:#c7b893;--b5:#ecd6d2;
+  padding:clamp(20px,1.9vw,28px);margin-bottom:clamp(40px,3.6vw,56px)}
+:is(.iz-c,.iz-ac) :is(.sd-hbg,.sd-hd .sd-gr,.sd-tile .sd-gr){display:block}
+:is(.iz-c,.iz-ac) .sd-zv{display:none}
+:is(.iz-c,.iz-ac) .sd-7{display:block;margin:0 0 .16em -.05em;font-size:clamp(132px,13vw,196px);line-height:.74;letter-spacing:-.06em;color:var(--moss);font-variant-numeric:lining-nums}
+:is(.iz-c,.iz-ac) .sd-hd h2{font-size:clamp(25px,2.25vw,33px);line-height:1.1;letter-spacing:-.03em}
+:is(.iz-c,.iz-ac) .sd-ht{display:block}
+:is(.iz-c,.iz-ac) .sd-lead{margin-top:14px!important;font-size:15.5px;color:#3d3c37}
+:is(.iz-c,.iz-ac) .sd-all{border-color:rgba(20,20,19,.38)}
+:is(.iz-c,.iz-ac) .sd-all:hover{background:rgba(255,255,255,.4)}
+@media (max-width:1199px){
+  :is(.iz-c,.iz-ac) .sd-all{align-self:stretch;justify-content:space-between;padding:0 16px;font-size:14.5px;gap:6px}
+}
+@media (max-width:999px){
+  :is(.iz-c,.iz-ac) .sd-hd{padding:20px}
+}
+@media (max-width:599px){
+  :is(.iz-c,.iz-ac) .sd-hd{padding:20px 20px 22px;margin-bottom:22px;border-radius:20px}
+  :is(.iz-c,.iz-ac) .sd-hd h2{display:flex;align-items:flex-end;gap:16px;font-size:clamp(23px,6.6vw,27px)}
+  :is(.iz-c,.iz-ac) .sd-7{flex:none;margin:0 0 -.02em -.04em;font-size:104px}
+  :is(.iz-c,.iz-ac) .sd-ht{max-width:9em;padding-bottom:1px}
+  :is(.iz-c,.iz-ac) .sd-lead{margin-top:16px!important;font-size:15px}
+}
+
+/* ===== Субстрат: a slim line under the grid. An accessory, not an eighth variety: horizontal, a small round thumb,
+   no 4:5 photo, no colour dot, one link. ===== */
+.sb-y .sd-sub{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;column-gap:clamp(16px,2vw,32px);
+  padding:14px clamp(18px,2vw,28px) 14px 14px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.sd-sub:focus-visible{outline:2px solid var(--moss);outline-offset:4px}
+.sd-sub:hover{border-color:#a9a69c}
+.sd-sub img{width:60px;height:60px;border-radius:50%;object-fit:cover;display:block}
+.sb-t,.sb-p{display:flex;flex-direction:column;gap:3px}
+.sb-t b{font-size:16.5px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.sb-t span{font-size:14.5px;line-height:1.45;color:var(--soft);text-wrap:pretty}
+.sb-p{align-items:flex-end;white-space:nowrap}
+.sb-p b{font-size:19px;line-height:1.2;font-weight:600;letter-spacing:-.02em;color:var(--moss);font-variant-numeric:tabular-nums}
+.sb-p span{font-size:13px;line-height:1.35;color:var(--soft)}
+.sb-go{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;white-space:nowrap}
+.sd-sub:hover .sb-go{color:var(--moss)}
+@media (max-width:860px){
+  .sb-y .sd-sub{grid-template-columns:auto minmax(0,1fr) auto;row-gap:10px;padding:14px 18px 14px 14px}
+  .sb-go{grid-column:2/-1}
+  .sb-t{grid-column:2}
+}
+@media (max-width:599px){
+  .sb-y .sd-sub{grid-template-columns:auto minmax(0,1fr);column-gap:14px;row-gap:12px;padding:16px;border-radius:16px;align-items:start}
+  .sb-y .sd-sub{row-gap:0}
+  .sd-sub img{width:52px;height:52px;grid-row:1/3;align-self:center}
+  .sb-t{display:contents}
+  .sb-t b{grid-column:2;grid-row:1;align-self:end;font-size:16px}
+  .sb-p{grid-column:2;grid-row:2;flex-direction:row;align-items:baseline;align-self:start;gap:6px;margin-top:2px;white-space:normal}
+  .sb-p b{font-size:16px}
+  .sb-t span{grid-column:1/-1;grid-row:3;margin-top:12px;font-size:14px}
+  .sb-go{grid-column:1/-1;grid-row:4;margin-top:12px}
+}
+@media (max-width:599px){
+  .iz-b .sd-it > a{padding:6px 6px 16px;margin-bottom:12px;border-radius:20px}
+  .iz-b .sd-ph{border-radius:14px}
+  .iz-b .sd-it :is(h3,p){padding-inline:5px}
+  .iz-b .sd-it h3{font-size:15.5px}
+  .iz-b .sd-hd{padding-bottom:22px}
+  .iz-b .sd-tile{margin-bottom:12px}
+}
