@@ -6,6 +6,7 @@
 #   html.iz-c   C · Заголовок-карточка: the heading cell is a «Поле» gradient card with a large moss "7"
 #   html.iz-ac  A + C
 #   html.iz-d   D · Общий фон (owner, 11 Nov): one light «Поле» gradient behind the whole grid, feathered edges, no card edge
+#   html.fp-1..4  the field palette for D and D+C (Поле, Цветение, Листва, Рассвет).
 #   html.iz-dc  D + C. The medallion states (A, A+C) stay in the CSS but are off the review bar: the owner rejected them.
 #   html.sb-n / html.sb-y   the substrate line under the grid, off / on
 # The base markup and CSS are copies of tools/build_as3_sad.py and tools/as3-sad.css (those files are not touched);
@@ -88,7 +89,7 @@ rep('<div class="between"><div class="in"><span>… hier volgen Assortiment en H
     '<div id="assortiment">' + BLOCK + '</div>')
 
 # ---------- review bar ----------
-rep('<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis">', '<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis iz-d sb-n">')
+rep('<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis">', '<html lang="nl" class="m-n3 t-0 d-k lp-u fd-podpis iz-d fp-1 sb-n">')
 
 
 def btns(g, default, pairs):
@@ -97,6 +98,7 @@ def btns(g, default, pairs):
 
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g">'
     + btns('iz', 'd', [('0', '0 · Как есть'), ('b', 'B · Цвет сорта'), ('c', 'C · Карточка'), ('d', 'D · Общий фон'), ('dc', 'D+C')])
+    + '</div><span class="sep"></span><div class="rv-g rv-fp">' + btns('fp', '1', [('1', 'Палитра 1 · Поле'), ('2', '2 · Цветение'), ('3', '3 · Листва'), ('4', '4 · Рассвет')])
     + '</div><span class="sep"></span><div class="rv-g">' + btns('sb', 'n', [('n', 'Субстрат: нет'), ('y', 'да')]) + '</div></div><div id="root">')
 
 CSS = ('\n/* ===== homepage Assortiment block · «Сад» + изюминка (tools/build_assortiment4.py) ===== */\n'

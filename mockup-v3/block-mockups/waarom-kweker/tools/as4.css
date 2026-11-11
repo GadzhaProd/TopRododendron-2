@@ -180,18 +180,25 @@
 .sd-field{display:none}
 :is(.iz-d,.iz-dc) .sd{overflow-x:clip}   /* only sideways: the feathered top may fade into the gap above the block */
 :is(.iz-d,.iz-dc) .sd > .in{position:relative;isolation:isolate}
-:is(.iz-d,.iz-dc) .sd-field{--f:clamp(56px,7vw,120px);display:block;position:absolute;z-index:-1;pointer-events:none;
+:is(.iz-d,.iz-dc) .sd-field{--f:clamp(48px,5vw,96px);display:block;position:absolute;z-index:-1;pointer-events:none;
   left:calc(var(--gut) - var(--f) * .7);right:calc(var(--gut) - var(--f) * .7);top:calc(var(--f) * -.55);bottom:calc(var(--f) * -.35);
   -webkit-mask-image:linear-gradient(to right,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent),linear-gradient(to bottom,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent);
   -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent),linear-gradient(to bottom,transparent,#000 var(--f),#000 calc(100% - var(--f)),transparent);
   mask-composite:intersect;--gr:.26;--gb:overlay}
 :is(.iz-d,.iz-dc) .sd-fbg{position:absolute;inset:0;background:
-  radial-gradient(ellipse 42% 58% at 4% 40%,#c4ceb0 0%,transparent 70%),
-  radial-gradient(ellipse 30% 34% at 90% 10%,#efdcd8 0%,transparent 70%),
-  radial-gradient(ellipse 38% 46% at 100% 66%,#d3dbc4 0%,transparent 70%),
-  radial-gradient(ellipse 62% 40% at 50% 104%,#e2d6bf 0%,transparent 72%),
-  radial-gradient(ellipse 46% 40% at 46% 30%,#f2f1ea 0%,transparent 70%),
-  linear-gradient(to bottom,#ebede5 0%,#eaebe2 52%,#e9e4d7 100%)}
+  radial-gradient(ellipse 46% 60% at 2% 40%,var(--c1) 0%,transparent 70%),
+  radial-gradient(ellipse 34% 40% at 92% 6%,var(--c2) 0%,transparent 70%),
+  radial-gradient(ellipse 40% 50% at 100% 68%,var(--c3) 0%,transparent 70%),
+  radial-gradient(ellipse 66% 44% at 50% 106%,var(--c4) 0%,transparent 72%),
+  radial-gradient(ellipse 46% 42% at 46% 28%,var(--c5) 0%,transparent 70%),
+  linear-gradient(to bottom,var(--b1) 0%,var(--b2) 52%,var(--b3) 100%)}
+/* field palettes (owner, 11 Nov: the first field was too faint). Neighbouring colours are related, and pink and green never
+   meet in one place, so the mixes stay clean instead of turning grey-brown. c1 left, c2 top right, c3 right, c4 bottom, c5 centre. */
+html.fp-1{--c1:#a9bf8c;--c2:#f1c0c8;--c3:#bfd1a6;--c4:#e2c995;--c5:#f3f1e6;--b1:#e6ead9;--b2:#e5e8d6;--b3:#e9e0c8}  /* Поле, stronger */
+html.fp-2{--c1:#d2bdf0;--c2:#f4b6cd;--c3:#cbbff2;--c4:#efc6d8;--c5:#f7f1f3;--b1:#efe8f0;--b2:#ede6f0;--b3:#f0e4ea}  /* Цветение: the flowers' rose, lilac, lavender */
+html.fp-3{--c1:#b0c995;--c2:#e6e3a8;--c3:#c2dbb2;--c4:#ead79f;--c5:#f4f4e3;--b1:#e8eedb;--b2:#e6ecd8;--b3:#ece6cc}  /* Листва: leaf green, pale mint, butter */
+html.fp-4{--c1:#f4c3ae;--c2:#f2b8c6;--c3:#f2d2ae;--c4:#f1d39e;--c5:#f9f1e8;--b1:#f4e9e1;--b2:#f3e7df;--b3:#f2e2d0}  /* Рассвет: peach, blush, butter */
+
 :is(.iz-d,.iz-dc) .sd-field .sd-gr{display:block;z-index:0}
 /* secondary text one step darker on the field */
 :is(.iz-d,.iz-dc) :is(.sd-c,.sd-b,.sd-v,.sd-s){color:var(--ink2)}
@@ -202,4 +209,17 @@
 :is(.iz-d,.iz-dc) .sd-tile .sd-gr{display:none}
 :is(.iz-d,.iz-dc) .sd-all{border-color:rgba(20,20,19,.38)}
 :is(.iz-d,.iz-dc) .sd-all:hover{background:rgba(255,255,255,.45)}
-@media (max-width:599px){:is(.iz-d,.iz-dc) .sd-field{--f:44px;left:0;right:0}}
+@media (max-width:599px){
+  :is(.iz-d,.iz-dc) .sd-field{--f:28px;left:0;right:0}
+  /* the phone field is tall and narrow: blobs sized in px so they stay round, spread down the whole grid */
+  :is(.iz-d,.iz-dc) .sd-fbg{background:
+    radial-gradient(300px 280px at 72% 2%,var(--c2) 0%,transparent 70%),
+    radial-gradient(340px 440px at 18% 26%,var(--c1) 0%,transparent 70%),
+    radial-gradient(340px 440px at 82% 52%,var(--c3) 0%,transparent 70%),
+    radial-gradient(340px 440px at 18% 78%,var(--c1) 0%,transparent 70%),
+    radial-gradient(460px 320px at 50% 102%,var(--c4) 0%,transparent 72%),
+    linear-gradient(to bottom,var(--b1) 0%,var(--b2) 52%,var(--b3) 100%)}
+}
+
+/* the palette buttons only matter for D and D+C */
+html:not(.iz-d):not(.iz-dc) .rv .rv-fp{opacity:.35;pointer-events:none}
