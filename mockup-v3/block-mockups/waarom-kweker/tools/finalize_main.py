@@ -81,7 +81,16 @@ FC = ('<div class="fd-ct"><p class="fd-inv">Kom gerust langs, ook zonder afspraa
       '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
       '<div class="fd-wa"><dt>WhatsApp</dt><dd><a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
       '</dl></div>')
-rep('</blockquote></div></div></div></div></section>', '</blockquote></div>' + FC + '</div></div></div></section>')
+# desktop: the same facts as a strip under the card (the in-card list is phone only)
+MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
+STRIP = ('<div class="fd-strip"><p class="fd-sinv">Kom gerust langs, ook zonder afspraak: rondkijken, advies vragen of direct meenemen.</p>'
+         '<dl class="fd-sdl">'
+         '<div><dt>Adres</dt><dd><a href="' + MAPS + '">Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</a></dd></div>'
+         '<div><dt>Open</dt><dd>ma–vr 08:00–17:00<br>za 09:00–13:00</dd></div>'
+         '<div><dt>Bellen</dt><dd><a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a><a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
+         '<div><dt>WhatsApp</dt><dd><a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
+         '</dl></div>')
+rep('</blockquote></div></div></div></div></section>', '</blockquote></div>' + FC + '</div></div>' + STRIP + '</div></section>')
 s = s.replace('</head>', '<style id="founder-contact-css">' + (D / 'tools' / 'founder-contact.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
