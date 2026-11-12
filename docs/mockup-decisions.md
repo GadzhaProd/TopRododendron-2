@@ -386,3 +386,7 @@ Owner: "переноси", and yes to alternating colours. In the main mockup (`
 - Order so distinct colours alternate: Nova Zembla (red), Catawbiense Grandiflorum (pale lilac), Cunningham's White, Catawbiense Boursault (deep purple), Roseum Elegans (hot pink), Ponticum (violet), Ponticum Roseum (light pink-lilac).
 - Heights: about 657 px at 1440, 1255 px at 1279, 936 px at 768, 1574 px at 390. No horizontal scroll at 360–1920; header, hero, Waarom wij and the founder block unchanged.
 - Bloom line on phone: stays hidden (owner, 12 Nov: "оставь как есть"); it shows on tablet and desktop.
+
+## Contact with the grower (audit item 1, 12 Nov)
+
+Owner: both numbers; hours Mon–Fri 08:00–17:00, Sat 09:00–13:00. In the main mockup (`tools/contact.css`, `finalize_main.py`): the header shows "06 20 10 43 12" with a phone icon before «Bestellen» on desktop and a round 44 px phone button next to the menu button below 1024 px (tel:+31620104312); the Waarom wij advice reason now reads "Bel 06 20 10 43 12 of 06 20 29 78 49, of stuur een WhatsApp." with the hours "Ma–vr 08:00–17:00, za 09:00–13:00." on its own line (tel: and wa.me/31620297849 links, moss underline). No horizontal scroll at 360–1440; the rest of the page unchanged.

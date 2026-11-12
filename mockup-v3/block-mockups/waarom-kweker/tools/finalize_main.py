@@ -59,5 +59,17 @@ assert 'sd-field' in sad and 'as3-1' not in sad
 rep('<div class="between"><div class="in"><span>… hier volgen Assortiment en Hoe het werkt …</span></div></div>',
     '<div id="assortiment">' + sad + '</div><div class="between"><div class="in"><span>… hier volgt Hoe het werkt …</span></div></div>')
 s = s.replace('</head>', '<style id="assortiment-css">' + (D / 'tools' / 'assortiment.css').read_text() + '</style></head>', 1)
+# Contact with the grower (audit item 1, 12 Nov): real numbers and hours from the live site, hours confirmed by the owner.
+PHONE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 '
+         '19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6'
+         'l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>')
+rep('<div class="flex items-center gap-3"><div class="hidden lg:block">',
+    '<div class="flex items-center gap-3"><a class="hc-tel" href="tel:+31620104312" aria-label="Bel de kweker: 06 20 10 43 12">' + PHONE +
+    '<span>06 20 10 43 12</span></a><div class="hidden lg:block">')
+rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>De kweker helpt u persoonlijk, <span class="nb">ma–za 09:00–17:00</span>.</p></div></li>',
+    '<li><div><h3>Persoonlijk advies van de kweker</h3><p class="wh-ct">Bel <a href="tel:+31620104312">06 20 10 43 12</a> of '
+    '<a href="tel:+31620297849">06 20 29 78 49</a>, of stuur een <a href="https://wa.me/31620297849">WhatsApp</a>.'
+    '<span class="wh-hours">Ma–vr 08:00–17:00, za 09:00–13:00.</span></p></div></li>')
+s = s.replace('</head>', '<style id="contact-css">' + (D / 'tools' / 'contact.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
