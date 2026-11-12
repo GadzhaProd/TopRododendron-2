@@ -31,8 +31,10 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    Owner (12 Nov): show both numbers; hours Mon–Fri 08:00–17:00, Sat 09:00–13:00 (the old "ma–za 09:00–17:00" was wrong).
    Done: header (06 20 10 43 12 with a phone icon on desktop, a round phone button on ≤1023 px, `tel:`), the advice reason
    ("Bel 06 20 10 43 12 of 06 20 29 78 49, of stuur een WhatsApp." + the hours; all links live). CSS: `tools/contact.css`.
-   Open: the founder block (the owner removed call buttons and WhatsApp pills from it on 6 Nov; asked again); the footer
-   comes with item 13; whether visitors may come by without an appointment (unanswered; only pick-up is stated).
+   Owner (12 Nov): numbers in the founder block as a quiet text, no buttons; visitors are welcome without an appointment
+   (to look round, to talk, or to buy and take home). Three options on `waarom-kweker/fd-contact.html`
+   (`tools/build_fd_contact.py`): A · two lines, B · card-like columns, C · invitation. In review.
+   Later: the look of the number in the header (owner not happy yet). The footer comes with item 13.
 2. Delivery (cost, area, timing) and payment visible before the cart: a line by the prices, details in Hoe het werkt.
    Status: waiting for owner (delivery cost, payment methods; area "heel Nederland" vs "NL, DE, BE" in the plan).
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
