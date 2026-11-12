@@ -385,4 +385,4 @@ Owner: "переноси", and yes to alternating colours. In the main mockup (`
 - Just the seven cards: one row from 1280 px (cards 155–174 px wide; the breakpoint moved up from 1200 so cards never drop below 150 px); 4 + 3 centred on an 8-column grid from 768 to 1279 px; two columns with the 7th centred at the same size on ≤767 px.
 - Order so distinct colours alternate: Nova Zembla (red), Catawbiense Grandiflorum (pale lilac), Cunningham's White, Catawbiense Boursault (deep purple), Roseum Elegans (hot pink), Ponticum (violet), Ponticum Roseum (light pink-lilac).
 - Heights: about 657 px at 1440, 1255 px at 1279, 936 px at 768, 1574 px at 390. No horizontal scroll at 360–1920; header, hero, Waarom wij and the founder block unchanged.
-- Open: the bloom line on phone (owner asked what it is; it is the text "Bloeit mei – juni", not the colour dots).
+- Bloom line on phone: stays hidden (owner, 12 Nov: "оставь как есть"); it shows on tablet and desktop.
