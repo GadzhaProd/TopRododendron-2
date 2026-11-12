@@ -1,0 +1,51 @@
+/* ===== Founder block · walk-in invitation and contact (variant C, approved 12 Nov; audit item 1) =====
+   Under the quote: one sentence of invitation at the body size, then a small two-column list (label | value) with the
+   address, the opening hours, both numbers and WhatsApp. Quiet text links, no buttons. On desktop the block takes the
+   panel's bottom padding, so the card and the approved portrait crop keep their size. */
+.fd-ct{margin-top:clamp(26px,2.4vw,36px);color:#3d3c37}
+.fd-ct p,.fd-ct dl,.fd-ct dd{margin:0}
+.fd-inv{font-size:16.5px;line-height:1.5;color:#141413;max-width:40ch;text-wrap:pretty}
+.fd-dl{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:20px;row-gap:7px;margin-top:16px!important}
+.fd-dl > div{display:contents}
+.fd-dl dt{font-size:13.5px;line-height:1.6;font-weight:500;color:#45443f}   /* on the photo-backed panel the softer grey fell below AA */
+.fd-dl dd{font-size:15px;line-height:1.5;color:#141413}
+.fd-dl .nb{white-space:nowrap}
+.fd-ct a{color:var(--moss);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;
+  text-decoration-color:rgba(63,74,55,.4)}
+.fd-ct a:hover{text-decoration-color:var(--moss)}
+.fd-ct a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:3px}
+@media (min-width:861px){
+  .fd .fd-card .fd-pn{padding-bottom:clamp(24px,3vw,56px)}
+  .fd .fd-card .fd-qw{padding-top:clamp(16px,1.8vw,36px)}
+}
+/* 861–1199 px the panel is narrower: a compact version, so the card (and with it the portrait scale) stays as approved.
+   The four details become a 2 × 2 grid with the label above the value. */
+@media (min-width:861px) and (max-width:1199px){
+  .fd .fd-card .fd-pn{padding-top:clamp(22px,2.6vw,40px);padding-bottom:clamp(20px,2.2vw,32px)}
+  .fd .fd-card .fd-qw{padding-top:16px}
+  .fd .fd-card .fd-txt{margin-top:12px}
+  .fd-ct{margin-top:18px}
+  .fd-inv{font-size:15px;line-height:1.45;max-width:none}
+  .fd-dl{grid-template-columns:repeat(2,minmax(0,max-content));column-gap:clamp(20px,3vw,40px);row-gap:10px;margin-top:12px!important}
+  .fd-dl > div{display:flex;flex-direction:column}
+  .fd-dl dt{font-size:12.5px;line-height:1.4}
+  .fd-dl dd{font-size:14px;line-height:1.45}
+  .fd-dl .fd-open .fd-sep{display:none}
+  .fd-dl .fd-open .nb{display:block}
+  .fd-dl .fd-tel .fd-sep{display:none}
+  .fd-dl .fd-tel a{display:table}
+  /* the two-line values share the first row, the one-line values the second */
+  .fd-dl .fd-open{order:1}.fd-dl .fd-tel{order:2}.fd-dl .fd-adr{order:3}.fd-dl .fd-wa{order:4}
+  /* here the shoulder reaches under the panel's lower left corner: the list steps in to the quote's text line */
+  .fd-dl{padding-left:calc(2px + clamp(18px,1.6vw,24px))}
+}
+/* phone («Подпись»): after the quote, before the portrait, on the same 22 px inset as the other lines */
+@media (max-width:860px){
+  html.fd-podpis .fd-ct{order:3;padding:0 22px;margin-top:24px}
+  .fd-inv{font-size:16px}
+  .fd-dl{column-gap:16px}
+  /* hours and numbers one per line, never a dangling separator */
+  .fd-dl .fd-sep{display:none}
+  .fd-dl .fd-open .nb{display:block}
+  .fd-dl .fd-tel a{display:table}
+}

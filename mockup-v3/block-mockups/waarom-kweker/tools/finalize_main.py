@@ -71,5 +71,17 @@ rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>De kweker helpt u pers
     '<a href="tel:+31620297849">06 20 29 78 49</a>, of stuur een <a href="https://wa.me/31620297849">WhatsApp</a>.'
     '<span class="wh-hours">Ma–vr 08:00–17:00, za 09:00–13:00.</span></p></div></li>')
 s = s.replace('</head>', '<style id="contact-css">' + (D / 'tools' / 'contact.css').read_text() + '</style></head>', 1)
+# Founder block: walk-in invitation and contact (variant C, approved 12 Nov; reviewed on fd-contact.html). Real data:
+# both numbers, WhatsApp on the second, hours Mon–Fri 08:00–17:00 and Sat 09:00–13:00, walk-in welcome (owner, 12 Nov).
+FC = ('<div class="fd-ct"><p class="fd-inv">Kom gerust langs, ook zonder afspraak: rondkijken, advies vragen of direct meenemen.</p>'
+      '<dl class="fd-dl">'
+      '<div class="fd-adr"><dt>Adres</dt><dd><a href="https://www.google.com/maps/search/Esserbroekweg+2+Otterlo">Esserbroekweg&nbsp;2, Otterlo</a></dd></div>'
+      '<div class="fd-open"><dt>Open</dt><dd><span class="nb">ma–vr 08:00–17:00</span><span class="fd-sep"> · </span><span class="nb">za 09:00–13:00</span></dd></div>'
+      '<div class="fd-tel"><dt>Bellen</dt><dd><a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a><span class="fd-sep"> · </span>'
+      '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
+      '<div class="fd-wa"><dt>WhatsApp</dt><dd><a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a></dd></div>'
+      '</dl></div>')
+rep('</blockquote></div></div></div></div></section>', '</blockquote></div>' + FC + '</div></div></div></section>')
+s = s.replace('</head>', '<style id="founder-contact-css">' + (D / 'tools' / 'founder-contact.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
