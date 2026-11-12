@@ -377,3 +377,12 @@ Owner: "Делай". In the main mockup (`build_as3_sad.py`, `assortiment.css`):
   - Phone: P1 > P3 > P2. All seven are seen by scrolling down; the centred 7th reads as a deliberate closing card, the left-aligned one as "something missing". The ribbon is last (about 1.7 cards visible, five hidden behind a swipe many people never make; the "only seven" message disappears). Confidence 85–90 % that P2 is last.
   - To ship: D3 on desktop with a switch to 4+3 centred below about 1200 px, and P1 on phone (the 7th card centred, same size). Optional: order the cards so distinct colours alternate; show the bloom line on phone.
   - This combination is exactly the existing option "3 · 7 в ряд" on `assortiment-7.html` (7 in a row from 1200 px, 4+3 centred below, 2 columns with the 7th centred on phone). Fable agreed on desktop but chose the ribbon on phone; the blind review overrules that.
+
+## Assortiment — APPROVED: seven cards, one row on desktop, centred 7th on phone (12 Nov)
+
+Owner: "переноси", and yes to alternating colours. In the main mockup (`build_as3_sad.py`, `assortiment.css`, `finalize_main.py`):
+- Heading row above the grid (no longer a grid cell): H2 at the section size on the left; the lead and a moss text link "Bekijk alle planten →" on the right. No view-all card.
+- Just the seven cards: one row from 1280 px (cards 155–174 px wide; the breakpoint moved up from 1200 so cards never drop below 150 px); 4 + 3 centred on an 8-column grid from 768 to 1279 px; two columns with the 7th centred at the same size on ≤767 px.
+- Order so distinct colours alternate: Nova Zembla (red), Catawbiense Grandiflorum (pale lilac), Cunningham's White, Catawbiense Boursault (deep purple), Roseum Elegans (hot pink), Ponticum (violet), Ponticum Roseum (light pink-lilac).
+- Heights: about 657 px at 1440, 1255 px at 1279, 936 px at 768, 1574 px at 390. No horizontal scroll at 360–1920; header, hero, Waarom wij and the founder block unchanged.
+- Open: the bloom line on phone (owner asked what it is; it is the text "Bloeit mei – juni", not the colour dots).

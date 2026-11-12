@@ -6,8 +6,8 @@
 #   - name, bloom and price sit on shared rows (CSS subgrid), whatever the name length (the colour line was removed
 #     on 11 Nov at the owner's request: the photo shows the colour);
 #   - the price always carries its size and "met kluit"; the whole card links to the variety;
-#   - the heading row sits above the grid (12 Nov); the grid is 7 cards + the «Bekijk alle planten» tile at every width:
-#     4 columns from 768 px, 2 below, so it always closes without an empty cell.
+#   - the heading row sits above the grid with a text link to all plants (12 Nov); just the seven cards: one row from
+#     1280 px, 4 + 3 centred below, 2 columns with the 7th centred on phone (chosen by a blind review).
 # Plant data is read from mockup-v3/src/data/content.ts (mirror of the live site's lib/products.ts).
 # Usage: python3 tools/build_as3_sad.py [dir]
 import re, pathlib, sys, html
@@ -33,6 +33,12 @@ POS = {'roseum-elegans': '50% 60%', 'nova-zembla': '50% 70%', 'cunninghams-white
 e = html.escape
 ARW = '<svg class="sd-arw" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 
+# card order (owner and the blind review, 12 Nov): distinct flower colours alternate, so the four lilac and purple varieties
+# never stand side by side: red, pale lilac, white, deep purple, hot pink, violet, light pink-lilac
+ORDER = ['nova-zembla', 'catawbiense-grandiflorum', 'cunninghams-white', 'catawbiense-boursault', 'roseum-elegans', 'ponticum', 'ponticum-roseum']
+assert sorted(ORDER) == sorted(v['slug'] for v in V)
+V = sorted(V, key=lambda v: ORDER.index(v['slug']))
+
 items = ''
 for v in V:
     items += ('<article class="sd-it"><a href="#assortiment" aria-label="' + e(v['name']) + ', vanaf € ' + v['frm'] + ' voor 40–60 cm">'
@@ -43,12 +49,10 @@ for v in V:
               '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">40–60&nbsp;cm, met kluit</span></p>'
               '</a></article>')
 
-out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in"><div class="sd-grid">'
-       '<div class="sd-hd"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2>'
-       '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p></div>'
-       + items +
-       '<a class="sd-tile" href="#assortiment"><span class="sd-go" aria-hidden="true">' + ARW + '</span>'
-       '<span class="sd-tt"><b>Bekijk alle planten</b><span>Alle zeven soorten, maten en prijzen</span></span></a>'
-       '</div></div></section>')
+out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in">'
+       '<div class="sd-hd"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2><div class="sd-hr">'
+       '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p>'
+       '<a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div></div>'
+       '<div class="sd-grid">' + items + '</div></div></section>')
 (D / 'tools' / 'as3-sad.html').write_text(out)
 print('as3-sad.html', len(out))
