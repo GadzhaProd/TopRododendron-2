@@ -6,8 +6,8 @@
 #   - name, bloom and price sit on shared rows (CSS subgrid), whatever the name length (the colour line was removed
 #     on 11 Nov at the owner's request: the photo shows the colour);
 #   - the price always carries its size and "met kluit"; the whole card links to the variety;
-#   - the grid closes without orphans: desktop 4 columns = heading + 7; tablet 3 columns = heading + 7 + link tile;
-#     phone 2 columns = 7 + link tile, with the heading above.
+#   - the heading row sits above the grid (12 Nov); the grid is 7 cards + the «Bekijk alle planten» tile at every width:
+#     4 columns from 768 px, 2 below, so it always closes without an empty cell.
 # Plant data is read from mockup-v3/src/data/content.ts (mirror of the live site's lib/products.ts).
 # Usage: python3 tools/build_as3_sad.py [dir]
 import re, pathlib, sys, html
@@ -43,12 +43,12 @@ for v in V:
               '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">40–60&nbsp;cm, met kluit</span></p>'
               '</a></article>')
 
-ALL = '<a class="sd-all" href="#assortiment">Bekijk alle planten' + ARW + '</a>'
 out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in"><div class="sd-grid">'
        '<div class="sd-hd"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2>'
-       '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p>' + ALL + '</div>'
+       '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p></div>'
        + items +
-       '<a class="sd-tile" href="#assortiment"><span>Alle zeven soorten, maten en prijzen</span><b>Bekijk alle <span class="nw">planten' + ARW + '</span></b></a>'
+       '<a class="sd-tile" href="#assortiment"><span class="sd-go" aria-hidden="true">' + ARW + '</span>'
+       '<span class="sd-tt"><b>Bekijk alle planten</b><span>Alle zeven soorten, maten en prijzen</span></span></a>'
        '</div></div></section>')
 (D / 'tools' / 'as3-sad.html').write_text(out)
 print('as3-sad.html', len(out))

@@ -356,3 +356,12 @@ Owner: "да, переноси в основной макет". The main mockup 
   - B · Размеры в конце: the heading row above the grid (as 1); the last cell is a quiet panel "Prijs per maat" with the scale and a filled moss "Bekijk alle planten" button; tablet 3 columns with the panel spanning two cells. +109 px on desktop, +103 px on tablet. Lowest contrast 6.08:1.
   - Fable's ranking: A, B, 1 · Над сеткой (the end tile is almost empty, tablet cards small), 0.
   - Checks: no horizontal scroll at 360–1920 in all states; rest of the page identical in sizes and computed styles to index.html.
+- Owner (12 Nov) asked whether a product block should hold only products. Answer: yes; on the homepage a product block is a heading, the products and one "view all" link. The size and price scale and the size guide belong on the product page (where the size is chosen), the catalogue and Plantgids, not in this block. So the empty corner is solved by layout, not by content.
+
+## Assortiment — APPROVED: heading above the grid, «Bekijk alle planten» as the last card (12 Nov)
+
+Owner: "Делай". In the main mockup (`build_as3_sad.py`, `assortiment.css`):
+- The heading row spans the grid: "Zeven soorten uit eigen kweek." at the section size (clamp(34px,4.2vw,58px), as Waarom wij) on the left, the lead on the right on its baseline; one column on ≤767 px. The button in the heading is gone.
+- The grid is 7 cards + the «Bekijk alle planten» card at every width: 4 columns from 768 px, 2 below, so it always closes without an empty cell.
+- The last card is a link card of its own: a quiet translucent panel (white .5, hairline ring, hover .75) with a round moss arrow (48–56 px; 44 px on phone) at the top where the photos start, and at the bottom "Bekijk alle planten" (20–26 px, ink) with "Alle zeven soorten, maten en prijzen" under it, on the price row. The whole card is the link.
+- Heights: about 1337 px at 1440, 920 px at 768 (4 columns instead of 3), 1526 px at 390. Lowest contrast 6.43:1. No horizontal scroll at 360–1920; header, hero, Waarom wij and the founder block unchanged.
