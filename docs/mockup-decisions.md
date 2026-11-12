@@ -365,3 +365,9 @@ Owner: "Делай". In the main mockup (`build_as3_sad.py`, `assortiment.css`):
 - The grid is 7 cards + the «Bekijk alle planten» card at every width: 4 columns from 768 px, 2 below, so it always closes without an empty cell.
 - The last card is a link card of its own: a quiet translucent panel (white .5, hairline ring, hover .75) with a round moss arrow (48–56 px; 44 px on phone) at the top where the photos start, and at the bottom "Bekijk alle planten" (20–26 px, ink) with "Alle zeven soorten, maten en prijzen" under it, on the price row. The whole card is the link.
 - Heights: about 1337 px at 1440, 920 px at 768 (4 columns instead of 3), 1526 px at 390. Lowest contrast 6.43:1. No horizontal scroll at 360–1920; header, hero, Waarom wij and the founder block unchanged.
+- Owner on the «Bekijk alle planten» card (12 Nov): rejected outright ("это не дизайнерское решение"); keep just the seven varieties. Review page `waarom-kweker/assortiment-7.html` (built by `tools/build_assortiment7.py` from index.html; html.lay-1|2|3): no view-all card; the link to all plants is a plain moss text link "Bekijk alle planten →" under the lead in the heading row.
+  - 1 · 4 + 3: two rows of equal cards on an 8-column grid, the second row of three centred. About 1383 px at 1440.
+  - 2 · 3 + 4: a 12-column grid, three wider cards on top, four below, both rows full width. About 1524 px at 1440.
+  - 3 · 7 в ряд: one line of seven whole bushes from 1200 px (about 657 px at 1440); below 1200 px as 4 + 3.
+  - Phone (≤767 px), all three: two columns, the seventh card centred on its own row.
+  - No horizontal scroll at 360–1920 in all three.
