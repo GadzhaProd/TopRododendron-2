@@ -44,11 +44,22 @@
   .fd-sdl dd{font-size:15.5px;line-height:1.55;color:#141413}
   .fd-sdl dd a{display:table}
 }
-/* 1200 px and up the card's columns are .9 / 1.1 (as the card); from 1360 px the four details fit on one line */
+/* Fable's review (12 Nov): the invitation breaks after the colon into two full lines instead of a 30ch column with a
+   stray last line; 2 × 2 spreads over the text column; four in a row from 1280 px; taller tap rows on touch tablets. */
+@media (min-width:1024px){
+  .fd-sinv{max-width:none;padding-right:24px}
+  .fd-sinv .brk{display:block}
+}
+@media (min-width:861px){
+  .fd-sdl{grid-template-columns:repeat(2,minmax(max-content,1fr));column-gap:24px}
+}
 @media (min-width:861px) and (max-width:1199px){
   .fd-strip{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .fd-sinv{font-size:18px}
 }
-@media (min-width:1360px){
+@media (min-width:861px) and (max-width:1199px) and (pointer:coarse){
+  .fd-sdl dd a{padding-block:4px}
+}
+@media (min-width:1280px){
   .fd-sdl{grid-template-columns:repeat(4,max-content);justify-content:space-between;column-gap:24px}
 }

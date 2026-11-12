@@ -83,7 +83,7 @@ FC = ('<div class="fd-ct"><p class="fd-inv">Kom gerust langs, ook zonder afspraa
       '</dl></div>')
 # desktop: the same facts as a strip under the card (the in-card list is phone only)
 MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
-STRIP = ('<div class="fd-strip"><p class="fd-sinv">Kom gerust langs, ook zonder afspraak: rondkijken, advies vragen of direct meenemen.</p>'
+STRIP = ('<div class="fd-strip"><p class="fd-sinv">Kom gerust langs, ook zonder afspraak: <span class="brk">rondkijken, advies vragen of direct meenemen.</span></p>'
          '<dl class="fd-sdl">'
          '<div><dt>Adres</dt><dd><a href="' + MAPS + '">Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</a></dd></div>'
          '<div><dt>Open</dt><dd>ma–vr 08:00–17:00<br>za 09:00–13:00</dd></div>'
