@@ -83,5 +83,7 @@ FC = ('<div class="fd-ct"><p class="fd-inv">Kom gerust langs, ook zonder afspraa
       '</dl></div>')
 rep('</blockquote></div></div></div></div></section>', '</blockquote></div>' + FC + '</div></div></div></section>')
 s = s.replace('</head>', '<style id="founder-contact-css">' + (D / 'tools' / 'founder-contact.css').read_text() + '</style></head>', 1)
+# Founder card, desktop only (861 px and up): the text panel re-set with more air (owner, 13 Nov). Phones unchanged.
+s = s.replace('</head>', '<style id="founder-desktop-css">' + (D / 'tools' / 'founder-desktop.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

@@ -1,0 +1,40 @@
+/* ===== Founder card · desktop text setting (861 px and up; owner, 13 Nov: "всё прижато, мало воздуха") =====
+   The panel is set as three zones on one left edge: who (name, role, line) · the quote · the visit (invitation and the
+   2 × 2 details under a hairline). The two gaps around the quote are equal, the bottom margin is a little larger than the
+   top one, and the text edge steps right, so the lower left corner of the text stays clear of the shoulder.
+   The portrait is sized from the card height, so the card may only grow a little: most of the air comes from a calmer
+   name and quote size and from redistributing the gaps. Phones (860 px and down) are not touched. */
+@media (min-width:861px){
+  .fd .fd-card .fd-pn{padding:var(--fd-top) var(--fd-r) var(--fd-bot) var(--fd-l)}
+  .fd .fd-card .fd-txt{max-width:none;text-wrap:balance}
+  /* the quote sits between two equal gaps; if the card is ever taller than its text, the spare height is shared by the same two gaps */
+  .fd .fd-card .fd-qw{margin-top:auto;padding-top:var(--fd-zone);padding-bottom:var(--fd-zone)}
+  .fd .fd-card .fd-q p{max-width:none}
+  .fd .fd-card .fd-ct{margin-top:auto;border-top:1px solid rgba(63,74,55,.24);max-width:520px}
+  .fd .fd-card .fd-inv{max-width:none;text-wrap:balance}
+  .fd .fd-card .fd-dl{grid-template-columns:repeat(2,minmax(0,max-content));padding-left:0}
+}
+@media (min-width:861px) and (max-width:1199px){
+  .fd .fd-card{--fd-top:clamp(28px,3.4vw,44px);--fd-bot:clamp(40px,4.6vw,52px);--fd-l:clamp(52px,6.4vw,76px);--fd-r:clamp(18px,calc(8vw - 50px),36px);
+    --fd-zone:clamp(22px,calc(5.6vw - 28px),32px)}
+  .fd .fd-card .fd-name h2{font-size:clamp(40px,4.7vw,54px)}
+  .fd .fd-card .fd-role{margin-top:10px;font-size:14.5px}
+  .fd .fd-card .fd-txt{margin-top:12px;font-size:15.5px;line-height:1.5}
+  .fd .fd-card .fd-q p{font-size:clamp(22px,2.3vw,25px)}
+  .fd .fd-card .fd-ct{padding-top:clamp(14px,1.6vw,18px)}
+  .fd .fd-card .fd-inv{font-size:15px;line-height:1.5}
+  .fd .fd-card .fd-dl{column-gap:clamp(24px,3.4vw,44px);row-gap:clamp(10px,1.2vw,14px);margin-top:clamp(12px,1.4vw,16px)!important}
+  .fd .fd-card .fd-dl dt{margin-bottom:2px}
+}
+@media (min-width:1200px){
+  .fd .fd-card{--fd-top:clamp(44px,4vw,60px);--fd-bot:clamp(50px,4.4vw,66px);--fd-l:clamp(76px,6.6vw,100px);--fd-r:clamp(36px,4vw,64px);
+    --fd-zone:clamp(32px,calc(6.2vw - 44px),48px)}
+  .fd .fd-card .fd-name h2{font-size:clamp(52px,4.6vw,68px)}
+  .fd .fd-card .fd-role{margin-top:12px}
+  .fd .fd-card .fd-txt{margin-top:16px;font-size:clamp(15.5px,1.15vw,16.5px);line-height:1.55}
+  .fd .fd-card .fd-q p{font-size:clamp(25px,2.1vw,31px)}
+  .fd .fd-card .fd-ct{padding-top:clamp(18px,1.7vw,26px)}
+  .fd .fd-card .fd-inv{font-size:clamp(15.5px,1.15vw,16.5px);line-height:1.5}
+  .fd .fd-card .fd-dl{column-gap:clamp(44px,4.6vw,72px);row-gap:clamp(12px,1.2vw,18px);margin-top:clamp(16px,1.5vw,22px)!important}
+  .fd .fd-card .fd-dl dt{margin-bottom:2px}
+}
