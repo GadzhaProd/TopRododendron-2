@@ -34,8 +34,8 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    Owner (12 Nov): numbers in the founder block as a quiet text, no buttons; visitors are welcome without an appointment
    (to look round, to talk, or to buy and take home). Three options on `waarom-kweker/fd-contact.html`
    (`tools/build_fd_contact.py`): A · two lines, B · card-like columns, C · invitation.
-   Done (12 Nov): owner chose C; phone inside the card under the quote, desktop as a strip under the card on the card's
-   grid (Impeccable layout pass, checked by Fable) (`tools/founder-contact.css`). Item 1 closed, except:
+   Done (12 Nov): owner chose C; inside the card under the quote on phone and desktop (the strip under the card was tried and
+   rejected, 13 Nov) (`tools/founder-contact.css`). Item 1 closed, except:
    later, the look of the number in the header (owner not happy yet). The footer comes with item 13.
 2. Delivery (cost, area, timing) and payment visible before the cart: a line by the prices, details in Hoe het werkt.
    Status: waiting for owner (delivery cost, payment methods; area "heel Nederland" vs "NL, DE, BE" in the plan).
