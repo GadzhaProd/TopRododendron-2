@@ -82,3 +82,7 @@ Timers, "only 3 left", "12 people viewing", fake reviews or ratings, "bestseller
 struck-through old prices, hidden delivery costs, pre-ticked paid add-ons, entry or exit pop-ups, chat bubbles over
 content, confirmshaming, an unconditional "100% guarantee", animated counters, carousels in the hero, trust marks the
 nursery does not hold, any comparison with garden centres.
+
+## Done along the way (13 Nov)
+
+- Item 7 (founder block) and the review's order advice: the founder card became a helper right after the assortment, "Oprichter en kweker", the name as a byline, the generic quote removed, one action (call or WhatsApp). Address and hours moved to the footer placeholder (item 13 still to design).

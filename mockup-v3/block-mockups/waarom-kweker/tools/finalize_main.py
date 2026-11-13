@@ -85,5 +85,37 @@ rep('</blockquote></div></div></div></div></section>', '</blockquote></div>' + F
 s = s.replace('</head>', '<style id="founder-contact-css">' + (D / 'tools' / 'founder-contact.css').read_text() + '</style></head>', 1)
 # Founder card, desktop only (861 px and up): the text panel re-set with more air (owner, 13 Nov). Phones unchanged.
 s = s.replace('</head>', '<style id="founder-desktop-css">' + (D / 'tools' / 'founder-desktop.css').read_text() + '</style></head>', 1)
+# Founder card as a helper right after the assortment (owner chose option 1, 13 Nov; reviewed on fd-plan.html, designed by
+# Fable). The approved portrait figure is kept; the text panel is replaced; the address and hours move to the footer.
+MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
+T1 = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
+T2 = '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
+WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
+P1 = ('<p class="fp-who"><b>Gert Top</b><span>Oprichter en kweker</span></p>'
+      '<h2 id="h-kweker" class="fp-h"><span>Twijfelt u welke soort past?</span> <span>Gert denkt met u mee.</span></h2>'
+      '<p class="fp-txt">Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. Bel of app met uw vraag, '
+      'of kom langs in Otterlo. <span class="nb">Dat kan zonder afspraak.</span></p>'
+      '<div class="fp-act"><dl><div><dt>Bellen</dt><dd>' + T1 + '</dd></div><div><dt>WhatsApp</dt><dd>' + WA2 + '</dd></div></dl>'
+      '<p class="fp-hrs">Ma–vr 08:00–17:00, za 09:00–13:00</p></div>')
+FOOT = ('<footer class="ft"><div class="in"><div class="ft-g">'
+        '<div class="ft-b"><b>Top Rhododendrons</b><p>Familiekwekerij in Otterlo, sinds 2001.</p></div>'
+        '<div><h3>Bezoek</h3><p><a href="' + MAPS + '">Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</a></p>'
+        '<p>Ma–vr 08:00–17:00<br>Za 09:00–13:00</p><p>Zonder afspraak welkom</p></div>'
+        '<div><h3>Contact</h3><p><span>Bellen</span>' + T1 + '<br>' + T2 + '</p><p><span>WhatsApp</span>' + WA2 + '</p></div>'
+        '</div></div></footer>')
+i = s.index('<section class="fd" id="kweker"'); j = s.index('</section>', i) + len('</section>')
+cur = s[i:j]
+m = re.search(r'<div class="fd-pn">.*</div>(?=</div></div></section>$)', cur, re.S)
+assert m
+helper = cur[:m.start()] + '<div class="fd-pn">' + P1 + '</div>' + cur[m.end():]
+helper = helper.replace('<section class="fd" id="kweker" aria-labelledby="h-kweker">', '<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker">')
+assert 'fp-1' in helper
+s = s[:i] + s[j:]
+rep('</section></div><div class="between">', '</section></div>' + helper + '<div class="between">')
+rep('<div style="height:96px;background:#f1efea"></div></main>', '</main>' + FOOT)
+rep('<span>… hier volgt Hoe het werkt …</span>', '<span>… hier volgt Hoe het werkt: bij de stap «afhalen» staan het adres en de openingstijden …</span>')
+k = s.index('<p class="wh-ct">'); k2 = s.index('</p>', k) + 4
+s = s[:k] + '<p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p>' + s[k2:]
+s = s.replace('</head>', '<style id="founder-helper-css">' + (D / 'tools' / 'founder-helper.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
