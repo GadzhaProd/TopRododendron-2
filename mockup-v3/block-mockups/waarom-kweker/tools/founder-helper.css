@@ -16,24 +16,28 @@
 .fp-h{font-size:clamp(30px,3.1vw,44px);line-height:1.06;font-weight:600;letter-spacing:-.035em;color:#141413;text-wrap:balance}
 .fp-h span{display:block}.fp .nb{white-space:nowrap}
 .fp-txt{font-size:16.5px;line-height:1.55;color:#3d3c37;text-wrap:pretty}
-.fp-act dl{display:flex;flex-wrap:wrap;column-gap:clamp(28px,3.6vw,56px);row-gap:14px}
-.fp-act dt{font-size:13.5px;line-height:1.4;font-weight:500;color:#45443f;margin-bottom:3px}
-.fp-act dd{font-size:clamp(21px,1.75vw,25px);line-height:1.25;letter-spacing:-.02em}
-.fp-hrs{margin-top:14px!important;font-size:14.5px;line-height:1.5;color:#3d3c37}
+/* the action (owner, 13 Nov: numbers in one column): one label | value list, values on a common edge; the numbers lead,
+   the hours are the quiet last row */
+.fp-act dl{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:clamp(18px,1.8vw,28px);row-gap:10px;align-items:baseline}
+.fp-act dl > div{display:contents}
+.fp-act dt{font-size:13.5px;line-height:1.4;font-weight:500;color:#45443f}
+.fp-num{font-size:clamp(21px,1.75vw,25px);line-height:1.25;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.fp-open{font-size:15px;line-height:1.5;color:#3d3c37}
 
 @media (min-width:861px){
   /* the text is one group, centred in the panel's height: the same air above and below, and its lower left corner stays
      well above the shoulder; it runs to the panel's right margin (paddings from founder-desktop.css) */
   .fd.fp .fd-card .fd-pn{justify-content:center;padding-top:var(--fd-top);padding-bottom:var(--fd-bot)}
   .fp-h{margin-top:clamp(18px,1.8vw,26px)!important}
-  .fp-txt{margin-top:clamp(16px,1.5vw,22px)!important;max-width:54ch}
+  .fp-txt{margin-top:clamp(16px,1.5vw,22px)!important;max-width:48ch}
   .fp-act{margin-top:clamp(26px,2.6vw,40px)}
 }
 @media (min-width:861px) and (max-width:1199px){
   .fp-h{font-size:clamp(27px,3vw,34px)}
   .fp-txt{font-size:15.5px;line-height:1.5}
-  .fp-act dd{font-size:20px}
-  .fp-act dl{column-gap:24px}
+  .fp-num{font-size:20px}
+  .fp-open{font-size:14.5px}
+  .fp-act dl{row-gap:8px}
 }
 /* phone («Подпись»): the same light card, the texts first, the portrait rising from the bottom */
 @media (max-width:860px){
@@ -41,8 +45,12 @@
   html.fd-podpis .fp-h{order:2;padding:12px 22px 0;font-size:clamp(25px,7.1vw,34px);line-height:1.06}
   html.fd-podpis .fp-txt{order:2;padding:16px 22px 0;font-size:16px;line-height:1.5}
   html.fd-podpis .fp-act{order:3;padding:24px 22px 0}
-  .fp-act dl{column-gap:22px}
-  .fp-act dd{font-size:clamp(19px,5.4vw,22px)}
+  .fp-act dl{column-gap:18px;row-gap:9px}
+  .fp-num{font-size:clamp(19px,5.4vw,22px)}
+  .fp-open{font-size:14.5px}
+  /* the hours as two lines, never a dangling comma */
+  .fp-open .fp-sep{display:none}
+  .fp-open .nb{display:block}
   .fp-1 > .in{padding-top:8px}
 }
 

@@ -95,8 +95,11 @@ P1 = ('<p class="fp-who"><b>Gert Top</b><span>Oprichter en kweker</span></p>'
       '<h2 id="h-kweker" class="fp-h"><span>Twijfelt u welke soort past?</span> <span>Gert denkt met u mee.</span></h2>'
       '<p class="fp-txt">Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. Bel of app met uw vraag, '
       'of kom langs in Otterlo. <span class="nb">Dat kan zonder afspraak.</span></p>'
-      '<div class="fp-act"><dl><div><dt>Bellen</dt><dd>' + T1 + '</dd></div><div><dt>WhatsApp</dt><dd>' + WA2 + '</dd></div></dl>'
-      '<p class="fp-hrs">Ma–vr 08:00–17:00, za 09:00–13:00</p></div>')
+      '<div class="fp-act"><dl>'
+      '<div><dt>Bellen</dt><dd class="fp-num">' + T1 + '</dd></div>'
+      '<div><dt>WhatsApp</dt><dd class="fp-num">' + WA2 + '</dd></div>'
+      '<div><dt>Open</dt><dd class="fp-open"><span class="nb">ma–vr 08:00–17:00</span><span class="fp-sep">, </span><span class="nb">za 09:00–13:00</span></dd></div>'
+      '</dl></div>')
 FOOT = ('<footer class="ft"><div class="in"><div class="ft-g">'
         '<div class="ft-b"><b>Top Rhododendrons</b><p>Familiekwekerij in Otterlo, sinds 2001.</p></div>'
         '<div><h3>Bezoek</h3><p><a href="' + MAPS + '">Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</a></p>'
