@@ -39,6 +39,20 @@
   /* here the shoulder reaches under the panel's lower left corner: the list steps in to the quote's text line */
   .fd-dl{padding-left:calc(2px + clamp(18px,1.6vw,24px))}
 }
+/* 1200 px and up (owner, 13 Nov): the same 2 × 2 structure as on the narrower screens, label above value, instead of one
+   long label | value column: Open and Bellen side by side, Adres and WhatsApp under them, stepped in to the quote's text line */
+@media (min-width:1200px){
+  .fd-inv{text-wrap:balance}
+  .fd-dl{grid-template-columns:repeat(2,minmax(0,max-content));column-gap:clamp(40px,4vw,64px);row-gap:10px;margin-top:12px!important;
+    padding-left:calc(2px + clamp(18px,1.6vw,24px))}
+  .fd-dl > div{display:flex;flex-direction:column}
+  .fd-dl dt{font-size:13px;line-height:1.4}
+  .fd-dl dd{font-size:15px;line-height:1.5}
+  .fd-dl .fd-sep{display:none}
+  .fd-dl .fd-open .nb{display:block}
+  .fd-dl .fd-tel a{display:table}
+  .fd-dl .fd-open{order:1}.fd-dl .fd-tel{order:2}.fd-dl .fd-adr{order:3}.fd-dl .fd-wa{order:4}
+}
 /* phone («Подпись»): after the quote, before the portrait, on the same 22 px inset as the other lines */
 @media (max-width:860px){
   html.fd-podpis .fd-ct{order:3;padding:0 22px;margin-top:24px}
