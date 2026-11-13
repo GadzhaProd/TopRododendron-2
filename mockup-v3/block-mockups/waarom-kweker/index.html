@@ -701,7 +701,8 @@ a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
 
 /* who (small) · headline · one sentence · the action */
 .fp-1 > .in{padding-top:clamp(20px,2.6vw,40px);padding-bottom:clamp(56px,6vw,96px)}
-.fp-who{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px}
+/* who: the name with the role under it, a signature rather than a label over the heading (owner, 13 Nov) */
+.fp-who{display:flex;flex-direction:column;align-items:flex-start;row-gap:2px}
 .fp-who b{font-size:19px;line-height:1.3;font-weight:600;letter-spacing:-.015em;color:#141413}
 .fp-who span{font-size:15px;line-height:1.4;color:#3d3c37}
 .fp-h{font-size:clamp(30px,3.1vw,44px);line-height:1.06;font-weight:600;letter-spacing:-.035em;color:#141413;text-wrap:balance}
