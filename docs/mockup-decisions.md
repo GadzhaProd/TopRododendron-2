@@ -442,3 +442,16 @@ Owner: not only Gert answers the calls, the team helps too; the byline under the
 - 2 · Герт и команда: headline "… Gert en het team denken met u mee." (three lines on desktop); above the numbers "U spreekt Gert Top, oprichter en kweker, of iemand van zijn team."
 - 3 · Имя в тексте: headline "Wij denken met u mee."; the paragraph adds "Gert Top, oprichter en kweker, en zijn team helpen u graag."; no separate line.
 - Desktop card heights unchanged in all; phone 784 / 835 / 800 px at 390.
+- Fable's view (14 Nov): keep the headline "Wij denken met u mee."; one line right above the numbers, "Gert Top, oprichter en kweker, en zijn team".
+- Owner (14 Nov): the name must be attached to something, not stand alone; Fable's line is not bad, but something is still off.
+
+## Founder helper card: what the name is attached to (14 Nov), in review
+
+Review page `waarom-kweker/fd-team2.html` (`tools/build_fd_team2.py`; html.ft-0..3). Options 1–3 share the headline "Twijfelt u welke soort past? Wij denken met u mee." All new Dutch copy is a draft:
+- 1 · Fable: the line "Gert Top, oprichter en kweker, en zijn team" right above the numbers.
+- 2 · Имя в призыве: the name belongs to the sentence that leads into the numbers, "Bel of app met Gert Top, oprichter en kweker, of met zijn team:". The paragraph keeps the walk-in: "Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. Kom gerust langs in Otterlo, ook zonder afspraak." Recommended.
+- 3 · Слова Герта: the paragraph is set as Gert's own words on a 2 px moss rule (the line style approved for his quote), signed beneath on the same rule "Gert Top, oprichter en kweker".
+- Measurements:
+  - desktop card heights unchanged in all options (626 at 1440, 495 at 1024, 435 at 900);
+  - phone card heights 783 / 784 / 807 / 785 px at 390;
+  - no horizontal scroll.
