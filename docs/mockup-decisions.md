@@ -455,3 +455,8 @@ Review page `waarom-kweker/fd-team2.html` (`tools/build_fd_team2.py`; html.ft-0.
   - desktop card heights unchanged in all options (626 at 1440, 495 at 1024, 435 at 900);
   - phone card heights 783 / 784 / 807 / 785 px at 390;
   - no horizontal scroll.
+- APPROVED (owner, 15 Nov): option 2 «Имя в призыве». The owner asked whether the role is there; it is, after the name, in the sentence's regular weight; the owner: keep it as it is, maybe return later.
+  - Main mockup (`finalize_main.py` P1, `tools/founder-helper.css`): headline "Twijfelt u welke soort past? Wij denken met u mee."; the paragraph "Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. Kom gerust langs in Otterlo, ook zonder afspraak."; then `.fp-lead` "Bel of app met Gert Top, oprichter en kweker, of met zijn team:" (16 px #2f2e2a, name 600; 15 px at 861–1199, 15.5 px on phone) right above the Bellen / WhatsApp / Open list. The byline under the headline is gone.
+  - Checked against ft-2 on fd-team2.html: pixel-identical at 360, 390, 768, 900, 1024, 1440 and 1920. At 1200 one glyph is antialiased differently (sub-pixel position).
+  - Card heights: desktop unchanged; phone 807 px at 390, 763 px at 360.
+  - Header, hero, Waarom wij, the assortment and the footer unchanged (0 diffs at 390 and 1440); no horizontal scroll.

@@ -91,11 +91,12 @@ MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
 T1 = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 T2 = '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
 WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
-# the headline first, then one byline that says which Gert (owner chose Fable's option 1, 13 Nov; reviewed on fd-name-fable.html)
-P1 = ('<h2 id="h-kweker" class="fp-h"><span>Twijfelt u welke soort past?</span> <span>Gert denkt met u mee.</span></h2>'
-      '<p class="fp-by"><b>Gert Top</b>, oprichter en kweker</p>'
-      '<p class="fp-txt">Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. Bel of app met uw vraag, '
-      'of kom langs in Otterlo. <span class="nb">Dat kan zonder afspraak.</span></p>'
+# the headline first ("wij": Gert and the team); the name belongs to the sentence that leads into the numbers, so it says
+# whom you speak to (owner chose option 2 «Имя в призыве», 15 Nov; reviewed on fd-team2.html)
+P1 = ('<h2 id="h-kweker" class="fp-h"><span>Twijfelt u welke soort past?</span> <span>Wij denken met u mee.</span></h2>'
+      '<p class="fp-txt">Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. '
+      'Kom gerust langs in Otterlo, <span class="nb">ook zonder afspraak.</span></p>'
+      '<p class="fp-lead">Bel of app met <b>Gert Top</b>, oprichter en kweker, <span class="nb">of met zijn team:</span></p>'
       '<div class="fp-act"><dl>'
       '<div><dt>Bellen</dt><dd class="fp-num">' + T1 + '</dd></div>'
       '<div><dt>WhatsApp</dt><dd class="fp-num">' + WA2 + '</dd></div>'
