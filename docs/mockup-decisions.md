@@ -460,3 +460,22 @@ Review page `waarom-kweker/fd-team2.html` (`tools/build_fd_team2.py`; html.ft-0.
   - Checked against ft-2 on fd-team2.html: pixel-identical at 360, 390, 768, 900, 1024, 1440 and 1920. At 1200 one glyph is antialiased differently (sub-pixel position).
   - Card heights: desktop unchanged; phone 807 px at 390, 763 px at 360.
   - Header, hero, Waarom wij, the assortment and the footer unchanged (0 diffs at 390 and 1440); no horizontal scroll.
+
+## Delivery and payment by the prices (audit item 2, 15 Nov), in review
+
+Owner's facts (15 Nov):
+- delivery in the Netherlands only, with own transport;
+- cost by distance and volume;
+- the day by agreement;
+- pick-up in Otterlo;
+- iDEAL, bank transfer, or card or cash on receipt; businesses on invoice.
+
+Review page `waarom-kweker/sd-lev.html` (`tools/build_sd_lev.py`; html.lv-0..2), right under the assortment grid. All new Dutch copy is a draft.
+- 1 · Строка под ценами: one quiet line, 15 px, "Bezorgen in heel Nederland, kosten naar afstand en aantal · Afhalen in Otterlo · Betalen met iDEAL, overboeking of bij ontvangst". One line at 1000–1920; three lines without dots at ≤999. Recommended.
+- 2 · Три факта: a hairline, then three columns (label | short text), stacked on phone:
+  - Bezorgen: "In heel Nederland, met eigen transport. De kosten hangen af van afstand en aantal; de dag spreken we met u af."
+  - Afhalen: "In Otterlo: wij zetten uw bestelling klaar."
+  - Betalen: "iDEAL, overboeking, of pin of contant bij ontvangst. Zakelijk op factuur."
+- Lowest text contrast 7.2:1 (labels 13.7:1); the decorative dot 4.8:1. No horizontal scroll at 360–1920.
+- Block height: +24 px (option 1) / +165 px (option 2) at 1440; +98 / +280 px at 390.
+- The details (how the day is agreed, the pick-up step) belong in Hoe het werkt, still a placeholder.

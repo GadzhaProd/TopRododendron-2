@@ -38,7 +38,15 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    rejected, 13 Nov) (`tools/founder-contact.css`). Item 1 closed, except:
    later, the look of the number in the header (owner not happy yet). The footer comes with item 13.
 2. Delivery (cost, area, timing) and payment visible before the cart: a line by the prices, details in Hoe het werkt.
-   Status: waiting for owner (delivery cost, payment methods; area "heel Nederland" vs "NL, DE, BE" in the plan).
+   Owner (15 Nov):
+   - Delivery cost: depends on distance and volume.
+     Note: the live site says shipping costs "worden berekend bij afrekenen". The copy says only "naar afstand en aantal",
+     not when the customer hears the amount.
+   - Area: the Netherlands only. The "NL, DE, BE" in the plan is outdated.
+   - Payment (private customers): iDEAL online, bank transfer, card or cash on delivery or pick-up; businesses on invoice
+     (30 days, already in the data).
+   - Timing: only by agreement, no promised lead time (as in the FAQ: the delivery moment is agreed after ordering).
+   Status: in progress. Options for the line by the prices are on `waarom-kweker/sd-lev.html`.
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
    Status: waiting for owner (see the conflict above).
 4. Help in choosing: under the grid "Twijfelt u? Gert denkt met u mee" with a real contact. (The review's other idea,
