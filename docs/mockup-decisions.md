@@ -564,3 +564,57 @@ Owner: put an add-to-cart icon and a quantity on the cards. Every variety has fo
     - no horizontal scroll.
   - My note: on desktop his popover opens downwards over the founder card (its headline, not the face); mine opens upwards.
 - Owner (16 Nov): no cart on the cards at all, "it doesn't belong here". Neither option goes into the main mockup. The cards stay one link each, to the product page, which will hold size, quantity, cart, delivery and payment. The review pages stay as a record.
+
+## The founder card as the guarantee block (16 Nov), in review
+
+Owner's idea: turn Gert's card (right after the assortment) into the guarantee block. He also allows dropping today's help text.
+
+The guarantee follows the research report (`reports/Гарантия приживаемости у конкурентов.md`):
+- until 31 December of the year after delivery;
+- a new plant delivered free;
+- report with photos.
+
+It is provisional until the owner confirms; all Dutch copy is a draft. In every option the first Waarom wij reason now reads "Aangroeigarantie tot eind volgend jaar / Slaat een plant niet aan? Dan krijgt u kosteloos een nieuwe." (one wording).
+
+My page: `waarom-kweker/fd-gar.html` (`tools/build_fd_gar.py`; html.gr-1..4).
+- 1 · Гарантия + номера:
+  - "Slaat een plant niet aan? Dan krijgt u een nieuwe.";
+  - three checked points (term, free delivery of the new plant, report with a photo via WhatsApp);
+  - "Lees de garantievoorwaarden";
+  - "Een vraag of iets melden? Bel of app met Gert Top, …";
+  - Bellen and WhatsApp.
+- 2 · Обещание Герта:
+  - "Elke plant met aangroeigarantie, tot eind volgend jaar.";
+  - his words on a moss rule: "Wij kweken elke rhododendron zelf. Slaat er toch een niet aan? Stuur ons een foto, dan brengen wij kosteloos een nieuwe." signed "Gert Top, oprichter en kweker";
+  - the conditions link, then the contacts.
+- 3 · Помощь + гарантия: today's card with a tinted guarantee line above the numbers.
+  - At 861–1279 the hours row goes, and at 861–999 the walk-in sentence, so the card keeps its height.
+- 4 · Только гарантия:
+  - headline and the promise ("U hoeft niet uit te leggen waardoor het misging");
+  - three steps to report (WhatsApp photo, an answer within two working days, a free new plant);
+  - the conditions link; no phone list.
+- Desktop card heights unchanged in all four at 900–1920; no horizontal scroll.
+
+Fable's page: `waarom-kweker/fd-gar-fable.html` (`tools/build_fd_gar_fable.py`; html.gf-0|1).
+
+His view:
+- The card is the right home for the guarantee, but the help should not go entirely: it is the only invitation to call before buying, and the walk-in line goes with it.
+- On my options:
+  - 1 works but reads like a spec;
+  - 2 is the most emotional but needs Gert's real words and signature, and the term does not fit a quote;
+  - 3 leaves the guarantee a footnote;
+  - 4 is the weakest: it shows the procedure for a dead plant before the purchase, and the phones go.
+
+His version, "3 reversed":
+- H2 "Slaat uw rhododendron niet aan? Dan krijgt u van ons een nieuwe.";
+- "Aangroeigarantie tot eind volgend jaar. Dezelfde soort en maat, kosteloos bezorgd of klaargezet in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto's volstaan.";
+- "Lees de voorwaarden";
+- "Vragen over soort of garantie? Bel of app met Gert Top, oprichter en kweker, of met zijn team:";
+- the full contact list.
+
+Fable's measurements:
+- desktop heights unchanged;
+- phone 907 px at 390 (807 now);
+- lowest contrast 5.22:1.
+
+He flags that "De oorzaak hoeft u niet aan te tonen" in the first year already follows from BW 7:18 (a lawyer to check against 6:193g j).
