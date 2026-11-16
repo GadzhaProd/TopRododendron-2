@@ -77,3 +77,33 @@
 .ft a:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
 .ft p > span{display:block;font-size:13px;color:#b9c4ab}
 @media (max-width:700px){.ft-g{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== from the assortment to the guarantee card: air, tone and the heading (Fable, 16 Nov; option 2 on
+   fd-kop-fable.html, owner chose it) =====
+   The clash was not a missing heading: the field's lower feather ran into the card's top edge, and the field ended on its
+   warmest corner while the card's text panel answered with its coldest. So: the feather ends (it overhangs the assortment
+   section by --fb-tail), then a band of clean page (--fb-air), then the promise as the section heading, then the card;
+   the text panel turns from cold grey-white to warm paper. The card height and the portrait are untouched. */
+.fp-1{--fb-tail:calc(clamp(84px,9vw,150px) * .3);--fb-air:clamp(40px,4.4vw,72px)}
+.fp-1 > .in{padding-top:calc(var(--fb-tail) + var(--fb-air))}
+@media (max-width:599px){ .fp-1{--fb-tail:27px;--fb-air:32px} }
+@media (min-width:861px){
+  #kweker .fd-card .fd-pn{background:linear-gradient(to right,rgba(249,246,237,0) 0%,rgba(249,246,237,0) 20%,rgba(249,246,237,.5) 40%,rgba(251,248,240,.86) 100%)}
+}
+@media (min-width:861px) and (max-width:1199px){
+  #kweker .fd-card .fd-pn{background:linear-gradient(to right,rgba(249,246,237,0) 0%,rgba(249,246,237,0) 34%,rgba(249,246,237,.5) 56%,rgba(251,248,240,.86) 100%)}
+}
+/* the promise as the section heading (the assortment H2's type), one sentence per line */
+.fb-hd{padding-bottom:clamp(28px,3.2vw,48px)}
+.fb-h{margin:0;font-size:clamp(34px,4.2vw,58px);line-height:1.04;letter-spacing:-.035em;font-weight:600;color:#141413}
+.fb-h span{display:block}
+/* the card starts with the guarantee paragraph; the name of the guarantee leads the panel at a sub-heading size */
+#kweker .fp-txt{margin-top:0!important}
+#kweker .fp-txt b{display:block;margin-bottom:clamp(10px,1vw,14px);font-size:clamp(23px,1.9vw,28px);line-height:1.14;letter-spacing:-.028em;text-wrap:balance}
+@media (min-width:861px) and (max-width:1199px){ #kweker .fp-txt b{font-size:22px} }
+@media (max-width:860px){
+  .fb-h{font-size:clamp(26px,7.1vw,34px);line-height:1.08}
+  .fb-hd{padding-bottom:22px}
+  html.fd-podpis #kweker .fp-txt{padding-top:28px}
+  #kweker .fp-txt b{font-size:clamp(19px,5.3vw,21px);line-height:1.2;margin-bottom:8px}
+}

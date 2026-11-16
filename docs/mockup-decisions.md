@@ -659,3 +659,24 @@ Review page `waarom-kweker/fd-kop.html` (`tools/build_fd_kop.py`; html.fk-0|1|2)
     - The card panel opens with "3 maanden aangroeigarantie na levering." as a larger line (28 / 22 / 21 px).
     - No new words.
   - Desktop card heights unchanged; no horizontal scroll; lowest contrast 5.10:1.
+
+## Waarom wij without the repeated guarantee; the transition to the guarantee card (16 Nov), done
+
+Owner: the guarantee now appears twice (Waarom wij reason 1 and the card); replace it. Reason 3 echoed the card's "Bel of app" too: "if you noticed it, it means something", so replace it as well. Also move Fable's transition (option 2) into the main mockup.
+
+In the main mockup (`finalize_main.py`, `tools/founder-helper.css`):
+- Waarom wij reasons:
+  - Reason 1 (highlighted): "Sterk wortelstelsel uit veenrijke bodem / Onze rhododendrons groeien in de volle grond op veenrijke bodem: de basis om in uw tuin goed aan te slaan." The fact comes from the hero line "Gekweekt op veenrijke bodem, met een sterk wortelstelsel". Why the plants take, while the card says what happens if one does not.
+  - Reason 3: "Welkom op de kwekerij / Kom de rhododendrons in Otterlo zelf bekijken en uitzoeken. Dat kan zonder afspraak." The walk-in invitation (owner, 12 Nov) left the card when it became the guarantee block.
+  - Reasons 2 and 4 unchanged. The guarantee now appears in the hero H1 (the hook) and in its own block (the promise), not in between.
+- The move to the card (Fable's fb-2), pixel-equivalent to option 2 on fd-kop-fable.html at 360–1920 (only sub-pixel antialiasing differs):
+  - the field's feather ends, then a band of clean page;
+  - the promise "Slaat een plant niet aan? / Dan krijgt u een nieuwe." is the section H2 above the card (id h-kweker);
+  - the card has no H2 of its own and opens with "3 maanden aangroeigarantie na levering." at a sub-heading size;
+  - the desktop text panel is warm paper instead of cold grey-white.
+- Measurements:
+  - pill to card: 341 px at 1440 (was 109) and 189 px at 390 (was 56), the heading included;
+  - desktop card heights unchanged (608 / 626 / 522 / 495 / 435);
+  - the card is shorter on smaller screens: 880 at 768 (was 935), 761 at 390 (was 802), 720 at 360 (was 788);
+  - Waarom wij unchanged on desktop, +6 px at 390;
+  - no horizontal scroll.

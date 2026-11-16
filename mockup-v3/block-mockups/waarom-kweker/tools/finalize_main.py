@@ -34,9 +34,10 @@ rep('<h2 id="h-waarom" class="wh2-h">Wij kweken rhododendrons. <span class="nb">
     '<h2 id="h-waarom" class="wh2-h">Wij kweken alleen rhododendrons. <span class="nb">Dat merkt u aan elke plant.</span></h2>')
 rep('<p class="wh2-lead">Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>', '')
 rep('<li><div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></li>',
-    # one guarantee wording on the whole page (owner chose the founder card as the guarantee block, 16 Nov)
-    '<li class="kt-hl"><div><h3>3 maanden aangroeigarantie</h3><p>Slaat een plant niet aan? Dan krijgt u een nieuwe: '
-    'kosteloos bezorgd <span class="nb">of klaargezet in Otterlo.</span></p></div></li>')
+    # the guarantee has its own block (the founder card), so this reason no longer repeats it: it says why the plants take
+    # (owner, 16 Nov). The fact is the hero's "Gekweekt op veenrijke bodem, met een sterk wortelstelsel".
+    '<li class="kt-hl"><div><h3>Sterk wortelstelsel uit veenrijke bodem</h3><p>Onze rhododendrons groeien in de volle grond op '
+    'veenrijke bodem: de basis om in uw tuin <span class="nb">goed aan te slaan.</span></p></div></li>')
 rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>',
     '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')
 kt = (D / 'tools' / 'k-tekst.css').read_text()
@@ -98,8 +99,7 @@ WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a
 # questions about the variety and the guarantee, so the help before the purchase stays. Phone and WhatsApp only: the hours
 # live in the footer (owner, 16 Nov). Term: 3 months after delivery, as most of the market (owner, 16 Nov: 12–24 months is
 # too long). The guarantee is provisional until the company owner confirms it; Dutch copy = draft.
-P1 = ('<h2 id="h-kweker" class="fp-h"><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h2>'
-      '<p class="fp-txt"><b>3 maanden aangroeigarantie na levering.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
+P1 = ('<p class="fp-txt"><b>3 maanden aangroeigarantie na levering.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
       'in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan. '
       '<a class="fp-more" href="#garantievoorwaarden">Lees de voorwaarden</a></p>'
       '<p class="fp-lead">Vragen over soort of garantie? Bel of app met <b class="nb">Gert Top</b>, oprichter en kweker, '
@@ -128,5 +128,16 @@ rep('<span>… hier volgt Hoe het werkt …</span>', '<span>… hier volgt Hoe h
 k = s.index('<p class="wh-ct">'); k2 = s.index('</p>', k) + 4
 s = s[:k] + '<p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p>' + s[k2:]
 s = s.replace('</head>', '<style id="founder-helper-css">' + (D / 'tools' / 'founder-helper.css').read_text() + '</style></head>', 1)
+# Waarom wij reason 3: "Persoonlijk advies" repeated the card's "Bel of app" (owner, 16 Nov). It becomes the invitation to
+# the nursery, which left the card when it became the guarantee block (owner, 12 Nov: welcome without an appointment)
+rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p></div></li>',
+    '<li><div><h3>Welkom op de kwekerij</h3><p>Kom de rhododendrons in Otterlo zelf bekijken en uitzoeken. '
+    '<span class="nb">Dat kan zonder afspraak.</span></p></div></li>')
+# the move from the assortment to the guarantee card (Fable, option 2 on fd-kop-fable.html, owner 16 Nov): clean page after
+# the field, then the promise as the section heading, then the card (CSS in founder-helper.css)
+rep('<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div class="in"><div class="fd-card">',
+    '<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div class="in">'
+    '<div class="fb-hd"><h2 id="h-kweker" class="fb-h"><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h2></div>'
+    '<div class="fd-card">')
 (D / 'index.html').write_text(s)
 print('ok', len(s))
