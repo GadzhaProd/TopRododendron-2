@@ -702,3 +702,15 @@ Review page `waarom-kweker/sv.html` (`tools/build_sv.py`), three switches:
   - The image's top edge fades over 3% into the card (backdrop and card top are nearly the same colour), above the hair.
 - Recommended system: ek-2 + ec-1 + hd-1. Two cards with the same 28 px radius and clear edges are the objects; the assortment's soft field is the garden air between them; one palette (sage, cream, butter, a faint blush).
 - Card heights unchanged; no horizontal scroll.
+- Fable's review (16 Nov). The logic is right (two clear cards as objects, the soft field between them) and ek-2 ec-1 hd-1 beats today, but three things fall short. His refinement: `waarom-kweker/sv-fable.html` (`tools/build_sv_fable.py`), state `fk-2 fr-1 fh-2`.
+  1. A seam above the scaled portrait: the band above the photo shows the card colour (223,225,226) against the photo backdrop (231,234,233), about 25 px in hd-1. Fix: under the photo, a gradient made of the photo's own top-row colours (#e7eae8 → #dce1e2, fading out by 68%); 1–2 levels left. Same 95% scale and 39 px of air; fallback fh-3, 92.5% (about 56 px).
+  2. The "clear edges everywhere" were not yet clear: the top edge ΔE was 4.3–5.1 against the page, and the guarantee card also dissolves at its right side and top-right corner. Fix:
+     - a darker top on the facts card, --top:#dee4d1, --b2:#e4e9d8 (ΔE 6.7–7.5);
+     - one rim inside both cards, inset 0 0 0 1px rgba(63,74,55,.12) (switch «Кант», fr-0 turns it off).
+  3. The butter was too strong (yellow on phone). Lighter: --b3:#eae1bf, --b4:#e0d7ad, --bot:#ede8d4.
+- Fable's measurements:
+  - guarantee card heights unchanged;
+  - facts card heights unchanged;
+  - no horizontal scroll;
+  - facts text contrast 5.38–9.13:1 on real pixels.
+- Open: the fill above the portrait continues the photo's flat backdrop tone (not painted content), the owner decides. The rim is a new device on the approved guarantee card, hence its own switch.
