@@ -547,3 +547,19 @@ Owner: put an add-to-cart icon and a quantity on the cards. Every variety has fo
 - Smallest card 154 px (360) and 155 px (1280); the controls fit, no overflow, no horizontal scroll.
 - Card height at 1440: 398 (C) / 452 (A) / 495 (B) px.
 - Fable designs his own option in parallel (`sd-cart-fable.html`).
+- Fable's option (`waarom-kweker/sd-cart-fable.html`, `tools/build_sd_cart_fable.py`; html.fc-1|2). His verdict: A puts 21 controls in a row and silently adds the smallest size; B is the noisiest and hides the other prices in a select; he picks C, refined:
+  - The card: one round outline cart button (40 px, like the "Bekijk alle planten" pill).
+    - fc-1: on the price line (his pick).
+    - fc-2: white, in the photo's bottom right corner.
+  - The panel (native `<dialog>`):
+    - thumbnail, name, "Alle maten met kluit";
+    - four radio rows size · price, 40–60 preselected;
+    - "Aantal" stepper and "Totaal";
+    - "In winkelwagen".
+  - After adding: "In uw winkelwagen · 2 × …, 60–80 cm · € 70" with "Verder kijken" / "Naar winkelwagen", and a count badge on the card's button. So the quantity shows on the card only once there is one.
+  - Popover from 768 px, bottom sheet on phone.
+  - Fable's measurements:
+    - contrast: icon 14–16:1, button outline 4.4:1;
+    - targets 44–52 px;
+    - no horizontal scroll.
+  - My note: on desktop his popover opens downwards over the founder card (its headline, not the face); mine opens upwards.

@@ -48,7 +48,7 @@ DLG = ('<dialog class="fc-dlg" id="fc-dlg" aria-labelledby="fc-t"><form class="f
        '<button type="button" class="fc-pl" aria-label="Eén meer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button></div>'
        '<p class="fc-tot" aria-live="polite">Totaal <b></b></p></div>'
        '<button type="submit" class="fc-add">In winkelwagen</button></div>'
-       '<div class="fc-done" hidden><p class="fc-ok" role="status" tabindex="-1"><b>In uw winkelwagen</b><span></span></p>'
+       '<div class="fc-done" hidden><p class="fc-ok" role="status" tabindex="-1"><b>In uw winkelwagen</b><span></span><span></span></p>'
        '<div class="fc-act"><button type="button" class="fc-go">Verder kijken</button><a class="fc-add" href="#">Naar winkelwagen</a></div></div>'
        '</form></dialog>')
 
@@ -68,7 +68,7 @@ function open(card){cur=card;prices=card.getAttribute('data-prices').split(',').
   q('#fc-t').textContent=card.getAttribute('data-name');q('.fc-th').src=card.getAttribute('data-img');
   radios.forEach(function(r,i){r.checked=i===0;r.parentNode.querySelector('.fc-p').textContent='€ '+prices[i]});
   inp.value=1;pick.hidden=false;done.hidden=true;tot();
-  dlg.showModal();place();y0=scrollY;if(mq.matches)document.documentElement.style.overflow='hidden'}
+  dlg.showModal();radios[0].focus();place();y0=scrollY;if(mq.matches)document.documentElement.style.overflow='hidden'}
 [].slice.call(document.querySelectorAll('.sd-it .fc-btn')).forEach(function(b){b.addEventListener('click',function(){open(b.closest('.sd-it'))})});
 radios.forEach(function(r){r.addEventListener('change',tot)});
 q('.fc-m').addEventListener('click',function(){inp.value=qty()-1;tot()});
@@ -85,7 +85,7 @@ q('.fc-f').addEventListener('submit',function(e){e.preventDefault();var n=qty(),
   size=radios[i].parentNode.querySelector('.fc-l').textContent,bd=cur.querySelector('.fc-n'),all=(+bd.textContent||0)+n;
   bd.textContent=all;bd.hidden=false;
   cur.querySelector('.fc-btn').setAttribute('aria-label',name+': '+all+' in uw winkelwagen. Nog een maat kiezen');
-  q('.fc-ok span').textContent=n+' × '+name+', '+size+' · € '+prices[i]*n;
+  var sp=dlg.querySelectorAll('.fc-ok span');sp[0].textContent=n+' × '+name+', '+size;sp[1].textContent='€ '+prices[i]*n;
   pick.hidden=true;done.hidden=false;place();q('.fc-ok').focus()});
 })();</script>'''
 
@@ -106,13 +106,15 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
 @media (max-width:767px){.sd-it:nth-child(5){grid-column:span 2}.sd-it:nth-child(7){grid-column:2 / span 2}}
 @media (max-width:599px){.sd-it{grid-row:span 3;padding-bottom:28px}.sd-pr,.fc-btn{grid-row:3}}
 
-/* the round button shares the price row: right of the price, over the free end of that line. The size line moves 6 px
-   down so the circle never touches it on the narrowest cards */
+/* the round button shares the price row: right of the price, over the free end of that line. The row gets 6 px of air
+   above and the size line 6 px more, so the 40 px circle touches neither the bloom line nor the size line on the
+   narrowest cards (154 px); the card grows by 12 px */
+html.fc-1 .sd .sd-pr{margin-top:6px}
 html.fc-1 .sd-s{margin-top:9px}
-html.fc-1 .fc-btn{justify-self:end;align-self:start;margin-top:calc(12px + (clamp(24px,2vw,29px)*1.1 - 40px)/2)}
-@media (min-width:1280px){html.fc-1 .fc-btn{margin-top:calc(12px + (clamp(21px,1.6vw,26px)*1.1 - 40px)/2)}}
-@media (max-width:999px){html.fc-1 .fc-btn{margin-top:5px}}
-@media (max-width:599px){html.fc-1 .fc-btn{margin-top:0}}
+html.fc-1 .fc-btn{--lh:calc(clamp(24px,2vw,29px)*1.1);justify-self:end;align-self:start;margin-top:calc(6px + (var(--lh) - 40px)/2)}
+@media (min-width:1280px){html.fc-1 .fc-btn{--lh:calc(clamp(21px,1.6vw,26px)*1.1)}}
+@media (max-width:999px){html.fc-1 .fc-btn{--lh:25.3px}}
+@media (max-width:599px){html.fc-1 .fc-btn{--lh:24.2px}}
 .fc-btn{position:relative;z-index:1;display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;
   border:1px solid rgba(20,20,19,.6);background:transparent;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;
   transition:background-color .2s ease,color .2s ease,border-color .2s ease}
@@ -172,9 +174,11 @@ html.fc-2 .fc-n{box-shadow:0 0 0 2px #fff}
 .fc-done{margin-top:16px}
 .fc-ok{padding:14px 16px;border-radius:12px;background:#eef0e7;font-size:15px;line-height:1.45;color:var(--ink2);outline:none}
 .fc-ok b{display:block;font-weight:600;color:var(--ink)}
-.fc-act{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
-.fc-act .fc-add{margin-top:0;padding:0 12px}
-.fc-go{height:52px;padding:0 12px;border:1px solid rgba(20,20,19,.6);border-radius:999px;background:transparent;color:var(--ink);font:500 15px/1 Manrope,system-ui,sans-serif;cursor:pointer}
+.fc-ok span{display:block}
+.fc-ok span + span{font-weight:600;color:var(--moss);font-variant-numeric:tabular-nums}
+.fc-act{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;margin-top:16px}
+.fc-act .fc-add{margin-top:0;padding:0 12px;white-space:nowrap}
+.fc-go{height:52px;padding:0 18px;white-space:nowrap;border:1px solid rgba(20,20,19,.6);border-radius:999px;background:transparent;color:var(--ink);font:500 15px/1 Manrope,system-ui,sans-serif;cursor:pointer}
 .fc-go:hover{background:var(--ink);color:#fff}
 [hidden].fc-pick,[hidden].fc-done{display:none}
 @media (max-width:767px){
