@@ -531,3 +531,4 @@ Fable's verdict: the composition is right (lead under H2; outline pill bottom ri
   - three at 768;
   - on phone, three facts above a full-width pill.
 - No horizontal scroll.
+- Owner (16 Nov): drop the delivery line from the assortment altogether (it clutters, the labels compete with the variety names). Delivery and payment go to the product page and Hoe het werkt. It was never in the main mockup; `sd-lev.html` stays as a record. Next: an add-to-cart control with quantity on the variety cards (components searched on 21st).

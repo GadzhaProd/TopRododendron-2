@@ -52,7 +52,11 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
      and is changed later if the owner wants something else.
    - Chosen: option 1 (one line under the prices), with the reassurance "u ziet de kosten vóór u betaalt" added
      (to be confirmed by the owner).
-   Status: in progress. Review page: `waarom-kweker/sd-lev.html`.
+   Owner (16 Nov, after Fable's review): remove the delivery/payment line from the assortment. It clutters the block and its
+   labels compete with the variety names. Delivery and payment go to the product page (all details there) and to Hoe het
+   werkt. The cards get an add-to-cart control with a quantity instead.
+   Status: moved. Not in the assortment; to be designed with the product page and Hoe het werkt.
+   `sd-lev.html` stays as the record of the tried line.
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
    Status: waiting for owner (see the conflict above).
 4. Help in choosing: under the grid "Twijfelt u? Gert denkt met u mee" with a real contact. (The review's other idea,
