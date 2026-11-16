@@ -680,3 +680,25 @@ In the main mockup (`finalize_main.py`, `tools/founder-helper.css`):
   - the card is shorter on smaller screens: 880 at 768 (was 935), 761 at 390 (was 802), 720 at 360 (was 788);
   - Waarom wij unchanged on desktop, +6 px at 390;
   - no horizontal scroll.
+
+## Weaving the three surfaces together; air above Gert's head (16 Nov), in review
+
+Owner:
+- the cut of the portrait is too close to Gert's hair; give the card a little more air above the head;
+- the Waarom wij facts card dissolves at the top but shows hard edges at the bottom: either a gentle dissolve at the bottom too, or clear edges everywhere;
+- the facts card, the assortment field and the guarantee card must not clash in colour or form: weave them together.
+
+Diagnosis:
+- The facts card's top only seems to dissolve because its top colour (#eceee6) is almost the page colour (#f1efea); the bottom is sandy ground (#d9cbb0, #c7b893), so it shows.
+- The desktop portrait is 110% of the card height and lifted by 3.3%, and the hair starts 3.9% from the image top: about 6 px of air at 1440.
+
+Review page `waarom-kweker/sv.html` (`tools/build_sv.py`), three switches:
+- Края: ek-0 как сейчас; ek-1 the bottom dissolves gently (mask on the background layers only, a long ramp keeping a hint of the edge); ek-2 clear edges everywhere (the top takes a light sage tone #e2e6d7).
+- Цвет: ec-0 как сейчас; ec-1 one palette with the assortment field (the sandy ground becomes butter and soft sage: #e6dcb2, #d6cd9c, #ece6cd).
+- Над головой (desktop):
+  - hd-0 as now;
+  - hd-1 portrait scaled to 95%, same bottom; 39 px air at 1440, 31 at 1024;
+  - hd-2 scaled to 90%; 73 / 57 px.
+  - The image's top edge fades over 3% into the card (backdrop and card top are nearly the same colour), above the hair.
+- Recommended system: ek-2 + ec-1 + hd-1. Two cards with the same 28 px radius and clear edges are the objects; the assortment's soft field is the garden air between them; one palette (sage, cream, butter, a faint blush).
+- Card heights unchanged; no horizontal scroll.
