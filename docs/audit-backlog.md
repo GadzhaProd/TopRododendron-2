@@ -63,7 +63,8 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
    Owner (16 Nov): research first. See `reports/Гарантия приживаемости у конкурентов.md`.
    Then the founder card became the guarantee block: Fable's version, the shorter headline, hours removed from the card.
-   Wording now on the page, a provisional draft: "Aangroeigarantie tot eind volgend jaar".
+   Owner (16 Nov): 12–24 months is too long; the term is 3 months after delivery, as most of the market.
+   Wording now on the page, a provisional draft: "3 maanden aangroeigarantie (na levering)".
    Status: in the mockup. Still needed:
    - the company owner confirms the term and the promise;
    - a lawyer checks the wording;

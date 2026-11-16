@@ -35,7 +35,7 @@ rep('<h2 id="h-waarom" class="wh2-h">Wij kweken rhododendrons. <span class="nb">
 rep('<p class="wh2-lead">Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>', '')
 rep('<li><div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></li>',
     # one guarantee wording on the whole page (owner chose the founder card as the guarantee block, 16 Nov)
-    '<li class="kt-hl"><div><h3>Aangroeigarantie tot eind volgend jaar</h3><p>Slaat een plant niet aan? Dan krijgt u een nieuwe: '
+    '<li class="kt-hl"><div><h3>3 maanden aangroeigarantie</h3><p>Slaat een plant niet aan? Dan krijgt u een nieuwe: '
     'kosteloos bezorgd <span class="nb">of klaargezet in Otterlo.</span></p></div></li>')
 rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>',
     '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')
@@ -96,9 +96,10 @@ WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a
 # the founder card is the guarantee block (owner, 16 Nov; Fable's version on fd-gar-fable.html with the shorter headline):
 # the promise leads, one paragraph says what you get and links to the conditions, the lead-in to the numbers covers
 # questions about the variety and the guarantee, so the help before the purchase stays. Phone and WhatsApp only: the hours
-# live in the footer (owner, 16 Nov). The guarantee is provisional until the company owner confirms it; Dutch copy = draft.
+# live in the footer (owner, 16 Nov). Term: 3 months after delivery, as most of the market (owner, 16 Nov: 12–24 months is
+# too long). The guarantee is provisional until the company owner confirms it; Dutch copy = draft.
 P1 = ('<h2 id="h-kweker" class="fp-h"><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h2>'
-      '<p class="fp-txt"><b>Aangroeigarantie tot eind volgend jaar.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
+      '<p class="fp-txt"><b>3 maanden aangroeigarantie na levering.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
       'in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan. '
       '<a class="fp-more" href="#garantievoorwaarden">Lees de voorwaarden</a></p>'
       '<p class="fp-lead">Vragen over soort of garantie? Bel of app met <b class="nb">Gert Top</b>, oprichter en kweker, '

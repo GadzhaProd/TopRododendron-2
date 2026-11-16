@@ -629,3 +629,7 @@ He flags that "De oorzaak hoeft u niet aan te tonen" in the first year already f
     - the owner: the term and the promise;
     - a lawyer: "De oorzaak hoeft u niet aan te tonen", which in the first year already follows from BW 7:18 (6:193g j);
     - the conditions page is a placeholder link.
+- Owner (16 Nov): 12–24 months is too long ("anything can happen in two years"). The "until the end of the first summer" option was offered; the owner chose **3 months, as most of the market**.
+  - Main mockup: the card paragraph opens with "3 maanden aangroeigarantie na levering."; Waarom wij reason 1 reads "3 maanden aangroeigarantie / Slaat een plant niet aan? Dan krijgt u een nieuwe: kosteloos bezorgd of klaargezet in Otterlo."
+  - Card heights unchanged; Waarom wij −30 px on phone at 390.
+  - The conditions page must say the guarantee comes on top of the legal rights (BW 7:6a). A lawyer checks whether the 1-year presumption (7:18) applies to root-ball plants, and the phrase "De oorzaak hoeft u niet aan te tonen".
