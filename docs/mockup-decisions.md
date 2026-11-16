@@ -563,3 +563,4 @@ Owner: put an add-to-cart icon and a quantity on the cards. Every variety has fo
     - targets 44–52 px;
     - no horizontal scroll.
   - My note: on desktop his popover opens downwards over the founder card (its headline, not the face); mine opens upwards.
+- Owner (16 Nov): no cart on the cards at all, "it doesn't belong here". Neither option goes into the main mockup. The cards stay one link each, to the product page, which will hold size, quantity, cart, delivery and payment. The review pages stay as a record.

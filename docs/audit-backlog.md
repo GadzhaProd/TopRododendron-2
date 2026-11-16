@@ -57,10 +57,15 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    werkt. The cards get an add-to-cart control with a quantity instead.
    Status: moved. Not in the assortment; to be designed with the product page and Hoe het werkt.
    `sd-lev.html` stays as the record of the tried line.
+   Owner (16 Nov): no add-to-cart on the homepage cards either (tried on `sd-cart.html` and Fable's `sd-cart-fable.html`):
+   "it doesn't belong here". The cards stay one link each, to the product page, where size, quantity, cart, delivery and
+   payment live.
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
    Status: waiting for owner (see the conflict above).
 4. Help in choosing: under the grid "Twijfelt u? Gert denkt met u mee" with a real contact. (The review's other idea,
-   colour words on the cards, conflicts with the owner's decision to remove colour; not taken.) Status: open.
+   colour words on the cards, conflicts with the owner's decision to remove colour; not taken.)
+   Status: done along the way. The founder helper card stands right after the assortment: "Twijfelt u welke soort past?
+   Wij denken met u mee.", "Bel of app met Gert Top, oprichter en kweker, of met zijn team:", phone and WhatsApp.
 5. First screen: bring back "Familiekwekerij in Otterlo · sinds 2001" above the H1; break the H1 by meaning:
    "Rhododendrons die aanslaan. / Met aangroeigarantie." Status: open.
 
