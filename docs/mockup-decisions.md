@@ -742,3 +742,12 @@ Still open for the owner:
 - The prices per size.
 - Which sizes are sold to private customers.
 - The cards still show the site data's smallest band, "vanaf € … 40–60 cm, met kluit". The reseller lists 40–50 / 50–60 as the smallest bands.
+- Owner (16 Nov): "why did nothing change in the product block?". The cards still said "40–60 cm, met kluit". Each card now shows its variety's own range (`tools/build_as3_sad.py`, RANGE):
+  - Nova Zembla 50 tot 180 cm;
+  - Catawbiense Grandiflorum, Cunningham's White and Roseum Elegans 50 tot 225 cm;
+  - Catawbiense Boursault 40 tot 180 cm;
+  - Ponticum 50 tot 120 cm;
+  - Ponticum Roseum 40 tot 160 cm;
+  - each followed by ", met kluit".
+
+  "vanaf € …" stays the smallest size's price from the site data. The aria-label reads "…, vanaf € 29, van 50 tot 180 cm". One line on every card at 360–1920 (narrowest card 154 px); block heights unchanged.

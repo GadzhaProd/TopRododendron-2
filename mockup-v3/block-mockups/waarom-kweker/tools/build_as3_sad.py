@@ -39,14 +39,20 @@ ORDER = ['nova-zembla', 'catawbiense-grandiflorum', 'cunninghams-white', 'catawb
 assert sorted(ORDER) == sorted(v['slug'] for v in V)
 V = sorted(V, key=lambda v: ORDER.index(v['slug']))
 
+# each variety's own size range (owner, 16 Nov: the sizes on the reseller's site are Top's own; docs/maten-per-soort.md).
+# The price stays "vanaf": the price of the smallest size from the site data, until the owner gives the prices per size.
+RANGE = {'nova-zembla': (50, 180), 'catawbiense-grandiflorum': (50, 225), 'cunninghams-white': (50, 225),
+         'catawbiense-boursault': (40, 180), 'roseum-elegans': (50, 225), 'ponticum': (50, 120), 'ponticum-roseum': (40, 160)}
+assert sorted(RANGE) == sorted(ORDER)
 items = ''
 for v in V:
-    items += ('<article class="sd-it"><a href="#assortiment" aria-label="' + e(v['name']) + ', vanaf € ' + v['frm'] + ' voor 40–60 cm">'
+    lo, hi = RANGE[v['slug']]
+    items += ('<article class="sd-it"><a href="#assortiment" aria-label="' + e(v['name']) + ', vanaf € ' + v['frm'] + ', van ' + str(lo) + ' tot ' + str(hi) + ' cm">'
               '<div class="sd-ph"><img src="img/' + v['slug'] + '-2-sm.webp" alt="' + e(v['name']) + ', bloeiende struik" loading="lazy"'
               + (' style="object-position:' + POS[v['slug']] + '"' if v['slug'] in POS else '') + '></div>'
               '<h3>' + e(v['name']) + '</h3>'
               '<p class="sd-b">Bloeit ' + e(v['bloei'].lower()) + '</p>'
-              '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">40–60&nbsp;cm, met kluit</span></p>'
+              '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">' + str(lo) + ' tot ' + str(hi) + '&nbsp;cm, met kluit</span></p>'
               '</a></article>')
 
 out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in">'
