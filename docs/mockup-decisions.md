@@ -479,3 +479,15 @@ Review page `waarom-kweker/sd-lev.html` (`tools/build_sd_lev.py`; html.lv-0..2),
 - Lowest text contrast 7.2:1 (labels 13.7:1); the decorative dot 4.8:1. No horizontal scroll at 360–1920.
 - Block height: +24 px (option 1) / +165 px (option 2) at 1440; +98 / +280 px at 390.
 - The details (how the day is agreed, the pick-up step) belong in Hoe het werkt, still a placeholder.
+- Owner (16 Nov): option 1 is good. Add "u ziet de kosten vóór u betaalt", to remove the fear before the cart. All delivery and payment details are provisional until the company owner confirms them; the mockup shows the example and the reason. First, the assortment lead moves under the heading (below).
+
+## Assortment: the lead under the heading (16 Nov), done
+
+Owner: the text that belongs under the heading sat on the right; move it under the heading, as elsewhere on the page.
+- In the main mockup (`tools/build_as3_sad.py` → `tools/as3-sad.html`, `tools/assortiment.css`):
+  - H2, then the lead "Elke soort is er in vier maten, van 40 tot 120 cm. U bestelt vanaf 1 plant." on the left (16–17 px, 12–18 px under the heading).
+  - From 600 px up, the lead breaks only between its two sentences. It is one line from 768 px.
+  - "Bekijk alle planten →" stays on the right, on the lead's baseline, at the grid's right edge.
+- Phone (≤767) unchanged: heading, lead and link were already stacked. Pixel-identical at 390; at 360 one glyph is antialiased differently.
+- Block height at 1440: +4 px. No horizontal scroll at 360–1920.
+- `sd-lev.html` rebuilt on the new heading.

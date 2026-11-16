@@ -46,7 +46,13 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    - Payment (private customers): iDEAL online, bank transfer, card or cash on delivery or pick-up; businesses on invoice
      (30 days, already in the data).
    - Timing: only by agreement, no promised lead time (as in the FAQ: the delivery moment is agreed after ordering).
-   Status: in progress. Options for the line by the prices are on `waarom-kweker/sd-lev.html`.
+   Owner (16 Nov):
+   - These answers are provisional: the company owner (the founder) still has to confirm every detail.
+   - For now the mockup shows the solution and why it is there (it removes the fear of hidden costs before the cart),
+     and is changed later if the owner wants something else.
+   - Chosen: option 1 (one line under the prices), with the reassurance "u ziet de kosten vóór u betaalt" added
+     (to be confirmed by the owner).
+   Status: in progress. Review page: `waarom-kweker/sd-lev.html`.
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
    Status: waiting for owner (see the conflict above).
 4. Help in choosing: under the grid "Twijfelt u? Gert denkt met u mee" with a real contact. (The review's other idea,

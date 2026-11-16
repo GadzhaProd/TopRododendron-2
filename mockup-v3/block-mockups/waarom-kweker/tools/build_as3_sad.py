@@ -50,9 +50,10 @@ for v in V:
               '</a></article>')
 
 out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in">'
-       '<div class="sd-hd"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2><div class="sd-hr">'
-       '<p class="sd-lead">Elke soort is er in vier maten, van 40 tot 120&nbsp;cm. U bestelt vanaf 1&nbsp;plant.</p>'
-       '<a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div></div>'
+       # the lead sits under the heading (owner, 16 Nov: as elsewhere on the page); the link to all plants stays on the right
+       '<div class="sd-hd"><div class="sd-hl"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2>'
+       '<p class="sd-lead"><span>Elke soort is er in vier maten, van 40 tot 120&nbsp;cm.</span> <span>U bestelt vanaf 1&nbsp;plant.</span></p></div>'
+       '<a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div>'
        '<div class="sd-grid">' + items + '</div></div></section>')
 (D / 'tools' / 'as3-sad.html').write_text(out)
 print('as3-sad.html', len(out))
