@@ -52,10 +52,13 @@ for v in V:
 out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in">'
        # the lead sits under the heading (owner, 16 Nov: as elsewhere on the page)
        '<div class="sd-hd"><div class="sd-hl"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2>'
-       '<p class="sd-lead"><span>Elke soort is er in vier maten, van 40 tot 120&nbsp;cm.</span> <span>U bestelt vanaf 1&nbsp;plant.</span></p></div></div>'
+       # sizes from 40 to 225 cm (owner, 16 Nov: the sizes on the reseller's site are Top's own; docs/maten-per-soort.md)
+       '<p class="sd-lead"><span>Van 40 tot 225&nbsp;cm, afhankelijk van de soort.</span> <span>U&nbsp;bestelt vanaf 1&nbsp;plant.</span></p></div></div>'
        '<div class="sd-grid">' + items + '</div>'
        # the way on to all plants closes the block: a pill in the bottom right corner, under the cards (owner, 16 Nov)
-       '<div class="sd-ft"><a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div>'
+       # the cards show the smallest size only; the pill leads to every size and price (owner, 16 Nov: "all plants" made no
+       # sense with all seven varieties already in view)
+       '<div class="sd-ft"><a class="sd-more" href="#assortiment">Alle maten en prijzen' + ARW + '</a></div>'
        '</div></section>')
 (D / 'tools' / 'as3-sad.html').write_text(out)
 print('as3-sad.html', len(out))

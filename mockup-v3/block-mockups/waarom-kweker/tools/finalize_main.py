@@ -142,5 +142,7 @@ rep('<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div cla
     '<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div class="in">'
     '<div class="fb-hd"><h2 id="h-kweker" class="fb-h"><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h2></div>'
     '<div class="fd-card">')
+# the facts card: the real size range (owner, 16 Nov; docs/maten-per-soort.md)
+rep('<li><b>7 soorten</b><span>in 4 maten, 40 tot 120&nbsp;cm</span></li>', '<li><b>7 soorten</b><span>van 40 tot 225&nbsp;cm</span></li>')
 (D / 'index.html').write_text(s)
 print('ok', len(s))

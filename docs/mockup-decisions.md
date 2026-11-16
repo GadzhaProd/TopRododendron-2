@@ -726,3 +726,19 @@ Review page `waarom-kweker/sv.html` (`tools/build_sv.py`), three switches:
   - Checks:
     - identical to sv-fable.html fk-2 fr-1 fh-2 at 1920, 1440, 900, 768, 390 and 360; at 1024, 0.04% of pixels differ (antialiasing);
     - card heights, hero, assortment and footer unchanged; no horizontal scroll.
+
+## Sizes 40–225 cm; the assortment pill becomes "Alle maten en prijzen" (16 Nov), done
+
+Owner: "Bekijk alle planten" makes no sense, all seven varieties are already in one row. The sizes on the reseller Rhododendronwal's site are Top's own ("размеры точно наши"): from 40 to 225 cm depending on the variety (`docs/maten-per-soort.md`).
+
+In the main mockup:
+- `tools/build_as3_sad.py` (assortment):
+  - The lead reads "Van 40 tot 225 cm, afhankelijk van de soort. U bestelt vanaf 1 plant." (was "Elke soort is er in vier maten, van 40 tot 120 cm."). "U bestelt" is glued so no "U" hangs at a line end on phone.
+  - The pill reads "Alle maten en prijzen →": the cards show the smallest size only, and the pill leads to every size and price.
+- `finalize_main.py` (facts card): "7 soorten / van 40 tot 225 cm" (was "in 4 maten, 40 tot 120 cm").
+- Desktop block heights unchanged; facts card −18 px on phone (one line); no horizontal scroll.
+
+Still open for the owner:
+- The prices per size.
+- Which sizes are sold to private customers.
+- The cards still show the site data's smallest band, "vanaf € … 40–60 cm, met kluit". The reseller lists 40–50 / 50–60 as the smallest bands.
