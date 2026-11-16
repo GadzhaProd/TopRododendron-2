@@ -104,7 +104,8 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
 Timers, "only 3 left", "12 people viewing", fake reviews or ratings, "bestseller" badges without sales data,
 struck-through old prices, hidden delivery costs, pre-ticked paid add-ons, entry or exit pop-ups, chat bubbles over
 content, confirmshaming, an unconditional "100% guarantee", animated counters, carousels in the hero, trust marks the
-nursery does not hold, any comparison with garden centres.
+nursery does not hold, any comparison with garden centres, any comparison with resellers and partners (for
+example Rhododendronwal in Wekerom: it buys plants from Top and resells them, and the families are related; owner, 16 Nov).
 
 ## Done along the way (13 Nov)
 
