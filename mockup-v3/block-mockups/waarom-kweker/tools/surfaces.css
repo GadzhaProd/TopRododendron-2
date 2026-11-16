@@ -1,0 +1,45 @@
+/* ===== The three surfaces woven together (approved 16 Nov; Fable's refinement on sv-fable.html, state fk-2 fr-1 fh-2) =====
+   Two cards are the objects: the Waarom wij facts card and the guarantee card, both with a 28 px radius (22 px on phone)
+   and a clear edge on every side. The assortment's soft field between them is the garden air. One palette runs through
+   all three: sage, cream, pale butter, a faint blush. */
+
+/* the facts card's field, with variables (card-veld.css, "Veld"): the top a light sage, a shade deeper than the page, so
+   its rounded edge reads like the bottom one; the sandy ground becomes the field's pale butter */
+.wh2-card{--top:#dee4d1;--b2:#e4e9d8;--b3:#eae1bf;--b4:#e0d7ad;--bot:#ede8d4}
+.wh2-bg{background:
+  radial-gradient(ellipse 75% 38% at 50% -4%,var(--b2) 0%,transparent 70%),
+  radial-gradient(ellipse 34% 20% at 88% 20%,var(--b5) 0%,transparent 70%),
+  radial-gradient(ellipse 78% 50% at -6% 46%,var(--b1) 0%,transparent 68%),
+  radial-gradient(ellipse 46% 32% at 30% 100%,#c2cca9 0%,transparent 68%),
+  radial-gradient(ellipse 120% 34% at 50% 104%,var(--b3) 0%,transparent 72%),
+  radial-gradient(ellipse 52% 34% at 102% 102%,var(--b4) 0%,transparent 70%),
+  linear-gradient(to bottom,var(--top) 0%,var(--p) 46%,var(--bot) 100%)}
+@media (max-width:860px){
+  .wh2-bg{background:
+    radial-gradient(ellipse 90% 60% at 50% -10%,var(--b2) 0%,transparent 70%),
+    radial-gradient(ellipse 30% 50% at 92% 20%,var(--b5) 0%,transparent 70%),
+    radial-gradient(ellipse 55% 90% at -4% 50%,var(--b1) 0%,transparent 68%),
+    radial-gradient(ellipse 120% 55% at 50% 108%,var(--b3) 0%,transparent 72%),
+    radial-gradient(ellipse 45% 70% at 104% 104%,var(--b4) 0%,transparent 70%),
+    linear-gradient(to bottom,var(--top) 0%,var(--p) 46%,var(--bot) 100%)}
+}
+
+/* one hairline inside both cards: the same clear edge on every side, also where a card's own colour comes close to the
+   page (the facts card's right side, the guarantee card's warm panel) */
+:is(.wh2-card,#kweker .fd-card){position:relative}
+:is(.wh2-card,#kweker .fd-card)::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
+
+/* air above Gert's head on desktop (owner: the crop was too close to the hair, about 6 px at 1440): the portrait is
+   scaled to 95 % and keeps the same bottom, so the shoulder still runs out of the card; about 39 px above the hair at 1440.
+   Its top edge fades over 3 % (above the hair, which starts at 3.9 %), and the strip above it carries the photo backdrop's
+   own top-row colours, so there is no tone step against the card. */
+@media (min-width:861px){
+  #kweker .fd-ph{--pw:88.825cqh}
+  #kweker .fd-ph .ph-in{--w:var(--pw);top:calc(107.171cqh - var(--pw) * 1.18167);
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 3%);mask-image:linear-gradient(to bottom,transparent 0%,#000 3%)}
+  #kweker .fd-ph::before{content:"";position:absolute;top:0;
+    left:min(0px,max(calc((100cqw - var(--pw)) * .75),calc(var(--pw) * -.12)));width:calc(var(--pw) * 1.31667);
+    height:calc(107.171cqh - var(--pw) * 1.18167 + var(--pw) * .0414);
+    background:linear-gradient(to right,#e7eae8 0%,#e6e9e7 16.6%,#e4e8e8 24.9%,#e0e3e4 33.2%,#dce1e2 41.5%,#dce1e2 50%,rgba(222,224,226,.7) 58%,rgba(222,224,226,0) 68%)}
+}

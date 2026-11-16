@@ -128,6 +128,9 @@ rep('<span>… hier volgt Hoe het werkt …</span>', '<span>… hier volgt Hoe h
 k = s.index('<p class="wh-ct">'); k2 = s.index('</p>', k) + 4
 s = s[:k] + '<p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p>' + s[k2:]
 s = s.replace('</head>', '<style id="founder-helper-css">' + (D / 'tools' / 'founder-helper.css').read_text() + '</style></head>', 1)
+# the three surfaces woven together: facts card edges and palette, one hairline in both cards, air above Gert's head
+# (owner approved Fable's refinement on sv-fable.html, 16 Nov)
+s = s.replace('</head>', '<style id="surfaces-css">' + (D / 'tools' / 'surfaces.css').read_text() + '</style></head>', 1)
 # Waarom wij reason 3: "Persoonlijk advies" repeated the card's "Bel of app" (owner, 16 Nov). It becomes the invitation to
 # the nursery, which left the card when it became the guarantee block (owner, 12 Nov: welcome without an appointment)
 rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p></div></li>',

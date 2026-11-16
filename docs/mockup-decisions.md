@@ -714,3 +714,15 @@ Review page `waarom-kweker/sv.html` (`tools/build_sv.py`), three switches:
   - no horizontal scroll;
   - facts text contrast 5.38–9.13:1 on real pixels.
 - Open: the fill above the portrait continues the photo's flat backdrop tone (not painted content), the owner decides. The rim is a new device on the approved guarantee card, hence its own switch.
+- APPROVED (owner, 16 Nov: "Нравится"): Fable's refinement with the rim, state fk-2 fr-1 fh-2. In the main mockup, `tools/surfaces.css` is appended after `founder-helper.css` in `finalize_main.py`:
+  - Facts card:
+    - top light sage #dee4d1 / #e4e9d8, so the edge reads on every side;
+    - the ground is the field's pale butter (#eae1bf, #e0d7ad, #ede8d4).
+  - Both cards carry one hairline inside: inset 0 0 0 1px rgba(63,74,55,.12).
+  - Desktop portrait:
+    - scaled to 95%, same bottom; about 39 px above the hair at 1440;
+    - its top fades over 3%;
+    - the strip above it carries the photo backdrop's own top-row colours, so there is no seam.
+  - Checks:
+    - identical to sv-fable.html fk-2 fr-1 fh-2 at 1920, 1440, 900, 768, 390 and 360; at 1024, 0.04% of pixels differ (antialiasing);
+    - card heights, hero, assortment and footer unchanged; no horizontal scroll.
