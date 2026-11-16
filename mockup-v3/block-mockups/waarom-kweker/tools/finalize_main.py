@@ -34,7 +34,9 @@ rep('<h2 id="h-waarom" class="wh2-h">Wij kweken rhododendrons. <span class="nb">
     '<h2 id="h-waarom" class="wh2-h">Wij kweken alleen rhododendrons. <span class="nb">Dat merkt u aan elke plant.</span></h2>')
 rep('<p class="wh2-lead">Onze planten groeien in de volle grond op veenrijke bodem en ontwikkelen daar een sterk wortelstelsel. Gerooid met kluit, direct van het veld naar uw tuin.</p>', '')
 rep('<li><div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></li>',
-    '<li class="kt-hl"><div><h3>Aangroeigarantie op elke plant</h3><p>Slaat een plant in het eerste seizoen <span class="nb">niet aan?</span> Dan vervangen wij hem kosteloos.</p></div></li>')
+    # one guarantee wording on the whole page (owner chose the founder card as the guarantee block, 16 Nov)
+    '<li class="kt-hl"><div><h3>Aangroeigarantie tot eind volgend jaar</h3><p>Slaat een plant niet aan? Dan krijgt u een nieuwe: '
+    'kosteloos bezorgd <span class="nb">of klaargezet in Otterlo.</span></p></div></li>')
 rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>',
     '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')
 kt = (D / 'tools' / 'k-tekst.css').read_text()
@@ -91,16 +93,19 @@ MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
 T1 = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 T2 = '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
 WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
-# the headline first ("wij": Gert and the team); the name belongs to the sentence that leads into the numbers, so it says
-# whom you speak to (owner chose option 2 «Имя в призыве», 15 Nov; reviewed on fd-team2.html)
-P1 = ('<h2 id="h-kweker" class="fp-h"><span>Twijfelt u welke soort past?</span> <span>Wij denken met u mee.</span></h2>'
-      '<p class="fp-txt">Eén gewas, sinds 2001: daardoor weten wij wat een rhododendron nodig heeft. '
-      'Kom gerust langs in Otterlo, <span class="nb">ook zonder afspraak.</span></p>'
-      '<p class="fp-lead">Bel of app met <b>Gert Top</b>, oprichter en kweker, <span class="nb">of met zijn team:</span></p>'
+# the founder card is the guarantee block (owner, 16 Nov; Fable's version on fd-gar-fable.html with the shorter headline):
+# the promise leads, one paragraph says what you get and links to the conditions, the lead-in to the numbers covers
+# questions about the variety and the guarantee, so the help before the purchase stays. Phone and WhatsApp only: the hours
+# live in the footer (owner, 16 Nov). The guarantee is provisional until the company owner confirms it; Dutch copy = draft.
+P1 = ('<h2 id="h-kweker" class="fp-h"><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h2>'
+      '<p class="fp-txt"><b>Aangroeigarantie tot eind volgend jaar.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
+      'in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan. '
+      '<a class="fp-more" href="#garantievoorwaarden">Lees de voorwaarden</a></p>'
+      '<p class="fp-lead">Vragen over soort of garantie? Bel of app met <b class="nb">Gert Top</b>, oprichter en kweker, '
+      '<span class="nb">of met zijn team:</span></p>'
       '<div class="fp-act"><dl>'
       '<div><dt>Bellen</dt><dd class="fp-num">' + T1 + '</dd></div>'
       '<div><dt>WhatsApp</dt><dd class="fp-num">' + WA2 + '</dd></div>'
-      '<div><dt>Open</dt><dd class="fp-open"><span class="nb">ma–vr 08:00–17:00</span><span class="fp-sep">, </span><span class="nb">za 09:00–13:00</span></dd></div>'
       '</dl></div>')
 FOOT = ('<footer class="ft"><div class="in"><div class="ft-g">'
         '<div class="ft-b"><b>Top Rhododendrons</b><p>Familiekwekerij in Otterlo, sinds 2001.</p></div>'

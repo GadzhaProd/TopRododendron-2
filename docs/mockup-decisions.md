@@ -618,3 +618,14 @@ Fable's measurements:
 - lowest contrast 5.22:1.
 
 He flags that "De oorzaak hoeft u niet aan te tonen" in the first year already follows from BW 7:18 (a lawyer to check against 6:193g j).
+- APPROVED direction (owner, 16 Nov): Fable's version with my shorter headline, and the hours removed from the card (they live in the footer). In the main mockup (`finalize_main.py` P1, `tools/founder-helper.css`):
+  - H2 "Slaat een plant niet aan? Dan krijgt u een nieuwe."
+  - "Aangroeigarantie tot eind volgend jaar." (ink, 600), then "Dezelfde soort en maat, kosteloos bezorgd of klaargezet in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto's volstaan.", then "Lees de voorwaarden" on its own line.
+  - "Vragen over soort of garantie? Bel of app met Gert Top, oprichter en kweker, of met zijn team:", then Bellen and WhatsApp.
+  - Waarom wij reason 1: "Aangroeigarantie tot eind volgend jaar / Slaat een plant niet aan? Dan krijgt u een nieuwe: kosteloos bezorgd of klaargezet in Otterlo."
+  - Card heights unchanged at 900–1920 and 768. Phone 802 px at 390 (was 807), 788 at 360 (was 763).
+  - Waarom wij +25 px on phone; hero, assortment and footer unchanged; no horizontal scroll.
+  - To confirm or check:
+    - the owner: the term and the promise;
+    - a lawyer: "De oorzaak hoeft u niet aan te tonen", which in the first year already follows from BW 7:18 (6:193g j);
+    - the conditions page is a placeholder link.

@@ -61,7 +61,13 @@ Evidence labels from the review: strong (Baymard, NN/g, meta-analyses), medium, 
    "it doesn't belong here". The cards stay one link each, to the product page, where size, quantity, cart, delivery and
    payment live.
 3. Guarantee: exact term, conditions, how to claim; one wording site-wide; a link to the conditions.
-   Status: waiting for owner (see the conflict above).
+   Owner (16 Nov): research first. See `reports/Гарантия приживаемости у конкурентов.md`.
+   Then the founder card became the guarantee block: Fable's version, the shorter headline, hours removed from the card.
+   Wording now on the page, a provisional draft: "Aangroeigarantie tot eind volgend jaar".
+   Status: in the mockup. Still needed:
+   - the company owner confirms the term and the promise;
+   - a lawyer checks the wording;
+   - the conditions page (with item 13 or a later page).
 4. Help in choosing: under the grid "Twijfelt u? Gert denkt met u mee" with a real contact. (The review's other idea,
    colour words on the cards, conflicts with the owner's decision to remove colour; not taken.)
    Status: done along the way. The founder helper card stands right after the assortment: "Twijfelt u welke soort past?

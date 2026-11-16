@@ -1,4 +1,7 @@
-/* ===== Founder card as a helper (approved 13 Nov; reviewed as option 1 on fd-plan.html, designed by Fable) =====
+/* ===== Founder card: the helper (13 Nov), now the guarantee block (16 Nov, Fable's version, shorter headline) =====
+   16 Nov: the promise leads ("Slaat een plant niet aan? Dan krijgt u een nieuwe."), one paragraph opens with the name of
+   the guarantee in ink and closes with the link to the conditions, the lead-in covers questions about variety and
+   guarantee; phone and WhatsApp only (the hours are in the footer). The notes below describe the earlier helper.
    The card stands right after the assortment, at the moment of doubt about which variety to choose: the headline, one
    sentence, the lead-in that says whom you speak to (Gert Top and his team), phone and WhatsApp as text links, the hours. No quote, no contact grid, no buttons.
    The approved portrait treatments (desktop extended shoulder, phone «Подпись») are unchanged. The address and the full
@@ -24,12 +27,16 @@
 .fp-act dt{font-size:13.5px;line-height:1.4;font-weight:500;color:#45443f}
 .fp-num{font-size:clamp(21px,1.75vw,25px);line-height:1.25;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .fp-open{font-size:15px;line-height:1.5;color:#3d3c37}
+/* the name of the guarantee opens the paragraph in ink: a fact in the sentence, not a label above it */
+.fp-txt b{font-weight:600;color:#141413}
+/* the link to the full conditions closes the paragraph on its own line */
+.fp-more{display:block;width:max-content;margin-top:8px;font-size:15px}
 
 @media (min-width:861px){
   /* the text is one group, centred in the panel's height: the same air above and below, and its lower left corner stays
      well above the shoulder; it runs to the panel's right margin (paddings from founder-desktop.css) */
   .fd.fp .fd-card .fd-pn{justify-content:center;padding-top:var(--fd-top);padding-bottom:var(--fd-bot)}
-  .fp-txt{margin-top:clamp(18px,1.7vw,24px)!important;max-width:48ch}
+  .fp-txt{margin-top:clamp(18px,1.7vw,24px)!important;max-width:50ch}
   /* the lead-in opens the contact group: clearly after the paragraph, close to the numbers
      (.fp p resets margins, so this needs the extra class) */
   .fp .fp-lead{margin-top:clamp(24px,2.4vw,34px)}
