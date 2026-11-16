@@ -532,3 +532,18 @@ Fable's verdict: the composition is right (lead under H2; outline pill bottom ri
   - on phone, three facts above a full-width pill.
 - No horizontal scroll.
 - Owner (16 Nov): drop the delivery line from the assortment altogether (it clutters, the labels compete with the variety names). Delivery and payment go to the product page and Hoe het werkt. It was never in the main mockup; `sd-lev.html` stays as a record. Next: an add-to-cart control with quantity on the variety cards (components searched on 21st).
+
+## Add to cart on the variety cards (16 Nov), in review
+
+Owner: put an add-to-cart icon and a quantity on the cards. Every variety has four sizes with their own prices (content.ts), so the options differ in how the size is chosen.
+- Review page `waarom-kweker/sd-cart.html` (`tools/build_sd_cart.py`; html.ct-a|b|c), desktop and phone:
+  - A · Быстро в корзину: a pill stepper "− 1 +" (40 px) and a round moss cart button (40 px) under the price; adds the 40–60 cm size the card shows.
+  - B · Размер на карточке: a pill size select; the price follows it, so "vanaf" and the size line go. Then the stepper and the cart button.
+  - C · Значок открывает выбор (my pick): only a round cart button on the price line. It opens a panel with the four sizes and prices, the stepper, the total and "In winkelwagen".
+    - On desktop the panel is a popover that opens upwards over its own card, never down over Gert's portrait.
+    - On phone it is a bottom sheet.
+- The card link moved to the name and is stretched over the card, so no control sits inside a link; the grid alignment and the column spans are kept.
+- Components looked up on 21st.dev (minimal stepper, pill number field, add-to-cart pill) and redrawn in the page's style; no 21st code installed.
+- Smallest card 154 px (360) and 155 px (1280); the controls fit, no overflow, no horizontal scroll.
+- Card height at 1440: 398 (C) / 452 (A) / 495 (B) px.
+- Fable designs his own option in parallel (`sd-cart-fable.html`).
