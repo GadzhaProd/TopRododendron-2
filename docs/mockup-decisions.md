@@ -643,3 +643,19 @@ Review page `waarom-kweker/fd-kop.html` (`tools/build_fd_kop.py`; html.fk-0|1|2)
 - 2 · Отдельный заголовок: the H2 "Wij staan achter elke plant." above the card; the promise stays in the card.
 - Desktop card heights unchanged; no horizontal scroll.
 - Option 1 on phone: the card is 728 px at 390 (was 802), plus the heading above it.
+- Fable (16 Nov), `waarom-kweker/fd-kop-fable.html` (`tools/build_fd_kop_fable.py`; html.fb-0|1|2).
+  - His diagnosis: the clash is not the missing heading or the pill.
+    - There is no clean page between the blocks: the field's lower feather ends 2 px above the card at 1440 and 19 px inside the card's top on phone.
+    - Temperature: the field ends on its warmest corner (butter yellow), while the card's text panel answers with its coldest (grey-white).
+  - On my options:
+    - 1 separates, but the heading sits on the tail of the feather, and the card is left without an anchor.
+    - 2 is a slogan without a fact, and two H2s in a row.
+  - His fb-1 «Воздух и тон»:
+    - a band of clean page after the field (pill to card 174 px at 1440, 107 on phone; clean page 63 / 32 px);
+    - the desktop text-panel veil turned to warm paper;
+    - the text is unchanged.
+  - His fb-2: the same plus the heading, my option 1 refined.
+    - The H2 is always two lines, question / answer.
+    - The card panel opens with "3 maanden aangroeigarantie na levering." as a larger line (28 / 22 / 21 px).
+    - No new words.
+  - Desktop card heights unchanged; no horizontal scroll; lowest contrast 5.10:1.
