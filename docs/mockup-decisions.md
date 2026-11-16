@@ -633,3 +633,13 @@ He flags that "De oorzaak hoeft u niet aan te tonen" in the first year already f
   - Main mockup: the card paragraph opens with "3 maanden aangroeigarantie na levering."; Waarom wij reason 1 reads "3 maanden aangroeigarantie / Slaat een plant niet aan? Dan krijgt u een nieuwe: kosteloos bezorgd of klaargezet in Otterlo."
   - Card heights unchanged; Waarom wij −30 px on phone at 390.
   - The conditions page must say the guarantee comes on top of the legal rights (BW 7:6a). A lawyer checks whether the 1-year presumption (7:18) applies to root-ball plants, and the phrase "De oorzaak hoeft u niet aan te tonen".
+
+## A section heading above the guarantee card (16 Nov), in review
+
+Owner: the assortment and the guarantee card sit close together and have different colours; give the card's block a heading to separate them.
+
+Review page `waarom-kweker/fd-kop.html` (`tools/build_fd_kop.py`; html.fk-0|1|2). The heading uses the assortment H2's type and spacing.
+- 1 · Обещание наружу (recommended): the promise "Slaat een plant niet aan? Dan krijgt u een nieuwe." becomes the section H2 above the card, on one line on desktop. On phone (≤860) each sentence gets its own line, at the size it had inside the card. The card then starts with the guarantee paragraph; no repeated headline.
+- 2 · Отдельный заголовок: the H2 "Wij staan achter elke plant." above the card; the promise stays in the card.
+- Desktop card heights unchanged; no horizontal scroll.
+- Option 1 on phone: the card is 728 px at 390 (was 802), plus the heading above it.
