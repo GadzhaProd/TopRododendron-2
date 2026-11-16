@@ -491,3 +491,23 @@ Owner: the text that belongs under the heading sat on the right; move it under t
 - Phone (≤767) unchanged: heading, lead and link were already stacked. Pixel-identical at 390; at 360 one glyph is antialiased differently.
 - Block height at 1440: +4 px. No horizontal scroll at 360–1920.
 - `sd-lev.html` rebuilt on the new heading.
+
+## Assortment: "Bekijk alle planten" as a pill in the bottom right corner (16 Nov), done
+
+Owner: the link with the arrow sat at the top right, attached to nothing; it should be a pill, probably in the bottom right corner. I should have flagged it myself.
+- In the main mockup (`tools/build_as3_sad.py` → `tools/as3-sad.html`, `tools/assortiment.css`):
+  - The heading row now holds only H2 + lead.
+  - The block closes with `.sd-ft`, the pill "Bekijk alle planten →" in the bottom right corner on the grid's right edge, 28–44 px under the cards.
+  - The pill uses the hero's outline pill: 52 px, radius 999px, 15 px 500, ink text, 1 px border at 60% ink, filled ink on hover.
+  - On phone (≤599) it is full width under the last card.
+- `sd-lev.html` rebuilt for the chosen delivery line (option 1) in the same bottom row:
+  - The line sits left of the pill: "Bezorgen in heel Nederland, u ziet de kosten vóór u betaalt · Afhalen in Otterlo · Betalen met iDEAL, overboeking of bij ontvangst".
+  - "naar afstand en aantal" was dropped to keep it to one line; it goes to Hoe het werkt.
+  - Each fact stays whole. The dot that would start a line is clipped, so no dot dangles.
+  - Layout by width:
+    - one line at 1280–1920;
+    - two lines at 900–1024;
+    - three lines at 768;
+    - on phone and ≤767, three lines above the pill.
+  - Option 2 (three facts) was dropped (owner chose 1).
+- No horizontal scroll at 360–1920.

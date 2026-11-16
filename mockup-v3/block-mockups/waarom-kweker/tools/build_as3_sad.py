@@ -50,10 +50,12 @@ for v in V:
               '</a></article>')
 
 out = ('<section id="as3-1" class="sd" aria-labelledby="h-sd"><div class="in">'
-       # the lead sits under the heading (owner, 16 Nov: as elsewhere on the page); the link to all plants stays on the right
+       # the lead sits under the heading (owner, 16 Nov: as elsewhere on the page)
        '<div class="sd-hd"><div class="sd-hl"><h2 id="h-sd">Zeven soorten uit eigen kweek.</h2>'
-       '<p class="sd-lead"><span>Elke soort is er in vier maten, van 40 tot 120&nbsp;cm.</span> <span>U bestelt vanaf 1&nbsp;plant.</span></p></div>'
-       '<a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div>'
-       '<div class="sd-grid">' + items + '</div></div></section>')
+       '<p class="sd-lead"><span>Elke soort is er in vier maten, van 40 tot 120&nbsp;cm.</span> <span>U bestelt vanaf 1&nbsp;plant.</span></p></div></div>'
+       '<div class="sd-grid">' + items + '</div>'
+       # the way on to all plants closes the block: a pill in the bottom right corner, under the cards (owner, 16 Nov)
+       '<div class="sd-ft"><a class="sd-more" href="#assortiment">Bekijk alle planten' + ARW + '</a></div>'
+       '</div></section>')
 (D / 'tools' / 'as3-sad.html').write_text(out)
 print('as3-sad.html', len(out))
