@@ -16,9 +16,9 @@ def rep(a, b):
     assert s.count(a) == 1, (s.count(a), a[:70]); s = s.replace(a, b)
 
 L1 = ('<div class="lv"><ul aria-label="Bezorgen en betalen">'
-      '<li><b>Bezorgen</b> in heel Nederland, u ziet de kosten <span>vóór u betaalt</span></li>'
+      '<li><b>Bezorgen</b> in heel Nederland – de bezorgkosten <span>ziet u vóór u betaalt</span></li>'
       '<li><b>Afhalen</b> in Otterlo</li>'
-      '<li><b>Betalen</b> met iDEAL, overboeking of bij ontvangst</li></ul></div>')
+      '<li><b>Betalen</b> met iDEAL, per overboeking of bij ontvangst</li></ul></div>')
 rep('<div class="sd-ft">', '<div class="sd-ft">' + L1)
 
 CSS = r'''
@@ -30,20 +30,24 @@ body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)
    ever dangles at either end of a line */
 html.lv-1 .lv{display:block;flex:1 1 auto;min-width:0;overflow:hidden;font-size:15px;line-height:1.55;color:var(--ink2)}
 .lv ul{display:flex;flex-wrap:wrap;margin:0 0 0 -1.4em;padding:0;list-style:none}
-.lv li{white-space:nowrap}
+.lv li{min-width:0}
 .lv li span{white-space:nowrap}
-.lv li::before{content:"·";display:inline-block;width:1.4em;text-align:center;color:var(--soft)}
-.lv b{font-weight:600;color:var(--ink)}
+.lv li::before{content:"·" / "";display:inline-block;width:1.4em;text-align:center;color:var(--soft)}
+.lv b{font-weight:500;color:var(--ink)}
 @media (max-width:767px){
-  /* tablet portrait and phone: the facts as three lines above the pill */
-  .sd-ft{flex-direction:column;align-items:flex-end}
-  html.lv-1 .lv{align-self:stretch;margin:0 0 20px;overflow:visible;font-size:14.5px}
+  /* small tablet and phone: the facts as three lines; at 600–767 still beside the pill, on its bottom line */
+  html.lv-1 .sd-ft{align-items:flex-end}
+  html.lv-1 .lv{overflow:visible;font-size:15px}
   .lv ul{display:block;margin:0}
-  .lv li{white-space:normal;text-wrap:pretty}
-  .lv li + li{margin-top:4px}
+  .lv li{text-wrap:pretty}
+  .lv li + li{margin-top:8px}
   .lv li::before{display:none}
 }
-@media (max-width:599px){ .sd-ft{align-items:stretch} html.lv-1 .sd-ft{margin-top:8px} }
+@media (max-width:599px){
+  /* phone: the facts above a full-width pill */
+  html.lv-1 .sd-ft{flex-direction:column;align-items:stretch;margin-top:8px}
+  html.lv-1 .lv{margin:0 0 20px}
+}
 '''
 rep('</head>', '<style id="sd-lev">' + CSS + '</style></head>')
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Доставка и оплата</i>'

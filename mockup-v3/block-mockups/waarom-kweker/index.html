@@ -482,7 +482,8 @@ a:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
 @media (min-width:600px){.sd-lead > span{white-space:nowrap}}
 /* the block closes with the way on to all plants: a pill in the bottom right corner under the cards (owner, 16 Nov: the
    link at the top right belonged to nothing). The hero's outline pill (999px, 15 px 500), dark on the light field */
-.sd-ft{display:flex;align-items:center;justify-content:flex-end;gap:16px clamp(24px,3vw,48px);margin-top:clamp(28px,3vw,44px)}
+.sd-ft{display:flex;align-items:center;justify-content:flex-end;gap:16px clamp(24px,3vw,48px);margin-top:0}
+/* no margin: the cards' own bottom padding already gives ~50 px, the same as the lead's gap above the photos (Fable, 16 Nov) */
 .sd-more{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:none;height:52px;padding:0 28px;
   border:1px solid rgba(20,20,19,.6);border-radius:999px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;
   transition:background-color .2s ease,color .2s ease,border-color .2s ease}

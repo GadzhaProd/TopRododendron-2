@@ -511,3 +511,23 @@ Owner: the link with the arrow sat at the top right, attached to nothing; it sho
     - on phone and ≤767, three lines above the pill.
   - Option 2 (three facts) was dropped (owner chose 1).
 - No horizontal scroll at 360–1920.
+
+## Assortment bottom row: Fable's review applied (16 Nov)
+
+Fable's verdict: the composition is right (lead under H2; outline pill bottom right as a secondary action; one line left of the pill), but it needed fixes. Owner: apply 1–7. Applied:
+1. Bottom row gap: `.sd-ft` margin-top 0 at ≥600 (main mockup too).
+   - Before: 95–114 px from the price text to the row against 44–52 px from the lead to the photos.
+   - After: the cards' own padding gives 46–56 px at 1280–1920 and 40 px at 600–1024, against 44–52 / 32–35 px above.
+2. A fact may now wrap inside itself; only "ziet u vóór u betaalt" stays together. Tested with the line's font at ×1.2, ×1.5 and ×2: no clipping at 360–1920.
+3. Copy (draft): "Bezorgen in heel Nederland – de bezorgkosten ziet u vóór u betaalt · Afhalen in Otterlo · Betalen met iDEAL, per overboeking of bij ontvangst".
+4. 600–767: the list stays beside the pill, both on the bottom line, instead of the list above a pill pushed to the right edge.
+5. Stacked list (≤767): 15 px, 8 px between facts.
+6. Labels at weight 500, quieter against the variety names.
+7. The separator dot has empty alt text (`content:"·" / ""`), so screen readers skip it.
+- Not changed: the pill height (52 px vs 56 / 40 elsewhere; Fable unsure, I agreed to leave it).
+- Layout:
+  - one line at 1440–1920;
+  - two lines at 900–1280;
+  - three at 768;
+  - on phone, three facts above a full-width pill.
+- No horizontal scroll.
