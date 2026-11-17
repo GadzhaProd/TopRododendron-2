@@ -138,11 +138,13 @@ rep('<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&
 s = s.replace('</head>', '<style id="fonts-css">' + (D / 'tools' / 'fonts.css').read_text() + '</style></head>', 1)
 # phase 1 step A: seven type steps and one section rhythm (owner approved fase1a.html, 17 Nov)
 s = s.replace('</head>', '<style id="scale-css">' + (D / 'tools' / 'scale.css').read_text().replace('__R__', ':root').replace('__S__', '') + '</style></head>', 1)
-# Waarom wij reason 3: "Persoonlijk advies" repeated the card's "Bel of app" (owner, 16 Nov). It becomes the invitation to
-# the nursery, which left the card when it became the guarantee block (owner, 12 Nov: welcome without an appointment)
+# Waarom wij reason 3: "Persoonlijk advies" repeated the card's "Bel of app" (owner, 16 Nov) and became "Welkom op de
+# kwekerij". Phase 1 step B (owner approved fase1b.html, 17 Nov) merges it with reason 4, "Eigen transport of afhalen":
+# one reason for both ways to get the plants, so the list is shorter and the range starts higher
 rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p></div></li>',
-    '<li><div><h3>Welkom op de kwekerij</h3><p>Kom de rhododendrons in Otterlo zelf bekijken en uitzoeken. '
-    '<span class="nb">Dat kan zonder afspraak.</span></p></div></li>')
+    '<li><div><h3>Bezorgd of zelf uitzoeken</h3><p>Wij bezorgen met eigen transport door heel Nederland. '
+    'Of kies uw planten zelf uit in Otterlo, <span class="nb">ook zonder afspraak.</span></p></div></li>')
+rep('<li><div><h3>Eigen transport of afhalen</h3><p>Bezorgd met eigen transport door heel Nederland, of af te halen in Otterlo.</p></div></li>', '')
 # the move from the assortment to the guarantee card (Fable, option 2 on fd-kop-fable.html, owner 16 Nov): clean page after
 # the field, then the promise as the section heading, then the card (CSS in founder-helper.css)
 rep('<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div class="in"><div class="fd-card">',
@@ -151,5 +153,22 @@ rep('<section class="fd fp fp-1" id="kweker" aria-labelledby="h-kweker"><div cla
     '<div class="fd-card">')
 # the facts card: the real size range (owner, 16 Nov; docs/maten-per-soort.md)
 rep('<li><b>7 soorten</b><span>in 4 maten, 40 tot 120&nbsp;cm</span></li>', '<li><b>7 soorten</b><span>van 40 tot 225&nbsp;cm</span></li>')
+# phase 1 step B (owner approved fase1b.html with hero line A, 17 Nov); CSS in tools/fase1b.css
+# 1.1 the H1 by meaning: a break after "aanslaan." and two groups that never split, "die aanslaan." and "Met aangroeigarantie."
+W = lambda t, m='0.26em': f'<span class="inline-block" style="margin-right: {m}; opacity: 1; transform: none;">{t}</span>'
+rep(W('die') + W('aanslaan.'), '<span class="h1-g">' + W('die') + W('aanslaan.') + '</span><span class="h1-br" aria-hidden="true"></span>')
+rep(W('Met') + W('aangroeigarantie.', '0px'), '<span class="h1-g">' + W('Met') + W('aangroeigarantie.', '0px') + '</span>')
+# 1.2 the hero line no longer repeats Waarom wij (veenrijke bodem, vers gerooid and eigen transport are all there)
+rep('Gekweekt op veenrijke bodem, met een sterk wortelstelsel. Vers gerooid voor uw levering, bezorgd met eigen transport of af te halen in Otterlo.',
+    'Rechtstreeks van onze familiekwekerij in Otterlo, <span class="nb">sinds 2001.</span>')
+# 1.7 "Groothandel": in the hero a text link instead of a second button, with the main button's arrow
+ARROW = ('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+         'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>')
+rep('<a class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none select-none border border-white/70 text-white hover:bg-white hover:text-[#141414] hover:border-white h-12 text-[14px] rounded-ui group/btn px-5 split:h-14 split:px-8 split:text-[15px]" href="#">Groothandel</a>',
+    '<a class="hero-link" href="#"><span>Groothandel</span>' + ARROW + '</a>')
+#     and in the menu the same weight and colour as the other items
+rep('class="text-[14px] tracking-[0.01em] transition-colors hover:text-fg font-medium text-fg">Groothandel</a>',
+    'class="text-[14px] tracking-[0.01em] transition-colors text-fg-2 hover:text-fg">Groothandel</a>')
+s = s.replace('</head>', '<style id="fase1b-css">' + (D / 'tools' / 'fase1b.css').read_text() + '</style></head>', 1)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

@@ -813,7 +813,7 @@ Checks:
   - All four reasons now share the same H3 size and letter-spacing and the same text size and colour, in the main mockup and on fase1a.html.
 - APPROVED (owner, 17 Nov): step A goes into the main mockup. `tools/scale.css` is appended after fonts.css in `finalize_main.py` (`__R__` → `:root`, `__S__` → empty). The main mockup is pixel-identical to fase1a.html sc-1 at 1920, 1440, 1024, 768, 390 and 360; no horizontal scroll.
 
-## Phase 1, step B: hero and Waarom wij copy (17 Nov), in review
+## Phase 1, step B: hero and Waarom wij copy (17 Nov), approved
 
 Plan items 1.1, 1.2, 1.3 and 1.7 (`docs/plan-verbeteringen.md`). Review page `waarom-kweker/fase1b.html` (`tools/build_fase1b.py`); html.sb-0 до / sb-1 после, html.hl-a / hl-b chooses the hero line. All new Dutch copy is a draft.
 
@@ -831,4 +831,12 @@ Checks:
 - "До" is pixel-identical to the main mockup at 1920, 1440, 1024, 900, 390 and 360.
 - Waarom wij is shorter by 147 px at 1920, 146 at 1440, 128 at 1024 and 768, 103 at 390 and 128 at 360.
 - The H1 has 3 lines everywhere; no horizontal scroll.
+- APPROVED (owner, 17 Nov): step B goes into the main mockup with hero line A, "Rechtstreeks van onze familiekwekerij in Otterlo, sinds 2001."
+  - `finalize_main.py`: reason 3 becomes "Bezorgd of zelf uitzoeken" and reason 4 is removed; reps for the H1 groups and break, the hero line, the hero link and the menu item; CSS in `tools/fase1b.css`, appended after scale.css.
+  - The menu item gets the same classes as the other items (no override).
+  - Two refinements over fase1b.html:
+    - The hero link is `<a class="hero-link"><span>Groothandel</span><svg/></a>`. Only the word is underlined (on the review page the arrow had its own underline), the arrow is the main button's arrow, and the link is 48 px tall like the button.
+    - 360–374 px: the button and the link need 333 px and the row has 320, so the link wrapped to a second row, 8 px in from the left. Now the button's side padding is 16 px (was 20) and the link's margin is 2 px (was 8): one row, 315 px.
+  - Checks: the main mockup equals fase1b.html (sb-1 hl-a) pixel for pixel at 1920–390 except the arrow; H1 3 lines and no horizontal scroll at every width; guarantee card heights unchanged (608 / 626 / 522 / 495 / 435 at 1920 / 1440 / 1200 / 1024 / 900).
+  - `tools/build_fase1b.py` builds from the main mockup as it was before step B; it no longer runs against the new one.
 
