@@ -764,3 +764,19 @@ Review page `waarom-kweker/fonts.html` (`tools/build_fonts.py`; html.ff-0..4), a
 - 4 · Hanken Grotesk (one sans): like now, a little more neutral.
 
 The heading font goes to the H1, the section H2s, the facts numbers and the guarantee's lead line. Card names, reasons, prices and text use the text font. Sizes are unchanged; the scale is consolidated in phase 1 after the choice.
+- Fable (17 Nov) recommends **Newsreader 500 (headings) + Manrope (text)**: state ff-5 on `waarom-kweker/fonts-fable.html` (`tools/build_fonts_fable.py`; also ff-6 Source Serif 4 + Manrope, ff-7 Fraunces 430 / SOFT 30).
+  - Fraunces at 480 / SOFT 50 is heavy and "puffy" on dark-on-light H2s, closer to a craft DTC brand than a calm nursery. Its quirky figures (2, 7, 1) distract in the facts. It is wider: "geen minimumbestelling" wraps at 390 and the guarantee line breaks on desktop. The lighter ff-7 changes little.
+  - Newsreader is narrower and lighter, with classic figures; "aangroeigarantie" sits evenly, the facts don't wrap, and the H1 reads over the photo.
+  - On the other candidates:
+    - Manrope looks like the competitors;
+    - Newsreader + Inter: Inter is wider and more anonymous, and the approved Manrope would go;
+    - Instrument is weak on phones for 45+;
+    - Hanken is just a bold grotesque.
+  - His settings:
+    - Weight and tracking: weight 500, font-optical-sizing auto; H1 −0.018em, H2 −0.014em.
+    - Figures: facts numbers in the heading font, lining figures; prices and phones in Manrope, tabular-nums.
+    - The guarantee lead line goes back to Manrope 600.
+    - URL: Newsreader:opsz,wght@6..72,500 and Manrope:wght@400..700.
+  - Risks:
+    - the H1 on phone is lighter (raise it to 550–600 if it looks weak);
+    - Newsreader is a little more "newspaper" than "garden".
