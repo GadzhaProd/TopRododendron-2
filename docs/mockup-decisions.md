@@ -791,7 +791,7 @@ The heading font goes to the H1, the section H2s, the facts numbers and the guar
     - no horizontal scroll.
   - The type scale (19 sizes → 6–7 steps, serif-aware) follows in phase 1 of `docs/plan-verbeteringen.md`.
 
-## Phase 1, step A: type scale and section rhythm (17 Nov), in review
+## Phase 1, step A: type scale and section rhythm (17 Nov), approved
 
 Plan items 1.4, 1.5 and 1.6 (`docs/plan-verbeteringen.md`). Review page `waarom-kweker/fase1a.html` (`tools/build_fase1a.py`; html.sc-0 до / sc-1 после); the CSS is `tools/scale.css`, written so it can be appended to the main build unchanged.
 
@@ -812,3 +812,23 @@ Checks:
   - The `kt-hl` class is removed from the first reason (`finalize_main.py`), and its rules (larger H3, tighter tracking, larger and darker text) are removed from `tools/k-tekst.css`.
   - All four reasons now share the same H3 size and letter-spacing and the same text size and colour, in the main mockup and on fase1a.html.
 - APPROVED (owner, 17 Nov): step A goes into the main mockup. `tools/scale.css` is appended after fonts.css in `finalize_main.py` (`__R__` → `:root`, `__S__` → empty). The main mockup is pixel-identical to fase1a.html sc-1 at 1920, 1440, 1024, 768, 390 and 360; no horizontal scroll.
+
+## Phase 1, step B: hero and Waarom wij copy (17 Nov), in review
+
+Plan items 1.1, 1.2, 1.3 and 1.7 (`docs/plan-verbeteringen.md`). Review page `waarom-kweker/fase1b.html` (`tools/build_fase1b.py`); html.sb-0 до / sb-1 после, html.hl-a / hl-b chooses the hero line. All new Dutch copy is a draft.
+
+- 1.1 The H1 breaks by meaning: "Rhododendrons / die aanslaan. / Met aangroeigarantie." at every width from 360 to 1920 (two lines, "Rhododendrons die aanslaan. / Met aangroeigarantie.", where the first sentence fits, e.g. 600 px).
+  - "die aanslaan." and "Met aangroeigarantie." are nowrap groups, so "Met" is never left alone (it was at 1366–1440 and on 820–900 px tablets).
+  - "Met aangroeigarantie." is about 9.7 em wide, so the H1 column grows with the display size: desktop 36rem up to 40rem (the 1600 px value), tablet portrait 21.5rem up to 29rem. The scrim edge (--tc) follows.
+- 1.2 The hero line no longer repeats Waarom wij (veenrijke bodem, vers gerooid, eigen transport are all there). Two drafts:
+  - A "Rechtstreeks van onze familiekwekerij in Otterlo, sinds 2001."
+  - B "Van onze familiekwekerij in Otterlo: zeven soorten, van 40 tot 225 cm."
+- 1.3 Waarom wij: the two Otterlo reasons ("Welkom op de kwekerij", "Eigen transport of afhalen") become one, "Bezorgd of zelf uitzoeken: Wij bezorgen met eigen transport door heel Nederland. Of kies uw planten zelf uit in Otterlo, ook zonder afspraak."
+  - With three reasons the list is shorter than the facts card, so on desktop the card follows the list, as before: it ends on the list's last line and the four facts share its height in equal slots.
+- 1.7 Groothandel: in the hero a white underlined text link with an arrow instead of a second button; in the menu the same weight and colour as the other items.
+
+Checks:
+- "До" is pixel-identical to the main mockup at 1920, 1440, 1024, 900, 390 and 360.
+- Waarom wij is shorter by 147 px at 1920, 146 at 1440, 128 at 1024 and 768, 103 at 390 and 128 at 360.
+- The H1 has 3 lines everywhere; no horizontal scroll.
+
