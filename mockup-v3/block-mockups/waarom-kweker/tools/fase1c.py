@@ -7,7 +7,7 @@
 #     In the mockup a link to a page that is not here shows a short note (data-page) instead of leading nowhere.
 #   1.8 the cart in the header (a drawer with the empty state) and a working phone menu (with Bellen / WhatsApp);
 #       "Bestellen" can appear only once the hero's own button has scrolled away (one main action per screen).
-#   The header phone gets a label (and Gert's face) instead of bare digits: review options ph-0..ph-3.
+#   The header phone gets a label or a small interaction instead of bare digits: review options ph-0..ph-4.
 #   1.9 a skip link, the hero photo described, the page title, click targets of at least 24 px.
 import re, pathlib
 T = pathlib.Path(__file__).parent
@@ -53,17 +53,20 @@ def apply(s):
     s = re.sub(r'<title>[^<]*</title>', '<title>Top Rhododendrons | Kwekerij in Otterlo, sinds 2001</title>', s, count=1)
     rep('<img src="img/hero-field.jpg" alt="" aria-hidden="true"', '<img src="img/hero-field.jpg" alt="Ons rhododendronveld in Otterlo, in bloei"')
 
-    # the header phone (review options, owner 17 Nov: "just the digits" is not good enough):
+    # the header phone (review options; owner 17 Nov: bare digits are not good enough, no photo). Ideas from 21st.dev:
     #   ph-0 icon + number (as before) · ph-1 icon in a soft circle, "Bel de kweker" over the number
-    #   ph-2 Gert's face, "Bel de kweker" over the number · ph-3 Gert's face + "Bel of app", a card with both numbers
-    AV = '<img class="hc-av" src="img/gert-avatar.webp" alt="" width="40" height="40">'
-    POP = ('<div class="hc-pop"><button type="button" class="hc-pb" aria-expanded="false" aria-controls="hc-card">' + AV + 'Bel of app'
+    #   ph-2 "Bel de kweker" rolls letter by letter into the number on hover or focus (Text Roll / Action Swap Cascade)
+    #   ph-3 a round phone button that opens into a pill with the number on hover, the phone rings (Expand Button)
+    #   ph-4 "Bel of app" opens a card with both numbers (Popover)
+    roll = lambda c, t: (f'<span class="{c}">' + ''.join(f'<span style="--i:{k}">' + ('&nbsp;' if ch == ' ' else ch) + '</span>'
+                                                           for k, ch in enumerate(t)) + '</span>')
+    ROLL = '<span class="hc-roll" aria-hidden="true">' + roll('hr-a', 'Bel de kweker') + roll('hr-b', '06 20 10 43 12') + '</span>'
+    POP = ('<div class="hc-pop"><button type="button" class="hc-pb" aria-expanded="false" aria-controls="hc-card">' + PHONE + 'Bel of app'
            '<svg class="hc-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>'
-           '<div class="hc-card" id="hc-card" hidden><div class="hc-cw"><img src="img/gert-avatar.webp" alt="" width="52" height="52">'
-           '<div><b>Gert Top en team</b><span>Vragen over soort, maat of levering</span></div></div>'
+           '<div class="hc-card" id="hc-card" hidden><div class="hc-cw"><b>Bel of app de kwekerij</b><span>Vragen over soort, maat of levering</span></div>'
            '<a href="tel:+31620104312">' + PHONE + 'Bellen<b>06 20 10 43 12</b></a>'
            '<a ' + WA + '>' + CHAT + 'WhatsApp<b>06 20 29 78 49</b></a></div></div>')
-    rep('</svg><span>06 20 10 43 12</span></a>', '</svg>' + AV + '<span><small>Bel de kweker</small><b>06 20 10 43 12</b></span></a>' + POP)
+    rep('</svg><span>06 20 10 43 12</span></a>', '</svg><span><small>Bel de kweker</small><b>06 20 10 43 12</b>' + ROLL + '</span></a>' + POP)
     # the header: logo, menu items, then phone · Bestellen (a slot that can open) · cart · menu button
     rep('<a href="#" aria-label="Top Rhododendrons, naar de homepage"', '<a href="/" data-home aria-label="Top Rhododendrons, naar de homepage"')
     N = 'class="text-[14px] tracking-[0.01em] transition-colors text-fg-2 hover:text-fg"'

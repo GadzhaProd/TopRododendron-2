@@ -87,7 +87,7 @@
     cd.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCart(); if (e.key === 'Tab') trap(cd.querySelector('.cd-p'), e); });
   }
 
-  /* the header's "Bel of app" card (review option ph-3) */
+  /* the header's "Bel of app" card (review option ph-4) */
   var pb = document.querySelector('.hc-pb'), pc = document.getElementById('hc-card');
   function closePop(back) { if (!pc || pc.hidden) return; pc.hidden = true; pb.setAttribute('aria-expanded', 'false'); if (back) pb.focus(); }
   if (pb && pc) {

@@ -881,10 +881,15 @@ Accessibility (1.9):
 Checks:
 - Page height, guarantee card and footer heights are identical to the main mockup at 1920–360, and there is no horizontal scroll.
 - No script errors.
-- Owner (17 Nov): the bare number in the header ("06 20 10 43 12" with a phone icon) is not good enough. Four review options on fase1c.html (desktop; below that the round phone button stays):
-  - ph-0: as before.
-  - ph-1: the icon in a soft green circle, "Bel de kweker" (13 px) over the number (15 px, semibold).
-  - ph-2: Gert's face (40 px, `img/gert-avatar.webp`, a crop of the real portrait `owner-portrait.webp`) with the same label and number.
-  - ph-3: Gert's face and "Bel of app" as a quiet pill, without digits. It opens a card with "Gert Top en team / Vragen over soort, maat of levering" and rows Bellen 06 20 10 43 12 and WhatsApp 06 20 29 78 49. Escape and an outside click close it.
-  - The label options are about 35 px wider, so they start at 1240 px (the round phone button up to 1239). The centred menu keeps at least 76 px from them in both header states.
+- Owner (17 Nov): the bare number in the header ("06 20 10 43 12" with a phone icon) is not good enough.
+  - A first round with Gert's face next to the number was rejected ("точно не фото"). The avatar file is removed.
+  - Second round, five review options on fase1c.html, built from 21st.dev patterns (Text Roll and Action Swap Cascade, Expand Button, Popover) without their React/Motion code. Below 1180 px every option is the round phone button.
+    - ph-0: as before.
+    - ph-1: the icon in a soft green circle, "Bel de kweker" (13 px) over the number (15 px semibold); from 1240 px.
+    - ph-2 (recommended): the header says "Bel de kweker" with the phone icon.
+      - On hover or keyboard focus the letters roll one by one into "06 20 10 43 12" (26 ms stagger, springy easing). Both lines sit in one grid cell, so nothing moves.
+      - A click calls, and the number is in the link's label for screen readers. With reduced motion the swap is a plain fade.
+    - ph-3: a round phone button that opens to the left into a pill with the number on hover, and the phone icon rings once; from 1240 px.
+    - ph-4: "Bel of app" as a quiet pill that opens a card: "Bel of app de kwekerij / Vragen over soort, maat of levering", Bellen 06 20 10 43 12, WhatsApp 06 20 29 78 49. From 1240 px.
+  - With the menu centred, the gap to the phone is at least 81 px in every option and state.
 
