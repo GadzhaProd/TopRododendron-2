@@ -840,3 +840,45 @@ Checks:
   - Checks: the main mockup equals fase1b.html (sb-1 hl-a) pixel for pixel at 1920–390 except the arrow; H1 3 lines and no horizontal scroll at every width; guarantee card heights unchanged (608 / 626 / 522 / 495 / 435 at 1920 / 1440 / 1200 / 1024 / 900).
   - `tools/build_fase1b.py` builds from the main mockup as it was before step B; it no longer runs against the new one.
 
+## Phase 1, step C: links, header actions, cart, phone menu, accessibility (17 Nov), in review
+
+Plan items 1.8 and 1.9 plus the link map the owner approved on 17 Nov. Review page `waarom-kweker/fase1c.html` (`tools/build_fase1c.py`). The step itself is `tools/fase1c.py` (`apply(html)`, with `fase1c.css` and `fase1c.js`), so the main build can apply the same function after approval.
+
+Links (the same addresses as the live site, gadzhaprod/rhododendrons):
+- logo → /; Planten → /assortiment; "De kweker" becomes "Over ons" → the Waarom wij block (on the live site "Over ons" was this block too, /#over-ons); Advies → /plantgids; Groothandel in the menu and the hero → /groothandel; Bestellen → /assortiment.
+- "Bekijk de planten" → the seven varieties on the page: smooth scroll, the heading lands 40 px (phone 24 px) under the header, focus moves there.
+- The cards → /assortiment/<variety> (the live site's slugs); "Alle maten en prijzen" → /assortiment; "Lees de voorwaarden" → /garantie (the new guarantee page; the live site's Artikel 4 conflicts with the new promise and has to be rewritten).
+- In the mockup, a link to a page that is not in it shows a short note, "Assortiment: deze pagina volgt /assortiment", instead of leading nowhere.
+- Before: Planten, Bestellen and "Bekijk de planten" pointed to #planten, which does not exist; Advies to #advies, which does not exist; both Groothandel links to "#"; De kweker to the guarantee block.
+
+Header (owner, 17 Nov: one main action per screen):
+- Order on desktop: phone number · Bestellen · cart, with the menu in the true centre (it was offset by the right-hand group), so the right-hand group can change width without moving it.
+- Review option bs-1, "Bestellen" after the first screen:
+  - While the hero's "Bekijk de planten" is visible, the header has no Bestellen pill.
+  - Once that button has scrolled under the header, the pill opens in its slot (0.5 s; the phone number slides left, the cart stays on the right edge). bs-0 keeps it always.
+  - The hidden pill is not focusable.
+- 1024–1179 px: the number becomes the round phone button (as on tablets), so the centred menu keeps at least 88 px from the right-hand group in both states.
+- Cart: a bag icon, always visible, with a count badge (hidden at 0). It opens a drawer (right side, full width on phone):
+  - "Winkelwagen", "Uw winkelwagen is nog leeg", "Kies een soort en een maat. U bestelt vanaf 1 plant.", "Bekijk de planten" (closes and scrolls to the varieties).
+  - A footer "Liever persoonlijk bestellen? Bel of app de kwekerij." with Bellen / WhatsApp.
+  - A dialog: Escape and the backdrop close it, focus stays inside and returns to the cart button. Dutch copy is a draft.
+- Phone menu (was a button that opened nothing): drops down under the bar.
+  - Planten, Over ons, Advies, Groothandel in Newsreader 24 px, then Bestellen, then Bellen / WhatsApp.
+  - The burger turns into a cross. Escape, the backdrop and any link close it.
+- Phone header, review option (360 px has room for two round buttons next to the logo, not three):
+  - tp-a: call + menu, with the cart as a row in the menu;
+  - tp-b: cart + menu, with calling in the menu.
+
+Accessibility (1.9):
+- A skip link "Naar de inhoud" as the first Tab stop (to `main`).
+- The hero photo has alt "Ons rhododendronveld in Otterlo, in bloei" (it was hidden from screen readers).
+- The page title is the live site's: "Top Rhododendrons | Kwekerij in Otterlo, sinds 2001".
+- Menu items are 40 px tall (were 21); the phone numbers and the address in the guarantee card and the footer have a 30 px hit area (were 22) with no layout change.
+- WhatsApp and the map open in a new tab.
+- Measured: no text under 13 px and no target under 24 px at 1440 and 390.
+- The "Top Rhododendron" alt typo from the review is no longer in the page.
+
+Checks:
+- Page height, guarantee card and footer heights are identical to the main mockup at 1920–360, and there is no horizontal scroll.
+- No script errors.
+
