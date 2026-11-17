@@ -36,7 +36,8 @@ rep('<p class="wh2-lead">Onze planten groeien in de volle grond op veenrijke bod
 rep('<li><div><h3>Aangroeigarantie op elke plant</h3><p>Niet aangeslagen in het eerste seizoen? Wij vervangen kosteloos.</p></div></li>',
     # the guarantee has its own block (the founder card), so this reason no longer repeats it: it says why the plants take
     # (owner, 16 Nov). The fact is the hero's "Gekweekt op veenrijke bodem, met een sterk wortelstelsel".
-    '<li class="kt-hl"><div><h3>Sterk wortelstelsel uit veenrijke bodem</h3><p>Onze rhododendrons groeien in de volle grond op '
+    # no highlight any more: it marked the guarantee, which now has its own block (owner, 17 Nov: "the same as the others")
+    '<li><div><h3>Sterk wortelstelsel uit veenrijke bodem</h3><p>Onze rhododendrons groeien in de volle grond op '
     'veenrijke bodem: de basis om in uw tuin <span class="nb">goed aan te slaan.</span></p></div></li>')
 rep('<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor.</p>',
     '<p>Wij stemmen bezorging of afhaal af op uw planning en rooien uw planten pas vlak daarvoor, met kluit.</p>')

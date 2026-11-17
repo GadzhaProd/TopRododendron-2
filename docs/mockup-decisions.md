@@ -808,3 +808,6 @@ Rhythm:
 Checks:
 - Measured: exactly 7 sizes at 1440 and 390; desktop guarantee card heights unchanged; no horizontal scroll.
 - The phone card is longer: 776 px at 390 (was 761) and 770 at 360 (was 720), from the larger guarantee text.
+- Owner (17 Nov): the first Waarom wij reason was highlighted for the guarantee; now that the guarantee has its own block, make it the same as the others. Done in the main mockup:
+  - The `kt-hl` class is removed from the first reason (`finalize_main.py`), and its rules (larger H3, tighter tracking, larger and darker text) are removed from `tools/k-tekst.css`.
+  - All four reasons now share the same H3 size and letter-spacing and the same text size and colour, in the main mockup and on fase1a.html.
