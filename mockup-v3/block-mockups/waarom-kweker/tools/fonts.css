@@ -1,0 +1,9 @@
+/* ===== Typeface (approved 17 Nov: Newsreader + Manrope; Fable's state ff-5 on fonts-fable.html) =====
+   Newsreader, a calm editorial serif, for the H1, the section H2s and the facts numbers; Manrope, the approved text font,
+   for everything else: text, card names, reasons, prices and phones (tabular figures), buttons, the guarantee's lead line.
+   The logo wordmark keeps its own font (the shared --font-display variable is left alone).
+   Settings from the type review: weight 500, optical sizing, lining figures, H1 -0.018em, H2 -0.014em. */
+:is(h1,h1 *,h2,h2 *,.wh2-facts b){font-family:'Newsreader',Georgia,'Times New Roman',serif!important;font-optical-sizing:auto;
+  font-variant-numeric:lining-nums}
+:is(h1,h1 *){font-weight:500!important;letter-spacing:-.018em!important}
+:is(h2,h2 *,.wh2-facts b){font-weight:500!important;letter-spacing:-.014em!important}

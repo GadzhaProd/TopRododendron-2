@@ -780,3 +780,13 @@ The heading font goes to the H1, the section H2s, the facts numbers and the guar
   - Risks:
     - the H1 on phone is lighter (raise it to 550–600 if it looks weak);
     - Newsreader is a little more "newspaper" than "garden".
+- APPROVED (owner, 17 Nov): **Newsreader + Manrope**. In the main mockup:
+  - Fonts: the Google Fonts link loads Manrope 300..800 and Newsreader opsz 6..72, weight 500. `tools/fonts.css` is appended after surfaces.css in `finalize_main.py`.
+  - Newsreader 500 (optical sizing, lining figures) goes to the H1, the section H2s and the facts numbers. Letter-spacing: H1 −0.018em, H2 −0.014em.
+  - Manrope stays for everything else, including the guarantee lead line.
+  - Unlike Fable's review page, the logo wordmark keeps its font: only the headings are targeted, the shared --font-display variable is not changed.
+  - Checks:
+    - equal to fonts-fable.html ff-5 below the header (0.01–0.06% antialiasing);
+    - desktop block heights unchanged; Waarom wij 8–10 px shorter on phone;
+    - no horizontal scroll.
+  - The type scale (19 sizes → 6–7 steps, serif-aware) follows in phase 1 of `docs/plan-verbeteringen.md`.
