@@ -136,6 +136,8 @@ s = s.replace('</head>', '<style id="surfaces-css">' + (D / 'tools' / 'surfaces.
 rep('<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">',
     '<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet">')
 s = s.replace('</head>', '<style id="fonts-css">' + (D / 'tools' / 'fonts.css').read_text() + '</style></head>', 1)
+# phase 1 step A: seven type steps and one section rhythm (owner approved fase1a.html, 17 Nov)
+s = s.replace('</head>', '<style id="scale-css">' + (D / 'tools' / 'scale.css').read_text().replace('__R__', ':root').replace('__S__', '') + '</style></head>', 1)
 # Waarom wij reason 3: "Persoonlijk advies" repeated the card's "Bel of app" (owner, 16 Nov). It becomes the invitation to
 # the nursery, which left the card when it became the guarantee block (owner, 12 Nov: welcome without an appointment)
 rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p></div></li>',

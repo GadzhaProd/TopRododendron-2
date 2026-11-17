@@ -811,3 +811,4 @@ Checks:
 - Owner (17 Nov): the first Waarom wij reason was highlighted for the guarantee; now that the guarantee has its own block, make it the same as the others. Done in the main mockup:
   - The `kt-hl` class is removed from the first reason (`finalize_main.py`), and its rules (larger H3, tighter tracking, larger and darker text) are removed from `tools/k-tekst.css`.
   - All four reasons now share the same H3 size and letter-spacing and the same text size and colour, in the main mockup and on fase1a.html.
+- APPROVED (owner, 17 Nov): step A goes into the main mockup. `tools/scale.css` is appended after fonts.css in `finalize_main.py` (`__R__` → `:root`, `__S__` → empty). The main mockup is pixel-identical to fase1a.html sc-1 at 1920, 1440, 1024, 768, 390 and 360; no horizontal scroll.
