@@ -751,3 +751,16 @@ Still open for the owner:
   - each followed by ", met kluit".
 
   "vanaf € …" stays the smallest size's price from the site data. The aria-label reads "…, vanaf € 29, van 50 tot 180 cm". One line on every card at 360–1920 (narrowest card 154 px); block heights unchanged.
+
+## Typeface (17 Nov), in review
+
+Owner: approve the font before phase 1 of the improvement plan (the type scale depends on it). Today the whole page uses one font, Manrope.
+
+Review page `waarom-kweker/fonts.html` (`tools/build_fonts.py`; html.ff-0..4), all Google Fonts:
+- 0 · Manrope (now).
+- 1 · Fraunces headings (soft serif, 480) + Manrope text. Recommended: warm and organic, fits a family nursery since 2001, premium and calm; the body stays the approved Manrope.
+- 2 · Newsreader headings (editorial serif, 500) + Inter text: calm, trustworthy.
+- 3 · Instrument Serif headings (400) + Instrument Sans text: the most elegant, but thin and condensed; the facts numbers turn fragile.
+- 4 · Hanken Grotesk (one sans): like now, a little more neutral.
+
+The heading font goes to the H1, the section H2s, the facts numbers and the guarantee's lead line. Card names, reasons, prices and text use the text font. Sizes are unchanged; the scale is consolidated in phase 1 after the choice.
