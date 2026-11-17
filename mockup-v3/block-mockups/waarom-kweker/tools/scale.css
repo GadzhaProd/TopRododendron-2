@@ -1,0 +1,34 @@
+/* ===== Type scale and section rhythm (phase 1, steps 1.4 / 1.5 / 1.6 of docs/plan-verbeteringen.md, 17 Nov) =====
+   19 font sizes become 7 steps (desktop / phone), with Newsreader for the H1 and the H2s and Manrope for the rest:
+     display 66 / 34 · heading 48 / 30 · sub 24 / 22 · lead 18 / 17 · body 16 · small 14 · micro 13 (the minimum)
+   The sections share one rhythm: about 100 px between blocks on desktop and 64 px on phone.
+   __R__ and __S__ are replaced by the build: "html.sc-1" / "html.sc-1 " on the review page, ":root" / "" in the main mockup. */
+__R__{--t-display:clamp(34px,4.6vw,66px);--t-h2:clamp(30px,3.35vw,48px);--t-sub:clamp(22px,1.7vw,24px);
+  --t-lead:clamp(17px,1.25vw,18px);--t-body:16px;--t-small:14px;--t-micro:13px;--sec:clamp(64px,7vw,100px)}
+
+/* display: the hero H1 */
+__S__#hero h1{font-size:var(--t-display)!important}
+/* heading: the section H2s (Waarom wij, the assortment, the guarantee) */
+__S__:is(.wh2-h,.sd-hd h2,.fb-h){font-size:var(--t-h2)!important}
+/* phone: "Wij kweken alleen / rhododendrons." reads better than the balanced "Wij kweken / alleen rhododendrons." */
+@media (max-width:860px){ __S__.wh2-h{text-wrap:pretty} }
+/* the facts numbers: heading step on desktop, sub step on phone (they share a row with their label there) */
+__S__.wh2-facts b{font-size:var(--t-h2)!important}
+@media (max-width:860px){ __S__.wh2-facts b{font-size:var(--t-sub)!important} }
+/* sub: the Waarom wij reasons (the first one no longer larger), prices, the guarantee's lead line, the phone numbers */
+__S__:is(.wh2-list h3,.sd-pr b,#kweker .fp-txt b,.fp-num){font-size:var(--t-sub)!important}
+/* lead: the hero line, the assortment lead, the guarantee paragraph */
+__S__:is(#hero p,.sd .sd-lead,#kweker .fp-txt){font-size:var(--t-lead)!important}
+/* body: reasons text, card names, buttons, the lead-in to the numbers, the conditions link, footer text */
+__S__:is(.wh2-list p,.sd-it h3,#hero a.inline-flex,.sd-more,.fp-lead,.fp-more,.ft p){font-size:var(--t-body)!important}
+/* small: navigation, labels, "vanaf", bloom, facts labels, footer headings, "Bestellen" */
+__S__:is(header nav a,header a.inline-flex,.sd-v,.sd-b,.wh2-facts span,.fp-act dt,.ft h3){font-size:var(--t-small)!important}
+/* micro: the size line on the cards, the footer's small labels */
+__S__:is(.sd-s,.ft p > span){font-size:var(--t-micro)!important}
+/* the footer brand line at the lead step */
+__S__.ft-b b{font-size:var(--t-lead)!important}
+
+/* rhythm: Waarom wij -> the assortment (was 37 / 16 px), the assortment -> the guarantee heading (was 63 / 32 px) */
+/* the gap there today is the assortment's own top padding plus a few px, max(16px, 2.2vw + 4px), so the margin adds the rest */
+__S__#waarom{margin-bottom:calc(var(--sec) - max(16px, 2.2vw + 4px))}
+__S__.fp-1{--fb-air:var(--sec)!important}

@@ -790,3 +790,21 @@ The heading font goes to the H1, the section H2s, the facts numbers and the guar
     - desktop block heights unchanged; Waarom wij 8–10 px shorter on phone;
     - no horizontal scroll.
   - The type scale (19 sizes → 6–7 steps, serif-aware) follows in phase 1 of `docs/plan-verbeteringen.md`.
+
+## Phase 1, step A: type scale and section rhythm (17 Nov), in review
+
+Plan items 1.4, 1.5 and 1.6 (`docs/plan-verbeteringen.md`). Review page `waarom-kweker/fase1a.html` (`tools/build_fase1a.py`; html.sc-0 до / sc-1 после); the CSS is `tools/scale.css`, written so it can be appended to the main build unchanged.
+
+Type scale:
+- 19 sizes become 7 steps (desktop / phone): display 66 / 34 (H1), heading 48 / 30 (H2s; facts numbers on desktop), sub 24 / 22 (reasons, prices, phone numbers, the guarantee's lead line, facts numbers on phone), lead 18 / 17 (hero line, assortment lead, the guarantee paragraph), body 16, small 14, micro 13 (the minimum; the card size line was 12.5 on phone).
+- The first Waarom wij reason is no longer larger than the others (36 vs 27 px).
+- The guarantee paragraph goes from 15.5–16.5 to 18 / 17 px.
+- On phone the Waarom wij H2 wraps "Wij kweken alleen / rhododendrons." (text-wrap: pretty).
+
+Rhythm:
+- Measured content-to-content, the gaps hero→Waarom wij / Waarom wij→assortment / assortment→guarantee heading were 101 / 37 / 63 px at 1440 and 64 / 16 / 32 px at 390.
+- They are now one rhythm: 101 / 101 / 100 at 1440, 72 / 72 / 72 at 1024, 64 / 64 / 64 on phone.
+
+Checks:
+- Measured: exactly 7 sizes at 1440 and 390; desktop guarantee card heights unchanged; no horizontal scroll.
+- The phone card is longer: 776 px at 390 (was 761) and 770 at 360 (was 720), from the larger guarantee text.
