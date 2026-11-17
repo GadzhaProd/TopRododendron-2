@@ -881,4 +881,10 @@ Accessibility (1.9):
 Checks:
 - Page height, guarantee card and footer heights are identical to the main mockup at 1920–360, and there is no horizontal scroll.
 - No script errors.
+- Owner (17 Nov): the bare number in the header ("06 20 10 43 12" with a phone icon) is not good enough. Four review options on fase1c.html (desktop; below that the round phone button stays):
+  - ph-0: as before.
+  - ph-1: the icon in a soft green circle, "Bel de kweker" (13 px) over the number (15 px, semibold).
+  - ph-2: Gert's face (40 px, `img/gert-avatar.webp`, a crop of the real portrait `owner-portrait.webp`) with the same label and number.
+  - ph-3: Gert's face and "Bel of app" as a quiet pill, without digits. It opens a card with "Gert Top en team / Vragen over soort, maat of levering" and rows Bellen 06 20 10 43 12 and WhatsApp 06 20 29 78 49. Escape and an outside click close it.
+  - The label options are about 35 px wider, so they start at 1240 px (the round phone button up to 1239). The centred menu keeps at least 76 px from them in both header states.
 

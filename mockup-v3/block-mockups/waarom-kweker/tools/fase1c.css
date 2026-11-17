@@ -23,6 +23,50 @@ header nav[aria-label="Hoofdnavigatie"] a{padding-block:10px}
   header .hc-cart{border-color:rgba(20,20,19,.25)}
 }
 
+/* --- the header phone, review options (desktop from 1180 px, the label variants from 1240 px; below that the round phone button) ---
+   ph-0 icon + number · ph-1 icon in a soft circle, "Bel de kweker" over the number
+   ph-2 Gert's face, "Bel de kweker" over the number · ph-3 Gert's face + "Bel of app", a card with both numbers */
+.hc-tel small,.hc-tel .hc-av,.hc-pop{display:none}
+.hc-tel b{font-weight:inherit}
+/* the label variants are about 35 px wider: the round phone button up to 1239 px keeps the centred menu at a distance */
+@media (min-width:1180px) and (max-width:1239px){
+  html:is(.ph-1,.ph-2,.ph-3) header .hc-tel{width:44px;height:44px;padding:0;margin-right:0;border-radius:999px;border:1px solid rgba(20,20,19,.25)}
+  html:is(.ph-1,.ph-2,.ph-3) header .hc-tel span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  html:is(.ph-1,.ph-2,.ph-3) header .hc-cart{border-color:rgba(20,20,19,.25)}
+}
+@media (min-width:1240px){
+  html:is(.ph-1,.ph-2) header .hc-tel{gap:10px;height:48px;padding:0 4px}
+  html:is(.ph-1,.ph-2) header .hc-tel > span{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1.2}
+  html:is(.ph-1,.ph-2) header .hc-tel small{display:block;font:500 13px/1.2 Manrope,system-ui,sans-serif;letter-spacing:.01em;color:var(--color-fg-2)}
+  html:is(.ph-1,.ph-2) header .hc-tel b{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.01em;color:var(--color-fg);transition:color .2s ease}
+  html:is(.ph-1,.ph-2) header .hc-tel:hover b{color:var(--moss)}
+  html.ph-1 header .hc-tel svg{box-sizing:content-box;padding:10.5px;border-radius:999px;background:#e4e9d8;color:var(--moss)}
+  html.ph-2 header .hc-tel svg{display:none}
+  html.ph-2 header .hc-tel .hc-av{display:block;width:40px;height:40px;border-radius:999px;object-fit:cover;box-shadow:0 0 0 1px rgba(20,20,19,.1)}
+  html.ph-3 header .hc-tel{display:none}
+  html.ph-3 header .hc-pop{display:block;position:relative;margin-right:8px}
+}
+.hc-pb{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 14px 0 4px;border-radius:999px;border:1px solid rgba(20,20,19,.18);
+  background:none;color:var(--color-fg);cursor:pointer;font:600 14px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em;transition:background-color .2s ease}
+.hc-pb:hover{background:rgba(20,20,19,.05)}
+.hc-pb:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
+.hc-pb .hc-av{display:block;width:34px;height:34px;border-radius:999px;object-fit:cover}
+.hc-chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-left:-2px;transition:rotate .25s ease}
+.hc-pb[aria-expanded="true"] .hc-chev{rotate:180deg}
+.hc-card{position:absolute;right:0;top:calc(100% + 14px);width:320px;padding:18px;border-radius:22px;background:var(--color-surface);z-index:60;
+  box-shadow:0 28px 56px -20px rgba(20,20,19,.32),0 0 0 1px rgba(20,20,19,.08)}
+.hc-card[hidden]{display:none}
+.hc-cw{display:flex;align-items:center;gap:14px;padding:2px 4px 14px;margin-bottom:8px;border-bottom:1px solid rgba(20,20,19,.1)}
+.hc-cw img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:none}
+.hc-cw b{display:block;font:600 16px/1.3 Manrope,system-ui,sans-serif;color:var(--color-fg)}
+.hc-cw span{display:block;margin-top:2px;font-size:14px;line-height:1.35;color:var(--color-fg-2)}
+.hc-card a{display:flex;align-items:center;gap:10px;height:48px;padding:0 12px;border-radius:14px;color:var(--color-fg);text-decoration:none;
+  font:500 15px/1 Manrope,system-ui,sans-serif}
+.hc-card a svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--moss);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hc-card a b{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums}
+.hc-card a:hover{background:rgba(20,20,19,.05)}
+.hc-card a:focus-visible{outline:2px solid var(--moss);outline-offset:-2px}
+
 /* --- "Bestellen": a slot that opens; the cart stays on the right edge, the phone slides left as the pill appears --- */
 .hb-slot{display:none}
 @media (min-width:1024px){

@@ -1,5 +1,6 @@
 # Mockup tool (not site code): fase1c.html = the main mockup with phase 1, step C (tools/fase1c.py) and a review bar:
 #   "Bestellen": bs-0 always in the header (as now) · bs-1 appears once "Bekijk de planten" has scrolled away
+#   Header phone (desktop): ph-0 as now · ph-1 label · ph-2 Gert's face + label · ph-3 "Bel of app" + a card
 #   Phone header: tp-a call + menu (the cart inside the menu) · tp-b cart + menu (calling inside the menu)
 # Usage: python3 tools/build_fase1c.py [dir]
 import re, pathlib, sys
@@ -15,9 +16,10 @@ rep('</head>', '<style id="fase1c-rv">body{padding-top:48px}header.fixed{top:48p
 B = lambda g, v, t, on: f'<button type="button" data-g="{g}" data-v="{v}" aria-pressed="{"true" if on else "false"}">{t}</button>'
 rep('<div id="root">', '<div class="rv" role="group" aria-label="Варианты">'
     '<div class="rv-g"><i>Bestellen в шапке</i>' + B('bs', '0', 'Всегда', 0) + B('bs', '1', 'После первого экрана', 1) + '</div>'
+    '<div class="rv-g"><i>Номер в шапке</i>' + B('ph', '0', 'Как сейчас', 0) + B('ph', '1', 'Подпись', 0) + B('ph', '2', 'Лицо + подпись', 1) + B('ph', '3', 'Кнопка + карточка', 0) + '</div>'
     '<div class="rv-g"><i>Шапка на телефоне</i>' + B('tp', 'a', 'Звонок + меню', 1) + B('tp', 'b', 'Корзина + меню', 0) + '</div>'
     '</div><div id="root">')
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} bs-1 tp-a">', s, count=1)
+s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} bs-1 tp-a ph-2">', s, count=1)
 s = re.sub(r'<title>[^<]*</title>', '<title>Этап 1 · шаг В</title>', s, count=1)
 (D / 'fase1c.html').write_text(s)
 print('ok', len(s))

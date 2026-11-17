@@ -87,6 +87,15 @@
     cd.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCart(); if (e.key === 'Tab') trap(cd.querySelector('.cd-p'), e); });
   }
 
+  /* the header's "Bel of app" card (review option ph-3) */
+  var pb = document.querySelector('.hc-pb'), pc = document.getElementById('hc-card');
+  function closePop(back) { if (!pc || pc.hidden) return; pc.hidden = true; pb.setAttribute('aria-expanded', 'false'); if (back) pb.focus(); }
+  if (pb && pc) {
+    pb.addEventListener('click', function () { if (pc.hidden) { pc.hidden = false; pb.setAttribute('aria-expanded', 'true'); } else closePop(); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.hc-pop')) closePop(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pc.hidden) closePop(true); });
+  }
+
   /* the phone menu */
   var mb = document.querySelector('header button[aria-controls="mobile-menu"]');
   var mm = document.getElementById('mobile-menu'), mbg = document.querySelector('.mm-bg');
