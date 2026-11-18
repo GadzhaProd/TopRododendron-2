@@ -1,13 +1,15 @@
-# Mockup tool (not site code): phase 1, step C (17 Nov), as one function that both the review page
-# (tools/build_fase1c.py) and later the main build can apply to the main mockup's HTML.
-#   Links (owner, 17 Nov; the same addresses as the live site, gadzhaprod/rhododendrons):
+# Mockup tool (not site code): phase 1, step C as approved by the owner (17-18 Nov), applied by tools/finalize_main.py.
+# The reviewed version with all options is tools/fase1c_review.py (fase1c.html, fase1c-fable.html).
+#   Links (the same addresses as the live site, gadzhaprod/rhododendrons):
 #     logo -> /, Planten -> /assortiment, "De kweker" becomes "Over ons" -> Waarom wij, Advies -> /plantgids,
-#     Groothandel (menu and hero) -> /groothandel, Bestellen -> /assortiment, "Bekijk de planten" -> the seven varieties below,
+#     Groothandel (menu and hero) -> /groothandel, Contact (new, desktop menu) -> the guarantee block with Gert and both numbers,
+#     Bestellen -> /assortiment, "Bekijk de planten" -> the seven varieties below,
 #     the cards -> /assortiment/<variety>, "Alle maten en prijzen" -> /assortiment, "Lees de voorwaarden" -> /garantie.
 #     In the mockup a link to a page that is not here shows a short note (data-page) instead of leading nowhere.
-#   1.8 the cart in the header (a drawer with the empty state) and a working phone menu (with Bellen / WhatsApp);
-#       "Bestellen" can appear only once the hero's own button has scrolled away (one main action per screen).
-#   The header phone gets a label or a small interaction instead of bare digits: review options ph-0..ph-4.
+#   Header: no phone number on desktop (owner and Fable, 18 Nov: it loads the header and cannot be called from a browser),
+#     "Contact" in the menu instead; "Bestellen" appears once the hero's "Bekijk de planten" has scrolled away;
+#     the cart icon always. Phone: call + menu; the cart is a row in the menu, and its count shows on the menu button.
+#   1.8 the cart drawer (empty state) and a working phone menu (Bellen / WhatsApp).
 #   1.9 a skip link, the hero photo described, the page title, click targets of at least 24 px.
 import re, pathlib
 T = pathlib.Path(__file__).parent
@@ -27,7 +29,7 @@ MENU = ('<div class="mm-bg" hidden></div>'
         '<div class="mm" id="mobile-menu" hidden><nav class="mm-nav" aria-label="Menu">'
         '<a href="/assortiment" data-page="Assortiment">Planten</a><a href="#waarom">Over ons</a>'
         '<a href="/plantgids" data-page="Plantgids">Advies</a><a href="/groothandel" data-page="Groothandel">Groothandel</a>'
-        '<button type="button" class="mm-cart" data-cart>Winkelwagen<span>' + CART + 'leeg</span></button></nav>'
+        '<button type="button" class="mm-cart" data-cart>Winkelwagen<span>' + CART + '<i class="mm-cn">leeg</i></span></button></nav>'
         '<div class="mm-acts"><a class="mm-cta" href="/assortiment" data-page="Assortiment">Bestellen</a>'
         '<a href="tel:+31620104312">' + PHONE + 'Bellen</a><a ' + WA + '>' + CHAT + 'WhatsApp</a></div></div>')
 
@@ -53,34 +55,22 @@ def apply(s):
     s = re.sub(r'<title>[^<]*</title>', '<title>Top Rhododendrons | Kwekerij in Otterlo, sinds 2001</title>', s, count=1)
     rep('<img src="img/hero-field.jpg" alt="" aria-hidden="true"', '<img src="img/hero-field.jpg" alt="Ons rhododendronveld in Otterlo, in bloei"')
 
-    # the header phone (review options; owner 17 Nov: bare digits are not good enough, no photo). Ideas from 21st.dev:
-    #   ph-0 icon + number (as before) · ph-1 icon in a soft circle, "Bel de kweker" over the number
-    #   ph-2 "Bel de kweker" rolls letter by letter into the number on hover or focus (Text Roll / Action Swap Cascade)
-    #   ph-3 a round phone button that opens into a pill with the number on hover, the phone rings (Expand Button)
-    #   ph-4 "Bel of app" opens a card with both numbers (Popover)
-    roll = lambda c, t: (f'<span class="{c}">' + ''.join(f'<span style="--i:{k}">' + ('&nbsp;' if ch == ' ' else ch) + '</span>'
-                                                           for k, ch in enumerate(t)) + '</span>')
-    ROLL = '<span class="hc-roll" aria-hidden="true">' + roll('hr-a', 'Bel de kweker') + roll('hr-b', '06 20 10 43 12') + '</span>'
-    POP = ('<div class="hc-pop"><button type="button" class="hc-pb" aria-expanded="false" aria-controls="hc-card">' + PHONE + 'Bel of app'
-           '<svg class="hc-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>'
-           '<div class="hc-card" id="hc-card" hidden><div class="hc-cw"><b>Bel of app de kwekerij</b><span>Vragen over soort, maat of levering</span></div>'
-           '<a href="tel:+31620104312">' + PHONE + 'Bellen<b>06 20 10 43 12</b></a>'
-           '<a ' + WA + '>' + CHAT + 'WhatsApp<b>06 20 29 78 49</b></a></div></div>')
-    rep('</svg><span>06 20 10 43 12</span></a>', '</svg><span><small>Bel de kweker</small><b>06 20 10 43 12</b>' + ROLL + '</span></a>' + POP)
     # the header: logo, menu items, then phone · Bestellen (a slot that can open) · cart · menu button
     rep('<a href="#" aria-label="Top Rhododendrons, naar de homepage"', '<a href="/" data-home aria-label="Top Rhododendrons, naar de homepage"')
     N = 'class="text-[14px] tracking-[0.01em] transition-colors text-fg-2 hover:text-fg"'
     rep(f'<a href="#planten" {N}>Planten</a>', f'<a href="/assortiment" data-page="Assortiment" {N}>Planten</a>')
     rep(f'<a href="#kweker" {N}>De kweker</a>', f'<a href="#waarom" {N}>Over ons</a>')
     rep(f'<a href="#advies" {N}>Advies</a>', f'<a href="/plantgids" data-page="Plantgids" {N}>Advies</a>')
-    rep(f'<a href="#" {N}>Groothandel</a>', f'<a href="/groothandel" data-page="Groothandel" {N}>Groothandel</a>')
+    rep(f'<a href="#" {N}>Groothandel</a>', f'<a href="/groothandel" data-page="Groothandel" {N}>Groothandel</a>'
+        f'<a href="#kweker" {N}>Contact</a>')
     B = ('class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 disabled:opacity-60 '
          'disabled:pointer-events-none select-none bg-accent text-accent-fg hover:opacity-90 h-10 px-4 text-[13px] rounded-ui group/btn"')
     rep(f'<div class="hidden lg:block"><a {B} href="#planten">Bestellen</a></div>',
         f'<div class="hb-slot"><div class="hb-in"><a {B} href="/assortiment" data-page="Assortiment">Bestellen</a></div></div>'
         '<button type="button" class="hc-cart" data-cart aria-haspopup="dialog" aria-controls="winkelwagen" aria-label="Winkelwagen, leeg">'
         + CART + '<span class="hc-n" hidden>0</span></button>')
-    rep('</div></div></div></header>', '</div></div></div>' + MENU + '</header>')
+    rep('translate-y-[3px]"></span></button></div></div></div></header>',
+        'translate-y-[3px]"></span><b class="hc-n mm-n" hidden>0</b></button></div></div></div>' + MENU + '</header>')
     rep('</main>', '</main>' + DRAWER)
 
     # the hero

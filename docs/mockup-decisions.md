@@ -840,7 +840,7 @@ Checks:
   - Checks: the main mockup equals fase1b.html (sb-1 hl-a) pixel for pixel at 1920–390 except the arrow; H1 3 lines and no horizontal scroll at every width; guarantee card heights unchanged (608 / 626 / 522 / 495 / 435 at 1920 / 1440 / 1200 / 1024 / 900).
   - `tools/build_fase1b.py` builds from the main mockup as it was before step B; it no longer runs against the new one.
 
-## Phase 1, step C: links, header actions, cart, phone menu, accessibility (17 Nov), in review
+## Phase 1, step C: links, header actions, cart, phone menu, accessibility (17–18 Nov), approved
 
 Plan items 1.8 and 1.9 plus the link map the owner approved on 17 Nov. Review page `waarom-kweker/fase1c.html` (`tools/build_fase1c.py`). The step itself is `tools/fase1c.py` (`apply(html)`, with `fase1c.css` and `fase1c.js`), so the main build can apply the same function after approval.
 
@@ -892,4 +892,26 @@ Checks:
     - ph-3: a round phone button that opens to the left into a pill with the number on hover, and the phone icon rings once; from 1240 px.
     - ph-4: "Bel of app" as a quiet pill that opens a card: "Bel of app de kwekerij / Vragen over soort, maat of levering", Bellen 06 20 10 43 12, WhatsApp 06 20 29 78 49. From 1240 px.
   - With the menu centred, the gap to the phone is at least 81 px in every option and state.
+- Fable (17 Nov) ranked the options with the number always visible (desktop visitors read it and dial on their mobile; hover-only options fail on touch laptops and for older buyers) and built ph-5: "Bel de kweker" over the number, no circle (`fase1c-fable.html`).
+- Owner (18 Nov): "is the number needed in the header at all? it loads the header". Fable agreed and changed his advice, building ph-6:
+  - On desktop the number does not do its job: no one calls from a browser, and the question comes up at the guarantee or a plant, not in the header.
+  - It is the heaviest element in the header.
+  - Trust comes from an easy-to-find contact with a person behind it.
+  - So: no number on desktop and a fifth menu item "Contact" → the guarantee block with Gert and both numbers (both visible after the scroll at 1280, 1440 and 1920).
+  - Phone: keep the round call button and Bellen / WhatsApp in the menu.
+- Owner (18 Nov) asked why "Bestellen" appears only after the first screen and where it leads:
+  - It leads to the catalogue (/assortiment: variety, size, quantity, cart).
+  - On the first screen "Bekijk de planten" already does that job; two buttons with one meaning compete.
+  - Once that button has scrolled away, "Bestellen" takes over, so ordering stays one click away for the rest of the page.
+- APPROVED (owner, 18 Nov): step C goes into the main mockup with no number on desktop plus "Contact", "Bestellen" after the first screen, and the phone header call + menu.
+  - When the cart has items, the count shows on the header cart (desktop) and on the menu button and the menu row (phone). This was Fable's condition for the call + menu option. `window.tbCart(n)` shows it in the mockup.
+  - `tools/fase1c.py`, `fase1c.css` and `fase1c.js` now hold only the approved version and are applied by `finalize_main.py`.
+  - The reviewed version with all options is `tools/fase1c_review.*` (used by `build_fase1c.py` for fase1c.html).
+  - At 1024–1179 px the cart no longer has a ring: there is no round phone button next to it any more.
+  - Checks:
+    - The main mockup equals fase1c-fable.html (bs-1, tp-a, ph-6) pixel for pixel at 1920, 1440, 1280, 900, 390 and 360, at the top and after scrolling. The only difference is that ring at 1024.
+    - Page heights are unchanged from before step C, and there is no horizontal scroll.
+    - No text under 13 px and no target under 24 px.
+    - No script errors.
+    - The links, cart drawer, menu, Escape and focus return work.
 

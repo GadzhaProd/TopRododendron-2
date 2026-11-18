@@ -170,5 +170,9 @@ rep('<a class="inline-flex items-center justify-center gap-2 whitespace-nowrap f
 rep('class="text-[14px] tracking-[0.01em] transition-colors hover:text-fg font-medium text-fg">Groothandel</a>',
     'class="text-[14px] tracking-[0.01em] transition-colors text-fg-2 hover:text-fg">Groothandel</a>')
 s = s.replace('</head>', '<style id="fase1b-css">' + (D / 'tools' / 'fase1b.css').read_text() + '</style></head>', 1)
+# phase 1 step C (owner approved 17-18 Nov): links, header actions, cart, phone menu, accessibility (tools/fase1c.py)
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import fase1c
+s = fase1c.apply(s)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

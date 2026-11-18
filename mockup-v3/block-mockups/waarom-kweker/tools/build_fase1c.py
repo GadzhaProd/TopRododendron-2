@@ -1,11 +1,12 @@
-# Mockup tool (not site code): fase1c.html = the main mockup with phase 1, step C (tools/fase1c.py) and a review bar:
+# Mockup tool (not site code): fase1c.html = the main mockup as it was before step C, with phase 1, step C as reviewed
+# (tools/fase1c_review.py) and a review bar. It no longer runs against the main mockup after step C went in (18 Nov).
 #   "Bestellen": bs-0 always in the header (as now) · bs-1 appears once "Bekijk de planten" has scrolled away
 #   Header phone (desktop): ph-0 as now · ph-1 label · ph-2 text roll · ph-3 expanding button · ph-4 "Bel of app" + a card
 #   Phone header: tp-a call + menu (the cart inside the menu) · tp-b cart + menu (calling inside the menu)
 # Usage: python3 tools/build_fase1c.py [dir]
 import re, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-import fase1c
+import fase1c_review as fase1c
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 s = fase1c.apply((D / 'index.html').read_text())
 def rep(a, b):

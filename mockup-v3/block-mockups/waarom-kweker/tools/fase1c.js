@@ -1,5 +1,5 @@
-/* Phase 1, step C (17 Nov): in-page scrolling, the "Bestellen" reveal, the cart drawer, the phone menu,
-   and a short note for links to pages that are not in this mockup. */
+/* Phase 1, step C (approved 17-18 Nov): in-page scrolling, the "Bestellen" reveal, the cart drawer, the phone menu,
+   the cart count, and a short note for links to pages that are not in this mockup. */
 (function () {
   var root = document.documentElement;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -87,14 +87,17 @@
     cd.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCart(); if (e.key === 'Tab') trap(cd.querySelector('.cd-p'), e); });
   }
 
-  /* the header's "Bel of app" card (review option ph-4) */
-  var pb = document.querySelector('.hc-pb'), pc = document.getElementById('hc-card');
-  function closePop(back) { if (!pc || pc.hidden) return; pc.hidden = true; pb.setAttribute('aria-expanded', 'false'); if (back) pb.focus(); }
-  if (pb && pc) {
-    pb.addEventListener('click', function () { if (pc.hidden) { pc.hidden = false; pb.setAttribute('aria-expanded', 'true'); } else closePop(); });
-    document.addEventListener('click', function (e) { if (!e.target.closest('.hc-pop')) closePop(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pc.hidden) closePop(true); });
+  /* the cart count: the header cart (desktop), the menu button and the menu row (phone). The mockup's cart is empty;
+     window.tbCart(n) shows how a count looks. */
+  function setCount(n) {
+    document.querySelectorAll('.hc-n').forEach(function (b) { b.textContent = n > 9 ? '9+' : String(n); b.hidden = !n; });
+    var c = document.querySelector('header .hc-cart'); if (c) c.setAttribute('aria-label', n ? 'Winkelwagen, ' + n + (n === 1 ? ' artikel' : ' artikelen') : 'Winkelwagen, leeg');
+    var r = document.querySelector('.mm-cn'); if (r) r.textContent = n ? n + (n === 1 ? ' artikel' : ' artikelen') : 'leeg';
+    root.setAttribute('data-cart', n);
+    var m = document.querySelector('header button[aria-controls="mobile-menu"]');
+    if (m && m.getAttribute('aria-expanded') !== 'true') m.setAttribute('aria-label', 'Menu openen' + (n ? ', ' + n + ' in winkelwagen' : ''));
   }
+  window.tbCart = setCount;
 
   /* the phone menu */
   var mb = document.querySelector('header button[aria-controls="mobile-menu"]');
@@ -105,7 +108,7 @@
   }
   function closeMenu() {
     if (!mm || mm.hidden) return;
-    root.classList.remove('mm-open'); mb.setAttribute('aria-expanded', 'false'); mb.setAttribute('aria-label', 'Menu openen');
+    root.classList.remove('mm-open'); mb.setAttribute('aria-expanded', 'false'); var n = +root.getAttribute('data-cart') || 0; mb.setAttribute('aria-label', 'Menu openen' + (n ? ', ' + n + ' in winkelwagen' : ''));
     setTimeout(function () { if (!root.classList.contains('mm-open')) { mm.hidden = true; if (mbg) mbg.hidden = true; } }, reduce.matches ? 0 : 350);
   }
   if (mb && mm) {
