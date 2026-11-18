@@ -1024,4 +1024,25 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - An option with the heading in the field's sky was tried and dropped: over the trees it read worse.
   - Heights at 1440: 965 px with the credits line; at 390: 1025. Rhythm 100 / 72 / 64.
   - No horizontal scroll; no text under 13 px; no target under 24 px.
+- Owner (18 Nov): "let Fable look and analyse". Fable's analysis of hv-1 and fixes, `fase2c-fable.html` (button "2 · После правок Фабла", CSS only, under html.hv-2):
+  - Verdict: hv-1 solves the complaint (no frame, no photo dissolving into a soft surface; an open landscape after an object in a frame). It does not repeat the hero (dark, full screen, white text on the photo); the field at the start and at the end frames the page. It is worth taking, but not as it was.
+  - Problems found:
+    - The bottom fade started at 58 % while the bushes stand at about 80 %: half of the bushes were in a grey mist (about rgb 162 158 156 against the page's 241 239 234), and the peat soil hardly showed.
+    - The white sky was lighter than the page.
+    - The verbs went 49–60 px into the photo, "Ontvangen" on a pink haze and the others on grey.
+    - At 600–860 px the route was one list with 681 px lines.
+    - On 1366×768 the band left the descriptions below the fold.
+  - Contrast was fine: verbs from 9.6:1, text 5.66:1.
+  - Fixes in hv-2:
+    - The crop is lower and the fade shorter (from 70 % on desktop, 76 % on phone), so the bushes are whole and the soil fades.
+    - The photo is multiplied with the page colour, so the sky becomes the page and there is no grey mist.
+    - The verbs go only 20 px into the photo, all on one background; contrast from 11.8:1.
+    - The route is 2×2 at 600–860 px, aligned with the heading.
+    - The band height is tied to the viewport (at most 58 % of it on desktop, 52 % on phone): 445 px on 1366×768, and the block is 956 px at 1920 instead of 1044.
+  - Not built, for the owner:
+    - The verbs one step smaller than the heading.
+    - The pickup address as a map link, as in the footer.
+    - Screens wider than 1920 (the nursery's own photo needs 2880 px or more).
+  - Photo brief from the analysis: the bushes in the middle third, the soil in the bottom third, a calm background without loud green, no bush cut off at the right.
+  - Heights after the fixes: 963 px at 1440, 861 at 1024, 877 at 768, 1039 at 390.
 
