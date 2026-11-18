@@ -1014,4 +1014,14 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - "Ontvangen" ends with "Afhalen: Esserbroekweg 2, Otterlo." (no hours; they are in the footer).
   - The photo-set switch is gone; the review page keeps the credits line.
   - Card 708 px at 1440, 589 at 1024, 808 at 390. No horizontal scroll.
+- Owner (18 Nov), D round 3: "we lost the step between blocks again: this card looks very much like the guarantee card, in its form and its whole treatment". Review page `fase2c.html` (`tools/build_fase2c.py`, CSS `tools/hoe-werkt-d.css` + `tools/hoe-werkt-open.css`):
+  - hv-0: the card, as before, for comparison.
+  - hv-1 "open":
+    - No card, no frame, no rounded corners. The field runs edge to edge across the screen, 38vw high (300–640 px; 240–360 on phone).
+    - It appears out of the page colour at the top (0–18 %) and dissolves back into it at the bottom (58–100 %).
+    - The route of verbs stands on the page where the field has dissolved, aligned with the page's text column.
+    - The guarantee stays an object in a frame; this block is an open landscape, so the two blocks no longer repeat each other.
+  - An option with the heading in the field's sky was tried and dropped: over the trees it read worse.
+  - Heights at 1440: 965 px with the credits line; at 390: 1025. Rhythm 100 / 72 / 64.
+  - No horizontal scroll; no text under 13 px; no target under 24 px.
 
