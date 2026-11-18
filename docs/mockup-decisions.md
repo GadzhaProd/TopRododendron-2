@@ -917,21 +917,28 @@ Checks:
 
 ## Phase 2, item 2.1: Hoe het werkt (18 Nov), in review
 
-Review page `waarom-kweker/fase2a.html` (`tools/build_fase2a.py`, CSS `tools/hoe-werkt.css`). The block replaces the placeholder between the guarantee and the footer, in three layouts built from 21st.dev patterns (How It Works 09, How It Works 01, How It Works Timeline):
-- hw-a Lijn: four columns, the numbers on one hairline; on phone a vertical line.
-- hw-b Kaarten: four soft cards with an icon.
-- hw-c Tijdlijn: the heading and a lead on the left, the steps on a vertical line on the right.
+Review page `waarom-kweker/fase2a.html` (`tools/build_fase2a.py`, CSS `tools/hoe-werkt.css`). The block replaces the placeholder between the guarantee and the footer.
+
+- Round 1 was rejected by the owner (18 Nov: "not our style at all"). It had icons in circles, "STAP 1" labels in capitals, payment chips and white cards: none of these exist anywhere on the page. The 21st.dev layouts were taken over with their details, and only the colours and fonts were changed.
+- Round 2 uses only the page's own language:
+  - Newsreader headings on the left.
+  - Rows on hairlines with no icons (the Waarom wij list).
+  - Large Newsreader figures in moss with Manrope text under them (the facts card).
+  - The woven sage-cream surface with one inner hairline.
+- Round 2 options:
+  - hw-a Rijen: figure | title | text on one row, a hairline above each row.
+  - hw-b Kolommen: four columns divided by hairlines, the figure on top. Two by two on tablets; rows on phone, the same as A.
+  - hw-c Veld: the same columns inside one woven panel.
 
 Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 1. "Kies soort en maat: Bij elke soort staan alle maten met hun prijs. Kies er het aantal bij."
-2. "Bestel online of telefonisch: Via de webshop of per telefoon. U betaalt zoals u wilt:" with the chips iDEAL, Overschrijving, Bij ontvangst, Zakelijk op factuur.
+2. "Bestel online of telefonisch: Via de webshop of per telefoon. U betaalt met iDEAL, per overschrijving of bij ontvangst; zakelijk op factuur."
 3. "Spreek de dag af: Samen kiezen we de dag van bezorgen of afhalen, wanneer het u uitkomt."
-4. "Bezorgen of afhalen: Bezorgkosten hangen af van afstand en aantal; u ziet ze vóór u betaalt." Then "Afhalen Esserbroekweg 2, Otterlo · Ma–vr 08:00–17:00 · Za 09:00–13:00".
+4. "Bezorgen of afhalen: Bezorgkosten hangen af van afstand en aantal; u ziet ze vóór u betaalt." Then "Afhalen: Esserbroekweg 2, Otterlo. Ma–vr 08:00–17:00, za 09:00–13:00."
 
-- The steps say what happens and when; the reasons (fresh dug, own transport) stay in Waarom wij, so the two blocks do not repeat each other.
+- The steps say what happens and when; the reasons (fresh dug, own transport) stay in Waarom wij.
 - The delivery cost sentence is provisional; the founder confirms it.
-- No button in the block: "Bestellen" is in the header at this point of the page.
-- Rhythm: guarantee card → H2 and last step → footer are one --sec (100 px at 1440, 72 at 1024, 64 on phone).
-- Heights at 1440: A 509, B 625, C 682 px; at 390: A 747, B 1197, C 921.
-- No horizontal scroll at 1440–360, no text under 13 px, no target under 24 px.
-
+- No button in the block: "Bestellen" is in the header there.
+- Rhythm: guarantee card → H2 and last step → footer are one --sec (100 / 72 / 64 px).
+- Heights at 1440: A 833, B 537, C 635 px; at 390: A 781, B 778, C 902.
+- No horizontal scroll, no text under 13 px, no target under 24 px.
