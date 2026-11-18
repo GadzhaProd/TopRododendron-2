@@ -1,0 +1,70 @@
+/* ===== Hoe het werkt (phase 2, item 2.1, review 18 Nov): four steps between the guarantee and the footer =====
+   Three layouts, ideas from 21st.dev: hw-a "Lijn" (How It Works 09: numbers on one line), hw-b "Kaarten" (How It Works 01:
+   steps in cards with icons), hw-c "Tijdlijn" (How It Works Timeline: the heading on the left, a vertical line on the right).
+   The same copy in all three. Type and rhythm from scale.css: H2 = heading, step titles = sub, text = body, meta = small. */
+.hw{background:var(--page)}
+/* the guarantee section ends with its own bottom padding, so the gap card -> heading is one --sec
+   (".hw :is(h2,h3,p,ol){margin:0}" resets the defaults, so the lists carry ".hw" in their selectors) */
+.hw > .in{padding-top:max(0px,calc(var(--sec) - clamp(56px,6vw,96px)));padding-bottom:var(--sec)}
+.hw{display:none}
+html.hw-a .hw-a,html.hw-b .hw-b,html.hw-c .hw-c{display:block}
+.hw :is(h2,h3,p,ol){margin:0}
+.hw ol{list-style:none;padding:0}
+.hw-h{font-size:var(--t-h2)!important;line-height:1.08;color:var(--color-fg)}
+.hw-h span{display:block}
+.hw h3{font-size:var(--t-sub);line-height:1.2;font-weight:600;letter-spacing:-.02em;color:var(--color-fg)}
+.hw p{font-size:var(--t-body);line-height:1.55;color:var(--soft)}
+.hw .hw-m{margin-top:12px;font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
+.hw .hw-m b{font-weight:600;color:var(--color-fg)}
+.hw .hw-pay{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.hw .hw-pay span{display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;background:rgba(63,74,55,.08);
+  color:var(--color-fg-2);font-size:13px;font-weight:500;letter-spacing:.01em}
+.hw svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hw .hw-s{display:block;margin-bottom:6px;font-size:var(--t-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--moss)}
+
+/* --- A · Lijn: four columns, the numbers sit on one hairline --- */
+.hw .hwa-l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(24px,3vw,48px);margin-top:clamp(40px,4.4vw,64px)}
+.hwa-l li{position:relative;padding-top:64px}
+.hwa-l li::before{content:"";position:absolute;left:0;right:calc(-1 * clamp(24px,3vw,48px));top:19px;height:1px;background:rgba(63,74,55,.22)}
+.hwa-l li:last-child::before{right:0;background:linear-gradient(90deg,rgba(63,74,55,.22),rgba(63,74,55,0))}
+.hwa-n{position:absolute;left:0;top:0;display:grid;place-items:center;width:39px;height:39px;border-radius:999px;background:var(--page);
+  border:1px solid rgba(63,74,55,.35);color:var(--moss);font:500 18px/1 'Newsreader',Georgia,serif;font-variant-numeric:lining-nums}
+.hwa-l h3{margin-bottom:10px}
+@media (max-width:860px){
+  .hw .hwa-l{grid-template-columns:1fr;gap:0;margin-top:32px}
+  .hwa-l li{padding:0 0 32px 60px}
+  .hwa-l li:last-child{padding-bottom:0}
+  .hwa-l li::before{left:19px;right:auto;top:39px;bottom:0;width:1px;height:auto}
+  .hwa-l li:last-child::before{display:none}
+  .hwa-l h3{margin-bottom:6px;padding-top:6px}
+}
+
+/* --- B · Kaarten: four soft cards with an icon, like the facts and guarantee cards --- */
+.hw .hwb-l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:clamp(40px,4.4vw,64px)}
+.hwb-l li{position:relative;padding:clamp(22px,2.2vw,30px);border-radius:22px;background:var(--color-surface);
+  box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
+.hwb-i{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:#e4e9d8;color:var(--moss);margin-bottom:22px}
+.hwb-l h3{margin-bottom:10px}
+@media (max-width:1100px){ .hw .hwb-l{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .hw .hwb-l{grid-template-columns:1fr;margin-top:32px} .hwb-i{margin-bottom:16px} }
+
+/* --- C · Tijdlijn: the heading and a short lead on the left, the steps on a vertical line on the right --- */
+.hwc-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,112px);align-items:start}
+.hwc-hd{position:sticky;top:120px}
+.hwc-hd p{margin-top:18px;font-size:var(--t-lead);max-width:34ch}
+.hwc-l li{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:24px;padding-bottom:36px}
+.hwc-l li:last-child{padding-bottom:0}
+.hwc-l li::before{content:"";position:absolute;left:23.5px;top:52px;bottom:4px;width:1px;background:rgba(63,74,55,.22)}
+.hwc-l li:last-child::before{display:none}
+.hwc-i{display:grid;place-items:center;width:48px;height:48px;border-radius:999px;background:var(--color-surface);color:var(--moss);
+  box-shadow:inset 0 0 0 1px rgba(63,74,55,.2)}
+.hwc-l li > div{padding-top:4px}
+.hwc-l h3{margin-bottom:8px}
+@media (max-width:860px){
+  .hwc-g{grid-template-columns:1fr}
+  .hwc-hd{position:static}
+  .hw .hwc-l{margin-top:8px}
+  .hwc-l li{grid-template-columns:44px minmax(0,1fr);column-gap:18px;padding-bottom:30px}
+  .hwc-i{width:44px;height:44px}
+  .hwc-l li::before{left:21.5px;top:48px}
+}
