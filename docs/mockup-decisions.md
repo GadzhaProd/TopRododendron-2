@@ -956,4 +956,12 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - Ontvangen: "Bezorgd of afgehaald. De bezorgkosten hangen af van afstand en aantal; u ziet ze vóór u betaalt." Then "Afhalen: Esserbroekweg 2, Otterlo. Ma–vr 08:00–17:00, za 09:00–13:00."
   - Heights at 1440: D 878, E 492 px; at 390: D 942, E 734. Rhythm 100 / 72 / 64. No horizontal scroll, no text under 13 px.
   - Fable builds an independent concept in parallel (`fase2a-fable.html`).
+- Fable's independent concept (18 Nov), `fase2a-fable.html` ("De trap", the staircase):
+  - Desktop, from 1100 px: the four steps stand as stairs. One hairline steps down from the heading to the right, with a small Newsreader figure in moss on each tread and the title and text under it.
+  - Two real photos sit in opposite corners and dissolve inwards into the woven haze: our field (`B2BHERO-sm.webp`) under steps 1–2, bottom left; the garden bush (`cw-bush.webp`) above step 4, top right.
+  - Tablet (700–1099): the steps as a list, with one tall picture where the field melts into the garden.
+  - Phone: field strip → four steps → garden photo.
+  - Step 4 links the address to the map.
+  - Checked at 1920–360: no horizontal scroll, smallest text 14 px, lowest contrast 7.04:1 (measured on the real pixels), rhythm --sec.
+  - Height 767 px at 1440, 1073 at 390.
 
