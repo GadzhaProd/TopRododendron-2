@@ -942,3 +942,18 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 - Rhythm: guarantee card → H2 and last step → footer are one --sec (100 / 72 / 64 px).
 - Heights at 1440: A 833, B 537, C 635 px; at 390: A 781, B 778, C 902.
 - No horizontal scroll, no text under 13 px, no target under 24 px.
+- Owner (18 Nov) on round 2: "you just reused the cards from our other blocks, I saw nothing new; round 1 had none of our design handwriting". Round 3 is a new composition in the page's handwriting:
+  - hw-d "Van veld naar tuin":
+    - One rounded object with the woven sage-cream surface and the inner hairline.
+    - At the top, our field (`img/hw-veld.webp`, a crop of hero-field.jpg) melts into a garden (`img/hw-tuin.webp`, a crop of the Cunningham's White bush beside a garden path from the old site). Both fade down into the "soil" (the real-photo-into-gradient move of the guarantee portrait).
+    - Below them, the steps are a route of four Newsreader verbs at the heading size, each followed by a thin moss line that runs on to the next: Kiezen, Bestellen, Afspreken, Ontvangen.
+    - On phone the route is a stem with four branches.
+  - hw-e "Woorden": the route alone, on the page.
+  - Copy:
+    - Kiezen: "Soort, maat en aantal. Bij elke soort staan alle maten met hun prijs."
+    - Bestellen: "Online of per telefoon. U betaalt met iDEAL, per overschrijving of bij ontvangst; zakelijk op factuur."
+    - Afspreken: "Samen kiezen we de dag van bezorgen of afhalen, wanneer het u uitkomt."
+    - Ontvangen: "Bezorgd of afgehaald. De bezorgkosten hangen af van afstand en aantal; u ziet ze vóór u betaalt." Then "Afhalen: Esserbroekweg 2, Otterlo. Ma–vr 08:00–17:00, za 09:00–13:00."
+  - Heights at 1440: D 878, E 492 px; at 390: D 942, E 734. Rhythm 100 / 72 / 64. No horizontal scroll, no text under 13 px.
+  - Fable builds an independent concept in parallel (`fase2a-fable.html`).
+
