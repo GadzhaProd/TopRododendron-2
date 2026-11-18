@@ -983,4 +983,13 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - Rhythm --sec.
     - Height 788 px at 1440, 711 at 1024, 1135 at 390.
   - Fable overwrote the tracked `img/hw-veld.webp` by mistake and restored it with git; the repository shows no change to it.
+- Owner (18 Nov): "let him think about more variants". Fable, `fase2a-fable3.html` (review bar: 0 Лестница, 1 Поле, 2 Фраза, 3 Лист).
+  - 1 "Veld": one photo carries the block. Under the heading the field fills the screen width, appearing from the page colour and running into the footer's dark green; the four steps are written light in that dusk (2×2 on desktop). Ideas from the page's own hero and 21st.dev 19077 (Editorial Image Hero). 900 px at 1440, 844 at 390. Bottom gap is not --sec, because it merges with the footer.
+  - 2 "Zin": the heading continues as one sentence in the same type, in moss: "¹Kies soort en maat, ²bestel online of telefonisch, ³spreek met ons de dag af en ⁴laat bezorgen, of haal af in Otterlo."
+    - Small real photos sit in the line like words; the details are numbered footnotes beside it.
+    - Ideas from 21st.dev 46739 (Scroll Fill Headline) and 19322 (Image Text).
+    - 501 px at 1440, 721 at 390, the most compact.
+  - 3 "Blad": one tall picture in a frame, where the field melts into the garden bush; the steps are captions left and right, tied to it by hairlines, like a botanical plate. Idea from 21st.dev 28273. 819 px at 1440, 871 at 390.
+  - Fable's ranking: 0 staircase > 2 sentence > 3 plate > 1 field. He would show the staircase and the sentence as the two real choices.
+  - Checked at 1920–360: no horizontal scroll; smallest text 13.5 px; lowest contrast 5.11:1.
 
