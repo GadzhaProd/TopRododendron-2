@@ -992,4 +992,19 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - 3 "Blad": one tall picture in a frame, where the field melts into the garden bush; the steps are captions left and right, tied to it by hairlines, like a botanical plate. Idea from 21st.dev 28273. 819 px at 1440, 871 at 390.
   - Fable's ranking: 0 staircase > 2 sentence > 3 plate > 1 field. He would show the staircase and the sentence as the two real choices.
   - Checked at 1920–360: no horizontal scroll; smallest text 13.5 px; lowest contrast 5.11:1.
+- Owner (18 Nov): "of all the variants, D is the one". Refine it, and try other pictures (from the internet or generated) to see how it looks, since reusing the page's own photos is weak. Review page `fase2b.html` (`tools/build_fase2b.py`, CSS `tools/hoe-werkt-d.css`); the review bar switches the photo set.
+  - Refinements over hw-d:
+    - The panorama is taller on desktop (clamp 240–390 px).
+    - A soft mist where the two photos cross, so the meeting reads as air, not as a double exposure.
+    - The line stops 14 px short of the next verb; the verbs sit fully below the photos.
+    - A taller panorama on phone (190–270 px).
+    - Fixed: the route's padding was reset by `.hw ol{padding:0}`.
+  - Photo sets:
+    - ps-0: our photos.
+    - ps-1: a rhododendron nursery field on dark peat soil in Edewecht (Ammerland) melting into a pink rhododendron on a lawn at Bowood.
+    - ps-2: green nursery rows in Edewecht melting into rhododendrons along a garden path.
+  - The example photos are from Wikimedia Commons (CC BY-SA 4.0 and CC0; authors and links in `img/voorbeeld/CREDITS.md`), cropped and in two cases mirrored. They are another nursery's field and other gardens: only for the preview, never for the live site, which uses the nursery's own photos (phase 3).
+  - The review page shows a small credits line under the block when an example set is on.
+  - Unsplash was not used: its internal search was refused by the session's permission check. Pexels and Pixabay block automated access; not worked around. No image generation tool is available in this session.
+  - Heights at 1440: 927 px with our photos, 961 with an example set (the credits line); at 390: 971 / 1066. Rhythm 100 / 72 / 64. No horizontal scroll.
 
