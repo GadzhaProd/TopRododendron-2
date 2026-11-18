@@ -3,7 +3,8 @@
    "soil", and the four steps are a route of Newsreader verbs on one thin line standing in that soil.
    Refinements over fase2a.html hw-d: a taller panorama on desktop; a soft mist where the two photos meet (no ghosting);
    the line stops short of the next verb; the verbs sit fully below the photos; on phone a taller panorama.
-   The photo set is a review option on <html>: ps-0 our photos · ps-1 / ps-2 example photos (img/voorbeeld, not ours). */
+   Owner (18 Nov, round 2 of D): one photo only, the Edewecht field on peat (img/voorbeeld/hw-v3-veld.webp, an example photo,
+   not ours); the steps sit at the bottom of the card, with the photo above them and the same air on the sides and below. */
 .hw{background:var(--page)}
 .hw > .in{padding-top:max(0px,calc(var(--sec) - clamp(56px,6vw,96px)));padding-bottom:var(--sec)}
 .hw :is(h2,h3,p,ol){margin:0}
@@ -22,23 +23,15 @@
     linear-gradient(to bottom,#dee4d1 0%,#ebece3 45%,#ede8d4 100%)}
 .hwd::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
 
-/* the panorama: the field from the left, the garden from the right, both fading down */
-.hwd-pan{position:relative;height:clamp(240px,27vw,390px);
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 50%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 50%,transparent 100%)}
-.hwd-pan img{position:absolute;top:0;height:100%;object-fit:cover;display:none}
-.hwd-veld{left:0;width:64%;object-position:50% 55%;
-  -webkit-mask-image:linear-gradient(to right,#000 0%,#000 46%,transparent 100%);mask-image:linear-gradient(to right,#000 0%,#000 46%,transparent 100%)}
-.hwd-tuin{right:0;width:54%;object-position:60% 45%;
-  -webkit-mask-image:linear-gradient(to left,#000 0%,#000 44%,transparent 100%);mask-image:linear-gradient(to left,#000 0%,#000 44%,transparent 100%)}
-/* a soft mist where the two photos cross, so the meeting reads as air, not as a double exposure */
-.hwd-pan::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 16% 75% at 55% 42%,rgba(235,236,227,.55) 0%,rgba(235,236,227,0) 100%)}
-html.ps-0 .hwd-pan .p0,html.ps-1 .hwd-pan .p1,html.ps-2 .hwd-pan .p2{display:block}
+/* the photo: one field across the card, fading down into the soil where the steps stand */
+.hwd-pan{position:relative;height:clamp(300px,36vw,520px);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 100%)}
+.hwd-pan img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
 
 /* the route: four verbs in Newsreader, a thin line from each one on to the next */
 /* (".hw ol{padding:0}" resets lists, so the route's own padding carries ".hw" in its selector) */
-.hw .hw-route{--gap:clamp(20px,2.4vw,36px);position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  padding:0 clamp(28px,3vw,48px) clamp(34px,3.8vw,58px)}
+.hw .hw-route{--gap:clamp(20px,2.4vw,36px);--side:clamp(28px,3.4vw,52px);position:relative;z-index:1;display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));margin-top:calc(-1 * clamp(20px,2.6vw,40px));padding:0 var(--side) var(--side)}
 .hw-route li{padding-right:var(--gap)}
 .hw-route li:last-child{padding-right:0}
 .hw-route h3{display:flex;align-items:center;gap:16px;margin-bottom:16px;white-space:nowrap;
@@ -51,11 +44,9 @@ html.ps-0 .hwd-pan .p0,html.ps-1 .hwd-pan .p1,html.ps-2 .hwd-pan .p2{display:blo
 @media (max-width:1100px){ .hw-route h3{gap:12px} }
 @media (max-width:860px){
   .hwd{border-radius:22px}
-  .hwd-pan{height:clamp(190px,52vw,270px)}
-  .hwd-veld{width:74%}
-  .hwd-tuin{width:64%}
-  .hwd-pan::after{background:radial-gradient(ellipse 22% 70% at 52% 40%,rgba(235,236,227,.5) 0%,rgba(235,236,227,0) 100%)}
-  .hw .hw-route{grid-template-columns:1fr;padding:0 20px 28px 46px;margin-top:2px}
+  .hwd-pan{height:clamp(230px,64vw,330px)}
+  .hwd-pan img{object-position:42% 60%}
+  .hw .hw-route{grid-template-columns:1fr;padding:0 20px 28px 46px;margin-top:-6px}
   .hw-route li{position:relative;padding:0 0 30px}
   .hw-route li:last-child{padding-bottom:0}
   .hw-route h3{margin-bottom:8px}

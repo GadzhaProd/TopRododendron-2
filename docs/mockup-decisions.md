@@ -1007,4 +1007,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - The review page shows a small credits line under the block when an example set is on.
   - Unsplash was not used: its internal search was refused by the session's permission check. Pexels and Pixabay block automated access; not worked around. No image generation tool is available in this session.
   - Heights at 1440: 927 px with our photos, 961 with an example set (the credits line); at 390: 971 / 1066. Rhythm 100 / 72 / 64. No horizontal scroll.
+- Owner (18 Nov), D round 2: "take only c08, one photo in the card; remove the opening hours in Ontvangen; move all the steps down to the bottom of the card, keeping the balance".
+  - One photo across the card: `img/voorbeeld/hw-v3-veld.webp`, the Edewecht nursery field with flowering bushes on peat soil, uncropped. It is an example photo (Wikimedia Commons, JoachimKohler-HB, CC BY-SA 4.0), so the live site needs the nursery's own field photo.
+  - The photo is 36vw high (300–520 px), about 73 % of the card at 1440, and fades into the soil.
+  - The route of verbs stands at the bottom, pulled up into the fade by 20–40 px. Its side and bottom padding are one value (clamp 28–52 px; 49 px at 1440), so the steps sit with the same air left, right and below.
+  - "Ontvangen" ends with "Afhalen: Esserbroekweg 2, Otterlo." (no hours; they are in the footer).
+  - The photo-set switch is gone; the review page keeps the credits line.
+  - Card 708 px at 1440, 589 at 1024, 808 at 390. No horizontal scroll.
 
