@@ -964,4 +964,23 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Step 4 links the address to the map.
   - Checked at 1920–360: no horizontal scroll, smallest text 14 px, lowest contrast 7.04:1 (measured on the real pixels), rhythm --sec.
   - Height 767 px at 1440, 1073 at 390.
+- Owner (18 Nov): "give Fable the task of designing this block; let him use every tool, search the web if needed". Fable's final, `fase2a-fable2.html` ("De trap", second version):
+  - Research:
+    - Bower & Branch "How it works": buyer verbs, phone next to online, the agreed day as its own step.
+    - Sarah Raven "Delivery": practical facts as label | value pairs.
+    - 21st.dev 19074 "Editorial Collage Hero": two photos on a soft haze as one picture.
+    - Rejected as anti-patterns: list-beside-photo and the round 1 widgets (21st 26064, 46738, 26891, 26916, 19861).
+  - A rejected alternative, "Diagonal": the field top left melting into the garden bottom right. Heavier (about 950 px) and a muddy middle.
+  - Changes against the first staircase:
+    - The field lies under the stairs. It fades along a line parallel to the steps (16°) and dies out to the right, so line, fade and treads share one diagonal.
+    - The stairs hold at every width: four treads in a row from 980 px, a steep stair (one step per row, each shifted right) at 700–979 and on phone.
+    - Pickup is label | value pairs (Afhalen / Open), like the phone numbers in the guarantee card.
+    - A visible focus on the address link and a selection colour from the palette.
+  - The field photo is `img/hw-fable-veld.webp`: the same real B2BHERO shot at 1800 px from `mockup-v3/src/assets/img/`, for retina.
+  - Checked at 1920–360:
+    - No horizontal scroll; smallest text 14 px.
+    - Lowest contrast 5.12:1, measured on real pixels.
+    - Rhythm --sec.
+    - Height 788 px at 1440, 711 at 1024, 1135 at 390.
+  - Fable overwrote the tracked `img/hw-veld.webp` by mistake and restored it with git; the repository shows no change to it.
 
