@@ -1137,4 +1137,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - R2: two large shrubs, whole, inside the centre.
   - R3 / R4: three large shrubs in one row across the width (the model made three, not four).
   - These are derivatives of the CC BY-SA example photo: mockup only.
+- Owner (19 Nov): "none of them, redo; R3 is not bad but something is off".
+  - The diagnosis of R3: staged identical domes in a line, a wide-angle look, neon flowers everywhere, too much sky.
+  - Round 3, T1–T4 (`img/gen/README.md`, $0.978): a telephoto look with one large shrub left of centre and a second one further back, irregular shrubs behind, buds and open trusses, soft per-shrub colour, peat with wood fibres and dry tufts, a thin strip of sky.
+  - T1/T2 are text only; T3/T4 used the example as a look reference.
+  - Added to `fase2g.html` as gp-9..12, default T3.
 

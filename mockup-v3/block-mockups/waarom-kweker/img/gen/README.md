@@ -26,3 +26,20 @@ These are derivatives of a CC BY-SA 4.0 photo ("Rhododendronfeld einer Baumschul
 | veld-R3-band.webp | the same scale, three in a row | 1125 to 2960 |
 | veld-R4-band.webp | the same scale, three in a row | 1064 to 2899 |
 
+## Round 3: telephoto look, natural layout (owner, 19 Nov: none of R1–R4; R3 close but "something is off")
+
+The diagnosis of R3 against the example:
+- staged: three identical domes evenly lined up;
+- a wide-angle look, with everything sharp;
+- dense neon-lilac flowers all over;
+- too much sky.
+
+The round 3 prompt asked for a 135 mm telephoto: one large shrub left of centre, a second one further back and paler, irregular shrubs behind, about half the trusses in closed buds, soft colours that differ per shrub, dark fibrous peat, and a thin strip of sky. Prompts are in `meta-T.json` on the branch. The total cost was $0.978.
+
+| File | Reference | Crop (in the 5504 × 3072 original) |
+|---|---|---|
+| veld-T1-band.webp | text only | x 44 to 5460 (film border strips removed), y 782 to 2587 |
+| veld-T2-band.webp | text only | y 603 to 2438 |
+| veld-T3-band.webp | example photo as a look reference (CC BY-SA 4.0 derivative, mockup only) | y 664 to 2499 |
+| veld-T4-band.webp | example photo as a look reference (CC BY-SA 4.0 derivative, mockup only) | y 719 to 2554 |
+
