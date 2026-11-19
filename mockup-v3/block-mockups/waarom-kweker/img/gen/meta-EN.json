@@ -1,0 +1,274 @@
+{
+  "mode": "E1-E2 edit of the reference photo; N1-N2 new photo with the reference as strict reference; text + one image in the same user message for all four",
+  "reference": {
+    "file": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp",
+    "size": [
+      1920,
+      1280
+    ],
+    "source": "Wikimedia Commons, 'Rhododendronfeld einer Baumschule in Edewecht (2024)'",
+    "url": "https://commons.wikimedia.org/wiki/File:Rhododendronfeld_einer_Baumschule_in_Edewecht_(2024).jpg",
+    "author": "JoachimKohler-HB",
+    "licence": "CC BY-SA 4.0",
+    "used_by": [
+      "E1",
+      "E2",
+      "N1",
+      "N2"
+    ],
+    "note": "All four outputs are derived from this CC BY-SA photo: mockup use only; attribution and ShareAlike apply."
+  },
+  "prompts": {
+    "E1": "Edit this photo. Keep the two large shrubs in the middle exactly as they are: same variety, same lilac-violet colour, same size and position. Remove the large, partly cut-off shrub at the far right edge in the foreground and continue the field there naturally (dark peat soil and, further back, smaller shrubs of the same lilac-violet variety). Extend the scene on the left and right to a 16:9 frame with more of the same field, so every shrub is whole inside the frame. Keep the same camera, lens look, light and colours. Do not make the shrubs smaller, do not add any other variety or colour, no people, no text.",
+    "E2": "Edit this photo. Keep the two large shrubs in the middle exactly as they are: same variety, same lilac-violet colour, same size. Move the camera a little to the left, so the two large shrubs sit slightly right of where they are now. Remove the large, partly cut-off shrub at the far right edge in the foreground and continue the field there naturally (dark peat soil and, further back, smaller shrubs of the same lilac-violet variety). Extend the scene on the left and right to a 16:9 frame with more of the same field, so every shrub is whole inside the frame. Keep the same camera height, lens look, light and colours. Do not make the shrubs smaller, do not add any other variety or colour, no people, no text.",
+    "N": "A new photo of the same nursery field and the same rhododendron variety as in the attached photo. Two tall, mature, dense, dome-shaped shrubs, each about 1.7 m tall and as wide as they are tall, foliage reaching the ground, covered in lilac-violet flowers exactly like the shrubs in the reference (same variety, same colour), fill the middle of the frame: each takes about 30 % of the frame width and 40 % of its height, standing on dark crumbly peat soil, 4–5 m from the camera, both whole inside the frame. Behind them, smaller shrubs of the same lilac-violet variety at irregular distances, softly out of focus, then a soft line of oak and birch trees and a thin strip of pale overcast sky. Same lens look (telephoto, compressed, soft background), same soft overcast light and natural colours as the reference. Only this one variety in the whole frame: no white, pale pink, magenta or red shrubs. No people, buildings, machinery, pots, fences or text."
+  },
+  "requests_sent": 4,
+  "total_cost": 0.97528,
+  "images": [
+    {
+      "file": "veld-E1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "E1",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Edit this photo. Keep the two large shrubs in the middle exactly as they are: same variety, same lilac-violet colour, same size and position. Remove the large, partly cut-off shrub at the far right edge in the foreground and continue the field there naturally (dark peat soil and, further back, smaller shrubs of the same lilac-violet variety). Extend the scene on the left and right to a 16:9 frame with more of the same field, so every shrub is whole inside the frame. Keep the same camera, lens look, light and colours. Do not make the shrubs smaller, do not add any other variety or colour, no people, no text."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9712783,
+      "usage": {
+        "prompt_tokens": 398,
+        "completion_tokens": 3426,
+        "total_tokens": 3824,
+        "cost": 0.244696,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244696,
+          "upstream_inference_prompt_cost": 0.000796,
+          "upstream_inference_completions_cost": 0.2439
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 325,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112857-IDD1NQooXoEYCrWsRsUR"
+    },
+    {
+      "file": "veld-E2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "E2",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Edit this photo. Keep the two large shrubs in the middle exactly as they are: same variety, same lilac-violet colour, same size. Move the camera a little to the left, so the two large shrubs sit slightly right of where they are now. Remove the large, partly cut-off shrub at the far right edge in the foreground and continue the field there naturally (dark peat soil and, further back, smaller shrubs of the same lilac-violet variety). Extend the scene on the left and right to a 16:9 frame with more of the same field, so every shrub is whole inside the frame. Keep the same camera height, lens look, light and colours. Do not make the shrubs smaller, do not add any other variety or colour, no people, no text."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10219511,
+      "usage": {
+        "prompt_tokens": 420,
+        "completion_tokens": 3287,
+        "total_tokens": 3707,
+        "cost": 0.243348,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243348,
+          "upstream_inference_prompt_cost": 0.00084,
+          "upstream_inference_completions_cost": 0.242508
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 209,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112891-o971rHC5Wrnwuj4yKrXz"
+    },
+    {
+      "file": "veld-N1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "N",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "A new photo of the same nursery field and the same rhododendron variety as in the attached photo. Two tall, mature, dense, dome-shaped shrubs, each about 1.7 m tall and as wide as they are tall, foliage reaching the ground, covered in lilac-violet flowers exactly like the shrubs in the reference (same variety, same colour), fill the middle of the frame: each takes about 30 % of the frame width and 40 % of its height, standing on dark crumbly peat soil, 4–5 m from the camera, both whole inside the frame. Behind them, smaller shrubs of the same lilac-violet variety at irregular distances, softly out of focus, then a soft line of oak and birch trees and a thin strip of pale overcast sky. Same lens look (telephoto, compressed, soft background), same soft overcast light and natural colours as the reference. Only this one variety in the whole frame: no white, pale pink, magenta or red shrubs. No people, buildings, machinery, pots, fences or text."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9906930,
+      "usage": {
+        "prompt_tokens": 477,
+        "completion_tokens": 3359,
+        "total_tokens": 3836,
+        "cost": 0.243774,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243774,
+          "upstream_inference_prompt_cost": 0.000954,
+          "upstream_inference_completions_cost": 0.24282
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 235,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112924-saESmiviXHFxdY3erlCP"
+    },
+    {
+      "file": "veld-N2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "N",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "A new photo of the same nursery field and the same rhododendron variety as in the attached photo. Two tall, mature, dense, dome-shaped shrubs, each about 1.7 m tall and as wide as they are tall, foliage reaching the ground, covered in lilac-violet flowers exactly like the shrubs in the reference (same variety, same colour), fill the middle of the frame: each takes about 30 % of the frame width and 40 % of its height, standing on dark crumbly peat soil, 4–5 m from the camera, both whole inside the frame. Behind them, smaller shrubs of the same lilac-violet variety at irregular distances, softly out of focus, then a soft line of oak and birch trees and a thin strip of pale overcast sky. Same lens look (telephoto, compressed, soft background), same soft overcast light and natural colours as the reference. Only this one variety in the whole frame: no white, pale pink, magenta or red shrubs. No people, buildings, machinery, pots, fences or text."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10356017,
+      "usage": {
+        "prompt_tokens": 477,
+        "completion_tokens": 3330,
+        "total_tokens": 3807,
+        "cost": 0.243462,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243462,
+          "upstream_inference_prompt_cost": 0.000954,
+          "upstream_inference_completions_cost": 0.242508
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 209,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112956-PiAxvL7cZ4eqsxWqzVMj"
+    }
+  ]
+}
