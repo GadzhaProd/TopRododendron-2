@@ -1,0 +1,276 @@
+{
+  "mode": "new scenes; text prompt + one plant-only reference crop in the same user message for all four",
+  "reference": {
+    "file": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-ref-struik.webp",
+    "size": [
+      700,
+      500
+    ],
+    "cropped_from": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp (one shrub only)",
+    "source": "Wikimedia Commons, 'Rhododendronfeld einer Baumschule in Edewecht (2024)'",
+    "url": "https://commons.wikimedia.org/wiki/File:Rhododendronfeld_einer_Baumschule_in_Edewecht_(2024).jpg",
+    "author": "JoachimKohler-HB",
+    "licence": "CC BY-SA 4.0",
+    "used_by": [
+      "V1",
+      "V2",
+      "V3",
+      "V4"
+    ],
+    "note": "All four outputs are derived from this CC BY-SA photo: mockup use only; attribution and ShareAlike apply."
+  },
+  "prompts": {
+    "V1": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, seen along the row. The camera stands at the end of a nursery row, about 1.2 m above the ground, 85 mm lens. Three large shrubs stand one behind another along a gentle diagonal from the left-centre into the middle distance; more large shrubs of the same variety stand in the next rows to the right, receding and softening with distance. Background: the dark edge of a pine and birch forest (Veluwe) and a thin strip of pale sky. Soft morning side light from the left, a light mist far away.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark.",
+    "V2": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, seen across the field. The camera is slightly higher, about 1.7 m above the ground, 70 mm lens. Six to eight large shrubs are spread irregularly over the field in two loose rows, the two nearest ones in the centre of the frame. A narrow sandy farm track crosses the background, and behind it stands a line of tall oaks. Overcast light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark.",
+    "V3": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, one hero shrub. Low camera, about 60 cm above the ground, 135 mm lens. One very large shrub stands right of centre in sharp detail. To the left an open stretch of dark peat soil and, further back, three more big shrubs of the same variety, softly out of focus. Background: a blurred line of tall beech trees. Late-afternoon warm, soft light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark.",
+    "V4": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: the edge of a rhododendron nursery field in the Netherlands in late May. Camera about 1.4 m above the ground, 50 mm lens. A group of four large shrubs of the same variety stands at the edge of the field, with irregular spacing and slightly different sizes. Far behind them a strip of rough grass and a low wooden post-and-wire boundary (no fence in front of the shrubs), then meadow and distant trees. Bright overcast light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark."
+  },
+  "requests_sent": 4,
+  "total_cost": 0.977238,
+  "images": [
+    {
+      "file": "veld-V1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "V1",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, seen along the row. The camera stands at the end of a nursery row, about 1.2 m above the ground, 85 mm lens. Three large shrubs stand one behind another along a gentle diagonal from the left-centre into the middle distance; more large shrubs of the same variety stand in the next rows to the right, receding and softening with distance. Background: the dark edge of a pine and birch forest (Veluwe) and a thin strip of pale sky. Soft morning side light from the left, a light mist far away.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-ref-struik.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10225659,
+      "usage": {
+        "prompt_tokens": 558,
+        "completion_tokens": 3375,
+        "total_tokens": 3933,
+        "cost": 0.244308,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244308,
+          "upstream_inference_prompt_cost": 0.001116,
+          "upstream_inference_completions_cost": 0.243192
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 266,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795115718-oSiNRZVFjde4toRe0ymk"
+    },
+    {
+      "file": "veld-V2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "V2",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, seen across the field. The camera is slightly higher, about 1.7 m above the ground, 70 mm lens. Six to eight large shrubs are spread irregularly over the field in two loose rows, the two nearest ones in the centre of the frame. A narrow sandy farm track crosses the background, and behind it stands a line of tall oaks. Overcast light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-ref-struik.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 12334320,
+      "usage": {
+        "prompt_tokens": 523,
+        "completion_tokens": 3399,
+        "total_tokens": 3922,
+        "cost": 0.24467,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.24467,
+          "upstream_inference_prompt_cost": 0.001046,
+          "upstream_inference_completions_cost": 0.243624
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 302,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795115753-MMp1QG38CaQfnCHnSsyr"
+    },
+    {
+      "file": "veld-V3.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "V3",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: a rhododendron nursery field in the Netherlands in late May, one hero shrub. Low camera, about 60 cm above the ground, 135 mm lens. One very large shrub stands right of centre in sharp detail. To the left an open stretch of dark peat soil and, further back, three more big shrubs of the same variety, softly out of focus. Background: a blurred line of tall beech trees. Late-afternoon warm, soft light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-ref-struik.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9997129,
+      "usage": {
+        "prompt_tokens": 529,
+        "completion_tokens": 3362,
+        "total_tokens": 3891,
+        "cost": 0.244106,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244106,
+          "upstream_inference_prompt_cost": 0.001058,
+          "upstream_inference_completions_cost": 0.243048
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 254,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795115788-MxU0Aso96hVvGA1SHToz"
+    },
+    {
+      "file": "veld-V4.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "V4",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "The attached close-up shows the exact plant to use: every rhododendron in the picture is this same variety — the same lilac-violet flowers (mauve with a pink tint), the same dark glossy leaves, the same dense dome shape with foliage down to the ground, about 1.7 m tall and as wide as it is tall. Use the close-up only for the plant; do not copy its background, soil, trees or framing. No other varieties or colours anywhere (no white, pale pink, magenta or red).\nScene: the edge of a rhododendron nursery field in the Netherlands in late May. Camera about 1.4 m above the ground, 50 mm lens. A group of four large shrubs of the same variety stands at the edge of the field, with irregular spacing and slightly different sizes. Far behind them a strip of rough grass and a low wooden post-and-wire boundary (no fence in front of the shrubs), then meadow and distant trees. Bright overcast light.\nEvery shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. Dark crumbly peat soil in the lower quarter of the frame. Documentary photograph, natural muted colours. No people, no buildings, no machinery, no pots, no text, no watermark."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-ref-struik.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 11499255,
+      "usage": {
+        "prompt_tokens": 529,
+        "completion_tokens": 3329,
+        "total_tokens": 3858,
+        "cost": 0.244154,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244154,
+          "upstream_inference_prompt_cost": 0.001058,
+          "upstream_inference_completions_cost": 0.243096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 258,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795115822-3D1OcLHwsMp3RggZww7W"
+    }
+  ]
+}
