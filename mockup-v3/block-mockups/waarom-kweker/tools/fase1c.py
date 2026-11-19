@@ -83,9 +83,9 @@ def apply(s):
     rep('<a class="sd-more" href="#assortiment">', '<a class="sd-more" href="/assortiment" data-page="Assortiment">')
     rep('<a class="fp-more" href="#garantievoorwaarden">', '<a class="fp-more" href="/garantie" data-page="Garantievoorwaarden">')
 
-    # WhatsApp and the map open in a new tab
+    # WhatsApp opens in a new tab
     rep('href="https://wa.me/31620297849">', WA + '>', 2)
-    rep('href="https://www.google.com/maps/search/Esserbroekweg+2+Otterlo">', 'href="https://www.google.com/maps/search/Esserbroekweg+2+Otterlo" target="_blank" rel="noopener noreferrer">')
+    # (the footer's map link, now to the field, carries target and rel in finalize_main.py)
 
     s = s.replace('</head>', '<style id="fase1c-css">' + (T / 'fase1c.css').read_text() + '</style></head>', 1)
     s = s.replace('</body>', '<script id="fase1c-js">' + (T / 'fase1c.js').read_text() + '</script></body>', 1)

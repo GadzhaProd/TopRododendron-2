@@ -1058,4 +1058,10 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - The band is 626 px at 1920, 522 at 1440, 445 on 1366×768, 380 on tablets, 265 at 390.
     - Block height 946 px at 1440, 992 at 390.
     - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
+- Owner (19 Nov): the map pin is the field; Esserbroekweg 2 is the office. Main mockup:
+  - "Ontvangen" in Hoe het werkt: pickup at the field, as above.
+  - Footer "Bezoek": the field ("Kwekerij", Apeldoornseweg, Wekerom, linked to the pin), the hours and "Zonder afspraak welkom".
+  - Footer "Contact": a new last row "Kantoor", Esserbroekweg 2, 6731 DB Otterlo, as plain text with no map link, so visitors are not sent to the office.
+  - The footer's map link carries target and rel in `finalize_main.py`; the old Esserbroekweg rep left `tools/fase1c.py`.
+  - The brand line "Familiekwekerij in Otterlo", "kies uw planten zelf uit in Otterlo" (Waarom wij) and "klaargezet in Otterlo" (guarantee) are unchanged: the field lies between Otterlo and Wekerom.
 
