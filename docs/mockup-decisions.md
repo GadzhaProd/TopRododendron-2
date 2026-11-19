@@ -1188,4 +1188,8 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Caveat: L2's shrub is about a third smaller, so on phone it reads as "further back", not as a third equal shrub.
   - No crop change would help either.
 - Fable also found that `fase2i.html`'s review group `lp` cleared the page's own `lp-u` class (the Waarom wij layout) on the first click. The group is renamed `ks`.
+- APPROVED (owner, 19 Nov): L2 goes into the main mockup.
+  - `tools/hoe_werkt.py` now uses `img/gen/veld-L2.webp`: the example photo with one more shrub at the back left, alt "Bloeiende rhododendrons op het veld".
+  - Crop and fades are unchanged.
+  - Source of the base photo: Wikimedia Commons, "Rhododendronfeld einer Baumschule in Edewecht (2024)" by JoachimKohler-HB, CC BY-SA 4.0 (a rhododendron nursery in Edewecht, Ammerland, Lower Saxony, Germany). L2 is an AI edit of it, so a derivative under the same licence. For public use it needs the attribution and the same licence, or the nursery's own photo (plan 3.13).
 

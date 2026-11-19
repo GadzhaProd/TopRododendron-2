@@ -2,6 +2,8 @@
 # tools/finalize_main.py in place of the placeholder between the guarantee and the footer. CSS: tools/hoe-werkt-main.css.
 # History: fase2a.html (rounds 1-3, Fable's staircase and more), fase2b.html (D, one photo), fase2c.html / fase2c-fable.html
 # (D without a card, Fable's fixes).
+# Photo (owner, 19 Nov): img/gen/veld-L2.webp, the example field photo (Wikimedia Commons, "Rhododendronfeld einer Baumschule
+# in Edewecht", JoachimKohler-HB, CC BY-SA 4.0) edited with one more shrub at the back left (img/gen/README.md, round 6).
 # Pickup: the owner's map pin (screenshot, 19 Nov): 52.0914891, 5.7283254, Apeldoornseweg, 6733 SC Wekerom (OpenStreetMap;
 # about 1.9 km from Esserbroekweg 2, Otterlo, the office address on the old site and in the footer). All Dutch copy is a draft.
 import pathlib
@@ -18,7 +20,7 @@ STEPS = [  # (verb, text, meta)
 ROUTE = '<ol class="hw-route">' + ''.join(f'<li><h3>{v}</h3><p>{p}</p>{x}</li>' for v, p, x in STEPS) + '</ol>'
 BLOCK = ('<section class="hw" id="hoe" aria-labelledby="h-hoe"><div class="in hwo-hd">'
          '<h2 id="h-hoe" class="hw-h"><span>Van ons veld naar uw tuin,</span> <span>in vier stappen.</span></h2></div>'
-         '<div class="hwo-band"><img src="img/voorbeeld/hw-v3-veld.webp" alt="Voorbeeldfoto: bloeiende rhododendrons op een veld" loading="lazy"></div>'
+         '<div class="hwo-band"><img src="img/gen/veld-L2.webp" alt="Bloeiende rhododendrons op het veld" loading="lazy"></div>'
          '<div class="in hwo-ft">' + ROUTE + '</div></section>')
 # (owner, 19 Nov: no credit line under the block; the photo's source is in img/voorbeeld/CREDITS.md)
 PH = '<div class="between"><div class="in"><span>… hier volgt Hoe het werkt: bij de stap «afhalen» staan het adres en de openingstijden …</span></div></div>'
