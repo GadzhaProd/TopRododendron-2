@@ -1176,4 +1176,8 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 - Owner (19 Nov): remove the credit line under the block. Done in `tools/hoe_werkt.py` and `hoe-werkt-main.css`; the source stays in `img/voorbeeld/CREDITS.md`.
   - The last step → footer gap is still one --sec (100 / 72 / 64 px).
   - Round 6 asked for the example photo edited with one more shrub on the left (L1–L3).
+- Round 6 (owner: "take the source and just add one more shrub on the left"): L1–L3, $0.729; review page `fase2i.html` (`tools/build_fase2i.py`) with exactly the main mockup's crop and fades.
+  - L2 changes the least and keeps the colour.
+  - In L1 and L3 the new shrub's flowers are a little brighter pink than the others, and it crowds the left main shrub.
+- Six generation rounds so far: $5.61 on the owner's key.
 

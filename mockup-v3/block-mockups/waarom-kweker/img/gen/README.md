@@ -66,3 +66,10 @@ Only one shrub cropped from the example (`img/voorbeeld/hw-ref-struik.webp`) was
 
 V3 (one hero shrub) is not cropped: the hero takes 82 % of the height and does not fit the band.
 
+## Round 6: the example with one more shrub on the left (owner, 19 Nov)
+
+These are edits of the full example photo at 3:2 / 4K (5056 × 3392), with a total cost of $0.729; prompts are in `meta-L.json` on the branch. Here they are scaled to 2400 × 1600 webp, as `veld-L1.webp` to `veld-L3.webp`, and shown with the main mockup's crop on `fase2i.html`. They are CC BY-SA 4.0 derivatives, for the mockup only.
+- L1: the new shrub as large as the main one, in the front row. It touches the left edge and overlaps the main shrub.
+- L2: the existing small shrub at the back left became a larger one. The cleanest edit: the left main shrub is untouched.
+- L3: the new shrub in the front row, lower and wider. It sits close to the left edge and overlaps the main shrub.
+
