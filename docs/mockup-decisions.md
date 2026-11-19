@@ -1086,4 +1086,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - sp-1 "more air": the gap above the heading matches the other transitions (200 px at 1440, 128 on phone). Recommended.
     - sp-2 "field first": the field follows the card (125 / 80 px) and the heading stands under it with the steps. Breaks the page's "every block starts with its heading" and puts the two photos close together.
   - No divider or tone change needed: there are none elsewhere, and the full-width field already changes tone.
+- Owner (19 Nov) chose Fable's sp-1 "more air", and the photo as it is (no soft sides).
+  - The top fade of the field is shorter (owner: the tops of the bushes too faded): 0–10 % on desktop (was 0–20 %), 0–9 % on phone (was 0–16 %). The bottom fade is unchanged.
+  - In the main mockup (`tools/hoe-werkt-main.css`), the heading's top padding is 2 × --sec minus the guarantee section's bottom padding.
+  - Gap guarantee card → "Van ons veld" heading: 200 px at 1440, 143 at 1024, 128 on phone.
+  - The other transitions are 197 / 211 px at 1440 and 128 / 139 on phone.
+  - Credits line → footer: one --sec.
+  - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
 
