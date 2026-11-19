@@ -1173,4 +1173,7 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - The main mockup is unchanged: `img/voorbeeld/hw-v3-veld.webp` with its credit line under the block.
   - The generated candidates stay on `fase2g.html` / `fase2h-fable.html` and on branch `gen/veld-foto` for reference.
   - For the live site the photo needs the attribution (CC BY-SA 4.0, JoachimKohler-HB, Wikimedia Commons) or the nursery's own field photo (plan 3.13).
+- Owner (19 Nov): remove the credit line under the block. Done in `tools/hoe_werkt.py` and `hoe-werkt-main.css`; the source stays in `img/voorbeeld/CREDITS.md`.
+  - The last step → footer gap is still one --sec (100 / 72 / 64 px).
+  - Round 6 asked for the example photo edited with one more shrub on the left (L1–L3).
 

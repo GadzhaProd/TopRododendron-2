@@ -19,9 +19,8 @@ ROUTE = '<ol class="hw-route">' + ''.join(f'<li><h3>{v}</h3><p>{p}</p>{x}</li>' 
 BLOCK = ('<section class="hw" id="hoe" aria-labelledby="h-hoe"><div class="in hwo-hd">'
          '<h2 id="h-hoe" class="hw-h"><span>Van ons veld naar uw tuin,</span> <span>in vier stappen.</span></h2></div>'
          '<div class="hwo-band"><img src="img/voorbeeld/hw-v3-veld.webp" alt="Voorbeeldfoto: bloeiende rhododendrons op een veld" loading="lazy"></div>'
-         '<div class="in hwo-ft">' + ROUTE +
-         '<p class="hw-cr">Voorbeeldfoto, niet van onze kwekerij: ‘Rhododendronfeld einer Baumschule in Edewecht’, '
-         'JoachimKohler-HB, Wikimedia Commons, CC BY-SA 4.0.</p></div></section>')
+         '<div class="in hwo-ft">' + ROUTE + '</div></section>')
+# (owner, 19 Nov: no credit line under the block; the photo's source is in img/voorbeeld/CREDITS.md)
 PH = '<div class="between"><div class="in"><span>… hier volgt Hoe het werkt: bij de stap «afhalen» staan het adres en de openingstijden …</span></div></div>'
 
 

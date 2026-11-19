@@ -17,7 +17,6 @@
   text-underline-offset:3px;text-decoration-color:rgba(20,20,19,.35);transition:text-decoration-color .2s ease}
 .hw .hw-m a:hover{text-decoration-color:var(--color-fg)}
 .hw .hw-m a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:3px}
-.hw .hw-cr{margin-top:28px;font-size:var(--t-micro);line-height:1.45;color:#6b6a64}
 
 /* the section: the heading carries the top rhythm, the route the bottom rhythm */
 .hw > .in{padding-top:0;padding-bottom:0}
