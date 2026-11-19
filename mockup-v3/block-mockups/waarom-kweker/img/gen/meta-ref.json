@@ -1,0 +1,267 @@
+{
+  "mode": "image-to-image (text prompt + one reference image in the same user message)",
+  "reference": {
+    "file": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp",
+    "size": [
+      1920,
+      1280
+    ],
+    "source": "Wikimedia Commons, 'Rhododendronfeld einer Baumschule in Edewecht (2024)'",
+    "url": "https://commons.wikimedia.org/wiki/File:Rhododendronfeld_einer_Baumschule_in_Edewecht_(2024).jpg",
+    "author": "JoachimKohler-HB",
+    "licence": "CC BY-SA 4.0",
+    "note": "Outputs are derived from this CC BY-SA photo: mockup use only; attribution and ShareAlike apply."
+  },
+  "prompts": {
+    "R12": "Use the attached photo only as a reference for camera position and scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the reference's camera height (about 1 m above the ground), its camera distance and its shrub scale: two big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves fill the middle of the frame, with smaller shrubs further back in loose rows.\nEvery shrub is whole inside the frame: no shrub cut off at the left or right edge, and no shrub in the extreme foreground. The two large shrubs stay within the central 60 percent of the width.\nThe lower quarter of the frame is only dark, crumbly peat soil with a few tufts of grass. Behind the field a calm line of mature oak and birch trees under a pale, soft, overcast white sky. Soft diffused daylight, no hard shadows.\nNatural, slightly muted colours: deep green leaves, lilac-pink flowers, warm brown-black soil, grey-green trees, cream-white sky. 50 mm lens, gentle depth of field, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9.",
+    "R34": "Use the attached photo only as a reference for camera position and shrub scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the same large shrub size as in the reference, seen from about 1 m above the ground: in one front row, three or four big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves stand side by side across the central part of the frame, evenly spaced, each one whole inside the frame, none cut off at the left or right edge.\nBehind them more rows of shrubs, softer, smaller and slightly out of focus. In the background a quiet edge of oak and birch forest under a large pale, milky-white overcast sky with no blue, with light haze in the distance. Soft early-morning light, very gentle shadows.\nThe lower quarter of the frame is only dark, crumbly peat soil.\nMuted, natural palette in sage green, cream and warm brown; avoid saturated green grass and blue sky. 50 mm lens, f/5.6, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9."
+  },
+  "requests_sent": 4,
+  "total_cost": 0.975748,
+  "images": [
+    {
+      "file": "veld-R1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "R12",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Use the attached photo only as a reference for camera position and scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the reference's camera height (about 1 m above the ground), its camera distance and its shrub scale: two big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves fill the middle of the frame, with smaller shrubs further back in loose rows.\nEvery shrub is whole inside the frame: no shrub cut off at the left or right edge, and no shrub in the extreme foreground. The two large shrubs stay within the central 60 percent of the width.\nThe lower quarter of the frame is only dark, crumbly peat soil with a few tufts of grass. Behind the field a calm line of mature oak and birch trees under a pale, soft, overcast white sky. Soft diffused daylight, no hard shadows.\nNatural, slightly muted colours: deep green leaves, lilac-pink flowers, warm brown-black soil, grey-green trees, cream-white sky. 50 mm lens, gentle depth of field, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9898554,
+      "usage": {
+        "prompt_tokens": 542,
+        "completion_tokens": 3329,
+        "total_tokens": 3871,
+        "cost": 0.243544,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243544,
+          "upstream_inference_prompt_cost": 0.001084,
+          "upstream_inference_completions_cost": 0.24246
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 205,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795104527-0xCuDRtI3qqgC2pMNWb7"
+    },
+    {
+      "file": "veld-R2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "R12",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Use the attached photo only as a reference for camera position and scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the reference's camera height (about 1 m above the ground), its camera distance and its shrub scale: two big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves fill the middle of the frame, with smaller shrubs further back in loose rows.\nEvery shrub is whole inside the frame: no shrub cut off at the left or right edge, and no shrub in the extreme foreground. The two large shrubs stay within the central 60 percent of the width.\nThe lower quarter of the frame is only dark, crumbly peat soil with a few tufts of grass. Behind the field a calm line of mature oak and birch trees under a pale, soft, overcast white sky. Soft diffused daylight, no hard shadows.\nNatural, slightly muted colours: deep green leaves, lilac-pink flowers, warm brown-black soil, grey-green trees, cream-white sky. 50 mm lens, gentle depth of field, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 11297697,
+      "usage": {
+        "prompt_tokens": 542,
+        "completion_tokens": 3432,
+        "total_tokens": 3974,
+        "cost": 0.244576,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244576,
+          "upstream_inference_prompt_cost": 0.001084,
+          "upstream_inference_completions_cost": 0.243492
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 291,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795104561-NEcfRuIhOiQHPQs14P0K"
+    },
+    {
+      "file": "veld-R3.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "R34",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Use the attached photo only as a reference for camera position and shrub scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the same large shrub size as in the reference, seen from about 1 m above the ground: in one front row, three or four big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves stand side by side across the central part of the frame, evenly spaced, each one whole inside the frame, none cut off at the left or right edge.\nBehind them more rows of shrubs, softer, smaller and slightly out of focus. In the background a quiet edge of oak and birch forest under a large pale, milky-white overcast sky with no blue, with light haze in the distance. Soft early-morning light, very gentle shadows.\nThe lower quarter of the frame is only dark, crumbly peat soil.\nMuted, natural palette in sage green, cream and warm brown; avoid saturated green grass and blue sky. 50 mm lens, f/5.6, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9811099,
+      "usage": {
+        "prompt_tokens": 533,
+        "completion_tokens": 3388,
+        "total_tokens": 3921,
+        "cost": 0.243946,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243946,
+          "upstream_inference_prompt_cost": 0.001066,
+          "upstream_inference_completions_cost": 0.24288
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 240,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795104598-2z6YqRp9e1NUvklJrHuZ"
+    },
+    {
+      "file": "veld-R4.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "R34",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Use the attached photo only as a reference for camera position and shrub scale, and create a new, original photograph of the same kind of scene.\nWide landscape photograph of a Dutch rhododendron nursery field in late May. Keep the same large shrub size as in the reference, seen from about 1 m above the ground: in one front row, three or four big, rounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy green leaves stand side by side across the central part of the frame, evenly spaced, each one whole inside the frame, none cut off at the left or right edge.\nBehind them more rows of shrubs, softer, smaller and slightly out of focus. In the background a quiet edge of oak and birch forest under a large pale, milky-white overcast sky with no blue, with light haze in the distance. Soft early-morning light, very gentle shadows.\nThe lower quarter of the frame is only dark, crumbly peat soil.\nMuted, natural palette in sage green, cream and warm brown; avoid saturated green grass and blue sky. 50 mm lens, f/5.6, calm, honest documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark. Landscape 16:9."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9373553,
+      "usage": {
+        "prompt_tokens": 533,
+        "completion_tokens": 3343,
+        "total_tokens": 3876,
+        "cost": 0.243682,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243682,
+          "upstream_inference_prompt_cost": 0.001066,
+          "upstream_inference_completions_cost": 0.242616
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 218,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795104635-Dpu5aDBY84XO3uQajm6K"
+    }
+  ]
+}
