@@ -1067,4 +1067,10 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 - Owner (19 Nov): link the office to the map as well (the labels say which is field and which is office); the hours are certain.
   - "Kantoor" now links to Esserbroekweg 2, 6731 DB Otterlo through the Google Maps URL scheme, in a new tab.
   - Both links open the place in Google Maps (app or browser), where "Route" starts the navigation. The field has no house number, so the coordinates are the exact target.
+- Owner (19 Nov): he likes the field photo; the bush on the right is cut — can more of it be shown? No: the original (5400 × 3600) ends at that bush too, and the bush stands in front of the second large bush, so cropping it away would cut that bush. Crop options on `fase2c`-style review page `fase2e.html` (`tools/build_fase2e.py`):
+  - fc-0: as now.
+  - fc-1 "soft sides": the left and right edges dissolve into the page like the top and bottom (left 0–9 %, right 78–100 %), so the cut bush melts away instead of being cut by the screen edge.
+  - fc-2 "mirrored": the photo flipped, with soft sides; the cut bush moves to the left edge and the open field runs on to the right.
+  - Block height unchanged (946 px at 1440); no horizontal scroll.
+- Owner (19 Nov) asked whether the guarantee block and Hoe het werkt sit too close; sent to Fable for a professional read.
 
