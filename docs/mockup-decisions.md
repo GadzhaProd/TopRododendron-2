@@ -1169,4 +1169,8 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - V2 is closer to the example the owner liked.
   - On a phone both work, which is why V3 looks stronger there.
   - V2's small flaw: at 1024 and on phone the left shrub is cut by the screen edge; it can be fixed with a shift of the crop.
+- Owner (19 Nov): the example photo stays. It looks best, also on phones; V2 is acceptable on desktop but poor on a phone.
+  - The main mockup is unchanged: `img/voorbeeld/hw-v3-veld.webp` with its credit line under the block.
+  - The generated candidates stay on `fase2g.html` / `fase2h-fable.html` and on branch `gen/veld-foto` for reference.
+  - For the live site the photo needs the attribution (CC BY-SA 4.0, JoachimKohler-HB, Wikimedia Commons) or the nursery's own field photo (plan 3.13).
 
