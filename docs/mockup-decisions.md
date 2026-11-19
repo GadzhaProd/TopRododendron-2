@@ -1124,4 +1124,5 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 - Checks at 1440, 1024, 768, 390, 360:
   - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
   - The index jumps to the section with its heading under the header.
+- Owner (19 Nov): back to the earlier top fade of the field (0–20 % on desktop, 0–16 % on phone). The shorter fade showed a band across the tree tops, and Fable's taller-crop option still showed a band. The 200 px gap stays. Fable's tf-1 (`fase2f-fable.html`) is not taken.
 
