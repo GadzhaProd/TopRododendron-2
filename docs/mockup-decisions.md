@@ -1093,4 +1093,35 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - The other transitions are 197 / 211 px at 1440 and 128 / 139 on phone.
   - Credits line → footer: one --sec.
   - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
+- Fable (19 Nov) on the shorter top fade, `fase2f-fable.html` (review bar "Верх фото"):
+  - The 200 px gap and the heading → photo link are fine.
+  - But on desktop and tablet (600 px and wider) the new top reads as neither a fade nor a clean edge. The photo reaches full strength within 24 px, and the row colour drops from the page colour (241, 239, 234) to (137, 154, 135) at 1440. At that height the frame shows dark foliage, not sky, so the multiply cannot help: a blurred straight band across the tree tops, 35 px under the heading.
+  - Phone is fine: the sky meets the page softly.
+  - Fable's tf-1: the bushes keep their place and scale, full strength from the first pixel. The photo shows 56–104 px more of itself above them (92 px at 1440), and only that added strip of trees and sky dissolves.
+    - Heading → photo at full strength: 101 px at 1440. The block is about 70 px taller.
+    - The frame is taller (more trees), the width unchanged.
+    - If "the photo as it is" includes the height, his fallback is a fully sharp top edge.
+
+## Phase 2, item 2.2: the guarantee conditions page (19 Nov), in review
+
+`waarom-kweker/garantie.html` (`tools/build_garantie.py`, CSS `tools/garantie.css`): the target of "Lees de voorwaarden".
+- Built from the main mockup's header, cart, phone menu and footer. On this page the homepage anchors become notes, and "Bestellen" is visible from the start (subpage).
+- Copy: the Dutch draft from the guarantee report, rewritten for 3 months after delivery and for pickup at the field. It is a draft: the owner confirms it and a lawyer checks it (plan 3.12), and a small "Concepttekst" pill says so on the page.
+- Structure:
+  - Breadcrumb; H1 "Slaat een plant niet aan? / Dan krijgt u een nieuwe." (the display step).
+  - Lead: "3 maanden aangroeigarantie na levering, bovenop uw wettelijke rechten …".
+  - Four promises on hairlines: 3 maanden · Zelfde soort en maat · Kosteloos · Foto's volstaan.
+  - Desktop: a sticky "Op deze pagina" list on the left and eight numbered sections on the right:
+    1. Wat deze garantie u geeft
+    2. Voor welke planten
+    3. Zo vervangen wij
+    4. Wat wij van u vragen (the four conditions)
+    5. Wanneer wij niet vervangen ("als vaststaat dat…", we come and look)
+    6. Zo meldt u het (3 steps; answer in 2 working days, decision in 14 days)
+    7. Uw wettelijke rechten
+    8. Wie geeft de garantie (legal name a visible placeholder, KvK 82480273, office address, e-mail, phone, WhatsApp)
+  - The end: "Gaat een plant achteruit?" with WhatsApp / Bellen / E-mail.
+- Checks at 1440, 1024, 768, 390, 360:
+  - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
+  - The index jumps to the section with its heading under the header.
 
