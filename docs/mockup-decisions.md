@@ -1180,4 +1180,12 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - L2 changes the least and keeps the colour.
   - In L1 and L3 the new shrub's flowers are a little brighter pink than the others, and it crowds the left main shrub.
 - Six generation rounds so far: $5.61 on the owner's key.
+- Owner (19 Nov): "L1 or L2, give it to Fable". Fable's verdict: L2.
+  - L2 reads as a real photo: the shrub sits in the second row, slightly softer by depth, the same flower colour, ground and shadow. L1's shrub is brighter and cooler lilac, denser and smoother: visibly pasted.
+  - In L1 the shrubs stick together, with no soil between them, which is not plausible in a field.
+  - L1 is cut by the left screen edge at 1440, 1024 and on phone, so the frame has cut shrubs at both sides. L2's shrub is whole everywhere.
+  - L2 gives three domes in an even rhythm over the steps; in L1 the heaviest, brightest mass hangs over "Kiezen".
+  - Caveat: L2's shrub is about a third smaller, so on phone it reads as "further back", not as a third equal shrub.
+  - No crop change would help either.
+- Fable also found that `fase2i.html`'s review group `lp` cleared the page's own `lp-u` class (the Waarom wij layout) on the first click. The group is renamed `ks`.
 
