@@ -1125,4 +1125,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
   - The index jumps to the section with its heading under the header.
 - Owner (19 Nov): back to the earlier top fade of the field (0–20 % on desktop, 0–16 % on phone). The shorter fade showed a band across the tree tops, and Fable's taller-crop option still showed a band. The 200 px gap stays. Fable's tf-1 (`fase2f-fable.html`) is not taken.
+- Owner (19 Nov): generate our own field picture instead of the example photo; he provided an OpenRouter key.
+  - The secure form could not be shown in his phone app. He saved the key as the variable API_KEY in a separate environment "Openrouter", which this session cannot move onto (unrestricted network).
+  - So a child session ran in that environment: text-only prompts A and B, model `google/gemini-3-pro-image-preview` at 16:9 / 4K, 4 images of 5504 × 3072, $0.975.
+    - The first attempt with `google/gemini-3-pro-image` failed: 4K is not supported there, and nothing was billed.
+  - The originals are on branch `gen/veld-foto`. In `img/gen/` there are 3:1 bands (3840 × 1280) cropped to the sharp zone (`img/gen/README.md`).
+  - Review page `fase2g.html` (`tools/build_fase2g.py`, review bar "Фото поля"): gp-0 the example photo, gp-1 A1, gp-2 A2, gp-3 B1, gp-4 B2. The credit line is hidden for the generated pictures.
+  - B1 and B2 put four front shrubs roughly above the four steps.
 
