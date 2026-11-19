@@ -1192,4 +1192,18 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - `tools/hoe_werkt.py` now uses `img/gen/veld-L2.webp`: the example photo with one more shrub at the back left, alt "Bloeiende rhododendrons op het veld".
   - Crop and fades are unchanged.
   - Source of the base photo: Wikimedia Commons, "Rhododendronfeld einer Baumschule in Edewecht (2024)" by JoachimKohler-HB, CC BY-SA 4.0 (a rhododendron nursery in Edewecht, Ammerland, Lower Saxony, Germany). L2 is an AI edit of it, so a derivative under the same licence. For public use it needs the attribution and the same licence, or the nursery's own photo (plan 3.13).
+- Owner (19 Nov): Fable designs the guarantee page with 21st.dev patterns in our palette and blur. Result: `garantie-fable.html` (`tools/build_garantie_fable.py`, CSS `tools/garantie-fable.css`).
+  - 21st.dev patterns:
+    - 18113 / 34517: a table of contents that follows the reader.
+    - 26910: a two-column FAQ with a sticky left column.
+    - 8764: a CTA card with a photo.
+    - Process timelines with circles (28381, 26902, 19863, 26891) used as anti-patterns.
+  - The page carries the draft copy on the homepage's surfaces:
+    - The promise next to the H1 is a woven sage-butter card with four Newsreader lines in moss, like the facts card.
+    - Section 04 "Wat wij van u vragen" is the plant card itself: a woven card with a real peat photo dissolving in on the right (`tuinturf-sm.webp`).
+    - Section 06 "Zo meldt u het" is a three-step route on one hairline, as in Hoe het werkt.
+    - The end "Gaat een plant achteruit?" is a card where Gert's portrait dissolves into a warm woven surface, with WhatsApp / Bellen / E-mail.
+  - Added short headings, with no facts changed: Binnen 14 dagen, In zure grond, Niet te diep, Water geven; Melden, Foto's sturen, Antwoord.
+  - Checked at 1920–360: no horizontal scroll, text ≥ 13 px, lowest contrast 4.78:1 on real pixels, rhythm --sec.
+  - My fix: the page has no hero, so `hb-on` is set from the start and "Bestellen" does not animate in on load.
 
