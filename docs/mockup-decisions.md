@@ -1073,4 +1073,17 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - fc-2 "mirrored": the photo flipped, with soft sides; the cut bush moves to the left edge and the open field runs on to the right.
   - Block height unchanged (946 px at 1440); no horizontal scroll.
 - Owner (19 Nov) asked whether the guarantee block and Hoe het werkt sit too close; sent to Fable for a professional read.
+- Fable (19 Nov), the guarantee → Hoe het werkt transition, `fase2d-fable.html` (review bar "Переход"):
+  - The owner's eye is right: this transition is about half the others. Measured from the end of one block's content to the next heading:
+    - Waarom wij → assortment: 197 / 139 / 128 px (1440 / 1024 / 390).
+    - Assortment → guarantee: 211 / 151 / 139.
+    - Guarantee card → Hoe het werkt: 100 / 72 / 64.
+  - Formally every gap is --sec, but the other blocks add their own inner padding and this one does not.
+  - The heaviest object on the page (the guarantee card, 626 px) sits right above, and two large serif H2s follow each other.
+  - My earlier statement "the same gap as everywhere" was wrong: it compared the --sec value, not the gaps as they appear.
+  - Options:
+    - sp-0: as now.
+    - sp-1 "more air": the gap above the heading matches the other transitions (200 px at 1440, 128 on phone). Recommended.
+    - sp-2 "field first": the field follows the card (125 / 80 px) and the heading stands under it with the steps. Breaks the page's "every block starts with its heading" and puts the two photos close together.
+  - No divider or tone change needed: there are none elsewhere, and the full-width field already changes tone.
 
