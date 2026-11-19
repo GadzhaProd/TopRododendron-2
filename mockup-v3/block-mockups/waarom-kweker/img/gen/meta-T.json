@@ -1,0 +1,263 @@
+{
+  "mode": "T1-T2 text only; T3-T4 text prompt + one reference image in the same user message",
+  "reference": {
+    "file": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp",
+    "size": [
+      1920,
+      1280
+    ],
+    "source": "Wikimedia Commons, 'Rhododendronfeld einer Baumschule in Edewecht (2024)'",
+    "url": "https://commons.wikimedia.org/wiki/File:Rhododendronfeld_einer_Baumschule_in_Edewecht_(2024).jpg",
+    "author": "JoachimKohler-HB",
+    "licence": "CC BY-SA 4.0",
+    "used_by": [
+      "T3",
+      "T4"
+    ],
+    "note": "T3/T4 are derived from this CC BY-SA photo: mockup use only; attribution and ShareAlike apply."
+  },
+  "prompts": {
+    "T-text": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark.",
+    "T-ref": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark.\nUse the attached photo only as a reference for the lens look, shrub scale, flower density, colours and light; make a new, different composition, do not copy its layout."
+  },
+  "requests_sent": 4,
+  "total_cost": 0.977564,
+  "images": [
+    {
+      "file": "veld-T1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "T-text",
+      "uses_reference": false,
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9833735,
+      "usage": {
+        "prompt_tokens": 290,
+        "completion_tokens": 3482,
+        "total_tokens": 3772,
+        "cost": 0.243964,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243964,
+          "upstream_inference_prompt_cost": 0.00058,
+          "upstream_inference_completions_cost": 0.243384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 282,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795111964-qcRL4HdU0lYeQskzhdXP"
+    },
+    {
+      "file": "veld-T2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "T-text",
+      "uses_reference": false,
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10591147,
+      "usage": {
+        "prompt_tokens": 290,
+        "completion_tokens": 3437,
+        "total_tokens": 3727,
+        "cost": 0.24436,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.24436,
+          "upstream_inference_prompt_cost": 0.00058,
+          "upstream_inference_completions_cost": 0.24378
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 315,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795111995-VVIhpfW5jjjpAjJKzPZy"
+    },
+    {
+      "file": "veld-T3.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "T-ref",
+      "uses_reference": true,
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark.\nUse the attached photo only as a reference for the lens look, shrub scale, flower density, colours and light; make a new, different composition, do not copy its layout."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9498195,
+      "usage": {
+        "prompt_tokens": 585,
+        "completion_tokens": 3441,
+        "total_tokens": 4026,
+        "cost": 0.244746,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244746,
+          "upstream_inference_prompt_cost": 0.00117,
+          "upstream_inference_completions_cost": 0.243576
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 298,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112025-iBqdfiKzBwa9MDMPIAnK"
+    },
+    {
+      "file": "veld-T4.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "T-ref",
+      "uses_reference": true,
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Documentary photograph of a rhododendron nursery field in the Netherlands in late May, shot with a 135 mm telephoto lens at f/4 from about 80 cm above the ground. In the middle of the frame, slightly left of centre and in sharp focus, one large mature rhododendron shrub about 1.4 m tall and 1.8 m wide, dense dark glossy leaves, about half of its flower trusses open in soft lilac-pink and the rest still in fat closed buds. To the right and a few metres further back, a second large shrub, slightly smaller and paler pink, a little softer in focus. Behind them, more shrubs of different sizes at irregular distances, increasingly out of focus; nothing lined up, no two shrubs alike. The ground is dark, crumbly, fibrous peat soil with some wood fibres, a few dry grass tufts and footprints, filling the lower third of the frame. The background is a softly blurred, compressed line of oak and birch trees; only a thin strip of pale overcast sky at the very top. Soft, even overcast light, natural muted colours, gentle film-like contrast, true-to-life detail, slight imperfections. Every shrub whole inside the frame, none cut off at the left or right edge, no shrub in the extreme foreground. No people, no buildings, no machinery, no pots, no fences, no text, no watermark.\nUse the attached photo only as a reference for the lens look, shrub scale, flower density, colours and light; make a new, different composition, do not copy its layout."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 9032625,
+      "usage": {
+        "prompt_tokens": 585,
+        "completion_tokens": 3390,
+        "total_tokens": 3975,
+        "cost": 0.244494,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.244494,
+          "upstream_inference_prompt_cost": 0.00117,
+          "upstream_inference_completions_cost": 0.243324
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 277,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795112059-AzXGSi067ylKIGEJw5Gm"
+    }
+  ]
+}
