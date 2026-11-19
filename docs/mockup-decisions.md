@@ -1064,4 +1064,7 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Footer "Contact": a new last row "Kantoor", Esserbroekweg 2, 6731 DB Otterlo, as plain text with no map link, so visitors are not sent to the office.
   - The footer's map link carries target and rel in `finalize_main.py`; the old Esserbroekweg rep left `tools/fase1c.py`.
   - The brand line "Familiekwekerij in Otterlo", "kies uw planten zelf uit in Otterlo" (Waarom wij) and "klaargezet in Otterlo" (guarantee) are unchanged: the field lies between Otterlo and Wekerom.
+- Owner (19 Nov): link the office to the map as well (the labels say which is field and which is office); the hours are certain.
+  - "Kantoor" now links to Esserbroekweg 2, 6731 DB Otterlo through the Google Maps URL scheme, in a new tab.
+  - Both links open the place in Google Maps (app or browser), where "Route" starts the navigation. The field has no house number, so the coordinates are the exact target.
 

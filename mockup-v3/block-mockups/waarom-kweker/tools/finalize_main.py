@@ -93,8 +93,10 @@ s = s.replace('</head>', '<style id="founder-desktop-css">' + (D / 'tools' / 'fo
 # Fable). The approved portrait figure is kept; the text panel is replaced; the address and hours move to the footer.
 MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
 # the field, where customers visit and pick up (owner, 19 Nov: his map pin 52.0914891, 5.7283254, Apeldoornseweg, Wekerom);
-# Esserbroekweg 2, Otterlo is the office (in the footer as "Kantoor", without a map link, so visitors go to the field)
+# Esserbroekweg 2, Otterlo is the office (in the footer as "Kantoor"; owner, 19 Nov: link it to the map too, the labels say
+# which is which). Both use the Google Maps URL scheme, which opens the place with its route button (app or browser).
 FIELD = 'https://www.google.com/maps/search/?api=1&amp;query=52.0914891%2C5.7283254'
+OFFICE = 'https://www.google.com/maps/search/?api=1&amp;query=Esserbroekweg%202%2C%206731%20DB%20Otterlo'
 T1 = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 T2 = '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
 WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
@@ -117,7 +119,7 @@ FOOT = ('<footer class="ft"><div class="in"><div class="ft-g">'
         '<div><h3>Bezoek</h3><p><span>Kwekerij</span><a href="' + FIELD + '" target="_blank" rel="noopener noreferrer">Apeldoornseweg<br>Wekerom</a></p>'
         '<p>Ma–vr 08:00–17:00<br>Za 09:00–13:00</p><p>Zonder afspraak welkom</p></div>'
         '<div><h3>Contact</h3><p><span>Bellen</span>' + T1 + '<br>' + T2 + '</p><p><span>WhatsApp</span>' + WA2 + '</p>'
-        '<p><span>Kantoor</span>Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</p></div>'
+        '<p><span>Kantoor</span><a href="' + OFFICE + '" target="_blank" rel="noopener noreferrer">Esserbroekweg&nbsp;2<br>6731&nbsp;DB Otterlo</a></p></div>'
         '</div></div></footer>')
 i = s.index('<section class="fd" id="kweker"'); j = s.index('</section>', i) + len('</section>')
 cur = s[i:j]
