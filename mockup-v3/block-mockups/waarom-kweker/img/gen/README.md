@@ -43,3 +43,14 @@ The round 3 prompt asked for a 135 mm telephoto: one large shrub left of centre,
 | veld-T3-band.webp | example photo as a look reference (CC BY-SA 4.0 derivative, mockup only) | y 664 to 2499 |
 | veld-T4-band.webp | example photo as a look reference (CC BY-SA 4.0 derivative, mockup only) | y 719 to 2554 |
 
+## Round 4: one variety, large domes (owner, 19 Nov: in T "the shrubs are small, and two different varieties in one frame")
+
+All four requests sent the example photo as an image input; the total cost was $0.975. Prompts are in `meta-EN.json` on the branch. Every image is a CC BY-SA 4.0 derivative, for the mockup only.
+
+| File | How it was made | Crop (in the 5504 × 3072 original) |
+|---|---|---|
+| veld-E1-band.webp | an edit of the example: the cut-off foreground shrub removed, the frame widened to 16:9 | y 930 to 2765 |
+| veld-E2-band.webp | the same edit, camera nearly unchanged | y 880 to 2715 |
+| veld-N1-band.webp | a new photo, the example as a strict reference | x 0 to 4840 (the cut-off foreground shrub trimmed), y 950 to 2785 |
+| veld-N2-band.webp | a new photo, the example as a strict reference | y 850 to 2685 |
+

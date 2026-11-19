@@ -1142,4 +1142,14 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Round 3, T1–T4 (`img/gen/README.md`, $0.978): a telephoto look with one large shrub left of centre and a second one further back, irregular shrubs behind, buds and open trusses, soft per-shrub colour, peat with wood fibres and dry tufts, a thin strip of sky.
   - T1/T2 are text only; T3/T4 used the example as a look reference.
   - Added to `fase2g.html` as gp-9..12, default T3.
+- Owner (19 Nov) on T1–T4: the shrubs are small, and two varieties in one frame; it must be the source's variety.
+  - Round 4 (`img/gen/README.md`, $0.975), the example as an image input in all four:
+    - E1, E2: edits of the example. The two big shrubs are kept, the cut-off foreground shrub is removed, and the frame is widened to 16:9.
+    - N1, N2: new photos with two tall dome shrubs of the same lilac-violet variety. The example's average flower colour was measured at rgb(208,149,210), hue ≈ 300°.
+  - Checks by the child session and by me:
+    - One variety in all four.
+    - E1's shrubs are about 15 % smaller than in the example; E2 matches the example's size; N1 and N2 are bigger.
+    - Small shrubs cut at the edges remain in all four. N1 and N2 copied the example's cut-off foreground shrub; N1 is trimmed at the right.
+  - Added to `fase2g.html` as gp-13..16, default E2.
+- So far, four generation rounds cost $3.90 in total, on the owner's OpenRouter key.
 
