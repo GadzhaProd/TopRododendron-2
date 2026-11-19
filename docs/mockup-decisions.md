@@ -1152,4 +1152,14 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - Small shrubs cut at the edges remain in all four. N1 and N2 copied the example's cut-off foreground shrub; N1 is trimmed at the right.
   - Added to `fase2g.html` as gp-13..16, default E2.
 - So far, four generation rounds cost $3.90 in total, on the owner's OpenRouter key.
+- Owner (19 Nov) on E1–N2: "it feels like one photo, just zoomed differently".
+  - Round 5 (`img/gen/README.md`, $0.977): only one shrub cropped from the example as the plant reference, and new scenes in text.
+    - V1: along the row, by a pine forest with mist.
+    - V2: across the field, oaks and a sandy track.
+    - V3: one hero shrub, too big for the band.
+    - V4: the field edge, with grass and a fence.
+  - All four read as different photos with the same lilac-violet variety and big domes.
+  - V1 has shrubs cut at both edges; V2 and V4 have every shrub whole; V2's shrubs are a little smaller than the example's.
+  - Added to `fase2g.html` as gp-17..19, default V2.
+- Five generation rounds so far: $4.88 on the owner's key.
 

@@ -54,3 +54,15 @@ All four requests sent the example photo as an image input; the total cost was $
 | veld-N1-band.webp | a new photo, the example as a strict reference | x 0 to 4840 (the cut-off foreground shrub trimmed), y 950 to 2785 |
 | veld-N2-band.webp | a new photo, the example as a strict reference | y 850 to 2685 |
 
+## Round 5: the same plant, different photos (owner, 19 Nov: E1–N2 "feel like one photo, just zoomed")
+
+Only one shrub cropped from the example (`img/voorbeeld/hw-ref-struik.webp`) was sent as the plant reference, and the scenes were described in text. The total cost was $0.977; prompts are in `meta-V.json` on the branch. These are CC BY-SA 4.0 derivatives, for the mockup only.
+
+| File | Scene | Crop (y in the 3072 px original) |
+|---|---|---|
+| veld-V1-band.webp | along the row: pine and birch forest, ground mist | 794 to 2629 |
+| veld-V2-band.webp | across the field: oaks, a sandy track | 1015 to 2850 |
+| veld-V4-band.webp | the field edge: grass, a post-and-wire fence, meadow | 818 to 2653 |
+
+V3 (one hero shrub) is not cropped: the hero takes 82 % of the height and does not fit the band.
+
