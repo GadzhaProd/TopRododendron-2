@@ -1,0 +1,213 @@
+{
+  "mode": "edit of the full example photo (add one shrub on the left); text + the image in the same user message",
+  "aspect_ratio_note": null,
+  "reference": {
+    "file": "mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp",
+    "size": [
+      1920,
+      1280
+    ],
+    "source": "Wikimedia Commons, 'Rhododendronfeld einer Baumschule in Edewecht (2024)'",
+    "url": "https://commons.wikimedia.org/wiki/File:Rhododendronfeld_einer_Baumschule_in_Edewecht_(2024).jpg",
+    "author": "JoachimKohler-HB",
+    "licence": "CC BY-SA 4.0",
+    "used_by": [
+      "L1",
+      "L2",
+      "L3"
+    ],
+    "note": "All four outputs are derived from this CC BY-SA photo: mockup use only; attribution and ShareAlike apply."
+  },
+  "prompts": {
+    "L1": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub is as large as the left main shrub and stands in the same front row, to its left, with a gap of soil between them (replace the small shrub that is there now if needed).",
+    "L2": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub is a little smaller, about two thirds of the size of the main shrubs, and stands a bit further back on the left, partly behind the line of the left main shrub.",
+    "L3": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub stands in the same front row as the left main shrub, to its left, with a gap of soil between them (replace the small shrub that is there now if needed); make it about as large as the left main shrub but slightly lower and wider, so the three big shrubs are not identical."
+  },
+  "requests_sent": 3,
+  "total_cost": 0.728916,
+  "images": [
+    {
+      "file": "veld-L1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "L1",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub is as large as the left main shrub and stands in the same front row, to its left, with a gap of soil between them (replace the small shrub that is there now if needed)."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "3:2",
+          "image_size": "4K"
+        }
+      },
+      "width": 5056,
+      "height": 3392,
+      "bytes": 9865448,
+      "usage": {
+        "prompt_tokens": 432,
+        "completion_tokens": 3250,
+        "total_tokens": 3682,
+        "cost": 0.243264,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243264,
+          "upstream_inference_prompt_cost": 0.000864,
+          "upstream_inference_completions_cost": 0.2424
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 200,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795123456-DJF47Jo0BAB1bl6zcjnV"
+    },
+    {
+      "file": "veld-L2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "L2",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub is a little smaller, about two thirds of the size of the main shrubs, and stands a bit further back on the left, partly behind the line of the left main shrub."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "3:2",
+          "image_size": "4K"
+        }
+      },
+      "width": 5056,
+      "height": 3392,
+      "bytes": 9985365,
+      "usage": {
+        "prompt_tokens": 429,
+        "completion_tokens": 3206,
+        "total_tokens": 3635,
+        "cost": 0.242574,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.242574,
+          "upstream_inference_prompt_cost": 0.000858,
+          "upstream_inference_completions_cost": 0.241716
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 143,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795123490-NCNJuLrxEJlQEb4E0Cs6"
+    },
+    {
+      "file": "veld-L3.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt_id": "L3",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Edit this photo. Keep everything exactly as it is — the two large shrubs in the middle, the cut-off shrub at the right edge, the soil, the trees, the sky, the light, the colours and the framing. Only add one more rhododendron shrub on the left side of the field, standing on the same dark peat soil in the same light, of exactly the same variety as the others (the same lilac-violet flowers, dark glossy leaves, dense dome shape, foliage down to the ground), whole inside the frame, not touching the left edge, with a natural shadow and soil contact so it looks photographed, not pasted.\nThe new shrub stands in the same front row as the left main shrub, to its left, with a gap of soil between them (replace the small shrub that is there now if needed); make it about as large as the left main shrub but slightly lower and wider, so the three big shrubs are not identical."
+              },
+              {
+                "type": "image_url",
+                "image_url": {
+                  "url": "data:image/webp;base64,<mockup-v3/block-mockups/waarom-kweker/img/voorbeeld/hw-v3-veld.webp>"
+                }
+              }
+            ]
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "3:2",
+          "image_size": "4K"
+        }
+      },
+      "width": 5056,
+      "height": 3392,
+      "bytes": 9761660,
+      "usage": {
+        "prompt_tokens": 453,
+        "completion_tokens": 3216,
+        "total_tokens": 3669,
+        "cost": 0.243078,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243078,
+          "upstream_inference_prompt_cost": 0.000906,
+          "upstream_inference_completions_cost": 0.242172
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 181,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795123529-9upxBldLq65npikQ082j"
+    }
+  ]
+}
