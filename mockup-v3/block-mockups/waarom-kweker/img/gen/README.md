@@ -12,3 +12,17 @@ Each `veld-*-band.webp` file here is a 3:1 band (3840 × 1280), cropped from the
 | veld-B2-band.webp | B | 1000 to 2835 |
 
 These are generated images, not the nursery's field. They are for the mockup. On the live site, the block "Van ons veld naar uw tuin" needs a real photo of the field (plan item 3.13).
+
+## Round 2: large shrubs, with the example photo as the reference (owner, 19 Nov)
+
+Same model, 16:9, 4K. Each request sent the example photo `img/voorbeeld/hw-v3-veld.webp` as an image input with the prompt (prompts written out in `meta-ref.json` on the branch). The total cost was $0.976.
+
+These are derivatives of a CC BY-SA 4.0 photo ("Rhododendronfeld einer Baumschule in Edewecht", JoachimKohler-HB, Wikimedia Commons). They are for the mockup only; any public use needs that attribution and the same licence.
+
+| File | Idea | Crop (y in the 3072 px original) |
+|---|---|---|
+| veld-R1-band.webp | the same scene, new photo | 910 to 2745 |
+| veld-R2-band.webp | the same scene, new photo | 849 to 2684 |
+| veld-R3-band.webp | the same scale, three in a row | 1125 to 2960 |
+| veld-R4-band.webp | the same scale, three in a row | 1064 to 2899 |
+

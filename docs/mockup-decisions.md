@@ -1132,4 +1132,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - The originals are on branch `gen/veld-foto`. In `img/gen/` there are 3:1 bands (3840 × 1280) cropped to the sharp zone (`img/gen/README.md`).
   - Review page `fase2g.html` (`tools/build_fase2g.py`, review bar "Фото поля"): gp-0 the example photo, gp-1 A1, gp-2 A2, gp-3 B1, gp-4 B2. The credit line is hidden for the generated pictures.
   - B1 and B2 put four front shrubs roughly above the four steps.
+- Owner (19 Nov): "I need shrubs as large as in our original picture; give it the source." Round 2 with the example photo as the image reference: R1–R4 (`img/gen/README.md`), $0.976. They are added to `fase2g.html` as gp-5..gp-8, default R2.
+  - R1: almost the example again, including the cut shrub at the right.
+  - R2: two large shrubs, whole, inside the centre.
+  - R3 / R4: three large shrubs in one row across the width (the model made three, not four).
+  - These are derivatives of the CC BY-SA example photo: mockup only.
 
