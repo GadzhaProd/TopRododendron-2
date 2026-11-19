@@ -1162,4 +1162,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - V1 has shrubs cut at both edges; V2 and V4 have every shrub whole; V2's shrubs are a little smaller than the example's.
   - Added to `fase2g.html` as gp-17..19, default V2.
 - Five generation rounds so far: $4.88 on the owner's key.
+- Owner (19 Nov): "either V2 or V3; let Fable look, I only see it on a phone". Fable's verdict: V2. His V3 attempt is in `fase2h-fable.html` ("V3 · Фабл": the whole V3 frame in `img/gen/veld-V3-fable.webp`, a slightly taller band and a 10 % top fade, for this photo only).
+  - V2 reads as a nursery field: several whole shrubs on peat, a sandy track, oaks. V3 reads as one shrub: it takes 82 % of the frame height.
+  - On desktop V3 cannot be shown whole: it would need a band of about 800 px at 1440, the size of the hero. In a reasonable band the base of the dome dissolves and the shrub "hangs".
+  - V2 spreads the shrubs over all four steps; V3 puts all its mass over "Afspreken" and "Ontvangen".
+  - V2 is closer to the example the owner liked.
+  - On a phone both work, which is why V3 looks stronger there.
+  - V2's small flaw: at 1024 and on phone the left shrub is cut by the screen edge; it can be fixed with a shift of the crop.
 
