@@ -174,5 +174,8 @@ s = s.replace('</head>', '<style id="fase1b-css">' + (D / 'tools' / 'fase1b.css'
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import fase1c
 s = fase1c.apply(s)
+# phase 2 item 2.1: Hoe het werkt, variant D open (owner approved 19 Nov; tools/hoe_werkt.py)
+import hoe_werkt
+s = hoe_werkt.apply(s)
 (D / 'index.html').write_text(s)
 print('ok', len(s))

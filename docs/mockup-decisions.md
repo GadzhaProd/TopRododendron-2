@@ -915,7 +915,7 @@ Checks:
     - No script errors.
     - The links, cart drawer, menu, Escape and focus return work.
 
-## Phase 2, item 2.1: Hoe het werkt (18 Nov), in review
+## Phase 2, item 2.1: Hoe het werkt (18–19 Nov), approved
 
 Review page `waarom-kweker/fase2a.html` (`tools/build_fase2a.py`, CSS `tools/hoe-werkt.css`). The block replaces the placeholder between the guarantee and the footer.
 
@@ -1045,4 +1045,17 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - Screens wider than 1920 (the nursery's own photo needs 2880 px or more).
   - Photo brief from the analysis: the bushes in the middle third, the soil in the bottom third, a calm background without loud green, no bush cut off at the right.
   - Heights after the fixes: 963 px at 1440, 861 at 1024, 877 at 768, 1039 at 390.
+- APPROVED (owner, 19 Nov): Fable's fixed open version goes into the main mockup (`tools/hoe_werkt.py`, CSS `tools/hoe-werkt-main.css`, applied by `finalize_main.py` after fase1c).
+  - The verbs are one step below the heading (owner): the sub step, 24 px on desktop, 22 on phone (were the heading size, 48 / 30).
+  - Pickup in "Ontvangen" is the owner's map pin from a phone screenshot: 52.0914891, 5.7283254, plus code 3PRH+H8W Wekerom.
+    - OpenStreetMap places it on Apeldoornseweg, 6733 SC Wekerom (Ede); it has no house number.
+    - The text is "Afhalen: Apeldoornseweg, Wekerom", a link to those coordinates on Google Maps (new tab).
+    - The pin is about 1.9 km from Esserbroekweg 2, Otterlo, the "kwekerij & kantoor" address on the old site and in the footer's "Bezoek". The owner decides which address goes where (plan 3.14).
+  - Under the block, a 13 px Dutch credit line for the example photo: "Voorbeeldfoto, niet van onze kwekerij: …, JoachimKohler-HB, Wikimedia Commons, CC BY-SA 4.0". The nursery's own photo replaces it (plan 3.13).
+  - The tablet layout (2×2) now runs at 600–860 px and the phone stem below 600.
+  - Checks at 1920×1080 to 360×780:
+    - The rhythm (guarantee card → heading, credit line → footer) is one --sec.
+    - The band is 626 px at 1920, 522 at 1440, 445 on 1366×768, 380 on tablets, 265 at 390.
+    - Block height 946 px at 1440, 992 at 390.
+    - No horizontal scroll, no text under 13 px, no target under 24 px, no script errors.
 
