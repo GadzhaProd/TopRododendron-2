@@ -1,0 +1,205 @@
+{
+  "requests_sent": 4,
+  "images": [
+    {
+      "file": "veld-A1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt": "A",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Wide landscape photograph of a Dutch rhododendron nursery field in late May, Veluwe region.\nRounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy\ngreen leaves, about 1 to 1.5 m tall, grown in open ground in loose rows with generous space\nbetween them, standing on dark, crumbly peat soil with a few tufts of grass.\nEye-level camera about 1 m above the ground, 50 mm lens, gentle depth of field: the middle\nrow of shrubs sharp, the background softly out of focus.\nBehind the field a calm line of mature oak and birch trees, the edge of a forest, under a pale,\nsoft, overcast white sky. Soft diffused daylight, no hard shadows.\nComposition: tree line in the upper third, the main shrubs centred just below the middle of the\nframe and kept inside the central 60 percent of the width, no shrub cut off at the left or right\nedge, the bottom quarter of the frame only bare dark soil.\nNatural, slightly muted colours: deep green leaves, lilac-pink flowers, warm brown-black soil,\ngrey-green trees, cream-white sky. Calm, honest, premium documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10455111,
+      "usage": {
+        "prompt_tokens": 284,
+        "completion_tokens": 3498,
+        "total_tokens": 3782,
+        "cost": 0.24448,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.24448,
+          "upstream_inference_prompt_cost": 0.000568,
+          "upstream_inference_completions_cost": 0.243912
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 326,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795096951-WqLJJCtmZsdDJyiMYRij"
+    },
+    {
+      "file": "veld-A2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt": "A",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Wide landscape photograph of a Dutch rhododendron nursery field in late May, Veluwe region.\nRounded, freshly flowering rhododendron shrubs with soft lilac-pink blossoms and dark glossy\ngreen leaves, about 1 to 1.5 m tall, grown in open ground in loose rows with generous space\nbetween them, standing on dark, crumbly peat soil with a few tufts of grass.\nEye-level camera about 1 m above the ground, 50 mm lens, gentle depth of field: the middle\nrow of shrubs sharp, the background softly out of focus.\nBehind the field a calm line of mature oak and birch trees, the edge of a forest, under a pale,\nsoft, overcast white sky. Soft diffused daylight, no hard shadows.\nComposition: tree line in the upper third, the main shrubs centred just below the middle of the\nframe and kept inside the central 60 percent of the width, no shrub cut off at the left or right\nedge, the bottom quarter of the frame only bare dark soil.\nNatural, slightly muted colours: deep green leaves, lilac-pink flowers, warm brown-black soil,\ngrey-green trees, cream-white sky. Calm, honest, premium documentary photo of a family nursery.\nNo people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10744412,
+      "usage": {
+        "prompt_tokens": 284,
+        "completion_tokens": 3468,
+        "total_tokens": 3752,
+        "cost": 0.243556,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243556,
+          "upstream_inference_prompt_cost": 0.000568,
+          "upstream_inference_completions_cost": 0.242988
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 249,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795096985-ooOjcwWI1Cs3yikXeJu5"
+    },
+    {
+      "file": "veld-B1.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt": "B",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Wide landscape photograph of a Dutch rhododendron nursery field in late May, Veluwe region.\nSlightly elevated viewpoint (camera about 1.6 m high), rows of rounded rhododendron shrubs\nrunning diagonally from the left foreground into the right background, so the eye travels from\nleft to right across the frame.\nIn the front row, four rounded flowering shrubs, evenly spaced across the central part of the\nframe, each about 1.2 m tall, with soft lilac-pink blossoms and dark glossy green leaves,\nstanding on dark, crumbly peat soil; the rows behind them softer and smaller.\nBackground: a quiet edge of oak and birch forest, low on the horizon, under a large pale,\nmilky-white overcast sky with no blue. Early-morning soft light, very gentle shadows,\nlight haze in the distance.\nComposition: horizon at about one third from the top, the four front shrubs in the middle band\nof the frame, the lower quarter only dark soil, nothing important near the left and right edges.\nMuted, natural palette that matches a calm website in sage green, cream and warm brown:\navoid saturated green grass and blue sky. 50 mm lens, f/5.6, documentary style, honest and\npremium, no people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 11004042,
+      "usage": {
+        "prompt_tokens": 288,
+        "completion_tokens": 3387,
+        "total_tokens": 3675,
+        "cost": 0.24324,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.24324,
+          "upstream_inference_prompt_cost": 0.000576,
+          "upstream_inference_completions_cost": 0.242664
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 222,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795097020-XaBnCpQcViADbiCMOPi2"
+    },
+    {
+      "file": "veld-B2.jpg",
+      "model": "google/gemini-3-pro-image-preview",
+      "provider": "Google AI Studio",
+      "prompt": "B",
+      "request": {
+        "model": "google/gemini-3-pro-image-preview",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Wide landscape photograph of a Dutch rhododendron nursery field in late May, Veluwe region.\nSlightly elevated viewpoint (camera about 1.6 m high), rows of rounded rhododendron shrubs\nrunning diagonally from the left foreground into the right background, so the eye travels from\nleft to right across the frame.\nIn the front row, four rounded flowering shrubs, evenly spaced across the central part of the\nframe, each about 1.2 m tall, with soft lilac-pink blossoms and dark glossy green leaves,\nstanding on dark, crumbly peat soil; the rows behind them softer and smaller.\nBackground: a quiet edge of oak and birch forest, low on the horizon, under a large pale,\nmilky-white overcast sky with no blue. Early-morning soft light, very gentle shadows,\nlight haze in the distance.\nComposition: horizon at about one third from the top, the four front shrubs in the middle band\nof the frame, the lower quarter only dark soil, nothing important near the left and right edges.\nMuted, natural palette that matches a calm website in sage green, cream and warm brown:\navoid saturated green grass and blue sky. 50 mm lens, f/5.6, documentary style, honest and\npremium, no people, no buildings, no machinery, no pots, no fences, no text, no watermark."
+          }
+        ],
+        "modalities": [
+          "image",
+          "text"
+        ],
+        "image_config": {
+          "aspect_ratio": "16:9",
+          "image_size": "4K"
+        }
+      },
+      "width": 5504,
+      "height": 3072,
+      "bytes": 10682408,
+      "usage": {
+        "prompt_tokens": 288,
+        "completion_tokens": 3436,
+        "total_tokens": 3724,
+        "cost": 0.243828,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.243828,
+          "upstream_inference_prompt_cost": 0.000576,
+          "upstream_inference_completions_cost": 0.243252
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 271,
+          "image_tokens": 2000,
+          "audio_tokens": 0
+        }
+      },
+      "generation_id": "gen-1795097055-kvjaakWXcJVzgjAK1suR"
+    }
+  ]
+}
