@@ -1246,3 +1246,6 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     3. "Прямой шнур": a thin dark double cord straight down from the nail, a paper reinforcement ring round the hole; the strand behind the edge shows only close up.
   - On the review page the 48 px bar pushes the label's tip 4–22 px below a 768 px screen; without the bar it fits.
 - Owner (20 Nov) on garantie4-fable.html: no cord approved yet; 2 and 3 are not bad, but the round knot in 2 is out of place: remove it and string the cord so the geometry still holds (sent to Fable). The seal: the two dashes either side of "maanden" are removed (on the phone, from a distance, they read as a strike-through); done in `tools/build_garantie4.py`, so in garantie4.html and garantie4-fable.html.
+  - Fable's knotless versions on `garantie4-fable.html` (bar "Шнурок": "2 · С узлом (было)", "2а · Без узла, перехлёст" (default), "2б · Без узла, простая петля", "3 · Прямой шнур"; 0 and 1 removed):
+    - 2а: one closed loop on the nail, its two halves cross once where the knot was; one goes down the paper into the eyelet, the other behind the top edge. Fable's recommendation: keeps the silhouette of 2.
+    - 2б: the same loop without the crossing, two taut strands in a narrow V from the nail; the physically honest one (3 with the moss cord and the metal eyelet).

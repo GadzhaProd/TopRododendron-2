@@ -2,6 +2,7 @@
 # Only the cord and the hole change; the label, its tilt and the page stay as they are. The owner: the cord must visibly go
 # THROUGH the hole and the label must hang on it. In all three the label hangs on a small pin (at the point it turns around),
 # the cord is a closed loop over that pin, one part runs in front of the paper into the hole and one part behind the paper.
+#   (round 2: the bar shows kd-2 with the knot, kd-4 and kd-5 without it, kd-3; kd-0 and kd-1 are no longer on the page)
 #   kd-0 the cord of garantie4.html · kd-1 "Петля" (a lark's head: two strands out of the hole, a collar over the top edge)
 #   kd-2 "Узел и люверс" (one loop tied with a knot, through a metal eyelet) · kd-3 "Прямой шнур" (a taut doubled cord, a paper ring)
 # Geometry (SVG 120 x 180, as in garantie4): the label's top edge at y 128, the hole at 60,160, the pin at 60,40.
@@ -92,7 +93,24 @@ RING = ('<circle cx="60.6" cy="160.8" r="15.6" fill="rgba(38,44,32,.22)" filter=
 b3 = strand(B3, w, DARK)
 f3 = (hole(8.6, RING) + f'<g clip-path="url(#ID-pap)">{shadow(F3, w)}</g>' + strand(TOP3, w, DARK) + strand(F3, w, DARK) + dive([58.4]) + PIN)
 
-backs, fronts = zip(svg(1, b1, f1), svg(2, b2, f2), svg(3, b3, f3))
+# ---- 2а · Без узла, с перехлёстом: one closed loop over the pin, no knot. The two halves cross once where the knot was, so the
+#      outline of variant 2 stays: the half that comes down on the right crosses over to the left and runs down the front of
+#      the paper into the eyelet; the other half goes behind the top edge ----
+w = 4
+F4 = 'M60 36.2C63.8 36.2 65.8 40 66.2 46C66.8 60 65.2 80 60.8 91C58.4 97 54.4 107 55.2 119C55.7 125 57.6 137 59.2 157'
+B4 = 'M60 36.2C56.2 36.2 54.2 40 53.8 46C53.2 60 54.8 80 59.2 91C61.6 97 65.8 107 65.6 119C65.5 123 64.9 126 64.5 128C64 132 63.6 137 63.4 142'
+b4 = strand(B4, w, MOSS)
+f4 = (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(F4, w)}</g>'
+      + '<path d="M61.6 88C60.4 91 59.2 93.4 58 95.6" stroke="rgba(30,36,26,.5)" stroke-width="4" filter="url(#ID-bs)" transform="translate(1 1.4)"/>'
+      + strand(F4, w, MOSS) + dive([59.3]) + PIN)
+# ---- 2б · Без узла, простая петля: the same closed loop without the crossing: two taut strands from the pin, a narrow V;
+#      the left one runs down the front into the eyelet, the right one goes behind the top edge ----
+F5 = 'M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6'
+B5 = 'M60 35.6C63.6 35.6 66.2 40 65.6 47C64.6 70 63.4 100 62.9 128C62.9 132 63 137 63 142'
+b5 = strand(B5, w, MOSS)
+f5 = (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(F5, w)}</g>' + strand(F5, w, MOSS) + dive([58.9]) + PIN)
+
+backs, fronts = zip(svg(2, b2, f2), svg(4, b4, f4), svg(5, b5, f5), svg(3, b3, f3))
 m = re.search(r'(<div class="gt-lab">)(<svg class="gt-cord gt-cord-b".*?</svg>)(<svg class="gt-cord".*?</svg>)(<div class="gt-tag">)', s, flags=re.S)
 assert m and len(re.findall(r'<div class="gt-lab">', s)) == 1
 s = s[:m.start()] + m.group(1) + m.group(2) + ''.join(backs) + m.group(3) + ''.join(fronts) + m.group(4) + s[m.end():]
@@ -100,17 +118,17 @@ s = s[:m.start()] + m.group(1) + m.group(2) + ''.join(backs) + m.group(3) + ''.j
 CSS = '''/* ===== Review: the cord of the label (Fable). Only the cord and the hole differ ===== */
 body{padding-top:48px}header.fixed{top:48px}
 .kc{display:none}
-html.kd-1 .kc1,html.kd-2 .kc2,html.kd-3 .kc3{display:block}
-html:not(.kd-0) .gt-cord:not(.kc){display:none}
+html.kd-2 .kc2,html.kd-3 .kc3,html.kd-4 .kc4,html.kd-5 .kc5{display:block}
+.gt-cord:not(.kc){display:none}
 @media (min-width:900px){ .gt-lab{top:calc(80px + 20px - 40px + 48px)} }
 @media (min-width:900px) and (max-height:860px){ .gt-lab{top:calc(80px + 12px - 40px + 48px)} }
 '''
 mh = re.search(r'<html lang="nl" class="([^"]*)">', s); assert mh and not any(c.startswith('kd-') for c in mh.group(1).split())
-s = s.replace(mh.group(0), '<html lang="nl" class="' + mh.group(1) + ' kd-2">', 1)
+s = s.replace(mh.group(0), '<html lang="nl" class="' + mh.group(1) + ' kd-4">', 1)
 BAR = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Шнурок</i>'
-       '<button type="button" data-g="kd" data-v="0" aria-pressed="false">0 · Сейчас</button>'
-       '<button type="button" data-g="kd" data-v="1" aria-pressed="false">1 · Петля</button>'
-       '<button type="button" data-g="kd" data-v="2" aria-pressed="true">2 · Узел и люверс</button>'
+       '<button type="button" data-g="kd" data-v="2" aria-pressed="false">2 · С узлом (было)</button>'
+       '<button type="button" data-g="kd" data-v="4" aria-pressed="true">2а · Без узла, перехлёст</button>'
+       '<button type="button" data-g="kd" data-v="5" aria-pressed="false">2б · Без узла, простая петля</button>'
        '<button type="button" data-g="kd" data-v="3" aria-pressed="false">3 · Прямой шнур</button></div></div>')
 assert '<div class="rv"' not in s and s.count('<div id="root">') == 1 and s.count('</head>') == 1
 s = s.replace('<div id="root">', BAR + '<div id="root">').replace('</head>', '<style id="cord-fable-css">' + CSS + '</style></head>')
