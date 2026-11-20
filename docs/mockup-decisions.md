@@ -1238,3 +1238,10 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - Desktop now from 900 px (it was 1100); at 900–1099 the steps and the conditions are one column.
     - Fixed on the way: on the phone the label's room for the cord collapsed (a child margin through the label), so the cord lay over the seal; the room is now the label's padding.
   - Checked at 1920, 1440, 1366×768, 1024×768, 768 and 390 (closed and open): no horizontal scroll, text ≥ 13 px, the sticky label fits at 1366×768 and 1024×768.
+- Owner (20 Nov): "let Fable design the cord of the label after all".
+  - Fable's `garantie4-fable.html` (`tools/build_garantie4_fable.py`, post-processes `garantie4.html`; review bar "Шнурок", group `kd`) changes only the cord and the hole. In all three the label hangs on a small round-headed nail at its pivot, the cord is thicker (3–4 px) with a dark edge and twists, one strand runs down the paper into the hole and darkens under its top edge, the other goes behind the top edge; through the hole the shaded page, a light rim for the paper's thickness.
+    0. "Сейчас": my cord, for comparison.
+    1. "Петля": two jute strands up from the hole, caught by a loop of the same cord at the top edge (a price-tag knot), a knot and a loop on the nail. The most real, but at normal size the catch reads as a bracket.
+    2. "Узел и люверс" (Fable's recommendation, the default): one moss cord tied in a knot with two short ends, the left strand down the paper into a metal eyelet, the right one behind the edge.
+    3. "Прямой шнур": a thin dark double cord straight down from the nail, a paper reinforcement ring round the hole; the strand behind the edge shows only close up.
+  - On the review page the 48 px bar pushes the label's tip 4–22 px below a 768 px screen; without the bar it fits.
