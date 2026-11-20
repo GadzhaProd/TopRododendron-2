@@ -1245,3 +1245,4 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     2. "Узел и люверс" (Fable's recommendation, the default): one moss cord tied in a knot with two short ends, the left strand down the paper into a metal eyelet, the right one behind the edge.
     3. "Прямой шнур": a thin dark double cord straight down from the nail, a paper reinforcement ring round the hole; the strand behind the edge shows only close up.
   - On the review page the 48 px bar pushes the label's tip 4–22 px below a 768 px screen; without the bar it fits.
+- Owner (20 Nov) on garantie4-fable.html: no cord approved yet; 2 and 3 are not bad, but the round knot in 2 is out of place: remove it and string the cord so the geometry still holds (sent to Fable). The seal: the two dashes either side of "maanden" are removed (on the phone, from a distance, they read as a strike-through); done in `tools/build_garantie4.py`, so in garantie4.html and garantie4-fable.html.

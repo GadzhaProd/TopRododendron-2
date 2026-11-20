@@ -25,7 +25,8 @@ PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Alle voo
 
 
 def seal(uid, cls=''):
-    # Fable's stamp: a scalloped edge, two rings, the name over the top, the place under it, the term in the middle; worn ink
+    # Fable's stamp: a scalloped edge, two rings, the name over the top, the place under it, the term in the middle; worn ink;
+    # no dashes beside "maanden" (owner, 20 Nov)
     n, R, r = 40, 114, 9.6
     pts = [(120 + R * math.cos(2 * math.pi * k / n - math.pi / 2), 120 + R * math.sin(2 * math.pi * k / n - math.pi / 2)) for k in range(n)]
     edge = 'M%.2f %.2f' % pts[0] + ''.join('A%.1f %.1f 0 0 1 %.2f %.2f' % (r, r, x, y) for x, y in pts[1:] + pts[:1]) + 'Z'
@@ -43,7 +44,8 @@ def seal(uid, cls=''):
             '<text font-family="Manrope,system-ui,sans-serif" font-size="13.5" font-weight="700" letter-spacing="3"><textPath href="#%s-b" startOffset="50%%" text-anchor="middle">OTTERLO · SINDS 2001</textPath></text>'
             '<text x="120" y="130" text-anchor="middle" font-family="Newsreader,Georgia,serif" font-size="66" font-weight="500">3</text>'
             '<text x="120" y="154" text-anchor="middle" font-family="Newsreader,Georgia,serif" font-size="20" font-weight="500">maanden</text>'
-            '<rect x="70" y="147" width="12" height="1.4"/><rect x="158" y="147" width="12" height="1.4"/></g></g></svg>') % (cls, uid, uid, uid, uid, edge, ticks, uid, uid)
+            '</g></g></svg>') % (cls, uid, uid, uid, uid, edge, ticks, uid, uid)
+# (owner, 20 Nov: the two dashes either side of "maanden" are gone: on the phone, from a distance, they read as a strike-through)
 
 
 # ---- the cord of the label (SVG 120 x 180 px; the top edge of the label at y 128, the eyelet centred at 60,160) ----
