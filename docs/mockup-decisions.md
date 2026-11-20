@@ -1206,4 +1206,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Added short headings, with no facts changed: Binnen 14 dagen, In zure grond, Niet te diep, Water geven; Melden, Foto's sturen, Antwoord.
   - Checked at 1920–360: no horizontal scroll, text ≥ 13 px, lowest contrast 4.78:1 on real pixels, rhythm --sec.
   - My fix: the page has no hero, so `hb-on` is set from the start and "Bestellen" does not animate in on load.
+- Owner (20 Nov) on garantie-fable.html: "he repeated what we already have on the homepage; I saw no new solutions".
+  - Fable's second round, `garantie-fable2.html` (`tools/build_garantie_fable2.py`, CSS `tools/garantie-fable2.css`, review bar "Гарантия"), has three concepts with no homepage components and no photos; the blur is only light behind content:
+    1. "Drie maanden": a calendar of the guarantee, 13 weeks from delivery to 3 months, with bars for the whole guarantee, planting in the first 14 days, watering (dots), reporting with the answer and decision, and the end. Desktop: shared scale with a week grid. ≤ 900 px: a mini scale per row.
+    2. "De wet + wij": "Wat de wet u geeft, en wat wij erbij doen". Three rows, the legal right quiet on the left, a large "+", our extra on the right in soft light, then the conditions as native disclosure sections. The lawyer should check the pairing.
+    3. "Het garantiebewijs": the guarantee as a paper sheet with a string hole like a plant label, the fields Soort / Maat / Geleverd op / Ordernummer, eight numbered articles, a seal, and a perforated tear-off "Gaat een plant achteruit?" with the contacts. "Download als pdf" is a placeholder.
+  - Fable's ranking: 1 > 3 > 2.
+  - Checked at 1920–360: no horizontal scroll, text ≥ 13 px, lowest contrast 5.42:1, rhythm --sec.
 
