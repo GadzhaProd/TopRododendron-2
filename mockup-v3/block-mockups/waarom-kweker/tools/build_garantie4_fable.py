@@ -41,7 +41,7 @@ PIN = ('<ellipse cx="62.2" cy="43.6" rx="6.4" ry="5.6" fill="rgba(38,44,32,.4)" 
        '<ellipse cx="58.1" cy="37.9" rx="2.1" ry="1.5" fill="#fff" opacity=".55"/>')
 DEFS = ('<defs><filter id="ID-bl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.3"/></filter>'
         '<filter id="ID-bs" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".8"/></filter>'
-        '<linearGradient id="ID-hol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d6b60"/><stop offset=".55" stop-color="#a9a699"/><stop offset="1" stop-color="#c9c6ba"/></linearGradient>'
+        '<linearGradient id="ID-hol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c4b42"/><stop offset=".6" stop-color="#6b695e"/><stop offset="1" stop-color="#85837a"/></linearGradient>'
         '<radialGradient id="ID-pin" cx=".36" cy=".3" r=".8"><stop offset="0" stop-color="#b7c3a8"/><stop offset=".55" stop-color="#6f8062"/><stop offset="1" stop-color="#3f4a37"/></radialGradient>'
         '<linearGradient id="ID-met" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f1e6"/><stop offset=".5" stop-color="#c3c1ad"/><stop offset="1" stop-color="#85846f"/></linearGradient>'
         '<clipPath id="ID-pap"><rect x="0" y="128.4" width="120" height="60"/></clipPath></defs>')
@@ -57,13 +57,14 @@ def knot(y, p):
     return (f'<ellipse cx="60" cy="{y}" rx="5.6" ry="4.5" fill="{p["b"]}" stroke="{p["o"]}" stroke-width="1.1" transform="rotate(-12 60 {y})"/>'
             f'<path d="M55.6 {y - .6}C58 {y + 2.4} 61.6 {y + 2.8} 64.6 {y + .6}M56.6 {y - 2.6}C59 {y - 1.2} 62 {y - 1} 64 {y - 2}" stroke="{p["o"]}" stroke-width="1"/>')
 
+EYE = ('<circle cx="61" cy="161.4" r="14" fill="rgba(38,44,32,.3)" filter="url(#ID-bl)"/><circle cx="60" cy="160" r="13.4" fill="url(#ID-met)" stroke="rgba(52,58,44,.5)" stroke-width=".8"/>')
 # ---- 1 · Петля: a lark's head. Two strands come out of the hole and run up the paper; the loop of the same cord comes over
 #      the top edge from behind and holds them (the collar); above it a knot, then the loop over the pin ----
 w = 3.2
 L1, R1 = 'M57.3 157C57.2 148 57.3 138 57.5 128C57.6 116 57.8 106 58.3 97', 'M62.7 157C62.8 148 62.7 138 62.5 128C62.4 116 62.2 106 61.7 97'
 COLL = 'M52.9 128.3C51.6 118.6 68.4 118.6 67.1 128.3'
 b1 = strand('M52.9 124C52.7 130 52.8 136 53 142', w, JUTE) + strand('M67.1 124C67.3 130 67.2 136 67 142', w, JUTE)
-f1 = (hole(9.2, '<circle cx="60" cy="160" r="14.6" fill="#efe9d6" stroke="rgba(63,74,55,.28)" stroke-width=".8"/>')
+f1 = (hole(8.8, EYE)
       + f'<g clip-path="url(#ID-pap)">{shadow(L1, w)}{shadow(R1, w)}</g>'
       + strand('M58.4 90' + LOOP, w, JUTE)
       + strand(L1, w, JUTE) + strand(R1, w, JUTE) + dive([57.3, 62.7])
@@ -74,7 +75,6 @@ f1 = (hole(9.2, '<circle cx="60" cy="160" r="14.6" fill="#efe9d6" stroke="rgba(6
 w = 4
 F2 = 'M58.6 95C54 105 54 118 56.6 128C58 136 58.8 146 59.2 157'
 B2 = 'M61.4 95C66.4 105 67.4 118 65 128C64.4 132 63.8 137 63.4 142'
-EYE = ('<circle cx="61" cy="161.4" r="14" fill="rgba(38,44,32,.3)" filter="url(#ID-bl)"/><circle cx="60" cy="160" r="13.4" fill="url(#ID-met)" stroke="rgba(52,58,44,.5)" stroke-width=".8"/>')
 b2 = strand(B2, w, MOSS)
 f2 = (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(F2, w)}</g>'
       + strand('M58.4 90' + LOOP, w, MOSS)
@@ -108,9 +108,9 @@ b5 = strand(B5, w, MOSS)
 f5 = (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(F5, w)}</g>' + strand(F5, w, MOSS) + dive([58.9]) + PIN)
 
 # ---- round 3: variant 2 with the join redone (the owner: the round knot is out of place; rework it) ----
-def wraps(y0, n=5):
+def wraps(y0, n=5, pal=None, tw=2.3):
     # a whipping: a few tight turns of the same cord round both strands, a flat band instead of a ball
-    turns = ''.join(strand(f'M54.6 {y0 + k * 2.9 + .9:.1f}L65.4 {y0 + k * 2.9 - .9:.1f}', 2.3, MOSS) for k in range(n))
+    turns = ''.join(strand(f'M54.6 {y0 + k * 2.9 + .9:.1f}L65.4 {y0 + k * 2.9 - .9:.1f}', tw, pal or MOSS) for k in range(n))
     return f'<rect x="54" y="{y0 - 1}" width="13" height="{n * 2.9 + .6:.1f}" rx="2" fill="rgba(30,36,26,.45)" filter="url(#ID-bs)" transform="translate(1 1.4)"/>' + turns
 # 2в · Обмотка: the two halves of the loop are bound together where the knot was
 LP6 = 'M58.2 87C52.4 78 51 53 55 42C57 36 63 36 65 42C69 53 67.6 78 61.8 87'
@@ -132,7 +132,27 @@ b8 = strand(B8, w, MOSS)
 f8 = (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(F8, w)}</g>' + strand(LP8, w, MOSS) + strand(F8, w, MOSS)
       + strand('M58.2 108V121', w, MOSS) + strand('M61.8 108V121', w, MOSS) + dive([59.3]) + wraps(108.4, 4) + PIN)
 
-backs, fronts = zip(svg(2, b2, f2), svg(6, b6, f6), svg(7, b6, f7), svg(8, b8, f8), svg(4, b4, f4), svg(5, b5, f5), svg(3, b3, f3))
+# ---- round 4: the jute cord reworked (the owner meant the light one: no round knot; the collar at the edge read as a bracket) ----
+wj = 3.2
+# 1а · Без узла: both strands come out of the eyelet, run up the paper side by side and open into one loop over the pin;
+#      the join of the cord is behind the label, nothing is tied in sight
+L9 = 'M57.3 157C57.2 146 57 136 56.9 128C56.4 100 55.4 70 54.4 47C53.8 40 56.4 35.6 60 35.6'
+R9 = 'M62.7 157C62.8 146 63 136 63.1 128C63.6 100 64.6 70 65.6 47C66.2 40 63.6 35.6 60 35.6'
+def twin(l, r, extra=''):
+    return (hole(8.8, EYE) + f'<g clip-path="url(#ID-pap)">{shadow(l, wj)}{shadow(r, wj)}</g>' + strand(l, wj, JUTE) + strand(r, wj, JUTE) + dive([57.3, 62.7]) + extra + PIN)
+f9 = twin(L9, R9)
+# 1б · Обмотка: the two strands are bound with five tight turns of the same jute where the knot was; no collar at the edge
+LPJ = 'M58.2 87C52.4 78 51 53 55 42C57 36 63 36 65 42C69 53 67.6 78 61.8 87'
+L10 = 'M57.3 157C57.3 146 57.3 136 57.4 128C57.5 118 57.8 108 58.2 86'
+R10 = 'M62.7 157C62.7 146 62.7 136 62.6 128C62.5 118 62.2 108 61.8 86'
+f10 = twin(L10, R10, strand(LPJ, wj, JUTE) + wraps(87.2, 5, JUTE, 2.1))
+# 1в · Обмотка у края: the binding sits right on the top edge of the label, where the collar was: three turns, read as a wrap
+LPK = 'M58.2 118C53 100 51 56 55 42C57 36 63 36 65 42C69 56 67 100 61.8 118'
+L11 = 'M57.3 157C57.3 148 57.4 138 57.6 128C57.7 124 57.9 120 58.2 117'
+R11 = 'M62.7 157C62.7 148 62.6 138 62.4 128C62.3 124 62.1 120 61.8 117'
+f11 = twin(L11, R11, strand(LPK, wj, JUTE) + wraps(118.2, 3, JUTE, 2.1))
+
+backs, fronts = zip(svg(1, b1, f1), svg(9, '', f9), svg(10, '', f10), svg(11, '', f11), svg(6, b6, f6), svg(7, b6, f7), svg(8, b8, f8), svg(4, b4, f4), svg(5, b5, f5), svg(3, b3, f3))
 m = re.search(r'(<div class="gt-lab">)(<svg class="gt-cord gt-cord-b".*?</svg>)(<svg class="gt-cord".*?</svg>)(<div class="gt-tag">)', s, flags=re.S)
 assert m and len(re.findall(r'<div class="gt-lab">', s)) == 1
 s = s[:m.start()] + m.group(1) + m.group(2) + ''.join(backs) + m.group(3) + ''.join(fronts) + m.group(4) + s[m.end():]
@@ -140,21 +160,15 @@ s = s[:m.start()] + m.group(1) + m.group(2) + ''.join(backs) + m.group(3) + ''.j
 CSS = '''/* ===== Review: the cord of the label (Fable). Only the cord and the hole differ ===== */
 body{padding-top:48px}header.fixed{top:48px}
 .kc{display:none}
-html.kd-2 .kc2,html.kd-3 .kc3,html.kd-4 .kc4,html.kd-5 .kc5,html.kd-6 .kc6,html.kd-7 .kc7,html.kd-8 .kc8{display:block}
+html.kd-2 .kc2,html.kd-3 .kc3,html.kd-4 .kc4,html.kd-5 .kc5,html.kd-6 .kc6,html.kd-7 .kc7,html.kd-8 .kc8,html.kd-1 .kc1,html.kd-9 .kc9,html.kd-10 .kc10,html.kd-11 .kc11{display:block}
+@media (max-width:520px){ .rv{justify-content:flex-start} .rv-g{gap:3px} .rv button{min-width:31px;padding:0 5px} .rv .l{display:none} }
 .gt-cord:not(.kc){display:none}
 @media (min-width:900px){ .gt-lab{top:calc(80px + 20px - 40px + 48px)} }
 @media (min-width:900px) and (max-height:860px){ .gt-lab{top:calc(80px + 12px - 40px + 48px)} }
 '''
 mh = re.search(r'<html lang="nl" class="([^"]*)">', s); assert mh and not any(c.startswith('kd-') for c in mh.group(1).split())
-s = s.replace(mh.group(0), '<html lang="nl" class="' + mh.group(1) + ' kd-6">', 1)
-BAR = ('<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Шнурок</i>'
-       '<button type="button" data-g="kd" data-v="2" aria-pressed="false">2 · С узлом (было)</button>'
-       '<button type="button" data-g="kd" data-v="6" aria-pressed="true">2в · Обмотка</button>'
-       '<button type="button" data-g="kd" data-v="7" aria-pressed="false">2г · Обжим</button>'
-       '<button type="button" data-g="kd" data-v="8" aria-pressed="false">2д · Обмотка у бирки</button>'
-       '<button type="button" data-g="kd" data-v="4" aria-pressed="false">2а · Без узла, перехлёст</button>'
-       '<button type="button" data-g="kd" data-v="5" aria-pressed="false">2б · Без узла, простая петля</button>'
-       '<button type="button" data-g="kd" data-v="3" aria-pressed="false">3 · Прямой шнур</button></div></div>')
+s = s.replace(mh.group(0), '<html lang="nl" class="' + mh.group(1) + ' kd-10">', 1)
+BAR = '<div class="rv" role="group" aria-label="Варианты"><div class="rv-g"><i>Шнурок</i><button type="button" data-g="kd" data-v="1" aria-pressed="false">1<span class="l"> · Петля (было)</span></button><button type="button" data-g="kd" data-v="9" aria-pressed="false">1а<span class="l"> · Без узла</span></button><button type="button" data-g="kd" data-v="10" aria-pressed="true">1б<span class="l"> · Обмотка</span></button><button type="button" data-g="kd" data-v="11" aria-pressed="false">1в<span class="l"> · Обмотка у края</span></button><button type="button" data-g="kd" data-v="6" aria-pressed="false">2в<span class="l"> · Обмотка</span></button><button type="button" data-g="kd" data-v="7" aria-pressed="false">2г<span class="l"> · Обжим</span></button><button type="button" data-g="kd" data-v="8" aria-pressed="false">2д<span class="l"> · Обмотка у бирки</span></button><button type="button" data-g="kd" data-v="4" aria-pressed="false">2а<span class="l"> · Перехлёст</span></button><button type="button" data-g="kd" data-v="5" aria-pressed="false">2б<span class="l"> · Простая петля</span></button><button type="button" data-g="kd" data-v="3" aria-pressed="false">3<span class="l"> · Прямой шнур</span></button></div></div>'
 assert '<div class="rv"' not in s and s.count('<div id="root">') == 1 and s.count('</head>') == 1
 s = s.replace('<div id="root">', BAR + '<div id="root">').replace('</head>', '<style id="cord-fable-css">' + CSS + '</style></head>')
 (D / 'garantie4-fable.html').write_text(s)

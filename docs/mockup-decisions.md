@@ -1255,3 +1255,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - 2г: a small metal crimp of the eyelet's metal with one pressed line; at normal size it reads as a light bead.
     - 2д: the binding of four turns low, just above the label's edge: one long loop on the nail, a short run into the eyelet.
     - The eyelet in all seven: only the metal ring and the dark hole (in 3 the paper ring loses its dashed circle).
+- Owner (20 Nov): by "the second variant" he meant the light-brown jute one (Fable's "1 · Петля", the second button of round 1); his remark on the round knot was about it, and it should be reworked too.
+  - Fable's round 4 on `garantie4-fable.html` (bar: "1 · Петля (было)", "1а · Без узла", "1б · Обмотка" (default), "1в · Обмотка у края", then the moss "2в", "2г", "2д", "2а", "2б", "3"; "2 · С узлом (было)" removed; on the phone the bar shows only the codes and all ten fit at 390):
+    - 1а: two jute strands up from the eyelet side by side, opening into one taut loop on the nail; the join hidden behind the label.
+    - 1б: where the round knot was, five tight turns of the same jute bind both strands; above a loop on the nail, below two strands straight into the eyelet. Fable's recommendation.
+    - 1в: three turns right on the label's top edge, where the bracket-like collar was; a long loop on the nail and a short run into the eyelet.
+    - The jute ones get the plain metal eyelet; the hole is darker in all variants (its light bottom read as one more rim).
