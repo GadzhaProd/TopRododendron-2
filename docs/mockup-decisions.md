@@ -1249,3 +1249,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Fable's knotless versions on `garantie4-fable.html` (bar "Шнурок": "2 · С узлом (было)", "2а · Без узла, перехлёст" (default), "2б · Без узла, простая петля", "3 · Прямой шнур"; 0 and 1 removed):
     - 2а: one closed loop on the nail, its two halves cross once where the knot was; one goes down the paper into the eyelet, the other behind the top edge. Fable's recommendation: keeps the silhouette of 2.
     - 2б: the same loop without the crossing, two taut strands in a narrow V from the nail; the physically honest one (3 with the moss cord and the metal eyelet).
+- Owner (20 Nov): "you didn't do the second variant": the knot of 2 was to be redone (not only removed), a couple of versions; the eyelet: remove the light half-rim at the bottom of the hole and the middle ring on the metal.
+  - Fable's round 3 on `garantie4-fable.html` (bar: "2 · С узлом (было)", "2в · Обмотка" (default), "2г · Обжим", "2д · Обмотка у бирки", "2а", "2б", "3"):
+    - 2в: where the round knot was, both strands bound by five tight turns of the same cord, no loose ends. Fable's recommendation.
+    - 2г: a small metal crimp of the eyelet's metal with one pressed line; at normal size it reads as a light bead.
+    - 2д: the binding of four turns low, just above the label's edge: one long loop on the nail, a short run into the eyelet.
+    - The eyelet in all seven: only the metal ring and the dark hole (in 3 the paper ring loses its dashed circle).
