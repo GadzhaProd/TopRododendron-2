@@ -1,7 +1,10 @@
 # Mockup tool (not site code): garantie4.html = the guarantee page after the owner's choice (20 Nov) on garantie-fable3.html:
-# the plant label of gb-3 ("Бирка на шнурке") is the one; the cord did not go through the hole, so it is redrawn as a loop with
-# a knot, threaded through a reinforced eyelet. The sheet loses the fields to fill in ("nobody fills them in on a website") and
-# the hole with its string; instead it says how the guarantee works in four steps, and the conditions are shorter.
+# the plant label of gb-3 ("Бирка на шнурке") with the seal. Round 2 (owner, 20 Nov): the cord must really go through the
+# hole, so the label has a metal eyelet and the cord runs into it at the top and on behind the label (the lower part of the
+# hole stays empty); the subtitle sits under the heading as on the other pages; no step numbers; on the phone the page is the
+# label with the main points and the pdf, the contacts, and the full conditions behind one "Lees alle voorwaarden" button.
+# Desktop (>= 900 px): the label hangs beside the sheet (how it works in four steps, the conditions in short, a tear-off
+# contact strip) and stays in view while the sheet scrolls.
 # Copy: shortened from the Dutch draft of tools/build_garantie.py (which keeps the full text), no new facts. DRAFT: the owner
 # confirms it and a lawyer checks it (plan 3.12). Header, cart, phone menu and footer come from the main mockup (index.html).
 # The seal is Fable's (tools/build_garantie_fable3.py). Usage: python3 tools/build_garantie4.py [dir]
@@ -17,7 +20,7 @@ A_WA = '<a ' + WA + '>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
 A_TEL = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 A_MAIL = '<a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a>'
 A_FIELD = '<a href="' + FIELD + '" target="_blank" rel="noopener noreferrer">Apeldoornseweg, Wekerom</a>'
-PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Download als pdf<svg viewBox="0 0 16 16" aria-hidden="true">'
+PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Alle voorwaarden als pdf<svg viewBox="0 0 16 16" aria-hidden="true">'
         '<path d="M8 2v9M4 8l4 4 4-4M3 14h10"/></svg></a>')
 
 
@@ -43,34 +46,41 @@ def seal(uid, cls=''):
             '<rect x="70" y="147" width="12" height="1.4"/><rect x="158" y="147" width="12" height="1.4"/></g></g></svg>') % (cls, uid, uid, uid, uid, edge, ticks, uid, uid)
 
 
-# ---- the cord of the label (SVG 120 x 172; the top edge of the label at y 128, the eyelet centred at 60,156) ----
-# a hanging loop (top at y 40), a knot with two loose ends, two strands down to the label: the back one goes behind the top edge,
-# the front one runs over the paper into the eyelet (a sage reinforcement ring), and through it you see the cord go in.
+# ---- the cord of the label (SVG 120 x 180 px; the top edge of the label at y 128, the eyelet centred at 60,160) ----
+# Built like a real hang tag: a loop with a knot and two loose ends; from the knot two strands. The front one runs over the top
+# edge, down the paper, over the metal eyelet and into the hole at its top: the label hangs on it, so the cord bears on the top
+# of the hole and turns away behind the label there; the lower part of the hole stays empty (the shaded page behind).
+# The back strand comes up from behind the top edge. Each strand is twine: the cord, with a lighter broken line for the twist.
 def _tw(d, cls=''):
-    # a strand of twine: the cord, then a lighter broken line over it for the twist
     return f'<path class="gt-c {cls}" d="{d}"/><path class="gt-tw" d="{d}"/>'
 
 
-CORD = ('<svg class="gt-cord" viewBox="0 0 120 172" aria-hidden="true">'
-        '<defs><filter id="gt-cs" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.1"/></filter>'
-        '<clipPath id="gt-in"><circle cx="60" cy="156" r="7.5"/></clipPath></defs>'
-        # the reinforcement ring and the eyelet, on the paper
-        '<circle class="gt-ring" cx="60" cy="156" r="13.5"/><circle class="gt-ring2" cx="60" cy="156" r="10.5"/>'
-        '<circle class="gt-eye" cx="60" cy="156" r="7.5"/>'
-        # the shadow of the front strand on the paper
-        '<path class="gt-csh" d="M59.8 130C59.8 140 60.6 148 61.6 154" filter="url(#gt-cs)"/>'
-        # the back strand: from the knot to the top edge, where it goes behind the label
-        + _tw('M62.4 84.6C67.4 96 68.2 112 65.6 128.8', 'gt-cb') +
-        # the hanging loop and the two loose ends
-        _tw('M58.2 82.4C43.6 75 40.2 44.5 59.4 40.2C79.4 41.6 77.6 74 62.4 82.4')
-        + _tw('M58.4 85.2C53.4 89.4 51 95 51.8 103') + _tw('M62.6 85.6C67.4 88.4 70.4 92.4 71 99') +
-        # the front strand: from the knot over the top edge and down the paper into the eyelet
-        _tw('M59.2 85C55.6 98 55.4 114 58 128.8C58.8 138 59.6 146 60 150.6') +
-        # inside the eyelet: the cord going through it (clipped to the hole)
-        '<path class="gt-c gt-ci" d="M60 147.6C60.1 152 60.2 156 60.2 160" clip-path="url(#gt-in)"/>'
+CORD = ('<svg class="gt-cord" viewBox="0 0 120 180" aria-hidden="true"><defs>'
+        '<linearGradient id="gt-met" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1eee3"/><stop offset=".55" stop-color="#c6c3b0"/><stop offset="1" stop-color="#8f8d79"/></linearGradient>'
+        '<linearGradient id="gt-hol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d7a6f"/><stop offset=".5" stop-color="#b3b0a5"/><stop offset="1" stop-color="#d4d1c7"/></linearGradient>'
+        '<filter id="gt-bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>'
+        '<clipPath id="gt-hc"><circle cx="60" cy="160" r="8.6"/></clipPath></defs>'
+        # the eyelet: its shadow on the paper, the metal ring with a bevel, the hole (dark: the shade behind the label)
+        '<circle cx="60.8" cy="161.2" r="13.4" fill="rgba(63,74,55,.2)" filter="url(#gt-bl)"/>'
+        '<circle class="gt-met" cx="60" cy="160" r="12.8"/><circle class="gt-bev" cx="60" cy="160" r="10.7"/>'
+        '<circle class="gt-hole" cx="60" cy="160" r="8.6"/>'
+        # the shadow of the front strand on the paper and on the ring
+        '<path class="gt-csh" d="M59.4 129.5C59.6 136 60.4 143 61.6 151" filter="url(#gt-bl)"/>'
+        # the hanging loop and two short ends at the knot
+        + _tw('M58.2 82.4C43.6 75 40.2 44.5 59.4 40.2C79.4 41.6 77.6 74 62.4 82.4')
+        + _tw('M57.6 85C54.4 86.6 52.2 89 51.4 92.4') + _tw('M63.2 85.2C66.4 86.4 68.6 88.4 69.6 91.6') +
+        # the front strand: knot, over the top edge, down the paper and the ring to the rim of the hole
+        _tw('M59.2 85C55.4 98 55 114 57.8 128.6C59.2 136 59.8 144 60 151.4') +
+        # in the hole: the cord bears on the top of the hole and turns away behind the label; a little shade under it
+        '<g clip-path="url(#gt-hc)"><ellipse cx="60.6" cy="157.4" rx="3.8" ry="1.9" fill="rgba(30,34,26,.4)" filter="url(#gt-bl)"/>'
+        '<path class="gt-ci" d="M60 150.5C60.1 152.6 60.2 154 60.3 155.4"/></g>'
         # the knot
         '<ellipse class="gt-knot" cx="60.4" cy="83.8" rx="5" ry="4" transform="rotate(-14 60.4 83.8)"/>'
         '<path class="gt-kl" d="M57 82.8C59 85 61.8 85.6 63.8 84.6"/><path class="gt-kl" d="M58.2 80.8C60.2 81.2 62 82 63 83.2"/></svg>')
+# the back strand lies BEHIND the label (its own layer under the paper): from the knot down behind the top edge to the hole,
+# so the paper itself covers it where it goes behind
+CORD_B = ('<svg class="gt-cord gt-cord-b" viewBox="0 0 120 180" aria-hidden="true">'
+          + _tw('M62.4 86.4C66.6 98 67.4 114 64.6 130C63.4 138 62 146 61 156', 'gt-cb') + '</svg>')
 
 SHORT = ('<ul class="gt-short" aria-label="De garantie in het kort"><li><b>3 maanden</b> na levering</li><li><b>Zelfde soort en maat</b> als vervanging</li>'
          '<li><b>Kosteloos</b> bezorgd of klaargezet</li><li><b>Foto’s volstaan</b>, u hoeft niets aan te tonen</li></ul>')
@@ -78,9 +88,8 @@ HEAD = ('<div class="gt-head"><nav class="gt-crumb" aria-label="Kruimelpad"><a h
         '<h1><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h1>'
         '<div class="gt-intro"><p class="gt-lead"><b>3 maanden aangroeigarantie na levering</b>, bovenop uw wettelijke rechten. '
         'Dezelfde soort en maat, kosteloos bezorgd of voor u klaargezet. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan.</p>'
-        '<p class="gt-draft">Concepttekst: de eigenaar en een jurist controleren deze voorwaarden nog.</p>'
-        '<p class="gt-pdf">' + PDFA + '<span>U krijgt de garantie ook bij uw orderbevestiging en op de plantkaart bij de levering.</span></p></div></div>')
-LABEL = ('<div class="gt-lab">' + CORD + '<div class="gt-tag"><p class="gt-lbrand">Top Rhododendrons</p>' + seal('s1')
+        '<p class="gt-draft">Concepttekst: de eigenaar en een jurist controleren deze voorwaarden nog.</p></div></div>')
+LABEL = ('<div class="gt-lab">' + CORD_B + CORD + '<div class="gt-tag"><p class="gt-lbrand">Top Rhododendrons</p>' + seal('s1')
          + '<p class="gt-lname">Aangroeigarantie</p>' + SHORT + '<p class="gt-lpdf">' + PDFA + '</p></div></div>')
 
 # ---- the sheet: how it works in four steps, then the conditions in short ----
@@ -103,11 +112,12 @@ TERMS = [
  ('Wie geeft de garantie', '<span class="gt-ph">[juridische naam]</span>, handelend onder de naam Top Rhododendrons. KvK&nbsp;82480273. '
                            'Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo.'),
 ]
-DOC = ('<article class="gt-doc" aria-labelledby="h-doc">' + seal('s2', 'is-doc') +
+WAYS = '<dl><div><dt>WhatsApp</dt><dd>' + A_WA + '</dd></div><div><dt>Bellen</dt><dd>' + A_TEL + '</dd></div><div><dt>E-mail</dt><dd>' + A_MAIL + '</dd></div></dl>'
+DOC = ('<article class="gt-doc" aria-labelledby="h-doc">' +
        '<header class="gt-top"><p class="gt-brand">Top Rhododendrons · familiekwekerij in Otterlo</p>'
        '<h2 id="h-doc">Aangroeigarantie</h2><p class="gt-sub">3 maanden na levering, bovenop uw wettelijke rechten.</p></header>'
        '<section class="gt-how" aria-labelledby="h-how"><h3 class="gt-lbl" id="h-how">Zo werkt het</h3><ol class="gt-steps">'
-       + ''.join(f'<li><i aria-hidden="true">{n}</i><div><h4>{t}</h4><p>{p}</p></div></li>' for n, (t, p) in enumerate(STEPS, 1)) +
+       + ''.join(f'<li><h4>{t}</h4><p>{p}</p></li>' for t, p in STEPS) +
        '</ol></section>'
        '<section class="gt-terms" aria-labelledby="h-terms"><h3 class="gt-lbl" id="h-terms">Goed om te weten</h3><dl>'
        + ''.join(f'<div><dt>{t}</dt><dd>{p}</dd></div>' for t, p in TERMS) +
@@ -115,9 +125,17 @@ DOC = ('<article class="gt-doc" aria-labelledby="h-doc">' + seal('s2', 'is-doc')
        '<div class="gt-tear" aria-hidden="true"></div>'
        '<footer class="gt-strip"><h3>Gaat een plant achteruit?</h3><p>Meld het zo snel mogelijk, dan kijken we eerst samen of hij te redden is. '
        'U spreekt met Gert Top, oprichter en kweker, of met zijn team.</p>'
-       '<dl><div><dt>WhatsApp</dt><dd>' + A_WA + '</dd></div><div><dt>Bellen</dt><dd>' + A_TEL + '</dd></div><div><dt>E-mail</dt><dd>' + A_MAIL + '</dd></div></dl></footer></article>')
-MAIN = ('<main id="main" tabindex="-1" class="gtm"><div class="in gt">' + HEAD + LABEL
-        + '<div class="gt-stage"><div class="gt-air" aria-hidden="true"></div>' + DOC + '</div></div></main>')
+       + WAYS + '</footer></article>')
+# below 900 px: the contacts under the label, and the full conditions behind one button
+HELP = ('<div class="gt-help"><h2>Gaat een plant achteruit?</h2><p>Stuur ons een paar foto’s. U spreekt met Gert Top, oprichter en kweker, of met zijn team.</p>'
+        + WAYS + '</div>')
+MORE = ('<button class="gt-more" type="button" aria-expanded="false" aria-controls="voorwaarden"><span>Lees alle voorwaarden</span>'
+        '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>')
+JS = ('<script>(function(){var b=document.querySelector(".gt-more"),g=document.querySelector(".gt");if(!b||!g)return;'
+      'b.addEventListener("click",function(){var o=g.classList.toggle("is-open");b.setAttribute("aria-expanded",o);'
+      'b.querySelector("span").textContent=o?"Verberg de voorwaarden":"Lees alle voorwaarden";});})();</script>')
+MAIN = ('<main id="main" tabindex="-1" class="gtm"><div class="in gt">' + HEAD + LABEL + HELP + MORE
+        + '<div class="gt-stage" id="voorwaarden"><div class="gt-air" aria-hidden="true"></div>' + DOC + '</div></div>' + JS + '</main>')
 s = head + MAIN + tail
 
 

@@ -1229,3 +1229,12 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - The copy is shortened from the draft, with no new facts. Left out of the short version: "kleine, onbedoelde fouten bij de verzorging rekenen wij u niet aan", the legal presumption of one year, the plant card note. The full draft stays in `tools/build_garantie.py`; the lawyer checks the final text.
   - Below 1100 px there is no label, the seal is stamped on the sheet. The page on the phone: 3420 px instead of 4681.
   - Checked at 1920, 1440, 1366×768, 1024 and 390: no horizontal scroll, text ≥ 13 px, lowest contrast 8.27:1 on the sheet; the sticky label fits at 1366×768.
+- Owner (20 Nov) on garantie4.html round 1: the cord still did not go through the hole; the subtitle must sit under the heading, as on the other pages, not to its right; no step numbers 1–4; the phone page was far too long: on the phone the label with the main points and the pdf for the details.
+  - Round 2 of `garantie4.html`:
+    - The cord, my drawing, checked at 4×: the label has a metal eyelet with a dark hole. The front strand runs over the top edge and down the paper into the hole, bears on its top and turns away behind the label; the lower part of the hole stays empty. The back strand is a separate layer under the label, so the paper covers it where it goes behind. The ends at the knot are short.
+    - The head: heading, then the subtitle under it, then the draft note.
+    - The steps without numbers: the verb in Newsreader, the text under it.
+    - Below 900 px: the head, the label (the seal, "Aangroeigarantie", the four promises, an outlined pill "Alle voorwaarden als pdf"), "Gaat een plant achteruit?" with the three contacts, and one "Lees alle voorwaarden" button that opens the sheet (how it works and the conditions) in place. The page on the phone is 2264 px closed (it was 4681 in fable3), 3859 px open.
+    - Desktop now from 900 px (it was 1100); at 900–1099 the steps and the conditions are one column.
+    - Fixed on the way: on the phone the label's room for the cord collapsed (a child margin through the label), so the cord lay over the seal; the room is now the label's padding.
+  - Checked at 1920, 1440, 1366×768, 1024×768, 768 and 390 (closed and open): no horizontal scroll, text ≥ 13 px, the sticky label fits at 1366×768 and 1024×768.
