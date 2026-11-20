@@ -1214,3 +1214,11 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - Fable's ranking: 1 > 3 > 2.
   - Checked at 1920–360: no horizontal scroll, text ≥ 13 px, lowest contrast 5.42:1, rhythm --sec.
 
+- Owner (20 Nov) on garantie-fable2.html: concept 1 no (the panel on the green background is unclear), concept 2 does not work on desktop, concept 3 "the right side is fine, the left side is just emptiness"; he likes the seal.
+  - Fable's third round, `garantie-fable3.html` (`tools/build_garantie_fable3.py`, CSS `tools/garantie-fable3.css`, review bar "Слева от листа", group `gb`), develops concept 3 only. The sheet, its fields, the eight articles and the perforated tear-off stay; the articles are 16 px on desktop (14 on tablet and phone).
+  - The seal is redrawn: a serrated edge, two rings, ticks, "TOP RHODODENDRONS" and "OTTERLO · SINDS 2001" on arcs, a large "3" and "maanden" in Newsreader, moss ink, slightly tilted.
+  - Three desktop layouts (below 1100 px all three are the same page as in round 2):
+    1. "Коротко слева": a sticky left column with the heading, the intro, the seal with the four promises beside it, WhatsApp / Bellen / E-mail and "Download als pdf"; the seal is not on the sheet. Fable's recommendation.
+    2. "Лист по центру": no left column; the heading and the intro across the width, the sheet centred and wider (1080 px), the seal up to 232 px stamped over its top right corner.
+    3. "Бирка на шнурке": the heading across the width; a sticky, slightly tilted plant label on a string beside the sheet with the nursery's name, the seal, "Aangroeigarantie", the four promises and the pdf link.
+  - Checked at 1920–360 for all three: no horizontal scroll, text ≥ 13 px (the lettering inside the seal is graphics), lowest contrast 5.21:1, rhythm --sec; the sticky parts fit at 1366×768, 1440×900 and 1920×1080.

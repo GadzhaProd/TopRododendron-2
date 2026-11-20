@@ -1,0 +1,158 @@
+/* ===== The guarantee conditions page: "Het garantiebewijs" refined (Fable, 20 Nov; review) =====
+   The guarantee is the paper the buyer gets with the plant: a sheet with a hole and a string, fields to fill in, eight numbered
+   articles, a perforation and a tear-off contact strip, and the nursery's seal. Three desktop layouts for the side of the sheet
+   (gb-1 a sticky "in short" column · gb-2 the sheet centred, the seal stamped over its corner · gb-3 a plant label on a string);
+   below 1100 px they are one and the same page. Nothing from the homepage; no photos; the soft blur is only the light behind. */
+body{padding-top:48px}header.fixed{top:48px}
+.g3m{background:var(--page);overflow-x:clip;color:var(--color-fg)}
+.g3m :where(h1,h2,h3,p,ol,ul,dl,dd,figure){margin:0}
+.g3m :where(ol,ul){list-style:none;padding:0}
+.g3m ::selection{background:#d3dcc2;color:#141413}
+.g3m a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:3px}
+.g3m :where(p,li,dd) a{color:var(--color-fg);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(20,20,19,.35)}
+.g3m :where(p,li,dd) a:hover{text-decoration-color:currentColor}
+.g3m b{font-weight:600;color:var(--color-fg)}
+.g3{padding-bottom:var(--sec)}
+
+/* the head (the fixed header is 64 / 80 px tall) */
+.g3-head{padding-top:calc(80px + clamp(36px,4.6vw,76px))}
+@media (max-width:767px){ .g3-head{padding-top:calc(64px + 32px)} }
+.g3-crumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:clamp(22px,2.4vw,36px);font-size:var(--t-small);color:var(--soft)}
+.g3-crumb a{display:inline-block;padding-block:4px;margin-block:-4px;color:var(--color-fg-2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(20,20,19,.3)}
+.g3m h1{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;letter-spacing:-.018em;font-size:var(--t-display);line-height:1.04}
+.g3m h1 span{display:block}
+.g3-lead{margin-top:clamp(20px,2.2vw,30px);max-width:48ch;font-size:var(--t-lead);line-height:1.55;color:var(--color-fg-2);text-wrap:pretty}
+.g3-draft{display:inline-block;margin-top:22px;padding:6px 12px;border-radius:999px;background:rgba(63,74,55,.08);font-size:var(--t-micro);line-height:1.3;color:var(--color-fg-2)}
+.g3-pdf{margin-top:clamp(22px,2.6vw,34px);display:grid;gap:8px;max-width:40ch}
+.g3-pdf span{font-size:var(--t-small);line-height:1.55;color:var(--soft)}
+.g3-pdfa{justify-self:start;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:var(--t-body);font-weight:600}
+.g3-pdfa svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.g3-kort,.g3-lab{display:none}
+
+/* the seal: stamped in moss ink */
+.g3-seal{display:block;color:var(--moss);mix-blend-mode:multiply}
+
+/* the sheet */
+.g3-stage{position:relative;isolation:isolate;padding-top:clamp(116px,15vw,128px)}
+.g3-air{position:absolute;z-index:-1;inset:8% -10% 2%;pointer-events:none;filter:blur(56px);
+  background:radial-gradient(ellipse 50% 30% at 24% 16%,#d6dfc6 0%,transparent 72%),radial-gradient(ellipse 50% 34% at 82% 46%,#e9e0bb 0%,transparent 72%),
+    radial-gradient(ellipse 44% 26% at 26% 86%,#ecd6d2 0%,transparent 72%)}
+.g3-doc{position:relative;--pad:clamp(26px,3.4vw,56px);padding:calc(var(--pad) + 30px) var(--pad) var(--pad);border-radius:10px;background:#fbfaf8;
+  display:flex;flex-direction:column;
+  box-shadow:0 0 0 1px rgba(63,74,55,.1),0 2px 4px rgba(63,74,55,.06),0 44px 60px -44px rgba(63,74,55,.4)}
+.g3-hole{position:absolute;top:24px;left:50%;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:var(--page);box-shadow:inset 0 1px 2px rgba(63,74,55,.35),0 0 0 1px rgba(63,74,55,.12)}
+.g3-string{position:absolute;left:calc(50% - 60px);top:calc(34px - 138px);width:120px;height:150px;fill:none;stroke:#7d8c6f;stroke-width:1.4;stroke-linecap:round;pointer-events:none}
+.g3-top{text-align:center;padding-bottom:clamp(24px,2.8vw,40px)}
+.g3-brand{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
+.g3-top h2{margin-top:10px;font-size:var(--t-h2)!important;line-height:1.05}
+.g3-sub{margin-top:10px;font-size:var(--t-lead);line-height:1.5;color:var(--color-fg-2)}
+.g3-fill{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px clamp(20px,3vw,44px);margin-top:clamp(24px,2.8vw,36px);text-align:left}
+.g3-fill div{display:flex;align-items:baseline;gap:10px}
+.g3-fill dt{flex:none;font-size:var(--t-small);line-height:1.6;color:var(--color-fg-2)}
+.g3-fill dd{flex:1;height:1.5em;border-bottom:1px dotted rgba(20,20,19,.5)}
+.g3-arts{columns:2;column-gap:clamp(24px,3vw,48px);padding-top:clamp(24px,2.8vw,40px);border-top:1px solid rgba(63,74,55,.2)}
+.g3-arts section{break-inside:avoid;padding-bottom:clamp(20px,2.2vw,30px)}
+.g3-arts h3{display:flex;gap:10px;align-items:baseline;font-size:var(--t-body);line-height:1.4;font-weight:600}
+.g3-arts h3 i{font-style:normal;color:var(--moss);font-variant-numeric:lining-nums tabular-nums}
+.g3-arts section > :where(p,ul),.g3-dl,.g3-dl dt{font-size:var(--t-small);line-height:1.6;color:var(--color-fg-2)}
+.g3-arts section > * + *{margin-top:8px}
+.g3-arts ul li{position:relative;padding-left:20px}
+.g3-arts ul li + li{margin-top:8px}
+.g3-arts ul li::before{content:"";position:absolute;left:2px;top:.8em;width:8px;height:1px;background:var(--moss)}
+.g3-ph{padding:0 4px;border-radius:4px;background:#f3e7b8;color:#5b4a12}
+.g3-dl{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:14px;row-gap:2px}
+.g3-dl dt{color:var(--soft)}
+.g3-dl dd{font-variant-numeric:tabular-nums}
+/* the seal on the sheet: stamped at the foot of the articles, a little askew */
+.g3-seal.is-doc{order:2;width:clamp(150px,13vw,176px);height:auto;margin:0 -6px -6px auto;transform:rotate(-9deg)}
+.g3-top{order:0}.g3-arts{order:1}.g3-tear{order:3}.g3-strip{order:4}
+.g3-tear{position:relative;margin:clamp(20px,2.4vw,32px) calc(var(--pad) * -1) 0;border-top:2px dashed rgba(63,74,55,.4)}
+.g3-tear::before,.g3-tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--page);box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
+.g3-tear::before{left:-11px;clip-path:inset(0 0 0 50%)}
+.g3-tear::after{right:-11px;clip-path:inset(0 50% 0 0)}
+.g3-strip{padding-top:clamp(22px,2.6vw,36px)}
+.g3-strip h3{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
+.g3-strip p{margin-top:8px;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
+.g3-strip dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(24px,3.4vw,52px);margin-top:18px}
+.g3-strip dt,.g3-ways dt{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
+.g3-strip dd{font-size:var(--t-lead);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums}
+.g3-strip dd a,.g3-ways dd a{display:inline-block;padding-block:6px;margin-block:-6px}
+@media (max-width:699.98px){
+  .g3-doc{border-radius:8px}
+  .g3-arts{columns:1}
+  .g3-fill{grid-template-columns:minmax(0,1fr)}
+  .g3-strip dl{grid-template-columns:minmax(0,1fr)}
+}
+
+/* the short promise (gb-1 and gb-3) */
+.g3-short li{position:relative;padding-left:20px;font-size:var(--t-body);line-height:1.45;color:var(--color-fg-2)}
+.g3-short li + li{margin-top:8px}
+.g3-short li::before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:1px;background:var(--moss)}
+
+/* ================= desktop: three ways to fill the side of the sheet ================= */
+@media (min-width:1100px){
+  .g3-arts section > :where(p,ul),.g3-arts .g3-dl{font-size:var(--t-body);line-height:1.6}
+  .g3-arts h3{font-size:var(--t-lead)}
+  .g3-arts section > * + *{margin-top:10px}
+
+  /* ---- gb-1: a sticky column "in short" ---- */
+  html.gb-1 .g3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,5vw,88px);align-items:start}
+  html.gb-1 .g3-side{position:sticky;top:48px}
+  html.gb-1 .g3-head{padding-top:calc(80px + clamp(28px,3.4vw,56px))}
+  html.gb-1 .g3-crumb{margin-bottom:clamp(16px,1.8vw,26px)}
+  html.gb-1 h1{font-size:var(--t-h2);line-height:1.06}
+  html.gb-1 .g3-lead{margin-top:18px}
+  html.gb-1 .g3-draft{margin-top:16px}
+  html.gb-1 .g3-pdf{display:none}
+  html.gb-1 .g3-kort{display:block;margin-top:clamp(22px,2.4vw,34px);padding-top:clamp(22px,2.4vw,34px);border-top:1px solid rgba(63,74,55,.18)}
+  html.gb-1 .g3-kr{display:grid;grid-template-columns:clamp(150px,13vw,190px) minmax(0,1fr);column-gap:clamp(22px,2.4vw,36px);align-items:center}
+  html.gb-1 .g3-kr .g3-seal{width:100%;height:auto;transform:rotate(-8deg)}
+  html.gb-1 .g3-ways{display:flex;flex-wrap:wrap;gap:10px clamp(20px,2.4vw,36px);margin-top:clamp(20px,2.2vw,30px)}
+  html.gb-1 .g3-ways dd{font-size:var(--t-body);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums}
+  html.gb-1 .g3-kpdf{margin-top:10px}
+  html.gb-1 .g3-stage{padding-top:calc(80px + clamp(28px,3.4vw,56px) + 60px)}
+  html.gb-1 .g3-seal.is-doc{display:none}
+
+  /* ---- gb-2 and gb-3: the head runs across the page ---- */
+  html:is(.gb-2,.gb-3) .g3-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(40px,5vw,88px);align-items:end}
+  html:is(.gb-2,.gb-3) .g3-crumb{grid-column:1 / -1}
+  html:is(.gb-2,.gb-3) .g3-lead{margin-top:0}
+  html:is(.gb-2,.gb-3) .g3-pdf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px;max-width:none;margin-top:14px}
+  html:is(.gb-2,.gb-3) .g3-pdf span{flex:1 1 220px}
+
+  /* ---- gb-2: the sheet centred and wider, the seal stamped over its corner ---- */
+  html.gb-2 .g3-stage{max-width:1080px;margin-inline:auto;padding-top:clamp(120px,10vw,150px)}
+  html.gb-2 .g3-air{inset:6% -22% 2%}
+  html.gb-2 .g3-seal.is-doc{position:absolute;z-index:2;top:-52px;right:-58px;width:clamp(190px,15.5vw,232px);margin:0;transform:rotate(13deg)}
+  html.gb-2 .g3-doc{--pad:clamp(40px,4.4vw,72px)}
+
+  /* ---- gb-3: a plant label on a string hangs beside the sheet ---- */
+  html.gb-3 .g3{display:grid;grid-template-columns:clamp(260px,23vw,320px) minmax(0,1fr);column-gap:clamp(36px,5vw,96px);align-items:start}
+  html.gb-3 .g3-side{grid-column:1 / -1}
+  html.gb-3 .g3-stage{grid-column:2;padding-top:clamp(120px,10vw,150px)}
+  html.gb-3 .g3-seal.is-doc{display:none}
+  html.gb-3 .g3-lab{display:block;position:sticky;top:calc(48px + 80px + 78px);margin-top:clamp(150px,12vw,190px);
+    transform:rotate(-2.5deg);transform-origin:50% -180px;filter:drop-shadow(0 1px 1px rgba(63,74,55,.18)) drop-shadow(0 30px 34px rgba(63,74,55,.2))}
+  html.gb-3 .g3-lstr{position:absolute;top:-152px;width:88px;left:calc(50% - 44px);height:190px;fill:none;stroke:#7d8c6f;stroke-width:1.4;stroke-linecap:round}
+  html.gb-3 .g3-tag{position:relative;padding:58px clamp(22px,2vw,30px) 86px;background:#fbfaf8;border-radius:14px 14px 0 0;text-align:center;
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 64px),50% 100%,0 calc(100% - 64px))}
+  html.gb-3 .g3-lhole{position:absolute;top:20px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--page);box-shadow:inset 0 1px 2px rgba(63,74,55,.35)}
+  html.gb-3 .g3-lbrand{font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
+  html.gb-3 .g3-tag .g3-seal{width:min(100%,196px);height:auto;margin:14px auto 0;transform:rotate(6deg)}
+  html.gb-3 .g3-lname{margin-top:12px;font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
+  html.gb-3 .g3-tag .g3-short{margin-top:14px;padding-top:14px;border-top:1px solid rgba(63,74,55,.2);text-align:left}
+  html.gb-3 .g3-tag .g3-short li{font-size:var(--t-small)}
+  html.gb-3 .g3-lpdf{margin-top:8px}
+  html.gb-3 .g3-pdf{display:none}
+}
+/* short screens (laptops): the sticky parts must fit the window */
+@media (min-width:1100px) and (max-height:860px){
+  html.gb-1 .g3-head{padding-top:calc(80px + 24px)}
+  html.gb-1 .g3-lead{display:none}
+  html.gb-1 .g3-kort{margin-top:20px;padding-top:20px}
+  html.gb-1 .g3-kr{grid-template-columns:150px minmax(0,1fr)}
+  html.gb-3 .g3-lab{top:calc(48px + 80px + 66px)}
+  html.gb-3 .g3-tag{padding:50px 22px 74px}
+  html.gb-3 .g3-tag .g3-seal{width:150px;margin-top:10px}
+  html.gb-3 .g3-tag .g3-short{margin-top:10px;padding-top:10px}
+}
