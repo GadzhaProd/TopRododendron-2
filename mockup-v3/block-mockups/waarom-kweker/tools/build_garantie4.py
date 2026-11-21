@@ -24,6 +24,30 @@ PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Alle voo
         '<path d="M8 2v9M4 8l4 4 4-4M3 14h10"/></svg></a>')
 
 
+def seal_emboss():
+    # The seal (owner chose Fable's "4 · Тиснение", garantie8-fable.html, 21 Nov): a blind stamp. The scalloped disc and its two
+    # rings are pressed into the paper, light from the upper left and a shade to the lower right, no ink; only the lettering
+    # and "3 maanden" are printed in moss. The scallops reach about r 128 from the centre with their stroke, offset and blur,
+    # so the viewBox gives 10 units of room round the 240 box (in -4 -4 248 248 they were cut flat at the top, bottom and
+    # sides; owner, 21 Nov).
+    n, R, r = 28, 111, 12.4
+    pp = [(120 + R * math.cos(2 * math.pi * k / n - math.pi / 2), 120 + R * math.sin(2 * math.pi * k / n - math.pi / 2)) for k in range(n)]
+    scal = 'M%.2f %.2f' % pp[0] + ''.join('A%.1f %.1f 0 0 1 %.2f %.2f' % (r, r, x, y) for x, y in pp[1:] + pp[:1]) + 'Z'
+    relief = f'<path d="{scal}"/><circle cx="120" cy="120" r="101"/><circle cx="120" cy="120" r="57"/>'
+    serif, sans = 'Newsreader,Georgia,serif', 'Manrope,system-ui,sans-serif'
+    return ('<svg class="gt-seal" viewBox="-10 -10 260 260" role="img" aria-label="Zegel: Top Rhododendrons, Otterlo, sinds 2001. 3 maanden aangroeigarantie">'
+            '<defs><path id="gt-st" d="M43 120a77 77 0 0 1 154 0"/><path id="gt-sb" d="M30 120a90 90 0 0 0 180 0"/>'
+            '<filter id="gt-ss" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".7"/></filter></defs>'
+            f'<path d="{scal}" fill="#fff" opacity=".3"/>'
+            f'<g fill="none" stroke-linejoin="round"><g stroke="rgba(52,62,44,.55)" stroke-width="2.2" transform="translate(1.3 1.5)" filter="url(#gt-ss)">{relief}</g>'
+            f'<g stroke="#fff" stroke-width="2.2" transform="translate(-1.2 -1.3)" filter="url(#gt-ss)">{relief}</g></g>'
+            f'<g fill="#3f4a37"><text font-family="{sans}" font-size="15" font-weight="700" letter-spacing="2.6"><textPath href="#gt-st" startOffset="50%" text-anchor="middle">TOP RHODODENDRONS</textPath></text>'
+            f'<text font-family="{sans}" font-size="13.5" font-weight="700" letter-spacing="2.4"><textPath href="#gt-sb" startOffset="50%" text-anchor="middle">OTTERLO · SINDS 2001</textPath></text>'
+            f'<text x="120" y="131" text-anchor="middle" font-family="{serif}" font-size="62" font-weight="500">3</text>'
+            f'<text x="120" y="152" text-anchor="middle" font-family="{serif}" font-size="19" font-weight="500">maanden</text></g></svg>')
+
+
+# the earlier ink stamp (Fable, 20 Nov), kept for the record; not on the page since 21 Nov
 def seal(uid, cls=''):
     # Fable's stamp: a scalloped edge, two rings, the name over the top, the place under it, the term in the middle; worn ink;
     # no dashes beside "maanden" (owner, 20 Nov)
@@ -66,7 +90,7 @@ HEAD = ('<div class="gt-head"><nav class="gt-crumb" aria-label="Kruimelpad"><a h
         'Dezelfde soort en maat, kosteloos bezorgd of voor u klaargezet. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan.</p>'
         '</div></div>')
 # (owner, 21 Nov: no "Concepttekst…" chip on the page; the copy is still a draft for the owner and a lawyer, see docs)
-LABEL = ('<div class="gt-lab">' + CORD_B + CORD + '<div class="gt-tag"><p class="gt-lbrand">Top Rhododendrons</p>' + seal('s1')
+LABEL = ('<div class="gt-lab">' + CORD_B + CORD + '<div class="gt-tag"><p class="gt-lbrand">Top Rhododendrons</p>' + seal_emboss()
          + '<p class="gt-lname">Aangroeigarantie</p>' + SHORT + '<p class="gt-lpdf">' + PDFA + '</p></div></div>')
 
 # ---- the sheet: how it works in four steps, then the conditions in short ----

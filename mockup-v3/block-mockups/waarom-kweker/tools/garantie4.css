@@ -42,7 +42,9 @@
   radial-gradient(ellipse 110% 30% at 100% 98%,#d3ddc2 0%,transparent 74%),
   #ebece3}
 .gt-lbrand{font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
-.gt-tag .gt-seal{width:min(100%,184px);height:auto;margin:12px auto 0;transform:rotate(6deg)}
+/* the blind-stamped seal: light and shade on the paper, so no multiply; a little larger than the ink stamp was, as its
+   viewBox has more room round the disc (the disc itself is about the same size) */
+.gt-tag .gt-seal{width:min(100%,192px);height:auto;margin:10px auto 0;transform:rotate(6deg);mix-blend-mode:normal}
 .gt-lname{margin-top:10px;font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
 .gt-short{margin-top:14px;padding-top:14px;border-top:1px solid rgba(63,74,55,.3);text-align:left}
 .gt-short li{position:relative;padding-left:20px;font-size:var(--t-small);line-height:1.45;color:#33322e}
@@ -106,7 +108,7 @@
 @media (min-width:900px) and (max-height:860px){
   .gt-lab{top:calc(80px + 20px - 40px)}
   .gt-tag{padding:56px 20px 28px}
-  .gt-tag .gt-seal{width:140px;margin-top:8px}
+  .gt-tag .gt-seal{width:146px;margin-top:6px}
   .gt-lname{margin-top:6px}
   .gt-short{margin-top:10px;padding-top:10px}
   .gt-short li + li{margin-top:5px}
