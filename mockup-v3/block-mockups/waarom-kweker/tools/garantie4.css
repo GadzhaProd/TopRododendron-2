@@ -2,7 +2,7 @@
    The plant label of Fable's gb-3 (garantie-fable3.html) with the seal, on a cord through a metal eyelet.
    Desktop (>= 900 px): the head (the subtitle under the heading, as on the other pages), then the label beside the guarantee
    sheet; the label stays in view while the sheet scrolls. The sheet: how it works in four steps (no numbers, owner), the
-   conditions in short, a perforation and a tear-off contact strip.
+   conditions in short, and the contacts under a hairline.
    Below 900 px: the label with the main points and the pdf, the contacts, and the full sheet behind "Lees alle voorwaarden".
    No photos; the soft blur is only the light behind the sheet. */
 .gtm{background:var(--page);overflow-x:clip;color:var(--color-fg)}
@@ -81,11 +81,8 @@
 .gt-terms dt{font-size:var(--t-body);line-height:1.45;font-weight:600}
 .gt-terms dd{margin-top:4px;font-size:var(--t-small);line-height:1.6;color:var(--color-fg-2)}
 .gt-ph{padding:0 4px;border-radius:4px;background:#f3e7b8;color:#5b4a12}
-.gt-tear{position:relative;margin:clamp(18px,2.2vw,28px) calc(var(--pad) * -1) 0;border-top:2px dashed rgba(63,74,55,.4)}
-.gt-tear::before,.gt-tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--page);box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
-.gt-tear::before{left:-11px;clip-path:inset(0 0 0 50%)}
-.gt-tear::after{right:-11px;clip-path:inset(0 50% 0 0)}
-.gt-strip{padding-top:clamp(22px,2.6vw,36px)}
+/* the contact strip: under a quiet hairline (owner, 21 Nov: no dashed perforation) */
+.gt-strip{margin-top:clamp(12px,1.6vw,20px);padding-top:clamp(22px,2.6vw,36px);border-top:1px solid rgba(63,74,55,.2)}
 .gtm :is(.gt-strip h3,.gt-help h2){font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub)!important;line-height:1.2;letter-spacing:-.01em}
 .gtm :is(.gt-strip,.gt-help) p{margin-top:8px;max-width:60ch;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
 .gtm :is(.gt-strip,.gt-help) dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(24px,3.4vw,52px);margin-top:18px}
@@ -138,7 +135,7 @@
   .gt.is-open .gt-stage{display:block}
   .gt-steps{grid-template-columns:minmax(0,1fr)}
   .gt-terms dl{columns:1}
-  .gt-tear,.gt-strip{display:none}
+  .gt-strip{display:none}
 }
 @media (max-width:599.98px){
   .gt-doc{border-radius:8px}

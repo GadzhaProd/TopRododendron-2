@@ -96,7 +96,6 @@ DOC = ('<article class="gt-doc" aria-labelledby="h-doc">' +
        '<section class="gt-terms" aria-labelledby="h-terms"><h3 class="gt-lbl" id="h-terms">Goed om te weten</h3><dl>'
        + ''.join(f'<div><dt>{t}</dt><dd>{p}</dd></div>' for t, p in TERMS) +
        '</dl></section>'
-       '<div class="gt-tear" aria-hidden="true"></div>'
        '<footer class="gt-strip"><h3>Gaat een plant achteruit?</h3><p>Meld het zo snel mogelijk, dan kijken we eerst samen of hij te redden is. '
        'U spreekt met Gert Top, oprichter en kweker, of met zijn team.</p>'
        + WAYS + '</footer></article>')
