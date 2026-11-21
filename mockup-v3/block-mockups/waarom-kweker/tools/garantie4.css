@@ -1,9 +1,8 @@
 /* ===== The guarantee conditions page (phase 2, item 2.2), after the owner's choice of 20 Nov =====
    The plant label of Fable's gb-3 (garantie-fable3.html) with the seal, on a cord through a metal eyelet.
    Desktop (>= 900 px): the head (the subtitle under the heading, as on the other pages), then the label beside the guarantee
-   sheet; the label stays in view while the sheet scrolls. The sheet: how it works in four steps (no numbers, owner), the
-   conditions in short, and the contacts under a hairline.
-   Below 900 px: the label with the main points and the pdf, the contacts, and the full sheet behind "Lees alle voorwaarden".
+   conditions, set as an official document (Fable's "Документ", owner 21 Nov); the label stays in view while it scrolls.
+   Below 900 px: the label with the main points and the pdf, and the contacts; the conditions are the pdf (owner, 21 Nov).
    No photos; the soft blur is only the light behind the sheet. */
 .gtm{background:var(--page);overflow-x:clip;color:var(--color-fg)}
 .gtm :where(h1,h2,h3,h4,p,ol,ul,dl,dd){margin:0}
@@ -62,39 +61,36 @@
     radial-gradient(ellipse 44% 26% at 26% 86%,#ecd6d2 0%,transparent 72%)}
 .gt-doc{position:relative;--pad:clamp(24px,3.6vw,56px);padding:var(--pad);border-radius:10px;background:#fbfaf8;
   box-shadow:0 0 0 1px rgba(63,74,55,.1),0 2px 4px rgba(63,74,55,.06),0 44px 60px -44px rgba(63,74,55,.4)}
-.gt-top{text-align:center;padding-bottom:clamp(24px,2.8vw,40px)}
-.gt-brand{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
-.gt-top h2{margin-top:10px;font-size:var(--t-h2)!important;line-height:1.05}
-.gt-sub{margin-top:10px;font-size:var(--t-lead);line-height:1.5;color:var(--color-fg-2)}
-/* a section label with a hairline running out to the edge */
-.gt-lbl{display:flex;align-items:center;gap:14px;margin-bottom:clamp(18px,2vw,26px)!important;font-size:var(--t-small);line-height:1.4;font-weight:600;
-  letter-spacing:.02em;color:var(--moss)}
-.gt-lbl::after{content:"";flex:1;height:1px;background:rgba(63,74,55,.2)}
-/* the four steps: the verb in Newsreader, the text under it */
-.gt-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,2.6vw,34px) clamp(24px,3vw,48px)}
-.gt-steps h4{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
-.gt-steps p{margin-top:8px;font-size:var(--t-body);line-height:1.6;color:var(--color-fg-2)}
-/* the conditions in short */
-.gt-terms{margin-top:clamp(32px,3.6vw,52px)}
-.gt-terms dl{columns:2;column-gap:clamp(24px,3vw,48px)}
-.gt-terms dl > div{break-inside:avoid;padding-bottom:clamp(16px,1.8vw,22px)}
-.gt-terms dt{font-size:var(--t-body);line-height:1.45;font-weight:600}
-.gt-terms dd{margin-top:4px;font-size:var(--t-small);line-height:1.6;color:var(--color-fg-2)}
-.gt-ph{padding:0 4px;border-radius:4px;background:#f3e7b8;color:#5b4a12}
-/* the contact strip: under a quiet hairline (owner, 21 Nov: no dashed perforation) */
-.gt-strip{margin-top:clamp(12px,1.6vw,20px);padding-top:clamp(22px,2.6vw,36px);border-top:1px solid rgba(63,74,55,.2)}
-.gtm :is(.gt-strip h3,.gt-help h2){font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub)!important;line-height:1.2;letter-spacing:-.01em}
-.gtm :is(.gt-strip,.gt-help) p{margin-top:8px;max-width:60ch;text-wrap:pretty;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
-.gtm :is(.gt-strip,.gt-help) dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(24px,3.4vw,52px);margin-top:18px}
-.gtm :is(.gt-strip,.gt-help) dt{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
-.gtm :is(.gt-strip,.gt-help) dd{font-size:var(--t-lead);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums}
-.gtm :is(.gt-strip,.gt-help) dd a{display:inline-block;padding-block:6px;margin-block:-6px}
+/* the document: a title and a subtitle closed by a double rule (no kicker above the title, owner 21 Nov) */
+.gt-dtop{padding-bottom:clamp(22px,2.6vw,34px);border-bottom:3px double rgba(63,74,55,.45)}
+.gt-dtop h2{font-size:var(--t-h2)!important;line-height:1.05}
+.gt-dsub{margin-top:10px;font-size:var(--t-lead);line-height:1.5;color:var(--color-fg-2)}
+/* an article: the number in the margin, in the type of the text; the title and the text in one reading column */
+.gt-art{display:grid;grid-template-columns:clamp(84px,8vw,112px) minmax(0,1fr);column-gap:clamp(16px,2vw,32px);padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(63,74,55,.16)}
+.gt-art h3{display:contents}
+.gt-an{grid-column:1;grid-row:1;font-size:var(--t-small);line-height:1.72;font-weight:600;color:var(--moss);font-variant-numeric:tabular-nums}
+.gt-at{grid-column:2;grid-row:1;font-size:var(--t-body);line-height:1.5;font-weight:600;color:var(--color-fg)}
+.gt-ab{grid-column:2;grid-row:2;margin-top:6px;max-width:68ch}
+.gt-ab p,.gt-abc li{font-size:var(--t-body);line-height:1.65;color:var(--color-fg-2);text-wrap:pretty}
+.gt-abc{margin-top:8px!important;counter-reset:abc}
+.gt-abc li{position:relative;padding-left:28px;counter-increment:abc}
+.gt-abc li + li{margin-top:4px}
+.gt-abc li::before{content:counter(abc,lower-alpha) ".";position:absolute;left:0;color:var(--moss);font-weight:600}
+.gt-dfoot{padding-top:clamp(18px,2vw,26px)}
+.gt-dfoot p{font-size:var(--t-micro);line-height:1.6;color:var(--soft)}
+/* the contacts under the label (phone) */
+.gtm .gt-help h2{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub)!important;line-height:1.2;letter-spacing:-.01em}
+.gtm .gt-help p{margin-top:8px;max-width:60ch;text-wrap:pretty;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
+.gtm .gt-help dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(24px,3.4vw,52px);margin-top:18px}
+.gtm .gt-help dt{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
+.gtm .gt-help dd{font-size:var(--t-lead);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums}
+.gtm .gt-help dd a{display:inline-block;padding-block:6px;margin-block:-6px}
 
 /* ================= desktop: the label beside the sheet ================= */
 @media (min-width:900px){
   .gt{display:grid;grid-template-columns:clamp(256px,21vw,300px) minmax(0,1fr);column-gap:clamp(36px,5vw,96px);align-items:start}
   .gt-head{grid-column:1 / -1}
-  .gt-help,.gt-more{display:none}
+  .gt-help{display:none}
   .gt-stage{grid-column:2;padding-top:clamp(40px,4.4vw,64px)}
   /* the label hangs on its loop (top at y 40 of the SVG), a little turned, and stays beside the sheet while it scrolls */
   .gt-lab{position:sticky;top:calc(80px + 28px - 40px);margin-top:calc(clamp(40px,4.4vw,64px) - 46px);transform:rotate(-2.5deg);transform-origin:50% 40px}
@@ -103,9 +99,9 @@
 /* narrower screens: a smaller tilt, so the foot of the label keeps its distance from the sheet (it swings right about the pin) */
 @media (min-width:900px) and (max-width:1199.98px){ .gt-lab{transform:rotate(-1.8deg)} }
 @media (min-width:900px) and (max-width:1099.98px){
-  .gt-steps{grid-template-columns:minmax(0,1fr)}
-  .gt-terms dl{columns:1}
-  .gt-strip dl{grid-template-columns:minmax(0,1fr)}
+  .gt-art{grid-template-columns:minmax(0,1fr)}
+  .gt-an,.gt-at,.gt-ab{grid-column:1;grid-row:auto}
+  .gt-an{line-height:1.5}
 }
 /* short laptop screens: the label must fit the window */
 @media (min-width:900px) and (max-height:860px){
@@ -117,7 +113,7 @@
   .gt-short li + li{margin-top:5px}
 }
 
-/* ================= below 900 px: the label is the page; the full sheet on request ================= */
+/* ================= below 900 px: the label is the page; the conditions are the pdf ================= */
 @media (max-width:899.98px){
   /* the label turns about its pin, so its foot swings to the right: it is moved back by half of that, and stays centred as a whole */
   .gt-lab{max-width:min(340px,100% - 12px);margin:calc(clamp(28px,6vw,44px) - 40px) auto 0;transform:translateX(-9px) rotate(-1.5deg);transform-origin:50% 40px}
@@ -129,19 +125,8 @@
   .gt-lpdf{margin-top:16px}
   .gt-lpdf .gt-pdfa{width:100%;min-height:48px;border:1px solid rgba(20,20,19,.25);border-radius:999px;text-decoration:none}
   .gt-help{max-width:560px;margin:clamp(44px,9vw,60px) auto 0}
-  .gt-more{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:560px;min-height:52px;margin:clamp(24px,5vw,32px) auto 0;padding:0 4px;
-    border:0;border-top:1px solid rgba(63,74,55,.2);border-bottom:1px solid rgba(63,74,55,.2);background:none;cursor:pointer;
-    font:600 var(--t-body)/1.3 Manrope,system-ui,sans-serif;color:var(--color-fg)}
-  .gt-more svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s ease}
-  .gt.is-open .gt-more svg{transform:rotate(180deg)}
-  .gt-stage{display:none;max-width:560px;margin:20px auto 0}
-  .gt.is-open .gt-stage{display:block}
-  .gt-steps{grid-template-columns:minmax(0,1fr)}
-  .gt-terms dl{columns:1}
-  .gt-strip{display:none}
+  .gt-stage{display:none}
 }
 @media (max-width:599.98px){
-  .gt-doc{border-radius:8px}
   .gtm .gt-help dl{grid-template-columns:minmax(0,1fr)}
 }
-@media (prefers-reduced-motion:reduce){ .gt-more svg{transition:none} }

@@ -67,48 +67,42 @@ LABEL = ('<div class="gt-lab">' + CORD_B + CORD + '<div class="gt-tag"><p class=
          + '<p class="gt-lname">Aangroeigarantie</p>' + SHORT + '<p class="gt-lpdf">' + PDFA + '</p></div></div>')
 
 # ---- the sheet: how it works in four steps, then the conditions in short ----
-STEPS = [
- ('Planten', 'Plant binnen <b>14&nbsp;dagen</b> na levering, in kalkvrije, zure grond en niet dieper dan de kluit. Geef water in droge periodes.'),
- ('Melden', 'Slaat een plant binnen <b>3&nbsp;maanden</b> niet aan? Stuur twee of drie foto’s met uw ordernummer, per WhatsApp of <span class="nb">e-mail</span>. '
-            'De oorzaak hoeft u niet aan te tonen.'),
- ('Antwoord', 'Binnen <b>twee werkdagen</b> hoort u van ons, binnen 14&nbsp;dagen volgt ons besluit. Twijfelen wij, dan komen wij kijken. Dat kost u niets.'),
- ('Nieuwe plant', 'U krijgt een plant van <b>dezelfde soort en maat</b>, in het eerstvolgende plantseizoen kosteloos bezorgd of klaargezet op de kwekerij, '
-                  + A_FIELD + '. De oude hoeft niet terug.'),
+# ---- the sheet: the guarantee conditions as an official document (owner chose Fable's "Документ", garantie7-fable.html,
+# 21 Nov): a title and a subtitle (no kicker above the title: thin, bold, thin was one layer too many), eight articles with a
+# small "Artikel n" label in the margin, the issuer in one small line at the foot. No names, no fields, no placeholders, no
+# perforation or tear-off; the contacts are in Artikel 5. The Dutch copy is written from the draft's facts only.
+A_WA_D = '<a ' + WA + '>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
+A_FIELD_D = '<a href="' + FIELD + '" target="_blank" rel="noopener noreferrer">Apeldoornseweg in Wekerom</a>'
+ARTS = [
+ ('De garantie', '<p>Slaat een rhododendron binnen drie maanden na levering niet aan, dan vervangen wij hem kosteloos door een plant van dezelfde soort en maat. '
+                 'Deze garantie geldt naast uw wettelijke rechten en beperkt die niet.</p>'),
+ ('Toepassing', '<p>De garantie geldt voor rhododendrons die u als particulier bij ons koopt en in de volle grond plant, bezorgd in Nederland of afgehaald op de kwekerij. '
+                'Een plant is niet aangeslagen als hij afsterft, of in het groeiseizoen niet meer uitloopt.</p>'),
+ ('Wat wij van u vragen', '<p>U plant de rhododendron binnen 14&nbsp;dagen na ontvangst en houdt de kluit tot dan vochtig. U plant in kalkvrije, zure, humusrijke en goed '
+                          'doorlatende grond, niet dieper dan de bovenkant van de kluit, en u geeft water in droge periodes, vooral in de eerste zomer. '
+                          'Kleine, onbedoelde fouten bij de verzorging rekenen wij u niet aan.</p>'),
+ ('Uitsluitingen', '<p>De garantie geldt niet als vaststaat dat de plant niet is aangeslagen door:</p><ol class="gt-abc">'
+                   '<li>vorst die strenger is dan de vermelde winterhardheid;</li><li>langdurig staand water op de plantplek;</li><li>vraat of schade door dieren;</li>'
+                   '<li>mechanische schade of vandalisme;</li><li>verplanten na de eerste aanplant, of planten in kalkhoudende grond.</li></ol>'),
+ ('Melding', '<p>Gaat een plant achteruit, meld het dan zo snel mogelijk, zodat wij eerst kunnen kijken of hij te redden is. Stuur per WhatsApp (' + A_WA_D + ') of '
+             '<span class="nb">e-mail</span> (' + A_MAIL + ') twee of drie foto’s van de plant en de plantplek, met uw ordernummer. U hoeft de oorzaak niet aan te tonen.</p>'),
+ ('Beoordeling', '<p>U ontvangt binnen twee werkdagen een reactie en binnen 14&nbsp;dagen ons besluit. Twijfelen wij, dan komen wij eerst kijken, zonder kosten voor u.</p>'),
+ ('Vervanging', '<p>De nieuwe plant wordt kosteloos bezorgd in het eerstvolgende geschikte plantseizoen, of op uw verzoek klaargezet op de kwekerij aan de ' + A_FIELD_D + '. '
+                'De oude plant hoeft u niet terug te sturen. Is de soort of maat niet meer leverbaar, dan kiest u een andere soort in dezelfde maat, of terugbetaling van de koopprijs.</p>'),
+ ('Uw wettelijke rechten', '<p>Voldoet een plant bij levering niet aan wat u mocht verwachten, dan heeft u op grond van de wet kosteloos recht op vervanging, '
+                           'en als dat niet mogelijk is op prijsvermindering of ontbinding. Deze garantie doet daar niets aan af.</p>'),
 ]
-TERMS = [
- ('Voor welke planten', 'Alle rhododendrons die u als particulier bij ons koopt en in de volle grond plant, bezorgd in Nederland of afgehaald. '
-                        'Niet aangeslagen betekent: afgestorven, of in het groeiseizoen niet meer uitgelopen.'),
- ('Niet meer leverbaar', 'Dan kiest u: een andere soort in dezelfde maat, of uw geld terug.'),
- ('Wanneer wij niet vervangen', 'Als vaststaat dat de oorzaak vorst is die strenger is dan de vermelde winterhardheid, langdurig staand water, '
-                                'vraat door dieren, mechanische schade of vandalisme, verplanten, of kalkhoudende grond.'),
- ('Uw wettelijke rechten', 'Deze garantie komt bovenop uw wettelijke rechten en beperkt ze niet. Voldoet een plant bij levering niet aan wat u mocht '
-                           'verwachten, dan heeft u kosteloos recht op vervanging, en anders op prijsvermindering of ontbinding.'),
- ('Wie geeft de garantie', '<span class="gt-ph">[juridische naam]</span>, handelend onder de naam Top Rhododendrons. KvK&nbsp;82480273. '
-                           'Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo.'),
-]
+DOC = ('<article class="gt-doc" aria-labelledby="h-doc"><header class="gt-dtop"><h2 id="h-doc">Garantievoorwaarden</h2>'
+       '<p class="gt-dsub">Aangroeigarantie van drie maanden op rhododendrons</p></header>'
+       + ''.join(f'<section class="gt-art" aria-labelledby="h-art{n}"><h3 id="h-art{n}"><span class="gt-an">Artikel {n}</span><span class="gt-at">{t}</span></h3>'
+                 f'<div class="gt-ab">{b}</div></section>' for n, (t, b) in enumerate(ARTS, 1))
+       + '<footer class="gt-dfoot"><p>Garantiegever: Top Rhododendrons · Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo · KvK&nbsp;82480273</p></footer></article>')
 WAYS = '<dl><div><dt>WhatsApp</dt><dd>' + A_WA + '</dd></div><div><dt>Bellen</dt><dd>' + A_TEL + '</dd></div><div><dt>E-mail</dt><dd>' + A_MAIL + '</dd></div></dl>'
-DOC = ('<article class="gt-doc" aria-labelledby="h-doc">' +
-       '<header class="gt-top"><p class="gt-brand">Top Rhododendrons · familiekwekerij in Otterlo</p>'
-       '<h2 id="h-doc">Aangroeigarantie</h2><p class="gt-sub">3 maanden na levering, bovenop uw wettelijke rechten.</p></header>'
-       '<section class="gt-how" aria-labelledby="h-how"><h3 class="gt-lbl" id="h-how">Zo werkt het</h3><ol class="gt-steps">'
-       + ''.join(f'<li><h4>{t}</h4><p>{p}</p></li>' for t, p in STEPS) +
-       '</ol></section>'
-       '<section class="gt-terms" aria-labelledby="h-terms"><h3 class="gt-lbl" id="h-terms">Goed om te weten</h3><dl>'
-       + ''.join(f'<div><dt>{t}</dt><dd>{p}</dd></div>' for t, p in TERMS) +
-       '</dl></section>'
-       '<footer class="gt-strip"><h3>Gaat een plant achteruit?</h3><p>Meld het zo snel mogelijk, dan kijken we eerst samen of hij te redden is. '
-       'U spreekt met Gert Top, oprichter en kweker, of met zijn team.</p>'
-       + WAYS + '</footer></article>')
-# below 900 px: the contacts under the label, and the full conditions behind one button
-HELP = ('<div class="gt-help"><h2>Gaat een plant achteruit?</h2><p>Stuur ons een paar foto’s. U spreekt met Gert Top, oprichter en kweker, of met zijn team.</p>'
-        + WAYS + '</div>')
-MORE = ('<button class="gt-more" type="button" aria-expanded="false" aria-controls="voorwaarden"><span>Lees alle voorwaarden</span>'
-        '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>')
-JS = ('<script>(function(){var b=document.querySelector(".gt-more"),g=document.querySelector(".gt");if(!b||!g)return;'
-      'b.addEventListener("click",function(){var o=g.classList.toggle("is-open");b.setAttribute("aria-expanded",o);'
-      'b.querySelector("span").textContent=o?"Verberg de voorwaarden":"Lees alle voorwaarden";});})();</script>')
-MAIN = ('<main id="main" tabindex="-1" class="gtm"><div class="in gt">' + HEAD + LABEL + HELP + MORE
-        + '<div class="gt-stage" id="voorwaarden"><div class="gt-air" aria-hidden="true"></div>' + DOC + '</div></div>' + JS + '</main>')
+# below 900 px the page is the label (with the pdf) and the contacts; the document is desktop only (owner, 21 Nov: on the
+# phone the conditions are the pdf)
+HELP = '<div class="gt-help"><h2>Gaat een plant achteruit?</h2><p>Stuur ons een paar foto’s.</p>' + WAYS + '</div>'
+MAIN = ('<main id="main" tabindex="-1" class="gtm"><div class="in gt">' + HEAD + LABEL + HELP
+        + '<div class="gt-stage" id="voorwaarden"><div class="gt-air" aria-hidden="true"></div>' + DOC + '</div></div></main>')
 s = head + MAIN + tail
 
 
