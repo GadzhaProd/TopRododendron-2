@@ -5,6 +5,8 @@
 #   bt-2 "Дуга": a gentle arc, the label ends like a rounded garden marker
 #   bt-3 "Фестоны": a scalloped edge that echoes the scallops of the seal
 #   bt-4 "Срезанные углы": two cut corners, the classic shape of a hang tag
+# FROZEN (21 Nov): the owner chose bt-1 "Прямой"; it is now in tools/garantie4.css, so this script no longer applies to
+# garantie4.html. Do not rebuild; garantie6-fable.html stays as the record of the round.
 # The bottom padding follows the shape, so the pdf link always has air under it. Usage: python3 tools/build_garantie6_fable.py [dir]
 import re, pathlib, sys
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')

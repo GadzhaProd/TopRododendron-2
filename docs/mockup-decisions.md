@@ -1281,3 +1281,7 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     2. a gentle arc, like a garden marker; rhymes with the round seal. Fable's recommendation.
     3. small scallops echoing the seal; at normal size it reads like a tear-off receipt.
     4. two chamfered bottom corners, the classic price tag; geometric again.
+- Owner (21 Nov): the bottom **1 · Прямой**. On the phone (through the link) the page behind the label looked split: greyish around the label, then a line, then lighter below.
+  - The straight foot is in `tools/garantie4.css` (border-radius 14px all round, no clip-path; bottom padding 30 px desktop, 28 px on short screens, 36 px on the phone). `tools/build_garantie6_fable.py` is frozen as the record of the round.
+  - The split was the label's wide drop shadow (0 30px 34px) greying the whole band of the page round the label on the phone, and the hairline above "Gaat een plant achteruit?" under it. On the phone the shadow is now close and soft (0 10px 14px), and the hairline is gone (more air instead). Sampled down the page at 390: the page colour #f1efea all the way, with only a light shade at the label's edge.
+  - The sticky label at 1440×900 now ends at 772 of 900, 1366×768 at 688 of 768, 1024×768 at 706 of 768.
