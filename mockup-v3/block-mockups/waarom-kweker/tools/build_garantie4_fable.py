@@ -1,3 +1,4 @@
+# (garantie4.html, which this script read, is garantie.html since 21 Nov; frozen, do not rebuild)
 # FROZEN (21 Nov): the record of the cord rounds. The owner chose 2б and it now lives in tools/build_garantie4.py, so this
 # script no longer matches garantie4.html (it replaced the old cord markup). Do not rebuild; garantie4-fable.html stays as built.
 # Mockup tool (not site code): garantie4-fable.html = garantie4.html with three designs of the plant label's cord (Fable).

@@ -1,3 +1,4 @@
+# (garantie4.html, which this script read, is garantie.html since 21 Nov; frozen, do not rebuild)
 # Mockup tool (not site code): garantie6-fable.html = garantie4.html with four bottoms for the label (Fable, 21 Nov).
 # The owner: the pointed (triangle) bottom does not suit us. The colour (A2), the cord (2б), the contents and the tilt stay.
 #   bt-0 as it is now (the point)

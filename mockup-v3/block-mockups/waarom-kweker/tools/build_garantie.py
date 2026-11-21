@@ -1,4 +1,5 @@
-# Mockup tool (not site code): garantie.html = the guarantee conditions page (phase 2, item 2.2), the target of
+# Mockup tool (not site code): garantie-v1.html (was garantie.html until 21 Nov) = the first draft of the guarantee conditions
+# page (phase 2, item 2.2); the page the owner approved is garantie.html, built by tools/build_garantie4.py. The target of
 # "Lees de voorwaarden" on the homepage. Header, cart, phone menu and footer are taken from the main mockup (index.html),
 # the main content is this page. Copy: the Dutch draft in reports/Гарантия приживаемости у конкурентов.md, rewritten for the
 # owner's term (3 months after delivery, 16 Nov) and the pickup at the field (19 Nov). DRAFT: the owner confirms it and a
@@ -101,5 +102,5 @@ for k in range(0, len(parts), 2):
 s = ''.join(parts)
 rep('</head>', '<style id="garantie-css">' + (D / 'tools' / 'garantie.css').read_text() + '</style></head>')
 s = re.sub(r'<title>[^<]*</title>', '<title>Aangroeigarantie | Top Rhododendrons</title>', s, count=1)
-(D / 'garantie.html').write_text(s)
+(D / 'garantie-v1.html').write_text(s)
 print('ok', len(s))

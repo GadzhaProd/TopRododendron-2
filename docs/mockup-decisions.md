@@ -1316,3 +1316,8 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     3. the arc lettering blind-embossed like the rings (no ink), only "3 maanden" printed; at 1× the arc lettering reads noticeably paler.
     4. moss foil with a quiet diagonal sheen and a light impression; the sheen lightens parts of some letters unevenly.
 - Owner (21 Nov): the lettering **2 · Глубокая тройка**. Now in `seal_emboss()` of `tools/build_garantie4.py` (with Fable's letterpress filter `_press()`): the arc lettering and "maanden" letterpressed in #3a4532, the "3" at 68 instead of 62, pressed deeper (depth 1.7) with ink darker at the top (#27301f → #4c5b41). `tools/build_garantie9_fable.py` is frozen as the record of the round. Checked at 4× at 390 against Fable's review page: the same; the scallops whole.
+- Owner (21 Nov): connect the page to "Lees de voorwaarden".
+  - The approved page is now `garantie.html` (built by `tools/build_garantie4.py`; the file was garantie4.html); the first draft, which was garantie.html, is `garantie-v1.html` (`tools/build_garantie.py`). The frozen review scripts (`build_garantie4_fable.py`, `build_garantie5…9_fable.py`) say so in their headers.
+  - On the homepage "Lees de voorwaarden" links to `garantie.html` (`tools/fase1c.py`; on the live site /garantie); index.html rebuilt by `tools/finalize_main.py`, the link the only change.
+  - On the guarantee page the way back is real: the breadcrumb "Home", the logo (it scrolled to the top before) and "Over ons" / "Contact" go to index.html, index.html#waarom, index.html#kweker (they showed a mockup note before). Clicked through at 1440 and 390.
+  - The main artifact now carries garantie.html as a second page.

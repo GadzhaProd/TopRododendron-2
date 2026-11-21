@@ -1,3 +1,4 @@
+# (garantie4.html, which this script read, is garantie.html since 21 Nov; frozen, do not rebuild)
 # Mockup tool (not site code): garantie9-fable.html = garantie4.html with four treatments of the LETTERING of the embossed
 # seal (Fable, an experiment). The owner: the seal is in relief, the text beside it looks flat; can the text be richer?
 # The relief, the card and the page stay; only the seal's text group changes. Each seal keeps the main seal's box.

@@ -1,3 +1,5 @@
+# FROZEN (21 Nov): a record of its round; it reads garantie4.html, which is garantie.html now (tools/build_garantie4.py).
+# Do not rebuild.
 # Mockup tool (not site code): garantie8-fable.html = garantie4.html with three more designs of the seal on the label
 # (Fable, an experiment; the current seal stays on the main page). Only the seal changes. All carry "3 maanden",
 # Top Rhododendrons, Otterlo, sinds 2001; no logo; moss ink, Newsreader + Manrope; every seal lies inside its own box

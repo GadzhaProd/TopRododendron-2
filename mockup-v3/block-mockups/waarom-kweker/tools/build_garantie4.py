@@ -1,4 +1,4 @@
-# Mockup tool (not site code): garantie4.html = the guarantee page after the owner's choice (20 Nov) on garantie-fable3.html:
+# Mockup tool (not site code): garantie.html (called garantie4.html until 21 Nov) = the guarantee page after the owner's choice (20 Nov) on garantie-fable3.html:
 # the plant label of gb-3 ("Бирка на шнурке") with the seal. Round 2 (owner, 20 Nov): the cord must really go through the
 # hole, so the label has a metal eyelet and the cord runs into it at the top and on behind the label (the lower part of the
 # hole stays empty); the subtitle sits under the heading as on the other pages; no step numbers; on the phone the page is the
@@ -100,7 +100,7 @@ CORD_B = '<svg class="gt-cord gt-cord-b" viewBox="0 0 120 180" aria-hidden="true
 
 SHORT = ('<ul class="gt-short" aria-label="De garantie in het kort"><li><b>3 maanden</b> na levering</li><li><b>Zelfde soort en maat</b> als vervanging</li>'
          '<li><b>Kosteloos</b> bezorgd of klaargezet</li><li><b>Foto’s volstaan</b>, u hoeft niets aan te tonen</li></ul>')
-HEAD = ('<div class="gt-head"><nav class="gt-crumb" aria-label="Kruimelpad"><a href="index.html" data-page="Home">Home</a><span aria-hidden="true">/</span><span>Aangroeigarantie</span></nav>'
+HEAD = ('<div class="gt-head"><nav class="gt-crumb" aria-label="Kruimelpad"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Aangroeigarantie</span></nav>'
         '<h1><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h1>'
         '<div class="gt-intro"><p class="gt-lead"><b>3 maanden aangroeigarantie na levering</b>, bovenop uw wettelijke rechten. '
         'Dezelfde soort en maat, kosteloos bezorgd of voor u klaargezet. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan.</p>'
@@ -154,13 +154,16 @@ def rep(a, b, n=1):
     assert s.count(a) == n, (s.count(a), a[:70]); s = s.replace(a, b)
 
 
-# on this page the homepage anchors become links to the homepage (only in the markup, not in the scripts)
+# on this page the homepage anchors become real links to the homepage, and the logo goes home instead of scrolling to the
+# top (only in the markup, not in the scripts); since 21 Nov "Lees de voorwaarden" on the homepage opens this page, so the
+# way back works too
 parts = re.split(r'(<script\b.*?</script>)', s, flags=re.S)
 for k in range(0, len(parts), 2):
-    for a, label in [('#waarom', 'Over ons (homepage)'), ('#kweker', 'Contact (homepage)'), ('#assortiment', 'Planten (homepage)')]:
-        parts[k] = re.sub(r'href="' + a + r'"(?![^>]*data-page)', f'href="index.html{a}" data-page="{label}"', parts[k])
+    for a in ['#waarom', '#kweker', '#assortiment']:
+        parts[k] = re.sub(r'href="' + a + r'"(?![^>]*data-page)', f'href="index.html{a}"', parts[k])
+    parts[k] = parts[k].replace('<a href="/" data-home ', '<a href="index.html" ')
 s = ''.join(parts)
 rep('</head>', '<style id="garantie4-css">' + (D / 'tools' / 'garantie4.css').read_text() + '</style></head>')
 s = re.sub(r'<title>[^<]*</title>', '<title>Aangroeigarantie | Top Rhododendrons</title>', s, count=1)
-(D / 'garantie4.html').write_text(s)
+(D / 'garantie.html').write_text(s)
 print('ok', len(s))

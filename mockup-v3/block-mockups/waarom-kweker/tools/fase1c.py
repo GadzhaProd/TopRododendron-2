@@ -4,7 +4,8 @@
 #     logo -> /, Planten -> /assortiment, "De kweker" becomes "Over ons" -> Waarom wij, Advies -> /plantgids,
 #     Groothandel (menu and hero) -> /groothandel, Contact (new, desktop menu) -> the guarantee block with Gert and both numbers,
 #     Bestellen -> /assortiment, "Bekijk de planten" -> the seven varieties below,
-#     the cards -> /assortiment/<variety>, "Alle maten en prijzen" -> /assortiment, "Lees de voorwaarden" -> /garantie.
+#     the cards -> /assortiment/<variety>, "Alle maten en prijzen" -> /assortiment, "Lees de voorwaarden" -> garantie.html (the guarantee page,
+#     tools/build_garantie4.py; on the live site /garantie).
 #     In the mockup a link to a page that is not here shows a short note (data-page) instead of leading nowhere.
 #   Header: no phone number on desktop (owner and Fable, 18 Nov: it loads the header and cannot be called from a browser),
 #     "Contact" in the menu instead; "Bestellen" appears once the hero's "Bekijk de planten" has scrolled away;
@@ -81,7 +82,7 @@ def apply(s):
     for name, slug in SLUG.items():
         rep(f'<a href="#assortiment" aria-label="{name}, vanaf', f'<a href="/assortiment/{slug}" data-page="{name.replace("&#x27;", "’")}" aria-label="{name}, vanaf')
     rep('<a class="sd-more" href="#assortiment">', '<a class="sd-more" href="/assortiment" data-page="Assortiment">')
-    rep('<a class="fp-more" href="#garantievoorwaarden">', '<a class="fp-more" href="/garantie" data-page="Garantievoorwaarden">')
+    rep('<a class="fp-more" href="#garantievoorwaarden">', '<a class="fp-more" href="garantie.html">')
 
     # WhatsApp opens in a new tab
     rep('href="https://wa.me/31620297849">', WA + '>', 2)

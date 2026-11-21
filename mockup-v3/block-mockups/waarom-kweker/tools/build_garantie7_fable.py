@@ -1,3 +1,5 @@
+# FROZEN (21 Nov): a record of its round; it reads garantie4.html, which is garantie.html now (tools/build_garantie4.py).
+# Do not rebuild.
 # Mockup tool (not site code): garantie7-fable.html = garantie4.html with the guarantee sheet as an official document
 # (Fable, 21 Nov; a try-out). The owner: "closer to an official document: no names, no fields to fill in; just how the
 # guarantee conditions work". Only the sheet changes; the label beside it stays.
