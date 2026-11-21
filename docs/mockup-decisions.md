@@ -1267,3 +1267,10 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - A: the label carries the brand: the header's logo (the black square with the monogram and "Top Rhododendrons") at the top, the paper in the soft light of our surfaces (sage, blush, butter), the tip dipped in moss; the seal as it was.
     - B: the label as it was; instead of the round stamp a badge in the shape of the logo (a rounded square) filled with moss: the monogram, a large "3" and "maanden" in Newsreader, "Top Rhododendrons" and "Otterlo · sinds 2001" in straight lines (no arc lettering, readable on the phone); the line "Top Rhododendrons" above it removed. Fable's recommendation.
     - B2: the same badge in line: two frames in the logo's shape, a small filled logo mark, moss text.
+- Owner (21 Nov) on garantie5-fable.html: misunderstood (only A was near). What he means: no logo on the label at all; the round seal stays; either the whole card in colour (the soft blurred glow of our palette) with the seal as it is, or only the seal in colour (the same seal with a blurred glow of our colours) on a light card.
+  - Fable redid `garantie5-fable.html` (bar "Цвет": "0 · Сейчас", "A1 · Бирка, светлая", "A2 · Бирка, насыщенная" (default), "B1 · Цветной значок", "B2 · Значок с ореолом"):
+    - A1: the whole card in a soft blurred light of the palette (sage top left, blush by the seal, butter in the middle, sage at the tip); very delicate.
+    - A2: the same, deeper and edge to edge: the card is clearly in colour; moss ink and text on top. Fable's pick for "the whole card in colour".
+    - B1: a light card; a blurred glow (sage, blush, butter) fills the seal inside its outer ring, the scalloped edge on white; moss rings and letters on top. Fable's pick among the seals.
+    - B2: the same glow inside plus a soft halo of those colours round the seal.
+  - Checked: no horizontal scroll 1920→360; text ≥ 14 px on the label; lowest contrast on real pixels 9.15:1 (A2); the sticky label fits at 1366×768 and 1024×768 with the bar.
