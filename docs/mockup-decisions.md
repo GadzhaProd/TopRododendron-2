@@ -1309,3 +1309,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
 - Owner (21 Nov): the seal is **4 · Тиснение**, but its scallops were cut at the top, bottom and sides too.
   - In Fable's emboss the 28 arcs have r 12.4, less than half their chord (12.43), so each scallop is a full half circle: the edge reaches r ≈ 123.4, plus the stroke, the ±1.5 offset of the light and the shade and the blur ≈ 128, past the -4 -4 248 248 box (r 124).
   - Now `seal_emboss()` in `tools/build_garantie4.py` with viewBox -10 -10 260 260 (r 130); the label's seal is 192 px wide (146 on short laptop screens) so the disc keeps its size, and `mix-blend-mode:normal` so the white light of the relief shows. The ink stamp `seal()` stays in the script for the record. Checked at 4×: every scallop round; the sticky label ends at 778 of 900 (1440), 692 of 768 (1366), 709 of 768 (1024); no horizontal scroll.
+- Owner (21 Nov): next to the embossed relief the seal's lettering looks flat; can it be richer (a couple of options; if nothing works, keep it).
+  - Fable's `garantie9-fable.html` (`tools/build_garantie9_fable.py`, post-processes garantie4.html; bar "Надписи": "0 · Сейчас", "1 · Высокая печать", "2 · Глубокая тройка" (default), "3 · Слепые надписи", "4 · Фольга"); only the letters change:
+    1. letterpress: the ink pressed into the paper, a shade inside each letter at its upper-left edge and a thin light rim under its lower right.
+    2. the same for all the lettering, and the "3" larger and pressed deeper, its ink darker at the top and lighter towards the foot. Fable's pick; at 1× on the label the difference is small, it shows mostly on the "3" and close up.
+    3. the arc lettering blind-embossed like the rings (no ink), only "3 maanden" printed; at 1× the arc lettering reads noticeably paler.
+    4. moss foil with a quiet diagonal sheen and a light impression; the sheen lightens parts of some letters unevenly.
