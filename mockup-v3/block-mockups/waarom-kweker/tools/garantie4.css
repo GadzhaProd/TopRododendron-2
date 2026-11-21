@@ -84,7 +84,7 @@
 /* the contact strip: under a quiet hairline (owner, 21 Nov: no dashed perforation) */
 .gt-strip{margin-top:clamp(12px,1.6vw,20px);padding-top:clamp(22px,2.6vw,36px);border-top:1px solid rgba(63,74,55,.2)}
 .gtm :is(.gt-strip h3,.gt-help h2){font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub)!important;line-height:1.2;letter-spacing:-.01em}
-.gtm :is(.gt-strip,.gt-help) p{margin-top:8px;max-width:60ch;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
+.gtm :is(.gt-strip,.gt-help) p{margin-top:8px;max-width:60ch;text-wrap:pretty;font-size:var(--t-body);line-height:1.55;color:var(--color-fg-2)}
 .gtm :is(.gt-strip,.gt-help) dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(24px,3.4vw,52px);margin-top:18px}
 .gtm :is(.gt-strip,.gt-help) dt{font-size:var(--t-small);line-height:1.5;color:var(--color-fg-2)}
 .gtm :is(.gt-strip,.gt-help) dd{font-size:var(--t-lead);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums}
@@ -100,6 +100,8 @@
   .gt-lab{position:sticky;top:calc(80px + 28px - 40px);margin-top:calc(clamp(40px,4.4vw,64px) - 46px);transform:rotate(-2.5deg);transform-origin:50% 40px}
 }
 @media (min-width:900px) and (max-width:1199.98px){ .gt-tag .gt-pdfa{font-size:var(--t-small)} }
+/* narrower screens: a smaller tilt, so the foot of the label keeps its distance from the sheet (it swings right about the pin) */
+@media (min-width:900px) and (max-width:1199.98px){ .gt-lab{transform:rotate(-1.8deg)} }
 @media (min-width:900px) and (max-width:1099.98px){
   .gt-steps{grid-template-columns:minmax(0,1fr)}
   .gt-terms dl{columns:1}
@@ -117,7 +119,8 @@
 
 /* ================= below 900 px: the label is the page; the full sheet on request ================= */
 @media (max-width:899.98px){
-  .gt-lab{max-width:340px;margin:calc(clamp(28px,6vw,44px) - 40px) auto 0;transform:rotate(-1.5deg);transform-origin:50% 40px}
+  /* the label turns about its pin, so its foot swings to the right: it is moved back by half of that, and stays centred as a whole */
+  .gt-lab{max-width:min(340px,100% - 12px);margin:calc(clamp(28px,6vw,44px) - 40px) auto 0;transform:translateX(-9px) rotate(-1.5deg);transform-origin:50% 40px}
   .gt-tag{padding-bottom:36px}
   /* a close, soft shadow: the wide desktop one greyed the whole page round the label on the phone, and the page under it
      looked lighter (owner, 21 Nov) */
