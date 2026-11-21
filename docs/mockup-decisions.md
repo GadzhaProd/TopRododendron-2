@@ -1274,3 +1274,10 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - B1: a light card; a blurred glow (sage, blush, butter) fills the seal inside its outer ring, the scalloped edge on white; moss rings and letters on top. Fable's pick among the seals.
     - B2: the same glow inside plus a soft halo of those colours round the seal.
   - Checked: no horizontal scroll 1920→360; text ≥ 14 px on the label; lowest contrast on real pixels 9.15:1 (A2); the sticky label fits at 1366×768 and 1024×768 with the bar.
+- Owner (21 Nov): the label in colour, **A2**; the triangular bottom doesn't suit us, Fable to make a new bottom.
+  - Fable moved A2 into `tools/garantie4.css` (the label's background, a slightly firmer line above the list, slightly darker list text); garantie4.html rebuilt; the sticky label fits at 1440×900, 1366×768, 1024×768. `tools/build_garantie5_fable.py` is frozen as the record of the colour round.
+  - `garantie6-fable.html` (`tools/build_garantie6_fable.py`, post-processes garantie4.html; bar "Низ бирки": "0 · Сейчас", "1 · Прямой", "2 · Дуга" (default), "3 · Фестоны", "4 · Срезанные углы"); the bottom padding follows each shape:
+    1. a straight bottom with the same soft corners as the top; the calmest and shortest.
+    2. a gentle arc, like a garden marker; rhymes with the round seal. Fable's recommendation.
+    3. small scallops echoing the seal; at normal size it reads like a tear-off receipt.
+    4. two chamfered bottom corners, the classic price tag; geometric again.

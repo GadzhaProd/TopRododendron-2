@@ -1,3 +1,5 @@
+# FROZEN (21 Nov): the record of the colour round. The owner chose A2 and it now lives in tools/garantie4.css.
+# Do not rebuild; garantie5-fable.html stays as built.
 # Mockup tool (not site code): garantie5-fable.html = garantie4.html with two directions for colour on the label
 # (Fable, 21 Nov, round 2). The owner: no logo on the label; the round seal stays as it is; either the WHOLE card in colour,
 # or the card light and only the seal in colour, "the same seal, a blurred glow of our colours".

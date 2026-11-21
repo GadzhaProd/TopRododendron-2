@@ -35,11 +35,19 @@
 /* (the room for the cord is the label's padding, not the tag's margin, which would collapse through the label on the phone) */
 .gt-tag{position:relative;padding:60px clamp(20px,1.8vw,28px) 82px;background:#fbfaf8;border-radius:14px 14px 0 0;text-align:center;
   clip-path:polygon(0 0,100% 0,100% calc(100% - 60px),50% 100%,0 calc(100% - 60px))}
+/* the whole card in colour (owner chose "A2", 21 Nov): a soft blurred light of the palette from edge to edge, sage at the
+   top, blush beside the seal, butter in the middle, sage again at the foot; the seal and the text lie on it as they were */
+.gt-tag{background:
+  radial-gradient(ellipse 110% 34% at 0% 0%,#cfdabd 0%,transparent 74%),
+  radial-gradient(ellipse 95% 30% at 104% 30%,#edcfc9 0%,transparent 74%),
+  radial-gradient(ellipse 120% 34% at 10% 64%,#e6d9a6 0%,transparent 76%),
+  radial-gradient(ellipse 110% 30% at 100% 98%,#d3ddc2 0%,transparent 74%),
+  #ebece3}
 .gt-lbrand{font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
 .gt-tag .gt-seal{width:min(100%,184px);height:auto;margin:12px auto 0;transform:rotate(6deg)}
 .gt-lname{margin-top:10px;font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
-.gt-short{margin-top:14px;padding-top:14px;border-top:1px solid rgba(63,74,55,.2);text-align:left}
-.gt-short li{position:relative;padding-left:20px;font-size:var(--t-small);line-height:1.45;color:var(--color-fg-2)}
+.gt-short{margin-top:14px;padding-top:14px;border-top:1px solid rgba(63,74,55,.3);text-align:left}
+.gt-short li{position:relative;padding-left:20px;font-size:var(--t-small);line-height:1.45;color:#33322e}
 .gt-short li + li{margin-top:8px}
 .gt-short li::before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:1px;background:var(--moss)}
 .gt-lpdf{margin-top:8px}
