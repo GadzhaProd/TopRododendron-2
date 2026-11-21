@@ -27,12 +27,14 @@ PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Alle voo
 def seal(uid, cls=''):
     # Fable's stamp: a scalloped edge, two rings, the name over the top, the place under it, the term in the middle; worn ink;
     # no dashes beside "maanden" (owner, 20 Nov)
+    # the scallops reach r 121.2 with their stroke, so the viewBox has 4 units of room round the 240 box (in 0 0 240 240
+    # they were cut flat at the top, bottom and sides; owner, 21 Nov)
     n, R, r = 40, 114, 9.6
     pts = [(120 + R * math.cos(2 * math.pi * k / n - math.pi / 2), 120 + R * math.sin(2 * math.pi * k / n - math.pi / 2)) for k in range(n)]
     edge = 'M%.2f %.2f' % pts[0] + ''.join('A%.1f %.1f 0 0 1 %.2f %.2f' % (r, r, x, y) for x, y in pts[1:] + pts[:1]) + 'Z'
     ticks = ''.join('<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f"/>' % (120 + 68 * math.cos(t), 120 + 68 * math.sin(t), 120 + 72 * math.cos(t), 120 + 72 * math.sin(t))
                     for t in [2 * math.pi * k / 60 for k in range(60)])
-    return ('<svg class="gt-seal %s" viewBox="0 0 240 240" role="img" aria-label="Zegel: Top Rhododendrons, Otterlo, sinds 2001. 3 maanden aangroeigarantie">'
+    return ('<svg class="gt-seal %s" viewBox="-4 -4 248 248" role="img" aria-label="Zegel: Top Rhododendrons, Otterlo, sinds 2001. 3 maanden aangroeigarantie">'
             '<defs><path id="%s-t" d="M36 120a84 84 0 0 1 168 0"/><path id="%s-b" d="M24 120a96 96 0 0 0 192 0"/>'
             '<filter id="%s-ink" x="-5%%" y="-5%%" width="110%%" height="110%%"><feTurbulence type="fractalNoise" baseFrequency="1.05" numOctaves="2" seed="11" result="n"/>'
             '<feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3 2.95" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></defs>'
