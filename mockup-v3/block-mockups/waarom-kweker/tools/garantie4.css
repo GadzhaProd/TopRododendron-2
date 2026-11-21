@@ -23,7 +23,6 @@
 .gtm h1{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;letter-spacing:-.018em;font-size:var(--t-display);line-height:1.04}
 .gtm h1 span{display:block}
 .gt-lead{margin-top:clamp(18px,2vw,28px);max-width:52ch;font-size:var(--t-lead);line-height:1.55;color:var(--color-fg-2);text-wrap:pretty}
-.gt-draft{display:inline-block;margin-top:18px;padding:6px 12px;border-radius:999px;background:rgba(63,74,55,.08);font-size:var(--t-micro);line-height:1.3;color:var(--color-fg-2)}
 
 /* ---------- the label ---------- */
 .gt-seal{display:block;color:var(--moss);mix-blend-mode:multiply}
@@ -116,7 +115,8 @@
 /* ================= below 900 px: the label is the page; the conditions are the pdf ================= */
 @media (max-width:899.98px){
   /* the label turns about its pin, so its foot swings to the right: it is moved back by half of that, and stays centred as a whole */
-  .gt-lab{max-width:min(340px,100% - 12px);margin:calc(clamp(28px,6vw,44px) - 40px) auto 0;transform:translateX(-9px) rotate(-1.5deg);transform-origin:50% 40px}
+  /* (without the draft chip the nail came within 26 px of the lead at 390: now about 44 px, as on desktop) */
+  .gt-lab{max-width:min(340px,100% - 12px);margin:calc(clamp(46px,9vw,60px) - 40px) auto 0;transform:translateX(-9px) rotate(-1.5deg);transform-origin:50% 40px}
   .gt-tag{padding-bottom:36px}
   /* a close, soft shadow: the wide desktop one greyed the whole page round the label on the phone, and the page under it
      looked lighter (owner, 21 Nov) */
@@ -124,7 +124,7 @@
   .gt-tag .gt-short li{font-size:var(--t-body)}
   .gt-lpdf{margin-top:16px}
   .gt-lpdf .gt-pdfa{width:100%;min-height:48px;border:1px solid rgba(20,20,19,.25);border-radius:999px;text-decoration:none}
-  .gt-help{max-width:560px;margin:clamp(44px,9vw,60px) auto 0}
+  .gt-help{max-width:560px;margin:clamp(52px,10vw,64px) auto 0}
   .gt-stage{display:none}
 }
 @media (max-width:599.98px){

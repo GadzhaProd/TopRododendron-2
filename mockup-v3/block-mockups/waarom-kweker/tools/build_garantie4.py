@@ -62,7 +62,8 @@ HEAD = ('<div class="gt-head"><nav class="gt-crumb" aria-label="Kruimelpad"><a h
         '<h1><span>Slaat een plant niet aan?</span> <span>Dan krijgt u een nieuwe.</span></h1>'
         '<div class="gt-intro"><p class="gt-lead"><b>3 maanden aangroeigarantie na levering</b>, bovenop uw wettelijke rechten. '
         'Dezelfde soort en maat, kosteloos bezorgd of voor u klaargezet. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan.</p>'
-        '<p class="gt-draft">Concepttekst: de eigenaar en een jurist controleren deze voorwaarden nog.</p></div></div>')
+        '</div></div>')
+# (owner, 21 Nov: no "Concepttekst…" chip on the page; the copy is still a draft for the owner and a lawyer, see docs)
 LABEL = ('<div class="gt-lab">' + CORD_B + CORD + '<div class="gt-tag"><p class="gt-lbrand">Top Rhododendrons</p>' + seal('s1')
          + '<p class="gt-lname">Aangroeigarantie</p>' + SHORT + '<p class="gt-lpdf">' + PDFA + '</p></div></div>')
 
