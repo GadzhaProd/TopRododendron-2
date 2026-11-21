@@ -1,3 +1,5 @@
+# FROZEN (21 Nov): the record of the cord rounds. The owner chose 2б and it now lives in tools/build_garantie4.py, so this
+# script no longer matches garantie4.html (it replaced the old cord markup). Do not rebuild; garantie4-fable.html stays as built.
 # Mockup tool (not site code): garantie4-fable.html = garantie4.html with three designs of the plant label's cord (Fable).
 # Only the cord and the hole change; the label, its tilt and the page stay as they are. The owner: the cord must visibly go
 # THROUGH the hole and the label must hang on it. In all three the label hangs on a small pin (at the point it turns around),

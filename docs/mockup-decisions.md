@@ -1261,3 +1261,9 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
     - 1б: where the round knot was, five tight turns of the same jute bind both strands; above a loop on the nail, below two strands straight into the eyelet. Fable's recommendation.
     - 1в: three turns right on the label's top edge, where the bracket-like collar was; a long loop on the nail and a short run into the eyelet.
     - The jute ones get the plain metal eyelet; the hole is darker in all variants (its light bottom read as one more rim).
+- Owner (21 Nov): the cord is **2б** (moss, knotless simple loop on the nail, plain metal eyelet). Next: "either the card or the badge itself in our brand style; two variants, we'll see which is better".
+  - Fable moved 2б into `tools/build_garantie4.py` / `tools/garantie4.css` (the old cord removed; the sticky label 8 px lower so the nail clears the header); garantie4.html rebuilt. It fits while scrolling at 1440×900, 1366×768 and 1024×768. `tools/build_garantie4_fable.py` is frozen as the record of the cord rounds.
+  - `garantie5-fable.html` (`tools/build_garantie5_fable.py`, post-processes garantie4.html; bar "Фирменный стиль": "0 · Сейчас", "A · Бирка" (default), "B · Значок", "B2 · Значок контурный"):
+    - A: the label carries the brand: the header's logo (the black square with the monogram and "Top Rhododendrons") at the top, the paper in the soft light of our surfaces (sage, blush, butter), the tip dipped in moss; the seal as it was.
+    - B: the label as it was; instead of the round stamp a badge in the shape of the logo (a rounded square) filled with moss: the monogram, a large "3" and "maanden" in Newsreader, "Top Rhododendrons" and "Otterlo · sinds 2001" in straight lines (no arc lettering, readable on the phone); the line "Top Rhododendrons" above it removed. Fable's recommendation.
+    - B2: the same badge in line: two frames in the logo's shape, a small filled logo mark, moss text.

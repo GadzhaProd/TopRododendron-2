@@ -48,41 +48,13 @@ def seal(uid, cls=''):
 # (owner, 20 Nov: the two dashes either side of "maanden" are gone: on the phone, from a distance, they read as a strike-through)
 
 
-# ---- the cord of the label (SVG 120 x 180 px; the top edge of the label at y 128, the eyelet centred at 60,160) ----
-# Built like a real hang tag: a loop with a knot and two loose ends; from the knot two strands. The front one runs over the top
-# edge, down the paper, over the metal eyelet and into the hole at its top: the label hangs on it, so the cord bears on the top
-# of the hole and turns away behind the label there; the lower part of the hole stays empty (the shaded page behind).
-# The back strand comes up from behind the top edge. Each strand is twine: the cord, with a lighter broken line for the twist.
-def _tw(d, cls=''):
-    return f'<path class="gt-c {cls}" d="{d}"/><path class="gt-tw" d="{d}"/>'
-
-
-CORD = ('<svg class="gt-cord" viewBox="0 0 120 180" aria-hidden="true"><defs>'
-        '<linearGradient id="gt-met" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1eee3"/><stop offset=".55" stop-color="#c6c3b0"/><stop offset="1" stop-color="#8f8d79"/></linearGradient>'
-        '<linearGradient id="gt-hol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d7a6f"/><stop offset=".5" stop-color="#b3b0a5"/><stop offset="1" stop-color="#d4d1c7"/></linearGradient>'
-        '<filter id="gt-bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>'
-        '<clipPath id="gt-hc"><circle cx="60" cy="160" r="8.6"/></clipPath></defs>'
-        # the eyelet: its shadow on the paper, the metal ring with a bevel, the hole (dark: the shade behind the label)
-        '<circle cx="60.8" cy="161.2" r="13.4" fill="rgba(63,74,55,.2)" filter="url(#gt-bl)"/>'
-        '<circle class="gt-met" cx="60" cy="160" r="12.8"/><circle class="gt-bev" cx="60" cy="160" r="10.7"/>'
-        '<circle class="gt-hole" cx="60" cy="160" r="8.6"/>'
-        # the shadow of the front strand on the paper and on the ring
-        '<path class="gt-csh" d="M59.4 129.5C59.6 136 60.4 143 61.6 151" filter="url(#gt-bl)"/>'
-        # the hanging loop and two short ends at the knot
-        + _tw('M58.2 82.4C43.6 75 40.2 44.5 59.4 40.2C79.4 41.6 77.6 74 62.4 82.4')
-        + _tw('M57.6 85C54.4 86.6 52.2 89 51.4 92.4') + _tw('M63.2 85.2C66.4 86.4 68.6 88.4 69.6 91.6') +
-        # the front strand: knot, over the top edge, down the paper and the ring to the rim of the hole
-        _tw('M59.2 85C55.4 98 55 114 57.8 128.6C59.2 136 59.8 144 60 151.4') +
-        # in the hole: the cord bears on the top of the hole and turns away behind the label; a little shade under it
-        '<g clip-path="url(#gt-hc)"><ellipse cx="60.6" cy="157.4" rx="3.8" ry="1.9" fill="rgba(30,34,26,.4)" filter="url(#gt-bl)"/>'
-        '<path class="gt-ci" d="M60 150.5C60.1 152.6 60.2 154 60.3 155.4"/></g>'
-        # the knot
-        '<ellipse class="gt-knot" cx="60.4" cy="83.8" rx="5" ry="4" transform="rotate(-14 60.4 83.8)"/>'
-        '<path class="gt-kl" d="M57 82.8C59 85 61.8 85.6 63.8 84.6"/><path class="gt-kl" d="M58.2 80.8C60.2 81.2 62 82 63 83.2"/></svg>')
-# the back strand lies BEHIND the label (its own layer under the paper): from the knot down behind the top edge to the hole,
-# so the paper itself covers it where it goes behind
-CORD_B = ('<svg class="gt-cord gt-cord-b" viewBox="0 0 120 180" aria-hidden="true">'
-          + _tw('M62.4 86.4C66.6 98 67.4 114 64.6 130C63.4 138 62 146 61 156', 'gt-cb') + '</svg>')
+# The cord (owner chose "2б", 21 Nov; designed in the cord rounds, tools/build_garantie4_fable.py, now frozen): a closed loop of
+# moss cord over a small pin, two taut strands in a narrow V. The left strand runs down the front of the paper into a plain
+# metal eyelet (just the ring and the dark hole) and darkens as it goes in; the right strand goes behind the top edge
+# (CORD_B is painted before the label, so the paper covers it). SVG 120 x 180: the label's top edge at y 128, the eyelet
+# at 60,160, the pin at 60,40 (the point the label turns around). The markup is the generated result, kept as it is.
+CORD = '<svg class="gt-cord" viewBox="0 0 120 180" aria-hidden="true"><defs><filter id="gt-bl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.3"/></filter><filter id="gt-bs" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".8"/></filter><linearGradient id="gt-hol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c4b42"/><stop offset=".6" stop-color="#6b695e"/><stop offset="1" stop-color="#85837a"/></linearGradient><radialGradient id="gt-pin" cx=".36" cy=".3" r=".8"><stop offset="0" stop-color="#b7c3a8"/><stop offset=".55" stop-color="#6f8062"/><stop offset="1" stop-color="#3f4a37"/></radialGradient><linearGradient id="gt-met" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f1e6"/><stop offset=".5" stop-color="#c3c1ad"/><stop offset="1" stop-color="#85846f"/></linearGradient><clipPath id="gt-pap"><rect x="0" y="128.4" width="120" height="60"/></clipPath></defs><g fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="61" cy="161.4" r="14" fill="rgba(38,44,32,.3)" filter="url(#gt-bl)"/><circle cx="60" cy="160" r="13.4" fill="url(#gt-met)" stroke="rgba(52,58,44,.5)" stroke-width=".8"/><circle cx="60" cy="160" r="8.8" fill="url(#gt-hol)"/><path d="M52.0 158.2A8.200000000000001 8.200000000000001 0 0 1 68.0 158.2A11.0 10.0 0 0 0 52.0 158.2Z" fill="rgba(28,33,24,.5)" filter="url(#gt-bs)"/><circle cx="60" cy="160" r="8.8" stroke="rgba(52,58,44,.55)" stroke-width=".9"/><g clip-path="url(#gt-pap)"><path d="M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6" stroke="rgba(38,44,32,.42)" stroke-width="4.0" filter="url(#gt-bl)" transform="translate(1.7 2.3)"/></g><g opacity="1.0" stroke-linecap="round"><path d="M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6" stroke="#333c2d" stroke-width="5.3"/><path d="M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6" stroke="#6f8062" stroke-width="4.0"/><path d="M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6" stroke="#414c38" stroke-width="4.0" stroke-dasharray=".9 2.1" stroke-linecap="butt" opacity=".34"/><path d="M58.9 157C58.8 146 58.6 136 58.2 128C57.2 100 55.6 70 54.4 47C53.8 40 56.4 35.6 60 35.6" stroke="#a9b89b" stroke-width="1.0" opacity=".7" transform="translate(-0.80 -0.32)"/></g><ellipse cx="58.9" cy="158.6" rx="3.6" ry="2.7" fill="#3d4337" filter="url(#gt-bs)"/><ellipse cx="62.2" cy="43.6" rx="6.4" ry="5.6" fill="rgba(38,44,32,.4)" filter="url(#gt-bl)"/><circle cx="60" cy="40" r="5.8" fill="url(#gt-pin)" stroke="#333c2d" stroke-width=".9"/><ellipse cx="58.1" cy="37.9" rx="2.1" ry="1.5" fill="#fff" opacity=".55"/></g></svg>'
+CORD_B = '<svg class="gt-cord gt-cord-b" viewBox="0 0 120 180" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><g opacity="1.0" stroke-linecap="round"><path d="M60 35.6C63.6 35.6 66.2 40 65.6 47C64.6 70 63.4 100 62.9 128C62.9 132 63 137 63 142" stroke="#333c2d" stroke-width="5.3"/><path d="M60 35.6C63.6 35.6 66.2 40 65.6 47C64.6 70 63.4 100 62.9 128C62.9 132 63 137 63 142" stroke="#6f8062" stroke-width="4.0"/><path d="M60 35.6C63.6 35.6 66.2 40 65.6 47C64.6 70 63.4 100 62.9 128C62.9 132 63 137 63 142" stroke="#414c38" stroke-width="4.0" stroke-dasharray=".9 2.1" stroke-linecap="butt" opacity=".34"/><path d="M60 35.6C63.6 35.6 66.2 40 65.6 47C64.6 70 63.4 100 62.9 128C62.9 132 63 137 63 142" stroke="#a9b89b" stroke-width="1.0" opacity=".7" transform="translate(-0.80 -0.32)"/></g></g></svg>'
 
 SHORT = ('<ul class="gt-short" aria-label="De garantie in het kort"><li><b>3 maanden</b> na levering</li><li><b>Zelfde soort en maat</b> als vervanging</li>'
          '<li><b>Kosteloos</b> bezorgd of klaargezet</li><li><b>Foto’s volstaan</b>, u hoeft niets aan te tonen</li></ul>')
