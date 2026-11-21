@@ -7,6 +7,8 @@
 #   tx-2 "Глубокая тройка": the same, and the "3" larger and pressed deeper, its ink darker at the top
 #   tx-3 "Слепые надписи": the arc lettering blind-embossed like the rings (tinted, no ink); only "3 maanden" printed
 #   tx-4 "Фольга": moss foil: a quiet sheen runs across the letters
+# FROZEN (21 Nov): the owner chose tx-2; it is now in seal_emboss() of tools/build_garantie4.py, so this script no longer
+# applies to garantie4.html. Do not rebuild; garantie9-fable.html stays as the record of the round.
 # Usage: python3 tools/build_garantie9_fable.py [dir]
 import re, pathlib, sys
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')

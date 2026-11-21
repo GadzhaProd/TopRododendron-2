@@ -24,6 +24,16 @@ PDFA = ('<a class="gt-pdfa" href="#" data-page="Aangroeigarantie (pdf)">Alle voo
         '<path d="M8 2v9M4 8l4 4 4-4M3 14h10"/></svg></a>')
 
 
+def _press(i, d=1.0):
+    # letterpress (Fable): light under the lower right edge, the ink, a shade inside the upper left edge; d is the depth
+    return (f'<filter id="{i}" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">'
+            f'<feOffset in="SourceAlpha" dx="{.8 * d:.2f}" dy="{.9 * d:.2f}" result="o"/><feFlood flood-color="#fff" flood-opacity=".95"/><feComposite in2="o" operator="in" result="hi"/>'
+            '<feComponentTransfer in="SourceAlpha" result="inv"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer>'
+            f'<feOffset in="inv" dx="{.9 * d:.2f}" dy="{1 * d:.2f}"/><feGaussianBlur stdDeviation="{.35 * d:.2f}" result="ib"/>'
+            f'<feFlood flood-color="#141a10" flood-opacity="{min(.95, .7 * d):.2f}"/><feComposite in2="ib" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="sh"/>'
+            '<feMerge><feMergeNode in="hi"/><feMergeNode in="SourceGraphic"/><feMergeNode in="sh"/></feMerge></filter>')
+
+
 def seal_emboss():
     # The seal (owner chose Fable's "4 · Тиснение", garantie8-fable.html, 21 Nov): a blind stamp. The scalloped disc and its two
     # rings are pressed into the paper, light from the upper left and a shade to the lower right, no ink; only the lettering
@@ -37,14 +47,20 @@ def seal_emboss():
     serif, sans = 'Newsreader,Georgia,serif', 'Manrope,system-ui,sans-serif'
     return ('<svg class="gt-seal" viewBox="-10 -10 260 260" role="img" aria-label="Zegel: Top Rhododendrons, Otterlo, sinds 2001. 3 maanden aangroeigarantie">'
             '<defs><path id="gt-st" d="M43 120a77 77 0 0 1 154 0"/><path id="gt-sb" d="M30 120a90 90 0 0 0 180 0"/>'
-            '<filter id="gt-ss" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".7"/></filter></defs>'
+            '<filter id="gt-ss" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".7"/></filter>'
+            + _press('gt-sp') + _press('gt-sd', 1.7)
+            + '<linearGradient id="gt-sg" gradientUnits="userSpaceOnUse" x1="0" y1="86" x2="0" y2="134"><stop offset="0" stop-color="#27301f"/>'
+            '<stop offset="1" stop-color="#4c5b41"/></linearGradient></defs>'
             f'<path d="{scal}" fill="#fff" opacity=".3"/>'
             f'<g fill="none" stroke-linejoin="round"><g stroke="rgba(52,62,44,.55)" stroke-width="2.2" transform="translate(1.3 1.5)" filter="url(#gt-ss)">{relief}</g>'
             f'<g stroke="#fff" stroke-width="2.2" transform="translate(-1.2 -1.3)" filter="url(#gt-ss)">{relief}</g></g>'
-            f'<g fill="#3f4a37"><text font-family="{sans}" font-size="15" font-weight="700" letter-spacing="2.6"><textPath href="#gt-st" startOffset="50%" text-anchor="middle">TOP RHODODENDRONS</textPath></text>'
-            f'<text font-family="{sans}" font-size="13.5" font-weight="700" letter-spacing="2.4"><textPath href="#gt-sb" startOffset="50%" text-anchor="middle">OTTERLO · SINDS 2001</textPath></text>'
-            f'<text x="120" y="131" text-anchor="middle" font-family="{serif}" font-size="62" font-weight="500">3</text>'
-            f'<text x="120" y="152" text-anchor="middle" font-family="{serif}" font-size="19" font-weight="500">maanden</text></g></svg>')
+            # the lettering is letterpressed: the moss ink pressed into the paper (a shade inside the upper left edge of each
+            # letter, a hairline of light under the lower right), and the "3" larger and pressed deeper, its ink darker at the
+            # top (owner chose Fable's "2 · Глубокая тройка", garantie9-fable.html, 21 Nov)
+            f'<g fill="#3a4532" filter="url(#gt-sp)"><text font-family="{sans}" font-size="15" font-weight="700" letter-spacing="2.6"><textPath href="#gt-st" startOffset="50%" text-anchor="middle">TOP RHODODENDRONS</textPath></text>'
+            f'<text font-family="{sans}" font-size="13.5" font-weight="700" letter-spacing="2.4"><textPath href="#gt-sb" startOffset="50%" text-anchor="middle">OTTERLO · SINDS 2001</textPath></text></g>'
+            f'<g filter="url(#gt-sd)"><text x="120" y="132" text-anchor="middle" font-family="{serif}" font-size="68" font-weight="500" fill="url(#gt-sg)">3</text></g>'
+            f'<g fill="#3a4532" filter="url(#gt-sp)"><text x="120" y="153" text-anchor="middle" font-family="{serif}" font-size="19" font-weight="500">maanden</text></g></svg>')
 
 
 # the earlier ink stamp (Fable, 20 Nov), kept for the record; not on the page since 21 Nov
