@@ -34,9 +34,12 @@
 .fz-more{margin-top:12px;display:grid;row-gap:10px}
 .fz-more dt{font-size:var(--t-micro);line-height:1.4;color:var(--fz-lbl)}
 .fz-more a{display:inline-block;padding-block:4px}
-/* paying: quiet text chips, no logos */
-.fz-pay ul{display:flex;flex-wrap:wrap;gap:8px}
-.fz-pay li{padding:5px 12px;border:1px solid var(--fz-ln);border-radius:999px;font-size:var(--t-small);line-height:1.4;color:var(--fz-fg)}
+/* paying: a row of icon cards, light on every footer */
+.fz-pays{display:flex;flex-wrap:wrap;gap:8px}
+.fz-pays li{display:block;line-height:0}
+.fz-pays :is(img,svg){display:block;width:46px;height:auto;aspect-ratio:38/24}
+/* phone: two rows of four */
+@media (max-width:699.98px){ .fz-pays{max-width:208px} .fz :is(.fz4,.fz5,.fz6) .fz-pay,.fz4 .fz-pay,.fz5 .fz-pay,.fz6 .fz-pay{align-items:flex-start} }
 .fz-legal{font-size:var(--t-micro);line-height:1.5;color:var(--fz-lbl)}
 
 /* ================= 1 · dark ================= */
@@ -81,7 +84,6 @@
 .fz2 .fz-low{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-top:clamp(36px,4vw,56px);padding-top:clamp(20px,2.4vw,30px);border-top:1px solid var(--fz-ln)}
 .fz2 .fz-pay{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .fz2 .fz-pay h3{margin:0}
-.fz2 .fz-pay li{background:rgba(255,255,255,.45)}
 @media (max-width:1099.98px){
   .fz2 .fz-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
@@ -122,4 +124,96 @@
   .fz3 .fz-left{gap:24px}
   .fz3 .fz-low{grid-template-columns:minmax(0,1fr);padding-inline:8px}
   .fz3 .fz-legal{padding-inline:8px}
+}
+
+/* phone: menu and service side by side, in every design */
+@media (max-width:699.98px){
+  .fz :is(.fz-low,.fz-grid){--two:minmax(0,1fr) minmax(0,1fr)}
+  .fz1 .fz-low,.fz3 .fz-low{grid-template-columns:var(--two);column-gap:20px}
+  .fz1 .fz-pay,.fz3 .fz-pay{grid-column:1 / -1}
+  .fz :is(.fz-menu,.fz-serv) ul{display:block}
+  .fz :is(.fz-menu,.fz-serv) a{padding-block:4px}
+}
+
+/* ================= 4, 5, 6 · shared: the columns and the large name ================= */
+.fz-grid{display:grid;grid-template-columns:minmax(0,4.2fr) minmax(0,3fr) minmax(0,2fr) minmax(0,2.8fr);column-gap:clamp(24px,4vw,72px);row-gap:32px}
+.fz-grid :is(.fz-menu,.fz-serv) ul{display:block}
+.fz-word{line-height:0;overflow:hidden}
+.fz-word svg{display:block;width:100%;height:auto}
+.fz-word text{fill:currentColor}
+html.fz-js .fz-word svg{transform:translateY(34%);opacity:0;transition:transform 1.1s cubic-bezier(.22,.61,.36,1),opacity .9s ease}
+html.fz-js .fz-word.is-in svg{transform:none;opacity:1}
+@media (max-width:1023.98px){ .fz-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+@media (max-width:699.98px){
+  .fz-grid{row-gap:26px;column-gap:20px}
+  .fz-grid :is(.fz-contact,.fz-visit){grid-column:1 / -1}
+  /* the two phone lines side by side, the rest of the contacts under them */
+  .fz-grid .fz-calls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:12px}
+  .fz-grid .fz-calls a{gap:10px;min-height:52px}
+  .fz-grid .fz-calls svg{width:20px;height:20px}
+  .fz-grid .fz-calls b{font-size:var(--t-lead)}
+  .fz-grid .fz-more{grid-template-columns:minmax(0,1fr);row-gap:6px;margin-top:8px}
+  .fz-grid .fz-hours{grid-template-columns:auto auto;justify-content:start;column-gap:24px}
+  .fz-grid .fz-hours div{grid-template-columns:auto auto;column-gap:8px}
+}
+
+/* ================= 4 · the large name (dark) ================= */
+.fz4{--fz-bg:#1e231b;--fz-fg:#fff;--fz-2:#e9e8e2;--fz-lbl:#b9c4ab;--fz-ln:rgba(233,232,226,.2);background:var(--fz-bg);border-radius:28px 28px 0 0;overflow:hidden}
+.fz4 > .in{padding-top:clamp(40px,5vw,72px)}
+.fz4 .fz-calls{margin-top:-8px}
+.fz4 .fz-calls svg{color:var(--fz-lbl)}
+.fz4 .fz-low{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:20px 40px;margin-top:clamp(32px,3.6vw,52px);padding-top:clamp(22px,2.4vw,32px);border-top:1px solid var(--fz-ln)}
+.fz4 .fz-brand{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px}
+.fz4 .fz-tag,.fz4 .fz-ig{margin-top:0}
+.fz4 .fz-pay{display:flex;align-items:center;gap:14px}
+.fz4 .fz-pay h3{margin:0}
+.fz4 .fz-legal{grid-column:1 / -1}
+.fz4 .fz-word{margin-top:clamp(20px,2.4vw,36px);margin-bottom:-2.2%;color:#3a4532}
+@media (max-width:699.98px){
+  .fz4{border-radius:22px 22px 0 0}
+  .fz4 .fz-low{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ================= 5 · a moss card with the name ================= */
+.fz5{--fz-bg:#f1efea;background:var(--page,#f1efea)}
+.fz5 > .in{padding-bottom:clamp(22px,2.4vw,32px)}
+.fz5 .fz-card{--fz-bg:#3f4a37;--fz-fg:#fff;--fz-2:#eef0e6;--fz-lbl:#cfd8c3;--fz-ln:rgba(238,240,230,.22);color:var(--fz-2);overflow:hidden;
+  padding:clamp(26px,3.8vw,56px) clamp(22px,3.8vw,56px) 0;border-radius:28px;
+  background:radial-gradient(ellipse 60% 90% at 100% 0%,#4f5d45 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 0% 100%,#37412f 0%,transparent 70%),#3f4a37}
+.fz5 .fz-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding-bottom:clamp(26px,3vw,44px)}
+.fz5 .fz-motto{max-width:16em;font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;font-size:var(--t-h2);line-height:1.08;letter-spacing:-.014em;color:#fff;text-wrap:balance}
+.fz-up{flex:none;display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px solid var(--fz-ln);border-radius:50%;text-decoration:none}
+.fz-up svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fz-up:hover{background:rgba(255,255,255,.1)}
+.fz5 .fz-calls{margin-top:-8px}
+.fz5 .fz-calls svg{color:var(--fz-lbl)}
+.fz5 .fz-low{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 32px;margin-top:clamp(28px,3.2vw,44px);padding-top:clamp(18px,2vw,26px);border-top:1px solid var(--fz-ln)}
+.fz5 .fz-pay{display:flex;align-items:center;gap:14px}
+.fz5 .fz-pay h3{margin:0}
+.fz5 .fz-low .fz-ig{margin:0}
+.fz5 .fz-word{margin:clamp(14px,1.8vw,26px) 0 -2.4%;color:#56654b}
+.fz5 .fz-legal{margin-top:clamp(18px,2vw,26px);padding-inline:clamp(4px,1vw,12px)}
+@media (max-width:860px){ .fz5 .fz-card{border-radius:22px} }
+@media (max-width:699.98px){ .fz5 > .in{padding-left:12px;padding-right:12px} .fz5 .fz-card{padding:24px 20px 0} .fz5 .fz-legal{padding-inline:8px} }
+
+/* ================= 6 · the outline (light) ================= */
+.fz6{--fz-bg:#f1efea;background:var(--page,#f1efea);border-top:1px solid var(--fz-ln)}
+.fz6 > .in{padding-top:clamp(28px,3.4vw,52px);padding-bottom:clamp(22px,2.4vw,32px)}
+.fz6 .fz-word{margin-bottom:clamp(24px,3vw,44px);overflow:visible}
+.fz6 .fz-word text{fill:none;stroke:#3f4a37;stroke-width:.9;stroke-opacity:.6;stroke-linejoin:round}
+html.fz-js .fz6 .fz-word svg{transform:none;opacity:1;transition:none}
+html.fz-js .fz6 .fz-word text{stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 2.4s cubic-bezier(.3,.1,.3,1)}
+html.fz-js .fz6 .fz-word.is-in text{stroke-dashoffset:0}
+.fz6 .fz-calls{margin-top:-8px}
+.fz6 .fz-calls svg{color:#3f4a37}
+.fz6 .fz-low{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:20px 40px;margin-top:clamp(32px,3.6vw,52px);padding-top:clamp(22px,2.4vw,32px);border-top:1px solid var(--fz-ln)}
+.fz6 .fz-brand{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px}
+.fz6 .fz-tag,.fz6 .fz-ig{margin-top:0}
+.fz6 .fz-pay{display:flex;align-items:center;gap:14px}
+.fz6 .fz-pay h3{margin:0}
+.fz6 .fz-legal{grid-column:1 / -1}
+@media (max-width:699.98px){ .fz6 .fz-low{grid-template-columns:minmax(0,1fr)} }
+
+@media (prefers-reduced-motion:reduce){
+  html.fz-js .fz-word svg,html.fz-js .fz-word text{transition:none!important;transform:none!important;opacity:1!important;stroke-dashoffset:0!important}
 }
