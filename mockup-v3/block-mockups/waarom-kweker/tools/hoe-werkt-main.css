@@ -29,10 +29,11 @@
    (0-10 %) was tried on 19 Nov and showed a band across the tree tops, so the owner went back to this one */
 .hwo-band{position:relative;height:clamp(300px,min(42vw,58svh),640px);margin-top:clamp(20px,2.2vw,36px)}
 .hwo-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;
-  /* the crop keeps the tops of the shrubs at 23 % of the band at every desktop width (owner, 22 Nov: on wide screens the
-     tops were cut by the top fade and the soil filled the frame). The photo (3:2) is as wide as the band, so its height
-     is 2/3 of 100vw; the shrub tops are at 38 % of the photo: offset = 23 % of (band − photo) − (0.38 − 0.23) × 2/3 × 100vw */
-  object-position:50% calc(23% - 10vw);
+  /* the crop keeps the tops of the shrubs at 16 % of the band at every desktop width, just clear of the top fade (owner,
+     22 Nov: on wide screens the tops were cut by the fade and the soil filled the frame; 23 % showed too much of the
+     wood). The photo (3:2) is as wide as the band, so its height is 2/3 of 100vw; the shrub tops are at 38 % of the
+     photo: offset = 16 % of (band − photo) − (0.38 − 0.16) × 2/3 × 100vw */
+  object-position:50% calc(16% - 14.667vw);
   -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.6) 9%,#000 20%,#000 70%,rgba(0,0,0,.55) 86%,transparent 100%);
   mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.6) 9%,#000 20%,#000 70%,rgba(0,0,0,.55) 86%,transparent 100%)}
 
