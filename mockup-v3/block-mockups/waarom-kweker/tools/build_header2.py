@@ -1,3 +1,5 @@
+# FROZEN (22 Nov): the owner chose version 2; it is in the main mockup now (tools/header_pill.py), so index.html carries the
+# classes this script asserts are absent. Do not rebuild; header2.html stays as the record of the review.
 # Mockup tool (not site code): header2.html = the homepage (index.html) with the new header for review: a full-width bar
 # at the top, a pill after scrolling (tools/header2.css, tools/header2.js). Two phone versions on the review bar:
 #   ph-0 the header as it is now · ph-1 the pill, on the phone always in view · ph-2 the pill, on the phone it slides away

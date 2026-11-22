@@ -183,5 +183,9 @@ s = fase1c.apply(s)
 # phase 2 item 2.1: Hoe het werkt, variant D open (owner approved 19 Nov; tools/hoe_werkt.py)
 import hoe_werkt
 s = hoe_werkt.apply(s)
+# the header: a full-width bar at the top, a pill after scrolling; on the phone it slides away on the way down (owner
+# approved 22 Nov, header2.html version 2; tools/header_pill.py)
+import header_pill
+s = header_pill.apply(s)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
