@@ -1321,3 +1321,14 @@ Copy (draft): H2 "Van ons veld naar uw tuin, / in vier stappen."
   - On the homepage "Lees de voorwaarden" links to `garantie.html` (`tools/fase1c.py`; on the live site /garantie); index.html rebuilt by `tools/finalize_main.py`, the link the only change.
   - On the guarantee page the way back is real: the breadcrumb "Home", the logo (it scrolled to the top before) and "Over ons" / "Contact" go to index.html, index.html#waarom, index.html#kweker (they showed a mockup note before). Clicked through at 1440 and 390.
   - The main artifact now carries garantie.html as a second page.
+
+## The header: a pill after scrolling (22 Nov), in review
+
+- Owner (22 Nov): of the six header behaviours he likes the pill on scroll (it is the header of his first mockup, mockup-v3: a full-width frosted bar at the top, a centred pill after scrolling); worried the pill covers the page. Fable advised the pill with a denser glass (88–92 %, a strong blur), 56 px tall, a soft shadow, and on the phone optionally hiding on scroll down. Approved to build, in two phone versions. The first comparison page with six behaviours is not in the repo.
+- `header2.html` (`tools/build_header2.py`, post-processes index.html; `tools/header2.css`, `tools/header2.js`, written for this project; bar: "0 · Сейчас", "1 · Телефон: всегда видна" (default), "2 · Телефон: прячется при прокрутке вниз"):
+  - At the top the full-width bar as now (80 px, phone 64). After 24 px of scroll it eases in 0.45 s into a centred pill: up to 1024 px wide (16 px margins), 56 px, 12 px from the top, fully rounded, the page cream at 90 % with a 22 px blur, a hairline border and a low soft shadow.
+  - The menu exactly centred at every width (slightly tighter gaps at 1024–1199); "Bestellen" and the cart as before.
+  - Phone and tablet (≤ 1023 px): the pill with 11 px margins, 56 px; the open menu turns it back into the full-width bar, closing returns the pill.
+  - Version 2: on the phone the pill slides away once the page has moved down more than 8 px and returns on any move up; not in the first 160 px, not while the menu is open, not while keyboard focus is in the header.
+  - Reduced motion: no animation; no page jump. For the main build: include both files and set the class `hp` on <html> (`hp-hide` for version 2).
+  - Checked at 1920, 1440, 1280, 1024, 768, 390, 360: top, past the hero and back up a little; no horizontal scroll; pill 1024 × 56 at 1280–1920, 992 at 1024, 368 at 390, 338 at 360; the text under the pill does not show through readably. Fixed on the way: after a tap the menu button kept focus and version 2 stopped hiding; only keyboard focus counts now.

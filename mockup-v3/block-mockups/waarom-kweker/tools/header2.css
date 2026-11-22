@@ -1,0 +1,36 @@
+/* ===== The header: a full-width bar at the top of the page, a pill after scrolling (owner approved, 22 Nov) =====
+   At the top the header is the frosted bar it always was (80 px, 64 px on the phone). Once the page has moved 24 px it
+   eases into a centred pill that lies on the page: 56 px high, 12 px from the top edge, the page cream at 90 % with a
+   strong blur, so the text passing under it never reads through. The contents and their rules do not change.
+   While the phone menu is open the header is the full-width bar again, so the menu panel joins it.
+   Classes on <html> (set by tools/header2.js): "hp-pill" after 24 px of scroll, "hp-menu" while the phone menu is open,
+   "hp-away" when the phone header should be out of view. The page opts in with "hp" on <html>; "hp-hide" on <html> turns
+   on the phone behaviour "slides away on the way down, back on the way up". */
+html.hp header.fixed > div:first-child > div{
+  --hp-time:.45s;--hp-ease:cubic-bezier(.22,.61,.36,1);
+  position:relative;max-width:100vw;
+  transition:max-width var(--hp-time) var(--hp-ease),width var(--hp-time) var(--hp-ease),height var(--hp-time) var(--hp-ease),
+    margin-top var(--hp-time) var(--hp-ease),padding var(--hp-time) var(--hp-ease),border-radius var(--hp-time) var(--hp-ease),
+    background-color var(--hp-time) ease,box-shadow var(--hp-time) ease,border-color var(--hp-time) ease}
+/* the five items stand in the true middle of the header, whatever stands left and right of them */
+@media (min-width:1024px){
+  html.hp header.fixed > div:first-child > div > nav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap}
+}
+html.hp.hp-pill:not(.hp-menu) header.fixed > div:first-child > div{
+  width:calc(100% - 32px);max-width:1024px;height:56px;margin-top:12px;padding-left:20px;padding-right:10px;
+  border:1px solid rgba(63,74,55,.13);border-radius:999px;
+  background-color:rgba(241,239,234,.9);
+  -webkit-backdrop-filter:blur(22px) saturate(1.15);backdrop-filter:blur(22px) saturate(1.15);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 2px rgba(63,74,55,.08),0 10px 20px -14px rgba(63,74,55,.32)}
+@media (min-width:1024px) and (max-width:1199.98px){
+  html.hp.hp-pill header.fixed > div:first-child > div > nav{gap:20px}
+}
+@media (max-width:1023.98px){
+  html.hp.hp-pill:not(.hp-menu) header.fixed > div:first-child > div{width:calc(100% - 22px);padding-left:14px;padding-right:6px}
+  /* the phone header out of view on the way down (only with "hp-hide") */
+  html.hp.hp-hide header.fixed > div:first-child{transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+  html.hp.hp-hide.hp-away:not(.hp-menu) header.fixed > div:first-child{transform:translateY(calc(-100% - 20px))}
+}
+@media (prefers-reduced-motion:reduce){
+  html.hp header.fixed > div:first-child,html.hp header.fixed > div:first-child > div{transition:none!important}
+}
