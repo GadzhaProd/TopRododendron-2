@@ -1825,11 +1825,15 @@ bs.forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute(
     });
     each(root.querySelectorAll('input[type="radio"][data-c]'), function (el) { el.addEventListener('change', function () { update(false); }); });
 
-    // into the cart: the button answers each time, and the line under it says what the cart holds now
+    // into the cart: the button answers each time, and the line under it says what was added (owner, 23 Nov: no running
+    // total, the bags would make it read 36 for 18 plants; the header cart shows the count). The line is emptied first so a
+    // screen reader announces the same words again on a second tap.
     add.addEventListener('click', function () {
       var c = root._calc; inCart += c.n + c.bags;
       if (typeof window.tbCart === 'function') window.tbCart(inCart);
-      status.textContent = words(c.n, 'plant', 'planten') + (c.bags ? ' en ' + words(c.bags, 'zak', 'zakken') + ' substraat' : '') + ' toegevoegd. Uw winkelwagen telt nu ' + words(inCart, 'artikel', 'artikelen') + '.';
+      var said = words(c.n, 'plant', 'planten') + (c.bags ? ' en ' + words(c.bags, 'zak', 'zakken') + ' substraat' : '') + ' toegevoegd aan uw winkelwagen.';
+      status.textContent = '';
+      setTimeout(function () { status.textContent = said; }, 60);
       add.textContent = 'Toegevoegd ✓'; add.classList.add('is-done');
       clearTimeout(addTimer);
       addTimer = setTimeout(function () { add.textContent = addText; add.classList.remove('is-done'); }, 2000);
