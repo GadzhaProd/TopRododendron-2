@@ -1,0 +1,132 @@
+/* ===== The plant calculator, second take (tools/calc2.py). The page's own means only: the serif heading type,
+   hairlines, underlined words, one moss button, a photo with the assortment's radius. No tiles, no frames, no shadows. ===== */
+.pc{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;--pc-ln:rgba(20,20,19,.14);--pc-2:var(--color-fg-2,#45443f);--pc-moss:var(--moss,#3f4a37);
+  /* the guarantee block below starts with its own "tail" before its air; this takes the tail back */
+  margin-bottom:calc(clamp(84px,9vw,150px) * -.3)}
+/* the assortment above ends with clamp(48px,5vw,80px); together one --sec. Below: the guarantee's own air is one --sec, so no padding here */
+.pc > .in{position:relative;padding-top:calc(var(--sec) - clamp(48px,5vw,80px));padding-bottom:0}
+.pc :where(h2,p,dl,dt,dd,fieldset,legend,figure){margin:0;padding:0;border:0;min-width:0}
+.pc :is(button,input,select){font:inherit;color:inherit;letter-spacing:inherit}
+.pc [hidden]{display:none!important}
+.pc-h{font-size:var(--t-h2)!important;line-height:1.08}
+.pc ::selection{background:#d3dcc2;color:#141413}
+.pc :is(a,button,select):focus-visible,.pc label:has(input:focus-visible) > span,.pc .pc-n:focus-visible{outline:2px solid var(--pc-moss);outline-offset:3px;border-radius:6px}
+.pc a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
+.pc-said{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* a choice written as a word; the chosen one is ink, semibold and underlined in moss */
+.pc-os{display:flex;flex-wrap:wrap;gap:0 clamp(20px,2vw,30px)}
+.pc-o{position:relative;cursor:pointer}
+.pc-o input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.pc-o > span{display:flex;align-items:center;gap:9px;min-height:44px;font-size:var(--t-body);line-height:1.25;color:var(--pc-2);transition:color .2s ease}
+.pc-o b{font-weight:400;text-decoration:underline transparent;text-decoration-thickness:1.5px;text-underline-offset:6px;transition:text-decoration-color .2s ease}
+/* the semibold width is kept free, so nothing moves when the choice changes */
+.pc-o b::after{content:attr(data-t);display:block;height:0;overflow:hidden;visibility:hidden;font-weight:600}
+.pc-o:hover > span{color:var(--color-fg,#141413)}
+.pc-o input:checked + span{color:var(--color-fg,#141413)}
+.pc-o input:checked + span b{font-weight:600;text-decoration-color:var(--pc-moss)}
+.pc-o em{font-style:normal;font-size:var(--t-small);font-variant-numeric:tabular-nums;color:var(--pc-2)}
+.pc-os-size .pc-o > span{flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;min-height:56px}
+.pc-dot{flex:none;display:inline-block;width:.36em;height:.36em;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(20,20,19,.3)}
+.pc-o .pc-dot{width:10px;height:10px}
+.pc-sizenote{font-size:var(--t-small);line-height:1.5;color:var(--pc-2);text-wrap:pretty}
+
+/* a figure to type: no frame, the same moss underline as the other words */
+.pc-n{box-sizing:content-box;min-width:1ch;padding:0;border:0;border-radius:0;background:none;text-align:center;font-variant-numeric:lining-nums;
+  text-decoration:underline;text-decoration-thickness:1.5px;text-decoration-color:rgba(63,74,55,.55);cursor:text}
+
+/* the sum on hairlines */
+.pc-lines > div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--pc-ln)}
+.pc-lines dt{font-size:var(--t-body);line-height:1.4;font-weight:600}
+.pc-lines small{display:block;margin-top:2px;font-size:var(--t-small);line-height:1.45;font-weight:400;color:var(--pc-2)}
+.pc-lines dd{flex:none;font-size:var(--t-body);line-height:1.4;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pc-lines .pc-tot{align-items:flex-end;padding:18px 0 0;border-top-color:var(--color-fg,#141413)}
+.pc-lines .pc-tot dd{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em}
+/* the substrate: a light tick, no filled square */
+.pc-chk{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin:-11px 0;cursor:pointer}
+.pc-chk input{-webkit-appearance:none;appearance:none;flex:none;width:20px;height:20px;margin:0;border:1px solid rgba(20,20,19,.6);border-radius:6px;background:transparent center/14px no-repeat;cursor:pointer}
+.pc-chk input:checked{border-color:var(--pc-moss);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E")}
+.pc .pc-chk input:focus-visible{outline:2px solid var(--pc-moss);outline-offset:3px}
+.pc .pc-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:22px;padding:0 28px;border:0;border-radius:999px;background:var(--pc-moss);color:#fff;
+  font-size:var(--t-body);font-weight:600;cursor:pointer;transition:background-color .2s ease}
+.pc .pc-add:hover{background:#333c2d}
+.pc .pc-add:focus-visible{border-radius:999px}
+.pc-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;font-weight:600;color:var(--pc-moss)}
+.pc-status:empty{display:none}
+.pc-note{margin-top:14px;font-size:var(--t-small);line-height:1.55;color:var(--pc-2);text-wrap:pretty}
+@media (prefers-reduced-motion:reduce){ .pc *{transition:none!important} }
+
+/* ================= A · the sentence ================= */
+.pc-a > .in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(40px,7vw,128px);align-items:start}
+.pc-a .pc-h{grid-column:1 / -1;margin-bottom:.38em}
+.pc-zin{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1.32;letter-spacing:-.014em;
+  color:var(--soft,#5f5e58);text-wrap:pretty}
+.pc .pc-w{display:inline;padding:0;border:0;border-radius:6px;background:none;cursor:pointer;color:var(--color-fg,#141413);text-align:left;
+  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.14em;text-decoration-color:rgba(63,74,55,.55);transition:text-decoration-color .2s ease,background-color .2s ease}
+.pc-w:hover{text-decoration-color:var(--pc-moss)}
+.pc-w[aria-expanded="true"]{text-decoration-color:var(--pc-moss);background:#dee4d1;box-shadow:0 0 0 .12em #dee4d1}
+.pc-w .pc-dot{margin-right:.2em;vertical-align:.14em}
+.pc .pc-zin .pc-n{min-width:.8em;padding:0;color:var(--color-fg,#141413);text-underline-offset:.14em}
+.pc-ans{font-weight:500;color:var(--pc-moss);white-space:nowrap}
+.pc-tip{margin-top:clamp(16px,1.6vw,22px);font-size:var(--t-small);line-height:1.5;color:var(--pc-2)}
+.pc-p{margin-top:clamp(14px,1.4vw,20px)!important;padding-top:16px!important;border-top:1px solid var(--pc-ln)!important}
+.pc-p legend{float:left;width:100%;margin-bottom:4px;font-size:var(--t-small);line-height:1.4;font-weight:600}
+.pc-p .pc-os{clear:both}
+.pc-p .pc-o > span{font-size:var(--t-lead)}
+.pc-p .pc-os-size{gap:0 clamp(24px,3vw,44px)}
+.pc-p .pc-sizenote{margin-top:8px}
+.pc-a .pc-sum{padding-top:.5em}
+@media (max-width:899.98px){
+  .pc-a > .in{grid-template-columns:minmax(0,1fr)}
+  .pc-zin{line-height:1.5}
+  .pc-a .pc-sum{margin-top:30px;padding-top:0}
+  .pc-p .pc-os-var{display:grid;grid-template-columns:minmax(0,1fr)}
+  .pc-p .pc-os-size{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ================= B · the variety and the rows ================= */
+.pc-b .pc-h{margin-bottom:clamp(26px,3vw,44px)}
+.pc-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,4fr) minmax(0,4fr);column-gap:clamp(32px,4.5vw,72px);align-items:start}
+.pc-ph{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#dcd9d0}
+.pc-ph img{display:block;width:100%;height:100%;object-fit:cover}
+.pc-r{padding:16px 0 14px!important;border-top:1px solid var(--pc-ln)!important}
+.pc-rows > .pc-r:first-child{padding-top:0!important;border-top:0!important}
+.pc-r legend{float:left;width:100%}
+.pc-r legend + *{clear:both}
+.pc-r legend,.pc-l{display:block;margin-bottom:2px;font-size:var(--t-small);line-height:1.4;font-weight:400;color:var(--pc-2)}
+.pc-r .pc-o > span{font-size:var(--t-lead)}
+.pc-r .pc-os-size{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+.pc-r .pc-sizenote{margin-top:6px}
+/* the length: two round buttons, as the round buttons of the header, and the figure between them */
+.pc-step{display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+.pc-step button{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid rgba(20,20,19,.25);border-radius:50%;background:none;cursor:pointer;transition:border-color .2s ease}
+.pc-step button:hover{border-color:var(--color-fg,#141413)}
+.pc .pc-step button:focus-visible{border-radius:50%}
+.pc-step svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.pc-val{display:inline-flex;align-items:baseline;justify-content:center;gap:5px;min-width:74px;font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-weight:500;font-size:28px;line-height:44px}
+.pc-val .pc-n{text-decoration:none;min-width:26px}
+.pc-val i{font-style:normal;font-family:Manrope,system-ui,sans-serif;font-weight:400;font-size:var(--t-body);color:var(--pc-2)}
+.pc-two{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.pc-two .pc-val{min-width:54px}
+.pc-x{font-size:var(--t-lead);color:var(--pc-2)}
+/* the variety: the system's own list, written as a word with a small arrow */
+.pc-sel{position:relative;display:block}
+.pc-sel select{-webkit-appearance:none;appearance:none;display:block;width:100%;height:48px;margin:0;padding:0 28px 0 0;border:0;border-radius:6px;background:none;cursor:pointer;
+  font-size:var(--t-lead);font-weight:600;line-height:1.2;text-overflow:ellipsis}
+.pc-sel svg{position:absolute;right:2px;top:50%;width:16px;height:16px;margin-top:-8px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.pc-big{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em;color:var(--pc-moss)}
+.pc-big b{font-weight:500;font-size:clamp(64px,6.6vw,96px);letter-spacing:-.03em;line-height:.8}
+@media (min-width:1100px){ .pc-big{margin-top:10px!important} }
+.pc-norm{margin:14px 0 20px;font-size:var(--t-small);line-height:1.5;color:var(--pc-2);text-wrap:pretty}
+@media (max-width:1099.98px){
+  .pc-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);row-gap:36px}
+  .pc-out{grid-column:1 / -1}
+}
+@media (max-width:699.98px){
+  .pc-grid{grid-template-columns:minmax(0,1fr);row-gap:26px}
+  .pc-ph{aspect-ratio:16/10;border-radius:16px}
+  .pc-out{grid-column:auto}
+}
+@media (max-width:599px){ .pc{margin-bottom:-27px} }
+/* phone: the two links of the note get a full finger's height */
+@media (max-width:699.98px){ .pc-note{line-height:1.9} .pc-note a{display:inline-block;padding:11px 0;margin:-11px 0} }
