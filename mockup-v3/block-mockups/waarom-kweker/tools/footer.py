@@ -20,20 +20,36 @@ WA = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.
 
 
 # Paying: eight icons, no visible text, each with its name for screen readers and as a tooltip. The five brands are the
-# real marks (img/pay/*.svg, see img/pay/CREDITS.md; referenced as files, not changed). The other three have no brand: our own line icons in moss,
-# in the same 38 x 24 card frame, so the row reads as one set. The cards stay light on every footer.
+# real marks (img/pay/*.svg, see img/pay/CREDITS.md; referenced as files, not changed). The other three have no brand: our
+# own icons in the same 38 x 24 white card, drawn filled and in colour like the brand symbols (owner, 23 Nov: the line icons
+# in one colour looked foreign next to the coloured marks): a bank with a gold roof, green banknotes, an invoice with an
+# orange euro badge. The cards stay light on every footer.
 def _card(label, inner):
     return (f'<li><svg viewBox="0 0 38 24" role="img" aria-label="{label}"><title>{label}</title>'
             '<path fill="#000" opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z"/>'
             '<path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"/>'
-            f'<g fill="none" stroke="#3f4a37" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">{inner}</g></svg></li>')
+            f'{inner}</svg></li>')
 def _mark(name, label):
     return f'<li><img src="img/pay/{name}.svg" alt="{label}" title="{label}" width="38" height="24" loading="lazy"></li>'
+EURO = 'font-family="Manrope,system-ui,sans-serif" font-weight="800" text-anchor="middle"'
+BANK = ('<path fill="#d9a62e" d="M10.6 9.5 19 4.6l8.4 4.9Z"/><circle cx="19" cy="7.7" r=".95" fill="#fff"/>'
+        '<rect x="10.6" y="9.5" width="16.8" height="1.5" rx=".3" fill="#3f4a37"/>'
+        '<rect x="12.9" y="11.6" width="1.8" height="4.6" rx=".3" fill="#3f4a37"/><rect x="18.1" y="11.6" width="1.8" height="4.6" rx=".3" fill="#3f4a37"/>'
+        '<rect x="23.3" y="11.6" width="1.8" height="4.6" rx=".3" fill="#3f4a37"/>'
+        '<rect x="10.6" y="16.7" width="16.8" height="1.5" rx=".3" fill="#3f4a37"/><rect x="9.6" y="18.7" width="18.8" height="1.5" rx=".4" fill="#3f4a37"/>')
+CASH = ('<rect x="11.6" y="4.4" width="17.6" height="10" rx="1.3" fill="#2f6f3a"/>'
+        '<rect x="8.8" y="8.2" width="17.6" height="10.6" rx="1.3" fill="#5aa152"/>'
+        '<rect x="10" y="9.4" width="15.2" height="8.2" rx=".8" fill="none" stroke="#9fd18f" stroke-width=".6"/>'
+        '<circle cx="17.6" cy="13.5" r="2.9" fill="#eaf6e2"/>'
+        f'<text x="17.6" y="15.1" font-size="4.4" fill="#2f6f3a" {EURO}>€</text>')
+INVOICE = ('<path d="M12.4 4.2h8.2l3.9 3.9v11.7h-12.1Z" fill="#fff" stroke="#3f4a37" stroke-width="1.1" stroke-linejoin="round"/>'
+           '<path d="M20.6 4.2v3.9h3.9" fill="#dee4d1" stroke="#3f4a37" stroke-width="1.1" stroke-linejoin="round"/>'
+           '<rect x="14.4" y="10.4" width="6.6" height="1.2" rx=".6" fill="#3f4a37"/><rect x="14.4" y="12.8" width="5.2" height="1.2" rx=".6" fill="#3f4a37"/>'
+           '<rect x="14.4" y="15.2" width="3.6" height="1.2" rx=".6" fill="#3f4a37"/>'
+           '<circle cx="25" cy="16.9" r="3.9" fill="#e07b2a"/>'
+           f'<text x="25" y="18.6" font-size="4.8" fill="#fff" {EURO}>€</text>')
 PAY = ('<ul class="fz-pays">' + _mark('ideal', 'iDEAL') + _mark('visa', 'Visa') + _mark('mastercard', 'Mastercard') + _mark('maestro', 'Maestro') + _mark('vpay', 'V PAY')
-       + _card('Overschrijving', '<path d="M11 9.6 19 5.2l8 4.4Z"/><path d="M13.4 11.6v4.6M19 11.6v4.6M24.6 11.6v4.6M11.4 16.6h15.2M10.4 18.8h17.2"/>')
-       + _card('Contant bij ontvangst', '<rect x="10.5" y="5.6" width="17" height="8.6" rx="1.2"/><circle cx="19" cy="9.9" r="2"/><path d="M13 8v3.8M25 8v3.8"/>'
-                                        '<path d="M8.6 18.4h3.2l3.4 1.5h6.2l5.8-2.9"/>')
-       + _card('Zakelijk op factuur', '<path d="M14.2 4.8h6.6l3 3v11.4h-9.6Z"/><path d="M20.8 4.8v3h3"/><path d="M16.4 11.2h5.2M16.4 13.6h5.2M16.4 16h3"/>')
+       + _card('Overschrijving', BANK) + _card('Contant bij ontvangst', CASH) + _card('Zakelijk op factuur', INVOICE)
        + '</ul>')
 # the name as one very large word across the footer (decoration: the name is already there as text)
 def wordmark(cls=''):
@@ -64,7 +80,10 @@ def parts(home):
                '<li><a href="/voorwaarden" data-page="Algemene voorwaarden">Algemene voorwaarden</a></li>'
                '<li><a href="/privacy" data-page="Privacy">Privacy</a></li></ul></nav>')
     visit = ('<div class="fz-visit"><h3>Bezoek de kwekerij</h3><p><a href="' + MAP_FIELD + '"' + EXT + '>Apeldoornseweg, Wekerom</a></p>'
-             '<dl class="fz-hours"><div><dt>Ma–vr</dt><dd>08:00–17:00</dd></div><div><dt>Za</dt><dd>09:00–13:00</dd></div></dl>'
+             # every day written out (owner, 23 Nov); "Zondag gesloten" is on the live site
+             '<dl class="fz-hours">' + ''.join(f'<div><dt>{d}</dt><dd>{t}</dd></div>' for d, t in [
+                 ('Maandag', '08:00–17:00'), ('Dinsdag', '08:00–17:00'), ('Woensdag', '08:00–17:00'), ('Donderdag', '08:00–17:00'),
+                 ('Vrijdag', '08:00–17:00'), ('Zaterdag', '09:00–13:00'), ('Zondag', 'Gesloten')]) + '</dl>'
              '<p class="fz-free">Zonder afspraak welkom</p></div>')
     calls = ('<ul class="fz-calls"><li><a href="tel:+31620104312">' + TEL + '<span><i>Bellen</i><b>06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</b></span></a></li>'
              '<li><a href="https://wa.me/31620297849"' + EXT + '>' + WA + '<span><i>WhatsApp</i><b>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</b></span></a></li></ul>')

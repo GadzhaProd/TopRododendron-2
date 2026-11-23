@@ -21,7 +21,7 @@
 .fz :is(.fz-menu,.fz-serv) a{display:inline-block;padding-block:5px}
 /* the visit */
 .fz-hours{margin-top:10px;display:grid;row-gap:2px}
-.fz-hours div{display:grid;grid-template-columns:64px auto;justify-content:start}
+.fz-hours div{display:grid;grid-template-columns:96px auto;justify-content:start}
 .fz-hours dd{font-variant-numeric:tabular-nums;color:var(--fz-fg)}
 .fz-free{margin-top:10px;color:var(--fz-fg)}
 .fz-visit a{display:inline-block;padding-block:4px}
@@ -153,8 +153,7 @@ html.fz-js .fz-word.is-in svg{transform:none;opacity:1}
   .fz-grid .fz-calls svg{width:20px;height:20px}
   .fz-grid .fz-calls b{font-size:var(--t-lead)}
   .fz-grid .fz-more{grid-template-columns:minmax(0,1fr);row-gap:6px;margin-top:8px}
-  .fz-grid .fz-hours{grid-template-columns:auto auto;justify-content:start;column-gap:24px}
-  .fz-grid .fz-hours div{grid-template-columns:auto auto;column-gap:8px}
+  .fz-grid .fz-hours{grid-template-columns:1fr}
 }
 
 /* ================= 4 · the large name (dark) ================= */
