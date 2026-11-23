@@ -209,3 +209,15 @@
 .sx-b3 .sx-add{color:#2f3829;background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;
   box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
 .sx-b3 .sx-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
+
+/* ================= the variety chips without dots (owner, 23 Nov): the flower's colour shows only as the glow =================
+   The glow lies in a layer under the name and fades in: a light preview on hover (pointer devices only), full when chosen.
+   On a phone it appears on the tap that chooses. sx-dots brings the old dots back, for comparison in the review. */
+.sx:not(.sx-dots) .sx-vars i{display:none}
+:is(.sx-t1,.sx-t3) .sx-vars label > span{position:relative;isolation:isolate}
+:is(.sx-t1,.sx-t3) .sx-vars label > span::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--sx-on);opacity:0;transition:opacity .3s ease}
+.sx-t3 .sx-vars input:checked + span{background:var(--sx-paper)}
+.sx-t1 .sx-vars input:checked + span{background:transparent}
+:is(.sx-t1,.sx-t3) .sx-vars input:checked + span::before{opacity:1}
+@media (hover:hover){ :is(.sx-t1,.sx-t3) .sx-vars label:hover > input:not(:checked) + span::before{opacity:.6} }
+@media (prefers-reduced-motion:reduce){ .sx .sx-vars label > span::before{transition:none} }
