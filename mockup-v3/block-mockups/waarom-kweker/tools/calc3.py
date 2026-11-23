@@ -97,13 +97,14 @@ def _mini(u):
     return (f'<a class="sx-mini" href="#{u}-res"><span><b data-o="total"></b><i><span data-o="n"></span> <span data-o="nword"></span></i></span><em>Bekijk de berekening</em></a>')
 
 
-def calc_html(t=3, b=1, glow=True):
+def calc_html(t=3, b=3, glow=True, compact=True):
+    # owner, 23 Nov: 3 · tiles, compact, the cart button with the cards' glow (b=3)
     # t: the controls (1 pills, 2 rows, 3 tiles) · b: the cart button (0 moss, 1 olive, 2 sage, 3 glow) · glow: the cards' soft spots or flat
     u = 'sx'
     body = ('<div class="sx-ask">' + H2 + _mode(u) + _length(u) + _vars(u) + _sizes(u) + SUB + '</div>'
             f'<div class="sx-slip" id="{u}-res" data-res><p class="sx-sliph" data-o="title"></p>'
             '<p class="sx-slips"><span data-o="var"></span>, <span data-o="size"></span></p>' + NORM + LINES + ADD + BIG + '</div>')
-    return (f'<section class="sx sx-t{t} sx-b{b}{"" if glow else " sx-flat"}" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{body}{SAID}</div>{_mini(u)}</section>')
+    return (f'<section class="sx sx-t{t} sx-b{b}{"" if glow else " sx-flat"}{" sx-compact" if compact else ""}" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{body}{SAID}</div>{_mini(u)}</section>')
 
 
 def css():
