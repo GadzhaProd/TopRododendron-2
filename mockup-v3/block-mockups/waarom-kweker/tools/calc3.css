@@ -30,7 +30,7 @@
 .sx-set input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
 .sx-set label > span{display:flex;align-items:center;gap:10px;min-height:48px;font-size:var(--t-body);line-height:1.2;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
 .sx-set b{font-weight:500}
-.sx-set i{flex:none;width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(20,20,19,.3)}
+.sx-set i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(20,20,19,.3)}
 .sx-sizes em{font-style:normal;font-size:var(--t-small);font-variant-numeric:tabular-nums;color:var(--sx-2)}
 
 /* the length: minus, the figure with its unit, plus */
@@ -123,13 +123,15 @@
 .sx-t1 :is(.sx-vars,.sx-mode) > div{display:flex;flex-wrap:wrap;gap:8px}
 .sx-t1 .sx-set label > span{padding:0 18px;border:1px solid var(--sx-b);border-radius:999px}
 .sx-t1 .sx-set label:hover > span{border-color:rgba(20,20,19,.6)}
-.sx-t1 .sx-set input:checked + span{background:var(--sx-sage);border-color:var(--sx-moss)}
+.sx-t1 .sx-set input:checked + span{background:var(--sx-on);border-color:var(--sx-moss)}
+.sx-t1 .sx-set input:checked + span b::after{content:"";display:inline-block;width:14px;height:14px;margin-left:8px;vertical-align:-2px;background:var(--sx-tick) center/contain no-repeat}
 .sx-t1 .sx label:has(input:focus-visible) > span,.sx-t1 :is(a,button):focus-visible{border-radius:999px}
 .sx-t1 .sx-mode label > span{padding:0 24px;font-weight:500}
 .sx-t1 .sx-sizes > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .sx-t1 .sx-sizes label > span{justify-content:space-between;padding:0 20px}
 .sx-t1 .sx-sub input{border-radius:50%}
-.sx-t1 .sx-slip{border-radius:28px;background:linear-gradient(165deg,#e4e9d8 0%,#ebece3 52%,#f0ead3 100%)}
+.sx-t1 .sx-slip{border-radius:28px}
+.sx-t1.sx-flat .sx-slip{background:linear-gradient(165deg,#e4e9d8 0%,#ebece3 52%,#f0ead3 100%)}
 @media (max-width:899.98px){
   .sx-t1 .sx-slip{border-radius:22px}
   .sx-t1 .sx-vars label > span{min-height:44px;padding:0 15px}
@@ -141,6 +143,11 @@
 .sx-t2 .sx-norm{display:block}
 .sx-t2 .sx-set label > span::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1px solid rgba(20,20,19,.6);transition:border-color .2s ease,background-color .2s ease}
 .sx-t2 .sx-set input:checked + span::before{border-color:var(--sx-moss);background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
+/* the chosen row: a soft sage band between its hairlines that fades out at both ends */
+.sx-t2 :is(.sx-vars,.sx-sizes) input:checked + span{background:linear-gradient(to right,transparent 0%,#d3ddc2 12%,#e0e6d3 46%,transparent 88%)}
+.sx-t2 .sx-mode input:checked + span::before,.sx-t2 .sx-set input:checked + span::before{background:radial-gradient(circle,var(--sx-moss) 0 5px,transparent 5.6px),radial-gradient(circle at 30% 30%,#eae1bf,#c5d0b2)}
+.sx-t2.sx-flat :is(.sx-vars,.sx-sizes) input:checked + span{background:none}
+.sx-t2.sx-flat .sx-set input:checked + span::before{background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
 .sx-t2 .sx-set input:checked + span b{font-weight:600}
 .sx-t2 .sx label:has(input:focus-visible) > span{border-radius:6px}
 .sx-t2 .sx-mode > div{display:flex;flex-wrap:wrap;gap:0 32px}
@@ -149,7 +156,8 @@
 .sx-t2 :is(.sx-vars,.sx-sizes) label{border-bottom:1px solid var(--sx-ln)}
 .sx-t2 .sx-sizes em{margin-left:auto;font-size:var(--t-body);color:var(--color-fg)}
 .sx-t2 .sx-sub{padding-top:2px}
-.sx-t2 .sx-slip{border-radius:20px;background:#e4e9d8}
+.sx-t2 .sx-slip{border-radius:20px}
+.sx-t2.sx-flat .sx-slip{background:#e4e9d8}
 .sx-t2 .sx-sub input:checked{background-color:transparent}
 @media (max-width:599.98px){ .sx-t2 :is(.sx-vars,.sx-sizes) > div{grid-template-columns:minmax(0,1fr)} }
 
@@ -159,7 +167,7 @@
 .sx-t3 :is(.sx-vars,.sx-mode) > div{display:flex;flex-wrap:wrap;gap:6px}
 .sx-t3 .sx-set label > span{padding:0 16px;border-radius:14px;background:var(--sx-paper)}
 .sx-t3 .sx-set label:hover > span{background:#fff}
-.sx-t3 .sx-set input:checked + span{background:var(--sx-sage)}
+.sx-t3 .sx-set input:checked + span{background:var(--sx-on)}
 /* the sign of "chosen": a small moss tick */
 .sx-t3 :is(.sx-vars,.sx-mode) input:checked + span::after{content:"";flex:none;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
 .sx-t3 .sx label:has(input:focus-visible) > span,.sx-t3 .sx-step button:focus-visible{border-radius:14px}
@@ -173,8 +181,30 @@
 .sx-t3 .sx-step button:hover{background:#fff}
 .sx-t3 .sx-sub input{border:0;border-radius:8px;background-color:var(--sx-paper)}
 .sx-t3 .sx-sub input:checked{background-color:var(--sx-sage)}
-.sx-t3 .sx-slip{border-radius:20px;background:var(--sx-paper)}
+.sx-t3 .sx-slip{border-radius:20px}
+.sx-t3.sx-flat .sx-slip{background:var(--sx-paper)}
 @media (max-width:899.98px){
   .sx-t3 .sx-sizes > div{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sx-t3 .sx-vars label > span{min-height:44px;padding:0 13px}
 }
+
+/* ================= the glow: the cards' soft spots, always inside a surface, never around it =================
+   The chosen item: a sage spot from the left and a butter one from the right on light sage; a variety takes a faint
+   hint of its flower instead of the butter. Class sx-flat on the block switches all of it back to plain fills. */
+.sx{--sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
+.sx .sx-vars label{--sx-on:radial-gradient(ellipse 70% 130% at 100% 60%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 56% 150% at 0% 50%,color-mix(in srgb,var(--c) 24%,transparent) 0%,transparent 72%),#e4e9d8}
+.sx.sx-flat,.sx.sx-flat .sx-vars label{--sx-on:var(--sx-sage)}
+/* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
+.sx-slip{background:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
+  radial-gradient(ellipse 90% 40% at 100% 100%,#e6dcb4 0%,transparent 72%),radial-gradient(ellipse 60% 30% at 0% 100%,#d3dcc0 0%,transparent 70%),linear-gradient(to bottom,#e4e9d8 0%,#ebece3 46%,#ede8d4 100%);
+  box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
+.sx.sx-flat .sx-slip{box-shadow:none}
+
+/* ================= the cart button: lighter than moss. sx-b0 moss · sx-b1 olive · sx-b2 sage · sx-b3 glow ================= */
+.sx-b1 .sx-add{background:#627456;color:#fff}
+.sx-b1 .sx-add:hover{background:#586a4d}
+.sx-b2 .sx-add{background:#c8d3b6;color:#2f3829}
+.sx-b2 .sx-add:hover{background:#bcc9a8}
+.sx-b3 .sx-add{color:#2f3829;background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;
+  box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
+.sx-b3 .sx-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}

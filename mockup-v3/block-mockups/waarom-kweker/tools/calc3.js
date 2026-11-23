@@ -8,7 +8,7 @@
   var BAG = 14.95, MIN = 1, MAX = 200;
   var eur = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
   var num = new Intl.NumberFormat('nl-NL', { maximumFractionDigits: 1 });
-  var inCart = 0;
+  var inCart = 0, uid = 0;
 
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
 
@@ -33,16 +33,35 @@
     function length() { return value('len', MAX); }
     function mode() { var el = root.querySelector('input[data-c="mode"]:checked'); return el ? el.value : 'haag'; }
 
+    // a bush. With the glow (the cards' soft spots): a light sage spot that fades out and a tender spot of the flower's
+    // colour in its middle, no edges; the spots stay inside the ground line or the bed. Flat (class sx-flat): two plain circles.
+    function defs(colour, clip) {
+      if (root.classList.contains('sx-flat')) return { defs: '', open: '', close: '', flat: true };
+      var id = 'sxg' + (++uid);
+      return { id: id, open: '<g clip-path="url(#' + id + 'c)">', close: '</g>',
+        defs: '<defs><radialGradient id="' + id + 'a"><stop offset="0" stop-color="#8da578" stop-opacity=".95"/><stop offset=".48" stop-color="#a3b78c" stop-opacity=".72"/><stop offset="1" stop-color="#b9c8a0" stop-opacity="0"/></radialGradient>'
+          + '<radialGradient id="' + id + 'b"><stop offset="0" stop-color="' + colour + '" stop-opacity=".88"/><stop offset=".42" stop-color="' + colour + '" stop-opacity=".52"/><stop offset="1" stop-color="' + colour + '" stop-opacity="0"/></radialGradient>'
+          + '<clipPath id="' + id + 'c">' + clip + '</clipPath></defs>' };
+    }
+    function bush(g, cx, cy, r, colour) {
+      var at = 'cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="';
+      if (g.flat) return '<circle ' + at + r.toFixed(1) + '" class="sx-bush"/><circle ' + at + (r * .3).toFixed(1) + '" fill="' + colour + '" class="sx-bloom"/>';
+      return '<circle ' + at + (r * 1.7).toFixed(1) + '" fill="url(#' + g.id + 'a)"/><circle ' + at + (r * .7).toFixed(1) + '" fill="url(#' + g.id + 'b)"/>';
+    }
+
     // a border seen from above: the plants on a grid at the guideline's spacing (up to 8 by 6 metres)
     function drawBed(box, perM2, colour, L, W) {
       var l = Math.min(L, 8), w = Math.min(W, 6), u = 100, s = 1 / Math.sqrt(perM2), r = Math.min(27, s * u * .4), out = '';
       var fs = Math.ceil((l * u + 60) / Math.max(box.clientWidth, 1) * 14);
-      out += '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10" class="sx-bed"/>';
-      for (var y = s / 2; y < w - .01; y += s) for (var x = s / 2; x < l - .01; x += s) {
-        out += '<circle cx="' + (x * u).toFixed(1) + '" cy="' + (y * u).toFixed(1) + '" r="' + r.toFixed(1) + '" class="sx-bush"/>'
-          + '<circle cx="' + (x * u).toFixed(1) + '" cy="' + (y * u).toFixed(1) + '" r="' + (r * .3).toFixed(1) + '" fill="' + colour + '" class="sx-bloom"/>';
+      var g = defs(colour, '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10"/>');
+      out += g.defs + '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10" class="sx-bed"/>' + g.open;
+      // whole rows and columns only, centred in the bed
+      var nx = Math.max(1, Math.floor(l / s + 1e-9)), ny = Math.max(1, Math.floor(w / s + 1e-9)), ox = (l - nx * s) / 2, oy = (w - ny * s) / 2;
+      for (var iy = 0; iy < ny; iy++) for (var ix = 0; ix < nx; ix++) {
+        var x = ox + s / 2 + ix * s, y = oy + s / 2 + iy * s;
+        out += bush(g, x * u, y * u, r, colour);
       }
-      out += '<text x="' + l * u / 2 + '" y="' + (w * u + fs * 1.5) + '" text-anchor="middle" font-size="' + fs + '" class="sx-m">' + num.format(l) + ' m</text>'
+      out += g.close + '<text x="' + l * u / 2 + '" y="' + (w * u + fs * 1.5) + '" text-anchor="middle" font-size="' + fs + '" class="sx-m">' + num.format(l) + ' m</text>'
         + '<text x="' + (l * u + fs * .6) + '" y="' + (w * u / 2 + fs * .35) + '" font-size="' + fs + '" class="sx-m">' + num.format(w) + ' m</text>';
       box.innerHTML = '<svg viewBox="-2 -2 ' + (l * u + fs * 3.4) + ' ' + (w * u + fs * 2.2) + '" aria-hidden="true" focusable="false" class="is-bed">' + out + '</svg>';
       put('shown', (L > l || W > w) ? 'De tekening toont een deel van ' + num.format(l) + ' bij ' + num.format(w) + ' meter.' : '');
@@ -60,14 +79,14 @@
         if (m <= metres) s += '<text x="' + (m * mw + (m === 0 ? 1 : m === span ? -1 : 0)) + '" y="' + (82 + fs) + '" text-anchor="' + (m === 0 ? 'start' : m === span ? 'end' : 'middle') + '" font-size="' + fs + '" class="sx-m">' + m + ' m</text>';
       }
       s += '<line x1="0" y1="70" x2="' + w + '" y2="70" class="sx-ground"/>';
-      var gap = mw / perM, r = Math.min(27, gap * .46), count = Math.ceil(metres * perM - 1e-9);
+      var gap = mw / perM, r = Math.min(27, gap * .46), count = Math.ceil(metres * perM - 1e-9), bushes = '';
+      var g = defs(colour, '<rect x="-60" y="-60" width="' + (w + 120) + '" height="130"/>');
       for (var k = 0; k < count; k++) {
         var x = gap / 2 + k * gap;
         if (x > metres * mw + .01) break;
-        s += '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .9).toFixed(1) + '" r="' + r.toFixed(1) + '" class="sx-bush"/>'
-          + '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .9).toFixed(1) + '" r="' + (r * .3).toFixed(1) + '" fill="' + colour + '" class="sx-bloom"/>';
+        bushes += bush(g, x, 70 - r * .9, r, colour);
       }
-      box.innerHTML = '<svg viewBox="-2 0 ' + (w + 4) + ' ' + (86 + fs) + '" aria-hidden="true" focusable="false">' + s + '</svg>';
+      box.innerHTML = '<svg viewBox="-2 0 ' + (w + 4) + ' ' + (86 + fs) + '" aria-hidden="true" focusable="false">' + g.defs + g.open + bushes + g.close + s + '</svg>';
       put('shown', len > span ? 'De tekening toont de eerste ' + span + ' meter.' : '');
     }
 
