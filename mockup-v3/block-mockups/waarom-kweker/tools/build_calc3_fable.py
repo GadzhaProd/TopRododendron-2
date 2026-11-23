@@ -3,7 +3,7 @@
 # (tools/calc.py, unchanged). kn-1 pills · kn-2 rows · kn-3 tiles · kn-0 the old one;
 # kb-0..3 the cart button (moss, olive, sage, glow) · gl-1/gl-0 the cards' glow or flat ·
 # dt-0/dt-1 the variety chips without or with their colour dots ·
-# ku-1/2/3 the drawn plants (discs, shrubs, one hedge), ku-f the old flat circles, ku-g the rejected blurred spots.
+# ku-1/2/3 the drawn plants (the chips' flow, a planting plan in fine lines, the variety's photo), ku-f the first flat circles.
 # Usage: python3 tools/build_calc3_fable.py [dir]
 import re, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -21,7 +21,7 @@ html.kn-0 .hc1{display:block}
 html.kn-0 .sx{display:none}
 '''
 # the bar switches classes on <html> (the page's own review script); this copies the choice to the block and redraws
-SWITCH = '''(function(){var sx=document.querySelector('.sx'),h=document.documentElement;var KU={'1':'1','2':'2','3':'3','f':'flat','g':'glow'};function get(g,d){var m=h.className.match(new RegExp('(?:^| )'+g+'-(\\\\w)'));return m?m[1]:d}
+SWITCH = '''(function(){var sx=document.querySelector('.sx'),h=document.documentElement;var KU={'1':'1','2':'2','3':'3','f':'flat'};function get(g,d){var m=h.className.match(new RegExp('(?:^| )'+g+'-(\\\\w)'));return m?m[1]:d}
 [].forEach.call(document.querySelectorAll('.rv button'),function(b){b.addEventListener('click',function(){setTimeout(function(){
 var kn=get('kn','1');if(kn!=='0')sx.className='sx sx-t'+kn+' sx-b'+get('kb','1')+(get('gl','1')==='0'?' sx-flat':'')+' sx-k'+KU[get('ku','3')]+(get('dt','0')==='1'?' sx-dots':'');else sx.className=sx.className.replace(/sx-b\\d/,'sx-b'+get('kb','1'));
 window.dispatchEvent(new Event('resize'))},0)})})})();'''
@@ -33,7 +33,7 @@ BAR = ('<div class="rv" role="group" aria-label="Варианты"><div class="r
        + '</div><span class="sep"></span><div class="rv-g"><i>Кнопка корзины</i>' + btn(0, 'Мох (было)', g='kb') + btn(1, 'A · Олива', True, g='kb') + btn(2, 'B · Шалфей', g='kb') + btn(3, 'C · Свечение', g='kb')
        + '</div><span class="sep"></span><div class="rv-g"><i>Свечение</i>' + btn(1, 'Свечение: да', True, g='gl') + btn(0, 'нет', g='gl')
        + '</div><span class="sep"></span><div class="rv-g"><i>Точки сорта</i>' + btn(0, 'Точки: нет', True, g='dt') + btn(1, 'есть', g='dt')
-       + '</div><span class="sep"></span><div class="rv-g"><i>Кусты</i>' + btn(1, 'Кусты 1 · Диски', g='ku') + btn(2, '2 · Куст', g='ku') + btn(3, '3 · Изгородь', True, g='ku') + btn('f', 'Плоские (было)', g='ku') + btn('g', 'Мыло', g='ku') + '</div></div>')
+       + '</div><span class="sep"></span><div class="rv-g"><i>Кусты</i>' + btn(1, 'Кусты 1 · Перелив', g='ku') + btn(2, '2 · План', g='ku') + btn(3, '3 · Фото', True, g='ku') + btn('f', 'Плоские (было)', g='ku') + '</div></div>')
 assert '<div class="rv"' not in s and s.count('<div id="root">') == 1 and s.count('</head>') == 1 and s.count('</body>') == 1
 s = s.replace('<div id="root">', BAR + '<div id="root">')
 s = s.replace('</head>', '<style id="calc-css">' + calc.css() + '</style><style id="calc3-css">' + calc3.css() + '</style><style id="calc3-review">' + REVIEW + '</style></head>')

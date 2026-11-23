@@ -21,7 +21,12 @@ GLOW = {'Nova Zembla': '#f2adb4', 'Catawbiense Grandiflorum': '#e1cff2', "Cunnin
         'Roseum Elegans': '#efc1dc', 'Ponticum': '#cec8ed', 'Ponticum Roseum': '#f8ccd6'}
 SIZES = ['40–60 cm', '60–80 cm', '80–100 cm', '100–120 cm']
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
-DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c} for n, p, c in SOORTEN], ensure_ascii=False), quote=True)
+# for the drawing: the photo of the assortment card (img/<slug>-2-sm.webp, 672 × 900) and where the shrub stands in it,
+# as fractions of the photo: left, top, right, bottom
+PHOTO = {'Nova Zembla': ('nova-zembla', [.05, .21, .95, .82]), 'Catawbiense Grandiflorum': ('catawbiense-grandiflorum', [.0, .05, 1, 1]),
+         "Cunningham’s White": ('cunninghams-white', [.02, .18, .98, .92]), 'Catawbiense Boursault': ('catawbiense-boursault', [.02, .06, .98, .88]),
+         'Roseum Elegans': ('roseum-elegans', [.0, .15, 1, .85]), 'Ponticum': ('ponticum', [.03, .08, .97, .88]), 'Ponticum Roseum': ('ponticum-roseum', [.0, .03, 1, 1])}
+DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c, 'g': GLOW[n], 'f': PHOTO[n][0], 'b': PHOTO[n][1]} for n, p, c in SOORTEN], ensure_ascii=False), quote=True)
 
 
 def _step(u, key='len', value='12', what='meter', cls=''):
@@ -39,12 +44,16 @@ def _mode(u):
 
 
 def _area(u):
-    # the border: length times width, the square metres shown beside it
-    return (f'<div class="sx-f sx-area" data-mode="border" hidden><p class="sx-lab" id="{u}-arl">Afmetingen van de border</p>'
-            f'<div class="sx-arow" role="group" aria-labelledby="{u}-arl"><label><span>Lengte</span>' + _step(u, 'bl', '4', 'meter lengte', 'is-s') + '</label>'
-            '<b aria-hidden="true">×</b><label><span>Breedte</span>' + _step(u, 'bw', '3', 'meter breedte', 'is-s') + '</label>'
-            '<p class="sx-m2">= <b data-o="area"></b>&nbsp;m²</p></div>'
-            f'<p class="sx-hint" id="{u}-blh">Elke maat van 1 tot 50 meter, ook halve meters.</p><span id="{u}-bwh" hidden></span></div>')
+    # a group or border: its shape first. A group (an island bed) is planted round, by its diameter, or oval; a border along
+    # a fence or path is straight, length times width. The square metres are shown beside the measures.
+    shape = ''.join(f'<label><input type="radio" name="{u}-shape" data-c="shape" value="{v}"{" checked" if v == "rond" else ""}><span><b>{t}</b></span></label>'
+                    for v, t in (('rond', 'Rond'), ('ovaal', 'Ovaal'), ('recht', 'Recht')))
+    m2 = '<p class="sx-m2">= <b data-o="area"></b>&nbsp;m²</p>'
+    return (f'<div class="sx-f sx-area" data-mode="border" hidden><fieldset class="sx-set sx-shape"><legend>Vorm</legend><div>{shape}</div></fieldset>'
+            f'<div class="sx-arow" data-shape="rond"><label><span>Doorsnede</span>' + _step(u, 'bd', '3', 'meter doorsnede', 'is-s') + '</label>' + m2 + '</div>'
+            f'<div class="sx-arow" data-shape="ovaal recht" role="group" aria-label="Lengte en breedte" hidden><label><span>Lengte</span>' + _step(u, 'bl', '4', 'meter lengte', 'is-s') + '</label>'
+            '<b aria-hidden="true">×</b><label><span>Breedte</span>' + _step(u, 'bw', '3', 'meter breedte', 'is-s') + '</label>' + m2 + '</div>'
+            f'<p class="sx-hint" id="{u}-blh">Elke maat van 1 tot 50 meter, ook halve meters.</p><span id="{u}-bwh" hidden></span><span id="{u}-bdh" hidden></span></div>')
 
 
 def _range(u, top=40):
@@ -93,7 +102,7 @@ def _mini(u):
 
 
 def calc_html(t=3, b=1, glow=True, k=3):
-    # t: the controls (1 pills, 2 rows, 3 tiles) · b: the cart button (0 moss, 1 olive, 2 sage, 3 glow) · glow: the cards' soft spots or flat · k: the drawn plants (1 discs, 2 shrubs, 3 one hedge)
+    # t: the controls (1 pills, 2 rows, 3 tiles) · b: the cart button (0 moss, 1 olive, 2 sage, 3 glow) · glow: the cards' soft spots or flat · k: the drawn plants (1 the chips' flow, 2 a planting plan in fine lines, 3 the variety's photo)
     u = 'sx'
     body = ('<div class="sx-ask">' + H2 + _mode(u) + _length(u) + _vars(u) + _sizes(u) + SUB + '</div>'
             f'<div class="sx-slip" id="{u}-res" data-res><p class="sx-sliph" data-o="title"></p>'
