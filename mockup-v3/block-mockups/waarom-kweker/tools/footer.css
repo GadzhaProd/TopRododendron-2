@@ -20,11 +20,11 @@
 /* link lists: every link at least 32 px tall */
 .fz :is(.fz-menu,.fz-serv) a{display:inline-block;padding-block:5px}
 /* the visit */
-.fz-hours{margin-top:10px;display:grid;row-gap:2px}
+.fz-hours{margin-top:10px;display:grid;row-gap:8px}
 .fz-hours div{display:grid;grid-template-columns:96px auto;justify-content:start}
 .fz-hours dd{font-variant-numeric:tabular-nums;color:var(--fz-fg)}
 .fz-free{margin-top:10px;color:var(--fz-fg)}
-.fz-visit a{display:inline-block;padding-block:4px}
+.fz-visit a{display:inline-block;padding-block:5px}
 /* the two phone lines: large targets */
 .fz-calls a{display:flex;align-items:center;gap:14px;min-height:56px;text-decoration:none}
 .fz-calls svg{flex:none;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -169,14 +169,20 @@ html.fz-js .fz-word.is-in svg{transform:none;opacity:1}
 .fz4 .fz-legal{margin-top:4px}
 /* the whole word, with a little air under the descender of the p */
 .fz4 .fz-word{margin-top:clamp(20px,2.4vw,36px);margin-bottom:clamp(14px,1.8vw,26px);color:#3a4532}
-@media (max-width:699.98px){
-  .fz4{border-radius:22px 22px 0 0}
-  /* phone: the name, Instagram, the payment row, then the small print last */
+@media (max-width:699.98px){ .fz4{border-radius:22px 22px 0 0} }
+/* below 860 px the low row stacks: the name, Instagram, the payment row, then the small print last (at 700–859 px the brand
+   and the KvK line wrapped beside the payment row; independent review, 23 Nov) */
+@media (max-width:859.98px){
   .fz4 .fz-low{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
   .fz4 .fz-brand{display:contents}
   .fz4 .fz-pay{order:3;margin-top:10px}
   .fz4 .fz-legal{order:4;margin-top:10px}
 }
+@media (max-width:699.98px){
+  .fz4 .fz-pay{display:block}
+  .fz4 .fz-pay h3{margin-bottom:10px}
+}
+.fz4 .fz-name span,.fz4 .fz-legal{white-space:nowrap}
 
 /* ================= 5 · a moss card with the name ================= */
 .fz5{--fz-bg:#f1efea;background:var(--page,#f1efea)}
@@ -221,3 +227,10 @@ html.fz-js .fz6 .fz-word.is-in text{stroke-dashoffset:0}
 @media (prefers-reduced-motion:reduce){
   html.fz-js .fz-word svg,html.fz-js .fz-word text{transition:none!important;transform:none!important;opacity:1!important;stroke-dashoffset:0!important}
 }
+
+/* 320–349 px: the two numbers one under the other (at 320 the first ran into the WhatsApp icon) */
+@media (max-width:349.98px){ .fz-grid .fz-calls{grid-template-columns:1fr} }
+/* a heading for the footer's own section, for screen readers (the h3s sat under the last block's h2) */
+.fz-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* print: the large name is shown even if it never scrolled into view */
+@media print{ html.fz-js .fz-word svg{opacity:1!important;transform:none!important} }

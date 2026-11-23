@@ -30,7 +30,7 @@ def _card(label, inner):
             '<path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"/>'
             f'{inner}</svg></li>')
 def _mark(name, label):
-    return f'<li><img src="img/pay/{name}.svg" alt="{label}" title="{label}" width="38" height="24" loading="lazy"></li>'
+    return f'<li title="{label}"><img src="img/pay/{name}.svg" alt="{label}" width="38" height="24" loading="lazy"></li>'
 EURO = 'font-family="Manrope,system-ui,sans-serif" font-weight="800" text-anchor="middle"'
 BANK = ('<path fill="#d9a62e" d="M10.6 9.5 19 4.6l8.4 4.9Z"/><circle cx="19" cy="7.7" r=".95" fill="#fff"/>'
         '<rect x="10.6" y="9.5" width="16.8" height="1.5" rx=".3" fill="#3f4a37"/>'
@@ -53,9 +53,11 @@ PAY = ('<ul class="fz-pays">' + _mark('ideal', 'iDEAL') + _mark('visa', 'Visa') 
        + '</ul>')
 # the name as one very large word across the footer (decoration: the name is already there as text)
 def wordmark(cls=''):
-    # the viewBox leaves room for the descender of "p" (owner, 23 Nov: the p of "Top" was cut, the word read as something else)
-    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg viewBox="0 0 1000 142" preserveAspectRatio="xMidYMid meet">'
-            '<text x="0" y="104" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Newsreader,Georgia,serif" font-weight="500" font-size="124">Top Rhododendrons</text></svg></div>')
+    # the viewBox leaves room for the descender of "p" (owner, 23 Nov: the p of "Top" was cut, the word read as something else).
+    # At font-size 105 the word in Newsreader 500 is 1000 units wide by itself, so textLength only evens out rounding and the
+    # letters keep their own proportions (at 124 it was squeezed by 15 %; independent review, 23 Nov)
+    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg viewBox="0 0 1000 122" preserveAspectRatio="xMidYMid meet">'
+            '<text x="0" y="89" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Newsreader,Georgia,serif" font-weight="500" font-size="105">Top Rhododendrons</text></svg></div>')
 TOP = ('<a class="fz-up" href="#root" aria-label="Terug naar boven" title="Terug naar boven"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a>')
 # the large name comes into view calmly; without scripting or with reduced motion it is simply there
 SCRIPT = ('<script>(function(){var w=[].slice.call(document.querySelectorAll(".fz-word"));if(!w.length)return;'
@@ -114,7 +116,7 @@ def footer_html(n, home=''):
         body = (wordmark('is-line') + '<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + brand + pay + legal + '</div>')
     else:           # a moss card: the brand and the visit on the left, the contacts as a list on the right; small links under the card
         body = ('<div class="fz-card"><div class="fz-left">' + brand + visit + '</div>' + contact + '</div><div class="fz-low">' + menu + service + pay + '</div>' + legal)
-    return f'<footer class="fz fz{n}"><div class="in">{body}</div></footer>'
+    return f'<footer class="fz fz{n}"><h2 class="fz-sr">Contact en praktische informatie</h2><div class="in">{body}</div></footer>'
 
 
 def css():
