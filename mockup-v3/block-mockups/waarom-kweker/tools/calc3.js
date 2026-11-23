@@ -33,35 +33,89 @@
     function length() { return value('len', MAX); }
     function mode() { var el = root.querySelector('input[data-c="mode"]:checked'); return el ? el.value : 'haag'; }
 
-    // a bush. With the glow (the cards' soft spots): a light sage spot that fades out and a tender spot of the flower's
-    // colour in its middle, no edges; the spots stay inside the ground line or the bed. Flat (class sx-flat): two plain circles.
-    function defs(colour, clip) {
-      if (root.classList.contains('sx-flat')) return { defs: '', open: '', close: '', flat: true };
-      var id = 'sxg' + (++uid);
-      return { id: id, open: '<g clip-path="url(#' + id + 'c)">', close: '</g>',
-        defs: '<defs><radialGradient id="' + id + 'a"><stop offset="0" stop-color="#8da578" stop-opacity=".95"/><stop offset=".48" stop-color="#a3b78c" stop-opacity=".72"/><stop offset="1" stop-color="#b9c8a0" stop-opacity="0"/></radialGradient>'
+    // The planting, drawn. A class on the block picks the treatment: sx-k1 discs · sx-k2 drawn shrubs · sx-k3 one hedge;
+    // for reference sx-kflat (two plain circles) and sx-kglow (blurred spots, rejected by the owner as "soapy").
+    // All of 1–3 are crisp shapes in pale sage tones; the flower's colour is a clear dot, outlined when it is as pale as the sheet.
+    // view: 'side' (a hedge on the ground line y = 70) or 'top' (a bed); pts: the plants' centres; r: a plant's radius; g: the room.
+    function planting(view, pts, r, colour, g) {
+      var m = root.className.match(/sx-k(\w+)/), kind = m ? m[1] : '3', id = 'sxg' + (++uid), out = '', top = view === 'top';
+      var rgb = [1, 3, 5].map(function (k) { return parseInt(colour.substr(k, 2), 16); }), pale = (rgb[0] * .299 + rgb[1] * .587 + rgb[2] * .114) > 215;
+      var edge = pale ? ' stroke="#8a9a78" stroke-width="1" vector-effect="non-scaling-stroke"' : '';
+      function f(v) { return v.toFixed(1); }
+      function dot(x, y, q) {     // a blossom: one crisp dot of the flower's colour
+        return '<circle cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(q) + '" fill="' + colour + '"' + edge + '/>';
+      }
+      if (kind === 'flat') {
+        pts.forEach(function (p) { var y = top ? p[1] : 70 - r * .9; out += '<circle cx="' + f(p[0]) + '" cy="' + f(y) + '" r="' + f(r) + '" class="sx-bush"/><circle cx="' + f(p[0]) + '" cy="' + f(y) + '" r="' + f(r * .3) + '" fill="' + colour + '" class="sx-bloom"/>'; });
+        return out;
+      }
+      if (kind === 'glow') {
+        pts.forEach(function (p) { var y = top ? p[1] : 70 - r * .9; out += '<circle cx="' + f(p[0]) + '" cy="' + f(y) + '" r="' + f(r * 1.7) + '" fill="url(#' + id + 'a)"/><circle cx="' + f(p[0]) + '" cy="' + f(y) + '" r="' + f(r * .7) + '" fill="url(#' + id + 'b)"/>'; });
+        return '<defs><radialGradient id="' + id + 'a"><stop offset="0" stop-color="#8da578" stop-opacity=".95"/><stop offset=".48" stop-color="#a3b78c" stop-opacity=".72"/><stop offset="1" stop-color="#b9c8a0" stop-opacity="0"/></radialGradient>'
           + '<radialGradient id="' + id + 'b"><stop offset="0" stop-color="' + colour + '" stop-opacity=".88"/><stop offset=".42" stop-color="' + colour + '" stop-opacity=".52"/><stop offset="1" stop-color="' + colour + '" stop-opacity="0"/></radialGradient>'
-          + '<clipPath id="' + id + 'c">' + clip + '</clipPath></defs>' };
-    }
-    function bush(g, cx, cy, r, colour) {
-      var at = 'cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="';
-      if (g.flat) return '<circle ' + at + r.toFixed(1) + '" class="sx-bush"/><circle ' + at + (r * .3).toFixed(1) + '" fill="' + colour + '" class="sx-bloom"/>';
-      return '<circle ' + at + (r * 1.7).toFixed(1) + '" fill="url(#' + g.id + 'a)"/><circle ' + at + (r * .7).toFixed(1) + '" fill="url(#' + g.id + 'b)"/>';
+          + '<clipPath id="' + id + 'c">' + (top ? '<rect x="0" y="0" width="' + g.w + '" height="' + g.h + '" rx="10"/>' : '<rect x="-60" y="-60" width="' + (g.w + 120) + '" height="130"/>') + '</clipPath></defs>'
+          + '<g clip-path="url(#' + id + 'c)">' + out + '</g>';
+      }
+      if (kind === '1') {
+        // discs: a crisp sage disc, lighter towards the upper left, and the flower in its middle
+        pts.forEach(function (p) { var y = top ? p[1] : 70 - r; out += '<circle cx="' + f(p[0]) + '" cy="' + f(y) + '" r="' + f(r) + '" fill="url(#' + id + 'd)"/>' + dot(p[0], y, r * .34); });
+        return '<defs><radialGradient id="' + id + 'd" cx=".34" cy=".3" r=".8"><stop offset="0" stop-color="#d9e1c9"/><stop offset="1" stop-color="#b3c29b"/></radialGradient></defs>' + out;
+      }
+      if (kind === '3') {
+        // one planting: a hedge with a gently bumpy top (a bed: one planted field), a blossom or three per plant, and each plant marked
+        if (top) {
+          var q = Math.min(9, g.s * .17), x0 = pts[0][0] - g.s / 2, y0 = pts[0][1] - g.s / 2, x1 = pts[pts.length - 1][0] + g.s / 2, y1 = pts[pts.length - 1][1] + g.s / 2;
+          out = '<rect x="' + f(x0) + '" y="' + f(y0) + '" width="' + f(x1 - x0) + '" height="' + f(y1 - y0) + '" rx="' + f(Math.min(22, g.s * .4)) + '" fill="#c6d2b1"/>';
+          pts.forEach(function (p) { out += '<circle cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="' + f(g.s * .36) + '" fill="#b1c099"/>' + dot(p[0], p[1], q); });
+          return out;
+        }
+        var h = Math.min(50, Math.max(34, r * 1.8)), half = g.gap / 2, peak = 70 - h, dip = 70 - h * .76, a = pts[0][0] - half, b = pts[pts.length - 1][0] + half, d = 'M' + f(a) + ',70 L' + f(a) + ',' + f(dip + 8) + ' Q' + f(a) + ',' + f(dip) + ' ' + f(a + Math.min(8, half * .4)) + ',' + f(dip - 1);
+        pts.forEach(function (p, k) {
+          var l = k === 0 ? a + Math.min(8, half * .4) : p[0] - half, e = k === pts.length - 1 ? b - Math.min(8, half * .4) : p[0] + half;
+          d += ' C' + f(l + (p[0] - l) * .4) + ',' + f(peak) + ' ' + f(p[0] - (p[0] - l) * .35) + ',' + f(peak) + ' ' + f(p[0]) + ',' + f(peak)
+            + ' C' + f(p[0] + (e - p[0]) * .35) + ',' + f(peak) + ' ' + f(e - (e - p[0]) * .4) + ',' + f(peak) + ' ' + f(e) + ',' + f(k === pts.length - 1 ? dip - 1 : dip);
+        });
+        d += ' Q' + f(b) + ',' + f(dip) + ' ' + f(b) + ',' + f(dip + 8) + ' L' + f(b) + ',70 Z';
+        out = '<path d="' + d + '" fill="url(#' + id + 'h)"/>';
+        var q3 = Math.min(5, half * .18);
+        pts.forEach(function (p, pk) {
+          var o = pk % 2 ? [[-.5, .36], [-.02, .7], [.44, .5]] : [[-.44, .54], [.1, .76], [.52, .32]];
+          out += dot(p[0] + half * o[0][0], 70 - h * o[0][1], q3) + dot(p[0] + half * o[1][0], 70 - h * o[1][1], q3) + dot(p[0] + half * o[2][0], 70 - h * o[2][1], q3)
+            + '<circle cx="' + f(p[0]) + '" cy="70" r="2.6" fill="#3f4a37"/>';
+        });
+        return '<defs><linearGradient id="' + id + 'h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfcca9"/><stop offset="1" stop-color="#a2b58a"/></linearGradient></defs>' + out;
+      }
+      // 2 · a drawn shrub, defined once and placed per plant: from the side a rounded mound in three sage tones with a few trusses;
+      // from above a rosette of leaves with one truss in the middle
+      var sym;
+      if (top) {
+        var leaves = '', k2;
+        for (k2 = 0; k2 < 8; k2++) leaves += '<ellipse cx="0" cy="-27" rx="10.5" ry="20" fill="' + (k2 % 2 ? '#c9d5b6' : '#bac8a3') + '" transform="rotate(' + (k2 * 45) + ')"/>';
+        sym = '<circle r="44" fill="#a9bb90"/>' + leaves + '<circle r="15" fill="' + colour + '"' + edge + '/>';
+        pts.forEach(function (p) { out += '<use href="#' + id + 's" x="' + f(p[0] - r) + '" y="' + f(p[1] - r) + '" width="' + f(r * 2) + '" height="' + f(r * 2) + '"/>'; });
+        return '<defs><symbol id="' + id + 's" viewBox="-50 -50 100 100">' + sym + '</symbol></defs>' + out;
+      }
+      var tr = [[-26, -26], [-4, -50], [20, -38], [32, -15], [-2, -20]], blooms = '';
+      tr.forEach(function (t) { blooms += '<circle cx="' + t[0] + '" cy="' + t[1] + '" r="7.4" fill="' + colour + '"' + edge + '/>'; });
+      sym = '<path d="M-52,0 C-56,-30 -40,-54 -20,-58 C-8,-74 16,-74 26,-56 C44,-50 56,-28 52,0 Z" fill="#b6c59e"/>'
+        + '<path d="M-52,0 C-56,-30 -40,-54 -20,-58 C-8,-74 16,-74 26,-56 C8,-60 -14,-52 -24,-34 C-32,-20 -34,-8 -32,0 Z" fill="#c9d5b6"/>' + blooms;
+      var bw = Math.min(g.gap * .98, r * 2.4), bh = bw * .7;
+      pts.forEach(function (p) { out += '<use href="#' + id + 's" x="' + f(p[0] - bw / 2) + '" y="' + f(70 - bh) + '" width="' + f(bw) + '" height="' + f(bh) + '"/>'; });
+      return '<defs><symbol id="' + id + 's" viewBox="-54 -76 108 76" preserveAspectRatio="none">' + sym + '</symbol></defs>' + out;
     }
 
     // a border seen from above: the plants on a grid at the guideline's spacing (up to 8 by 6 metres)
     function drawBed(box, perM2, colour, L, W) {
       var l = Math.min(L, 8), w = Math.min(W, 6), u = 100, s = 1 / Math.sqrt(perM2), r = Math.min(27, s * u * .4), out = '';
       var fs = Math.ceil((l * u + 60) / Math.max(box.clientWidth, 1) * 14);
-      var g = defs(colour, '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10"/>');
-      out += g.defs + '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10" class="sx-bed"/>' + g.open;
+      var pts = [];
       // whole rows and columns only, centred in the bed
       var nx = Math.max(1, Math.floor(l / s + 1e-9)), ny = Math.max(1, Math.floor(w / s + 1e-9)), ox = (l - nx * s) / 2, oy = (w - ny * s) / 2;
       for (var iy = 0; iy < ny; iy++) for (var ix = 0; ix < nx; ix++) {
         var x = ox + s / 2 + ix * s, y = oy + s / 2 + iy * s;
-        out += bush(g, x * u, y * u, r, colour);
+        pts.push([x * u, y * u]);
       }
-      out += g.close + '<text x="' + l * u / 2 + '" y="' + (w * u + fs * 1.5) + '" text-anchor="middle" font-size="' + fs + '" class="sx-m">' + num.format(l) + ' m</text>'
+      out += planting('top', pts, r, colour, { w: l * u, h: w * u, s: s * u }) + '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10" class="sx-bed"/><text x="' + l * u / 2 + '" y="' + (w * u + fs * 1.5) + '" text-anchor="middle" font-size="' + fs + '" class="sx-m">' + num.format(l) + ' m</text>'
         + '<text x="' + (l * u + fs * .6) + '" y="' + (w * u / 2 + fs * .35) + '" font-size="' + fs + '" class="sx-m">' + num.format(w) + ' m</text>';
       box.innerHTML = '<svg viewBox="-2 -2 ' + (l * u + fs * 3.4) + ' ' + (w * u + fs * 2.2) + '" aria-hidden="true" focusable="false" class="is-bed">' + out + '</svg>';
       put('shown', (L > l || W > w) ? 'De tekening toont een deel van ' + num.format(l) + ' bij ' + num.format(w) + ' meter.' : '');
@@ -79,14 +133,13 @@
         if (m <= metres) s += '<text x="' + (m * mw + (m === 0 ? 1 : m === span ? -1 : 0)) + '" y="' + (82 + fs) + '" text-anchor="' + (m === 0 ? 'start' : m === span ? 'end' : 'middle') + '" font-size="' + fs + '" class="sx-m">' + m + ' m</text>';
       }
       s += '<line x1="0" y1="70" x2="' + w + '" y2="70" class="sx-ground"/>';
-      var gap = mw / perM, r = Math.min(27, gap * .46), count = Math.ceil(metres * perM - 1e-9), bushes = '';
-      var g = defs(colour, '<rect x="-60" y="-60" width="' + (w + 120) + '" height="130"/>');
+      var gap = mw / perM, r = Math.min(27, gap * .46), count = Math.ceil(metres * perM - 1e-9), pts = [];
       for (var k = 0; k < count; k++) {
         var x = gap / 2 + k * gap;
         if (x > metres * mw + .01) break;
-        bushes += bush(g, x, 70 - r * .9, r, colour);
+        pts.push([x, 70]);
       }
-      box.innerHTML = '<svg viewBox="-2 0 ' + (w + 4) + ' ' + (86 + fs) + '" aria-hidden="true" focusable="false">' + g.defs + g.open + bushes + g.close + s + '</svg>';
+      box.innerHTML = '<svg viewBox="-2 0 ' + (w + 4) + ' ' + (86 + fs) + '" aria-hidden="true" focusable="false">' + planting('side', pts, r, colour, { w: w, gap: gap }) + s + '</svg>';
       put('shown', len > span ? 'De tekening toont de eerste ' + span + ' meter.' : '');
     }
 
