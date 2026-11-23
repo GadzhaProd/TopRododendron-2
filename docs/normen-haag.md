@@ -22,6 +22,22 @@
 
 Количество округляется вверх до целого растения.
 
+## Сколько растений на квадратный метр (островок, бордюр)
+
+Норм именно для рододендронов на м² по размерам в открытых источниках мало. Что есть:
+- **Kwekerij Nova Zembla:** для небольших рододендронов ориентир 3 растения на м².
+- **Valouwe** и **rhododendronhagen.nl:** около 2 крупных рододендронов на м².
+- **Списки посадок** нидерландских муниципалитетов для кустарников в размере 40/60: около 3 на м² (шаг 0,6 × 0,6 м).
+- **Hornbach, rhododendrons.co.uk, gardenia.net:** шаг посадки по ширине взрослого куста. Чем крупнее растение, тем реже.
+
+**Предложение для калькулятора** (ориентир, владелец подтверждает):
+- 40–60 cm: 3 на м²;
+- 60–80 cm: 2 на м²;
+- 80–100 cm: 1 на м² (шаг около 1 м, как в изгороди);
+- 100–120 cm: 1 на м².
+
+Площадь: длина × ширина, или сразу м². Количество округляется вверх до целого растения. Субстрат тот же: 1 мешок 40 л на растение.
+
 ## Сколько субстрата
 
 - **Kwekerij Nova Zembla** (питомник рододендронов): «в общем хватает 1 мешка DCM Vivimus aanplantgrond на рододендрон», при большом коме или плохой земле больше.
@@ -48,3 +64,7 @@
 - Ilexcrenata.nl, Rododendrongrond 40 L: https://www.ilexcrenata.nl/rododendrongrond-40-l/
 - Valouwe, «Hoeveel rhododendrons planten per vierkante meter?»: https://valouwe.nl/faq-rhododendron/detail/hoeveel-rhododendrons-planten-per-vierkante-meter
 - Hornbach, Rhododendron verzorgen: https://www.hornbach.nl/projecten/rhododendron-verzorgen/
+- Rhododendronhagen.nl: https://rhododendronhagen.nl/en/rhododendron-hedges
+- Gardenia.net, rhododendrons for hedges (spacing by mature width): https://www.gardenia.net/guide/best-rhododendrons-for-privacy-screens-hedges
+- Rhododendrons.co.uk, site advice: https://www.rhododendrons.co.uk/advice/11-site-advice
+- Wikiwijs, aanleg beplanting maat en kwaliteit (plantlijsten 40/60): https://maken.wikiwijs.nl/bestanden/1189937/aanleg%20beplanting_maat%20en%20kwaliteit_HSO_Plantmateriaal%20les%202.pdf
