@@ -200,3 +200,37 @@
 .hc3 .hc-two:has(.hc-area:not([hidden])){grid-template-columns:minmax(0,1fr)}
 @media (max-width:1199.98px){ .hc3 .hc-two{grid-template-columns:minmax(0,1fr)} }
 @media (max-width:420px){ .hc-mode > div{display:grid} .hc-mode span{padding:0 12px} .hc-step.is-s .hc-val{min-width:58px} }
+
+/* ===== Light treatments of the selected states (owner: no heavy dark green). A class on <html> picks one:
+   ct-a sage · ct-b butter · ct-c outline. Without a class the selected states stay moss. ===== */
+html:is(.ct-a,.ct-b,.ct-c) .hc{--on-bg:#dee4d1;--on-ck:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E")}
+html.ct-b .hc{--on-bg:#eae1bf}
+html.ct-c .hc{--on-bg:transparent}
+html:is(.ct-a,.ct-b,.ct-c) .hc :is(.hc-set,.hc-mode) input:checked + span{background:var(--on-bg);border-color:#3f4a37;color:#141413;box-shadow:inset 0 0 0 1px #3f4a37}
+html.ct-c .hc :is(.hc-set,.hc-mode) input:checked + span{box-shadow:inset 0 0 0 1.5px #3f4a37}
+html:is(.ct-a,.ct-b,.ct-c) .hc-set input:checked + span i{box-shadow:0 0 0 1px rgba(20,20,19,.25)}
+/* the sign of "chosen": a small moss tick */
+html:is(.ct-a,.ct-b,.ct-c) .hc :is(.hc-vars,.hc-mode) input:checked + span::after{content:"";flex:none;width:14px;height:14px;margin-left:2px;background:var(--on-ck) center/contain no-repeat}
+html:is(.ct-a,.ct-b,.ct-c) .hc-sizes label > span{position:relative}
+html:is(.ct-a,.ct-b,.ct-c) .hc-sizes input:checked + span::after{content:"";position:absolute;right:8px;top:8px;width:13px;height:13px;background:var(--on-ck) center/contain no-repeat}
+html:is(.ct-a,.ct-b,.ct-c) .hc-mode input:checked + span{font-weight:600}
+html:is(.ct-a,.ct-b,.ct-c) .hc-sub input:checked{background-color:var(--on-bg);border-color:#3f4a37;background-image:var(--on-ck);box-shadow:inset 0 0 0 1px #3f4a37}
+/* B: the slip and the button in the butter family */
+html.ct-b .hc1 .hc-slip{background:linear-gradient(to bottom,#fbf9f1,#f4eed8)}
+html.ct-b .hc1 .hc-strip{background:#efe8cb}
+html.ct-b .hc .hc-add{background:#e0d7ad;color:#141413;box-shadow:inset 0 0 0 1px #3f4a37}
+html.ct-b .hc .hc-add:hover{background:#d8cd9c}
+/* the photo design: the chosen photo and a light answer panel in the same family */
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-photos input:checked + span{background:var(--on-bg);color:#141413;box-shadow:0 0 0 2px #3f4a37}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-photos input:checked + span b::after{content:"";flex:none;width:14px;height:14px;margin-left:auto;background:var(--on-ck) center/contain no-repeat}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel{color:#45443f;--hc-ln:rgba(63,74,55,.22);box-shadow:inset 0 0 0 1px rgba(63,74,55,.14);
+  background:radial-gradient(ellipse 70% 60% at 0% 0%,#d3ddc2 0%,transparent 70%),radial-gradient(ellipse 60% 60% at 100% 100%,#eae1bf 0%,transparent 72%),#e9ecdf}
+html.ct-b .hc3 .hc-panel{background:radial-gradient(ellipse 70% 60% at 100% 0%,#eae1bf 0%,transparent 70%),radial-gradient(ellipse 60% 60% at 0% 100%,#e4e9d8 0%,transparent 72%),#f3eedb}
+html.ct-c .hc3 .hc-panel{background:#f6f4ee;box-shadow:inset 0 0 0 1.5px #3f4a37}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel :is(.hc-big,.hc-lines dt,.hc-lines dd,.hc-status){color:#141413}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel :is(.hc-pk,.hc-lines small,.hc-lines .hc-del dd,.hc-note,.hc-pv){color:#45443f}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel .hc-tot{border-top-color:#141413}
+html:is(.ct-a,.ct-c) .hc3 .hc-panel .hc-add{background:#3f4a37;color:#fff}
+html:is(.ct-a,.ct-c) .hc3 .hc-panel .hc-add:hover{background:#333c2d}
+html.ct-b .hc3 .hc-panel .hc-add{background:#e0d7ad;color:#141413}
+html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel :is(a,button):focus-visible{outline-color:#3f4a37}
