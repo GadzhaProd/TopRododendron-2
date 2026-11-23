@@ -14,12 +14,13 @@
   function setup(root) {
     var data = JSON.parse(root.getAttribute('data-soorten'));
     var lenInput = root.querySelector('[data-c="len"]');
+    var range = root.querySelector('[data-c="range"]');
     var status = root.querySelector('[data-o="status"]');
     var said = root.querySelector('[data-o="said"]');
     var timer;
 
     function pick(name) {
-      var el = root.querySelector('select[data-c="' + name + '"]') || root.querySelector('input[data-c="' + name + '"]:checked');
+      var el = root.querySelector('input[data-c="' + name + '"]:checked');
       return el ? parseInt(el.value, 10) : 0;
     }
     function length() {
@@ -29,39 +30,41 @@
     }
     function put(key, text) { each(root.querySelectorAll('[data-o="' + key + '"]'), function (el) { el.textContent = text; }); }
 
-    function draw(perM, colour, len) {
-      var box = root.querySelector('[data-draw]');
-      if (!box) return;
-      var span = box.clientWidth < 520 ? 3 : 6;                // the phone shows three metres, so the figures stay readable
-      var metres = Math.min(len, span), w = span === 3 ? 300 : 600, h = 96, mw = w / span, s = '';
+    // the hedge to scale: the plants along a metre rule. data-draw="fit" shows the whole hedge (up to 12 m), otherwise the first metres
+    function draw(box, perM, colour, len) {
+      var fit = box.getAttribute('data-draw') === 'fit';
+      var span = fit ? Math.min(12, Math.max(4, Math.ceil(len))) : (box.clientWidth < 520 ? 4 : 6);
+      if (fit && box.clientWidth < 520) span = Math.min(span, 6);
+      var metres = Math.min(len, span), mw = 100, w = span * mw, s = '', fs = Math.round(w / Math.max(box.clientWidth, 1) * 12);
       for (var m = 0; m <= span; m++) {
-        s += '<line x1="' + (m * mw + .5) + '" y1="70" x2="' + (m * mw + .5) + '" y2="' + (m <= metres ? 82 : 76) + '" class="hc-tick"/>';
-        if (m <= metres) s += '<text x="' + (m * mw + (m === 0 ? 2 : m === span ? -2 : 0)) + '" y="95" text-anchor="' + (m === 0 ? 'start' : m === span ? 'end' : 'middle') + '" class="hc-m">' + m + ' m</text>';
+        s += '<line x1="' + (m * mw) + '" y1="70" x2="' + (m * mw) + '" y2="' + (m <= metres ? 80 : 75) + '" class="hc-tick"/>';
+        if (m <= metres) s += '<text x="' + (m * mw + (m === 0 ? 1 : m === span ? -1 : 0)) + '" y="' + (82 + fs) + '" text-anchor="' + (m === 0 ? 'start' : m === span ? 'end' : 'middle') + '" font-size="' + fs + '" class="hc-m">' + m + ' m</text>';
       }
       s += '<line x1="0" y1="70" x2="' + w + '" y2="70" class="hc-ground"/>';
-      var count = Math.ceil(metres * perM), gap = mw / perM, r = Math.min(26, gap * .46);
+      var gap = mw / perM, r = Math.min(27, gap * .46), count = Math.ceil(metres * perM - 1e-9);
       for (var k = 0; k < count; k++) {
         var x = gap / 2 + k * gap;
-        if (x > metres * mw) break;
-        s += '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .92).toFixed(1) + '" r="' + r.toFixed(1) + '" class="hc-bush"/>'
-          + '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .92).toFixed(1) + '" r="' + (r * .3).toFixed(1) + '" fill="' + colour + '" class="hc-bloom"/>';
+        if (x > metres * mw + .01) break;
+        s += '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .9).toFixed(1) + '" r="' + r.toFixed(1) + '" class="hc-bush"/>'
+          + '<circle cx="' + x.toFixed(1) + '" cy="' + (70 - r * .9).toFixed(1) + '" r="' + (r * .3).toFixed(1) + '" fill="' + colour + '" class="hc-bloom"/>';
       }
-      box.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true" focusable="false">' + s + '</svg>';
+      box.innerHTML = '<svg viewBox="-2 0 ' + (w + 4) + ' ' + (86 + fs) + '" aria-hidden="true" focusable="false">' + s + '</svg>';
+      put('shown', len > span ? 'De tekening toont de eerste ' + span + ' meter.' : '');
     }
 
     function update(fromInput) {
       var len = length(), v = data[pick('var')], si = pick('size');
-      var subOn = !root.querySelector('[data-c="sub"]') || root.querySelector('[data-c="sub"]').checked;
+      var subBox = root.querySelector('[data-c="sub"]'), subOn = !subBox || subBox.checked;
       var n = Math.ceil(len * PER_M[si] - 1e-9), price = v.p[si], plants = n * price, bags = subOn ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
       if (!fromInput) lenInput.value = num.format(len);
+      if (range) { range.value = Math.min(len, parseFloat(range.max)); range.style.setProperty('--hc-fill', ((range.value - range.min) / (range.max - range.min) * 100) + '%'); }
       put('len', num.format(len)); put('n', n); put('each', eur.format(price)); put('plants', eur.format(plants));
       put('bags', bags); put('bagsum', eur.format(bagSum)); put('total', eur.format(total));
       put('var', v.n); put('size', SIZES[si]); put('nword', n === 1 ? 'plant' : 'planten'); put('bword', bags === 1 ? 'zak' : 'zakken');
       put('perm', num.format(PER_M[si]) + (PER_M[si] === 1 ? ' plant' : ' planten') + ' per meter, om de ' + Math.round(100 / PER_M[si]) + ' cm');
-      each(root.querySelectorAll('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]).replace(',00', ''); });
+      each(root.querySelectorAll('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]); });
       each(root.querySelectorAll('[data-row="sub"]'), function (el) { el.hidden = !subOn; });
-      root.style.setProperty('--hc-dot', v.c);
-      draw(PER_M[si], v.c, len);
+      each(root.querySelectorAll('[data-draw]'), function (box) { draw(box, PER_M[si], v.c, len); });
       root._calc = { n: n, bags: bags };
       if (status) status.textContent = '';
       clearTimeout(timer);
@@ -72,6 +75,7 @@
 
     lenInput.addEventListener('input', function () { update(true); });
     lenInput.addEventListener('blur', function () { update(false); });
+    if (range) range.addEventListener('input', function () { lenInput.value = range.value; update(false); });
     each(root.querySelectorAll('[data-step]'), function (b) {
       b.addEventListener('click', function () { lenInput.value = String(length() + parseFloat(b.getAttribute('data-step'))); update(false); });
     });
@@ -82,8 +86,18 @@
       if (typeof window.tbCart === 'function') window.tbCart(inCart);
       if (status) status.textContent = c.n + (c.n === 1 ? ' plant' : ' planten') + (c.bags ? ' en ' + c.bags + (c.bags === 1 ? ' zak' : ' zakken') + ' substraat' : '') + ' in uw winkelwagen.';
     });
-    update(false);
+    // phone: a small bar with the total while the questions are on screen and the answer is not
+    var bar = root.querySelector('.hc-mini'), res = root.querySelector('[data-res]');
+    if (bar && res && 'IntersectionObserver' in window) {
+      var seen = { root: false, res: false };
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { seen[e.target === res ? 'res' : 'root'] = e.isIntersecting; });
+        bar.classList.toggle('is-on', seen.root && !seen.res);
+      }, { rootMargin: '-80px 0px -40px 0px' });
+      io.observe(root); io.observe(res);
+    }
     window.addEventListener('resize', function () { update(false); });
+    update(false);
   }
   each(document.querySelectorAll('.hc'), setup);
 })();
