@@ -15,7 +15,8 @@ i = s.index('<main id="main"'); j = s.index('</main>') + len('</main>')
 head, tail = s[:i], s[j:]
 
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
-FIELD = 'https://www.google.com/maps/search/?api=1&amp;query=52.0914891%2C5.7283254'
+# (owner, 23 Nov: the search link opened the office; a route to the exact pin of the field instead)
+FIELD = 'https://www.google.com/maps/dir/?api=1&amp;destination=52.0914891%2C5.7283254'
 A_WA = '<a ' + WA + '>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
 A_TEL = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 A_MAIL = '<a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a>'

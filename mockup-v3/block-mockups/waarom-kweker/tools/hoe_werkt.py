@@ -9,7 +9,8 @@
 import pathlib
 T = pathlib.Path(__file__).parent
 
-MAP = 'https://www.google.com/maps/search/?api=1&amp;query=52.0914891%2C5.7283254'
+# (owner, 23 Nov: the search link opened the office; a route to the exact pin of the field instead)
+MAP = 'https://www.google.com/maps/dir/?api=1&amp;destination=52.0914891%2C5.7283254'
 STEPS = [  # (verb, text, meta)
     ('Kiezen', 'Soort, maat en aantal. Bij elke soort staan alle maten met hun prijs.', ''),
     ('Bestellen', 'Online of per telefoon. U&nbsp;betaalt met iDEAL, per overschrijving of bij ontvangst; zakelijk op factuur.', ''),

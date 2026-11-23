@@ -9,7 +9,8 @@
 # Facts only from the brief of 22 Nov; no BTW number yet (it is left out, no placeholder).
 import pathlib
 
-MAP_FIELD = 'https://www.google.com/maps/search/?api=1&amp;query=52.0914891%2C5.7283254'
+# (owner, 23 Nov: the search link opened the office; a route to the exact pin of the field instead)
+MAP_FIELD = 'https://www.google.com/maps/dir/?api=1&amp;destination=52.0914891%2C5.7283254'
 MAP_OFFICE = 'https://www.google.com/maps/search/?api=1&amp;query=Esserbroekweg%202%2C%206731%20DB%20Otterlo'
 EXT = ' target="_blank" rel="noopener noreferrer"'
 MARK = ('<svg class="fz-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="1" y="1" width="38" height="38" rx="11" fill="currentColor"/>'
@@ -56,8 +57,13 @@ def wordmark(cls=''):
     # the viewBox leaves room for the descender of "p" (owner, 23 Nov: the p of "Top" was cut, the word read as something else).
     # At font-size 105 the word in Newsreader 500 is 1000 units wide by itself, so textLength only evens out rounding and the
     # letters keep their own proportions (at 124 it was squeezed by 15 %; independent review, 23 Nov)
-    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg viewBox="0 0 1000 122" preserveAspectRatio="xMidYMid meet">'
-            '<text x="0" y="89" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Newsreader,Georgia,serif" font-weight="500" font-size="105">Top Rhododendrons</text></svg></div>')
+    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg class="fz-w1" viewBox="0 0 1000 122" preserveAspectRatio="xMidYMid meet">'
+            '<text x="0" y="89" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Newsreader,Georgia,serif" font-weight="500" font-size="105">Top Rhododendrons</text></svg>'
+            # on the phone in two lines, "Rhododendrons" across the full width (134 is its natural size for 1000 units), so the
+            # name stays large (owner, 23 Nov; at 390 px in one line it was about 45 px high)
+            '<svg class="fz-w2" viewBox="0 0 1000 280" preserveAspectRatio="xMidYMid meet">'
+            '<text font-family="Newsreader,Georgia,serif" font-weight="500" font-size="134"><tspan x="0" y="104">Top</tspan>'
+            '<tspan x="0" y="240" textLength="1000" lengthAdjust="spacingAndGlyphs">Rhododendrons</tspan></text></svg></div>')
 TOP = ('<a class="fz-up" href="#root" aria-label="Terug naar boven" title="Terug naar boven"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a>')
 # the large name comes into view calmly; without scripting or with reduced motion it is simply there
 SCRIPT = ('<script>(function(){var w=[].slice.call(document.querySelectorAll(".fz-word"));if(!w.length)return;'
@@ -106,7 +112,8 @@ def footer_html(n, home=''):
     elif n == 4:    # the large name: dark; the columns, then the name across the whole width at the very foot
         # (owner, 23 Nov: the name only, no tagline; Instagram and the KvK line under the name, not in one long row)
         side = ('<div class="fz-brand"><p class="fz-name">' + MARK + '<span>Top Rhododendrons</span></p>'
-                '<p class="fz-ig"><a href="https://www.instagram.com/toprhododendrons"' + EXT + '>' + IG + '@toprhododendrons</a></p>' + legal + '</div>')
+                '<p class="fz-ig"><a href="https://www.instagram.com/toprhododendrons"' + EXT + '>' + IG + '@toprhododendrons</a></p>'
+                '<p class="fz-legal">© 2026 · KvK&nbsp;82480273</p></div>')
         body = ('<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + side + pay + '</div>' + wordmark())
     elif n == 5:    # a moss card with the name: the motto and a way back up, the columns, the name inside the card
         motto = '<div class="fz-head"><p class="fz-motto">Familiekwekerij in Otterlo, sinds&nbsp;2001.</p>' + TOP + '</div>'

@@ -95,7 +95,8 @@ MAPS = 'https://www.google.com/maps/search/Esserbroekweg+2+Otterlo'
 # the field, where customers visit and pick up (owner, 19 Nov: his map pin 52.0914891, 5.7283254, Apeldoornseweg, Wekerom);
 # Esserbroekweg 2, Otterlo is the office (in the footer as "Kantoor"; owner, 19 Nov: link it to the map too, the labels say
 # which is which). Both use the Google Maps URL scheme, which opens the place with its route button (app or browser).
-FIELD = 'https://www.google.com/maps/search/?api=1&amp;query=52.0914891%2C5.7283254'
+# (owner, 23 Nov: the search link opened the office; a route to the exact pin of the field instead)
+FIELD = 'https://www.google.com/maps/dir/?api=1&amp;destination=52.0914891%2C5.7283254'
 OFFICE = 'https://www.google.com/maps/search/?api=1&amp;query=Esserbroekweg%202%2C%206731%20DB%20Otterlo'
 T1 = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
 T2 = '<a href="tel:+31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a>'
