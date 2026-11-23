@@ -24,6 +24,10 @@
 .fz-hours div{display:grid;grid-template-columns:96px auto;justify-content:start}
 .fz-hours dd{font-variant-numeric:tabular-nums;color:var(--fz-fg)}
 .fz-free{margin-top:10px;color:var(--fz-fg)}
+/* the two addresses together, then the field's hours under a small label */
+.fz-visit .fz-addr{margin-top:0}
+.fz-sub{margin-top:18px;font-size:var(--t-micro);line-height:1.4;color:var(--fz-lbl)}
+.fz-sub + .fz-hours{margin-top:8px}
 .fz-visit a{display:inline-block;padding-block:5px}
 /* the two phone lines: large targets */
 .fz-calls a{display:flex;align-items:center;gap:14px;min-height:56px;text-decoration:none}

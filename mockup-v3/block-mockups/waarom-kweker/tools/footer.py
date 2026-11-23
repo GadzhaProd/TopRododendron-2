@@ -87,7 +87,12 @@ def parts(home):
                f'<li><a href="{h}#hoe">Hoe bestellen</a></li>'
                '<li><a href="/voorwaarden" data-page="Algemene voorwaarden">Algemene voorwaarden</a></li>'
                '<li><a href="/privacy" data-page="Privacy">Privacy</a></li></ul></nav>')
-    visit = ('<div class="fz-visit"><h3>Bezoek de kwekerij</h3><p><a href="' + MAP_FIELD + '"' + EXT + '>Apeldoornseweg, Wekerom</a></p>'
+    # both places together (owner, 23 Nov: the field and the office were in two columns, one at the top, one at the bottom):
+    # the field (visits and pick-up) and the office, then the field's hours
+    visit = ('<div class="fz-visit"><h3>Adressen</h3><dl class="fz-more fz-addr">'
+             '<div><dt>Kwekerij · bezoek en afhalen</dt><dd><a href="' + MAP_FIELD + '"' + EXT + '>Apeldoornseweg, Wekerom</a></dd></div>'
+             '<div><dt>Kantoor</dt><dd><a href="' + MAP_OFFICE + '"' + EXT + '>Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo</a></dd></div></dl>'
+             '<p class="fz-sub">Openingstijden kwekerij</p>'
              # every day written out (owner, 23 Nov); "Zondag gesloten" is on the live site
              '<dl class="fz-hours">' + ''.join(f'<div><dt>{d}</dt><dd>{t}</dd></div>' for d, t in [
                  ('Maandag', '08:00–17:00'), ('Dinsdag', '08:00–17:00'), ('Woensdag', '08:00–17:00'), ('Donderdag', '08:00–17:00'),
@@ -95,8 +100,7 @@ def parts(home):
              '<p class="fz-free">Zonder afspraak welkom</p></div>')
     calls = ('<ul class="fz-calls"><li><a href="tel:+31620104312">' + TEL + '<span><i>Bellen</i><b>06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</b></span></a></li>'
              '<li><a href="https://wa.me/31620297849"' + EXT + '>' + WA + '<span><i>WhatsApp</i><b>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</b></span></a></li></ul>')
-    more = ('<dl class="fz-more"><div><dt>E-mail</dt><dd><a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a></dd></div>'
-            '<div><dt>Kantoor</dt><dd><a href="' + MAP_OFFICE + '"' + EXT + '>Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo</a></dd></div></dl>')
+    more = '<dl class="fz-more"><div><dt>E-mail</dt><dd><a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a></dd></div></dl>'
     contact = '<div class="fz-contact"><h3>Contact</h3>' + calls + more + '</div>'
     pay = '<div class="fz-pay"><h3>Betalen</h3>' + PAY + '</div>'
     legal = '<p class="fz-legal">© 2026 Top Rhododendrons · KvK&nbsp;82480273</p>'
