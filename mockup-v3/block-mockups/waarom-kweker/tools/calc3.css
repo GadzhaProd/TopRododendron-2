@@ -1,0 +1,180 @@
+/* ===== The hedge calculator «Смета», restyled (tools/calc3.py). The layout is shared; a class on the block picks the
+   treatment of the controls and the sheet: sx-t1 pills · sx-t2 rows on hairlines · sx-t3 soft tiles.
+   Rules for all three: one radius family, one line weight or none, no shadows, no blurred spots, at most three fills,
+   a light selected state (sage), text of 14 px or more. ===== */
+.sx{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;--sx-ln:rgba(20,20,19,.14);--sx-b:rgba(20,20,19,.25);--sx-2:var(--color-fg-2,#45443f);--sx-moss:var(--moss,#3f4a37);
+  --sx-sage:#dee4d1;--sx-top:92px;
+  --sx-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+  /* the guarantee block below starts with its own "tail" before its --sec of air; this takes the tail back */
+  margin-bottom:calc(clamp(84px,9vw,150px) * -.3)}
+@media (max-width:599px){ .sx{margin-bottom:-27px} }
+/* the assortment above ends with clamp(48px,5vw,80px); together one --sec. Below, the guarantee's own air is one --sec */
+.sx > .in{position:relative;padding-top:calc(var(--sec) - clamp(48px,5vw,80px));padding-bottom:0;
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,5vw,96px);align-items:start}
+.sx :where(h2,p,dl,dt,dd,fieldset,legend,figure){margin:0;padding:0;border:0;min-width:0}
+.sx [hidden]{display:none!important}
+.sx-h{font-size:var(--t-h2)!important;line-height:1.08;margin-bottom:clamp(26px,3vw,44px)}
+.sx-h > span{display:block}
+.sx :is(button,input){font:inherit;color:inherit}
+.sx :is(a,button):focus-visible,.sx label:has(input:focus-visible) > span,.sx-sub input:focus-visible,.sx-range input:focus-visible{outline:2px solid var(--sx-moss);outline-offset:3px}
+.sx ::selection{background:#d3dcc2;color:#141413}
+.sx a:not(.sx-mini){color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
+.sx-ask > * + *{margin-top:clamp(24px,2.6vw,34px)}
+.sx-lab,.sx-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
+.sx-set legend + *,.sx-lab + *{clear:both}
+.sx-hint,.sx-sizenote{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
+.sx-mode legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* choices: real radio buttons; the label is the control */
+.sx-set label{position:relative;display:block;cursor:pointer}
+.sx-set input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.sx-set label > span{display:flex;align-items:center;gap:10px;min-height:48px;font-size:var(--t-body);line-height:1.2;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+.sx-set b{font-weight:500}
+.sx-set i{flex:none;width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(20,20,19,.3)}
+.sx-sizes em{font-style:normal;font-size:var(--t-small);font-variant-numeric:tabular-nums;color:var(--sx-2)}
+
+/* the length: minus, the figure with its unit, plus */
+.sx-step{display:inline-flex;align-items:center;gap:6px}
+.sx-step button{flex:none;display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:1px solid var(--sx-b);border-radius:50%;background:none;cursor:pointer;transition:border-color .2s ease,background-color .2s ease}
+.sx-step button:hover{border-color:rgba(20,20,19,.6)}
+.sx-step svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.sx-val{display:flex;align-items:baseline;justify-content:center;gap:4px;padding:0 6px;height:48px;line-height:48px}
+.sx-val input{box-sizing:content-box;width:1.9em;field-sizing:content;min-width:24px;height:48px;padding:0;border:0;border-radius:6px;background:none;text-align:center;
+  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:48px}
+.sx-val i{font-style:normal;font-size:var(--t-body);color:var(--sx-2)}
+.sx-lenrow{display:flex;flex-wrap:wrap;align-items:center;gap:14px clamp(18px,2.4vw,32px)}
+/* the slider: a hairline and a round handle, no shadow */
+.sx-range{flex:1 1 220px;min-width:0}
+.sx-range input{display:block;width:100%;height:44px;margin:0;background:none;cursor:pointer;-webkit-appearance:none;appearance:none;--sx-fill:27%}
+.sx-range input::-webkit-slider-runnable-track{height:2px;border-radius:2px;background:linear-gradient(to right,#3f4a37 var(--sx-fill),rgba(20,20,19,.2) var(--sx-fill))}
+.sx-range input::-moz-range-track{height:2px;border-radius:2px;background:rgba(20,20,19,.2)}
+.sx-range input::-moz-range-progress{height:2px;background:#3f4a37}
+.sx-range input::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-11px;border-radius:50%;border:1.5px solid #3f4a37;background:#f1efea}
+.sx-range input::-moz-range-thumb{width:21px;height:21px;border-radius:50%;border:1.5px solid #3f4a37;background:#f1efea}
+/* the border's two measures */
+.sx-arow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px}
+.sx-arow label > span{display:block;margin-bottom:4px;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
+.sx-arow > b{height:48px;display:flex;align-items:center;font-weight:400;font-size:var(--t-lead);color:var(--sx-2)}
+.sx-step.is-s .sx-val{padding:0 2px}
+.sx-step.is-s .sx-val input{width:1.4em;min-width:24px}
+@supports (field-sizing:content){ .sx-val input,.sx-step.is-s .sx-val input{width:auto} }
+.sx-m2{height:48px;display:flex;align-items:center;gap:6px;margin-left:6px!important;font-size:var(--t-lead);color:var(--sx-2);white-space:nowrap}
+.sx-m2 b{font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);color:var(--color-fg)}
+
+/* the substrate: our own checkbox */
+.sx-sub{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;align-items:start;min-height:48px;cursor:pointer}
+.sx-sub input{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin:0;border:1px solid rgba(20,20,19,.6);border-radius:7px;background:transparent center/15px no-repeat;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}
+.sx-sub input:checked{border-color:var(--sx-moss);background-color:var(--sx-sage);background-image:var(--sx-tick)}
+.sx-sub b{display:block;font-size:var(--t-body);line-height:24px;font-weight:600}
+.sx-sub em{display:block;margin-top:2px;font-style:normal;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
+
+/* the sheet */
+.sx-slip{position:sticky;top:var(--sx-top);padding:clamp(22px,2.6vw,36px);scroll-margin-top:90px}
+.sx-sliph{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
+.sx-slips{margin-top:4px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
+/* the hedge to scale: drawn straight on the sheet, one green and the flower's colour */
+.sx-strip{margin:18px 0 16px}
+.sx-strip [data-draw] svg{display:block;width:100%;height:auto;overflow:visible}
+.sx-strip [data-draw] svg.is-bed{max-height:210px;margin-inline:auto}
+.sx-ground{stroke:rgba(20,20,19,.45);stroke-width:1;vector-effect:non-scaling-stroke}
+.sx-tick{stroke:rgba(20,20,19,.45);stroke-width:1;vector-effect:non-scaling-stroke}
+.sx-m{font-family:Manrope,system-ui,sans-serif;font-weight:400;fill:#45443f}
+.sx-bush{fill:#c3ceb1}
+.sx-bloom{stroke:rgba(20,20,19,.25);stroke-width:.6}
+.sx-bed{fill:none;stroke:rgba(20,20,19,.45);stroke-width:1;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
+.sx-strip figcaption,.sx-norm{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
+.sx-norm{display:none;margin:14px 0 16px!important}
+.sx-lines > div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--sx-ln)}
+.sx-lines > div[hidden]{display:none}
+.sx-lines dt{font-size:var(--t-body);line-height:1.4}
+.sx-lines small{display:block;margin-top:1px;font-size:var(--t-small);line-height:1.45;font-weight:400;color:var(--sx-2)}
+.sx-lines dd{flex:none;font-size:var(--t-body);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sx-lines .sx-tot{align-items:baseline;border-top-color:var(--color-fg,#141413);padding:18px 0 0}
+.sx-totnote{margin-top:6px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
+.sx-tot dt{font-weight:600}
+.sx-lines .sx-tot dd{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em}
+.sx-act{margin-top:16px}
+.sx .sx-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;padding:0 28px;border:0;border-radius:999px;background:var(--sx-moss);color:#fff;
+  font-size:var(--t-body);font-weight:600;cursor:pointer;transition:background-color .2s ease}
+.sx .sx-add:hover{background:#333c2d}
+.sx-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-moss);font-weight:600}
+.sx-status:empty{display:none}
+.sx-note{margin-top:14px;font-size:var(--t-small);line-height:1.55;color:var(--sx-2);text-wrap:pretty}
+.sx-said{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* phone: the total in a small bar while the questions are on screen; it floats as the header does */
+.sx-mini{display:none}
+@media (max-width:899.98px){
+  .sx > .in{grid-template-columns:minmax(0,1fr);row-gap:32px}
+  .sx-slip{position:relative;top:auto}
+  .sx-mini{position:fixed;z-index:40;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:8px 20px;border-radius:999px;
+    background:#f1efea;border:1px solid rgba(20,20,19,.6);color:var(--color-fg);text-decoration:none;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+  .sx-mini.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .3s ease}
+  .sx-mini b{display:block;font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.1}
+  .sx-mini i{display:block;font-style:normal;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
+  .sx-mini em{font-style:normal;font-size:var(--t-small);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  /* the two links of the note get a full finger's height */
+  .sx-note{line-height:1.9}
+  .sx-note a{display:inline-block;padding:11px 0;margin:-11px 0}
+}
+@media (prefers-reduced-motion:reduce){ .sx *,.sx-mini{transition:none!important} }
+
+/* ================= 1 · pills: the page's outlined pill and its round buttons ================= */
+.sx-t1 :is(.sx-vars,.sx-mode) > div{display:flex;flex-wrap:wrap;gap:8px}
+.sx-t1 .sx-set label > span{padding:0 18px;border:1px solid var(--sx-b);border-radius:999px}
+.sx-t1 .sx-set label:hover > span{border-color:rgba(20,20,19,.6)}
+.sx-t1 .sx-set input:checked + span{background:var(--sx-sage);border-color:var(--sx-moss)}
+.sx-t1 .sx label:has(input:focus-visible) > span,.sx-t1 :is(a,button):focus-visible{border-radius:999px}
+.sx-t1 .sx-mode label > span{padding:0 24px;font-weight:500}
+.sx-t1 .sx-sizes > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sx-t1 .sx-sizes label > span{justify-content:space-between;padding:0 20px}
+.sx-t1 .sx-sub input{border-radius:50%}
+.sx-t1 .sx-slip{border-radius:28px;background:linear-gradient(165deg,#e4e9d8 0%,#ebece3 52%,#f0ead3 100%)}
+@media (max-width:899.98px){
+  .sx-t1 .sx-slip{border-radius:22px}
+  .sx-t1 .sx-vars label > span{min-height:44px;padding:0 15px}
+}
+@media (max-width:599.98px){ .sx-t1 .sx-sizes > div{grid-template-columns:minmax(0,1fr)} }
+
+/* ================= 2 · rows: choices on hairlines with a round mark; no slider, no drawing, no dots ================= */
+.sx-t2 .sx-set i,.sx-t2 .sx-range,.sx-t2 .sx-strip{display:none}
+.sx-t2 .sx-norm{display:block}
+.sx-t2 .sx-set label > span::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1px solid rgba(20,20,19,.6);transition:border-color .2s ease,background-color .2s ease}
+.sx-t2 .sx-set input:checked + span::before{border-color:var(--sx-moss);background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
+.sx-t2 .sx-set input:checked + span b{font-weight:600}
+.sx-t2 .sx label:has(input:focus-visible) > span{border-radius:6px}
+.sx-t2 .sx-mode > div{display:flex;flex-wrap:wrap;gap:0 32px}
+.sx-t2 .sx-mode label > span{font-size:var(--t-lead);font-weight:500}
+.sx-t2 :is(.sx-vars,.sx-sizes) > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);border-top:1px solid var(--sx-ln)}
+.sx-t2 :is(.sx-vars,.sx-sizes) label{border-bottom:1px solid var(--sx-ln)}
+.sx-t2 .sx-sizes em{margin-left:auto;font-size:var(--t-body);color:var(--color-fg)}
+.sx-t2 .sx-sub{padding-top:2px}
+.sx-t2 .sx-slip{border-radius:20px;background:#e4e9d8}
+.sx-t2 .sx-sub input:checked{background-color:transparent}
+@media (max-width:599.98px){ .sx-t2 :is(.sx-vars,.sx-sizes) > div{grid-template-columns:minmax(0,1fr)} }
+
+/* ================= 3 · tiles: soft tiles without borders; no slider ================= */
+.sx-t3{--sx-paper:#f9f8f5}
+.sx-t3 .sx-range{display:none}
+.sx-t3 :is(.sx-vars,.sx-mode) > div{display:flex;flex-wrap:wrap;gap:6px}
+.sx-t3 .sx-set label > span{padding:0 16px;border-radius:14px;background:var(--sx-paper)}
+.sx-t3 .sx-set label:hover > span{background:#fff}
+.sx-t3 .sx-set input:checked + span{background:var(--sx-sage)}
+/* the sign of "chosen": a small moss tick */
+.sx-t3 :is(.sx-vars,.sx-mode) input:checked + span::after{content:"";flex:none;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
+.sx-t3 .sx label:has(input:focus-visible) > span,.sx-t3 .sx-step button:focus-visible{border-radius:14px}
+.sx-t3 .sx-mode label > span{padding:0 22px;font-weight:500}
+.sx-t3 .sx-sizes > div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sx-t3 .sx-sizes label > span{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;min-height:62px;padding:0 14px}
+.sx-t3 .sx-sizes b{white-space:nowrap}
+.sx-t3 .sx-sizes input:checked + span::after{content:"";position:absolute;right:10px;top:10px;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
+.sx-t3 .sx-step{gap:0;border-radius:14px;background:var(--sx-paper)}
+.sx-t3 .sx-step button{border:0;border-radius:14px}
+.sx-t3 .sx-step button:hover{background:#fff}
+.sx-t3 .sx-sub input{border:0;border-radius:8px;background-color:var(--sx-paper)}
+.sx-t3 .sx-sub input:checked{background-color:var(--sx-sage)}
+.sx-t3 .sx-slip{border-radius:20px;background:var(--sx-paper)}
+@media (max-width:899.98px){
+  .sx-t3 .sx-sizes > div{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sx-t3 .sx-vars label > span{min-height:44px;padding:0 13px}
+}
