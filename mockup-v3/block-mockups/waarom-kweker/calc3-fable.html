@@ -1853,9 +1853,10 @@ html:is(.ct-a,.ct-b,.ct-c) .hc3 .hc-panel :is(a,button):focus-visible{outline-co
 
 /* ================= the glow: the cards' soft spots, always inside a surface, never around it =================
    The chosen item: a sage spot from the left and a butter one from the right on light sage; a variety takes a faint
-   hint of its flower instead of the butter. Class sx-flat on the block switches all of it back to plain fills. */
+   hint of its flower (lightened with white) instead of the butter. Class sx-flat on the block switches all of it back to plain fills. */
 .sx{--sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
-.sx .sx-vars label{--sx-on:radial-gradient(ellipse 70% 130% at 100% 60%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 56% 150% at 0% 50%,color-mix(in srgb,var(--c) 24%,transparent) 0%,transparent 72%),#e4e9d8}
+/* the variety's hint is its flower colour lightened with white first: mixed straight into the sage, the purples went grey */
+.sx .sx-vars label{--sx-on:radial-gradient(ellipse 70% 130% at 100% 60%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 150% at 0% 50%,color-mix(in srgb,var(--c) 34%,#fff) 0%,color-mix(in srgb,color-mix(in srgb,var(--c) 34%,#fff) 60%,transparent) 30%,transparent 74%),#e4e9d8}
 .sx.sx-flat,.sx.sx-flat .sx-vars label{--sx-on:var(--sx-sage)}
 /* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
 .sx-slip{background:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
