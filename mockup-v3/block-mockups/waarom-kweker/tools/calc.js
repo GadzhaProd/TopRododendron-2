@@ -2,6 +2,7 @@
    data-c and writes the results into the elements marked data-o inside each ".hc" block.
    Norms (a guideline, docs/normen-haag.md): plants per metre in one row by size; one 40 L bag of substrate per plant. */
 (function () {
+  var PER_M2 = [3, 2, 1, 1];                        // a group or border: plants per square metre
   var PER_M = [2, 1.5, 1, 1];                       // 40–60, 60–80, 80–100, 100–120 cm
   var SIZES = ['40–60 cm', '60–80 cm', '80–100 cm', '100–120 cm'];
   var BAG = 14.95, MIN = 1, MAX = 200;
@@ -23,10 +24,28 @@
       var el = root.querySelector('input[data-c="' + name + '"]:checked');
       return el ? parseInt(el.value, 10) : 0;
     }
-    function length() {
-      var v = parseFloat(String(lenInput.value).replace(',', '.'));
+    function field(key) { return root.querySelector('input[data-c="' + key + '"]'); }
+    function value(key, max) {
+      var v = parseFloat(String(field(key).value).replace(',', '.'));
       if (isNaN(v)) v = MIN;
-      return Math.min(MAX, Math.max(MIN, Math.round(v * 2) / 2));
+      return Math.min(max, Math.max(MIN, Math.round(v * 2) / 2));
+    }
+    function length() { return value('len', MAX); }
+    function mode() { var el = root.querySelector('input[data-c="mode"]:checked'); return el ? el.value : 'haag'; }
+
+    // a border seen from above: the plants on a grid at the guideline's spacing (up to 8 by 6 metres)
+    function drawBed(box, perM2, colour, L, W) {
+      var l = Math.min(L, 8), w = Math.min(W, 6), u = 100, s = 1 / Math.sqrt(perM2), r = Math.min(27, s * u * .42), out = '';
+      var fs = Math.round((l * u + 60) / Math.max(box.clientWidth, 1) * 12);
+      out += '<rect x="0" y="0" width="' + l * u + '" height="' + w * u + '" rx="10" class="hc-bed"/>';
+      for (var y = s / 2; y < w - .01; y += s) for (var x = s / 2; x < l - .01; x += s) {
+        out += '<circle cx="' + (x * u).toFixed(1) + '" cy="' + (y * u).toFixed(1) + '" r="' + r.toFixed(1) + '" class="hc-bush"/>'
+          + '<circle cx="' + (x * u).toFixed(1) + '" cy="' + (y * u).toFixed(1) + '" r="' + (r * .3).toFixed(1) + '" fill="' + colour + '" class="hc-bloom"/>';
+      }
+      out += '<text x="' + l * u / 2 + '" y="' + (w * u + fs * 1.5) + '" text-anchor="middle" font-size="' + fs + '" class="hc-m">' + num.format(l) + ' m</text>'
+        + '<text x="' + (l * u + fs * .6) + '" y="' + (w * u / 2 + fs * .35) + '" font-size="' + fs + '" class="hc-m">' + num.format(w) + ' m</text>';
+      box.innerHTML = '<svg viewBox="-2 -2 ' + (l * u + fs * 3.4) + ' ' + (w * u + fs * 2.2) + '" aria-hidden="true" focusable="false" class="is-bed">' + out + '</svg>';
+      put('shown', (L > l || W > w) ? 'De tekening toont een deel van ' + num.format(l) + ' bij ' + num.format(w) + ' meter.' : '');
     }
     function put(key, text) { each(root.querySelectorAll('[data-o="' + key + '"]'), function (el) { el.textContent = text; }); }
 
@@ -53,35 +72,41 @@
     }
 
     function update(fromInput) {
-      var len = length(), v = data[pick('var')], si = pick('size');
+      var bed = mode() === 'border', len = length(), L = value('bl', 50), W = value('bw', 50), area = L * W, v = data[pick('var')], si = pick('size');
       var subBox = root.querySelector('[data-c="sub"]'), subOn = !subBox || subBox.checked;
-      var n = Math.ceil(len * PER_M[si] - 1e-9), price = v.p[si], plants = n * price, bags = subOn ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
-      if (!fromInput) lenInput.value = num.format(len);
+      var n = Math.ceil((bed ? area * PER_M2[si] : len * PER_M[si]) - 1e-9), price = v.p[si], plants = n * price, bags = subOn ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
+      if (!fromInput) { lenInput.value = num.format(len); field('bl').value = num.format(L); field('bw').value = num.format(W); }
       if (range) { range.value = Math.min(len, parseFloat(range.max)); range.style.setProperty('--hc-fill', ((range.value - range.min) / (range.max - range.min) * 100) + '%'); }
+      each(root.querySelectorAll('[data-mode]'), function (el) { el.hidden = el.getAttribute('data-mode') !== (bed ? 'border' : 'haag'); });
+      var what = bed ? num.format(area) + '\u00a0m²' : num.format(len) + '\u00a0meter';
+      put('area', num.format(area)); put('h2', bed ? 'border' : 'haag'); put('what', what); put('title', (bed ? 'Uw border van ' : 'Uw haag van ') + what);
       put('len', num.format(len)); put('n', n); put('each', eur.format(price)); put('plants', eur.format(plants));
       put('bags', bags); put('bagsum', eur.format(bagSum)); put('total', eur.format(total));
       var b = SIZES[si].replace(' cm', '').split('–');
       put('sizenote', 'U krijgt planten tussen ' + b[0] + ' en ' + b[1] + '\u00a0cm hoog, gemeten vanaf de kluit; de kluit telt niet mee.');
       put('var', v.n); put('size', SIZES[si]); put('nword', n === 1 ? 'plant' : 'planten'); put('bword', bags === 1 ? 'zak' : 'zakken');
-      put('perm', num.format(PER_M[si]) + (PER_M[si] === 1 ? ' plant' : ' planten') + ' per meter, om de ' + Math.round(100 / PER_M[si]) + ' cm');
+      var d = bed ? PER_M2[si] : PER_M[si];
+      put('permlead', bed ? 'Richtlijn voor een border' : 'Richtlijn voor één rij');
+      put('perm', num.format(d) + (d === 1 ? ' plant' : ' planten') + (bed ? ' per m²' : ' per meter') + ', om de ' + Math.round(100 / (bed ? Math.sqrt(d) : d)) + ' cm');
       each(root.querySelectorAll('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]); });
       each(root.querySelectorAll('[data-row="sub"]'), function (el) { el.hidden = !subOn; });
-      each(root.querySelectorAll('[data-draw]'), function (box) { draw(box, PER_M[si], v.c, len); });
+      each(root.querySelectorAll('[data-draw]'), function (box) { if (bed) drawBed(box, PER_M2[si], v.c, L, W); else draw(box, PER_M[si], v.c, len); });
       root._calc = { n: n, bags: bags };
       if (status) status.textContent = '';
       clearTimeout(timer);
       timer = setTimeout(function () {
-        if (said) said.textContent = n + (n === 1 ? ' plant' : ' planten') + ' ' + v.n + ' ' + SIZES[si] + ' voor ' + num.format(len) + ' meter, samen ' + eur.format(total) + '.';
+        if (said) said.textContent = n + (n === 1 ? ' plant' : ' planten') + ' ' + v.n + ' ' + SIZES[si] + ' voor ' + (bed ? 'een border van ' + num.format(area) + ' vierkante meter' : 'een haag van ' + num.format(len) + ' meter') + ', samen ' + eur.format(total) + '.';
       }, 600);
     }
 
     lenInput.addEventListener('input', function () { update(true); });
     lenInput.addEventListener('blur', function () { update(false); });
+    each(['bl', 'bw'], function (k) { field(k).addEventListener('input', function () { update(true); }); field(k).addEventListener('blur', function () { update(false); }); });
     if (range) range.addEventListener('input', function () { lenInput.value = range.value; update(false); });
     each(root.querySelectorAll('[data-step]'), function (b) {
-      b.addEventListener('click', function () { lenInput.value = String(length() + parseFloat(b.getAttribute('data-step'))); update(false); });
+      b.addEventListener('click', function () { var k = b.getAttribute('data-for') || 'len'; field(k).value = String(value(k, k === 'len' ? MAX : 50) + parseFloat(b.getAttribute('data-step'))); update(false); });
     });
-    each(root.querySelectorAll('[data-c="var"],[data-c="size"],[data-c="sub"]'), function (el) { el.addEventListener('change', function () { update(false); }); });
+    each(root.querySelectorAll('[data-c="var"],[data-c="size"],[data-c="sub"],[data-c="mode"]'), function (el) { el.addEventListener('change', function () { update(false); }); });
     var add = root.querySelector('[data-add]');
     if (add) add.addEventListener('click', function () {
       var c = root._calc; inCart += c.n + c.bags;

@@ -17,21 +17,37 @@ WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"
 DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c} for n, p, c, f in SOORTEN], ensure_ascii=False), quote=True)
 
 
-def _step(u):
+def _step(u, key='len', value='12', what='meter', cls=''):
     # one quiet control: minus, the value with its unit, plus
-    return ('<div class="hc-step"><button type="button" data-step="-1" aria-label="Eén meter korter"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg></button>'
-            f'<span class="hc-val"><input id="{u}-len" data-c="len" type="text" inputmode="decimal" autocomplete="off" value="12" size="3" aria-describedby="{u}-lenh"><i aria-hidden="true">m</i></span>'
-            '<button type="button" data-step="1" aria-label="Eén meter langer"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg></button></div>')
+    return (f'<div class="hc-step {cls}"><button type="button" data-step="-1" data-for="{key}" aria-label="Eén {what} minder"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg></button>'
+            f'<span class="hc-val"><input id="{u}-{key}" data-c="{key}" type="text" inputmode="decimal" autocomplete="off" value="{value}" size="3" aria-describedby="{u}-{key}h"><i aria-hidden="true">m</i></span>'
+            f'<button type="button" data-step="1" data-for="{key}" aria-label="Eén {what} meer"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg></button></div>')
+
+
+def _mode(u):
+    # what is being planted: a hedge (plants per metre) or a group or border (plants per square metre)
+    return (f'<fieldset class="hc-mode"><legend>Wat wilt u planten?</legend><div>'
+            f'<label><input type="radio" name="{u}-mode" data-c="mode" value="haag" checked><span>Haag</span></label>'
+            f'<label><input type="radio" name="{u}-mode" data-c="mode" value="border"><span>Groep of border</span></label></div></fieldset>')
+
+
+def _area(u):
+    # the border: length times width, the square metres shown beside it
+    return (f'<div class="hc-f hc-area" data-mode="border" hidden><p class="hc-lab" id="{u}-arl">Afmetingen van de border</p>'
+            f'<div class="hc-arow" role="group" aria-labelledby="{u}-arl"><label><span>Lengte</span>' + _step(u, 'bl', '4', 'meter lengte', 'is-s') + '</label>'
+            '<b aria-hidden="true">×</b><label><span>Breedte</span>' + _step(u, 'bw', '3', 'meter breedte', 'is-s') + '</label>'
+            '<p class="hc-m2">= <b data-o="area"></b>&nbsp;m²</p></div>'
+            f'<p class="hc-hint" id="{u}-blh">Elke maat van 1 tot 50 meter, ook halve meters.</p><span id="{u}-bwh" hidden></span></div>')
 
 
 def _range(u, top=40):
-    return (f'<div class="hc-range"><input type="range" data-c="range" min="1" max="{top}" step="1" value="12" aria-label="Lengte van de haag in meters, grof instellen">'
+    return (f'<div class="hc-range" data-mode="haag"><input type="range" data-c="range" min="1" max="{top}" step="1" value="12" aria-label="Lengte van de haag in meters, grof instellen">'
             f'<p aria-hidden="true"><span>1 m</span><span>{top} m</span></p></div>')
 
 
 def _length(u, slider=True):
-    return (f'<div class="hc-f hc-length"><label class="hc-lab" for="{u}-len">Lengte van de haag</label><div class="hc-lenrow">' + _step(u) + (_range(u) if slider else '') + '</div>'
-            f'<p class="hc-hint" id="{u}-lenh">Van 1 tot 200 meter, ook halve meters.</p></div>')
+    return (f'<div class="hc-f hc-length" data-mode="haag"><label class="hc-lab" for="{u}-len">Lengte van de haag</label><div class="hc-lenrow">' + _step(u) + (_range(u) if slider else '') + '</div>'
+            f'<p class="hc-hint" id="{u}-lenh">Van 1 tot 200 meter, ook halve meters.</p></div>' + _area(u))
 
 
 def _vars(u, photos=False):
@@ -62,11 +78,11 @@ LINES = ('<dl class="hc-lines"><div><dt><span data-o="n"></span> <span data-o="n
 ADD = '<div class="hc-act"><button type="button" class="hc-add" data-add>In winkelwagen</button><p class="hc-status" data-o="status" role="status"></p></div>'
 BIG = ('<p class="hc-note">Grotere maten, tot 225&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>.</p>')
 SAID = '<p class="hc-said" data-o="said" aria-live="polite"></p>'
-H2 = '<h2 id="h-haag" class="hc-h"><span>Hoeveel planten</span> <span>voor uw haag?</span></h2>'
+H2 = '<h2 id="h-haag" class="hc-h"><span>Hoeveel planten</span> <span>voor uw <span data-o="h2">haag</span>?</span></h2>'
 
 
 def _strip(mode=''):
-    return (f'<figure class="hc-strip"><div data-draw="{mode}"></div><figcaption>Richtlijn voor één rij: <span data-o="perm"></span>. Dichter planten sluit sneller. '
+    return (f'<figure class="hc-strip"><div data-draw="{mode}"></div><figcaption><span data-o="permlead"></span>: <span data-o="perm"></span>. Dichter planten sluit sneller. '
             '<span data-o="shown"></span></figcaption></figure>')
 
 
@@ -77,18 +93,17 @@ def _mini(u):
 def calc_html(n):
     u = f'hc{n}'
     if n == 1:
-        body = ('<div class="hc-ask">' + H2 + _length(u) + _vars(u) + _sizes(u) + SUB + '</div>'
-                f'<div class="hc-slip" id="{u}-res" data-res><p class="hc-sliph">Uw haag van <span data-o="len"></span>&nbsp;meter</p>'
+        body = ('<div class="hc-ask">' + H2 + _mode(u) + _length(u) + _vars(u) + _sizes(u) + SUB + '</div>'
+                f'<div class="hc-slip" id="{u}-res" data-res><p class="hc-sliph" data-o="title"></p>'
                 '<p class="hc-slips"><span data-o="var"></span>, <span data-o="size"></span></p>' + _strip() + LINES + ADD + BIG + '</div>')
     elif n == 2:
-        body = (H2 + '<div class="hc-field">' + f'<div class="hc-fhead"><label class="hc-lab" for="{u}-len">Lengte van de haag</label>' + _step(u)
-                + f'<p class="hc-hint" id="{u}-lenh">Van 1 tot 200 meter, ook halve meters.</p></div>' + _strip('fit').replace('<figcaption>', _range(u) + '<figcaption>') + '</div>'
+        body = (H2 + _mode(u) + '<div class="hc-field">' + '<div class="hc-fhead">' + _length(u, False) + '</div>' + _strip('fit').replace('<figcaption>', _range(u) + '<figcaption>') + '</div>'
                 '<div class="hc-pick">' + _vars(u) + _sizes(u) + '</div>'
                 f'<div class="hc-out" id="{u}-res" data-res>' + LINES + '<div class="hc-side">' + SUB + ADD + '</div></div>' + BIG)
     else:
-        body = ('<div class="hc-ask">' + H2 + _vars(u, True) + '<div class="hc-two">' + _length(u, False) + _sizes(u) + '</div>' + SUB + '</div>'
+        body = ('<div class="hc-ask">' + H2 + _mode(u) + _vars(u, True) + '<div class="hc-two">' + _length(u, False) + _sizes(u) + '</div>' + SUB + '</div>'
                 f'<div class="hc-panel" id="{u}-res" data-res><p class="hc-pk">U heeft nodig</p><p class="hc-big"><b data-o="n"></b> <span data-o="nword"></span></p>'
-                '<p class="hc-pv"><span data-o="var"></span>, <span data-o="size"></span>, voor <span data-o="len"></span>&nbsp;meter. <span data-o="perm"></span>.</p>'
+                '<p class="hc-pv"><span data-o="var"></span>, <span data-o="size"></span>, voor <span data-o="what"></span>. <span data-o="perm"></span>.</p>'
                 + LINES + ADD + BIG + '</div>')
     return (f'<section class="hc hc{n}" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{body}{SAID}</div>{_mini(u)}</section>')
 
