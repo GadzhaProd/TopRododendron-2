@@ -9,11 +9,16 @@
 import json, pathlib, html as _html
 
 SOORTEN = [  # the order of the assortment cards; prices for 40–60 / 60–80 / 80–100 / 100–120 cm; the colour of the flower
-    ('Nova Zembla', [29, 45, 65, 89], '#b3243a'), ('Catawbiense Grandiflorum', [29, 45, 65, 89], '#a58ad6'),
-    ("Cunningham’s White", [25, 39, 55, 75], '#fbfaf6'), ('Catawbiense Boursault', [27, 42, 60, 82], '#8a62c4'),
-    ('Roseum Elegans', [27, 42, 60, 82], '#c98bd2'), ('Ponticum', [22, 35, 50, 70], '#7d55b8'),
-    ('Ponticum Roseum', [22, 35, 50, 70], '#d98fbd'),
+    # (the dot and the drawing). Hues from our own photos, spread apart so the three purples and the two pinks differ:
+    # Ponticum blue-lavender, Grandiflorum lilac, Boursault orchid, Roseum Elegans mauve-pink, Ponticum Roseum rose.
+    ('Nova Zembla', [29, 45, 65, 89], '#b3243a'), ('Catawbiense Grandiflorum', [29, 45, 65, 89], '#b18bd3'),
+    ("Cunningham’s White", [25, 39, 55, 75], '#fbfaf6'), ('Catawbiense Boursault', [27, 42, 60, 82], '#a24da6'),
+    ('Roseum Elegans', [27, 42, 60, 82], '#cf76ad'), ('Ponticum', [22, 35, 50, 70], '#7c64c1'),
+    ('Ponticum Roseum', [22, 35, 50, 70], '#e48da5'),
 ]
+# the glow of a chosen variety chip: the same hue, light and soft, at one lightness (OKLCH), so no colour shouts
+GLOW = {'Nova Zembla': '#f2adb4', 'Catawbiense Grandiflorum': '#e1cff2', "Cunningham’s White": '#f8f3e8', 'Catawbiense Boursault': '#dfb9df',
+        'Roseum Elegans': '#efc1dc', 'Ponticum': '#cec8ed', 'Ponticum Roseum': '#f8ccd6'}
 SIZES = ['40–60 cm', '60–80 cm', '80–100 cm', '100–120 cm']
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
 DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c} for n, p, c in SOORTEN], ensure_ascii=False), quote=True)
@@ -52,8 +57,8 @@ def _length(u):
 
 
 def _vars(u):
-    # --c: the flower's colour, for the dot and for a faint hint of it in the chosen chip's glow
-    items = ''.join(f'<label style="--c:{c}"><input type="radio" name="{u}-var" data-c="var" value="{i}"{" checked" if i == 0 else ""}><span><i></i><b>{n}</b></span></label>'
+    # --c: the flower's colour, for the dot · --g: its soft glow in the chosen chip
+    items = ''.join(f'<label style="--c:{c};--g:{GLOW[n]}"><input type="radio" name="{u}-var" data-c="var" value="{i}"{" checked" if i == 0 else ""}><span><i></i><b>{n}</b></span></label>'
                     for i, (n, p, c) in enumerate(SOORTEN))
     return f'<fieldset class="sx-set sx-vars"><legend>Soort</legend><div>{items}</div></fieldset>'
 

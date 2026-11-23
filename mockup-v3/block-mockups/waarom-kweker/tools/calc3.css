@@ -190,10 +190,11 @@
 
 /* ================= the glow: the cards' soft spots, always inside a surface, never around it =================
    The chosen item: a sage spot from the left and a butter one from the right on light sage; a variety takes a faint
-   hint of its flower (lightened with white) instead of the butter. Class sx-flat on the block switches all of it back to plain fills. */
+   its own soft colour flowing into the sage. Class sx-flat on the block switches all of it back to plain fills. */
 .sx{--sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
-/* the variety's hint is its flower colour lightened with white first: mixed straight into the sage, the purples went grey */
-.sx .sx-vars label{--sx-on:radial-gradient(ellipse 70% 130% at 100% 60%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 150% at 0% 50%,color-mix(in srgb,var(--c) 34%,#fff) 0%,color-mix(in srgb,color-mix(in srgb,var(--c) 34%,#fff) 60%,transparent) 30%,transparent 74%),#e4e9d8}
+/* the chosen variety: its own soft colour (--g) flows from the left through a light cream into the sage. Through the cream
+   because a pink or lilac mixed straight into the sage passes a grey middle; eased stops mixed in OKLab, no hard edge */
+.sx .sx-vars label{--sx-on:radial-gradient(ellipse 125% 190% at 0% 50%,var(--g) 0%,var(--g) 6%,color-mix(in oklab,var(--g) 98%,#f1ead4) 12%,color-mix(in oklab,var(--g) 86%,#f1ead4) 18%,color-mix(in oklab,var(--g) 63%,#f1ead4) 24%,color-mix(in oklab,var(--g) 37%,#f1ead4) 30%,color-mix(in oklab,var(--g) 14%,#f1ead4) 36%,color-mix(in oklab,var(--g) 2%,#f1ead4) 42%,color-mix(in oklab,var(--g) 0%,#f1ead4) 48%,#f1ead4 48%,color-mix(in oklab,#f1ead4 98%,#c9d4b5) 54%,color-mix(in oklab,#f1ead4 86%,#c9d4b5) 60%,color-mix(in oklab,#f1ead4 63%,#c9d4b5) 66%,color-mix(in oklab,#f1ead4 37%,#c9d4b5) 72%,color-mix(in oklab,#f1ead4 14%,#c9d4b5) 78%,color-mix(in oklab,#f1ead4 2%,#c9d4b5) 84%,color-mix(in oklab,#f1ead4 0%,#c9d4b5) 90%,#c9d4b5 90%,#c9d4b5 100%)}
 .sx.sx-flat,.sx.sx-flat .sx-vars label{--sx-on:var(--sx-sage)}
 /* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
 .sx-slip{background:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
