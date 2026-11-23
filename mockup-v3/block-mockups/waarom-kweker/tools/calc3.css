@@ -72,21 +72,11 @@
 .sx-slip{position:sticky;top:var(--sx-top);padding:clamp(22px,2.6vw,36px);scroll-margin-top:90px}
 .sx-sliph{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
 .sx-slips{margin-top:4px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
-/* the hedge to scale: drawn straight on the sheet, one green and the flower's colour */
-.sx-strip{margin:18px 0 16px}
-.sx-strip [data-draw] svg{display:block;width:100%;height:auto;overflow:visible}
-.sx-strip [data-draw] svg.is-bed{max-height:230px;margin-inline:auto}
 /* the bed's shape: three choices in the language of the other choices, then its measures */
 .sx-shape{margin-bottom:16px!important}
 .sx-arow[hidden] + .sx-arow{margin-top:0}
-.sx-ground{stroke:rgba(20,20,19,.45);stroke-width:1;vector-effect:non-scaling-stroke}
-.sx-tick{stroke:rgba(20,20,19,.45);stroke-width:1;vector-effect:non-scaling-stroke}
-.sx-m{font-family:Manrope,system-ui,sans-serif;font-weight:400;fill:#45443f}
-.sx-bush{fill:#c3ceb1}
-.sx-bloom{stroke:rgba(20,20,19,.25);stroke-width:.6}
-.sx-bed{fill:none;stroke:rgba(20,20,19,.45);stroke-width:1;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
-.sx-strip figcaption,.sx-norm{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
-.sx-norm{display:none;margin:14px 0 16px!important}
+/* the guideline: one quiet line under the variety and size */
+.sx-norm{margin:14px 0 16px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
 .sx-lines > div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--sx-ln)}
 .sx-lines > div[hidden]{display:none}
 .sx-lines dt{font-size:var(--t-body);line-height:1.4}
@@ -142,8 +132,7 @@
 @media (max-width:599.98px){ .sx-t1 .sx-sizes > div{grid-template-columns:minmax(0,1fr)} }
 
 /* ================= 2 · rows: choices on hairlines with a round mark; no slider, no drawing, no dots ================= */
-.sx-t2 .sx-set i,.sx-t2 .sx-range,.sx-t2 .sx-strip{display:none}
-.sx-t2 .sx-norm{display:block}
+.sx-t2 .sx-set i,.sx-t2 .sx-range{display:none}
 .sx-t2 .sx-set label > span::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1px solid rgba(20,20,19,.6);transition:border-color .2s ease,background-color .2s ease}
 .sx-t2 .sx-set input:checked + span::before{border-color:var(--sx-moss);background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
 /* the chosen row: a soft sage band between its hairlines that fades out at both ends */

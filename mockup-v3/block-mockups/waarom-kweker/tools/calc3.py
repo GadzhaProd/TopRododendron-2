@@ -21,12 +21,7 @@ GLOW = {'Nova Zembla': '#f2adb4', 'Catawbiense Grandiflorum': '#e1cff2', "Cunnin
         'Roseum Elegans': '#efc1dc', 'Ponticum': '#cec8ed', 'Ponticum Roseum': '#f8ccd6'}
 SIZES = ['40–60 cm', '60–80 cm', '80–100 cm', '100–120 cm']
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
-# for the drawing: the photo of the assortment card (img/<slug>-2-sm.webp, 672 × 900) and where the shrub stands in it,
-# as fractions of the photo: left, top, right, bottom
-PHOTO = {'Nova Zembla': ('nova-zembla', [.05, .21, .95, .82]), 'Catawbiense Grandiflorum': ('catawbiense-grandiflorum', [.0, .05, 1, 1]),
-         "Cunningham’s White": ('cunninghams-white', [.02, .18, .98, .92]), 'Catawbiense Boursault': ('catawbiense-boursault', [.02, .06, .98, .88]),
-         'Roseum Elegans': ('roseum-elegans', [.0, .15, 1, .85]), 'Ponticum': ('ponticum', [.03, .08, .97, .88]), 'Ponticum Roseum': ('ponticum-roseum', [.0, .03, 1, 1])}
-DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c, 'g': GLOW[n], 'f': PHOTO[n][0], 'b': PHOTO[n][1]} for n, p, c in SOORTEN], ensure_ascii=False), quote=True)
+DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'c': c} for n, p, c in SOORTEN], ensure_ascii=False), quote=True)
 
 
 def _step(u, key='len', value='12', what='meter', cls=''):
@@ -91,23 +86,21 @@ ADD = '<div class="sx-act"><button type="button" class="sx-add" data-add>In wink
 BIG = ('<p class="sx-note">Grotere maten, tot 225&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>.</p>')
 SAID = '<p class="sx-said" data-o="said" aria-live="polite"></p>'
 H2 = '<h2 id="h-haag" class="sx-h"><span>Hoeveel planten</span> <span>voor uw <span data-o="h2">haag</span>?</span></h2>'
-# the guideline: under the drawing as its caption, and once more as a plain line for the treatment without a drawing
-NORM = '<span data-o="permlead"></span>: <span data-o="perm"></span>. Dichter planten sluit sneller.'
-STRIP = ('<figure class="sx-strip"><div data-draw=""></div><figcaption>' + NORM + ' <span data-o="shown"></span></figcaption></figure>'
-         '<p class="sx-norm">' + NORM + '</p>')
+# the guideline, one line on the sheet (owner, 23 Nov: no drawing; what counts is the number, the shape people plan themselves)
+NORM = '<p class="sx-norm"><span data-o="permlead"></span>: <span data-o="perm"></span>. Dichter planten sluit sneller.</p>'
 
 
 def _mini(u):
     return (f'<a class="sx-mini" href="#{u}-res"><span><b data-o="total"></b><i><span data-o="n"></span> <span data-o="nword"></span></i></span><em>Bekijk de berekening</em></a>')
 
 
-def calc_html(t=3, b=1, glow=True, k=3):
-    # t: the controls (1 pills, 2 rows, 3 tiles) · b: the cart button (0 moss, 1 olive, 2 sage, 3 glow) · glow: the cards' soft spots or flat · k: the drawn plants (1 the chips' flow, 2 a planting plan in fine lines, 3 the variety's photo)
+def calc_html(t=3, b=1, glow=True):
+    # t: the controls (1 pills, 2 rows, 3 tiles) · b: the cart button (0 moss, 1 olive, 2 sage, 3 glow) · glow: the cards' soft spots or flat
     u = 'sx'
     body = ('<div class="sx-ask">' + H2 + _mode(u) + _length(u) + _vars(u) + _sizes(u) + SUB + '</div>'
             f'<div class="sx-slip" id="{u}-res" data-res><p class="sx-sliph" data-o="title"></p>'
-            '<p class="sx-slips"><span data-o="var"></span>, <span data-o="size"></span></p>' + STRIP + LINES + ADD + BIG + '</div>')
-    return (f'<section class="sx sx-t{t} sx-b{b}{"" if glow else " sx-flat"} sx-k{k}" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{body}{SAID}</div>{_mini(u)}</section>')
+            '<p class="sx-slips"><span data-o="var"></span>, <span data-o="size"></span></p>' + NORM + LINES + ADD + BIG + '</div>')
+    return (f'<section class="sx sx-t{t} sx-b{b}{"" if glow else " sx-flat"}" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{body}{SAID}</div>{_mini(u)}</section>')
 
 
 def css():
