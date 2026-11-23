@@ -242,3 +242,19 @@ html.fz-js .fz6 .fz-word.is-in text{stroke-dashoffset:0}
 /* the large name: one line, on the phone two (Top / Rhododendrons) */
 .fz-word .fz-w2{display:none}
 @media (max-width:699.98px){ .fz-word .fz-w1{display:none} .fz-word .fz-w2{display:block} }
+
+/* footer 4: the contacts and both addresses in one column, the hours in the next (desktop balance, 23 Nov) */
+.fz4 .fz-h2nd{margin-top:28px}
+.fz4 .fz-visit .fz-hours{margin-top:0}
+.fz4 .fz-contact .fz-addr{margin-top:0}
+/* desktop: contacts and hours span two rows; menu and service on the first, the payment row under them on the second */
+.fz4 .fz-pay-up{display:none}
+@media (min-width:1024px){
+  .fz4 .fz-grid{align-items:start}
+  .fz4 .fz-grid > :is(.fz-contact,.fz-visit){grid-row:span 2}
+  .fz4 .fz-pay-up{display:block;grid-column:3 / 5;align-self:start}
+  .fz4 .fz-pay-up h3{margin-bottom:12px}
+  .fz4 .fz-pay-low{display:none}
+}
+/* where eight icons do not fit one line under menu and service, two even rows of four */
+@media (min-width:1024px) and (max-width:1365.98px){ .fz4 .fz-pay-up .fz-pays{max-width:208px} }

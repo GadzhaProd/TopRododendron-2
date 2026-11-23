@@ -72,6 +72,9 @@ SCRIPT = ('<script>(function(){var w=[].slice.call(document.querySelectorAll(".f
           'w.forEach(function(x){io.observe(x)})})();</script>')
 
 
+EXTRA = {}
+
+
 def parts(home):
     h = home
     brand = ('<div class="fz-brand"><p class="fz-name">' + MARK + '<span>Top Rhododendrons</span></p><p class="fz-tag">Familiekwekerij in Otterlo, sinds 2001.</p>'
@@ -89,19 +92,21 @@ def parts(home):
                '<li><a href="/privacy" data-page="Privacy">Privacy</a></li></ul></nav>')
     # both places together (owner, 23 Nov: the field and the office were in two columns, one at the top, one at the bottom):
     # the field (visits and pick-up) and the office, then the field's hours
-    visit = ('<div class="fz-visit"><h3>Adressen</h3><dl class="fz-more fz-addr">'
-             '<div><dt>Kwekerij · bezoek en afhalen</dt><dd><a href="' + MAP_FIELD + '"' + EXT + '>Apeldoornseweg, Wekerom</a></dd></div>'
-             '<div><dt>Kantoor</dt><dd><a href="' + MAP_OFFICE + '"' + EXT + '>Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo</a></dd></div></dl>'
-             '<p class="fz-sub">Openingstijden kwekerij</p>'
-             # every day written out (owner, 23 Nov); "Zondag gesloten" is on the live site
-             '<dl class="fz-hours">' + ''.join(f'<div><dt>{d}</dt><dd>{t}</dd></div>' for d, t in [
+    addr = ('<dl class="fz-more fz-addr">'
+            '<div><dt>Kwekerij · bezoek en afhalen</dt><dd><a href="' + MAP_FIELD + '"' + EXT + '>Apeldoornseweg, Wekerom</a></dd></div>'
+            '<div><dt>Kantoor</dt><dd><a href="' + MAP_OFFICE + '"' + EXT + '>Esserbroekweg&nbsp;2, 6731&nbsp;DB Otterlo</a></dd></div></dl>')
+    # every day written out (owner, 23 Nov); "Zondag gesloten" is on the live site
+    hours = ('<dl class="fz-hours">' + ''.join(f'<div><dt>{d}</dt><dd>{t}</dd></div>' for d, t in [
                  ('Maandag', '08:00–17:00'), ('Dinsdag', '08:00–17:00'), ('Woensdag', '08:00–17:00'), ('Donderdag', '08:00–17:00'),
                  ('Vrijdag', '08:00–17:00'), ('Zaterdag', '09:00–13:00'), ('Zondag', 'Gesloten')]) + '</dl>'
-             '<p class="fz-free">Zonder afspraak welkom</p></div>')
+             '<p class="fz-free">Zonder afspraak welkom</p>')
+    visit = '<div class="fz-visit"><h3>Adressen</h3>' + addr + '<p class="fz-sub">Openingstijden kwekerij</p>' + hours + '</div>'
+    EXTRA.update(addr=addr, hours=hours)
     calls = ('<ul class="fz-calls"><li><a href="tel:+31620104312">' + TEL + '<span><i>Bellen</i><b>06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</b></span></a></li>'
              '<li><a href="https://wa.me/31620297849"' + EXT + '>' + WA + '<span><i>WhatsApp</i><b>06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</b></span></a></li></ul>')
     more = '<dl class="fz-more"><div><dt>E-mail</dt><dd><a href="mailto:info@toprhododendrons.nl">info@toprhododendrons.nl</a></dd></div></dl>'
     contact = '<div class="fz-contact"><h3>Contact</h3>' + calls + more + '</div>'
+    EXTRA.update(calls=calls, more=more)
     pay = '<div class="fz-pay"><h3>Betalen</h3>' + PAY + '</div>'
     legal = '<p class="fz-legal">© 2026 Top Rhododendrons · KvK&nbsp;82480273</p>'
     return brand, menu, service, visit, contact, pay, legal
@@ -115,10 +120,18 @@ def footer_html(n, home=''):
         body = ('<div class="fz-top">' + brand + visit + contact + '<div class="fz-links">' + menu + service + '</div></div><div class="fz-low">' + pay + legal + '</div>')
     elif n == 4:    # the large name: dark; the columns, then the name across the whole width at the very foot
         # (owner, 23 Nov: the name only, no tagline; Instagram and the KvK line under the name, not in one long row)
+        # desktop balance (owner, 23 Nov: too much empty space under the numbers and on the right): the contacts and both
+        # addresses in the first column, the hours in their own column, then menu and service
+        x = EXTRA
+        contact = ('<div class="fz-contact"><h3>Contact</h3>' + x['calls'] + x['more'] + '<h3 class="fz-h2nd">Adressen</h3>' + x['addr'] + '</div>')
+        visit = '<div class="fz-visit"><h3>Openingstijden kwekerij</h3>' + x['hours'] + '</div>'
         side = ('<div class="fz-brand"><p class="fz-name">' + MARK + '<span>Top Rhododendrons</span></p>'
                 '<p class="fz-ig"><a href="https://www.instagram.com/toprhododendrons"' + EXT + '>' + IG + '@toprhododendrons</a></p>'
                 '<p class="fz-legal">© 2026 · KvK&nbsp;82480273</p></div>')
-        body = ('<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + side + pay + '</div>' + wordmark())
+        # on desktop (>= 1024 px) the payment row fills the space under menu and service; below that it stays in the low row
+        pay_up = pay.replace('class="fz-pay"', 'class="fz-pay fz-pay-up"', 1)
+        pay_low = pay.replace('class="fz-pay"', 'class="fz-pay fz-pay-low"', 1)
+        body = ('<div class="fz-grid">' + contact + visit + menu + service + pay_up + '</div><div class="fz-low">' + side + pay_low + '</div>' + wordmark())
     elif n == 5:    # a moss card with the name: the motto and a way back up, the columns, the name inside the card
         motto = '<div class="fz-head"><p class="fz-motto">Familiekwekerij in Otterlo, sinds&nbsp;2001.</p>' + TOP + '</div>'
         body = ('<div class="fz-card">' + motto + '<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + pay
