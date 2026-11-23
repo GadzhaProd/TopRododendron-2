@@ -21,6 +21,9 @@
 /* focus, for the keyboard: a moss ring round a link, a button or the tile of the focused choice */
 .sx :is(a,button):focus-visible,.sx-set label:has(input:focus-visible) > span{outline:2px solid var(--sx-moss);outline-offset:3px}
 .sx-h{font-size:var(--t-h2)!important;line-height:1.08;margin-bottom:clamp(26px,3vw,44px)}
+/* the lead under the heading, as the assortment's lead above (owner, 23 Nov: say what the calculator is for) */
+.sx-ask > .sx-lead{margin-top:clamp(12px,1.2vw,18px);margin-bottom:clamp(26px,3vw,44px);max-width:34em;font-size:var(--t-lead);line-height:1.55;color:var(--ink2,#45443f);text-wrap:pretty}
+.sx-h:has(+ .sx-lead){margin-bottom:0}
 .sx-h > span{display:block}
 .sx-ask > * + *{margin-top:clamp(20px,2.2vw,28px)}
 .sx-lab,.sx-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600}

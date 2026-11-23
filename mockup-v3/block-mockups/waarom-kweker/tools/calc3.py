@@ -69,6 +69,7 @@ def calc_html():
     sub = _tiles('sub', [('1', '<b>Ja, erbij</b>', ''), ('0', '<b>Nee, niet nodig</b>', '')], '1', 'sx-subst', 'Tuinturf-substraat',
                  '<p class="sx-hint">1 zak van 40&nbsp;L per plant, € 14,95 per zak. Bij zandgrond of een grote kluit meer.</p>')
     ask = ('<div class="sx-ask"><h2 id="h-haag" class="sx-h"><span>Hoeveel planten</span> <span>voor uw <span data-o="h2">haag</span>?</span></h2>'
+           '<p class="sx-lead">Vul de maten in en kies soort en hoogte. U ziet meteen hoeveel planten u nodig heeft en wat het kost.</p>'
            + mode + _measures() + soort + maat + sub + '</div>')
     # the sheet: no drawing (owner, 23 Nov: what counts is the number); the guideline is one line. The line about larger
     # sizes names the variety's own maximum and is left out where the classes already reach it
