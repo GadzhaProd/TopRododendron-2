@@ -40,7 +40,7 @@
       // the bed's shape: a round group by its diameter, an oval one or a straight border by length and width
       var sh = root.querySelector('input[data-c="shape"]:checked'), shape = sh ? sh.value : 'recht', round = shape !== 'recht';
       var area = shape === 'rond' ? Math.PI * D * D / 4 : shape === 'ovaal' ? Math.PI * L * W / 4 : L * W;
-      var subBox = root.querySelector('[data-c="sub"]'), subOn = !subBox || subBox.checked;
+      var subEl = root.querySelector('input[data-c="sub"]:checked'), subOn = !subEl || subEl.value !== '0';
       var n = Math.ceil((bed ? area * PER_M2[si] : len * PER_M[si]) - 1e-9), price = v.p[si], plants = n * price, bags = subOn ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
       if (!fromInput) { lenInput.value = num.format(len); field('bd').value = num.format(D); field('bl').value = num.format(L); field('bw').value = num.format(W); }
       if (range) { range.value = Math.min(len, parseFloat(range.max)); range.style.setProperty('--sx-fill', ((range.value - range.min) / (range.max - range.min) * 100) + '%'); }

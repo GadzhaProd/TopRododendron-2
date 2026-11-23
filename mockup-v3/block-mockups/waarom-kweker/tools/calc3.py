@@ -76,8 +76,11 @@ def _sizes(u):
     return f'<fieldset class="sx-set sx-sizes"><legend>Hoogte bij levering, prijs per plant</legend><div>{items}</div>{note}</fieldset>'
 
 
-SUB = ('<label class="sx-sub"><input type="checkbox" data-c="sub" checked><span><b>Tuinturf-substraat erbij</b>'
-       '<em>1 zak van 40&nbsp;L per plant, € 14,95 per zak. Bij zandgrond of een grote kluit meer.</em></span></label>')
+# the substrate: a choice in the tiles like the others, so it reads as optional (owner, 23 Nov: a checkbox looked compulsory)
+SUB = ('<fieldset class="sx-set sx-subst"><legend>Tuinturf-substraat</legend><div>'
+       '<label><input type="radio" name="sx-sub" data-c="sub" value="1" checked><span><b>Erbij</b></span></label>'
+       '<label><input type="radio" name="sx-sub" data-c="sub" value="0"><span><b>Niet nodig</b></span></label></div>'
+       '<p class="sx-hint">1 zak van 40&nbsp;L per plant, € 14,95 per zak. Bij zandgrond of een grote kluit meer.</p></fieldset>')
 LINES = ('<dl class="sx-lines"><div><dt><span data-o="n"></span> <span data-o="nword"></span><small><span data-o="each"></span> per plant</small></dt><dd data-o="plants"></dd></div>'
          '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 14,95 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
          '<div class="sx-tot"><dt>Totaal</dt><dd data-o="total"></dd></div></dl>'
