@@ -1,3 +1,5 @@
+# FROZEN (23 Nov): the owner chose fo-4; it is in the main mockup now (tools/finalize_main.py applies tools/footer.py), so
+# index.html no longer has the old footer this script replaces. Do not rebuild; footer-fable.html stays as the record.
 # Mockup tool (not site code): footer-fable.html = the homepage (index.html) with three designs of the footer for review
 # (tools/footer.py, tools/footer.css). fo-0 the footer as it is now · fo-1 dark · fo-2 light · fo-3 a moss card ·
 # fo-4 the large name · fo-5 a moss card with the name · fo-6 the outline.

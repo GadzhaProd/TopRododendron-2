@@ -160,7 +160,7 @@ def rep(a, b, n=1):
 # way back works too
 parts = re.split(r'(<script\b.*?</script>)', s, flags=re.S)
 for k in range(0, len(parts), 2):
-    for a in ['#waarom', '#kweker', '#assortiment']:
+    for a in ['#waarom', '#kweker', '#assortiment', '#hoe']:   # '#hoe': the footer's "Hoe bestellen" (23 Nov)
         parts[k] = re.sub(r'href="' + a + r'"(?![^>]*data-page)', f'href="index.html{a}"', parts[k])
     parts[k] = parts[k].replace('<a href="/" data-home ', '<a href="index.html" ')
 s = ''.join(parts)

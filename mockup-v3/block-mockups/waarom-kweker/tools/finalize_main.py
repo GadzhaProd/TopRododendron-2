@@ -188,5 +188,8 @@ s = hoe_werkt.apply(s)
 # approved 22 Nov, header2.html version 2; tools/header_pill.py)
 import header_pill
 s = header_pill.apply(s)
+# the footer, item 2.3 (owner approved 23 Nov: variant 4 "Большое имя" of footer-fable.html; tools/footer.py, footer.css)
+import footer
+s = footer.apply(s, 4)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
