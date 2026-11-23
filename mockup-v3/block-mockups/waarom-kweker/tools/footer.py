@@ -37,7 +37,8 @@ PAY = ('<ul class="fz-pays">' + _mark('ideal', 'iDEAL') + _mark('visa', 'Visa') 
        + '</ul>')
 # the name as one very large word across the footer (decoration: the name is already there as text)
 def wordmark(cls=''):
-    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg viewBox="0 0 1000 132" preserveAspectRatio="xMidYMid meet">'
+    # the viewBox leaves room for the descender of "p" (owner, 23 Nov: the p of "Top" was cut, the word read as something else)
+    return (f'<div class="fz-word {cls}" aria-hidden="true"><svg viewBox="0 0 1000 142" preserveAspectRatio="xMidYMid meet">'
             '<text x="0" y="104" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Newsreader,Georgia,serif" font-weight="500" font-size="124">Top Rhododendrons</text></svg></div>')
 TOP = ('<a class="fz-up" href="#root" aria-label="Terug naar boven" title="Terug naar boven"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a>')
 # the large name comes into view calmly; without scripting or with reduced motion it is simply there
@@ -82,7 +83,10 @@ def footer_html(n, home=''):
     elif n == 2:    # light: brand on the left, three calm columns, the small print on a hairline
         body = ('<div class="fz-top">' + brand + visit + contact + '<div class="fz-links">' + menu + service + '</div></div><div class="fz-low">' + pay + legal + '</div>')
     elif n == 4:    # the large name: dark; the columns, then the name across the whole width at the very foot
-        body = ('<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + brand + pay + legal + '</div>' + wordmark())
+        # (owner, 23 Nov: the name only, no tagline; Instagram and the KvK line under the name, not in one long row)
+        side = ('<div class="fz-brand"><p class="fz-name">' + MARK + '<span>Top Rhododendrons</span></p>'
+                '<p class="fz-ig"><a href="https://www.instagram.com/toprhododendrons"' + EXT + '>' + IG + '@toprhododendrons</a></p>' + legal + '</div>')
+        body = ('<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + side + pay + '</div>' + wordmark())
     elif n == 5:    # a moss card with the name: the motto and a way back up, the columns, the name inside the card
         motto = '<div class="fz-head"><p class="fz-motto">Familiekwekerij in Otterlo, sinds&nbsp;2001.</p>' + TOP + '</div>'
         body = ('<div class="fz-card">' + motto + '<div class="fz-grid">' + contact + visit + menu + service + '</div><div class="fz-low">' + pay
