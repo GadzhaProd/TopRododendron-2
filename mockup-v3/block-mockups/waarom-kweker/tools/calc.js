@@ -60,6 +60,8 @@
       if (range) { range.value = Math.min(len, parseFloat(range.max)); range.style.setProperty('--hc-fill', ((range.value - range.min) / (range.max - range.min) * 100) + '%'); }
       put('len', num.format(len)); put('n', n); put('each', eur.format(price)); put('plants', eur.format(plants));
       put('bags', bags); put('bagsum', eur.format(bagSum)); put('total', eur.format(total));
+      var b = SIZES[si].replace(' cm', '').split('–');
+      put('sizenote', 'U krijgt planten tussen ' + b[0] + ' en ' + b[1] + '\u00a0cm hoog, gemeten vanaf de kluit; de kluit telt niet mee.');
       put('var', v.n); put('size', SIZES[si]); put('nword', n === 1 ? 'plant' : 'planten'); put('bword', bags === 1 ? 'zak' : 'zakken');
       put('perm', num.format(PER_M[si]) + (PER_M[si] === 1 ? ' plant' : ' planten') + ' per meter, om de ' + Math.round(100 / PER_M[si]) + ' cm');
       each(root.querySelectorAll('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]); });

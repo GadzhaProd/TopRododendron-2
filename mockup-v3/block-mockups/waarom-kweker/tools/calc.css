@@ -52,6 +52,8 @@
 .hc-sizes label > span{flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;height:60px;padding:0 14px}
 .hc-sizes b{font-weight:600;white-space:nowrap}
 .hc-sizes em{font-style:normal;font-size:var(--t-micro);font-variant-numeric:tabular-nums;opacity:.86}
+/* what the size class means, under the tiles */
+.hc-sizenote{margin-top:10px!important;font-size:var(--t-micro);line-height:1.5;color:var(--soft,#5f5e58)}
 /* the substrate: our own checkbox */
 .hc-sub{display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:12px;align-items:start;cursor:pointer}
 .hc-sub input{-webkit-appearance:none;appearance:none;width:26px;height:26px;margin:0;border:1px solid var(--hc-b);border-radius:8px;background:rgba(255,255,255,.35) center/16px no-repeat;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}

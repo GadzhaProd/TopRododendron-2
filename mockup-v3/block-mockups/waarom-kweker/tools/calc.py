@@ -47,7 +47,10 @@ def _vars(u, photos=False):
 def _sizes(u):
     items = ''.join(f'<label><input type="radio" name="{u}-size" data-c="size" value="{i}"{" checked" if i == 1 else ""}><span><b>{s}</b><em data-p="{i}"></em></span></label>'
                     for i, s in enumerate(SIZES))
-    return f'<fieldset class="hc-set hc-sizes"><legend>Hoogte bij levering <small>prijs per plant</small></legend><div>{items}</div></fieldset>'
+    # what a size class means (owner, 23 Nov: the height is measured from the root ball; the ball does not count)
+    note = ('<p class="hc-sizenote" data-o="sizenote">U krijgt planten tussen 60 en 80&nbsp;cm hoog, gemeten vanaf de kluit; '
+            'de kluit telt niet mee.</p>')
+    return f'<fieldset class="hc-set hc-sizes"><legend>Hoogte bij levering <small>prijs per plant</small></legend><div>{items}</div>{note}</fieldset>'
 
 
 SUB = ('<label class="hc-sub"><input type="checkbox" data-c="sub" checked><span><b>Tuinturf-substraat erbij</b>'
