@@ -1,220 +1,134 @@
-/* ===== The hedge calculator «Смета», restyled (tools/calc3.py). The layout is shared; a class on the block picks the
-   treatment of the controls and the sheet: sx-t1 pills · sx-t2 rows on hairlines · sx-t3 soft tiles.
-   Rules for all three: one radius family, one line weight or none, no shadows, no blurred spots, at most three fills,
-   a light selected state (sage), text of 14 px or more. ===== */
-.sx{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;--sx-ln:rgba(20,20,19,.14);--sx-b:rgba(20,20,19,.25);--sx-2:var(--color-fg-2,#45443f);--sx-moss:var(--moss,#3f4a37);
-  --sx-sage:#dee4d1;--sx-top:92px;
+/* ===== The plant calculator (tools/calc3.py), the state the owner chose: soft tiles without borders, compact, the chosen
+   tile with the cards' glow, the answer on a sheet with the facts card's surface. One radius family (14 px tiles, 20 px
+   sheet, pill button), no shadows, no blurred spots, text of 14 px or more, every target 44 px or more. ===== */
+.sx{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;
+  --sx-ln:rgba(20,20,19,.14);--sx-hair:rgba(63,74,55,.12);--sx-2:var(--color-fg-2,#45443f);--sx-moss:var(--moss,#3f4a37);--sx-paper:#f9f8f5;--sx-top:92px;
   --sx-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
-  /* the guarantee block below starts with its own "tail" before its --sec of air; this takes the tail back */
-  margin-bottom:calc(clamp(84px,9vw,150px) * -.3)}
-@media (max-width:599px){ .sx{margin-bottom:-27px} }
-/* the assortment above ends with clamp(48px,5vw,80px); together one --sec. Below, the guarantee's own air is one --sec */
+  /* the chosen tile: the cards' soft spots inside it, sage from the left and butter from the right on light sage */
+  --sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
+/* Rhythm. Above: the assortment ends with clamp(48px,5vw,80px) of its own; this padding makes it one --sec.
+   Below: the guarantee block opens with a "tail" (--fb-tail, room for the assortment's field to fade out) and then one
+   --sec of air. After this block there is no field to fade, so the tail is switched off instead of pulled back with a
+   negative margin: this block then ends flush and the gap below is exactly one --sec. */
 .sx > .in{position:relative;padding-top:calc(var(--sec) - clamp(48px,5vw,80px));padding-bottom:0;
   display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,5vw,96px);align-items:start}
-.sx :where(h2,p,dl,dt,dd,fieldset,legend,figure){margin:0;padding:0;border:0;min-width:0}
+.sx + .fp-1{--fb-tail:0px}
+.sx :where(h2,p,dl,dt,dd,fieldset,legend){margin:0;padding:0;border:0;min-width:0}
 .sx [hidden]{display:none!important}
-.sx-h{font-size:var(--t-h2)!important;line-height:1.08;margin-bottom:clamp(26px,3vw,44px)}
-.sx-h > span{display:block}
 .sx :is(button,input){font:inherit;color:inherit}
-.sx :is(a,button):focus-visible,.sx label:has(input:focus-visible) > span,.sx-range input:focus-visible{outline:2px solid var(--sx-moss);outline-offset:3px}
 .sx ::selection{background:#d3dcc2;color:#141413}
 .sx a:not(.sx-mini){color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
-.sx-ask > * + *{margin-top:clamp(24px,2.6vw,34px)}
-.sx-lab,.sx-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
+/* focus, for the keyboard: a moss ring round a link, a button or the tile of the focused choice */
+.sx :is(a,button):focus-visible,.sx-set label:has(input:focus-visible) > span{outline:2px solid var(--sx-moss);outline-offset:3px}
+.sx-h{font-size:var(--t-h2)!important;line-height:1.08;margin-bottom:clamp(26px,3vw,44px)}
+.sx-h > span{display:block}
+.sx-ask > * + *{margin-top:clamp(20px,2.2vw,28px)}
+.sx-lab,.sx-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600}
 .sx-set legend + *,.sx-lab + *{clear:both}
-.sx-hint,.sx-sizenote{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
-.sx-mode legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.sx-hint{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
+.sx-mode legend,.sx-said{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
-/* choices: real radio buttons; the label is the control */
+/* choices: real radio buttons shown as tiles; the label is the control */
+.sx-set > div{display:flex;flex-wrap:wrap;gap:6px}
 .sx-set label{position:relative;display:block;cursor:pointer}
 .sx-set input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.sx-set label > span{display:flex;align-items:center;gap:10px;min-height:48px;font-size:var(--t-body);line-height:1.2;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+.sx-set label > span{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border-radius:14px;background:var(--sx-paper);font-size:15px;line-height:1.2;transition:background-color .2s ease}
 .sx-set b{font-weight:500}
-.sx-set i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(20,20,19,.3)}
+.sx-set input:checked + span{background:var(--sx-on)}
+/* the sign of "chosen": a small moss tick */
+.sx-set input:checked + span::after{content:"";flex:none;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
+.sx-set label:active > span,.sx-step button:active,.sx-add:active{filter:brightness(.97)}
+:is(.sx-mode,.sx-subst) label > span{padding:0 18px}
+/* a variety: its glow lies in a layer under the name and fades in, a light preview under the pointer, full when chosen.
+   Its own soft colour (--g) flows from the left through a light cream into the sage; through the cream because a pink or
+   lilac mixed straight into the sage passes a grey middle; eased stops mixed in OKLab, no hard edge */
+.sx-vars label{--sx-on:radial-gradient(ellipse 125% 190% at 0% 50%,var(--g) 0%,var(--g) 6%,color-mix(in oklab,var(--g) 98%,#f1ead4) 12%,color-mix(in oklab,var(--g) 86%,#f1ead4) 18%,color-mix(in oklab,var(--g) 63%,#f1ead4) 24%,color-mix(in oklab,var(--g) 37%,#f1ead4) 30%,color-mix(in oklab,var(--g) 14%,#f1ead4) 36%,color-mix(in oklab,var(--g) 2%,#f1ead4) 42%,color-mix(in oklab,var(--g) 0%,#f1ead4) 48%,#f1ead4 48%,color-mix(in oklab,#f1ead4 98%,#c9d4b5) 54%,color-mix(in oklab,#f1ead4 86%,#c9d4b5) 60%,color-mix(in oklab,#f1ead4 63%,#c9d4b5) 66%,color-mix(in oklab,#f1ead4 37%,#c9d4b5) 72%,color-mix(in oklab,#f1ead4 14%,#c9d4b5) 78%,color-mix(in oklab,#f1ead4 2%,#c9d4b5) 84%,color-mix(in oklab,#f1ead4 0%,#c9d4b5) 90%,#c9d4b5 90%,#c9d4b5 100%)}
+.sx-vars label > span{position:relative;isolation:isolate}
+.sx-vars label > span::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--sx-on);opacity:0;transition:opacity .3s ease}
+.sx-vars input:checked + span{background:var(--sx-paper)}
+.sx-vars input:checked + span::before{opacity:1}
+/* a size: its price under it, the tick in the corner */
+.sx-sizes > div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.sx-sizes label > span{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:52px;padding:0 12px}
+.sx-sizes b{white-space:nowrap}
 .sx-sizes em{font-style:normal;font-size:var(--t-small);font-variant-numeric:tabular-nums;color:var(--sx-2)}
+.sx-sizes input:checked + span::after{position:absolute;right:10px;top:10px}
 
-/* the length: minus, the figure with its unit, plus */
-.sx-step{display:inline-flex;align-items:center;gap:6px}
-.sx-step button{flex:none;display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:1px solid var(--sx-b);border-radius:50%;background:none;cursor:pointer;transition:border-color .2s ease,background-color .2s ease}
-.sx-step button:hover{border-color:rgba(20,20,19,.6)}
+/* a measure: minus, the figure with its unit, plus, on one tile. The figure is as wide as its text (set by the script) */
+.sx-step{display:inline-flex;align-items:center;border-radius:14px;background:var(--sx-paper)}
+.sx-step button{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:14px;background:none;cursor:pointer;transition:background-color .2s ease}
 .sx-step svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
-.sx-val{display:flex;align-items:baseline;justify-content:center;gap:4px;padding:0 6px;height:48px;line-height:48px}
-.sx-val input{box-sizing:content-box;width:1.9em;field-sizing:content;min-width:24px;height:48px;padding:0;border:0;border-radius:6px;background:none;text-align:center;
-  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:48px}
+.sx-val{display:flex;align-items:baseline;justify-content:center;gap:4px;padding:0 6px;height:44px;line-height:44px}
+.sx-val input{box-sizing:content-box;width:2ch;min-width:24px;height:44px;padding:0;border:0;border-radius:0;background:none;text-align:center;
+  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:44px}
 .sx-val i{font-style:normal;font-size:var(--t-body);color:var(--sx-2)}
-.sx-lenrow{display:flex;flex-wrap:wrap;align-items:center;gap:14px clamp(18px,2.4vw,32px)}
-/* the slider: a hairline and a round handle, no shadow */
-.sx-range{flex:1 1 220px;min-width:0}
-.sx-range input{display:block;width:100%;height:44px;margin:0;background:none;cursor:pointer;-webkit-appearance:none;appearance:none;--sx-fill:27%}
-.sx-range input::-webkit-slider-runnable-track{height:2px;border-radius:2px;background:linear-gradient(to right,#3f4a37 var(--sx-fill),rgba(20,20,19,.2) var(--sx-fill))}
-.sx-range input::-moz-range-track{height:2px;border-radius:2px;background:rgba(20,20,19,.2)}
-.sx-range input::-moz-range-progress{height:2px;background:#3f4a37}
-.sx-range input::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-11px;border-radius:50%;border:1.5px solid #3f4a37;background:#f1efea}
-.sx-range input::-moz-range-thumb{width:21px;height:21px;border-radius:50%;border:1.5px solid #3f4a37;background:#f1efea}
-/* the border's two measures */
-.sx-arow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px}
-.sx-arow label > span{display:block;margin-bottom:4px;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
-.sx-arow > b{height:48px;display:flex;align-items:center;font-weight:400;font-size:var(--t-lead);color:var(--sx-2)}
-.sx-step.is-s .sx-val{padding:0 2px}
-.sx-step.is-s .sx-val input{width:1.4em;min-width:24px}
-@supports (field-sizing:content){ .sx-val input,.sx-step.is-s .sx-val input{width:auto} }
-.sx-m2{height:48px;display:flex;align-items:center;gap:6px;margin-left:6px!important;font-size:var(--t-lead);color:var(--sx-2);white-space:nowrap}
+/* the figure in focus: no ring on the figure itself; the whole tile takes a fine moss line */
+.sx .sx-val input:focus,.sx .sx-val input:focus-visible{outline:0!important;box-shadow:none!important}
+.sx-step:has(input:focus-visible){box-shadow:inset 0 0 0 1.5px rgba(63,74,55,.7)}
+/* a group or border: its shape, then one measure (round) or two (oval, straight), then the square metres on their own line */
+.sx-shape{margin-bottom:16px!important}
+.sx-meas{display:flex;align-items:flex-end;gap:10px}
+.sx-fld,.sx-x{flex:none}
+.sx-fld > label{display:block;margin-bottom:4px;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
+.sx-fld .sx-val{padding:0 2px}
+.sx-x{display:flex;align-items:center;height:44px;font-size:var(--t-lead);color:var(--sx-2)}
+/* where two measures do not fit one line (a narrow phone, long figures) the script stacks them, without the "×" */
+.sx-meas.is-stack{flex-direction:column;align-items:flex-start}
+.sx-meas.is-stack .sx-x{display:none}
+.sx-m2{margin-top:10px;font-size:var(--t-lead);line-height:1.3;color:var(--sx-2);white-space:nowrap}
 .sx-m2 b{font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);color:var(--color-fg)}
 
-/* the substrate: our own checkbox */
-
-/* the sheet */
-.sx-slip{position:sticky;top:var(--sx-top);padding:clamp(22px,2.6vw,36px);scroll-margin-top:90px}
+/* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
+.sx-slip{position:sticky;top:var(--sx-top);padding:clamp(22px,2.6vw,36px);border-radius:20px;scroll-margin-top:90px;box-shadow:inset 0 0 0 1px var(--sx-hair);
+  background:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
+  radial-gradient(ellipse 90% 40% at 100% 100%,#e6dcb4 0%,transparent 72%),radial-gradient(ellipse 60% 30% at 0% 100%,#d3dcc0 0%,transparent 70%),linear-gradient(to bottom,#e4e9d8 0%,#ebece3 46%,#ede8d4 100%)}
 .sx-sliph{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
 .sx-slips{margin-top:4px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
-/* the bed's shape: three choices in the language of the other choices, then its measures */
-.sx-shape{margin-bottom:16px!important}
-.sx-arow[hidden] + .sx-arow{margin-top:0}
-/* the guideline: one quiet line under the variety and size */
 .sx-norm{margin:14px 0 16px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
 .sx-lines > div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--sx-ln)}
-.sx-lines > div[hidden]{display:none}
 .sx-lines dt{font-size:var(--t-body);line-height:1.4}
 .sx-lines small{display:block;margin-top:1px;font-size:var(--t-small);line-height:1.45;font-weight:400;color:var(--sx-2)}
 .sx-lines dd{flex:none;font-size:var(--t-body);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.sx-lines .sx-tot{align-items:baseline;border-top-color:var(--color-fg,#141413);padding:18px 0 0}
-.sx-totnote{margin-top:6px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2)}
+.sx-lines .sx-tot{border-top-color:var(--color-fg,#141413);padding:18px 0 0}
 .sx-tot dt{font-weight:600}
 .sx-lines .sx-tot dd{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em}
-.sx-act{margin-top:16px}
-.sx .sx-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;padding:0 28px;border:0;border-radius:999px;background:var(--sx-moss);color:#fff;
-  font-size:var(--t-body);font-weight:600;cursor:pointer;transition:background-color .2s ease}
-.sx .sx-add:hover{background:#333c2d}
+.sx-totnote{margin-top:6px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:balance}
+/* the cart button: lighter than moss, the cards' glow inside it */
+.sx .sx-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:16px;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;
+  background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
 .sx-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-moss);font-weight:600}
 .sx-status:empty{display:none}
-.sx-note{margin-top:14px;font-size:var(--t-small);line-height:1.55;color:var(--sx-2);text-wrap:pretty}
-.sx-said{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.sx-note{margin-top:14px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
+/* the two links of the note get a full finger's height */
+.sx-note a{display:inline-block;padding:12px 0;margin:-12px 0}
 
-/* phone: the total in a small bar while the questions are on screen; it floats as the header does */
+/* a pointer over a control (never on touch, where a hover would stick after the tap) */
+@media (hover:hover){
+  .sx-set label:hover > input:not(:checked) + span,.sx-step button:hover{background:#fff}
+  .sx-vars label:hover > input:not(:checked) + span::before{opacity:.6}
+  .sx .sx-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
+}
+
+/* the size tiles: four in a row where a tile holds "100–120 cm" beside its tick; otherwise two by two */
+@media (min-width:900px) and (max-width:1039.98px),(max-width:599.98px){ .sx-sizes > div{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* one column: the sheet under the questions, and the total in a small bar while the questions are on screen. The bar is a
+   piece of the sheet: the same surface and hairline. Controls that take the focus stay clear of it */
 .sx-mini{display:none}
 @media (max-width:899.98px){
   .sx > .in{grid-template-columns:minmax(0,1fr);row-gap:32px}
   .sx-slip{position:relative;top:auto}
   .sx-mini{position:fixed;z-index:40;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:8px 20px;border-radius:999px;
-    background:#f1efea;border:1px solid rgba(20,20,19,.6);color:var(--color-fg);text-decoration:none;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+    background:linear-gradient(to right,#dfe6d2,#ebe9d8 55%,#ede6cd);box-shadow:inset 0 0 0 1px var(--sx-hair);color:var(--color-fg);text-decoration:none;
+    opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
   .sx-mini.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .3s ease}
   .sx-mini b{display:block;font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.1}
   .sx-mini i{display:block;font-style:normal;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
   .sx-mini em{font-style:normal;font-size:var(--t-small);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-  /* the two links of the note get a full finger's height */
-  .sx-note{line-height:1.9}
-  .sx-note a{display:inline-block;padding:11px 0;margin:-11px 0}
+  .sx-set input,.sx-step button,.sx-val input{scroll-margin-bottom:88px}
+}
+/* phone: the varieties in two even columns */
+@media (max-width:599.98px){
+  .sx-vars > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr}
+  .sx-vars label > span{height:100%;min-height:48px;padding:6px 12px;line-height:1.25}
 }
 @media (prefers-reduced-motion:reduce){ .sx *,.sx-mini{transition:none!important} }
-
-/* ================= 1 · pills: the page's outlined pill and its round buttons ================= */
-.sx-t1 :is(.sx-vars,.sx-mode,.sx-shape,.sx-subst) > div{display:flex;flex-wrap:wrap;gap:8px}
-.sx-t1 .sx-set label > span{padding:0 18px;border:1px solid var(--sx-b);border-radius:999px}
-.sx-t1 .sx-set label:hover > span{border-color:rgba(20,20,19,.6)}
-.sx-t1 .sx-set input:checked + span{background:var(--sx-on);border-color:var(--sx-moss)}
-.sx-t1 .sx-set input:checked + span b::after{content:"";display:inline-block;width:14px;height:14px;margin-left:8px;vertical-align:-2px;background:var(--sx-tick) center/contain no-repeat}
-.sx-t1 .sx label:has(input:focus-visible) > span,.sx-t1 :is(a,button):focus-visible{border-radius:999px}
-.sx-t1 :is(.sx-mode,.sx-subst) label > span{padding:0 24px;font-weight:500}
-.sx-t1 .sx-sizes > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.sx-t1 .sx-sizes label > span{justify-content:space-between;padding:0 20px}
-.sx-t1 .sx-slip{border-radius:28px}
-.sx-t1.sx-flat .sx-slip{background:linear-gradient(165deg,#e4e9d8 0%,#ebece3 52%,#f0ead3 100%)}
-@media (max-width:899.98px){
-  .sx-t1 .sx-slip{border-radius:22px}
-  .sx-t1 .sx-vars label > span{min-height:44px;padding:0 15px}
-}
-@media (max-width:599.98px){ .sx-t1 .sx-sizes > div{grid-template-columns:minmax(0,1fr)} }
-
-/* ================= 2 · rows: choices on hairlines with a round mark; no slider, no drawing, no dots ================= */
-.sx-t2 .sx-set i,.sx-t2 .sx-range{display:none}
-.sx-t2 .sx-set label > span::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;border:1px solid rgba(20,20,19,.6);transition:border-color .2s ease,background-color .2s ease}
-.sx-t2 .sx-set input:checked + span::before{border-color:var(--sx-moss);background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
-/* the chosen row: a soft sage band between its hairlines that fades out at both ends */
-.sx-t2 :is(.sx-vars,.sx-sizes) input:checked + span{background:linear-gradient(to right,transparent 0%,#d3ddc2 12%,#e0e6d3 46%,transparent 88%)}
-.sx-t2 .sx-mode input:checked + span::before,.sx-t2 .sx-set input:checked + span::before{background:radial-gradient(circle,var(--sx-moss) 0 5px,transparent 5.6px),radial-gradient(circle at 30% 30%,#eae1bf,#c5d0b2)}
-.sx-t2.sx-flat :is(.sx-vars,.sx-sizes) input:checked + span{background:none}
-.sx-t2.sx-flat .sx-set input:checked + span::before{background:radial-gradient(circle,var(--sx-moss) 0 5px,var(--sx-sage) 5.6px)}
-.sx-t2 .sx-set input:checked + span b{font-weight:600}
-.sx-t2 .sx label:has(input:focus-visible) > span{border-radius:6px}
-.sx-t2 :is(.sx-mode,.sx-shape,.sx-subst) > div{display:flex;flex-wrap:wrap;gap:0 32px}
-.sx-t2 .sx-mode label > span{font-size:var(--t-lead);font-weight:500}
-.sx-t2 :is(.sx-vars,.sx-sizes) > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);border-top:1px solid var(--sx-ln)}
-.sx-t2 :is(.sx-vars,.sx-sizes) label{border-bottom:1px solid var(--sx-ln)}
-.sx-t2 .sx-sizes em{margin-left:auto;font-size:var(--t-body);color:var(--color-fg)}
-.sx-t2 .sx-slip{border-radius:20px}
-.sx-t2.sx-flat .sx-slip{background:#e4e9d8}
-@media (max-width:599.98px){ .sx-t2 :is(.sx-vars,.sx-sizes) > div{grid-template-columns:minmax(0,1fr)} }
-
-/* ================= 3 · tiles: soft tiles without borders; no slider ================= */
-.sx-t3{--sx-paper:#f9f8f5}
-.sx-t3 .sx-range{display:none}
-.sx-t3 :is(.sx-vars,.sx-mode,.sx-shape,.sx-subst) > div{display:flex;flex-wrap:wrap;gap:6px}
-.sx-t3 .sx-set label > span{padding:0 16px;border-radius:14px;background:var(--sx-paper)}
-.sx-t3 .sx-set label:hover > span{background:#fff}
-.sx-t3 .sx-set input:checked + span{background:var(--sx-on)}
-/* the sign of "chosen": a small moss tick */
-.sx-t3 :is(.sx-vars,.sx-mode,.sx-shape,.sx-subst) input:checked + span::after{content:"";flex:none;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
-.sx-t3 .sx label:has(input:focus-visible) > span,.sx-t3 .sx-step button:focus-visible{border-radius:14px}
-.sx-t3 :is(.sx-mode,.sx-subst) label > span{padding:0 22px;font-weight:500}
-.sx-t3 .sx-sizes > div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.sx-t3 .sx-sizes label > span{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;min-height:62px;padding:0 14px}
-.sx-t3 .sx-sizes b{white-space:nowrap}
-.sx-t3 .sx-sizes input:checked + span::after{content:"";position:absolute;right:10px;top:10px;width:14px;height:14px;background:var(--sx-tick) center/contain no-repeat}
-.sx-t3 .sx-step{gap:0;border-radius:14px;background:var(--sx-paper)}
-.sx-t3 .sx-step button{border:0;border-radius:14px}
-.sx-t3 .sx-step button:hover{background:#fff}
-.sx-t3 .sx-slip{border-radius:20px}
-.sx-t3.sx-flat .sx-slip{background:var(--sx-paper)}
-@media (max-width:899.98px){
-  .sx-t3 .sx-sizes > div{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .sx-t3 .sx-vars label > span{min-height:44px;padding:0 13px}
-}
-
-/* ================= the glow: the cards' soft spots, always inside a surface, never around it =================
-   The chosen item: a sage spot from the left and a butter one from the right on light sage; a variety takes a faint
-   its own soft colour flowing into the sage. Class sx-flat on the block switches all of it back to plain fills. */
-.sx{--sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
-/* the chosen variety: its own soft colour (--g) flows from the left through a light cream into the sage. Through the cream
-   because a pink or lilac mixed straight into the sage passes a grey middle; eased stops mixed in OKLab, no hard edge */
-.sx .sx-vars label{--sx-on:radial-gradient(ellipse 125% 190% at 0% 50%,var(--g) 0%,var(--g) 6%,color-mix(in oklab,var(--g) 98%,#f1ead4) 12%,color-mix(in oklab,var(--g) 86%,#f1ead4) 18%,color-mix(in oklab,var(--g) 63%,#f1ead4) 24%,color-mix(in oklab,var(--g) 37%,#f1ead4) 30%,color-mix(in oklab,var(--g) 14%,#f1ead4) 36%,color-mix(in oklab,var(--g) 2%,#f1ead4) 42%,color-mix(in oklab,var(--g) 0%,#f1ead4) 48%,#f1ead4 48%,color-mix(in oklab,#f1ead4 98%,#c9d4b5) 54%,color-mix(in oklab,#f1ead4 86%,#c9d4b5) 60%,color-mix(in oklab,#f1ead4 63%,#c9d4b5) 66%,color-mix(in oklab,#f1ead4 37%,#c9d4b5) 72%,color-mix(in oklab,#f1ead4 14%,#c9d4b5) 78%,color-mix(in oklab,#f1ead4 2%,#c9d4b5) 84%,color-mix(in oklab,#f1ead4 0%,#c9d4b5) 90%,#c9d4b5 90%,#c9d4b5 100%)}
-.sx.sx-flat,.sx.sx-flat .sx-vars label{--sx-on:var(--sx-sage)}
-/* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
-.sx-slip{background:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
-  radial-gradient(ellipse 90% 40% at 100% 100%,#e6dcb4 0%,transparent 72%),radial-gradient(ellipse 60% 30% at 0% 100%,#d3dcc0 0%,transparent 70%),linear-gradient(to bottom,#e4e9d8 0%,#ebece3 46%,#ede8d4 100%);
-  box-shadow:inset 0 0 0 1px rgba(63,74,55,.12)}
-.sx.sx-flat .sx-slip{box-shadow:none}
-
-/* ================= the cart button: lighter than moss. sx-b0 moss · sx-b1 olive · sx-b2 sage · sx-b3 glow ================= */
-.sx-b1 .sx-add{background:#627456;color:#fff}
-.sx-b1 .sx-add:hover{background:#586a4d}
-.sx-b2 .sx-add{background:#c8d3b6;color:#2f3829}
-.sx-b2 .sx-add:hover{background:#bcc9a8}
-.sx-b3 .sx-add{color:#2f3829;background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;
-  box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
-.sx-b3 .sx-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
-
-/* ================= the variety chips without dots (owner, 23 Nov): the flower's colour shows only as the glow =================
-   The glow lies in a layer under the name and fades in: a light preview on hover (pointer devices only), full when chosen.
-   On a phone it appears on the tap that chooses. sx-dots brings the old dots back, for comparison in the review. */
-.sx:not(.sx-dots) .sx-vars i{display:none}
-:is(.sx-t1,.sx-t3) .sx-vars label > span{position:relative;isolation:isolate}
-:is(.sx-t1,.sx-t3) .sx-vars label > span::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--sx-on);opacity:0;transition:opacity .3s ease}
-.sx-t3 .sx-vars input:checked + span{background:var(--sx-paper)}
-.sx-t1 .sx-vars input:checked + span{background:transparent}
-:is(.sx-t1,.sx-t3) .sx-vars input:checked + span::before{opacity:1}
-@media (hover:hover){ :is(.sx-t1,.sx-t3) .sx-vars label:hover > input:not(:checked) + span::before{opacity:.6} }
-@media (prefers-reduced-motion:reduce){ .sx .sx-vars label > span::before{transition:none} }
-
-/* ================= compact tiles (review option, sx-compact): the same tiles a size smaller; every target stays 44 px =================
-   On the phone the varieties stand in two even columns instead of six ragged rows. */
-.sx-compact .sx-set label > span{min-height:44px;font-size:15px}
-.sx-compact.sx-t3 .sx-set label > span{padding:0 14px}
-.sx-compact.sx-t3 :is(.sx-mode,.sx-subst) label > span{padding:0 18px}
-.sx-compact.sx-t3 .sx-sizes label > span{min-height:52px;gap:1px;padding:0 12px}
-.sx-compact.sx-t3 .sx-step button{width:44px;height:44px}
-.sx-compact .sx-val,.sx-compact .sx-val input{height:44px;line-height:44px}
-.sx-compact .sx-ask > * + *{margin-top:clamp(20px,2.2vw,28px)}
-@media (max-width:599.98px){
-  .sx-compact.sx-t3 .sx-vars > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-  .sx-compact.sx-t3 .sx-vars label > span{height:100%;min-height:48px;padding:6px 12px;line-height:1.25}
-}
