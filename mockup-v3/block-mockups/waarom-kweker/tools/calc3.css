@@ -6,12 +6,17 @@
   --sx-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
   /* the chosen tile: the cards' soft spots inside it, sage from the left and butter from the right on light sage */
   --sx-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
-/* Rhythm. Above: the assortment ends with clamp(48px,5vw,80px) of its own; this padding makes it one --sec.
+/* Rhythm. Above: the assortment ends with clamp(48px,5vw,80px) of its own and its coloured field fades out below that;
+   this padding gives the fade its tail (30 % of clamp(84px,9vw,150px), as the guarantee block allowed it) and then one --sec,
+   so the heading does not sit against the end of the field (review, 24 Nov).
    Below: the guarantee block opens with a "tail" (--fb-tail, room for the assortment's field to fade out) and then one
    --sec of air. After this block there is no field to fade, so the tail is switched off instead of pulled back with a
    negative margin: this block then ends flush and the gap below is exactly one --sec. */
-.sx > .in{position:relative;padding-top:calc(var(--sec) - clamp(48px,5vw,80px));padding-bottom:0;
-  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,5vw,96px);align-items:start}
+.sx > .in{position:relative;padding-top:calc(var(--sec) - clamp(48px,5vw,80px) + clamp(84px,9vw,150px) * .3);padding-bottom:0;
+  display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,33%,452px);column-gap:clamp(40px,5.5vw,96px);align-items:start}
+/* the sheet takes the column of the facts card in "Waarom", so the two sage cards on the right line up */
+@media (max-width:1100px){ .sx > .in{grid-template-columns:minmax(0,1fr) clamp(300px,36%,400px)} }
+@media (max-width:599.98px){ .sx > .in{padding-top:calc(var(--sec) - 48px + 27px)} }
 .sx + .fp-1{--fb-tail:0px}
 .sx :where(h2,p,dl,dt,dd,fieldset,legend){margin:0;padding:0;border:0;min-width:0}
 .sx [hidden]{display:none!important}
@@ -20,7 +25,7 @@
 .sx a:not(.sx-mini){color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
 /* focus, for the keyboard: a moss ring round a link, a button or the tile of the focused choice */
 .sx :is(a,button):focus-visible,.sx-set label:has(input:focus-visible) > span{outline:2px solid var(--sx-moss);outline-offset:3px}
-.sx-h{font-size:var(--t-h2)!important;line-height:1.08;margin-bottom:clamp(26px,3vw,44px)}
+.sx-h{font-size:var(--t-h2)!important;line-height:1.04;margin-bottom:clamp(26px,3vw,44px)}
 /* the lead under the heading, as the assortment's lead above (owner, 23 Nov: say what the calculator is for) */
 .sx-ask > .sx-lead{margin-top:clamp(12px,1.2vw,18px);margin-bottom:clamp(26px,3vw,44px);max-width:34em;font-size:var(--t-lead);line-height:1.55;color:var(--ink2,#45443f);text-wrap:pretty}
 .sx-h:has(+ .sx-lead){margin-bottom:0}
@@ -72,13 +77,14 @@
 .sx-shape{margin-bottom:16px!important}
 .sx-meas{display:flex;align-items:flex-end;gap:10px}
 .sx-fld,.sx-x{flex:none}
-.sx-fld > label{display:block;margin-bottom:4px;font-size:var(--t-small);line-height:1.3;color:var(--sx-2)}
+.sx-fld > label{display:block;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:var(--color-fg)}
 .sx-fld .sx-val{padding:0 2px}
 .sx-x{display:flex;align-items:center;height:44px;font-size:var(--t-lead);color:var(--sx-2)}
 /* where two measures do not fit one line (a narrow phone, long figures) the script stacks them, without the "×" */
 .sx-meas.is-stack{flex-direction:column;align-items:flex-start}
 .sx-meas.is-stack .sx-x{display:none}
-.sx-m2{margin-top:10px;font-size:var(--t-lead);line-height:1.3;color:var(--sx-2);white-space:nowrap}
+.sx-m2{margin-top:8px;font-size:var(--t-lead);line-height:1.3;color:var(--sx-2);white-space:nowrap}
+.sx-m2 + .sx-hint{margin-top:6px}
 .sx-m2 b{font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);color:var(--color-fg)}
 
 /* the sheet: the facts card's surface (sage from the top left, butter from the bottom right, a hairline inside) */
@@ -101,7 +107,7 @@
   background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
 .sx-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-moss);font-weight:600}
 .sx-status:empty{display:none}
-.sx-note{margin-top:14px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
+.sx-note{margin-top:16px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
 /* the two links of the note get a full finger's height */
 .sx-note a{display:inline-block;padding:12px 0;margin:-12px 0}
 
@@ -120,6 +126,8 @@
 @media (max-width:899.98px){
   .sx > .in{grid-template-columns:minmax(0,1fr);row-gap:32px}
   .sx-slip{position:relative;top:auto}
+  /* tablet: the sheet as wide as the guarantee card under it, centred like it */
+  .sx-slip{width:100%;max-width:520px;justify-self:center}
   .sx-mini{position:fixed;z-index:40;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:8px 20px;border-radius:999px;
     background:linear-gradient(to right,#dfe6d2,#ebe9d8 55%,#ede6cd);box-shadow:inset 0 0 0 1px var(--sx-hair);color:var(--color-fg);text-decoration:none;
     opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}

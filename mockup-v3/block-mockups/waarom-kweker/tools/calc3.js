@@ -116,7 +116,7 @@
       var watch = function (el, key, margin) {
         new IntersectionObserver(function (es) { seen[key] = es[es.length - 1].isIntersecting; bar.classList.toggle('is-on', seen.ask && !seen.res); }, { rootMargin: margin }).observe(el);
       };
-      watch(ask, 'ask', '-96px 0px -45% 0px'); watch(res, 'res', '0px 0px -72px 0px');
+      watch(ask, 'ask', '-96px 0px -45% 0px'); watch(res, 'res', '0px 0px -10px 0px');
     }
     // a new width (the phone turned) only re-fits the measures; nothing typed is touched
     if ('ResizeObserver' in window) new ResizeObserver(stack).observe(root.querySelector('.sx-ask'));
