@@ -46,14 +46,14 @@ def _field(key, value, name, hint):
 def _measures():
     # a hedge by its length. A group or border by its shape first: a group (an island bed) is planted round, by its
     # diameter, or oval; a border along a fence or path is a rectangle, length times width. The square metres on a line of their own.
-    shape = _tiles('shape', [('rond', '<b>Rond</b>', ''), ('ovaal', '<b>Ovaal</b>', ''), ('recht', '<b>Rechthoekig</b>', '')], 'rond', 'sx-shape', 'Vorm')
+    shape = _tiles('shape', [('rond', '<b>Rond</b>', ''), ('recht', '<b>Rechthoekig</b>', '')], 'rond', 'sx-shape', 'Vorm')
     return (f'<div class="sx-f" data-mode="haag"><label class="sx-lab" for="{U}-len">Lengte van de haag</label>' + _step('len', '12', 'Lengte van de haag', 'lenh')
             + f'<p class="sx-hint" id="{U}-lenh">Van 1 tot 200 meter, ook halve meters.</p></div>'
             '<div class="sx-f" data-mode="border" hidden>' + shape
             + '<div class="sx-meas" data-shape="rond">' + _field('bd', '3', 'Doorsnede', 'bedh') + '</div>'
-            '<div class="sx-meas" data-shape="ovaal recht" role="group" aria-label="Lengte en breedte" hidden>' + _field('bl', '4', 'Lengte', 'bedh')
+            '<div class="sx-meas" data-shape="recht" role="group" aria-label="Lengte en breedte" hidden>' + _field('bl', '4', 'Lengte', 'bedh')
             + '<span class="sx-x" aria-hidden="true">×</span>' + _field('bw', '3', 'Breedte', 'bedh') + '</div>'
-            f'<p class="sx-m2">= <b data-o="area"></b>&nbsp;m²</p><p class="sx-hint" id="{U}-bedh">Van 1 tot 50 meter, ook halve meters.</p></div>')
+            f'<p class="sx-m2">= <b data-o="area"></b>&nbsp;m²</p><p class="sx-hint" id="{U}-bedh">Van 1 tot 50 meter, ook halve meters.<span data-shape="rond"> Ovaal? Neem als doorsnede het gemiddelde van lengte en breedte.</span></p></div>')
 
 
 def calc_html():

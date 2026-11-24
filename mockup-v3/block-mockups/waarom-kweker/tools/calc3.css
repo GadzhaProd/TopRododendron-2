@@ -73,7 +73,7 @@
 /* the figure in focus: no ring on the figure itself; the whole tile takes a fine moss line */
 .sx .sx-val input:focus,.sx .sx-val input:focus-visible{outline:0!important;box-shadow:none!important}
 .sx-step:has(input:focus-visible){box-shadow:inset 0 0 0 1.5px rgba(63,74,55,.7)}
-/* a group or border: its shape, then one measure (round) or two (oval, straight), then the square metres on their own line */
+/* a group or border: its shape, then one measure (round) or two (straight), then the square metres on their own line */
 .sx-shape{margin-bottom:16px!important}
 .sx-meas{display:flex;align-items:flex-end;gap:10px}
 .sx-fld,.sx-x{flex:none}

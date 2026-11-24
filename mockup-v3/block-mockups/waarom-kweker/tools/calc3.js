@@ -43,8 +43,9 @@
     function update(typing) {
       var bed = pick('mode') === 'border', shape = pick('shape'), round = shape !== 'recht', vi = parseInt(pick('var'), 10), si = parseInt(pick('size'), 10);
       var len = value('len'), D = value('bd'), L = value('bl'), W = value('bw'), v = data[vi], subOn = pick('sub') !== '0';
-      // the bed: a round group by its diameter, an oval one or a straight border by length and width
-      var area = shape === 'rond' ? Math.PI * D * D / 4 : shape === 'ovaal' ? Math.PI * L * W / 4 : L * W;
+      // the bed: a round group by its diameter (an oval one by the mean of its length and width, the hint says so; about 2 %
+      // more than the oval for usual shapes) or a straight border by length and width (owner, 24 Nov: two shapes, not three)
+      var area = shape === 'rond' ? Math.PI * D * D / 4 : L * W;
       var d = bed ? PER_M2[si] : PER_M[si], n = Math.ceil((bed ? area : len) * d - 1e-9);
       var price = v.p[si], plants = n * price, bags = subOn ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
       each(['len', 'bd', 'bl', 'bw'], function (k) {
@@ -55,7 +56,7 @@
       each(root.querySelectorAll('[data-mode]'), function (el) { el.hidden = el.getAttribute('data-mode') !== (bed ? 'border' : 'haag'); });
       each(root.querySelectorAll('[data-shape]'), function (el) { el.hidden = el.getAttribute('data-shape').split(' ').indexOf(shape) < 0; });
       stack();
-      var bedName = shape === 'rond' ? 'ronde groep' : shape === 'ovaal' ? 'ovale groep' : 'border', kind = bed ? (round ? 'groep' : 'border') : 'haag';
+      var bedName = shape === 'rond' ? 'ronde groep' : 'border', kind = bed ? (round ? 'groep' : 'border') : 'haag';
       // the size classes of this variety: the first starts where the variety starts (50 or 40 cm), the others are the same for all
       var from = function (k) { return k ? TOPS[k - 1] : v.a; }, lo = from(si), hi = TOPS[si], size = lo + '–' + hi + ' cm';
       each(root.querySelectorAll('[data-s]'), function (el) { var k = parseInt(el.getAttribute('data-s'), 10); el.textContent = from(k) + '–' + TOPS[k] + ' cm'; });
