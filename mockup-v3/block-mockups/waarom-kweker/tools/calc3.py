@@ -104,4 +104,4 @@ def place(html, block):
 def apply(html):
     html = place(html, calc_html())
     assert html.count('</head>') == 1 and html.count('</body>') == 1
-    return html.replace('</head>', '<style id="calc3-css">' + css() + '</style></head>').replace('</body>', '<script>' + js() + '</script></body>')
+    return html.replace('</head>', '<style id="calc3-css">' + css() + '</style></head>').replace('</body>', '<script id="calc3-js">' + js() + '</script></body>')

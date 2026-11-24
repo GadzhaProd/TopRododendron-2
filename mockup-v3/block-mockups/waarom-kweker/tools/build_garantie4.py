@@ -13,6 +13,9 @@ D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 s = (D / 'index.html').read_text()
 i = s.index('<main id="main"'); j = s.index('</main>') + len('</main>')
 head, tail = s[:i], s[j:]
+# the calculator lives in the homepage's main; its style and script are not needed here
+head = re.sub(r'<style id="calc3-css">.*?</style>', '', head, count=1, flags=re.S)
+tail = re.sub(r'<script id="calc3-js">.*?</script>', '', tail, count=1, flags=re.S)
 
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
 # (owner, 23 Nov: the search link opened the office; a route to the exact pin of the field instead)

@@ -191,5 +191,9 @@ s = header_pill.apply(s)
 # the footer, item 2.3 (owner approved 23 Nov: variant 4 "Большое имя" of footer-fable.html; tools/footer.py, footer.css)
 import footer
 s = footer.apply(s, 4)
+# the plant calculator, between the assortment and the guarantee block (owner approved 24 Nov: «Смета», tiles, compact,
+# the glow, no drawing, round or rectangular beds; reviewed twice; tools/calc3.py, calc3.css, calc3.js)
+import calc3
+s = calc3.apply(s)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
