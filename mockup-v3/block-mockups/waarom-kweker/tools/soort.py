@@ -125,6 +125,26 @@ def about(slug, links=True):
             + (LINKS if links else '') + '</div></section>')
 
 
+def _dl(rows, cls):
+    return f'<dl class="so-ken {cls}">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>'
+
+
+def pair(slug):
+    # the layout "galerij" (owner, 25 Nov: the two tables looked disorganised): the plant's facts and the delivery facts as
+    # two tables in one row on one grid. Same label width, same type, four rows each, the rows level across (CSS subgrid);
+    # a small label over each, as over the choices above. The larger sizes and the two links stand as quiet lines under them.
+    bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
+    s = BY[slug]; contact = f'<a {WA}>WhatsApp</a> of bel {TEL}'
+    plant = [('Breedte', f'Tot {breed}&nbsp;m'), ('Groei', groei), ('Grond', 'Zuur en los, pH 4,5–6'), ('Planttijd', PLANT)]
+    lev = [calc3.BEZORGEN, calc3.AFHALEN, ('Garantie', '<a href="garantie.html">3 maanden aangroeigarantie</a>'), ('Vers', 'Gerooid vlak voor levering, met kluit')]
+    big = (f'Grotere maten, tot {s["m"]}&nbsp;cm? Op aanvraag: stuur een {contact}.' if s['m'] > calc3.TOPS[-1]
+           else f'Vragen over deze soort? Stuur een {contact}.')
+    return ('<h2 class="so-dh so-dh-k" id="so-hk">Kenmerken</h2>' + _dl(plant, 'so-kd')
+            + '<h2 class="so-dh so-dh-l" id="so-hl">Levering en garantie</h2>' + _dl(lev, 'so-ld')
+            + '<p class="so-q so-qk">Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></p>'
+            + '<p class="so-q so-ql"><span>' + big + '</span><span>Hovenier of grootverbruiker? <a href="index.html#kweker">Vraag een prijsopgave aan</a></span></p>')
+
+
 # the photos of a variety, in the order of the gallery: (file suffix, what it shows). A third one (the dug shrub with its
 # root ball; the owner will shoot it) is one more entry here
 PHOTOS = [(2, 'bloeiende struik'), (1, 'bloem van dichtbij')]
@@ -168,8 +188,10 @@ def main_html(slug, layout='galerij', sfx=''):
     head = f'<div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>'
     bar = '<div class="so-bar" data-bar><span><b data-o="total"></b><i data-o="barline"></i></span><button type="button" class="so-add" data-add>In winkelwagen</button></div>'
     if layout == 'galerij':
-        body = ('<div class="so-grid"><div class="so-l">' + gallery(slug) + about(slug, False) + '</div>'
-                '<div class="so-r"><div class="so-info">' + head + buy(slug) + info(slug) + '</div>' + LINKS + '</div></div>')
+        over = V[slug][6]
+        body = ('<div class="so-grid so-g2"><div class="so-ga">' + gallery(slug) + '</div>'
+                '<div class="so-gb">' + head + buy(slug) + '</div>'
+                '<div class="so-gd"><h2 class="so-vh">Over deze soort</h2><p>' + over + '</p></div>' + pair(slug) + '</div>')
         cls = 'so so-g'
     else:
         pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(slug, 2, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloeiende struik', True)

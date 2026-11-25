@@ -117,9 +117,33 @@
 /* ---------- the layout "galerij": one photo with a gallery and the plant's text and facts under it on the left; the
    order, the purchase list and the two links on the right. The photo keeps its ratio (square from 1100 px, 4:5 below), and
    the columns are set so both end at about the same height; neither is stretched ---------- */
-.so-g .so-grid{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start}
-.so-g .so-over{margin-top:clamp(36px,3.8vw,52px)}
-.so-g .so-links{margin-top:clamp(28px,3vw,40px)}
+.so-g2{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1fr);grid-template-rows:auto 1fr auto repeat(4,auto) auto;column-gap:var(--so-gap);align-items:start}
+.so-ga{grid-column:1;grid-row:1}
+.so-gb{grid-column:2;grid-row:1 / span 2}
+.so-gd{grid-column:1;grid-row:2;margin-top:clamp(28px,3vw,40px)}
+.so-gd p{max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
+/* the two tables: one row, one grid. Each list spans the same four grid rows (subgrid), so a row of the plant's facts and
+   the row of delivery facts beside it are always the same height; same label width and type on both sides */
+.so-g2 h2.so-dh{margin:clamp(48px,5vw,72px) 0 10px;font-family:Manrope,system-ui,sans-serif!important;font-size:var(--t-small)!important;line-height:1.4;font-weight:600;letter-spacing:0;color:var(--color-fg)}
+.so-dh-k{grid-column:1;grid-row:3}
+.so-dh-l{grid-column:2;grid-row:3}
+.so-g2 .so-ken{margin:0}
+.so-g2 .so-kd{grid-column:1;grid-row:4 / span 4}
+.so-g2 .so-ld{grid-column:2;grid-row:4 / span 4}
+.so-g2 .so-ken > div{grid-template-columns:8.5em minmax(0,1fr)}
+.so-g2 .so-ken :is(dt,dd){font-size:15px}
+.so-g2 .so-ken dd{font-weight:500;text-wrap:pretty}
+.so-g2 .so-ken a{padding-block:13px}
+@supports (grid-template-rows:subgrid){
+  .so-g2 .so-ken{display:grid;grid-template-rows:subgrid}
+  .so-g2 .so-ken > div{align-content:start}
+}
+.so-q{margin-top:clamp(20px,2.2vw,28px);font-size:var(--t-small);line-height:1.5;color:var(--so-2)}
+.so-q span{display:block}
+.so-q span + span{margin-top:8px}
+.so-q a{color:var(--color-fg);padding-block:13px}
+.so-qk{grid-column:1;grid-row:8}
+.so-ql{grid-column:2;grid-row:8}
 .so-gal-w{position:relative}
 .so-gal-v{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:20px;overscroll-behavior-x:contain}
 .so-gal-v::-webkit-scrollbar{display:none}
@@ -141,9 +165,9 @@
 .so-gal-t button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--page,#f1efea),0 0 0 3.5px var(--so-moss)}
 .so-gal-t img{display:block;width:100%;height:100%;object-fit:cover}
 @media (hover:hover){ .so-gal-t button:hover{opacity:1} }
-@media (min-width:900px) and (max-width:1099.98px){ .so-gal-v figure{aspect-ratio:4/5} }
-/* wide screens: the thumbnails stand beside the photo, so the left column is about as long as the right */
-@media (min-width:1310px){
+/* 900–1099 px: square as well (4:5 made the left column 120–200 px longer than the order once the facts moved to the tables row) */
+/* from 1200 px the thumbnails stand beside the photo, so the left column is about as long as the right (under it they added 76 px and left a band under the button at 1200–1309) */
+@media (min-width:1200px){
   .so-gal{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:12px;align-items:start}
   .so-gal-t{order:-1;flex-direction:column;margin-top:0}
 }
@@ -168,12 +192,16 @@
   .so > .in{padding-top:calc(64px + 18px)}
   .so-n .so-grid{display:block}
   /* galerij: gallery, name and order, the purchase list, the plant's text and facts, the two links */
-  .so-g .so-grid{display:flex;flex-direction:column}
-  .so-g :is(.so-l,.so-r){display:contents}
-  .so-g .so-gal{order:1;margin-bottom:22px}
-  .so-g .so-info{order:2}
-  .so-g .so-over{order:3;margin-top:clamp(44px,8vw,60px)}
-  .so-g .so-links{order:4}
+  .so-g2{display:flex;flex-direction:column}
+  .so-ga{order:1;margin-bottom:22px}
+  .so-gb{order:2}
+  .so-dh-l{order:3}
+  .so-g2 .so-ld{order:4}
+  .so-ql{order:5}
+  .so-gd{order:6;margin-top:clamp(44px,8vw,60px)}
+  .so-dh-k{order:7;margin-top:28px}
+  .so-g2 .so-kd{order:8}
+  .so-qk{order:9}
   /* the photos slide under the finger, the next one shows its edge; dots instead of arrows and thumbnails */
   .so-gal-v{gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);scroll-padding-inline:var(--gut);border-radius:0}
   .so-gal-v figure{flex:0 0 86%;aspect-ratio:4/5;border-radius:16px}
