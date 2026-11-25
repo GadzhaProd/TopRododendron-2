@@ -96,22 +96,56 @@
 .so-links span + span{margin-top:8px}
 
 /* ---------- the page: the photos on the left, one calm column on the right; "Over" under that column ---------- */
-.so-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"pics info" "pics over";column-gap:var(--so-gap);align-items:start}
-.so-pics{grid-area:pics;display:grid;gap:clamp(12px,1.2vw,18px)}
-.so-info{grid-area:info}
-.so-over{grid-area:over;margin-top:clamp(40px,4.4vw,60px)}
+.so-n .so-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"pics info" "pics over";column-gap:var(--so-gap);align-items:start}
+.so-n .so-pics{grid-area:pics;display:grid;gap:clamp(12px,1.2vw,18px)}
+.so-n .so-info{grid-area:info}
+.so-n .so-over{grid-area:over;margin-top:clamp(40px,4.4vw,60px)}
 .so-pics figure{overflow:hidden;border-radius:20px;background:#dcd9d0;aspect-ratio:4/5}
 .so-pics figure + figure{aspect-ratio:4/3}
 .so-pics img{display:block;width:100%;height:100%;object-fit:cover}
 /* 900–1279 px: the column beside the photos is shorter than two full photos, so the photos take its height (they do not
    size the row: contain) and no empty band stands under the order; "Over" lies under both, its text and its facts side by side */
 @media (min-width:900px) and (max-width:1279.98px){
-  .so-grid{grid-template-rows:auto auto;grid-template-areas:"pics info" "over over"}
+  .so-n .so-grid{grid-template-rows:auto auto;grid-template-areas:"pics info" "over over"}
   .so-pics{contain:size;align-self:stretch;display:flex;flex-direction:column}
   .so-pics figure{flex:1 1 0;min-height:0;aspect-ratio:auto}
   .so-pics figure + figure{flex:0 0 36%;aspect-ratio:auto}
-  .so-over{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start;margin-top:clamp(48px,6vw,72px)}
-  .so-over .so-ken{margin-top:0}
+  .so-n .so-over{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start;margin-top:clamp(48px,6vw,72px)}
+  .so-n .so-over .so-ken{margin-top:0}
+}
+
+/* ---------- the layout "galerij": one photo with a gallery and the plant's text and facts under it on the left; the
+   order, the purchase list and the two links on the right. The photo keeps its ratio (square from 1100 px, 4:5 below), and
+   the columns are set so both end at about the same height; neither is stretched ---------- */
+.so-g .so-grid{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start}
+.so-g .so-over{margin-top:clamp(36px,3.8vw,52px)}
+.so-g .so-links{margin-top:clamp(28px,3vw,40px)}
+.so-gal-w{position:relative}
+.so-gal-v{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:20px;overscroll-behavior-x:contain}
+.so-gal-v::-webkit-scrollbar{display:none}
+.so-gal-v figure{flex:0 0 100%;aspect-ratio:1/1;scroll-snap-align:start;overflow:hidden;background:#dcd9d0}
+.so-gal-v img{display:block;width:100%;height:100%;object-fit:cover}
+.so-gal-v:focus-visible{outline:2px solid var(--so-moss);outline-offset:3px}
+/* the arrows: the header's round buttons, lying on the photo */
+.so-gal-a{position:absolute;top:50%;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-top:-22px;padding:0;border-radius:999px;border:1px solid rgba(20,20,19,.2);
+  background:rgba(249,248,245,.92);color:var(--color-fg);cursor:pointer;transition:opacity .2s ease,background-color .2s ease}
+.so-gal-p{left:14px}
+.so-gal-n{right:14px}
+.so-gal-n svg{transform:scaleX(-1)}
+.so-gal-a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.so-gal-a:disabled{opacity:0;pointer-events:none}
+@media (hover:hover){ .so-gal-a:hover{background:#fff} }
+/* the thumbnails: the photo on show has a fine moss line round it, the others are a little lighter */
+.so-gal-t{display:flex;gap:10px;margin-top:12px}
+.so-gal-t button{position:relative;width:64px;height:64px;padding:0;border:0;border-radius:12px;overflow:hidden;background:#dcd9d0;cursor:pointer;opacity:.6;transition:opacity .2s ease}
+.so-gal-t button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--page,#f1efea),0 0 0 3.5px var(--so-moss)}
+.so-gal-t img{display:block;width:100%;height:100%;object-fit:cover}
+@media (hover:hover){ .so-gal-t button:hover{opacity:1} }
+@media (min-width:900px) and (max-width:1099.98px){ .so-gal-v figure{aspect-ratio:4/5} }
+/* wide screens: the thumbnails stand beside the photo, so the left column is about as long as the right */
+@media (min-width:1310px){
+  .so-gal{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:12px;align-items:start}
+  .so-gal-t{order:-1;flex-direction:column;margin-top:0}
 }
 
 /* ---------- the other varieties: the homepage's assortment cards ---------- */
@@ -132,7 +166,23 @@
 .so-bar{display:none}
 @media (max-width:899.98px){
   .so > .in{padding-top:calc(64px + 18px)}
-  .so-grid{display:block}
+  .so-n .so-grid{display:block}
+  /* galerij: gallery, name and order, the purchase list, the plant's text and facts, the two links */
+  .so-g .so-grid{display:flex;flex-direction:column}
+  .so-g :is(.so-l,.so-r){display:contents}
+  .so-g .so-gal{order:1;margin-bottom:22px}
+  .so-g .so-info{order:2}
+  .so-g .so-over{order:3;margin-top:clamp(44px,8vw,60px)}
+  .so-g .so-links{order:4}
+  /* the photos slide under the finger, the next one shows its edge; dots instead of arrows and thumbnails */
+  .so-gal-v{gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);scroll-padding-inline:var(--gut);border-radius:0}
+  .so-gal-v figure{flex:0 0 86%;aspect-ratio:4/5;border-radius:16px}
+  .so-gal-a{display:none}
+  .so-gal-t{justify-content:center;gap:0;margin-top:2px}
+  .so-gal-t button,.so-gal-t button[aria-current="true"]{width:44px;height:44px;border-radius:0;background:none;opacity:1;box-shadow:none;overflow:visible}
+  .so-gal-t img{display:none}
+  .so-gal-t button::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:rgba(63,74,55,.3)}
+  .so-gal-t button[aria-current="true"]::after{background:var(--so-moss)}
   /* the two photos in a row that slides sideways; the second one shows its edge */
   .so-pics{display:flex;gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;margin-bottom:22px}
   .so-pics::-webkit-scrollbar{display:none}

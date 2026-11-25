@@ -1,8 +1,8 @@
 # Mockup tool (not site code): the page of one variety, the page behind a card of the assortment. One static page per
 # variety (tools/build_soorten.py -> soort-<slug>.html): the name, the facts, the texts and the photos are in the markup;
 # tools/soort.js only does the buying (size, number, substrate, the total, the cart).
-# The page (owner chose "Тихая страница", then "Легче", 24–25 Nov): the two photos on the left, one calm column on the
-# page, no cards. The language is the calculator's (tools/calc3.css): soft tiles without borders, the chosen tile glows,
+# The page (owner chose "Тихая страница", then "Легче", 24–25 Nov): photos on the left, one calm column on the page, no
+# cards. Two layouts while the owner compares them (main_html): "galerij" and "nu". The language is the calculator's (tools/calc3.css): soft tiles without borders, the chosen tile glows,
 # the cart button with the same glow, hairline rows, the total in Newsreader.
 # Prices, size slots, the bag price and the delivery line are read from tools/calc3.py.
 # Copy: DRAFT. Texts and facts come from the live site (rhododendrons/lib/products.ts), rewritten without the claims we
@@ -108,38 +108,72 @@ def info(slug):
     return ('<h2 class="so-vh">Bezorgen, afhalen en garantie</h2><dl class="so-ken so-info-l">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>')
 
 
-def about(slug):
+LINKS = ('<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'
+         '<span>Hovenier of grootverbruiker? <a href="index.html#kweker">Vraag een prijsopgave aan</a></span></p>')
+
+
+def about(slug, links=True):
     bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
     rows = [('Volgroeid', f'Tot {hoog}&nbsp;m hoog, {breed}&nbsp;m breed'), ('Groei', groei), ('Winterhard', f'Tot ca. −{winter}&nbsp;°C'),
             ('Grond', 'Zuur en los, pH 4,5–6'), ('Planttijd', PLANT)]
     return ('<section class="so-over" aria-labelledby="so-ho"><div><h2 id="so-ho">Over ' + _html.escape(BY[slug]['n']) + '</h2><p>' + over + '</p></div>'
             '<div><h3 class="so-vh">Kenmerken</h3><dl class="so-ken">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>'
-            '<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'
-            '<span>Hovenier of grootverbruiker? <a href="index.html#kweker">Vraag een prijsopgave aan</a></span></p></div></section>')
+            + (LINKS if links else '') + '</div></section>')
 
 
-def others(slug):
+# the photos of a variety, in the order of the gallery: (file suffix, what it shows). A third one (the dug shrub with its
+# root ball; the owner will shoot it) is one more entry here
+PHOTOS = [(2, 'bloeiende struik'), (1, 'bloem van dichtbij')]
+ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>'
+
+
+def gallery(slug):
+    # one large photo with a gallery: a row that slides sideways (scroll-snap, so a finger swipes it), two round arrows on
+    # the photo and small thumbnails under it on desktop, dots on the phone; no auto-play. tools/soort.js moves it.
+    name = BY[slug]['n']; n = len(PHOTOS)
+    slides = ''.join(f'<figure role="group" aria-roledescription="dia" aria-label="{i + 1} van {n}">'
+                     + _img(slug, k, '(min-width:900px) 45vw, 86vw', f'{name}, {what}', i == 0) + '</figure>' for i, (k, what) in enumerate(PHOTOS))
+    thumbs = ''.join(f'<button type="button" data-go="{i}" aria-label="Foto {i + 1}: {what}"{" aria-current=" + chr(34) + "true" + chr(34) if i == 0 else ""}>'
+                     f'<img src="img/{slug}{"-2" if k == 2 else ""}-sm.webp" alt="" loading="lazy"{" style=" + chr(34) + "object-position:" + V[slug][7] + chr(34) if k == 2 else ""}></button>'
+                     for i, (k, what) in enumerate(PHOTOS))
+    return (f'<div class="so-gal" role="group" aria-roledescription="carrousel" aria-label="Foto’s van {_html.escape(name)}" data-gal>'
+            f'<div class="so-gal-w"><div class="so-gal-v" tabindex="0" data-track>{slides}</div>'
+            f'<button type="button" class="so-gal-a so-gal-p" data-dir="-1" aria-label="Vorige foto" disabled>{ARROW}</button>'
+            f'<button type="button" class="so-gal-a so-gal-n" data-dir="1" aria-label="Volgende foto">{ARROW}</button></div>'
+            f'<div class="so-gal-t">{thumbs}</div></div>')
+
+
+def others(slug, sfx=''):
     # the other six varieties, in the language of the homepage's assortment cards
     cards = ''.join(
-        f'<article class="so-it"><a href="soort-{s["slug"]}.html" aria-label="{_html.escape(s["n"])}, vanaf {s["vanaf"]}">'
+        f'<article class="so-it"><a href="soort-{s["slug"]}{sfx}.html" aria-label="{_html.escape(s["n"])}, vanaf {s["vanaf"]}">'
         f'<div class="so-ph"><img src="img/{s["slug"]}-2-sm.webp" alt="" loading="lazy" style="object-position:{V[s["slug"]][7]}"></div>'
         f'<h3>{_html.escape(s["n"])}</h3><p class="so-pr"><span>vanaf</span><b>{s["vanaf"].replace(" ", "&nbsp;")}</b></p></a></article>'
         for s in SOORTEN if s['slug'] != slug)
     return '<section class="so-oth" aria-labelledby="so-hoth" data-oth><div class="in"><h2 id="so-hoth">Andere soorten</h2><div class="so-ogrid">' + cards + '</div></div></section>'
 
 
-def main_html(slug):
+def main_html(slug, layout='galerij', sfx=''):
+    # layout "galerij" (owner's idea, 25 Nov, in review): one photo with a gallery, the plant's text and facts under it; the
+    # order, the purchase list and the two links on the right. Layout "nu": the page as it was: two photos, "Over" under the order.
     s = BY[slug]; name = _html.escape(s['n'])
     # what the script needs for the sums: the prices of this variety, the size slots and the bag price (all from calc3)
     data = _html.escape(json.dumps({'name': s['n'], 'p': s['p'], 'lows': calc3.LOWS, 'tops': calc3.TOPS, 'bag': calc3.BAG}, ensure_ascii=False), quote=True)
     crumb = ('<nav class="so-crumb" aria-label="Kruimelpad"><a href="index.html">Home</a><span aria-hidden="true">›</span>'
              f'<a href="index.html#assortiment">Assortiment</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>')
-    pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(slug, 2, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloeiende struik', True)
-            + '</figure><figure>' + _img(slug, 1, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloem van dichtbij', False) + '</figure></div>')
+    head = f'<div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>'
     bar = '<div class="so-bar" data-bar><span><b data-o="total"></b><i data-o="barline"></i></span><button type="button" class="so-add" data-add>In winkelwagen</button></div>'
-    return (f'<main id="main" tabindex="-1" class="som" data-so="{data}"><div class="so"><div class="in">' + crumb + '<div class="so-grid">' + pics
-            + f'<div class="so-info"><div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>' + buy(slug) + info(slug) + '</div>' + about(slug) + '</div></div>' + bar + '</div>'
-            + others(slug) + '<p class="so-vh" data-o="said" aria-live="polite"></p></main>')
+    if layout == 'galerij':
+        body = ('<div class="so-grid"><div class="so-l">' + gallery(slug) + about(slug, False) + '</div>'
+                '<div class="so-r"><div class="so-info">' + head + buy(slug) + info(slug) + '</div>' + LINKS + '</div></div>')
+        cls = 'so so-g'
+    else:
+        pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(slug, 2, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloeiende struik', True)
+                + '</figure><figure>' + _img(slug, 1, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloem van dichtbij', False) + '</figure></div>')
+        body = '<div class="so-grid">' + pics + '<div class="so-info">' + head + buy(slug) + info(slug) + '</div>' + about(slug) + '</div>'
+        cls = 'so so-n'
+    return (f'<main id="main" tabindex="-1" class="som" data-so="{data}"><div class="{cls}"><div class="in">' + crumb + body + '</div>' + bar + '</div>'
+            + others(slug, sfx) + '<p class="so-vh" data-o="said" aria-live="polite"></p></main>')
 
 
 def title(slug):

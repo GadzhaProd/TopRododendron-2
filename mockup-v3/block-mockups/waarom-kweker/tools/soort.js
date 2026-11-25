@@ -74,6 +74,38 @@
   window.addEventListener('scroll', ask, { passive: true });
   window.addEventListener('resize', ask);
 
+  // the gallery (layout "galerij"): the row of photos slides by itself under a finger; the arrows, the thumbnails or dots
+  // and the arrow keys move it one photo at a time. No auto-play.
+  var gal = main.querySelector('[data-gal]');
+  if (gal) {
+    var track = gal.querySelector('[data-track]'), slides = track.children, gos = gal.querySelectorAll('[data-go]'), at = 0, gt = false;
+    var calm = matchMedia('(prefers-reduced-motion: reduce)');
+    var go = function (i) {
+      i = Math.min(slides.length - 1, Math.max(0, i));
+      track.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: calm.matches ? 'auto' : 'smooth' });
+    };
+    var mark = function () {
+      gt = false;
+      var x = track.scrollLeft + slides[0].offsetLeft, best = 0;
+      for (var i = 1; i < slides.length; i++) if (Math.abs(slides[i].offsetLeft - x) < Math.abs(slides[best].offsetLeft - x)) best = i;
+      at = best;
+      Array.prototype.forEach.call(gos, function (b, i) { if (i === at) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+      gal.querySelector('[data-dir="-1"]').disabled = at === 0;
+      gal.querySelector('[data-dir="1"]').disabled = at === slides.length - 1;
+    };
+    track.addEventListener('scroll', function () { if (!gt) { gt = true; requestAnimationFrame(mark); } }, { passive: true });
+    gal.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.hasAttribute('data-go')) go(parseInt(b.getAttribute('data-go'), 10));
+      else if (b.hasAttribute('data-dir')) { var to = at + parseInt(b.getAttribute('data-dir'), 10); go(to); if (b.disabled || to <= 0 || to >= slides.length - 1) track.focus({ preventScroll: true }); }
+    });
+    track.addEventListener('keydown', function (e) {
+      var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (step) { e.preventDefault(); go(at + step); }
+    });
+    mark();
+  }
+
   // a page that comes back from the browser's memory starts fresh: one plant, no substrate, the first size
   window.addEventListener('pageshow', function (e) {
     if (!e.persisted) return;
