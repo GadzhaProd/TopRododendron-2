@@ -29,15 +29,13 @@
     put('name', v.n);
     each(all('[data-o="facts"]'), function (el) {
       el.textContent = '';
-      // each fact: its icon (for the eye only; shown by the review group "Значки"), a label for the cells, the value
-      var NS = 'http://www.w3.org/2000/svg', ic = ['bloei', 'hoogte', v.ps, 'winter'], lab = ['Bloei', 'Hoogte', 'Standplaats', 'Winterhard'];
+      // each fact: its icon (for the eye only) and the text
+      var NS = 'http://www.w3.org/2000/svg', ic = ['bloei', 'hoogte', v.ps, 'winter'];
       v.f.forEach(function (t, i) {
         var sp = document.createElement('span'), svg = document.createElementNS(NS, 'svg'), use = document.createElementNS(NS, 'use');
         svg.setAttribute('class', 'so-ic'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
         use.setAttribute('href', '#so-i-' + ic[i]); svg.appendChild(use); sp.appendChild(svg);
-        var l = document.createElement('i'); l.className = 'so-fl'; l.textContent = lab[i]; sp.appendChild(l);
-        var b = document.createElement('b'); b.className = 'so-fv'; b.textContent = t; sp.appendChild(b);
-        if (i === 3) { b.className = 'so-fv so-fv1'; var c = document.createElement('b'); c.className = 'so-fv so-fv2'; c.textContent = v.k[6]; sp.appendChild(c); }
+        sp.appendChild(document.createTextNode(t));
         el.appendChild(sp);
       });
     }); put('desc', v.d); put('from', v.v); put('over', v.o); put('over2', v.o2);

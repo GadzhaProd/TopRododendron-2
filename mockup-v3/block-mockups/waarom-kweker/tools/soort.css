@@ -29,11 +29,11 @@ html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b
 
 /* the name, the facts line, the short description */
 .so h1{font-size:var(--t-h2);line-height:1.04;text-wrap:balance}
-.so-facts{margin-top:12px;font-size:var(--t-body);line-height:1.5;color:var(--color-fg)}
-/* the facts line: a dot between the facts, never at the start of a line (the strip left of the text is cut off) */
-.so-facts{display:flex;flex-wrap:wrap;margin-left:-1em;clip-path:inset(0 0 0 1em)}
-.so-facts span{position:relative;padding-left:1em;white-space:nowrap}
-.so-facts span::before{content:"·";position:absolute;left:0;width:1em;text-align:center}
+/* the facts line: a small icon before each fact (owner, 25 Nov), our own drawings in one moss stroke; a fact never parts
+   from its icon, and the line wraps between facts */
+.so-facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:var(--t-body);line-height:1.5;color:var(--color-fg)}
+.so-facts span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.so-ic{flex:none;width:19px;height:19px;color:var(--so-moss);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .so-desc{margin-top:12px;max-width:32em;font-size:var(--t-lead);line-height:1.55;color:var(--so-2);text-wrap:pretty}
 .so-h3{font-size:clamp(24px,2.1vw,30px)!important;line-height:1.15}
 
@@ -136,42 +136,6 @@ html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b
 .so-links span + span{margin-top:8px}
 .so-links a{padding-block:13px}
 html.srt-a2 .so-oth :is(.so-s,.so-pro){display:none}
-
-/* ---------- the icons of the facts line (review group "Значки": html.sic-1 in the line · sic-2 four cells · sic-3 a strip) ---------- */
-.so-ic{display:none;flex:none;width:19px;height:19px;color:var(--so-moss);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.so-facts :is(b,i){font-weight:400;font-style:normal}
-.so-fl,.so-fv2{display:none}
-/* 1 · in the line: the icon before each fact takes the place of the dot */
-html.sic-1 .so-a2 .so-facts{margin-left:0;clip-path:none;gap:8px 22px;margin-top:14px}
-html.sic-1 .so-a2 .so-facts > span{display:inline-flex;align-items:center;gap:7px;padding-left:0}
-html.sic-1 .so-a2 .so-facts > span::before,html:is(.sic-2,.sic-3) .so-a2 .so-facts > span::before{content:none}
-html:is(.sic-1,.sic-2,.sic-3) .so-a2 .so-ic{display:block}
-/* 2 · four cells on hairlines: the icon over a small label and the value; hardiness as its temperature */
-html.sic-2 .so-a2 .so-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:16px;margin:20px 0 0;clip-path:none;border-top:1px solid var(--so-ln);border-bottom:1px solid var(--so-ln)}
-html.sic-2 .so-a2 .so-facts > span{display:block;padding:14px 0 13px;white-space:normal}
-html.sic-2 .so-a2 .so-ic{margin-bottom:9px}
-html.sic-2 .so-a2 .so-fl{display:block;font-size:var(--t-small);line-height:1.4;color:var(--so-2)}
-html.sic-2 .so-a2 .so-fv{display:block;font-size:15px;line-height:1.35;font-weight:500}
-html.sic-2 .so-a2 .so-fv1{display:none}
-/* 3 · a strip between hairlines, no labels: two by two with a fine line between the columns (the longest position does
-   not fit four in a row beside the photo); four in a row where the page is one wide column */
-html.sic-3 .so-a2 .so-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:20px 0 0;clip-path:none;border-top:1px solid var(--so-ln);border-bottom:1px solid var(--so-ln);font-size:15px}
-html.sic-3 .so-a2 .so-facts > span{display:flex;align-items:center;gap:9px;padding:12px 0;white-space:normal}
-html.sic-3 .so-a2 .so-facts > span:nth-child(even){padding-left:16px;box-shadow:inset 1px 0 0 var(--so-ln)}
-html.sic-3 .so-a2 .so-facts > span:nth-child(n+3){border-top:1px solid var(--so-ln)}
-@media (max-width:1279.98px){
-  html.sic-2 .so-a2 .so-facts{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:0}
-  html.sic-2 .so-a2 .so-facts > span:nth-child(n+3){border-top:1px solid var(--so-ln)}
-  html.sic-2 .so-a2 .so-facts > span:nth-child(even){padding-left:16px}
-}
-@media (min-width:600px) and (max-width:899.98px){
-  html.sic-2 .so-a2 .so-facts{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:16px}
-  html.sic-2 .so-a2 .so-facts > span:nth-child(n){border-top:0;padding-left:0}
-  html.sic-3 .so-a2 .so-facts{grid-template-columns:repeat(4,auto);justify-content:space-between}
-  html.sic-3 .so-a2 .so-facts > span:nth-child(n){border-top:0;padding-left:0;box-shadow:none}
-  html.sic-3 .so-a2 .so-facts > span + span{padding-left:16px;box-shadow:inset 1px 0 0 var(--so-ln)}
-  html.sic-3 .so-a2 .so-facts > span:not(:last-child){padding-right:16px}
-}
 
 /* ---------- b · the name and the two photos, then the order as on the calculator ---------- */
 .so-b h1{font-size:var(--t-display)}

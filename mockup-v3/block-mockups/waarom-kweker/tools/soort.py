@@ -83,10 +83,23 @@ MINUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>'
 PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>'
 
 
-# The icons of the facts line (owner's idea, 25 Nov; a review group "Значки" on soort-fable.html). Our own drawings, one
+# The icons of the facts line (owner's idea and choice, 25 Nov: an icon before each fact, in the line). Our own drawings, one
 # family: a 24 box, one round stroke, no fills but the shaded half of the sun's disc. bloei a five-petalled blossom ·
 # hoogte a measure between two marks · the position as light: rays all round (also sun), rays on one side (half shade),
-# no rays, under a canopy (half shade to shade) · winter a six-armed snow crystal. They are decoration for the eye only (aria-hidden).
+# a tree with the sun behind it (half shade to shade) · winter a six-armed snow crystal. They are decoration for the eye only (aria-hidden).
+# "Halfschaduw of schaduw" (owner, 25 Nov: the disc under an arc read as an eye or a wifi sign). The chosen drawing is
+# "boom": the sun half hidden behind a tree, the place under the crown. The others were candidates on the review sheet.
+SHADE = {
+    'oud': '<circle cx="12" cy="12" r="3.7"/><path d="M12 8.3a3.7 3.7 0 0 1 0 7.4z" fill="currentColor" stroke="none"/><path d="M4.3 11.2a7.7 7.7 0 0 1 15.4 0"/>',
+    # 1 the sun half hidden behind a tree · 2 a tree alone · 3 the sun gone dark, three rays left
+    'boom': ('<circle cx="14" cy="12.2" r="6"/><path d="M14 14.6V22M10.6 22h6.8M14 17.6l2.3-2.3"/>'
+             '<path d="M10.6 7.25A3.4 3.4 0 1 0 8.26 10.43M7.2 1.3v1.2M1.3 7.2h1.2M3 3l.85.85"/>'),
+    'kroon': '<circle cx="12" cy="9.6" r="6.6"/><path d="M12 12.2V22M8 22h8M12 16l2.6-2.6"/>',
+    'donker': ('<circle cx="12" cy="12" r="3.7" fill="currentColor"/>'
+               + ''.join(f'<path d="M12 3.2v2.3" transform="rotate({a} 12 12)"/>' for a in (225, 270, 315))),
+}
+
+
 def _icons():
     rot = lambda d, n, step: ''.join(f'<path d="{d}" transform="rotate({k * step} 12 12)"/>' for k in range(n))
     disc = '<circle cx="12" cy="12" r="3.7"/><path d="M12 8.3a3.7 3.7 0 0 1 0 7.4z" fill="currentColor" stroke="none"/>'
@@ -96,9 +109,10 @@ def _icons():
         'hoogte': '<path d="M6.5 3.5h11M6.5 20.5h11M12 7v10M8.8 10.2 12 7l3.2 3.2M8.8 13.8 12 17l3.2-3.2"/>',
         'zon': disc + rot(ray, 8, 45),
         'half': disc + ''.join(f'<path d="{ray}" transform="rotate({a} 12 12)"/>' for a in (180, 225, 270, 315, 0)),
-        'schaduw': disc + '<path d="M4.3 11.2a7.7 7.7 0 0 1 15.4 0"/>',   # under a canopy
+        'schaduw': SHADE['boom'],
         'winter': rot('M12 12V3.6M10.3 5.2 12 6.9l1.7-1.7', 6, 60),
     }
+    sym.update({'cand-' + k: v for k, v in SHADE.items()})   # for the review sheet of the shade icon; not used on the page
     return ('<svg class="so-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">'
             + ''.join(f'<symbol id="so-i-{k}" viewBox="0 0 24 24">{v}</symbol>' for k, v in sym.items()) + '</svg>')
 
