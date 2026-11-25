@@ -3,10 +3,10 @@
    Norms (a guideline, docs/normen-haag.md): plants per metre in one row, or per square metre, by size; one 40 L bag of
    substrate per plant. */
 (function () {
-  var PER_M = [2, 1.5, 1, 1];                       // a hedge: 40–60, 60–80, 80–100, 100–120 cm
-  var PER_M2 = [3, 2, 1, 1];                        // a group or border
-  var TOPS = [60, 80, 100, 120];                    // the size classes end here; the first one starts at the variety's own minimum
-  var BAG = 14.95, MIN = 1, TOP = { len: 200, bd: 50, bl: 50, bw: 50 };
+  var PER_M = [2, 2, 1.5, 1, 1];                    // a hedge: 40–50, 50–60, 60–80, 80–100, 100–120 cm
+  var PER_M2 = [3, 3, 2, 1, 1];                     // a group or border
+  var LOWS = [40, 50, 60, 80, 100], TOPS = [50, 60, 80, 100, 120];   // the five size slots; a variety is not sold in every one
+  var BAG = 16.5, MIN = 1, TOP = { len: 200, bd: 50, bl: 50, bw: 50 };
   var eur = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
   var num = new Intl.NumberFormat('nl-NL', { maximumFractionDigits: 1 });
   var inCart = 0;
@@ -43,6 +43,15 @@
     function update(typing) {
       var bed = pick('mode') === 'border', shape = pick('shape'), round = shape !== 'recht', vi = parseInt(pick('var'), 10), si = parseInt(pick('size'), 10);
       var len = value('len'), D = value('bd'), L = value('bl'), W = value('bw'), v = data[vi], subOn = pick('sub') !== '0';
+      // the size slots of this variety: one it is not sold in is hidden; the chosen slot stays when the variety changes,
+      // and where the new variety lacks it the choice falls back to 50–60 cm
+      if (v.p[si] == null) si = 1;
+      var shown = 0;
+      each(root.querySelectorAll('input[data-c="size"]'), function (el) {
+        var k = parseInt(el.value, 10), has = v.p[k] != null;
+        el.parentNode.hidden = !has; el.checked = k === si; if (has) shown++;
+      });
+      root.querySelector('.sx-sizes').setAttribute('data-n', shown);
       // the bed: a round group by its diameter (an oval one by the mean of its length and width, the hint says so; about 2 %
       // more than the oval for usual shapes) or a straight border by length and width (owner, 24 Nov: two shapes, not three)
       var area = shape === 'rond' ? Math.PI * D * D / 4 : L * W;
@@ -57,9 +66,7 @@
       each(root.querySelectorAll('[data-shape]'), function (el) { el.hidden = el.getAttribute('data-shape').split(' ').indexOf(shape) < 0; });
       stack();
       var bedName = shape === 'rond' ? 'ronde groep' : 'border', kind = bed ? (round ? 'groep' : 'border') : 'haag';
-      // the size classes of this variety: the first starts where the variety starts (50 or 40 cm), the others are the same for all
-      var from = function (k) { return k ? TOPS[k - 1] : v.a; }, lo = from(si), hi = TOPS[si], size = lo + '–' + hi + ' cm';
-      each(root.querySelectorAll('[data-s]'), function (el) { var k = parseInt(el.getAttribute('data-s'), 10); el.textContent = from(k) + '–' + TOPS[k] + ' cm'; });
+      var lo = LOWS[si], hi = TOPS[si], size = lo + '–' + hi + ' cm';
       put('area', num.format(area)); put('h2', kind);
       put('title', bed ? 'Uw ' + bedName + ' van ' + num.format(area) + ' m²' : 'Uw haag van ' + num.format(len) + ' meter');
       put('var', v.n); put('size', size);
@@ -73,7 +80,7 @@
       put('max', v.m); each(root.querySelectorAll('[data-row="big"]'), function (el) { el.hidden = v.m <= TOPS[TOPS.length - 1]; });
       put('n', n); put('nword', n === 1 ? 'plant' : 'planten'); put('each', eur.format(price)); put('plants', eur.format(plants));
       put('bags', bags); put('bword', bags === 1 ? 'zak' : 'zakken'); put('bagsum', eur.format(bagSum)); put('total', eur.format(total));
-      each(root.querySelectorAll('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]); });
+      each(root.querySelectorAll('[data-p]'), function (el) { var pr = v.p[parseInt(el.getAttribute('data-p'), 10)]; el.textContent = pr == null ? '' : eur.format(pr); });
       each(root.querySelectorAll('[data-row="sub"]'), function (el) { el.hidden = !subOn; });
       root._calc = { n: n, bags: bags };
       status.textContent = '';

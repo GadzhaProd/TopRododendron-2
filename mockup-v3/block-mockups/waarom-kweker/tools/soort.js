@@ -5,7 +5,7 @@
   var main = document.querySelector('[data-so]');
   if (!main) return;
   var data = JSON.parse(main.getAttribute('data-soorten'));
-  var TOPS = [60, 80, 100, 120], BAG = 14.95, MAXQ = 999;
+  var LOWS = [40, 50, 60, 80, 100], TOPS = [50, 60, 80, 100, 120], BAG = 16.5, MAXQ = 999;   // the five size slots, as in the calculator
   var eur = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
   var st = { v: 0, s: 0, q: 1, sub: false }, inCart = 0, first = true, timer;
   var said = main.querySelector('[data-o="said"]'), oth = main.querySelector('[data-oth]');
@@ -25,11 +25,12 @@
   function variety() {
     var v = data[st.v];
     main.style.setProperty('--g', v.g);
+    st.s = 0; while (v.p[st.s] == null) st.s++;       // the page of a variety opens on its first size, the "vanaf" price
     put('name', v.n);
     each(all('[data-o="facts"]'), function (el) {
       el.textContent = '';
       v.f.forEach(function (t) { var sp = document.createElement('span'); sp.textContent = t; el.appendChild(sp); });
-    }); put('desc', v.d); put('from', '€ ' + v.p[0]); put('over', v.o); put('over2', v.o2);
+    }); put('desc', v.d); put('from', v.v); put('over', v.o); put('over2', v.o2);
     each(all('[data-k]'), function (el) { el.textContent = v.k[parseInt(el.getAttribute('data-k'), 10)]; });
     each(all('[data-k2]'), function (el) { el.textContent = v.k2[parseInt(el.getAttribute('data-k2'), 10)]; });
     each(all('img[data-img]'), function (im) {
@@ -47,10 +48,13 @@
 
   function update(typing) {
     var v = data[st.v], si = st.s, n = st.q, price = v.p[si], plants = n * price, bags = st.sub ? n : 0, bagSum = bags * BAG, total = plants + bagSum;
-    var from = function (k) { return k ? TOPS[k - 1] : v.a; }, lo = from(si), hi = TOPS[si], size = lo + '–' + hi + ' cm';
-    each(all('[data-s]'), function (el) { var k = parseInt(el.getAttribute('data-s'), 10); el.textContent = from(k) + '–' + TOPS[k] + ' cm'; });
-    each(all('[data-p]'), function (el) { el.textContent = eur.format(v.p[parseInt(el.getAttribute('data-p'), 10)]); });
-    each(all('input[data-c="size"]'), function (el) { el.checked = parseInt(el.value, 10) === si; });
+    var lo = LOWS[si], hi = TOPS[si], size = lo + '–' + hi + ' cm', shown = 0;
+    each(all('[data-s]'), function (el) { var k = parseInt(el.getAttribute('data-s'), 10); el.textContent = LOWS[k] + '–' + TOPS[k] + ' cm'; });
+    each(all('[data-p]'), function (el) { var pr = v.p[parseInt(el.getAttribute('data-p'), 10)]; el.textContent = pr == null ? '' : eur.format(pr); });
+    // a size the variety is not sold in is not shown
+    each(all('input[data-c="size"]'), function (el) { var k = parseInt(el.value, 10); el.checked = k === si; el.parentNode.hidden = v.p[k] == null; });
+    for (var k = 0; k < v.p.length; k++) if (v.p[k] != null) shown++;
+    each(all('.so-sizes'), function (el) { el.setAttribute('data-n', shown); });
     each(all('input[data-c="sub"]'), function (el) { el.checked = (el.value === '1') === st.sub; });
     each(all('input[data-c="qty"]'), function (el) {
       if (!(typing && el === document.activeElement)) el.value = String(n);

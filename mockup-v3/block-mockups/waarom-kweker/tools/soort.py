@@ -75,7 +75,7 @@ SOORTEN = []
 for slug, (name, prices, rng) in zip(SLUGS, calc3.SOORTEN):
     f, d, o, k, pos = TEXT[slug]
     k = k[:6] + ['tot ca. −%d\u00a0°C' % WINTER[slug]]
-    SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o, 'o2': OVER2[slug],
+    SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'v': calc3.euro(calc3.vanaf(prices)), 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o, 'o2': OVER2[slug],
                     'k': k + ['Groenblijvend', GROND],
                     'k2': [k[3] + ' hoog, ' + k[4].replace('tot ', '') + ' breed', k[5], k[6], 'Zuur en los, pH 4,5–6', PLANT], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
 DATA = _html.escape(json.dumps(SOORTEN, ensure_ascii=False), quote=True)
@@ -99,7 +99,7 @@ def crumb():
 
 
 def sizes(u):
-    return _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(4)], '0', 'so-sizes', 'Hoogte bij levering, prijs per plant',
+    return _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(5)], '1', 'so-sizes', 'Hoogte bij levering, prijs per plant',
                   '<p class="so-hint" data-o="sizenote"></p>')
 
 
@@ -112,11 +112,11 @@ def qty(u):
 
 def subst(u):
     return _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat',
-                  '<p class="so-hint">1 zak van 40&nbsp;L per plant, € 14,95 per zak.</p>')
+                  '<p class="so-hint">1 zak van 40&nbsp;L per plant, € 16,50 per zak.</p>')
 
 
 CALC = '<p class="so-hint so-calc">Voor een haag of een groep? <a href="index.html#haag">Reken uit hoeveel planten u nodig heeft</a>.</p>'
-TOTNOTE = '<p class="so-totnote">Exclusief bezorgkosten; die ziet u vóór u betaalt.</p>'
+TOTNOTE = '<p class="so-totnote">' + calc3.DELIVERY + '</p>'
 ADD = '<button type="button" class="so-add" data-add>In winkelwagen</button><p class="so-status" data-o="status" role="status"></p>'
 # one line with the two ways to reach the nursery: about larger sizes where the variety has them, a plain one otherwise
 ASK = ('<p class="so-note" data-row="big">Grotere maten, tot <span data-o="max"></span>&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
@@ -133,13 +133,13 @@ def slip(u):
     return (f'<div class="so-slip" id="{u}-res" data-res><p class="so-sliph">Uw bestelling</p>'
             '<p class="so-slips"><span data-o="name"></span>, <span data-o="size"></span></p>'
             '<dl class="so-lines"><div><dt><span data-o="n"></span> <span data-o="nword"></span><small><span data-o="each"></span> per plant</small></dt><dd data-o="plants"></dd></div>'
-            '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 14,95 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
+            '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 16,50 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
             '<div class="so-ltot"><dt>Totaal</dt><dd data-o="total"></dd></div></dl>' + TOTNOTE + ADD + ASK + '</div>')
 
 
 def trust():
     return ('<ul class="so-trust"><li><b><a href="garantie.html">3 maanden aangroeigarantie</a></b><span>Slaat een plant niet aan, dan krijgt u een nieuwe.</span></li>'
-            '<li><b>Eigen transport door heel Nederland</b><span>Of haal uw planten af op de kwekerij in Otterlo.</span></li>'
+            '<li><b>Eigen transport door heel Nederland</b><span>Of haal uw planten gratis af op de kwekerij in Wekerom.</span></li>'
             '<li><b>Vers gerooid, met kluit</b><span>Wij rooien uw planten pas vlak voor de levering.</span></li></ul>')
 
 
@@ -180,14 +180,14 @@ def dir_a2():
     u = 'sol'
     pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(2, '(min-width:900px) 45vw, 86vw')
             + '</figure><figure>' + _img(1, '(min-width:900px) 45vw, 86vw', lazy=True) + '</figure></div>')
-    maat = _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(4)], '0', 'so-sizes',
+    maat = _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(5)], '1', 'so-sizes',
                   'Hoogte bij levering<span>, gemeten vanaf de kluit</span>')
-    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per plant, €&nbsp;14,95</span>')
-    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b><small>exclusief bezorgkosten; die ziet u vóór u betaalt</small></p><p class="so-totv" data-o="total"></p></div>'
+    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per plant, €&nbsp;16,50</span>')
+    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b></p><p class="so-totv" data-o="total"></p></div>' + TOTNOTE
     ask = ('<p class="so-note" data-row="big">Grotere maten tot <span data-o="max"></span>&nbsp;cm op aanvraag: <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
            '<p class="so-note" data-row="ask">Vragen? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>')
     buy = '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty(u).replace('Aantal planten', 'Aantal') + sub + '</div>' + tot + ADD + ask + '</div>'
-    trust2 = ('<ul class="so-trust2"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of afhalen in Otterlo</li>'
+    trust2 = ('<ul class="so-trust2"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of gratis afhalen in Wekerom</li>'
               '<li>Vers gerooid, met kluit</li></ul>')
     rows = ''.join(f'<div><dt>{l}</dt><dd data-k2="{i}"></dd></div>' for i, l in enumerate(['Volgroeid', 'Groei', 'Winterhard', 'Grond', 'Planten']))
     about = (f'<section class="so-over" aria-labelledby="{u}-ho"><h2 id="{u}-ho" class="so-h3">Over <span data-o="name"></span></h2><p data-o="over2"></p>'
@@ -223,9 +223,9 @@ def others():
     # the other six varieties, in the language of the homepage's assortment cards; the script hides the current one
     cards = ''
     for s in SOORTEN:
-        cards += (f'<article class="so-it" data-slug="{s["slug"]}"><a href="#{s["slug"]}" aria-label="{_html.escape(s["n"])}, vanaf € {s["p"][0]}, van {s["a"]} tot {s["m"]} cm">'
+        cards += (f'<article class="so-it" data-slug="{s["slug"]}"><a href="#{s["slug"]}" aria-label="{_html.escape(s["n"])}, vanaf {s["v"]}, van {s["a"]} tot {s["m"]} cm">'
                   f'<div class="so-ph"><img src="img/{s["slug"]}-2-sm.webp" alt="" loading="lazy" style="object-position:{s["pos"]}"></div>'
-                  f'<h3>{_html.escape(s["n"])}</h3><p class="so-pr"><span class="so-v">vanaf</span><b>€&nbsp;{s["p"][0]}</b>'
+                  f'<h3>{_html.escape(s["n"])}</h3><p class="so-pr"><span class="so-v">vanaf</span><b>{s["v"].replace(" ", "&nbsp;")}</b>'
                   f'<span class="so-s">{s["a"]} tot {s["m"]}&nbsp;cm, met kluit</span></p></a></article>')
     return ('<section class="so-oth" aria-labelledby="so-hoth" data-oth><div class="in"><h2 id="so-hoth">Andere soorten</h2><div class="so-ogrid">' + cards + '</div>'
             '<p class="so-pro">Hovenier of grootverbruiker? <a href="index.html#contact">Neem contact op voor een prijsopgave</a>.</p></div></section>')

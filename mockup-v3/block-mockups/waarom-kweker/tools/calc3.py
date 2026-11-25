@@ -5,20 +5,34 @@
 # tools/calc3.js. Norms and prices are provisional (docs/normen-haag.md; prices of the live site) until the owner confirms them.
 import json, pathlib, html as _html
 
-SOORTEN = [  # the order of the assortment cards: name · prices per plant for the four size classes · the range of sizes (cm)
-    # The range comes from the assortment cards ("50 tot 180 cm"); the owner confirms it. The first class starts where the
-    # card starts (50–60 or 40–60 cm) and keeps the first price, which is the card's "vanaf" price; the classes after it
-    # are 60–80, 80–100 and 100–120 cm for every variety. Above 120 cm, up to the card's maximum, the price is on request.
-    ('Nova Zembla', [29, 45, 65, 89], (50, 180)), ('Catawbiense Grandiflorum', [29, 45, 65, 89], (50, 225)),
-    ("Cunningham’s White", [25, 39, 55, 75], (50, 225)), ('Catawbiense Boursault', [27, 42, 60, 82], (40, 180)),
-    ('Roseum Elegans', [27, 42, 60, 82], (50, 225)), ('Ponticum', [22, 35, 50, 70], (50, 120)),
-    ('Ponticum Roseum', [22, 35, 50, 70], (40, 160)),
+# Prices (owner, 25 Nov): for now the selling prices of Rhododendronwal, a befriended nursery nearby, as they stood on
+# 25 Nov; one price per size, no "old" price; the owner may change them later. Five size slots for every variety:
+# 40–50, 50–60, 60–80, 80–100 and 100–120 cm; None = this variety is not sold in that size (the tile is not shown).
+# The range is the variety's own, from the assortment cards ("50 tot 180 cm"); above 120 cm the price is on request.
+SOORTEN = [  # the order of the assortment cards: name · price per plant for the five slots · the range of sizes (cm)
+    ('Nova Zembla', [None, 19.5, 31.5, 55, 115], (50, 180)), ('Catawbiense Grandiflorum', [None, 19.5, 31.75, 49, 100], (50, 225)),
+    ("Cunningham’s White", [None, 23.5, 38.5, 55, 157.5], (50, 225)), ('Catawbiense Boursault', [19.5, 24.5, 29.5, 49, 135], (40, 180)),
+    ('Roseum Elegans', [None, 29.5, 31.75, 49, 100], (50, 225)), ('Ponticum', [None, 23, 31.75, 49, 125], (50, 120)),
+    ('Ponticum Roseum', [17.5, 19.5, 31.75, 49, 125], (40, 160)),
 ]
+BAG = 16.5      # Tuinturf-substraat, per bag of 40 L (Rhododendronwal's price, 25 Nov); the same figure is in calc3.js
+DELIVERY = 'Exclusief bezorging: € 75 per bestelling, meestal binnen een week. Afhalen in Wekerom is gratis.'
+
+
+def euro(x):
+    return '€ ' + ('%.2f' % x).replace('.', ',')
+
+
+def vanaf(prices):
+    # the lowest price of a variety, for "vanaf" on the cards
+    return min(p for p in prices if p is not None)
+
+
 # the glow of a chosen variety tile: the flower's hue from our own photos, light and soft, all at one lightness (OKLCH), so
 # no colour shouts; the three purples and the two pinks are spread apart
 GLOW = {'Nova Zembla': '#f2adb4', 'Catawbiense Grandiflorum': '#e1cff2', "Cunningham’s White": '#f8f3e8', 'Catawbiense Boursault': '#dfb9df',
         'Roseum Elegans': '#efc1dc', 'Ponticum': '#cec8ed', 'Ponticum Roseum': '#f8ccd6'}
-TOPS = [60, 80, 100, 120]   # the upper ends of the four size classes; the first class starts at the variety's own minimum
+LOWS, TOPS = [40, 50, 60, 80, 100], [50, 60, 80, 100, 120]   # the five size slots
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
 DATA = _html.escape(json.dumps([{'n': n, 'p': p, 'a': r[0], 'm': r[1]} for n, p, r in SOORTEN], ensure_ascii=False), quote=True)
 U = 'sx'   # the prefix of the ids and of the radio groups' names
@@ -60,14 +74,13 @@ def calc_html():
     mode = _tiles('mode', [('haag', '<b>Haag</b>', ''), ('border', '<b>Groep of border</b>', '')], 'haag', 'sx-mode', 'Wat wilt u planten?')
     # --g: the soft colour of the variety's flower, the glow of its tile when chosen
     soort = _tiles('var', [(str(i), f'<b>{n}</b>', f' style="--g:{GLOW[n]}"') for i, (n, p, r) in enumerate(SOORTEN)], '0', 'sx-vars', 'Soort')
-    # the size classes: their labels follow the chosen variety (the first class), written here for the first variety.
+    # the five size slots; a slot the chosen variety is not sold in is hidden by the script. The calculator opens on 60–80 cm.
     # What a class means (owner, 23 Nov): the height is measured from the top of the root ball; the ball does not count
-    lo = [SOORTEN[0][2][0]] + TOPS[:-1]
-    maat = _tiles('size', [(str(i), f'<b data-s="{i}">{lo[i]}–{t} cm</b><em data-p="{i}"></em>', '') for i, t in enumerate(TOPS)], '1', 'sx-sizes', 'Hoogte bij levering, prijs per plant',
+    maat = _tiles('size', [(str(i), f'<b data-s="{i}">{LOWS[i]}–{t} cm</b><em data-p="{i}"></em>', '') for i, t in enumerate(TOPS)], '2', 'sx-sizes', 'Hoogte bij levering, prijs per plant',
                   '<p class="sx-hint" data-o="sizenote">U krijgt planten van 60 tot 80&nbsp;cm hoog, gemeten vanaf de bovenkant van de kluit.</p>')
     # the substrate as a choice in tiles like the others, so it reads as optional (owner, 23 Nov: a checkbox looked compulsory)
     sub = _tiles('sub', [('1', '<b>Ja, erbij</b>', ''), ('0', '<b>Nee, niet nodig</b>', '')], '1', 'sx-subst', 'Tuinturf-substraat',
-                 '<p class="sx-hint">1 zak van 40&nbsp;L per plant, € 14,95 per zak. Bij zandgrond of een grote kluit meer.</p>')
+                 '<p class="sx-hint">1 zak van 40&nbsp;L per plant, € 16,50 per zak. Bij zandgrond of een grote kluit meer.</p>')
     ask = ('<div class="sx-ask"><h2 id="h-haag" class="sx-h"><span>Hoeveel planten</span> <span>voor uw <span data-o="h2">haag</span>?</span></h2>'
            '<p class="sx-lead">Vul de maten in en kies soort en hoogte. U ziet meteen hoeveel planten u nodig heeft en wat het kost.</p>'
            + mode + _measures() + soort + maat + sub + '</div>')
@@ -77,9 +90,9 @@ def calc_html():
             '<p class="sx-slips"><span data-o="var"></span>, <span data-o="size"></span></p>'
             '<p class="sx-norm"><span data-o="permlead"></span>: <span data-o="perm"></span>. <span data-o="dense"></span></p>'
             '<dl class="sx-lines"><div><dt><span data-o="n"></span> <span data-o="nword"></span><small><span data-o="each"></span> per plant</small></dt><dd data-o="plants"></dd></div>'
-            '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 14,95 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
+            '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 16,50 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
             '<div class="sx-tot"><dt>Totaal</dt><dd data-o="total"></dd></div></dl>'
-            '<p class="sx-totnote">Exclusief bezorgkosten; die ziet u vóór u betaalt.</p>'
+            '<p class="sx-totnote">' + DELIVERY + '</p>'
             '<button type="button" class="sx-add" data-add>In winkelwagen</button><p class="sx-status" data-o="status" role="status"></p>'
             '<p class="sx-note" data-row="big">Grotere maten, tot <span data-o="max"></span>&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>.</p></div>')
     mini = (f'<a class="sx-mini" href="#{U}-res"><span><b data-o="total"></b><i><span data-o="n"></span> <span data-o="nword"></span></i></span><em>Bekijk de berekening</em></a>')

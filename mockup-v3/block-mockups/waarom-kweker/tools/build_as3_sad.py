@@ -11,6 +11,8 @@
 # Plant data is read from mockup-v3/src/data/content.ts (mirror of the live site's lib/products.ts).
 # Usage: python3 tools/build_as3_sad.py [dir]
 import re, pathlib, sys, html
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import calc3   # the prices per size (owner, 25 Nov): "vanaf" is the variety's lowest price there, not content.ts's "from"
 
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
 ts = (D.parent.parent / 'src' / 'data' / 'content.ts').read_text()
@@ -25,7 +27,6 @@ def field(o, k):
 
 V = [dict(slug=field(o, 'slug'), name=field(o, 'name'), color=field(o, 'color'), hex=field(o, 'hex'), bloei=field(o, 'bloei'), frm=field(o, 'from'))
      for o in re.findall(r"\{\s*slug: .*?\n  \},", vblock, re.S)]
-assert [v['frm'] for v in V] == ['29', '25', '27', '27', '29', '22', '22'], [v['frm'] for v in V]
 assert len(V) == 7
 
 # where each bush sits in its photo, so the 4:5 frame keeps it whole (checked on the renders)
@@ -40,10 +41,15 @@ assert sorted(ORDER) == sorted(v['slug'] for v in V)
 V = sorted(V, key=lambda v: ORDER.index(v['slug']))
 
 # each variety's own size range (owner, 16 Nov: the sizes on the reseller's site are Top's own; docs/maten-per-soort.md).
-# The price stays "vanaf": the price of the smallest size from the site data, until the owner gives the prices per size.
+# The price is "vanaf": the variety's lowest price per plant in tools/calc3.py (owner, 25 Nov).
 RANGE = {'nova-zembla': (50, 180), 'catawbiense-grandiflorum': (50, 225), 'cunninghams-white': (50, 225),
          'catawbiense-boursault': (40, 180), 'roseum-elegans': (50, 225), 'ponticum': (50, 120), 'ponticum-roseum': (40, 160)}
 assert sorted(RANGE) == sorted(ORDER)
+# calc3.SOORTEN stands in the order of the cards; its ranges must be the cards' ranges
+assert len(calc3.SOORTEN) == 7 and [r for n, p, r in calc3.SOORTEN] == [RANGE[k] for k in ORDER]
+for v, (n, p, r) in zip(V, calc3.SOORTEN):
+    assert v['name'].replace("'", '’') == n, (v['name'], n)
+    v['frm'] = ('%.2f' % calc3.vanaf(p)).replace('.', ',')   # "19,50"
 items = ''
 for v in V:
     lo, hi = RANGE[v['slug']]
