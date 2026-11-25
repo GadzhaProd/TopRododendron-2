@@ -1,6 +1,7 @@
 # Mockup tool (not site code): handtekening.html = the homepage (index.html) with Gert's signature in the founder block in
-# two places for review (tools/handtekening.py): A under the guarantee text, B under the two numbers. A small black bar
-# switches them (class hs-a / hs-b on <html>); the page opens on the founder block.
+# three variants for review (tools/handtekening.py): A under the guarantee text, B under the two numbers, C the contact
+# first and the guarantee with the signature last (here by CSS order; the main build moves the text in the markup).
+# A small black bar switches them (class hs-a / hs-b / hs-c on <html>); the page opens on the founder block.
 # Usage: python3 tools/build_handtekening.py [dir]
 import re, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -14,7 +15,17 @@ ib = s.index('</dl></div>', s.index('class="fp-act"', start)) + len('</dl></div>
 A = h.IMG.replace('class="fd-sig"', 'class="fd-sig hs-ia"'); B = h.IMG.replace('class="fd-sig"', 'class="fd-sig hs-ib"')
 s = s[:ia] + A + s[ia:ib] + B + s[ib:]
 REVIEW = '''body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
-html.hs-a .hs-ib,html.hs-b .hs-ia{display:none!important}
+html.hs-a .hs-ib,html.hs-b .hs-ia,html.hs-c .hs-ib{display:none!important}
+html.hs-c #kweker .fd-pn > .fp-lead{order:1;margin-top:0}
+html.hs-c #kweker .fd-pn > .fp-act{order:2}
+html.hs-c #kweker .fd-pn > .fp-txt{order:3;margin-top:34px!important}
+html.hs-c #kweker .fd-pn > .hs-ia{order:3}
+@media (max-width:860px){
+  html.hs-c #kweker .fd-pn > .fp-lead{order:1;padding-top:28px}
+  html.hs-c #kweker .fd-pn > .fp-act{order:1}
+  html.hs-c #kweker .fd-pn > .fp-txt{order:2;padding-top:26px;margin-top:0!important}
+  html.hs-c #kweker .fd-pn > .hs-ia{order:2}
+}
 .rvh{position:fixed;z-index:1000;left:0;right:0;top:0;height:48px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;background:#111;color:#fff;font:500 13px/1 Manrope,system-ui,sans-serif;white-space:nowrap}
 .rvh i{font-style:normal;color:#b9b9b4;margin-right:4px}
 .rvh button{height:32px;padding:0 14px;border:1px solid #555;border-radius:999px;background:none;color:#fff;font:inherit;cursor:pointer}
@@ -23,9 +34,10 @@ html.hs-a .hs-ib,html.hs-b .hs-ia{display:none!important}
 '''
 BAR = ('<div class="rvh" role="group" aria-label="Подпись Герта"><i>Подпись</i>'
        '<button type="button" data-hs="a" aria-pressed="true">A · под гарантией</button>'
-       '<button type="button" data-hs="b" aria-pressed="false">B · под телефонами</button></div>')
+       '<button type="button" data-hs="b" aria-pressed="false">B · под телефонами</button>'
+       '<button type="button" data-hs="c" aria-pressed="false">C · гарантия внизу</button></div>')
 JS = ('<script>(function(){var h=document.documentElement;[].forEach.call(document.querySelectorAll(".rvh button"),function(b){'
-      'b.addEventListener("click",function(){h.classList.remove("hs-a","hs-b");h.classList.add("hs-"+b.dataset.hs);'
+      'b.addEventListener("click",function(){h.classList.remove("hs-a","hs-b","hs-c");h.classList.add("hs-"+b.dataset.hs);'
       '[].forEach.call(document.querySelectorAll(".rvh button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")})})});'
       'if(!location.hash){var k=document.getElementById("kweker");if(k)setTimeout(function(){k.scrollIntoView()},60)}})();</script>')
 s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} hs-a">', s, count=1)
