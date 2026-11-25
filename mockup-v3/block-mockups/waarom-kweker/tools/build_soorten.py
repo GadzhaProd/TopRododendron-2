@@ -28,9 +28,9 @@ def links(t):
 
 head, tail = links(head), links(tail)
 tail = tail.replace('</body>', '<script id="soort-js">' + soort.js() + '</script></body>')
-# While the owner compares the two layouts (25 Nov): soort-<slug>.html is "Галерея" (the default; the homepage cards open
-# it), soort-<slug>-nu.html is the page as it was. A small black review bar switches between them. When he has chosen:
-# keep one layout, drop REVIEW, the bar and the "-nu" files.
+# The owner fixed the layout "Сейчас" for now (25 Nov: "let's fix Сейчас, we'll see later"): soort-<slug>.html is that
+# page, without any review bar; the homepage cards open it. The layout "Галерея" stays as a draft for later,
+# soort-<slug>-galerij.html (not linked from the site), with a small black bar back to the main page.
 REVIEW = '''body{padding-top:48px}header.fixed{top:48px}
 .rvs{position:fixed;z-index:1000;left:0;right:0;top:0;height:48px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;background:#111;color:#fff;font:500 13px/1 Manrope,system-ui,sans-serif;white-space:nowrap}
 .rvs i{font-style:normal;color:#b9b9b4;margin-right:4px}
@@ -41,13 +41,17 @@ REVIEW = '''body{padding-top:48px}header.fixed{top:48px}
 '''
 assert tail.count('<div id="root">') + head.count('<div id="root">') == 1
 for slug in soort.SLUGS:
-    for layout, sfx in (('galerij', ''), ('nu', '-nu')):
-        bar = ('<div class="rvs" role="group" aria-label="Варианты страницы сорта"><i>Страница сорта</i>'
-               f'<a href="soort-{slug}-nu.html"{" aria-current=" + chr(34) + "page" + chr(34) if sfx else ""}>Сейчас</a>'
-               f'<a href="soort-{slug}.html"{"" if sfx else " aria-current=" + chr(34) + "page" + chr(34)}>Галерея</a></div>')
+    for layout, sfx in (('nu', ''), ('galerij', '-galerij')):
         h = re.sub(r'<title>[^<]*</title>', '<title>' + html.escape(soort.title(slug)) + '</title><meta name="description" content="'
                    + html.escape(soort.description(slug), quote=True) + '">', head, count=1)
-        h = h.replace('</head>', '<style id="soort-css">' + soort.css() + '</style><style id="soort-review">' + REVIEW + '</style></head>')
-        page = (h + soort.main_html(slug, layout, sfx) + tail).replace('<div id="root">', bar + '<div id="root">')
+        page_css = '<style id="soort-css">' + soort.css() + '</style>'
+        if sfx:   # the draft: a review bar back to the main page
+            page_css += '<style id="soort-review">' + REVIEW + '</style>'
+        h = h.replace('</head>', page_css + '</head>')
+        page = h + soort.main_html(slug, layout, sfx) + tail
+        if sfx:
+            bar = ('<div class="rvs" role="group" aria-label="Варианты страницы сорта"><i>Черновик</i>'
+                   f'<a href="soort-{slug}.html">Сейчас (основной)</a><a href="soort-{slug}-galerij.html" aria-current="page">Галерея</a></div>')
+            page = page.replace('<div id="root">', bar + '<div id="root">')
         (D / f'soort-{slug}{sfx}.html').write_text(page)
         print(f'soort-{slug}{sfx}.html', len(page))
