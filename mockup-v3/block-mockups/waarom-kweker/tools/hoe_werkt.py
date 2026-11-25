@@ -15,7 +15,7 @@ STEPS = [  # (verb, text, meta)
     ('Kiezen', 'Soort, maat en aantal. Bij elke soort staan alle maten met hun prijs.', ''),
     ('Bestellen', 'Online of per telefoon. U&nbsp;betaalt met iDEAL, per overschrijving of bij ontvangst; zakelijk op factuur.', ''),
     ('Afspreken', 'Samen kiezen we de dag van bezorgen of afhalen, wanneer het u&nbsp;uitkomt.', ''),
-    ('Ontvangen', 'Bezorgd of afgehaald. De bezorgkosten hangen af van afstand en aantal; u&nbsp;ziet ze vóór u&nbsp;betaalt.',
+    ('Ontvangen', 'Bezorgd of afgehaald. Bezorgen kost €&nbsp;75 per bestelling; afhalen is gratis.',
      f'<p class="hw-m">Afhalen: <a href="{MAP}" target="_blank" rel="noopener noreferrer">Apeldoornseweg, Wekerom</a></p>'),
 ]
 ROUTE = '<ol class="hw-route">' + ''.join(f'<li><h3>{v}</h3><p>{p}</p>{x}</li>' for v, p, x in STEPS) + '</ol>'

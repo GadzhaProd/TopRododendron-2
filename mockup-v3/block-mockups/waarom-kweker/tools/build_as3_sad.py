@@ -57,7 +57,7 @@ for v in V:
               '<div class="sd-ph"><img src="img/' + v['slug'] + '-2-sm.webp" alt="' + e(v['name']) + ', bloeiende struik" loading="lazy"'
               + (' style="object-position:' + POS[v['slug']] + '"' if v['slug'] in POS else '') + '></div>'
               '<h3>' + e(v['name']) + '</h3>'
-              '<p class="sd-b">Bloeit ' + e(v['bloei'].lower()) + '</p>'
+              '<p class="sd-b">Bloeit ' + e(v['bloei'].lower().replace(' – ', '–')) + '</p>'
               '<p class="sd-pr"><span class="sd-v">vanaf</span><b>€&nbsp;' + v['frm'] + '</b><span class="sd-s">' + str(lo) + ' tot ' + str(hi) + '&nbsp;cm, met kluit</span></p>'
               '</a></article>')
 

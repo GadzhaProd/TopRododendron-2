@@ -5,11 +5,10 @@
 (function () {
   var PER_M = [2, 2, 1.5, 1, 1];                    // a hedge: 40–50, 50–60, 60–80, 80–100, 100–120 cm
   var PER_M2 = [3, 3, 2, 1, 1];                     // a group or border
-  var LOWS = [40, 50, 60, 80, 100], TOPS = [50, 60, 80, 100, 120];   // the five size slots; a variety is not sold in every one
-  var BAG = 16.5, MIN = 1, TOP = { len: 200, bd: 50, bl: 50, bw: 50 };
+  var LOWS, TOPS, BAG;                              // the five size slots and the bag price: written by tools/calc3.py (data-cfg)
+  var MIN = 1, TOP = { len: 200, bd: 50, bl: 50, bw: 50 };
   var eur = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
   var num = new Intl.NumberFormat('nl-NL', { maximumFractionDigits: 1 });
-  var inCart = 0;
 
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
   // a typed measure: digits with one optional decimal (comma or point); a point before three digits is a thousands mark;
@@ -20,7 +19,8 @@
   }
 
   function setup(root) {
-    var data = JSON.parse(root.getAttribute('data-soorten'));
+    var data = JSON.parse(root.getAttribute('data-soorten')), cfg = JSON.parse(root.getAttribute('data-cfg'));
+    LOWS = cfg.lows; TOPS = cfg.tops; BAG = cfg.bag;
     var status = root.querySelector('[data-o="status"]'), said = root.querySelector('[data-o="said"]'), add = root.querySelector('[data-add]');
     var addText = add.textContent, first = true, timer, addTimer;
 
@@ -82,7 +82,7 @@
       put('bags', bags); put('bword', bags === 1 ? 'zak' : 'zakken'); put('bagsum', eur.format(bagSum)); put('total', eur.format(total));
       each(root.querySelectorAll('[data-p]'), function (el) { var pr = v.p[parseInt(el.getAttribute('data-p'), 10)]; el.textContent = pr == null ? '' : eur.format(pr); });
       each(root.querySelectorAll('[data-row="sub"]'), function (el) { el.hidden = !subOn; });
-      root._calc = { n: n, bags: bags };
+      root._calc = { n: n, bags: bags, name: v.n, size: size, price: price };
       status.textContent = '';
       // for a screen reader: the result in one sentence, a moment after the last change; silent when the page loads
       clearTimeout(timer);
@@ -103,12 +103,12 @@
     });
     each(root.querySelectorAll('input[type="radio"][data-c]'), function (el) { el.addEventListener('change', function () { update(false); }); });
 
-    // into the cart: the button answers each time, and the line under it says what was added (owner, 23 Nov: no running
-    // total, the bags would make it read 36 for 18 plants; the header cart shows the count). The line is emptied first so a
+    // into the cart: the button answers each time, and the line under it says what was added. The header cart counts the
+    // plants; the cart drawer lists the lines, the bags of substrate as their own line (tools/fase1c.js, tbCartAdd). The line is emptied first so a
     // screen reader announces the same words again on a second tap.
     add.addEventListener('click', function () {
-      var c = root._calc; inCart += c.n + c.bags;
-      if (typeof window.tbCart === 'function') window.tbCart(inCart);
+      var c = root._calc;
+      if (typeof window.tbCartAdd === 'function') window.tbCartAdd({ name: c.name, size: c.size, qty: c.n, price: c.price, bags: c.bags, bagPrice: BAG });
       var said = words(c.n, 'plant', 'planten') + (c.bags ? ' en ' + words(c.bags, 'zak', 'zakken') + ' substraat' : '') + ' toegevoegd aan uw winkelwagen.';
       status.textContent = '';
       setTimeout(function () { status.textContent = said; }, 60);

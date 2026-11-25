@@ -1,273 +1,153 @@
-# Mockup tool (not site code): the product page of a variety, the page behind a card of the assortment. Three directions
-# for review (tools/build_soort_fable.py -> soort-fable.html):
-#   a  "Тихая страница"   the two photos on the left, everything else in one calm column on the page, no card at all
-#   b  "Диптих и лист"    the name and the two photos side by side first, then the order as on the calculator: the
-#                         questions on the page, the answer on a sheet that stays beside them
-#   c  "Карточка сорта"   one card in the soft colour of the variety's own flower: the photo and the order together
-# The language is the calculator's (tools/calc3.css): soft tiles without borders, the chosen tile glows, the cart button
-# with the same glow, hairline rows, the total in Newsreader. Prices, size classes and glow colours are read from calc3.py.
-# The variety is chosen by the hash (soort-fable.html#ponticum); tools/soort.js fills the slots marked data-o.
-# Copy: DRAFT. The texts and the "kenmerken" come from the live site (rhododendrons/lib/products.ts), rewritten without the
-# claims we cannot verify; the owner confirms them.
-import json, pathlib, html as _html
+# Mockup tool (not site code): the page of one variety, the page behind a card of the assortment. One static page per
+# variety (tools/build_soorten.py -> soort-<slug>.html): the name, the facts, the texts and the photos are in the markup;
+# tools/soort.js only does the buying (size, number, substrate, the total, the cart).
+# The page (owner chose "Тихая страница", then "Легче", 24–25 Nov): the two photos on the left, one calm column on the
+# page, no cards. The language is the calculator's (tools/calc3.css): soft tiles without borders, the chosen tile glows,
+# the cart button with the same glow, hairline rows, the total in Newsreader.
+# Prices, size slots, the bag price and the delivery line are read from tools/calc3.py.
+# Copy: DRAFT. Texts and facts come from the live site (rhododendrons/lib/products.ts), rewritten without the claims we
+# cannot verify; hardiness from docs/winterhardheid.md; the owner confirms them.
+import json, html as _html, pathlib
 import calc3
 
 WA = 'href="https://wa.me/31620297849" target="_blank" rel="noopener noreferrer"'
 TEL = '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>'
-KEN = ['Kleur', 'Bloei', 'Standplaats', 'Hoogte, volgroeid', 'Breedte, volgroeid', 'Groei', 'Winterhard', 'Blad', 'Grond']
-GROND = 'Zure, losse grond (pH 4,5–6)'
-# slug: the facts line · the short description · "Over" · the kenmerken (in the order of KEN, without the last two, which are
-# the same for all) · the focus of the bush photo on a card (as on the homepage)
-TEXT = {
-    'nova-zembla': (['Mei – juni', 'tot 3 m', 'Halfschaduw of zon', 'Winterhard'],
-        'Helderrode bloemtrossen in mei en juni, op een stevige, groenblijvende struik.',
-        'Nova Zembla is een van de bekendste rode rhododendrons. De helderrode bloemtrossen verschijnen in mei en juni boven donkergroen blad. '
-        'De struik is winterhard en geschikt als solitair, in een groep of als haag. Hij staat het liefst in halfschaduw en verdraagt ook zon, zolang de grond niet uitdroogt.',
-        ['Helderrood', 'Mei – juni', 'Halfschaduw, verdraagt ook zon', 'tot 3 m', 'tot 2,5 m', 'Matig', 'Ja (zone 5)'], '50% 70%'),
-    'catawbiense-grandiflorum': (['Mei – juni', 'tot 3 m', 'Halfschaduw of zon', 'Winterhard'],
-        'Lila-roze bloemtrossen in mei en juni. De soort voor een hoge haag of een grote tuin.',
-        'Catawbiense Grandiflorum is een van de grootste soorten die wij kweken: volgroeid tot ongeveer 3 meter hoog en breed. In mei en juni draagt hij lila-roze bloemtrossen. '
-        'Door zijn formaat is hij geschikt voor een hoge haag, een groenblijvende afscherming of een grote groep. Winterhard, voor halfschaduw of zon.',
-        ['Lila-roze', 'Mei – juni', 'Halfschaduw, verdraagt ook zon', 'tot 3 m', 'tot 3 m', 'Matig tot snel', 'Ja (zone 5)'], '50% 50%'),
-    'cunninghams-white': (['April – mei', 'tot 2 m', 'Halfschaduw', 'Winterhard'],
-        'Witte bloemen met een lichtroze tint, al in april en mei: de vroegste bloeier van ons assortiment.',
-        'Cunningham’s White bloeit als eerste van onze zeven soorten, in april en mei. De bloemen zijn wit met een lichtroze tint. '
-        'De struik groeit langzaam en blijft vol en compact, volgroeid tot ongeveer 2 meter. Geschikt als solitair, in een groep of als haag, in halfschaduw. Winterhard.',
-        ['Wit met een lichtroze tint', 'April – mei', 'Halfschaduw', 'tot 2 m', 'tot 2 m', 'Langzaam', 'Ja (zone 4)'], '50% 40%'),
-    'catawbiense-boursault': (['Mei – juni', 'tot 2,5 m', 'Halfschaduw of zon', 'Winterhard'],
-        'Paars-lavendelkleurige bloemen in mei en juni, op een compacte, goed vertakte struik.',
-        'Catawbiense Boursault bloeit in mei en juni met paars-lavendelkleurige bloemtrossen. De struik blijft compact en vertakt goed, volgroeid tot ongeveer 2,5 meter. '
-        'Hij is winterhard en staat in halfschaduw of op een zonnigere plek. Geschikt als solitair, in een groep of als haag.',
-        ['Paars-lavendel', 'Mei – juni', 'Halfschaduw, verdraagt ook zon', 'tot 2,5 m', 'tot 2,5 m', 'Matig', 'Ja (zone 5)'], '50% 50%'),
-    'roseum-elegans': (['Mei – juni', 'tot 2,5 m', 'Halfschaduw of zon', 'Winterhard'],
-        'Warmroze bloemtrossen in mei en juni, op een brede, krachtige struik.',
-        'Roseum Elegans bloeit in mei en juni met warmroze tot lavendelroze bloemtrossen. De struik groeit krachtig en breed uit, volgroeid tot ongeveer 2,5 meter hoog en breed. '
-        'Hij is winterhard en verdraagt naast halfschaduw ook zon. Geschikt als solitair of als haag in een ruimere tuin.',
-        ['Warmroze tot lavendelroze', 'Mei – juni', 'Halfschaduw, verdraagt ook zon', 'tot 2,5 m', 'tot 2,5 m', 'Matig tot snel', 'Ja (zone 5)'], '50% 60%'),
-    'ponticum': (['Mei – juni', 'tot 4 m', 'Halfschaduw of schaduw', 'Winterhard'],
-        'Violetpaarse bloemen in mei en juni, op een snelgroeiende struik voor halfschaduw en schaduw.',
-        'Ponticum bloeit in mei en juni met violetpaarse bloemen. Het is een snelgroeiende soort die op den duur tot 4 meter hoog en breed kan worden. '
-        'Geschikt voor een grote tuin of een hoge, groenblijvende afscherming, in halfschaduw of schaduw. Winterhard.',
-        ['Violetpaars', 'Mei – juni', 'Halfschaduw of schaduw', 'tot 4 m', 'tot 4 m', 'Snel', 'Ja (zone 5)'], '50% 50%'),
-    'ponticum-roseum': (['Mei – juni', 'tot 4 m', 'Halfschaduw of schaduw', 'Winterhard'],
-        'Roze tot lichtpaarse bloemen in mei en juni, op een snelgroeiende struik.',
-        'Ponticum Roseum bloeit in mei en juni met roze tot lichtpaarse bloemen. De struik groeit snel en kan op den duur tot 4 meter hoog worden. '
-        'Daardoor is hij geschikt voor een hoge haag of een groenblijvende afscherming. Hij staat in halfschaduw of schaduw en is winterhard.',
-        ['Roze tot lichtpaars', 'Mei – juni', 'Halfschaduw of schaduw', 'tot 4 m', 'tot 3,5 m', 'Snel', 'Ja (zone 5)'], '50% 50%'),
-}
-# a2: "Over" in two sentences (what it looks like, what it is for); the months, the height and the position are in the facts line
-OVER2 = {
-    'nova-zembla': 'Een van de bekendste rode rhododendrons: helderrode bloemtrossen boven donkergroen, groenblijvend blad. Voor solitair, groep of haag; verdraagt zon als de grond vochtig blijft.',
-    'catawbiense-grandiflorum': 'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep; verdraagt zon als de grond vochtig blijft.',
-    'cunninghams-white': 'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint, al in april. Een volle, compacte, groenblijvende struik voor solitair, groep of haag.',
-    'catawbiense-boursault': 'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Voor solitair, groep of haag; verdraagt zon als de grond vochtig blijft.',
-    'roseum-elegans': 'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Geschikt als solitair of als haag in een ruimere tuin; verdraagt zon als de grond vochtig blijft.',
-    'ponticum': 'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming, ook in de schaduw.',
-    'ponticum-roseum': 'Roze tot lichtpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een hoge haag of een afscherming.',
-}
 SLUGS = ['nova-zembla', 'catawbiense-grandiflorum', 'cunninghams-white', 'catawbiense-boursault', 'roseum-elegans', 'ponticum', 'ponticum-roseum']
-# the widths of the photos: img/<slug>-sm.webp, img/<slug>-lg.webp (the flower) and the same with "-2" (the bush). The
-# "-lg" files are copies of rhododendrons/public/images, at most 1344 px wide, made for this page (24 Nov)
+SUN = '; verdraagt zon als de grond vochtig blijft.'
+# slug: bloom · height and width when grown (m) · position (zon: half shade, also sun; half: half shade; schaduw: half
+# shade to shade) · growth · hardy to −N °C · "Over" in two sentences · the focus of the bush photo on a card
+# Cunningham's White: 2,5 m after the RHS ("Max height 1.5–2.5 metres",
+# rhs.org.uk/plants/91138/rhododendron-cunninghams-white/details, read 25 Nov); the live site said 2 m, while we sell it up to 225 cm
+V = {
+    'nova-zembla': ('Mei–juni', '3', '2,5', 'zon', 'Matig', 30,
+        'Een van de bekendste rode rhododendrons: helderrode bloemtrossen boven donkergroen, groenblijvend blad. Als solitair, in een groep of als haag' + SUN, '50% 70%'),
+    'catawbiense-grandiflorum': ('Mei–juni', '3', '3', 'zon', 'Matig tot snel', 30,
+        'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep' + SUN, '50% 50%'),
+    'cunninghams-white': ('April–mei', '2,5', '2,5', 'half', 'Langzaam', 25,
+        'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint, al in april. Een volle, compacte, groenblijvende struik; als solitair, in een groep of als haag.', '50% 40%'),
+    'catawbiense-boursault': ('Mei–juni', '2,5', '2,5', 'zon', 'Matig', 25,
+        'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Als solitair, in een groep of als haag' + SUN, '50% 50%'),
+    'roseum-elegans': ('Mei–juni', '2,5', '2,5', 'zon', 'Matig tot snel', 30,
+        'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Als solitair of als haag in een ruimere tuin' + SUN, '50% 60%'),
+    'ponticum': ('Mei–juni', '4', '4', 'schaduw', 'Snel', 20,
+        'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming, ook in de schaduw.', '50% 50%'),
+    'ponticum-roseum': ('Mei–juni', '4', '3,5', 'schaduw', 'Snel', 20,
+        'Roze tot lichtpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een hoge haag of een afscherming.', '50% 50%'),
+}
+PLACE = {'zon': 'Halfschaduw of zon', 'half': 'Halfschaduw', 'schaduw': 'Halfschaduw of schaduw'}
+PLANT = 'Het hele jaar, behalve bij vorst; het best maart–april of september–oktober'   # the owner's own text (faq of the old site), shortened
+# the widths of the photos: img/<slug>-sm.webp and -lg.webp (the flower), the same with "-2" (the bush). The "-lg" files
+# are copies of rhododendrons/public/images, at most 1344 px wide
 W = {'nova-zembla': ((900, 1024), (672, 896)), 'roseum-elegans': ((900, 1024), (900, 1024)), 'ponticum': ((600, 1024), (672, 1344))}
-WINTER = dict(zip(SLUGS, [30, 30, 25, 25, 30, 20, 20]))   # winterhard tot ca. −N °C (docs/winterhardheid.md; owner, 25 Nov)
-PLANT = 'het hele jaar, behalve bij vorst; het best maart–april of september–oktober'   # the owner's own text (faq of the old site), shortened
 SOORTEN = []
 for slug, (name, prices, rng) in zip(SLUGS, calc3.SOORTEN):
-    f, d, o, k, pos = TEXT[slug]
-    k = k[:6] + ['tot ca. −%d\u00a0°C' % WINTER[slug]]
-    SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'v': calc3.euro(calc3.vanaf(prices)), 'ps': {'Halfschaduw of zon': 'zon', 'Halfschaduw': 'half', 'Halfschaduw of schaduw': 'schaduw'}[f[2]], 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o, 'o2': OVER2[slug],
-                    'k': k + ['Groenblijvend', GROND],
-                    'k2': [k[3] + ' hoog, ' + k[4].replace('tot ', '') + ' breed', k[5], k[6], 'Zuur en los, pH 4,5–6', PLANT], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
-DATA = _html.escape(json.dumps(SOORTEN, ensure_ascii=False), quote=True)
+    SOORTEN.append(dict(slug=slug, n=name, p=prices, a=rng[0], m=rng[1], vanaf=calc3.euro(calc3.vanaf(prices)), w=W.get(slug, ((672, 1344), (672, 1344)))))
+BY = {s['slug']: s for s in SOORTEN}
 MINUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>'
 PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>'
 
 
-# The icons of the facts line (owner's idea and choice, 25 Nov: an icon before each fact, in the line). Our own drawings, one
-# family: a 24 box, one round stroke, no fills but the shaded half of the sun's disc. bloei a five-petalled blossom ·
-# hoogte a measure between two marks · the position as light: rays all round (also sun), rays on one side (half shade),
-# a tree with the sun behind it (half shade to shade) · winter a six-armed snow crystal. They are decoration for the eye only (aria-hidden).
-# "Halfschaduw of schaduw" (owner, 25 Nov: the disc under an arc read as an eye or a wifi sign). The chosen drawing is
-# "boom": the sun half hidden behind a tree, the place under the crown. The others were candidates on the review sheet.
-SHADE = {
-    'oud': '<circle cx="12" cy="12" r="3.7"/><path d="M12 8.3a3.7 3.7 0 0 1 0 7.4z" fill="currentColor" stroke="none"/><path d="M4.3 11.2a7.7 7.7 0 0 1 15.4 0"/>',
-    # 1 the sun half hidden behind a tree · 2 a tree alone · 3 the sun gone dark, three rays left
-    'boom': ('<circle cx="14" cy="12.2" r="6"/><path d="M14 14.6V22M10.6 22h6.8M14 17.6l2.3-2.3"/>'
-             '<path d="M10.6 7.25A3.4 3.4 0 1 0 8.26 10.43M7.2 1.3v1.2M1.3 7.2h1.2M3 3l.85.85"/>'),
-    'kroon': '<circle cx="12" cy="9.6" r="6.6"/><path d="M12 12.2V22M8 22h8M12 16l2.6-2.6"/>',
-    'donker': ('<circle cx="12" cy="12" r="3.7" fill="currentColor"/>'
-               + ''.join(f'<path d="M12 3.2v2.3" transform="rotate({a} 12 12)"/>' for a in (225, 270, 315))),
-}
-
-
-def _icons():
+# The icons of the facts line (owner's idea and choice, 25 Nov): our own drawings, one family: a 24 box, one round moss
+# stroke, no fills but the shaded half of the sun's disc. Decoration for the eye only (aria-hidden).
+def _icon(key):
     rot = lambda d, n, step: ''.join(f'<path d="{d}" transform="rotate({k * step} 12 12)"/>' for k in range(n))
     disc = '<circle cx="12" cy="12" r="3.7"/><path d="M12 8.3a3.7 3.7 0 0 1 0 7.4z" fill="currentColor" stroke="none"/>'
     ray = 'M12 3.2v2.3'
-    sym = {
+    d = {
         'bloei': rot('M12 11.3c-2.2-1.6-2.7-4.9 0-7.6 2.7 2.7 2.2 6 0 7.6z', 5, 72) + '<circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/>',
         'hoogte': '<path d="M6.5 3.5h11M6.5 20.5h11M12 7v10M8.8 10.2 12 7l3.2 3.2M8.8 13.8 12 17l3.2-3.2"/>',
+        # the position as light: rays all round · rays on one side · the sun half hidden behind a tree
         'zon': disc + rot(ray, 8, 45),
         'half': disc + ''.join(f'<path d="{ray}" transform="rotate({a} 12 12)"/>' for a in (180, 225, 270, 315, 0)),
-        'schaduw': SHADE['boom'],
+        'schaduw': ('<circle cx="14" cy="12.2" r="6"/><path d="M14 14.6V22M10.6 22h6.8M14 17.6l2.3-2.3"/>'
+                    '<path d="M10.6 7.25A3.4 3.4 0 1 0 8.26 10.43M7.2 1.3v1.2M1.3 7.2h1.2M3 3l.85.85"/>'),
         'winter': rot('M12 12V3.6M10.3 5.2 12 6.9l1.7-1.7', 6, 60),
-    }
-    sym.update({'cand-' + k: v for k, v in SHADE.items()})   # for the review sheet of the shade icon; not used on the page
-    return ('<svg class="so-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">'
-            + ''.join(f'<symbol id="so-i-{k}" viewBox="0 0 24 24">{v}</symbol>' for k, v in sym.items()) + '</svg>')
+    }[key]
+    return f'<svg class="so-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{d}</svg>'
 
 
-def _tiles(u, group, items, on, cls, legend, after=''):
-    tiles = ''.join(f'<label><input type="radio" name="{u}-{group}" data-c="{group}" value="{v}"{" checked" if v == on else ""}><span>{t}</span></label>' for v, t in items)
-    return f'<fieldset class="so-set {cls}"><legend>{legend}</legend><div>{tiles}</div>{after}</fieldset>'
+def _tiles(group, items, on, cls, legend, extra=''):
+    tiles = ''.join(f'<label><input type="radio" name="so-{group}" data-c="{group}" value="{v}"{" checked" if v == on else ""}><span>{t}</span></label>' for v, t in items)
+    return f'<fieldset class="so-set {cls}"{extra}><legend>{legend}</legend><div>{tiles}</div></fieldset>'
 
 
-def _img(n, sizes, cls='', lazy=False):
-    # n: 2 the bush, 1 the flower; the script sets src, srcset and alt
-    return f'<img data-img="{n}" sizes="{sizes}" alt=""{" class=" + chr(34) + cls + chr(34) if cls else ""}{" loading=" + chr(34) + "lazy" + chr(34) if lazy else ""}>'
+def _img(slug, n, sizes, alt, first):
+    s = BY[slug]; base = f'img/{slug}' + ('-2' if n == 2 else ''); w = s['w'][1 if n == 2 else 0]
+    pos = f' style="object-position:{V[slug][7]}"' if n == 2 else ''
+    load = ' fetchpriority="high"' if first else ' loading="lazy"'
+    return f'<img src="{base}-sm.webp" srcset="{base}-sm.webp {w[0]}w, {base}-lg.webp {w[1]}w" sizes="{sizes}" alt="{_html.escape(alt)}"{pos}{load}>'
 
 
-def crumb():
-    return ('<nav class="so-crumb" aria-label="Kruimelpad"><a href="index.html">Home</a><span aria-hidden="true">›</span>'
-            '<a href="index.html#assortiment">Assortiment</a><span aria-hidden="true">›</span><span data-o="name" aria-current="page"></span></nav>')
+def facts(slug):
+    bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
+    items = [('bloei', 'Bloei', bloei), ('hoogte', 'Hoogte, volgroeid', f'Tot {hoog}&nbsp;m hoog'), (ps, 'Standplaats', PLACE[ps]), ('winter', '', 'Winterhard')]
+    return '<ul class="so-facts">' + ''.join('<li>' + _icon(k) + (f'<span class="so-vh">{l}: </span>' if l else '') + t + '</li>' for k, l, t in items) + '</ul>'
 
 
-def sizes(u):
-    return _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(5)], '1', 'so-sizes', 'Hoogte bij levering, prijs per plant',
-                  '<p class="so-hint" data-o="sizenote"></p>')
+def buy(slug):
+    s = BY[slug]; slots = [i for i, p in enumerate(s['p']) if p is not None]
+    maat = _tiles('size', [(str(i), f'<b>{calc3.LOWS[i]}–{calc3.TOPS[i]} cm</b><em>{calc3.euro(s["p"][i])}</em>') for i in slots], str(slots[0]), 'so-sizes',
+                  'Hoogte bij levering<span>, gemeten vanaf de kluit</span>', f' data-n="{len(slots)}"')
+    qty = ('<div class="so-qty"><label class="so-lab" for="so-qty">Aantal</label><div class="so-step">'
+           f'<button type="button" data-step="-1" aria-label="Eén plant minder">{MINUS}</button>'
+           '<span class="so-val"><input id="so-qty" data-c="qty" type="text" inputmode="numeric" autocomplete="off" value="1" role="spinbutton" aria-valuemin="1" aria-valuemax="999" aria-valuenow="1"></span>'
+           f'<button type="button" data-step="1" aria-label="Eén plant meer">{PLUS}</button></div></div>')
+    sub = _tiles('sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst',
+                 'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per&nbsp;plant, ' + calc3.euro(calc3.BAG).replace(' ', '&nbsp;') + '&nbsp;per&nbsp;zak</span>')
+    tot = ('<div class="so-tot"><p class="so-totl">Totaal</p><p class="so-totv" data-o="total">' + calc3.euro(s['p'][slots[0]]) + '</p></div>'
+           '<p class="so-totnote">' + calc3.DELIVERY + '</p>')
+    add = '<button type="button" class="so-add" data-add>In winkelwagen</button><p class="so-vh" data-o="status" role="status"></p>'
+    # one line with the two ways to reach the nursery: about larger sizes where the variety has them, a plain one otherwise
+    ask = (f'<p class="so-note">Grotere maten tot {s["m"]}&nbsp;cm op aanvraag: stuur een <a {WA}>WhatsApp</a> of bel {TEL}.</p>' if s['m'] > calc3.TOPS[-1]
+           else f'<p class="so-note">Vragen? Stuur een <a {WA}>WhatsApp</a> of bel {TEL}.</p>')
+    return '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty + sub + '</div>' + tot + add + ask + '</div>'
 
 
-def qty(u):
-    return (f'<div class="so-f so-qty"><label class="so-lab" for="{u}-qty">Aantal planten</label><div class="so-step">'
-            f'<button type="button" data-step="-1" aria-label="Eén plant minder">{MINUS}</button>'
-            f'<span class="so-val"><input id="{u}-qty" data-c="qty" type="text" inputmode="numeric" autocomplete="off" value="1"></span>'
-            f'<button type="button" data-step="1" aria-label="Eén plant meer">{PLUS}</button></div></div>')
+def about(slug):
+    bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
+    rows = [('Volgroeid', f'Tot {hoog}&nbsp;m hoog, {breed}&nbsp;m breed'), ('Groei', groei), ('Winterhard', f'Tot ca. −{winter}&nbsp;°C'),
+            ('Grond', 'Zuur en los, pH 4,5–6'), ('Planttijd', PLANT)]
+    return ('<section class="so-over" aria-labelledby="so-ho"><div><h2 id="so-ho">Over ' + _html.escape(BY[slug]['n']) + '</h2><p>' + over + '</p></div>'
+            '<div><h3 class="so-vh">Kenmerken</h3><dl class="so-ken">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>'
+            '<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'
+            '<span>Hovenier of grootverbruiker? <a href="index.html#kweker">Vraag een prijsopgave aan</a></span></p></div></section>')
 
 
-def subst(u):
-    return _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat',
-                  '<p class="so-hint">1 zak van 40&nbsp;L per plant, € 16,50 per zak.</p>')
+def others(slug):
+    # the other six varieties, in the language of the homepage's assortment cards
+    cards = ''.join(
+        f'<article class="so-it"><a href="soort-{s["slug"]}.html" aria-label="{_html.escape(s["n"])}, vanaf {s["vanaf"]}">'
+        f'<div class="so-ph"><img src="img/{s["slug"]}-2-sm.webp" alt="" loading="lazy" style="object-position:{V[s["slug"]][7]}"></div>'
+        f'<h3>{_html.escape(s["n"])}</h3><p class="so-pr"><span>vanaf</span><b>{s["vanaf"].replace(" ", "&nbsp;")}</b></p></a></article>'
+        for s in SOORTEN if s['slug'] != slug)
+    return '<section class="so-oth" aria-labelledby="so-hoth" data-oth><div class="in"><h2 id="so-hoth">Andere soorten</h2><div class="so-ogrid">' + cards + '</div></div></section>'
 
 
-CALC = '<p class="so-hint so-calc">Voor een haag of een groep? <a href="index.html#haag">Reken uit hoeveel planten u nodig heeft</a>.</p>'
-TOTNOTE = '<p class="so-totnote">' + calc3.DELIVERY + '</p>'
-ADD = '<button type="button" class="so-add" data-add>In winkelwagen</button><p class="so-status" data-o="status" role="status"></p>'
-# one line with the two ways to reach the nursery: about larger sizes where the variety has them, a plain one otherwise
-ASK = ('<p class="so-note" data-row="big">Grotere maten, tot <span data-o="max"></span>&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
-       '<p class="so-note" data-row="ask">Vragen over deze soort? Stuur een <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>')
+def main_html(slug):
+    s = BY[slug]; name = _html.escape(s['n'])
+    # what the script needs for the sums: the prices of this variety, the size slots and the bag price (all from calc3)
+    data = _html.escape(json.dumps({'name': s['n'], 'p': s['p'], 'lows': calc3.LOWS, 'tops': calc3.TOPS, 'bag': calc3.BAG}, ensure_ascii=False), quote=True)
+    crumb = ('<nav class="so-crumb" aria-label="Kruimelpad"><a href="index.html">Home</a><span aria-hidden="true">›</span>'
+             f'<a href="index.html#assortiment">Assortiment</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>')
+    pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(slug, 2, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloeiende struik', True)
+            + '</figure><figure>' + _img(slug, 1, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloem van dichtbij', False) + '</figure></div>')
+    trust = ('<ul class="so-trust"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of gratis afhalen in Wekerom</li>'
+             '<li>Vers gerooid, met kluit</li></ul>')
+    bar = '<div class="so-bar" data-bar><span><b data-o="total"></b><i data-o="barline"></i></span><button type="button" class="so-add" data-add>In winkelwagen</button></div>'
+    return (f'<main id="main" tabindex="-1" class="som" data-so="{data}"><div class="so"><div class="in">' + crumb + '<div class="so-grid">' + pics
+            + f'<div class="so-info"><div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>' + buy(slug) + trust + '</div>' + about(slug) + '</div></div>' + bar + '</div>'
+            + others(slug) + '<p class="so-vh" data-o="said" aria-live="polite"></p></main>')
 
 
-def total():
-    # the total on the page: a dark hairline, what it is made of on the left, the sum in Newsreader on the right
-    return ('<div class="so-tot"><p class="so-totl"><b>Totaal</b><small data-o="sumline"></small></p><p class="so-totv" data-o="total"></p></div>' + TOTNOTE + ADD + ASK)
+def title(slug):
+    return BY[slug]['n'] + ' kopen | Top Rhododendrons'
 
 
-def slip(u):
-    # the calculator's sheet: the facts card's surface, the lines, the total
-    return (f'<div class="so-slip" id="{u}-res" data-res><p class="so-sliph">Uw bestelling</p>'
-            '<p class="so-slips"><span data-o="name"></span>, <span data-o="size"></span></p>'
-            '<dl class="so-lines"><div><dt><span data-o="n"></span> <span data-o="nword"></span><small><span data-o="each"></span> per plant</small></dt><dd data-o="plants"></dd></div>'
-            '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 16,50 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
-            '<div class="so-ltot"><dt>Totaal</dt><dd data-o="total"></dd></div></dl>' + TOTNOTE + ADD + ASK + '</div>')
-
-
-def trust():
-    return ('<ul class="so-trust"><li><b><a href="garantie.html">3 maanden aangroeigarantie</a></b><span>Slaat een plant niet aan, dan krijgt u een nieuwe.</span></li>'
-            '<li><b>Eigen transport door heel Nederland</b><span>Of haal uw planten gratis af op de kwekerij in Wekerom.</span></li>'
-            '<li><b>Vers gerooid, met kluit</b><span>Wij rooien uw planten pas vlak voor de levering.</span></li></ul>')
-
-
-def over(u):
-    return f'<section class="so-over" aria-labelledby="{u}-ho"><h2 id="{u}-ho" class="so-h3">Over <span data-o="name"></span></h2><p data-o="over"></p></section>'
-
-
-def ken(u):
-    rows = ''.join(f'<div><dt>{l}</dt><dd data-k="{i}"></dd></div>' for i, l in enumerate(KEN))
-    return f'<section class="so-kenb" aria-labelledby="{u}-hk"><h2 id="{u}-hk" class="so-h3">Kenmerken</h2><dl class="so-ken">{rows}</dl></section>'
-
-
-def head(u, desc=True):
-    return (f'<h1 id="{u}-h1" tabindex="-1" data-o="name"></h1><p class="so-facts" data-o="facts"></p>'
-            + ('<p class="so-desc" data-o="desc"></p>' if desc else ''))
-
-
-def bar_buy():
-    # phone: the total and the cart button in a small bar while the real button is out of view
-    return ('<div class="so-bar" data-bar><span><b data-o="total"></b><i data-o="barline"></i></span>'
-            '<button type="button" class="so-add" data-add>In winkelwagen</button></div>')
-
-
-def dir_a():
-    u = 'soa'
-    pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(2, '(min-width:900px) 45vw, 86vw')
-            + '</figure><figure>' + _img(1, '(min-width:900px) 45vw, 86vw', lazy=True) + '</figure></div>')
-    buy = (f'<div class="so-buy" role="group" aria-label="Bestellen">' + sizes(u) + '<div class="so-row">' + qty(u) + subst(u) + '</div>' + CALC + total() + '</div>')
-    return (f'<div class="so so-a" data-d="a"><div class="in">' + crumb() + '<div class="so-grid">' + pics
-            + '<div class="so-info">' + head(u) + buy + trust() + over(u) + ken(u) + '</div></div></div>' + bar_buy() + '</div>')
-
-
-def dir_a2():
-    # "Легче" (owner, 24 Nov: a was overloaded with text): the same page with less than half the words. No description above
-    # the order; what a hint said is in the legend; one phrase under the total; one line under the button; three short trust
-    # lines; "Over" in two sentences with five facts under it (no row that repeats the facts line or the photo); the two
-    # quiet links (calculator, professionals) close the column
-    u = 'sol'
-    pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(2, '(min-width:900px) 45vw, 86vw')
-            + '</figure><figure>' + _img(1, '(min-width:900px) 45vw, 86vw', lazy=True) + '</figure></div>')
-    maat = _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(5)], '1', 'so-sizes',
-                  'Hoogte bij levering<span>, gemeten vanaf de kluit</span>')
-    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per plant, €&nbsp;16,50</span>')
-    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b></p><p class="so-totv" data-o="total"></p></div>' + TOTNOTE
-    ask = ('<p class="so-note" data-row="big">Grotere maten tot <span data-o="max"></span>&nbsp;cm op aanvraag: <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
-           '<p class="so-note" data-row="ask">Vragen? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>')
-    buy = '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty(u).replace('Aantal planten', 'Aantal') + sub + '</div>' + tot + ADD + ask + '</div>'
-    trust2 = ('<ul class="so-trust2"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of gratis afhalen in Wekerom</li>'
-              '<li>Vers gerooid, met kluit</li></ul>')
-    rows = ''.join(f'<div><dt>{l}</dt><dd data-k2="{i}"></dd></div>' for i, l in enumerate(['Volgroeid', 'Groei', 'Winterhard', 'Grond', 'Planten']))
-    about = (f'<section class="so-over" aria-labelledby="{u}-ho"><h2 id="{u}-ho" class="so-h3">Over <span data-o="name"></span></h2><p data-o="over2"></p>'
-             f'<dl class="so-ken" aria-label="Kenmerken">{rows}</dl>'
-             '<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'
-             '<span>Hovenier of grootverbruiker? <a href="index.html#contact">Vraag een prijsopgave aan</a></span></p></section>')
-    return ('<div class="so so-a so-a2" data-d="a2"><div class="in">' + crumb() + '<div class="so-grid">' + pics
-            + '<div class="so-info">' + head(u, False) + buy + trust2 + about + '</div></div></div>' + bar_buy() + '</div>')
-
-
-def dir_b():
-    u = 'sob'
-    top = ('<div class="so-hd"><div>' + head(u, False) + '</div><div><p class="so-desc" data-o="desc"></p><p class="so-from">vanaf <b data-o="from"></b> per plant, met kluit</p></div></div>'
-           '<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(2, '(min-width:900px) 45vw, 50vw') + '</figure><figure>'
-           + _img(1, '(min-width:900px) 45vw, 50vw') + '</figure></div>')
-    ask = (f'<div class="so-ask" role="group" aria-labelledby="{u}-hb"><h2 id="{u}-hb" class="so-h3">Kies maat en aantal</h2>' + sizes(u) + qty(u) + CALC + subst(u) + '</div>')
-    mini = f'<a class="so-bar so-mini" data-bar href="#{u}-res"><span><b data-o="total"></b><i data-o="barline"></i></span><em>Bekijk uw bestelling</em></a>'
-    return (f'<div class="so so-b" data-d="b"><div class="in">' + crumb() + top + '<div class="so-band">' + ask + slip(u) + trust() + '</div>'
-            '<div class="so-band so-more">' + over(u) + ken(u) + '</div></div>' + mini + '</div>')
-
-
-def dir_c():
-    u = 'soc'
-    ph = ('<div class="so-cph" data-show="2">' + _img(2, '(min-width:900px) 42vw, 92vw', 'so-p2') + _img(1, '(min-width:900px) 42vw, 92vw', 'so-p1')
-          + '<div class="so-th" role="group" aria-label="Foto kiezen"><button type="button" data-pic="2" aria-pressed="true" aria-label="Foto van de struik">' + _img(2, '56px')
-          + '</button><button type="button" data-pic="1" aria-pressed="false" aria-label="Foto van de bloem">' + _img(1, '56px') + '</button></div></div>')
-    buy = (f'<div class="so-buy" role="group" aria-label="Bestellen">' + sizes(u) + '<div class="so-row">' + qty(u) + subst(u) + '</div>' + CALC + total() + '</div>')
-    return (f'<div class="so so-c" data-d="c"><div class="in">' + crumb() + '<div class="so-card">' + ph + '<div class="so-cbody">' + head(u) + buy + '</div></div>'
-            + trust() + '<div class="so-more">' + over(u) + ken(u) + '</div></div>' + bar_buy() + '</div>')
-
-
-def others():
-    # the other six varieties, in the language of the homepage's assortment cards; the script hides the current one
-    cards = ''
-    for s in SOORTEN:
-        cards += (f'<article class="so-it" data-slug="{s["slug"]}"><a href="#{s["slug"]}" aria-label="{_html.escape(s["n"])}, vanaf {s["v"]}, van {s["a"]} tot {s["m"]} cm">'
-                  f'<div class="so-ph"><img src="img/{s["slug"]}-2-sm.webp" alt="" loading="lazy" style="object-position:{s["pos"]}"></div>'
-                  f'<h3>{_html.escape(s["n"])}</h3><p class="so-pr"><span class="so-v">vanaf</span><b>{s["v"].replace(" ", "&nbsp;")}</b>'
-                  f'<span class="so-s">{s["a"]} tot {s["m"]}&nbsp;cm, met kluit</span></p></a></article>')
-    return ('<section class="so-oth" aria-labelledby="so-hoth" data-oth><div class="in"><h2 id="so-hoth">Andere soorten</h2><div class="so-ogrid">' + cards + '</div>'
-            '<p class="so-pro">Hovenier of grootverbruiker? <a href="index.html#contact">Neem contact op voor een prijsopgave</a>.</p></div></section>')
-
-
-def main_html():
-    return (f'<main id="main" tabindex="-1" class="som" data-so data-soorten="{DATA}">' + _icons() + dir_a2() + dir_a() + others()
-            + '<p class="so-said" data-o="said" aria-live="polite"></p></main>')
+def description(slug):
+    # the first half of "Over" (what the plant looks like), the "vanaf" price and what sets the nursery apart
+    look = V[slug][6].split('. ')[0].split(': ')[-1].rstrip('.')
+    return (f'Rhododendron {BY[slug]["n"]}: {look[0].lower() + look[1:]}. Vanaf {BY[slug]["vanaf"]} per plant, met kluit, '
+            'rechtstreeks van de kwekerij en met 3 maanden aangroeigarantie.')
 
 
 def css():

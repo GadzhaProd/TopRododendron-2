@@ -40,6 +40,11 @@ DRAWER = ('<div class="cd" id="winkelwagen" role="dialog" aria-modal="true" aria
           '<div class="cd-e"><span class="cd-ic">' + CART + '</span><p class="cd-t">Uw winkelwagen is nog leeg</p>'
           '<p>Kies een soort en een maat. U&nbsp;bestelt vanaf 1&nbsp;plant.</p>'
           '<a class="cd-btn" href="#assortiment" data-close>Bekijk de planten<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>'
+          # the lines of the cart (filled by tools/fase1c.js, window.tbCartAdd) and the sum; shown instead of the empty state
+          '<div class="cd-l" hidden><ul class="cd-ls" aria-label="In uw winkelwagen"></ul>'
+          '<div class="cd-sum"><p class="cd-tot"><span>Totaal</span><b data-cd-total></b></p>'
+          '<p class="cd-del">Exclusief bezorging (€&nbsp;75 per bestelling); afhalen in Wekerom is gratis.</p>'
+          '<a class="cd-btn" href="/bestellen" data-page="Bestellen">Verder naar bestellen</a></div></div>'
           '<div class="cd-ft"><p>Liever persoonlijk bestellen? Bel of app de kwekerij.</p><div>'
           '<a href="tel:+31620104312">' + PHONE + 'Bellen</a><a ' + WA + '>' + CHAT + 'WhatsApp</a></div></div>'
           '</div></div>')
@@ -80,7 +85,8 @@ def apply(s):
 
     # the assortment cards and the conditions link
     for name, slug in SLUG.items():
-        rep(f'<a href="#assortiment" aria-label="{name}, vanaf', f'<a href="/assortiment/{slug}" data-page="{name.replace("&#x27;", "’")}" aria-label="{name}, vanaf')
+        # each card opens the page of its variety (soort-<slug>.html, tools/build_soorten.py; in the mockup since 25 Nov)
+        rep(f'<a href="#assortiment" aria-label="{name}, vanaf', f'<a href="soort-{slug}.html" aria-label="{name}, vanaf')
     rep('<a class="sd-more" href="#assortiment">', '<a class="sd-more" href="/assortiment" data-page="Assortiment">')
     rep('<a class="fp-more" href="#garantievoorwaarden">', '<a class="fp-more" href="garantie.html">')
 

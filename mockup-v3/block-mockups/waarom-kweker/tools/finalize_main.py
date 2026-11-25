@@ -107,7 +107,7 @@ WA2 = '<a href="https://wa.me/31620297849">06&nbsp;20&nbsp;29&nbsp;78&nbsp;49</a
 # live in the footer (owner, 16 Nov). Term: 3 months after delivery, as most of the market (owner, 16 Nov: 12–24 months is
 # too long). The guarantee is provisional until the company owner confirms it; Dutch copy = draft.
 P1 = ('<p class="fp-txt"><b>3 maanden aangroeigarantie na levering.</b> Dezelfde soort en maat, kosteloos bezorgd of klaargezet '
-      'in Otterlo. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan. '
+      'in Wekerom. De oorzaak hoeft u niet aan te tonen: een paar foto’s volstaan. '
       '<a class="fp-more" href="#garantievoorwaarden">Lees de voorwaarden</a></p>'
       '<p class="fp-lead">Vragen over soort of garantie? Bel of app met <b class="nb">Gert Top</b>, oprichter en kweker, '
       '<span class="nb">of met zijn team:</span></p>'
@@ -150,7 +150,7 @@ s = s.replace('</head>', '<style id="scale-css">' + (D / 'tools' / 'scale.css').
 # one reason for both ways to get the plants, so the list is shorter and the range starts higher
 rep('<li><div><h3>Persoonlijk advies van de kweker</h3><p>Twijfelt u over soort of maat? U spreekt de kweker zelf: per telefoon, WhatsApp of op de kwekerij.</p></div></li>',
     '<li><div><h3>Bezorgd of zelf uitzoeken</h3><p>Wij bezorgen met eigen transport door heel Nederland. '
-    'Of kies uw planten zelf uit in Otterlo, <span class="nb">ook zonder afspraak.</span></p></div></li>')
+    'Of kies uw planten zelf uit in Wekerom, <span class="nb">ook zonder afspraak.</span></p></div></li>')
 rep('<li><div><h3>Eigen transport of afhalen</h3><p>Bezorgd met eigen transport door heel Nederland, of af te halen in Otterlo.</p></div></li>', '')
 # the move from the assortment to the guarantee card (Fable, option 2 on fd-kop-fable.html, owner 16 Nov): clean page after
 # the field, then the promise as the section heading, then the card (CSS in founder-helper.css)

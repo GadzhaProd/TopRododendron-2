@@ -57,10 +57,10 @@
 .sx-vars input:checked + span::before{opacity:1}
 /* a size: its price under it, the tick beside the price (there it never meets the text, however narrow the tile).
    A variety has four or five sizes (data-n, set by the script): one even row where the column holds it, otherwise a
-   grid of equal tiles, two by two for four and three and two for five; by the width of the block itself */
+   grid without a hole: two by two for four; for five the two small sizes above and three below; by the width of the block itself */
 .sx-sizes{container-type:inline-size}
 .sx-sizes > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-@container (min-width:316px){ .sx-sizes[data-n="5"] > div{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@container (min-width:316px) and (max-width:599.98px){ .sx-sizes[data-n="5"] > div{grid-template-columns:repeat(6,minmax(0,1fr))} .sx-sizes[data-n="5"] label{grid-column:span 2} .sx-sizes[data-n="5"] label:nth-of-type(-n+2){grid-column:span 3} }
 @container (min-width:480px){ .sx-sizes[data-n="4"] > div{grid-template-columns:repeat(4,minmax(0,1fr))} }
 @container (min-width:600px){ .sx-sizes[data-n="5"] > div{grid-template-columns:repeat(5,minmax(0,1fr))} }
 .sx-sizes label > span{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:52px;padding:0 12px}

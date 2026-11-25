@@ -16,7 +16,7 @@ SOORTEN = [  # the order of the assortment cards: name · price per plant for th
     ('Ponticum Roseum', [17.5, 19.5, 31.75, 49, 125], (40, 160)),
 ]
 BAG = 16.5      # Tuinturf-substraat, per bag of 40 L (Rhododendronwal's price, 25 Nov); the same figure is in calc3.js
-DELIVERY = 'Exclusief bezorging: € 75 per bestelling, meestal binnen een week. Afhalen in Wekerom is gratis.'
+DELIVERY = 'Exclusief bezorging (€&nbsp;75 per&nbsp;bestelling). Levering meestal binnen een&nbsp;week; afhalen in Wekerom is&nbsp;gratis.'
 
 
 def euro(x):
@@ -97,7 +97,9 @@ def calc_html():
             '<button type="button" class="sx-add" data-add>In winkelwagen</button><p class="sx-status" data-o="status" role="status"></p>'
             '<p class="sx-note" data-row="big">Grotere maten, tot <span data-o="max"></span>&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>.</p></div>')
     mini = (f'<a class="sx-mini" href="#{U}-res"><span><b data-o="total"></b><i><span data-o="n"></span> <span data-o="nword"></span></i></span><em>Bekijk de berekening</em></a>')
-    return (f'<section class="sx" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}"><div class="in">{ask}{slip}'
+    # the bag price and the size slots are written here once; the script reads them (and so does the variety page)
+    cfg = _html.escape(json.dumps({'bag': BAG, 'lows': LOWS, 'tops': TOPS}), quote=True)
+    return (f'<section class="sx" id="haag" aria-labelledby="h-haag" data-soorten="{DATA}" data-cfg="{cfg}"><div class="in">{ask}{slip}'
             f'<p class="sx-said" data-o="said" aria-live="polite"></p></div>{mini}</section>')
 
 

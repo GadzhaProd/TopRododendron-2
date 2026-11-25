@@ -1,48 +1,39 @@
-/* ===== The product page of a variety (tools/soort.py), three directions for review. The calculator's language
-   (tools/calc3.css): soft tiles without borders (14 px), the chosen tile glows inside, the cart button with the same glow,
-   hairline rows, the total in Newsreader. No shadows, text of 14 px or more (13 px only for the size line of the cards, as on
-   the homepage), every target 44 px or more. --g is the soft colour of the variety's flower (set by the script). ===== */
-.som{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;--g:#f2adb4;
-  --so-ln:rgba(20,20,19,.14);--so-hair:rgba(63,74,55,.12);--so-2:var(--color-fg-2,#45443f);--so-moss:var(--moss,#3f4a37);--so-paper:#f9f8f5;
-  --so-col:clamp(320px,33%,452px);--so-gap:clamp(40px,5.5vw,96px);--so-top:calc(92px + var(--so-rv,0px));
+/* ===== The page of a variety (tools/soort.py, tools/build_soorten.py). The calculator's language (tools/calc3.css):
+   soft tiles without borders (14 px), the chosen tile glows inside, the cart button with the same glow, hairline rows, the
+   total in Newsreader. No shadows, text of 14 px or more, every target 44 px or more. ===== */
+.som{background:var(--page,#f1efea);color:var(--color-fg,#141413);overflow-x:clip;
+  --so-ln:rgba(20,20,19,.14);--so-2:var(--color-fg-2,#45443f);--so-moss:var(--moss,#3f4a37);--so-paper:#f9f8f5;--so-gap:clamp(40px,5.5vw,96px);
   --so-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233f4a37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
-  --so-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8;
-  --so-sheet:radial-gradient(ellipse 78% 46% at 0% 0%,#cdd8ba 0%,transparent 70%),radial-gradient(ellipse 60% 34% at 100% 8%,#f1f0e8 0%,transparent 70%),
-    radial-gradient(ellipse 90% 40% at 100% 100%,#e6dcb4 0%,transparent 72%),radial-gradient(ellipse 60% 30% at 0% 100%,#d3dcc0 0%,transparent 70%),linear-gradient(to bottom,#e4e9d8 0%,#ebece3 46%,#ede8d4 100%)}
+  --so-on:radial-gradient(ellipse 70% 130% at 4% 40%,#c3cfae 0%,transparent 70%),radial-gradient(ellipse 60% 130% at 100% 70%,#eae1bf 0%,transparent 72%),#e4e9d8}
 .som :where(h1,h2,h3,p,dl,dt,dd,ul,li,figure,fieldset,legend){margin:0;padding:0;border:0;min-width:0}
 .som ul{list-style:none}
-.som [hidden]{display:none!important}
 .som :is(button,input){font:inherit;color:inherit}
 .som ::selection{background:#d3dcc2;color:#141413}
-.so{display:none}
-html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b"],html.srt-c .so[data-d="c"]{display:block}
 .so > .in{padding-top:calc(80px + clamp(20px,2.4vw,36px));padding-bottom:0}
 .so a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
 .som :is(a,button):focus-visible,.so-set label:has(input:focus-visible) > span{outline:2px solid var(--so-moss);outline-offset:3px}
-.som h1:focus,.som h1:focus-visible{outline:0!important;box-shadow:none!important}
-.so-said{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.so-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* the breadcrumb */
 .so-crumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:clamp(18px,2vw,28px);font-size:var(--t-small);line-height:1.4;color:var(--so-2)}
-.so-crumb a{display:inline-block;padding-block:13px;margin-block:-13px;text-decoration-color:rgba(20,20,19,.3)}
+.so-crumb a{display:inline-block;min-width:44px;padding-block:13px;margin-block:-13px;text-decoration-color:rgba(20,20,19,.3)}
 .so-crumb [aria-current]{color:var(--color-fg)}
 
-/* the name, the facts line, the short description */
-.so h1{font-size:var(--t-h2);line-height:1.04;text-wrap:balance}
-/* the facts line: a small icon before each fact (owner, 25 Nov), our own drawings in one moss stroke; a fact never parts
-   from its icon, and the line wraps between facts */
-.so-facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:var(--t-body);line-height:1.5;color:var(--color-fg)}
-.so-facts span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+/* the name: the largest line of the page. The facts: a small icon before each, our own drawings in one moss stroke;
+   two by two (one row where the page is a single wide column), so no fact ever stands alone on a second line */
+.so-head{container-type:inline-size}
+.so h1{font-size:var(--t-display);line-height:1.02;text-wrap:balance}
+.so-facts{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:8px clamp(16px,6cqw,28px);margin-top:16px;font-size:var(--t-body);line-height:1.4}
+.so-facts li{display:flex;align-items:center;gap:7px}
+@container (min-width:640px){ .so-facts{display:flex;gap:8px 24px} .so-facts li{white-space:nowrap} }
 .so-ic{flex:none;width:19px;height:19px;color:var(--so-moss);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.so-desc{margin-top:12px;max-width:32em;font-size:var(--t-lead);line-height:1.55;color:var(--so-2);text-wrap:pretty}
-.so-h3{font-size:clamp(24px,2.1vw,30px)!important;line-height:1.15}
 
 /* ---------- the order: tiles, the number, the total, the button (the calculator's parts) ---------- */
-.so-buy{margin-top:clamp(24px,2.6vw,34px)}
-.so-buy > * + *,.so-ask > * + *{margin-top:22px}
-.so-lab,.so-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600}
+.so-buy{margin-top:clamp(26px,2.8vw,38px)}
+.so-buy > * + *{margin-top:24px}
+.so-lab,.so-set legend{display:block;float:left;width:100%;margin-bottom:10px;font-size:var(--t-small);line-height:1.4;font-weight:600;text-wrap:pretty}
+.so-set legend span{font-weight:400;color:var(--so-2)}
 .so-set legend + *,.so-lab + *{clear:both}
-.so-hint{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--so-2);text-wrap:pretty}
 .so-set > div{display:flex;flex-wrap:wrap;gap:6px}
 .so-set label{position:relative;display:block;cursor:pointer}
 .so-set input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
@@ -51,11 +42,12 @@ html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b
 .so-set input:checked + span{background:var(--so-on)}
 .so-set input:checked + span::after{content:"";flex:none;width:14px;height:14px;background:var(--so-tick) center/contain no-repeat}
 .so-set label:active > span,.so-step button:active,.so-add:active{filter:brightness(.97)}
-/* a size: its price under it, the tick beside the price; four or five sizes (data-n) in one even row where the column
-   holds them, otherwise a grid of equal tiles (the calculator's rule, tools/calc3.css) */
+/* a size: its price under it, the tick beside the price. Four or five sizes (data-n): one even row where the column holds
+   it, otherwise a grid without a hole: two by two for four; for five the two small sizes above and three below
+   (the calculator's rule, tools/calc3.css) */
 .so-sizes{container-type:inline-size}
 .so-sizes > div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-@container (min-width:316px){ .so-sizes[data-n="5"] > div{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@container (min-width:316px) and (max-width:559.98px){ .so-sizes[data-n="5"] > div{grid-template-columns:repeat(6,minmax(0,1fr))} .so-sizes[data-n="5"] label{grid-column:span 2} .so-sizes[data-n="5"] label:nth-of-type(-n+2){grid-column:span 3} }
 @container (min-width:480px){ .so-sizes[data-n="4"] > div{grid-template-columns:repeat(4,minmax(0,1fr))} }
 @container (min-width:560px){ .so-sizes[data-n="5"] > div{grid-template-columns:repeat(5,minmax(0,1fr))} .so-sizes[data-n="5"] label > span{padding:0 10px} }
 .so-sizes label > span{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:52px;padding:0 12px}
@@ -74,115 +66,53 @@ html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b
   font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:44px}
 .som .so-val input:focus,.som .so-val input:focus-visible{outline:0!important;box-shadow:none!important}
 .so-step:has(input:focus-visible){box-shadow:inset 0 0 0 1.5px rgba(63,74,55,.7)}
-.so-calc{margin-top:14px!important}
-.so-calc a,.so-note a,.so-pro a,.so-trust a{padding-block:13px}
-.som [data-o="size"]{white-space:nowrap}
-/* the total on the page: a dark hairline, what it is made of, the sum */
-.so-tot{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:26px!important;padding-top:18px;border-top:1px solid var(--color-fg,#141413)}
-.so-totl b{display:block;font-size:var(--t-body);line-height:1.4;font-weight:600}
-.so-totl small{display:block;margin-top:1px;font-size:var(--t-small);line-height:1.45;color:var(--so-2)}
-.so-totl small span{display:block;white-space:nowrap}
+/* the total on the page: a dark hairline, the sum in Newsreader, the delivery in one quiet line */
+.so-tot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px!important;padding-top:18px;border-top:1px solid var(--color-fg,#141413)}
+.so-totl{font-size:var(--t-body);line-height:1.4;font-weight:600}
 .so-totv{flex:none;font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em;white-space:nowrap}
-.som .so-totnote{margin-top:6px;font-size:var(--t-small);line-height:1.5;color:var(--so-2)}
+.som .so-totnote{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--so-2);text-wrap:pretty}
 .som .so-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:16px;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;white-space:nowrap;
   background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
-.som .so-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--so-moss);font-weight:600}
-.so-status:empty{display:none}
 .som .so-note{margin-top:14px;font-size:var(--t-small);line-height:1.5;color:var(--so-2);text-wrap:pretty}
+.so-note a,.so-links a{padding-block:13px}
 @media (hover:hover){
   .so-set label:hover > input:not(:checked) + span,.so-step button:not(:disabled):hover{background:#fff}
   .som .so-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
 }
 
-/* ---------- the trust lines, "Over" and "Kenmerken": hairline rows ---------- */
-.so-trust li{padding:14px 0;border-top:1px solid var(--so-ln)}
+/* ---------- the trust lines, "Over" and its facts: hairline rows ---------- */
+.so-trust{margin-top:clamp(30px,3.2vw,42px)}
+.so-trust li{padding:11px 0;border-top:1px solid var(--so-ln);font-size:15px;line-height:22px;text-wrap:balance}
 .so-trust li:last-child{border-bottom:1px solid var(--so-ln)}
-.so-trust b{display:block;font-size:var(--t-body);line-height:1.4;font-weight:600}
-.so-trust span{display:block;margin-top:2px;font-size:var(--t-small);line-height:1.5;color:var(--so-2)}
-.so-over p{margin-top:14px;max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
-.so-ken{margin-top:16px}
-.so-ken > div{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);column-gap:16px;padding:13px 0;border-top:1px solid var(--so-ln)}
+.so-trust a{display:block;padding:11px 0;margin:-11px 0}
+.so-over h2{font-size:clamp(24px,2.1vw,30px)!important;line-height:1.15}
+.so-over p{margin-top:12px;max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
+.so-ken{margin-top:22px}
+.so-ken > div{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);column-gap:16px;padding:13px 0;border-top:1px solid var(--so-ln)}
 .so-ken > div:last-child{border-bottom:1px solid var(--so-ln)}
 .so-ken dt{font-size:var(--t-body);line-height:1.45;color:var(--so-2)}
 .so-ken dd{font-size:var(--t-body);line-height:1.45;font-weight:500}
-.so-pics figure{overflow:hidden;border-radius:20px;background:#dcd9d0}
-.so-pics img{display:block;width:100%;height:100%;object-fit:cover}
-
-/* ---------- a · the photos on the left, one calm column on the page ---------- */
-.so-a .so-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start}
-.so-a .so-pics{display:grid;gap:clamp(12px,1.2vw,18px)}
-.so-a .so-pics figure{aspect-ratio:4/5}
-.so-a .so-info{max-width:540px}
-.so-a .so-trust{margin-top:clamp(32px,3.4vw,44px)}
-.so-a :is(.so-over,.so-kenb){margin-top:clamp(40px,4.4vw,60px)}
-
-/* ---------- a2 · "Легче": the same page with less than half the words ---------- */
-.so-set legend span{font-weight:400;color:var(--so-2)}
-.so-a2 .so-buy{margin-top:clamp(26px,2.8vw,38px)}
-.so-a2 .so-buy > * + *{margin-top:24px}
-.so-a2 .so-tot{align-items:center}
-.so-a2 .so-totnote{margin-top:10px;text-wrap:balance}
-.so-a2 .so-info{max-width:none}
-.so-a2 .so-pics figure + figure{aspect-ratio:4/3}
-.so-trust2{margin-top:clamp(30px,3.2vw,42px)}
-.so-trust2 li{padding:11px 0;border-top:1px solid var(--so-ln);font-size:15px;line-height:22px}
-.so-trust2 li:last-child{border-bottom:1px solid var(--so-ln)}
-.so-trust2 a{display:block;padding:11px 0;margin:-11px 0}
-.so-a2 .so-over p:not(.so-links){margin-top:12px}
-.so-a2 .so-ken{margin-top:22px}
-.so-a2 .so-ken > div{grid-template-columns:minmax(0,34%) minmax(0,1fr)}
-.so-links{margin-top:22px!important;font-size:var(--t-small)!important;line-height:1.5!important}
+.som .so-links{margin-top:22px;font-size:var(--t-small);line-height:1.5}
 .so-links span{display:block}
 .so-links span + span{margin-top:8px}
-.so-links a{padding-block:13px}
-html.srt-a2 .so-oth :is(.so-s,.so-pro){display:none}
 
-/* ---------- b · the name and the two photos, then the order as on the calculator ---------- */
-.so-b h1{font-size:var(--t-display)}
-.so-b .so-hd{display:grid;grid-template-columns:minmax(0,1fr) var(--so-col);column-gap:var(--so-gap);align-items:end;margin-bottom:clamp(24px,2.8vw,40px)}
-.so-b .so-hd .so-desc{margin-top:0}
-.so-from{margin-top:10px;font-size:var(--t-small);line-height:1.3;color:var(--soft,#5f5e58)}
-.so-from b{margin:0 4px 0 2px;font-size:var(--t-sub);font-weight:600;letter-spacing:-.03em;color:var(--so-moss);font-variant-numeric:tabular-nums}
-.so-b .so-pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,20px)}
-.so-b .so-pics figure{aspect-ratio:5/4}
-.so-band{display:grid;grid-template-columns:minmax(0,1fr) var(--so-col);column-gap:var(--so-gap);align-items:start;margin-top:clamp(44px,5vw,72px)}
-.so-b .so-ask{max-width:640px}
-.so-b .so-ask > .so-h3{margin-bottom:clamp(20px,2vw,28px)}
-.so-b .so-band > .so-ask{grid-column:1;grid-row:1}
-.so-b .so-band > .so-slip{grid-column:2;grid-row:1 / span 2}
-.so-b .so-band > .so-trust{grid-column:1;grid-row:2;max-width:640px;margin-top:clamp(32px,3.4vw,44px)}
-.so-b .so-more{margin-top:var(--sec)}
-.so-b .so-kenb .so-ken{margin-top:14px}
-/* the sheet: the facts card's surface, a hairline inside */
-.so-slip{position:sticky;top:var(--so-top);padding:clamp(22px,2.6vw,36px);border-radius:20px;scroll-margin-top:calc(var(--so-top) + 8px);box-shadow:inset 0 0 0 1px var(--so-hair);background:var(--so-sheet)}
-.so-sliph{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
-.so-slips{margin-top:4px;margin-bottom:16px;font-size:var(--t-small);line-height:1.5;color:var(--so-2)}
-.so-lines > div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--so-ln)}
-.so-lines dt{font-size:var(--t-body);line-height:1.4}
-.so-lines small{display:block;margin-top:1px;font-size:var(--t-small);line-height:1.45;font-weight:400;color:var(--so-2)}
-.so-lines dd{flex:none;font-size:var(--t-body);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.so-lines .so-ltot{border-top-color:var(--color-fg,#141413);padding:18px 0 0}
-.so-ltot dt{font-weight:600}
-.so-lines .so-ltot dd{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em}
-
-/* ---------- c · one card in the soft colour of the variety's flower ---------- */
-.so-card{position:relative;display:grid;grid-template-columns:minmax(0,45%) minmax(0,1fr);border-radius:28px;overflow:hidden;
-  background:radial-gradient(ellipse 85% 60% at 100% 0%,color-mix(in oklab,var(--g) 62%,#f1ead4) 0%,color-mix(in oklab,var(--g) 40%,#f1ead4) 22%,color-mix(in oklab,var(--g) 16%,#f1ead4) 44%,rgba(241,234,212,0) 76%),
-    radial-gradient(ellipse 80% 50% at 0% 100%,#d3dcc0 0%,transparent 70%),linear-gradient(to bottom,#f0ebd9 0%,#ebece3 50%,#e2e8d6 100%)}
-.so-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px var(--so-hair)}
-.so-cph{position:relative;min-height:100%;background:#dcd9d0}
-.so-cph > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
-.so-cph[data-show="2"] > .so-p2,.so-cph[data-show="1"] > .so-p1{opacity:1}
-.so-th{position:absolute;left:16px;bottom:16px;display:flex;gap:8px}
-.so-th button{width:56px;height:56px;padding:0;border:0;border-radius:14px;overflow:hidden;background:#dcd9d0;cursor:pointer;opacity:.82;transition:opacity .2s ease}
-.so-th button[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 2px var(--so-paper)}
-.so-th img{width:100%;height:100%;object-fit:cover}
-.som .so-th button:focus-visible{outline:2px solid var(--so-paper);outline-offset:3px}
-.so-cbody{padding:clamp(28px,3.6vw,56px)}
-.so-c .so-buy{max-width:560px}
-.so-c .so-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);margin-top:clamp(28px,3vw,44px)}
-.so-c .so-trust li{border-bottom:0}
-.so-c .so-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--so-gap);align-items:start;margin-top:var(--sec)}
+/* ---------- the page: the photos on the left, one calm column on the right; "Over" under that column ---------- */
+.so-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"pics info" "pics over";column-gap:var(--so-gap);align-items:start}
+.so-pics{grid-area:pics;display:grid;gap:clamp(12px,1.2vw,18px)}
+.so-info{grid-area:info}
+.so-over{grid-area:over;margin-top:clamp(40px,4.4vw,60px)}
+.so-pics figure{overflow:hidden;border-radius:20px;background:#dcd9d0;aspect-ratio:4/5}
+.so-pics figure + figure{aspect-ratio:4/3}
+.so-pics img{display:block;width:100%;height:100%;object-fit:cover}
+/* 900–1279 px: the column beside the photos is shorter than they are, so "Over" lies under both, its text and its facts
+   side by side, and the order stays in view while the photos pass */
+@media (min-width:900px) and (max-width:1279.98px){
+  .so-grid{grid-template-rows:auto auto;grid-template-areas:"pics info" "over over"}
+  .so-info{position:sticky;top:96px}
+  .so-pics figure + figure{aspect-ratio:16/10}
+  .so-over{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start;margin-top:clamp(48px,6vw,72px)}
+  .so-over .so-ken{margin-top:0}
+}
 
 /* ---------- the other varieties: the homepage's assortment cards ---------- */
 .so-oth > .in{padding-top:var(--sec);padding-bottom:var(--sec)}
@@ -192,62 +122,38 @@ html.srt-a2 .so-oth :is(.so-s,.so-pro){display:none}
 .so-ph{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#dcd9d0}
 .so-ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .so-it h3{margin-top:14px;font-size:var(--t-body);line-height:1.2;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
-.so-pr{margin-top:8px;display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:6px}
-.so-v{font-size:var(--t-small);color:var(--soft,#5f5e58)}
+.so-pr{margin-top:8px;display:flex;align-items:baseline;gap:6px}
+.so-pr span{font-size:var(--t-small);color:var(--soft,#5f5e58)}
 .so-pr b{font-size:var(--t-sub);line-height:1.1;font-weight:600;letter-spacing:-.03em;color:var(--so-moss);font-variant-numeric:tabular-nums}
-.so-s{grid-column:1/-1;margin-top:3px;font-size:var(--t-micro,13px);line-height:1.35;color:var(--soft,#5f5e58)}
 @media (hover:hover){ .so-it > a:hover .so-ph img{transform:scale(1.03)} .so-it > a:hover h3{color:var(--so-moss)} }
-.so-pro{margin-top:clamp(36px,4vw,56px);padding-top:18px;border-top:1px solid var(--so-ln);font-size:var(--t-body);line-height:1.5;color:var(--so-2)}
-
-.so-bar{display:none}
 @media (max-width:1099.98px){ .so-ogrid{grid-template-columns:repeat(3,minmax(0,1fr))} }
 
 /* ---------- one column ---------- */
+.so-bar{display:none}
 @media (max-width:899.98px){
   .so > .in{padding-top:calc(64px + 18px)}
-  .so-a .so-grid,.so-band,.so-b .so-hd,.so-c .so-more{display:block}
-  .so-a .so-info{max-width:none}
-  /* a: the two photos in a row that slides sideways; the second one shows its edge */
-  .so-a .so-pics{display:flex;gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;margin-bottom:22px}
-  .so-a .so-pics::-webkit-scrollbar{display:none}
-  .so-a .so-pics figure,.so-a2 .so-pics figure + figure{flex:0 0 86%;aspect-ratio:4/5;scroll-snap-align:start;border-radius:16px}
-  .so-b .so-hd .so-desc{margin-top:12px}
-  .so-b .so-pics figure{aspect-ratio:4/5;border-radius:16px}
-  .so-b .so-pics{margin-top:20px}
-  .so-b .so-hd{margin-bottom:0}
-  .so-band{margin-top:32px}
-  .so-b .so-ask,.so-b .so-band > .so-trust{max-width:none}
-  .so-slip{position:relative;top:auto;margin-top:28px}
-  .so-b .so-more{margin-top:clamp(44px,7vw,64px)}
-  .so-b .so-kenb,.so-c .so-kenb{margin-top:clamp(36px,6vw,48px)}
-  .so-card{display:block;border-radius:22px}
-  .so-cph{min-height:0;aspect-ratio:1/1}
-  .so-cbody{padding:22px 18px 24px}
-  .so-c .so-trust{display:block}
-  .so-c .so-trust li:last-child{border-bottom:1px solid var(--so-ln)}
-  .so-c .so-more{margin-top:clamp(44px,7vw,64px)}
-  /* the small bar at the bottom: the total and the cart button (a, c) or the way to the sheet (b) */
-  .so-bar{position:fixed;z-index:40;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:8px 8px 8px 20px;border-radius:999px;
-    background:var(--so-paper);box-shadow:inset 0 0 0 1px rgba(63,74,55,.2);color:var(--color-fg);
+  .so-grid{display:block}
+  /* the two photos in a row that slides sideways; the second one shows its edge */
+  .so-pics{display:flex;gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;margin-bottom:22px}
+  .so-pics::-webkit-scrollbar{display:none}
+  .so-pics figure,.so-pics figure + figure{flex:0 0 86%;aspect-ratio:4/5;scroll-snap-align:start;border-radius:16px}
+  /* the small bar at the bottom: the total and the cart button, once the real button has gone up out of view */
+  .so-bar{position:fixed;z-index:40;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:60px;padding:8px 8px 8px 20px;border-radius:999px;
+    background:var(--so-paper);box-shadow:inset 0 0 0 1px rgba(63,74,55,.2);
     opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
   .so-bar.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .3s ease}
-  .so-bar > span{min-width:0}
-  .so-bar :is(b,i){overflow:hidden;text-overflow:ellipsis}
   .so-bar b{display:block;font-family:'Newsreader',Georgia,serif;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-sub);line-height:1.1;white-space:nowrap}
-  .so-bar i{display:block;font-style:normal;font-size:var(--t-small);line-height:1.3;color:var(--so-2);white-space:nowrap}
+  .so-bar > span{min-width:0}
+  .so-bar i{display:block;font-style:normal;font-size:var(--t-small);line-height:1.3;color:var(--so-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .som .so-bar .so-add{flex:none;width:auto;height:44px;margin:0;padding:0 22px}
-  .som a.so-mini{padding:8px 20px;text-decoration:none;background:linear-gradient(to right,#dfe6d2,#ebe9d8 55%,#ede6cd);box-shadow:inset 0 0 0 1px var(--so-hair)}
-  .so-mini em{font-style:normal;font-size:var(--t-small);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
   .so :is(input,button,a){scroll-margin-bottom:88px}
 }
-@media (min-width:600px) and (max-width:899.98px){
-  .so-a .so-pics figure,.so-a2 .so-pics figure + figure{flex:1 1 0}
-  .so-slip{max-width:520px;margin-inline:auto}
-}
+@media (min-width:600px) and (max-width:899.98px){ .so-pics figure,.so-pics figure + figure{flex:1 1 0} }
 @media (max-width:599.98px){
   .so-ogrid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px;row-gap:28px}
   .so-ph{border-radius:16px}
   .so-it h3{margin-top:12px}
 }
-@media (max-width:359.98px){ .so-subst label > span{padding:0 12px} .som .so-bar .so-add{padding:0 16px} .so-bar{padding-left:16px} }
+/* the narrowest phones: the bar keeps the whole sum, also a long one */
+@media (max-width:379.98px){ .so-bar{padding-left:16px} .so-bar b{font-size:18px} .som .so-bar .so-add{padding:0 12px;font-size:14px} .so-subst label > span{padding:0 12px} }
 @media (prefers-reduced-motion:reduce){ .som *,.so-bar{transition:none!important} }

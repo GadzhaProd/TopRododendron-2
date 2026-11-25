@@ -87,17 +87,61 @@
     cd.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCart(); if (e.key === 'Tab') trap(cd.querySelector('.cd-p'), e); });
   }
 
-  /* the cart count: the header cart (desktop), the menu button and the menu row (phone). The mockup's cart is empty;
-     window.tbCart(n) shows how a count looks. */
+  /* the cart count: the header cart (desktop), the menu button and the menu row (phone). It counts plants; the bags of
+     substrate are a line of their own in the drawer. */
   function setCount(n) {
-    document.querySelectorAll('.hc-n').forEach(function (b) { b.textContent = n > 9 ? '9+' : String(n); b.hidden = !n; });
-    var c = document.querySelector('header .hc-cart'); if (c) c.setAttribute('aria-label', n ? 'Winkelwagen, ' + n + (n === 1 ? ' artikel' : ' artikelen') : 'Winkelwagen, leeg');
-    var r = document.querySelector('.mm-cn'); if (r) r.textContent = n ? n + (n === 1 ? ' artikel' : ' artikelen') : 'leeg';
+    document.querySelectorAll('.hc-n').forEach(function (b) { b.textContent = n > 99 ? '99+' : String(n); b.hidden = !n; });
+    var c = document.querySelector('header .hc-cart'); if (c) c.setAttribute('aria-label', n ? 'Winkelwagen, ' + n + (n === 1 ? ' plant' : ' planten') : 'Winkelwagen, leeg');
+    var r = document.querySelector('.mm-cn'); if (r) r.textContent = n ? n + (n === 1 ? ' plant' : ' planten') : 'leeg';
     root.setAttribute('data-cart', n);
     var m = document.querySelector('header button[aria-controls="mobile-menu"]');
     if (m && m.getAttribute('aria-expanded') !== 'true') m.setAttribute('aria-label', 'Menu openen' + (n ? ', ' + n + ' in winkelwagen' : ''));
   }
   window.tbCart = setCount;
+
+  /* the mockup's cart: a list of lines kept for this browser tab (so it survives the way from a variety page to the
+     homepage), shown in the drawer with its sum. window.tbCartAdd({ name, size, qty, price, bags, bagPrice }) adds plants
+     of one variety and size, and their bags of substrate. Lines of the same variety and size are joined. */
+  var eur = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
+  var cart = { lines: [], bags: 0, bagPrice: 0 };
+  try { var kept = JSON.parse(sessionStorage.getItem('tb-cart')); if (kept && kept.lines) cart = kept; } catch (e) {}
+  function drawCart() {
+    var box = cd && cd.querySelector('.cd-l'); if (!box) return;
+    var list = box.querySelector('.cd-ls'), plants = 0, sum = 0;
+    list.textContent = '';
+    function row(title, sub, amount, key) {
+      var li = document.createElement('li'), t = document.createElement('p'), b = document.createElement('b'), s = document.createElement('span'),
+        a = document.createElement('p'), x = document.createElement('button');
+      b.textContent = title; s.textContent = sub; t.appendChild(b); t.appendChild(s);
+      a.className = 'cd-am'; a.textContent = eur.format(amount);
+      x.type = 'button'; x.className = 'cd-rm'; x.textContent = 'Verwijder'; x.setAttribute('aria-label', title + ' verwijderen'); x.setAttribute('data-rm', key);
+      li.appendChild(t); li.appendChild(a); li.appendChild(x); list.appendChild(li);
+    }
+    cart.lines.forEach(function (l, i) {
+      plants += l.qty; sum += l.qty * l.price;
+      row(l.qty + ' × ' + l.name, l.size + ', ' + eur.format(l.price) + ' per plant', l.qty * l.price, i);
+    });
+    if (cart.bags) { sum += cart.bags * cart.bagPrice; row(cart.bags + ' × Tuinturf-substraat', 'zak van 40 L, ' + eur.format(cart.bagPrice) + ' per zak', cart.bags * cart.bagPrice, 'bags'); }
+    var any = cart.lines.length > 0 || cart.bags > 0;
+    box.hidden = !any; cd.querySelector('.cd-e').hidden = any;
+    box.querySelector('[data-cd-total]').textContent = eur.format(sum);
+    setCount(plants);
+    try { sessionStorage.setItem('tb-cart', JSON.stringify(cart)); } catch (e) {}
+  }
+  window.tbCartAdd = function (it) {
+    var same = cart.lines.filter(function (l) { return l.name === it.name && l.size === it.size; })[0];
+    if (same) same.qty += it.qty; else cart.lines.push({ name: it.name, size: it.size, qty: it.qty, price: it.price });
+    if (it.bags) { cart.bags += it.bags; cart.bagPrice = it.bagPrice; }
+    drawCart();
+  };
+  if (cd) cd.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-rm]'); if (!b) return;
+    var k = b.getAttribute('data-rm');
+    if (k === 'bags') cart.bags = 0; else cart.lines.splice(parseInt(k, 10), 1);
+    drawCart();
+    (cd.querySelector('[data-rm]') || cd.querySelector('.cd-x')).focus();
+  });
+  drawCart();
 
   /* the phone menu */
   var mb = document.querySelector('header button[aria-controls="mobile-menu"]');
