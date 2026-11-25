@@ -79,7 +79,8 @@ def calc_html():
     maat = _tiles('size', [(str(i), f'<b data-s="{i}">{LOWS[i]}–{t} cm</b><em data-p="{i}"></em>', '') for i, t in enumerate(TOPS)], '2', 'sx-sizes', 'Hoogte bij levering, prijs per plant',
                   '<p class="sx-hint" data-o="sizenote">U krijgt planten van 60 tot 80&nbsp;cm hoog, gemeten vanaf de bovenkant van de kluit.</p>')
     # the substrate as a choice in tiles like the others, so it reads as optional (owner, 23 Nov: a checkbox looked compulsory)
-    sub = _tiles('sub', [('1', '<b>Ja, erbij</b>', ''), ('0', '<b>Nee, niet nodig</b>', '')], '1', 'sx-subst', 'Tuinturf-substraat',
+    # substrate is not pre-ticked (owner, 25 Nov: "Nee, niet nodig" everywhere; a pre-selected paid extra is a risk for EU consumers)
+    sub = _tiles('sub', [('1', '<b>Ja, erbij</b>', ''), ('0', '<b>Nee, niet nodig</b>', '')], '0', 'sx-subst', 'Tuinturf-substraat',
                  '<p class="sx-hint">1 zak van 40&nbsp;L per plant, € 16,50 per zak. Bij zandgrond of een grote kluit meer.</p>')
     ask = ('<div class="sx-ask"><h2 id="h-haag" class="sx-h"><span>Hoeveel planten</span> <span>voor uw <span data-o="h2">haag</span>?</span></h2>'
            '<p class="sx-lead">Vul de maten in en kies soort en hoogte. U ziet meteen hoeveel planten u nodig heeft en wat het kost.</p>'
