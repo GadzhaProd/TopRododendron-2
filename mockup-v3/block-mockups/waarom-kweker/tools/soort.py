@@ -19,7 +19,7 @@ GROND = 'Zure, losse grond (pH 4,5–6)'
 # slug: the facts line · the short description · "Over" · the kenmerken (in the order of KEN, without the last two, which are
 # the same for all) · the focus of the bush photo on a card (as on the homepage)
 TEXT = {
-    'nova-zembla': (['Mei – juni', 'tot 3 m', 'Halfschaduw', 'Winterhard'],
+    'nova-zembla': (['Mei – juni', 'tot 3 m', 'Halfschaduw of zon', 'Winterhard'],
         'Helderrode bloemtrossen in mei en juni, op een stevige, groenblijvende struik.',
         'Nova Zembla is een van de bekendste rode rhododendrons. De helderrode bloemtrossen verschijnen in mei en juni boven donkergroen blad. '
         'De struik is winterhard en geschikt als solitair, in een groep of als haag. Hij staat het liefst in halfschaduw en verdraagt ook zon, zolang de grond niet uitdroogt.',
@@ -57,11 +57,11 @@ TEXT = {
 }
 # a2: "Over" in two sentences (what it looks like, what it is for); the months, the height and the position are in the facts line
 OVER2 = {
-    'nova-zembla': 'Een van de bekendste rode rhododendrons: helderrode bloemtrossen boven donkergroen, groenblijvend blad. Voor solitair, groep of haag.',
-    'catawbiense-grandiflorum': 'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep.',
+    'nova-zembla': 'Een van de bekendste rode rhododendrons: helderrode bloemtrossen boven donkergroen, groenblijvend blad. Voor solitair, groep of haag; verdraagt zon als de grond vochtig blijft.',
+    'catawbiense-grandiflorum': 'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep; verdraagt zon als de grond vochtig blijft.',
     'cunninghams-white': 'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint, al in april. Een volle, compacte, groenblijvende struik voor solitair, groep of haag.',
-    'catawbiense-boursault': 'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Voor solitair, groep of haag.',
-    'roseum-elegans': 'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Geschikt als solitair of als haag in een ruimere tuin.',
+    'catawbiense-boursault': 'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Voor solitair, groep of haag; verdraagt zon als de grond vochtig blijft.',
+    'roseum-elegans': 'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Geschikt als solitair of als haag in een ruimere tuin; verdraagt zon als de grond vochtig blijft.',
     'ponticum': 'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming, ook in de schaduw.',
     'ponticum-roseum': 'Roze tot lichtpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een hoge haag of een afscherming.',
 }
@@ -69,12 +69,15 @@ SLUGS = ['nova-zembla', 'catawbiense-grandiflorum', 'cunninghams-white', 'catawb
 # the widths of the photos: img/<slug>-sm.webp, img/<slug>-lg.webp (the flower) and the same with "-2" (the bush). The
 # "-lg" files are copies of rhododendrons/public/images, at most 1344 px wide, made for this page (24 Nov)
 W = {'nova-zembla': ((900, 1024), (672, 896)), 'roseum-elegans': ((900, 1024), (900, 1024)), 'ponticum': ((600, 1024), (672, 1344))}
+WINTER = dict(zip(SLUGS, [30, 30, 25, 25, 30, 20, 20]))   # winterhard tot ca. −N °C (docs/winterhardheid.md; owner, 25 Nov)
+PLANT = 'het hele jaar, behalve bij vorst; het best maart–april of september–oktober'   # the owner's own text (faq of the old site), shortened
 SOORTEN = []
 for slug, (name, prices, rng) in zip(SLUGS, calc3.SOORTEN):
     f, d, o, k, pos = TEXT[slug]
+    k = k[:6] + ['tot ca. −%d\u00a0°C' % WINTER[slug]]
     SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o, 'o2': OVER2[slug],
                     'k': k + ['Groenblijvend', GROND],
-                    'k2': [k[3] + ' hoog, ' + k[4].replace('tot ', '') + ' breed', k[5], k[6], 'Zuur en los, pH 4,5–6'], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
+                    'k2': [k[3] + ' hoog, ' + k[4].replace('tot ', '') + ' breed', k[5], k[6], 'Zuur en los, pH 4,5–6', PLANT], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
 DATA = _html.escape(json.dumps(SOORTEN, ensure_ascii=False), quote=True)
 MINUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>'
 PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>'
@@ -179,14 +182,14 @@ def dir_a2():
             + '</figure><figure>' + _img(1, '(min-width:900px) 45vw, 86vw', lazy=True) + '</figure></div>')
     maat = _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(4)], '0', 'so-sizes',
                   'Hoogte bij levering<span>, gemeten vanaf de kluit</span>')
-    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, € 14,95 per zak van 40&nbsp;L</span>')
-    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b><small>exclusief bezorgkosten</small></p><p class="so-totv" data-o="total"></p></div>'
-    ask = ('<p class="so-note" data-row="big">Groter, tot <span data-o="max"></span>&nbsp;cm? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
+    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per plant, €&nbsp;14,95</span>')
+    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b><small>exclusief bezorgkosten; die ziet u vóór u betaalt</small></p><p class="so-totv" data-o="total"></p></div>'
+    ask = ('<p class="so-note" data-row="big">Grotere maten tot <span data-o="max"></span>&nbsp;cm op aanvraag: <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
            '<p class="so-note" data-row="ask">Vragen? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>')
     buy = '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty(u).replace('Aantal planten', 'Aantal') + sub + '</div>' + tot + ADD + ask + '</div>'
     trust2 = ('<ul class="so-trust2"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of afhalen in Otterlo</li>'
               '<li>Vers gerooid, met kluit</li></ul>')
-    rows = ''.join(f'<div><dt>{l}</dt><dd data-k2="{i}"></dd></div>' for i, l in enumerate(['Volgroeid', 'Groei', 'Winterhard', 'Grond']))
+    rows = ''.join(f'<div><dt>{l}</dt><dd data-k2="{i}"></dd></div>' for i, l in enumerate(['Volgroeid', 'Groei', 'Winterhard', 'Grond', 'Planten']))
     about = (f'<section class="so-over" aria-labelledby="{u}-ho"><h2 id="{u}-ho" class="so-h3">Over <span data-o="name"></span></h2><p data-o="over2"></p>'
              f'<dl class="so-ken" aria-label="Kenmerken">{rows}</dl>'
              '<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'

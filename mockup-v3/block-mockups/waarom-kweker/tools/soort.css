@@ -118,6 +118,7 @@ html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b
 .so-a2 .so-buy{margin-top:clamp(26px,2.8vw,38px)}
 .so-a2 .so-buy > * + *{margin-top:24px}
 .so-a2 .so-tot{align-items:center}
+.so-a2 .so-totl small{max-width:17em;text-wrap:balance}
 .so-a2 .so-pics figure + figure{aspect-ratio:4/3}
 .so-trust2{margin-top:clamp(30px,3.2vw,42px)}
 .so-trust2 li{padding:11px 0;border-top:1px solid var(--so-ln);font-size:15px;line-height:22px}
