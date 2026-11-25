@@ -106,16 +106,19 @@
 .sx-lines dd{flex:none;font-size:var(--t-body);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .sx-lines .sx-tot{border-top-color:var(--color-fg,#141413);padding:18px 0 0}
 .sx-tot dt{font-weight:600}
+.sx-lines .sx-tot{align-items:center}
 .sx-lines .sx-tot dd{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em}
-.sx-totnote{margin-top:6px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
 /* the cart button: lighter than moss, the cards' glow inside it */
-.sx .sx-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:16px;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;
+.sx .sx-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:24px;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;
   background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
 .sx-status{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--sx-moss);font-weight:600}
 .sx-status:empty{display:none}
-.sx-note{margin-top:16px;font-size:var(--t-small);line-height:1.5;color:var(--sx-2);text-wrap:pretty}
-/* the two links of the note get a full finger's height */
-.sx-note a{display:inline-block;padding:12px 0;margin:-12px 0}
+/* under the button, at a distance: delivery, pick-up and larger sizes as short hairline rows; the links a full finger high */
+.sx-info{margin-top:clamp(32px,3vw,40px)}
+.sx-info > div{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);column-gap:14px;padding:10px 0;border-top:1px solid var(--sx-ln);font-size:var(--t-small);line-height:1.5}
+.sx-info dt{color:var(--sx-2)}
+.sx-info dd{text-wrap:pretty}
+.sx-info a{padding-block:13px}
 
 /* a pointer over a control (never on touch, where a hover would stick after the tap) */
 @media (hover:hover){

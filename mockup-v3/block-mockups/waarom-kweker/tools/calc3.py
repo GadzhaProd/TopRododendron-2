@@ -16,7 +16,11 @@ SOORTEN = [  # the order of the assortment cards: name · price per plant for th
     ('Ponticum Roseum', [17.5, 19.5, 31.75, 49, 125], (40, 160)),
 ]
 BAG = 16.5      # Tuinturf-substraat, per bag of 40 L (Rhododendronwal's price, 25 Nov); the same figure is in calc3.js
-DELIVERY = 'Exclusief bezorging (€&nbsp;75 per&nbsp;bestelling). Levering meestal binnen een&nbsp;week; afhalen in Wekerom is&nbsp;gratis.'
+# what a buyer needs to know besides the price, as short rows (label, text); under the button, never round it (owner,
+# 25 Nov: "the buy button must be about buying"). The calculator's sheet and the variety pages show the same rows.
+BEZORGEN = ('Bezorgen', '€&nbsp;75 per bestelling, meestal binnen een&nbsp;week')
+AFHALEN = ('Afhalen', 'Gratis, in Wekerom')
+EXCL = 'excl. bezorging'      # the small word beside the total
 
 
 def euro(x):
@@ -92,10 +96,11 @@ def calc_html():
             '<p class="sx-norm"><span data-o="permlead"></span>: <span data-o="perm"></span>. <span data-o="dense"></span></p>'
             '<dl class="sx-lines"><div><dt><span data-o="n"></span> <span data-o="nword"></span><small><span data-o="each"></span> per plant</small></dt><dd data-o="plants"></dd></div>'
             '<div data-row="sub"><dt><span data-o="bags"></span> <span data-o="bword"></span> substraat<small>€ 16,50 per zak van 40&nbsp;L</small></dt><dd data-o="bagsum"></dd></div>'
-            '<div class="sx-tot"><dt>Totaal</dt><dd data-o="total"></dd></div></dl>'
-            '<p class="sx-totnote">' + DELIVERY + '</p>'
+            f'<div class="sx-tot"><dt>Totaal<small>{EXCL}</small></dt><dd data-o="total"></dd></div></dl>'
             '<button type="button" class="sx-add" data-add>In winkelwagen</button><p class="sx-status" data-o="status" role="status"></p>'
-            '<p class="sx-note" data-row="big">Grotere maten, tot <span data-o="max"></span>&nbsp;cm? Vraag een prijs aan via <a ' + WA + '>WhatsApp</a> of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a>.</p></div>')
+            f'<dl class="sx-info"><div><dt>{BEZORGEN[0]}</dt><dd>{BEZORGEN[1]}</dd></div><div><dt>{AFHALEN[0]}</dt><dd>{AFHALEN[1]}</dd></div>'
+            '<div data-row="big"><dt>Grotere maten</dt><dd>Tot <span data-o="max"></span>&nbsp;cm, op aanvraag: <a ' + WA + '>WhatsApp</a> of bel '
+            '<a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a></dd></div></dl></div>')
     mini = (f'<a class="sx-mini" href="#{U}-res"><span><b data-o="total"></b><i><span data-o="n"></span> <span data-o="nword"></span></i></span><em>Bekijk de berekening</em></a>')
     # the bag price and the size slots are written here once; the script reads them (and so does the variety page)
     cfg = _html.escape(json.dumps({'bag': BAG, 'lows': LOWS, 'tops': TOPS}), quote=True)

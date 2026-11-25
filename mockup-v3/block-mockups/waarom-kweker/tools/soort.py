@@ -94,13 +94,18 @@ def buy(slug):
            f'<button type="button" data-step="1" aria-label="Eén plant meer">{PLUS}</button></div></div>')
     sub = _tiles('sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst',
                  'Tuinturf-substraat<span>, 1&nbsp;zak (40&nbsp;L) per&nbsp;plant, ' + calc3.euro(calc3.BAG).replace(' ', '&nbsp;') + '&nbsp;per&nbsp;zak</span>')
-    tot = ('<div class="so-tot"><p class="so-totl">Totaal</p><p class="so-totv" data-o="total">' + calc3.euro(s['p'][slots[0]]) + '</p></div>'
-           '<p class="so-totnote">' + calc3.DELIVERY + '</p>')
+    tot = (f'<div class="so-tot"><p class="so-totl">Totaal<small>{calc3.EXCL}</small></p><p class="so-totv" data-o="total">' + calc3.euro(s['p'][slots[0]]) + '</p></div>')
     add = '<button type="button" class="so-add" data-add>In winkelwagen</button><p class="so-vh" data-o="status" role="status"></p>'
-    # one line with the two ways to reach the nursery: about larger sizes where the variety has them, a plain one otherwise
-    ask = (f'<p class="so-note">Grotere maten tot {s["m"]}&nbsp;cm op aanvraag: stuur een <a {WA}>WhatsApp</a> of bel {TEL}.</p>' if s['m'] > calc3.TOPS[-1]
-           else f'<p class="so-note">Vragen? Stuur een <a {WA}>WhatsApp</a> of bel {TEL}.</p>')
-    return '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty + sub + '</div>' + tot + add + ask + '</div>'
+    return '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty + sub + '</div>' + tot + add + '</div>'
+
+
+def info(slug):
+    # what a buyer needs to know besides the price: one calm list at a distance under the button, never round it (owner,
+    # 25 Nov). Delivery and pick-up (the calculator's rows), the guarantee, fresh-dug, and the way to ask for larger sizes
+    s = BY[slug]; contact = f'<a {WA}>WhatsApp</a> of bel {TEL}'
+    rows = [calc3.BEZORGEN, calc3.AFHALEN, ('Garantie', '<a href="garantie.html">3 maanden aangroeigarantie</a>'), ('Vers', 'Gerooid vlak voor levering, met kluit'),
+            ('Grotere maten', f'Tot {s["m"]}&nbsp;cm, op aanvraag: {contact}') if s['m'] > calc3.TOPS[-1] else ('Vragen', 'Stuur een ' + contact)]
+    return ('<h2 class="so-vh">Bezorgen, afhalen en garantie</h2><dl class="so-ken so-info-l">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>')
 
 
 def about(slug):
@@ -131,11 +136,9 @@ def main_html(slug):
              f'<a href="index.html#assortiment">Assortiment</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>')
     pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(slug, 2, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloeiende struik', True)
             + '</figure><figure>' + _img(slug, 1, '(min-width:900px) 45vw, 86vw', s['n'] + ', bloem van dichtbij', False) + '</figure></div>')
-    trust = ('<ul class="so-trust"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of gratis afhalen in Wekerom</li>'
-             '<li>Vers gerooid, met kluit</li></ul>')
     bar = '<div class="so-bar" data-bar><span><b data-o="total"></b><i data-o="barline"></i></span><button type="button" class="so-add" data-add>In winkelwagen</button></div>'
     return (f'<main id="main" tabindex="-1" class="som" data-so="{data}"><div class="so"><div class="in">' + crumb + '<div class="so-grid">' + pics
-            + f'<div class="so-info"><div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>' + buy(slug) + trust + '</div>' + about(slug) + '</div></div>' + bar + '</div>'
+            + f'<div class="so-info"><div class="so-head"><h1>{name}</h1>' + facts(slug) + '</div>' + buy(slug) + info(slug) + '</div>' + about(slug) + '</div></div>' + bar + '</div>'
             + others(slug) + '<p class="so-vh" data-o="said" aria-live="polite"></p></main>')
 
 

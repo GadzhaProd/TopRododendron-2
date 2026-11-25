@@ -66,25 +66,24 @@
   font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:44px}
 .som .so-val input:focus,.som .so-val input:focus-visible{outline:0!important;box-shadow:none!important}
 .so-step:has(input:focus-visible){box-shadow:inset 0 0 0 1.5px rgba(63,74,55,.7)}
-/* the total on the page: a dark hairline, the sum in Newsreader, the delivery in one quiet line */
-.so-tot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px!important;padding-top:18px;border-top:1px solid var(--color-fg,#141413)}
+/* the total on the page: a dark hairline, the sum in Newsreader, one small word about delivery; then the button, alone */
+.so-tot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px!important;padding-top:20px;border-top:1px solid var(--color-fg,#141413)}
 .so-totl{font-size:var(--t-body);line-height:1.4;font-weight:600}
+.so-totl small{display:block;font-size:var(--t-small);line-height:1.4;font-weight:400;color:var(--so-2)}
 .so-totv{flex:none;font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:var(--t-h2);line-height:1;letter-spacing:-.014em;white-space:nowrap}
-.som .so-totnote{margin-top:10px;font-size:var(--t-small);line-height:1.5;color:var(--so-2);text-wrap:pretty}
-.som .so-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:16px;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;white-space:nowrap;
+.som .so-add{display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:22px!important;padding:0 28px;border:0;border-radius:999px;color:#2f3829;font-size:var(--t-body);font-weight:600;cursor:pointer;white-space:nowrap;
   background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
-.som .so-note{margin-top:14px;font-size:var(--t-small);line-height:1.5;color:var(--so-2);text-wrap:pretty}
-.so-note a,.so-links a{padding-block:13px}
+.so-info-l a,.so-links a{padding-block:13px}
 @media (hover:hover){
   .so-set label:hover > input:not(:checked) + span,.so-step button:not(:disabled):hover{background:#fff}
   .som .so-add:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
 }
 
 /* ---------- the trust lines, "Over" and its facts: hairline rows ---------- */
-.so-trust{margin-top:clamp(30px,3.2vw,42px)}
-.so-trust li{padding:11px 0;border-top:1px solid var(--so-ln);font-size:15px;line-height:22px;text-wrap:balance}
-.so-trust li:last-child{border-bottom:1px solid var(--so-ln)}
-.so-trust a{display:block;padding:11px 0;margin:-11px 0}
+/* under the button, at a distance: delivery, pick-up, the guarantee, fresh-dug and larger sizes, in the rows of the facts */
+.so-ken.so-info-l{margin-top:clamp(48px,5vw,64px)}
+.so-info-l dt,.so-info-l dd{font-size:15px}
+.so-info-l dd{font-weight:400;text-wrap:pretty}
 .so-over h2{font-size:clamp(24px,2.1vw,30px)!important;line-height:1.15}
 .so-over p{margin-top:12px;max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
 .so-ken{margin-top:22px}
@@ -104,12 +103,13 @@
 .so-pics figure{overflow:hidden;border-radius:20px;background:#dcd9d0;aspect-ratio:4/5}
 .so-pics figure + figure{aspect-ratio:4/3}
 .so-pics img{display:block;width:100%;height:100%;object-fit:cover}
-/* 900–1279 px: the column beside the photos is shorter than they are, so "Over" lies under both, its text and its facts
-   side by side, and the order stays in view while the photos pass */
+/* 900–1279 px: the column beside the photos is shorter than two full photos, so the photos take its height (they do not
+   size the row: contain) and no empty band stands under the order; "Over" lies under both, its text and its facts side by side */
 @media (min-width:900px) and (max-width:1279.98px){
   .so-grid{grid-template-rows:auto auto;grid-template-areas:"pics info" "over over"}
-  .so-info{position:sticky;top:96px}
-  .so-pics figure + figure{aspect-ratio:16/10}
+  .so-pics{contain:size;align-self:stretch;display:flex;flex-direction:column}
+  .so-pics figure{flex:1 1 0;min-height:0;aspect-ratio:auto}
+  .so-pics figure + figure{flex:0 0 36%;aspect-ratio:auto}
   .so-over{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);column-gap:var(--so-gap);align-items:start;margin-top:clamp(48px,6vw,72px)}
   .so-over .so-ken{margin-top:0}
 }
