@@ -24,13 +24,13 @@ V = {
     'catawbiense-grandiflorum': ('Mei–juni', '3', '3', 'zon', 'Matig tot snel', 30,
         'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep' + SUN, '50% 50%'),
     'cunninghams-white': ('April–mei', '2,5', '2,5', 'half', 'Langzaam', 25,
-        'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint, al in april. Een volle, compacte, groenblijvende struik; als solitair, in een groep of als haag.', '50% 40%'),
+        'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint. Een volle, compacte, groenblijvende struik; als solitair, in een groep of als haag.', '50% 40%'),
     'catawbiense-boursault': ('Mei–juni', '2,5', '2,5', 'zon', 'Matig', 25,
         'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Als solitair, in een groep of als haag' + SUN, '50% 50%'),
     'roseum-elegans': ('Mei–juni', '2,5', '2,5', 'zon', 'Matig tot snel', 30,
         'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Als solitair of als haag in een ruimere tuin' + SUN, '50% 60%'),
     'ponticum': ('Mei–juni', '4', '4', 'schaduw', 'Snel', 20,
-        'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming, ook in de schaduw.', '50% 50%'),
+        'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming.', '50% 50%'),
     'ponticum-roseum': ('Mei–juni', '4', '3,5', 'schaduw', 'Snel', 20,
         'Roze tot lichtpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een hoge haag of een afscherming.', '50% 50%'),
 }
@@ -80,7 +80,10 @@ def _img(slug, n, sizes, alt, first):
 
 def facts(slug):
     bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
-    items = [('bloei', 'Bloei', bloei), ('hoogte', 'Hoogte, volgroeid', f'Tot {hoog}&nbsp;m hoog'), (ps, 'Standplaats', PLACE[ps]), ('winter', '', 'Winterhard')]
+    # each fact stands on the page once (owner, 25 Nov): the four main ones here with their exact values, the rest in the
+    # rows under the description. The order pairs a short fact with a long one, so the two-by-two grid fits a phone.
+    items = [('bloei', 'Bloei', bloei), (ps, 'Standplaats', PLACE[ps]), ('hoogte', 'Hoogte, volgroeid', f'Tot {hoog}&nbsp;m hoog'),
+             ('winter', '', f'Winterhard tot −{winter}&nbsp;°C')]
     return '<ul class="so-facts">' + ''.join('<li>' + _icon(k) + (f'<span class="so-vh">{l}: </span>' if l else '') + t + '</li>' for k, l, t in items) + '</ul>'
 
 
@@ -114,9 +117,10 @@ LINKS = ('<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Rek
 
 def about(slug, links=True):
     bloei, hoog, breed, ps, groei, winter, over, pos = V[slug]
-    rows = [('Volgroeid', f'Tot {hoog}&nbsp;m hoog, {breed}&nbsp;m breed'), ('Groei', groei), ('Winterhard', f'Tot ca. −{winter}&nbsp;°C'),
-            ('Grond', 'Zuur en los, pH 4,5–6'), ('Planttijd', PLANT)]
-    return ('<section class="so-over" aria-labelledby="so-ho"><div><h2 id="so-ho">Over ' + _html.escape(BY[slug]['n']) + '</h2><p>' + over + '</p></div>'
+    # no visible heading (it would repeat the name above); the text says what the facts line does not: how the plant looks,
+    # what it is for, and when it takes sun. The rows: only what stands nowhere above
+    rows = [('Breedte', f'Tot {breed}&nbsp;m'), ('Groei', groei), ('Grond', 'Zuur en los, pH 4,5–6'), ('Planttijd', PLANT)]
+    return ('<section class="so-over" aria-labelledby="so-ho"><div><h2 id="so-ho" class="so-vh">Over deze soort</h2><p>' + over + '</p></div>'
             '<div><h3 class="so-vh">Kenmerken</h3><dl class="so-ken">' + ''.join(f'<div><dt>{l}</dt><dd>{v}</dd></div>' for l, v in rows) + '</dl>'
             + (LINKS if links else '') + '</div></section>')
 

@@ -54,16 +54,17 @@
 .so-sizes b{white-space:nowrap}
 .so-sizes em{font-style:normal;font-size:var(--t-small);font-variant-numeric:tabular-nums;color:var(--so-2)}
 .so-sizes input:checked + span::after{position:absolute;right:10px;bottom:9px}
-/* the number of plants: minus, the figure, plus, on one tile */
+/* the number of plants: minus, the figure, plus, on one tile; the figure in the text face, so the total stays the only
+   large number of the order (owner, 25 Nov) */
 .so-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:22px clamp(28px,3vw,44px)}
 .so-step{display:inline-flex;align-items:center;border-radius:14px;background:var(--so-paper)}
 .so-step button{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:14px;background:none;cursor:pointer;transition:background-color .2s ease}
 .so-step button:disabled{cursor:default}
 .so-step button:disabled svg{opacity:.3}
-.so-step svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.so-step svg{width:14px;height:14px;fill:none;stroke:var(--so-2);stroke-width:1.5;stroke-linecap:round}
 .so-val{display:flex;align-items:center;justify-content:center;height:44px}
-.so-val input{box-sizing:content-box;width:1ch;min-width:44px;height:44px;padding:0;border:0;border-radius:0;background:none;text-align:center;
-  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-weight:500;font-size:28px;line-height:44px}
+.so-val input{box-sizing:content-box;width:1ch;min-width:36px;height:44px;padding:0;border:0;border-radius:0;background:none;text-align:center;
+  font-size:17px;font-weight:500;font-variant-numeric:tabular-nums;line-height:44px;color:var(--color-fg)}
 .som .so-val input:focus,.som .so-val input:focus-visible{outline:0!important;box-shadow:none!important}
 .so-step:has(input:focus-visible){box-shadow:inset 0 0 0 1.5px rgba(63,74,55,.7)}
 /* the total on the page: a dark hairline, the sum in Newsreader, one small word about delivery; then the button, alone */
@@ -84,8 +85,7 @@
 .so-ken.so-info-l{margin-top:clamp(48px,5vw,64px)}
 .so-info-l dt,.so-info-l dd{font-size:15px}
 .so-info-l dd{font-weight:400;text-wrap:pretty}
-.so-over h2{font-size:clamp(24px,2.1vw,30px)!important;line-height:1.15}
-.so-over p{margin-top:12px;max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
+.so-over p{max-width:36em;font-size:var(--t-body);line-height:1.65;color:var(--so-2);text-wrap:pretty}
 .so-ken{margin-top:22px}
 .so-ken > div{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);column-gap:16px;padding:13px 0;border-top:1px solid var(--so-ln)}
 .so-ken > div:last-child{border-bottom:1px solid var(--so-ln)}
