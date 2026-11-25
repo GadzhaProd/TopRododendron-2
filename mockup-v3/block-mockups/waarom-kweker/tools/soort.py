@@ -55,6 +55,16 @@ TEXT = {
         'Daardoor is hij geschikt voor een hoge haag of een groenblijvende afscherming. Hij staat in halfschaduw of schaduw en is winterhard.',
         ['Roze tot lichtpaars', 'Mei – juni', 'Halfschaduw of schaduw', 'tot 4 m', 'tot 3,5 m', 'Snel', 'Ja (zone 5)'], '50% 50%'),
 }
+# a2: "Over" in two sentences (what it looks like, what it is for); the months, the height and the position are in the facts line
+OVER2 = {
+    'nova-zembla': 'Een van de bekendste rode rhododendrons: helderrode bloemtrossen boven donkergroen, groenblijvend blad. Voor solitair, groep of haag.',
+    'catawbiense-grandiflorum': 'Een van de grootste soorten die wij kweken, met lila-roze bloemtrossen en groenblijvend blad. Geschikt voor een hoge haag, een afscherming of een grote groep.',
+    'cunninghams-white': 'De vroegste bloeier van ons assortiment: witte bloemen met een lichtroze tint, al in april. Een volle, compacte, groenblijvende struik voor solitair, groep of haag.',
+    'catawbiense-boursault': 'Paars-lavendelkleurige bloemtrossen op een compacte, goed vertakte, groenblijvende struik. Voor solitair, groep of haag.',
+    'roseum-elegans': 'Warmroze tot lavendelroze bloemtrossen op een brede, krachtige, groenblijvende struik. Geschikt als solitair of als haag in een ruimere tuin.',
+    'ponticum': 'Violetpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een grote tuin of een hoge afscherming, ook in de schaduw.',
+    'ponticum-roseum': 'Roze tot lichtpaarse bloemen op een snelgroeiende, groenblijvende struik. Geschikt voor een hoge haag of een afscherming.',
+}
 SLUGS = ['nova-zembla', 'catawbiense-grandiflorum', 'cunninghams-white', 'catawbiense-boursault', 'roseum-elegans', 'ponticum', 'ponticum-roseum']
 # the widths of the photos: img/<slug>-sm.webp, img/<slug>-lg.webp (the flower) and the same with "-2" (the bush). The
 # "-lg" files are copies of rhododendrons/public/images, at most 1344 px wide, made for this page (24 Nov)
@@ -62,8 +72,9 @@ W = {'nova-zembla': ((900, 1024), (672, 896)), 'roseum-elegans': ((900, 1024), (
 SOORTEN = []
 for slug, (name, prices, rng) in zip(SLUGS, calc3.SOORTEN):
     f, d, o, k, pos = TEXT[slug]
-    SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o,
-                    'k': k + ['Groenblijvend', GROND], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
+    SOORTEN.append({'slug': slug, 'n': name, 'p': prices, 'a': rng[0], 'm': rng[1], 'g': calc3.GLOW[name], 'f': f, 'd': d, 'o': o, 'o2': OVER2[slug],
+                    'k': k + ['Groenblijvend', GROND],
+                    'k2': [k[3] + ' hoog, ' + k[4].replace('tot ', '') + ' breed', k[5], k[6], 'Zuur en los, pH 4,5–6'], 'w': W.get(slug, ((672, 1344), (672, 1344))), 'pos': pos})
 DATA = _html.escape(json.dumps(SOORTEN, ensure_ascii=False), quote=True)
 MINUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>'
 PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>'
@@ -158,6 +169,32 @@ def dir_a():
             + '<div class="so-info">' + head(u) + buy + trust() + over(u) + ken(u) + '</div></div></div>' + bar_buy() + '</div>')
 
 
+def dir_a2():
+    # "Легче" (owner, 24 Nov: a was overloaded with text): the same page with less than half the words. No description above
+    # the order; what a hint said is in the legend; one phrase under the total; one line under the button; three short trust
+    # lines; "Over" in two sentences with five facts under it (no row that repeats the facts line or the photo); the two
+    # quiet links (calculator, professionals) close the column
+    u = 'sol'
+    pics = ('<div class="so-pics" role="group" aria-label="Foto’s"><figure>' + _img(2, '(min-width:900px) 45vw, 86vw')
+            + '</figure><figure>' + _img(1, '(min-width:900px) 45vw, 86vw', lazy=True) + '</figure></div>')
+    maat = _tiles(u, 'size', [(str(i), f'<b data-s="{i}"></b><em data-p="{i}"></em>') for i in range(4)], '0', 'so-sizes',
+                  'Hoogte bij levering<span>, gemeten vanaf de kluit</span>')
+    sub = _tiles(u, 'sub', [('1', '<b>Ja, erbij</b>'), ('0', '<b>Nee, niet nodig</b>')], '0', 'so-subst', 'Tuinturf-substraat<span>, € 14,95 per zak van 40&nbsp;L</span>')
+    tot = '<div class="so-tot"><p class="so-totl"><b>Totaal</b><small>exclusief bezorgkosten</small></p><p class="so-totv" data-o="total"></p></div>'
+    ask = ('<p class="so-note" data-row="big">Groter, tot <span data-o="max"></span>&nbsp;cm? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>'
+           '<p class="so-note" data-row="ask">Vragen? <a ' + WA + '>WhatsApp</a> of bel ' + TEL + '.</p>')
+    buy = '<div class="so-buy" role="group" aria-label="Bestellen">' + maat + '<div class="so-row">' + qty(u).replace('Aantal planten', 'Aantal') + sub + '</div>' + tot + ADD + ask + '</div>'
+    trust2 = ('<ul class="so-trust2"><li><a href="garantie.html">3 maanden aangroeigarantie</a></li><li>Bezorgd door heel Nederland, of afhalen in Otterlo</li>'
+              '<li>Vers gerooid, met kluit</li></ul>')
+    rows = ''.join(f'<div><dt>{l}</dt><dd data-k2="{i}"></dd></div>' for i, l in enumerate(['Volgroeid', 'Groei', 'Winterhard', 'Grond']))
+    about = (f'<section class="so-over" aria-labelledby="{u}-ho"><h2 id="{u}-ho" class="so-h3">Over <span data-o="name"></span></h2><p data-o="over2"></p>'
+             f'<dl class="so-ken" aria-label="Kenmerken">{rows}</dl>'
+             '<p class="so-links"><span>Haag of groep? <a href="index.html#haag">Reken het aantal planten uit</a></span>'
+             '<span>Hovenier of grootverbruiker? <a href="index.html#contact">Vraag een prijsopgave aan</a></span></p></section>')
+    return ('<div class="so so-a so-a2" data-d="a2"><div class="in">' + crumb() + '<div class="so-grid">' + pics
+            + '<div class="so-info">' + head(u, False) + buy + trust2 + about + '</div></div></div>' + bar_buy() + '</div>')
+
+
 def dir_b():
     u = 'sob'
     top = ('<div class="so-hd"><div>' + head(u, False) + '</div><div><p class="so-desc" data-o="desc"></p><p class="so-from">vanaf <b data-o="from"></b> per plant, met kluit</p></div></div>'
@@ -192,7 +229,7 @@ def others():
 
 
 def main_html():
-    return (f'<main id="main" tabindex="-1" class="som" data-so data-soorten="{DATA}">' + dir_a() + dir_b() + dir_c() + others()
+    return (f'<main id="main" tabindex="-1" class="som" data-so data-soorten="{DATA}">' + dir_a2() + dir_a() + others()
             + '<p class="so-said" data-o="said" aria-live="polite"></p></main>')
 
 

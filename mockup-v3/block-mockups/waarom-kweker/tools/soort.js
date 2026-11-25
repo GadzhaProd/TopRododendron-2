@@ -17,8 +17,8 @@
   function words(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
   function parseQ(text) { var n = parseInt(String(text).replace(/\D/g, ''), 10); return isNaN(n) ? 1 : Math.min(MAXQ, Math.max(1, n)); }
   function current() {
-    var d = /\bsrt-([abc])\b/.exec(document.documentElement.className);
-    return main.querySelector('.so[data-d="' + (d ? d[1] : 'a') + '"]') || roots[0];
+    var d = /\bsrt-(a2|a|b|c)\b/.exec(document.documentElement.className);
+    return main.querySelector('.so[data-d="' + (d ? d[1] : 'a2') + '"]') || roots[0];
   }
 
   // the variety: its texts, photos and the list of the other varieties
@@ -29,8 +29,9 @@
     each(all('[data-o="facts"]'), function (el) {
       el.textContent = '';
       v.f.forEach(function (t) { var sp = document.createElement('span'); sp.textContent = t; el.appendChild(sp); });
-    }); put('desc', v.d); put('from', '€ ' + v.p[0]); put('over', v.o);
+    }); put('desc', v.d); put('from', '€ ' + v.p[0]); put('over', v.o); put('over2', v.o2);
     each(all('[data-k]'), function (el) { el.textContent = v.k[parseInt(el.getAttribute('data-k'), 10)]; });
+    each(all('[data-k2]'), function (el) { el.textContent = v.k2[parseInt(el.getAttribute('data-k2'), 10)]; });
     each(all('img[data-img]'), function (im) {
       var n = im.getAttribute('data-img'), base = 'img/' + v.slug + (n === '2' ? '-2' : ''), w = v.w[n === '2' ? 1 : 0];
       im.srcset = base + '-sm.webp ' + w[0] + 'w, ' + base + '-lg.webp ' + w[1] + 'w';

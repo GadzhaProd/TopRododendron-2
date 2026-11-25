@@ -14,7 +14,8 @@
 .som [hidden]{display:none!important}
 .som :is(button,input){font:inherit;color:inherit}
 .som ::selection{background:#d3dcc2;color:#141413}
-html.srt-a .so:not(.so-a),html.srt-b .so:not(.so-b),html.srt-c .so:not(.so-c){display:none}
+.so{display:none}
+html.srt-a .so[data-d="a"],html.srt-a2 .so[data-d="a2"],html.srt-b .so[data-d="b"],html.srt-c .so[data-d="c"]{display:block}
 .so > .in{padding-top:calc(80px + clamp(20px,2.4vw,36px));padding-bottom:0}
 .so a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(63,74,55,.55)}
 .som :is(a,button):focus-visible,.so-set label:has(input:focus-visible) > span{outline:2px solid var(--so-moss);outline-offset:3px}
@@ -112,6 +113,25 @@ html.srt-a .so:not(.so-a),html.srt-b .so:not(.so-b),html.srt-c .so:not(.so-c){di
 .so-a .so-trust{margin-top:clamp(32px,3.4vw,44px)}
 .so-a :is(.so-over,.so-kenb){margin-top:clamp(40px,4.4vw,60px)}
 
+/* ---------- a2 · "Легче": the same page with less than half the words ---------- */
+.so-set legend span{font-weight:400;color:var(--so-2)}
+.so-a2 .so-buy{margin-top:clamp(26px,2.8vw,38px)}
+.so-a2 .so-buy > * + *{margin-top:24px}
+.so-a2 .so-tot{align-items:center}
+.so-a2 .so-pics figure + figure{aspect-ratio:4/3}
+.so-trust2{margin-top:clamp(30px,3.2vw,42px)}
+.so-trust2 li{padding:11px 0;border-top:1px solid var(--so-ln);font-size:15px;line-height:22px}
+.so-trust2 li:last-child{border-bottom:1px solid var(--so-ln)}
+.so-trust2 a{display:block;padding:11px 0;margin:-11px 0}
+.so-a2 .so-over p:not(.so-links){margin-top:12px}
+.so-a2 .so-ken{margin-top:22px}
+.so-a2 .so-ken > div{grid-template-columns:minmax(0,34%) minmax(0,1fr)}
+.so-links{margin-top:22px!important;font-size:var(--t-small)!important;line-height:1.5!important}
+.so-links span{display:block}
+.so-links span + span{margin-top:8px}
+.so-links a{padding-block:13px}
+html.srt-a2 .so-oth :is(.so-s,.so-pro){display:none}
+
 /* ---------- b · the name and the two photos, then the order as on the calculator ---------- */
 .so-b h1{font-size:var(--t-display)}
 .so-b .so-hd{display:grid;grid-template-columns:minmax(0,1fr) var(--so-col);column-gap:var(--so-gap);align-items:end;margin-bottom:clamp(24px,2.8vw,40px)}
@@ -185,7 +205,7 @@ html.srt-a .so:not(.so-a),html.srt-b .so:not(.so-b),html.srt-c .so:not(.so-c){di
   /* a: the two photos in a row that slides sideways; the second one shows its edge */
   .so-a .so-pics{display:flex;gap:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;margin-bottom:22px}
   .so-a .so-pics::-webkit-scrollbar{display:none}
-  .so-a .so-pics figure{flex:0 0 86%;scroll-snap-align:start;border-radius:16px}
+  .so-a .so-pics figure,.so-a2 .so-pics figure + figure{flex:0 0 86%;aspect-ratio:4/5;scroll-snap-align:start;border-radius:16px}
   .so-b .so-hd .so-desc{margin-top:12px}
   .so-b .so-pics figure{aspect-ratio:4/5;border-radius:16px}
   .so-b .so-pics{margin-top:20px}
@@ -216,7 +236,7 @@ html.srt-a .so:not(.so-a),html.srt-b .so:not(.so-b),html.srt-c .so:not(.so-c){di
   .so :is(input,button,a){scroll-margin-bottom:88px}
 }
 @media (min-width:600px) and (max-width:899.98px){
-  .so-a .so-pics figure{flex:1 1 0}
+  .so-a .so-pics figure,.so-a2 .so-pics figure + figure{flex:1 1 0}
   .so-slip{max-width:520px;margin-inline:auto}
 }
 @media (max-width:599.98px){
