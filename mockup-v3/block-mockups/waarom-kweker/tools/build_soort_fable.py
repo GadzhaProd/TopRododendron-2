@@ -34,11 +34,14 @@ REVIEW = '''html{--so-rv:48px}body{padding-top:48px}header.fixed{top:48px}
 .rvs select{margin-left:8px;padding-right:8px;background:#111}
 .rvs button[aria-pressed="true"]{background:#fff;border-color:#fff;color:#111}
 .rvs :is(button,select):focus-visible{outline:2px solid #fff;outline-offset:2px}
-@media (max-width:760px){ .rvs{justify-content:flex-start} .rvs i,.rvs .l{display:none} }
+@media (max-width:1100px){ .rvs{justify-content:flex-start} }
+@media (max-width:760px){ .rvs .l{display:none} }
 '''
 BAR = ('<div class="rvs" role="group" aria-label="Варианты страницы сорта"><i>Страница сорта</i>'
        + ''.join(f'<button type="button" data-srt="{v}" aria-pressed="{"true" if v == "a2" else "false"}">{v.upper()}<span class="l"> · {n}</span></button>'
                  for v, n in [('a2', 'Легче'), ('a', 'Тихая страница')])
+       + '<i style="margin-left:10px">Значки</i>' + ''.join(f'<button type="button" data-sic="{v}" aria-pressed="{"true" if v == "0" else "false"}">{n}</button>'
+                 for v, n in [('0', 'Без значков'), ('1', '1 · В строке'), ('2', '2 · Ячейки'), ('3', '3 · Полоса')])
        + '<select data-srt-var aria-label="Сорт">' + ''.join(f'<option value="{x["slug"]}">{x["n"]}</option>' for x in soort.SOORTEN) + '</select></div>')
 RJS = '''(function(){var h=document.documentElement,m=/[?&]d=(a2|a)\\b/.exec(location.search),d=m?m[1]:null;
 try{d=d||sessionStorage.getItem('srt')}catch(e){}if(d!=='a'&&d!=='a2')d=null;
@@ -47,6 +50,11 @@ function set(v){h.className=h.className.replace(/\\bsrt-\\w+/,'srt-'+v);try{sess
 if(window.soDir)window.soDir(v)}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-srt]');if(b)set(b.getAttribute('data-srt'))});
 var sel=document.querySelector('[data-srt-var]');sel.addEventListener('change',function(){location.hash=sel.value});
+var mi=/[?&]ic=([0-3])/.exec(location.search),ic=mi?mi[1]:null;try{ic=ic||sessionStorage.getItem('sic')}catch(e){}
+function seti(v){h.className=h.className.replace(/ ?\\bsic-\\d/,'')+' sic-'+v;try{sessionStorage.setItem('sic',v)}catch(e){}
+[].forEach.call(document.querySelectorAll('[data-sic]'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-sic')===v?'true':'false')})}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-sic]');if(b)seti(b.getAttribute('data-sic'))});
+if(/^[1-3]$/.test(ic||''))seti(ic);
 window.soVar=function(slug){sel.value=slug};if(d&&d!=='a2')set(d)})();'''
 mh = re.search(r'<html lang="nl" class="([^"]*)">', s); assert mh and 'srt-' not in mh.group(1)
 s = s.replace(mh.group(0), '<html lang="nl" class="' + mh.group(1) + ' srt-a2">', 1)
