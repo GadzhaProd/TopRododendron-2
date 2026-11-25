@@ -5,7 +5,10 @@
 #   'c'  the owner's order for A (25 Nov): the question and the two numbers first, then the guarantee and under it the
 #        signature, which so both signs the promise and closes the block (the text is moved in the markup, so a screen
 #        reader reads it in the order it is seen)
-# The typed name stays in the text, so the signature is also an image with a plain alt.
+#   'd'  as 'c', but the help comes from the nursery ("Bel of app de kwekerij", as in the cart drawer) and Gert's name
+#        stands once, typed under his signature: "Gert Top, oprichter en kweker" (owner, 25 Nov: the name twice, or
+#        promising Gert on every call, did not sit right)
+# In a, b and c the typed name stays in the contact line; in d under the signature. The signature is an image with a plain alt.
 IMG = ('<img class="fd-sig" src="img/handtekening-gert-top.svg" alt="Handtekening van Gert Top" width="4804" height="1700" '
        'loading="lazy" decoding="async">')
 
@@ -34,11 +37,28 @@ CSS_C = '''#kweker .fd-pn-c > .fp-lead{margin-top:0}
   #kweker .fd-pn-c > .fp-act + .fp-txt{margin-top:0!important}
 }
 '''
+LEAD_D = 'Vragen over een soort of de garantie? Bel of app de kwekerij:'
+CAP = '<p class="fd-sigcap"><b>Gert Top</b>, oprichter en kweker</p>'
+# the typed name under the signature: small, the soft ink of the labels, the name itself in the text's ink
+CSS_D = '''#kweker .fd-sigcap{margin:6px 0 0;font-size:var(--t-small);line-height:1.4;color:#45443f}
+#kweker .fd-sigcap b{font-weight:600;color:#141413}
+@media (max-width:860px){
+  #kweker .fd-sig + .fd-sigcap{order:2;margin:6px 0 40px;padding:0 22px}
+  #kweker .fd-pn-c > .fp-txt + .fd-sig{margin-bottom:0}
+}
+'''
 
 
 def apply(html, place='a'):
     s = html
     start = s.index('id="kweker"')
+    if place == 'd':
+        s = apply(s, 'c')
+        l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
+        s = s[:l1] + LEAD_D + s[l2:]
+        k = s.index('class="fd-sig"'); k = s.index('>', k) + 1
+        s = s[:k] + CAP + s[k:]
+        return s.replace('</style></head>', CSS_D + '</style></head>', 1)
     if place == 'c':
         t0 = s.rindex('<p', 0, s.index('class="fp-txt"', start)); t1 = s.index('</p>', t0) + len('</p>')
         txt = s[t0:t1]; s = s[:t0] + s[t1:]
