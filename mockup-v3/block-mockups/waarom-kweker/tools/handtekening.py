@@ -10,6 +10,10 @@
 #        promising Gert on every call, did not sit right)
 #   'e'  as 'd', with a heading for the first part too, in the guarantee heading's style (owner, 26 Nov: the second part
 #        had a heading, the first did not): "Advies van de kwekerij." and one line under it
+#   'f'  as 'e' on desktop; on the phone Gert's face first (owner, 26 Nov, for comparison with 'e', where the portrait closes
+#        the card): the photo with a soft transition into the card (img/fd-podpis-top.webp, tools/fd_top_portrait.py), then
+#        the guarantee, the signature and his name, and the advice with the two numbers last. Phone only, by CSS order, so a
+#        screen reader there still reads the desktop order (advice first)
 # In a, b and c the typed name stays in the contact line; in d under the signature. The signature is an image with a plain alt.
 IMG = ('<img class="fd-sig" src="img/handtekening-gert-top.svg" alt="Handtekening van Gert Top" width="4804" height="1700" '
        'loading="lazy" decoding="async">')
@@ -66,10 +70,29 @@ CSS_E = '''#kweker .fd-pn-e > .fp-lead{font-size:var(--t-lead)!important;line-he
 }
 '''
 
+# 'f', phone only: the card is a one-column grid of ordered items (the panel is display:contents there). The photo's top 9 %
+# is its own backdrop fading out and slides under the card's top edge as in the approved bottom layout; its bottom is
+# transparent, so the guarantee heading starts right where the jacket has dissolved
+CSS_F = '''@media (max-width:860px){
+  #kweker .fd-card.fd-f > .fd-ph{order:1;margin:-9% 0 0}
+  #kweker .fd-f .fd-pn-c > .fp-txt{order:2;padding-top:6px}
+  #kweker .fd-f .fd-pn-c > .fp-txt + .fd-sig{order:3;margin:18px 0 0 16px}
+  #kweker .fd-f .fd-sig + .fd-sigcap{order:4;margin:6px 0 0}
+  #kweker .fd-f .fd-pn-c > .fp-lead{order:5;padding-top:40px}
+  #kweker .fd-f .fd-pn-c > .fp-act{order:6;padding-bottom:40px}
+}
+'''
+
 
 def apply(html, place='a'):
     s = html
     start = s.index('id="kweker"')
+    if place == 'f':
+        s = apply(s, 'e')
+        ph = 'class="ph-m" src="img/fd-podpis-bust.webp"'
+        assert s.count('class="fd-card"') == 1 and s.count(ph) == 1
+        s = s.replace('class="fd-card"', 'class="fd-card fd-f"', 1).replace(ph, ph.replace('-bust', '-top'), 1)
+        return s.replace('</style></head>', CSS_F + '</style></head>', 1)
     if place == 'e':
         s = apply(s, 'd')
         l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
