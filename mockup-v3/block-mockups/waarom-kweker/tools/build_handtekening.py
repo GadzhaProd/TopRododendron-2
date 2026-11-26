@@ -1,55 +1,32 @@
-# Mockup tool (not site code): handtekening.html = the homepage (index.html) with Gert's signature in the founder block in
-# three variants for review (tools/handtekening.py): A under the guarantee text, B under the two numbers, C the contact
-# first and the guarantee with the signature last (here by CSS order; the main build moves the text in the markup),
-# D as C with the help from the nursery and Gert's typed name under the signature.
-# A small black bar switches them (class hs-a / hs-b / hs-c on <html>); the page opens on the founder block.
+# Mockup tool (not site code): Gert's signature in the founder block for review, each variant built by the real
+# tools/handtekening.py apply() on index.html, so the page shows exactly what the main build would:
+#   handtekening.html    E  the contact part first with its own heading ("Advies van de kwekerij."), the guarantee,
+#                           the signature and "Gert Top, oprichter en kweker" under it (owner, 26 Nov)
+#   handtekening-d.html  D  as E without the heading ("Vragen over een soort of de garantie? Bel of app de kwekerij:")
+#   handtekening-c.html  C  the contact line with Gert's name first, the guarantee and the signature last
+# (A and B, the signature under the guarantee or under the numbers in the old order, are left out: the owner moved on to
+# the new order.) A small black bar links the three; each page opens on the founder block.
 # Usage: python3 tools/build_handtekening.py [dir]
-import re, pathlib, sys
+import pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import handtekening as h
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
-s = (D / 'index.html').read_text()
-assert 'class="fd-sig"' not in s
-start = s.index('id="kweker"')
-ia = s.index('</p>', s.index('class="fp-txt"', start)) + len('</p>')
-ib = s.index('</dl></div>', s.index('class="fp-act"', start)) + len('</dl></div>')
-A = h.IMG.replace('class="fd-sig"', 'class="fd-sig hs-ia"'); B = h.IMG.replace('class="fd-sig"', 'class="fd-sig hs-ib"')
-CAPR = h.CAP.replace('class="fd-sigcap"', 'class="fd-sigcap hs-cap"')
-s = s[:ia] + A + CAPR + s[ia:ib] + B + s[ib:]
-# the contact line in both wordings, one shown per variant
-l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
-s = s[:l1] + '<span class="hs-lc">' + s[l1:l2] + '</span><span class="hs-ld">' + h.LEAD_D + '</span>' + s[l2:]
+base = (D / 'index.html').read_text()
+assert 'class="fd-sig"' not in base
+PAGES = [('e', 'handtekening.html', 'E · с заголовком'), ('d', 'handtekening-d.html', 'D · имя под подписью'), ('c', 'handtekening-c.html', 'C · гарантия внизу')]
 REVIEW = '''body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
-html.hs-a .hs-ib,html.hs-b .hs-ia,html.hs-c .hs-ib,html.hs-d .hs-ib{display:none!important}
-html:not(.hs-d) .hs-ld,html:not(.hs-d) .hs-cap,html.hs-d .hs-lc{display:none!important}
-:is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-lead{order:1;margin-top:0}
-:is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-act{order:2}
-:is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-txt{order:3;margin-top:34px!important}
-:is(html.hs-c,html.hs-d) #kweker .fd-pn > :is(.hs-ia,.hs-cap){order:3}
-@media (max-width:860px){
-  :is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-lead{order:1;padding-top:28px}
-  :is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-act{order:1}
-  :is(html.hs-c,html.hs-d) #kweker .fd-pn > .fp-txt{order:2;padding-top:26px;margin-top:0!important}
-  :is(html.hs-c,html.hs-d) #kweker .fd-pn > :is(.hs-ia,.hs-cap){order:2}
-  html.hs-d #kweker .fd-pn > .hs-ia{margin-bottom:0}
-}
 .rvh{position:fixed;z-index:1000;left:0;right:0;top:0;height:48px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;background:#111;color:#fff;font:500 13px/1 Manrope,system-ui,sans-serif;white-space:nowrap}
 .rvh i{font-style:normal;color:#b9b9b4;margin-right:4px}
-.rvh button{height:32px;padding:0 14px;border:1px solid #555;border-radius:999px;background:none;color:#fff;font:inherit;cursor:pointer}
-.rvh button[aria-pressed="true"]{background:#fff;border-color:#fff;color:#111}
-@media (max-width:480px){ .rvh i{display:none} }
+.rvh a{display:inline-flex;align-items:center;height:32px;padding:0 12px;border:1px solid #555;border-radius:999px;color:#fff;text-decoration:none}
+.rvh a[aria-current]{background:#fff;border-color:#fff;color:#111}
+@media (max-width:480px){ .rvh i{display:none} .rvh a{padding:0 9px} }
 '''
-BAR = ('<div class="rvh" role="group" aria-label="Подпись Герта"><i>Подпись</i>'
-       '<button type="button" data-hs="a" aria-pressed="true">A · под гарантией</button>'
-       '<button type="button" data-hs="b" aria-pressed="false">B · под телефонами</button>'
-       '<button type="button" data-hs="c" aria-pressed="false">C · гарантия внизу</button>'
-       '<button type="button" data-hs="d" aria-pressed="false">D · имя под подписью</button></div>')
-JS = ('<script>(function(){var h=document.documentElement;[].forEach.call(document.querySelectorAll(".rvh button"),function(b){'
-      'b.addEventListener("click",function(){h.classList.remove("hs-a","hs-b","hs-c","hs-d");h.classList.add("hs-"+b.dataset.hs);'
-      '[].forEach.call(document.querySelectorAll(".rvh button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")})})});'
-      'if(!location.hash){var k=document.getElementById("kweker");if(k)setTimeout(function(){k.scrollIntoView()},60)}})();</script>')
-s = re.sub(r'<html lang="nl" class="([^"]*)">', lambda m: f'<html lang="nl" class="{m.group(1)} hs-a">', s, count=1)
-s = s.replace('</head>', '<style id="handtekening-css">' + h.CSS + h.CSS_D + '</style><style id="handtekening-review">' + REVIEW + '</style></head>', 1)
-s = s.replace('<div id="root">', BAR + '<div id="root">', 1).replace('</body>', JS + '</body>', 1)
-(D / 'handtekening.html').write_text(s)
-print('ok', len(s))
+JS = ('<script>(function(){if(!location.hash){var k=document.getElementById("kweker");if(k)setTimeout(function(){k.scrollIntoView()},60)}})();</script>')
+for v, name, label in PAGES:
+    bar = '<div class="rvh" role="group" aria-label="Подпись Герта"><i>Подпись</i>' + ''.join(
+        f'<a href="{n}"{" aria-current=" + chr(34) + "page" + chr(34) if n == name else ""}>{l}</a>' for _, n, l in PAGES) + '</div>'
+    s = h.apply(base, v)
+    s = s.replace('</head>', '<style id="handtekening-review">' + REVIEW + '</style></head>', 1)
+    s = s.replace('<div id="root">', bar + '<div id="root">', 1).replace('</body>', JS + '</body>', 1)
+    (D / name).write_text(s)
+    print(name, len(s))

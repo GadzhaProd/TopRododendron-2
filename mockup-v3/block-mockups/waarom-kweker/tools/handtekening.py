@@ -8,6 +8,8 @@
 #   'd'  as 'c', but the help comes from the nursery ("Bel of app de kwekerij", as in the cart drawer) and Gert's name
 #        stands once, typed under his signature: "Gert Top, oprichter en kweker" (owner, 25 Nov: the name twice, or
 #        promising Gert on every call, did not sit right)
+#   'e'  as 'd', with a heading for the first part too, in the guarantee heading's style (owner, 26 Nov: the second part
+#        had a heading, the first did not): "Advies van de kwekerij." and one line under it
 # In a, b and c the typed name stays in the contact line; in d under the signature. The signature is an image with a plain alt.
 IMG = ('<img class="fd-sig" src="img/handtekening-gert-top.svg" alt="Handtekening van Gert Top" width="4804" height="1700" '
        'loading="lazy" decoding="async">')
@@ -48,10 +50,27 @@ CSS_D = '''#kweker .fd-sigcap{margin:6px 0 0;font-size:var(--t-small);line-heigh
 }
 '''
 
+LEAD_E = '<b class="fd-ask">Advies van de kwekerij.</b>Over een soort, de maat of de garantie: bel of app ons.'
+# the first part in the guarantee's type: its heading the guarantee heading's size (--t-sub), its line the guarantee text's
+# (--t-lead); the page's own rules set those sizes with !important, so these do too
+CSS_E = '''#kweker .fd-pn-e > .fp-lead{font-size:var(--t-lead)!important;line-height:1.55;color:#3d3c37;max-width:50ch}
+#kweker .fd-pn-e .fd-ask{display:block;margin-bottom:clamp(10px,1vw,14px);font-size:var(--t-sub)!important;line-height:1.14;letter-spacing:-.028em;font-weight:600;color:#141413;text-wrap:balance}
+@media (max-width:860px){
+  #kweker .fd-pn-e > .fp-lead{line-height:1.5}
+  #kweker .fd-pn-e .fd-ask{line-height:1.2;margin-bottom:8px}
+}
+'''
+
 
 def apply(html, place='a'):
     s = html
     start = s.index('id="kweker"')
+    if place == 'e':
+        s = apply(s, 'd')
+        l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
+        s = s[:l1] + LEAD_E + s[l2:]
+        s = s.replace('class="fd-pn fd-pn-c"', 'class="fd-pn fd-pn-c fd-pn-e"', 1)
+        return s.replace('</style></head>', CSS_E + '</style></head>', 1)
     if place == 'd':
         s = apply(s, 'c')
         l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
