@@ -26,6 +26,11 @@ CSS = '''/* Gert's signature (tools/handtekening.py): one dark ink line, about t
   #kweker .fp-act + .fd-sig{order:3;margin:24px 0 40px 16px}
 }
 @media print{ #kweker .fd-sig{width:140px} }
+/* the two numbers a step quieter than the headings (owner, 26 Nov: "louder than the headings"): the text size instead of the
+   heading size, medium instead of semibold, a finer and lighter underline; the tap area stays tall (padding, with an equal
+   negative margin so the rows keep their spacing) */
+#kweker .fp-act .fp-num{font-size:var(--t-lead)!important;letter-spacing:-.01em}
+#kweker .fp-act .fp-num a{font-weight:500;text-decoration-thickness:1px;text-decoration-color:rgba(63,74,55,.4);text-underline-offset:5px;padding-block:12px;margin-block:-8px}
 '''
 # 'c': the contact first, the guarantee and the signature last. Desktop: the panel is a centred flex column, the lead
 # opens it and the guarantee takes the 34 px the lead had. Phone: the blocks are ordered grid items; the lead takes the
