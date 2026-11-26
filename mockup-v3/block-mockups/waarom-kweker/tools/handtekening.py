@@ -17,6 +17,10 @@
 #   'h'  as 'g', with another transition: the rest of the card is a sheet with rounded top corners that lies over the
 #        photo's lower edge, no fading
 #   In 'g' and 'h' the phone order is set by CSS, so a screen reader there still reads the desktop order (advice first)
+#   'i'  the reviewer's proposal (Fable, 26 Nov; owner: build it to see): the portrait stays at the bottom on the phone; the
+#        guarantee first, as it answers the section heading, then the advice and the two numbers, then the signature and the
+#        name under the numbers; less air above the head on the phone. The order is in the markup, so desktop, phone and a
+#        screen reader read the same order
 # In a, b and c the typed name stays in the contact line; in d under the signature. The signature is an image with a plain alt.
 import pathlib, re
 IMG = ('<img class="fd-sig" src="img/handtekening-gert-top.svg" alt="Handtekening van Gert Top" width="4804" height="1700" '
@@ -37,6 +41,8 @@ CSS = '''/* Gert's signature (tools/handtekening.py): one dark ink line, about t
 /* the two numbers a step quieter than the headings (owner, 26 Nov: "louder than the headings"): the text size instead of the
    heading size, medium instead of semibold, a finer and lighter underline; the tap area stays tall (padding, with an equal
    negative margin so the rows keep their spacing) */
+/* "Lees de voorwaarden" a 44 px tap target (it was 24 px; reviewer, 26 Nov); margins take the padding back, the line stays put */
+#kweker .fp-txt .fp-more{padding-block:10px;margin:-2px 0 -10px}
 #kweker .fp-act .fp-num{font-size:var(--t-lead)!important;letter-spacing:-.01em}
 #kweker .fp-act .fp-num a{font-weight:500;text-decoration-thickness:1px;text-decoration-color:rgba(63,74,55,.4);text-underline-offset:5px;padding-block:12px;margin-block:-8px}
 '''
@@ -95,10 +101,34 @@ CSS_BLAD = '''@media (max-width:860px){
   #kweker .fd-blad .fd-pn{margin-top:-22px;border-radius:24px 24px 0 0;box-shadow:0 -6px 18px rgba(20,24,30,.10)}
 }
 '''
+# 'i': the guarantee opens the panel, the advice follows after the gap the guarantee had (34 px desktop, 32 phone), the
+# signature follows the numbers, the same 8 px to the name as in 'e'. Phone: the panel's children keep their markup order (order 1), the portrait stays last (4) and
+# slides 26 px further under the caption (its top is its own backdrop fading out), about 64 px from the name to the hair
+CSS_I = '''#kweker .fd-pn-i > .fp-txt + .fp-lead{margin-top:34px}
+#kweker .fd-pn-i > .fp-act + .fd-sig{margin-bottom:clamp(4px,.6vw,8px)}
+@media (max-width:860px){
+  #kweker .fd-pn-i > .fp-txt{order:1}
+  #kweker .fd-pn-i > .fp-lead{order:1;padding-top:32px}
+  #kweker .fd-pn-i > .fp-txt + .fp-lead{margin-top:0}
+  #kweker .fd-pn-i > .fp-act{order:1}
+  #kweker .fd-pn-i > .fp-act + .fd-sig{order:1;margin:24px 0 0 16px}
+  #kweker .fd-pn-i > .fd-sig + .fd-sigcap{order:1;margin:6px 0 40px}
+  #kweker .fd-card.fd-i > .fd-ph{margin-top:calc(-9% - 26px)}
+}
+'''
 
 def apply(html, place='a'):
     s = html
     start = s.index('id="kweker"')
+    if place == 'i':
+        s = apply(s, 'e')
+        t0 = s.rindex('<p', 0, s.index('class="fp-txt"', start)); t1 = s.index('</p>', t0) + len('</p>')
+        txt = s[t0:t1]; s = s[:t0] + s[t1:]
+        l0 = s.rindex('<p', 0, s.index('class="fp-lead"', start) + 1)
+        s = s[:l0] + txt + s[l0:]
+        s = s.replace('class="fd-pn fd-pn-c fd-pn-e"', 'class="fd-pn fd-pn-c fd-pn-e fd-pn-i"', 1).replace('class="fd-card"', 'class="fd-card fd-i"', 1)
+        assert s.index('class="fp-txt"', start) < s.index('class="fp-lead"', start) < s.index('class="fp-act"', start) < s.index('class="fd-sig"', start)
+        return s.replace('</style></head>', CSS_I + '</style></head>', 1)
     if place == 'h':
         s = apply(s, 'g')
         s = s.replace('class="fd-card fd-top"', 'class="fd-card fd-top fd-blad"', 1)
