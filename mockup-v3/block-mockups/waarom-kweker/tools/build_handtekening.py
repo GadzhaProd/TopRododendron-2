@@ -3,10 +3,11 @@
 #   handtekening.html    E  the contact part first with its own heading ("Advies van de kwekerij."), the guarantee,
 #                           the signature and "Gert Top, oprichter en kweker" under it; on the phone the portrait closes the
 #                           card (owner, 26 Nov: "this one I like")
-#   handtekening-f.html  F  as E on desktop; on the phone the face first, with a soft transition into the card, then the
-#                           guarantee, the signature and the name, the advice and the numbers last (owner, 26 Nov, to compare)
-# (A to D are left out: the owner chose E's text and order; the comparison now is only where the face stands on the phone.)
-# A small black bar links the two; each page opens on the founder block.
+#   handtekening-foto.html  G  as E on desktop; on the phone the face first as a plain photo with a straight edge, then the
+#                              guarantee, the signature and the name, the advice and the numbers last (owner, 26 Nov, to compare)
+#   handtekening-blad.html  H  as G, the rest of the card a sheet lying over the photo's lower edge
+# (A to D are left out: the owner chose E's text and order; F, the photo fading into the card, was rejected.)
+# A small black bar links the three; each page opens on the founder block.
 # Usage: python3 tools/build_handtekening.py [dir]
 import pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -14,7 +15,7 @@ import handtekening as h
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 base = (D / 'index.html').read_text()
 assert 'class="fd-sig"' not in base
-PAGES = [('e', 'handtekening.html', 'Фото внизу'), ('f', 'handtekening-f.html', 'Фото сверху')]
+PAGES = [('e', 'handtekening.html', 'Фото внизу'), ('g', 'handtekening-foto.html', 'Фото сверху'), ('h', 'handtekening-blad.html', 'Лист')]
 REVIEW = '''body{padding-top:48px}header.fixed{top:48px}#hero{min-height:calc(100svh - 48px)}
 .rvh{position:fixed;z-index:1000;left:0;right:0;top:0;height:48px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;background:#111;color:#fff;font:500 13px/1 Manrope,system-ui,sans-serif;white-space:nowrap}
 .rvh i{font-style:normal;color:#b9b9b4;margin-right:4px}

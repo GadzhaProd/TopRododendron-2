@@ -10,11 +10,15 @@
 #        promising Gert on every call, did not sit right)
 #   'e'  as 'd', with a heading for the first part too, in the guarantee heading's style (owner, 26 Nov: the second part
 #        had a heading, the first did not): "Advies van de kwekerij." and one line under it
-#   'f'  as 'e' on desktop; on the phone Gert's face first (owner, 26 Nov, for comparison with 'e', where the portrait closes
-#        the card): the photo with a soft transition into the card (img/fd-podpis-top.webp, tools/fd_top_portrait.py), then
-#        the guarantee, the signature and his name, and the advice with the two numbers last. Phone only, by CSS order, so a
-#        screen reader there still reads the desktop order (advice first)
+#   'g'  as 'e' on desktop; on the phone Gert's face first (owner, 26 Nov, to compare with 'e', where the portrait closes the
+#        card): a plain photo at the top of the card with a straight edge (img/fd-foto-top.webp, tools/fd_foto_top.py), then
+#        the guarantee, the signature and his name, and the advice with the two numbers last. A fade of the jacket into the
+#        card was tried first and rejected by the owner ("this transition, no")
+#   'h'  as 'g', with another transition: the rest of the card is a sheet with rounded top corners that lies over the
+#        photo's lower edge, no fading
+#   In 'g' and 'h' the phone order is set by CSS, so a screen reader there still reads the desktop order (advice first)
 # In a, b and c the typed name stays in the contact line; in d under the signature. The signature is an image with a plain alt.
+import pathlib, re
 IMG = ('<img class="fd-sig" src="img/handtekening-gert-top.svg" alt="Handtekening van Gert Top" width="4804" height="1700" '
        'loading="lazy" decoding="async">')
 
@@ -70,29 +74,42 @@ CSS_E = '''#kweker .fd-pn-e > .fp-lead{font-size:var(--t-lead)!important;line-he
 }
 '''
 
-# 'f', phone only: the card is a one-column grid of ordered items (the panel is display:contents there). The photo's top 9 %
-# is its own backdrop fading out and slides under the card's top edge as in the approved bottom layout; its bottom is
-# transparent, so the guarantee heading starts right where the jacket has dissolved
-CSS_F = '''@media (max-width:860px){
-  #kweker .fd-card.fd-f > .fd-ph{order:1;margin:-9% 0 0}
-  #kweker .fd-f .fd-pn-c > .fp-txt{order:2;padding-top:6px}
-  #kweker .fd-f .fd-pn-c > .fp-txt + .fd-sig{order:3;margin:18px 0 0 16px}
-  #kweker .fd-f .fd-sig + .fd-sigcap{order:4;margin:6px 0 0}
-  #kweker .fd-f .fd-pn-c > .fp-lead{order:5;padding-top:40px}
-  #kweker .fd-f .fd-pn-c > .fp-act{order:6;padding-bottom:40px}
+# 'g' and 'h', phone only. The card is otherwise a one-column grid with the panel as display:contents; here the panel becomes
+# a block of its own under the photo, so it can carry the card's colour, glows and grain (the photo covers the card's own),
+# and in 'h' lie over the photo as a sheet
+NOISE = re.search(r'url\("data:image/svg\+xml;utf8,[^"]+"\)', (pathlib.Path(__file__).parent / 'fd-podpis.css').read_text()).group(0)
+CSS_TOP = '''@media (max-width:860px){
+  #kweker .fd-card.fd-top > .fd-ph{order:1;margin:0;aspect-ratio:1440/1546}
+  #kweker .fd-top .fd-pn{display:flex;flex-direction:column;order:2;position:relative;z-index:2;margin:0;padding:0 0 40px;
+    background:radial-gradient(ellipse 80% 190px at -10% 40px,rgba(183,198,160,.7) 0%,transparent 72%),radial-gradient(ellipse 60% 150px at 106% 150px,rgba(236,214,210,.65) 0%,transparent 72%),#e6e8e5}
+  #kweker .fd-top .fd-pn::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:''' + NOISE + ''';background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
+  #kweker .fd-top .fd-pn-c > .fp-txt{order:2;padding-top:28px}
+  #kweker .fd-top .fd-pn-c > .fp-txt + .fd-sig{order:3;margin:18px 0 0 16px}
+  #kweker .fd-top .fd-sig + .fd-sigcap{order:4;margin:6px 0 0}
+  #kweker .fd-top .fd-pn-c > .fp-lead{order:5;padding-top:40px}
+  #kweker .fd-top .fd-pn-c > .fp-act{order:6;padding-bottom:0}
 }
 '''
-
+# 'h': the sheet overlaps the photo by 22 px (the chin stays about 30 px clear of it); a faint shadow lifts its edge
+CSS_BLAD = '''@media (max-width:860px){
+  #kweker .fd-blad .fd-pn{margin-top:-22px;border-radius:24px 24px 0 0;box-shadow:0 -6px 18px rgba(20,24,30,.10)}
+}
+'''
 
 def apply(html, place='a'):
     s = html
     start = s.index('id="kweker"')
-    if place == 'f':
+    if place == 'h':
+        s = apply(s, 'g')
+        s = s.replace('class="fd-card fd-top"', 'class="fd-card fd-top fd-blad"', 1)
+        return s.replace('</style></head>', CSS_BLAD + '</style></head>', 1)
+    if place == 'g':
         s = apply(s, 'e')
-        ph = 'class="ph-m" src="img/fd-podpis-bust.webp"'
+        ph = 'class="ph-m" src="img/fd-podpis-bust.webp" alt="Gert Top, oprichter en kweker van Top Rhododendrons" width="1440" height="1718"'
         assert s.count('class="fd-card"') == 1 and s.count(ph) == 1
-        s = s.replace('class="fd-card"', 'class="fd-card fd-f"', 1).replace(ph, ph.replace('-bust', '-top'), 1)
-        return s.replace('</style></head>', CSS_F + '</style></head>', 1)
+        s = s.replace('class="fd-card"', 'class="fd-card fd-top"', 1)
+        s = s.replace(ph, ph.replace('fd-podpis-bust', 'fd-foto-top').replace('height="1718"', 'height="1546"'), 1)
+        return s.replace('</style></head>', CSS_TOP + '</style></head>', 1)
     if place == 'e':
         s = apply(s, 'd')
         l0 = s.index('class="fp-lead"', start); l1 = s.index('>', l0) + 1; l2 = s.index('</p>', l1)
