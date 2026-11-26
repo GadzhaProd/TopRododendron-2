@@ -195,5 +195,9 @@ s = footer.apply(s, 4)
 # the glow, no drawing, round or rectangular beds; reviewed twice; tools/calc3.py, calc3.css, calc3.js)
 import calc3
 s = calc3.apply(s)
+# Gert's signature in the founder card, with the advice first and the guarantee he signs last (owner approved variant E,
+# 26 Nov; reviewed on handtekening.html, independently reviewed by Fable; tools/handtekening.py)
+import handtekening
+s = handtekening.apply(s)
 (D / 'index.html').write_text(s)
 print('ok', len(s))
