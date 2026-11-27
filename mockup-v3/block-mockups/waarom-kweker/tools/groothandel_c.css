@@ -1,0 +1,116 @@
+/* ===== Groothandel, variant C: audience-led, the request always at hand =====
+   On top of tools/groothandel.css (variant A's base: type, hairline rows, steps, questions, the form card).
+   Built by tools/build_groothandel_c.py. From 1024 px: the content in the left column, a compact request card sticky on the
+   right (it ends with the column, before the form). Under 1024 px: one column and a calm bottom bar.
+   The segmented tabs with a sliding selected background: idea from 21st.dev (micka_design, "Segmented Tabs"); own code. */
+.ghc{--ghc-line:rgba(63,74,55,.2)}
+.ghc-wrap{padding-bottom:var(--sec)}
+.ghc-col{min-width:0;container-type:inline-size;container-name:ghc}
+.ghc-side{display:none}
+@media (min-width:1024px){
+  .ghc-wrap{display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,27vw,384px);column-gap:clamp(40px,5.5vw,96px);align-items:stretch}
+  .ghc-side{display:block;padding-top:calc(80px + clamp(36px,4.6vw,76px))}
+  .ghc-cta{display:none}
+  .ghc h1{font-size:clamp(38px,3.9vw,56px)}
+}
+
+/* ---------- the head ---------- */
+.ghc-head{padding-top:calc(80px + clamp(36px,4.6vw,76px))}
+@media (max-width:767px){ .ghc-head{padding-top:calc(64px + 32px)} }
+.ghc-photo{aspect-ratio:16/9}
+@media (max-width:860px){ .ghc-photo{aspect-ratio:4/3} }
+
+/* ---------- the sections in the column: the heading, then the content under it ---------- */
+.ghc-sec{padding-top:calc(var(--sec) * 1.4)}
+.ghc-sec > h2 span{display:block}
+.ghc-sec > h2 + *{margin-top:clamp(26px,2.8vw,40px)}
+.ghc-sec > .ghc-p{margin-top:clamp(16px,1.6vw,22px)}
+
+/* ---------- the audiences: a segmented choice, the selected one on a sliding sage ground; one panel at a time ---------- */
+.ghc-tabs{position:relative;display:flex;flex-direction:column;padding:5px;border-radius:22px;background:rgba(255,255,255,.5);box-shadow:inset 0 0 0 1px var(--ghc-line)}
+.ghc-tabs button{position:relative;z-index:1;display:flex;align-items:center;min-height:50px;padding:8px 18px;border:0;border-radius:17px;background:none;color:#5f5e58;
+  font:inherit;font-size:var(--t-body);line-height:1.3;font-weight:600;text-align:left;cursor:pointer;transition:color .25s}
+.ghc-tabs button[aria-selected="true"]{color:#2f3829}
+.ghc-tabs:not(.is-ready) button[aria-selected="true"]{background:#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28)}
+@media (hover:hover){ .ghc-tabs button:hover{color:#141413} }
+.ghc-ind{position:absolute;left:0;top:0;z-index:0;border-radius:17px;opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28);
+  transition:transform .35s cubic-bezier(.3,.7,.2,1),width .35s cubic-bezier(.3,.7,.2,1),height .35s cubic-bezier(.3,.7,.2,1)}
+.ghc-tabs.is-ready .ghc-ind{opacity:1}
+@media (prefers-reduced-motion:reduce){ .ghc-ind{transition:none} }
+@container ghc (min-width:640px){
+  .ghc-tabs{display:inline-flex;flex-direction:row;border-radius:999px}
+  .ghc-tabs button{min-height:46px;padding:6px 22px;border-radius:999px;white-space:nowrap}
+  .ghc-ind{border-radius:999px}
+}
+/* the panels share one cell, so the block keeps its height when the choice changes */
+.ghc .ghc-panels{display:grid;margin-top:clamp(24px,2.6vw,36px)}
+.ghc-panel{grid-area:1 / 1;min-width:0;transition:opacity .3s}
+.ghc-panel[aria-hidden="true"]{visibility:hidden;opacity:0}
+.ghc-panel h3{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
+.ghc-panel .gh-dl{margin-top:clamp(18px,1.8vw,24px)}
+/* the panel's three points: side by side under one hairline each (not a second copy of the rows below) */
+.ghc-panel .gh-dl > div{display:block;padding:14px 0 0;border-bottom:0}
+.ghc-panel .gh-dl > div + div{margin-top:16px}
+.ghc-panel .gh-dl dt{font-size:var(--t-small)}
+.ghc-panel .gh-dl dd{margin-top:4px}
+@container ghc (min-width:640px){
+  .ghc-panel .gh-dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(20px,3cqw,32px)}
+  .ghc-panel .gh-dl > div + div{margin-top:0}
+}
+
+/* ---------- the varieties: a hairline list, each row to its page; the last row to all sizes and prices ---------- */
+.ghc .ghc-sorts{display:grid;grid-template-columns:minmax(0,1fr);margin-top:clamp(24px,2.6vw,36px);border-bottom:1px solid var(--ghc-line)}
+.ghc-sorts li{border-top:1px solid var(--ghc-line)}
+.ghc .ghc-sorts a{display:flex;align-items:center;gap:16px;min-height:68px;padding:8px 4px 8px 0;color:#141413;font-size:var(--t-body);line-height:1.35;font-weight:500;text-decoration:none}
+.ghc-sorts img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover;background:#dfe2d8}
+.ghc-sorts span{flex:1;min-width:0}
+.ghc-sorts svg{flex:none;width:16px;height:16px;color:#5f5e58;transition:transform .3s}
+.ghc .ghc-all a{font-weight:600}
+@container ghc (max-width:599px){ .ghc .ghc-sorts a{min-height:60px;padding-block:6px} .ghc-sorts img{width:44px;height:44px} }
+@media (hover:hover){ .ghc .ghc-sorts a:hover span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px} .ghc-sorts a:hover svg{transform:translateX(3px)} }
+@container ghc (min-width:600px){
+  .ghc .ghc-sorts{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(28px,4cqw,48px);border-bottom:0}
+  .ghc-sorts li:nth-last-child(-n+2){border-bottom:1px solid var(--ghc-line)}
+}
+.ghc-big{margin-top:clamp(28px,2.8vw,40px)}
+.ghc-big p{margin-top:6px;font-size:var(--t-body);line-height:1.6;color:#3d3c37;max-width:38em;text-wrap:pretty}
+
+/* ---------- the steps: two by two in the column, one under the other when it is narrow ---------- */
+.ghc .ghc-steps{grid-template-columns:minmax(0,1fr);row-gap:clamp(28px,3vw,40px)}
+@container ghc (min-width:520px){ .ghc .ghc-steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* ---------- the sticky request card (from 1024 px) ---------- */
+.ghc-card{position:sticky;top:104px;isolation:isolate;overflow:hidden;border-radius:24px;padding:clamp(24px,2.1vw,30px);
+  background:radial-gradient(ellipse 70% 55% at 0% 0%,rgba(183,198,160,.55) 0%,transparent 72%),radial-gradient(ellipse 60% 55% at 100% 100%,rgba(236,214,210,.5) 0%,transparent 72%),#e6e8e2}
+.ghc-card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--gh-noise);background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
+.ghc-card > *{position:relative;z-index:1}
+@media (max-height:660px){ .ghc-card{position:relative;top:auto} }
+.ghc .ghc-card h2{font-size:clamp(24px,2vw,28px);line-height:1.15}
+.ghc-card-p{margin-top:10px;font-size:var(--t-body);line-height:1.55;color:#3d3c37;text-wrap:pretty}
+.ghc-note{display:flex;flex-direction:column;margin-top:22px}
+.ghc-note label{margin-bottom:8px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:#141413}
+.ghc-note textarea{width:100%;min-height:92px;padding:12px 14px;border:1px solid rgba(63,74,55,.28);border-radius:14px;background:rgba(255,255,255,.62);color:#141413;font:inherit;font-size:16px;line-height:1.45;resize:none;transition:border-color .2s,background .2s}
+.ghc-note textarea:hover{border-color:rgba(63,74,55,.45)}
+.ghc-note textarea:focus{background:#fff;border-color:#3f4a37;outline:2px solid rgba(63,74,55,.25);outline-offset:0}
+.ghc-note .gh-btn{margin-top:18px;width:100%;padding:0 18px}
+.ghc-card .gh-tel{margin-top:16px;text-align:center}
+.ghc-card-done{display:none;margin-top:14px;font-size:var(--t-body);line-height:1.55;font-weight:500;color:#141413}
+.ghc-sent .ghc-note,.ghc-sent .ghc-card-p{display:none}
+.ghc-sent .ghc-card-done{display:block}
+
+/* ---------- the request: the organisation choice spans the form ---------- */
+.ghc-req{padding-top:0}
+.ghc-req [data-f="rol"] .gh-pick span{min-height:44px;padding:0 16px;font-size:var(--t-small);font-weight:500}
+
+/* ---------- the bottom bar (under 1024 px) ---------- */
+.ghc-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(241,239,234,.88);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 -1px 0 rgba(63,74,55,.16);
+  transition:transform .35s cubic-bezier(.3,.7,.2,1),visibility 0s}
+.ghc-bar[data-off]{transform:translateY(105%);visibility:hidden;transition:transform .3s ease-in,visibility 0s .3s}
+@media (prefers-reduced-motion:reduce){ .ghc-bar,.ghc-bar[data-off]{transition:none} }
+@media (min-width:1024px){ .ghc-bar{display:none} }
+.ghc-bar-in{display:flex;align-items:center;gap:10px;max-width:1440px;margin:0 auto}
+.ghc-bar p{display:none;flex:1;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:20px;line-height:1.2;letter-spacing:-.01em;color:#141413}
+.ghc-bar .gh-btn{flex:1;min-width:0;padding:0 16px}
+@media (min-width:640px){ .ghc-bar p{display:block} .ghc-bar .gh-btn{flex:none;padding:0 26px} }
