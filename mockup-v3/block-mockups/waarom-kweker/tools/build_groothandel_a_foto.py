@@ -62,15 +62,16 @@ CSS = r'''
 .ghf-head .ghf-text{order:2;margin-top:clamp(24px,3.4vw,36px)}
 @media (max-width:767px){ .ghf-head{padding-top:calc(64px + 18px)} .ghf-head .gh-lead{margin-top:14px} .ghf-head .gh-cta{margin-top:22px} }
 @media (min-width:768px) and (max-width:1023px){ .ghf-head .ghf-photo{aspect-ratio:2/1} }
-/* from 1024 px: the text left, the field right, both in the first screen; the facts close the text at the photo's foot */
+/* from 1024 px: the text left, the field right, in one screen. The text column is the wider one, so the heading keeps its two
+   lines as in A, and the photo takes the text's height (no fixed height): no empty field under the button (owner, 27 Nov:
+   with a tall photo and the facts pinned to its foot the left column had a whole block of empty space) */
 @media (min-width:1024px){
-  .ghf-head{grid-template-columns:minmax(0,1fr) minmax(0,.86fr);grid-template-rows:auto 1fr;column-gap:clamp(40px,5.2vw,96px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
+  .ghf-head{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto;column-gap:clamp(40px,4.4vw,80px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
   .ghf-head .gh-crumb{grid-column:1;grid-row:1;margin-bottom:clamp(22px,2.4vw,36px);align-self:start}
-  .ghf-head .ghf-text{grid-column:1;grid-row:2;margin-top:0;display:flex;flex-direction:column}
-  .ghf-head .ghf-photo{grid-column:2;grid-row:1 / 3;aspect-ratio:auto;height:clamp(440px,calc(100svh - 80px - clamp(28px,3.4vw,56px) - 48px),680px)}
-  .ghf-head .ghf-photo img{object-position:46% 50%}
-  .ghm .ghf-head h1{font-size:clamp(42px,4.3vw,62px)}
-  .ghf-head .gh-facts{margin-top:auto;padding-top:28px}
+  .ghf-head .ghf-text{grid-column:1;grid-row:2;margin-top:0}
+  .ghf-head .ghf-photo{position:relative;grid-column:2;grid-row:1 / 3;aspect-ratio:auto;height:auto;min-height:clamp(340px,28vw,440px);align-self:stretch}
+  .ghf-head .ghf-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:46% 55%}
+  .ghm .ghf-head h1{font-size:clamp(38px,3.65vw,52px)}
 }
 /* the bottom bar */
 .ghf-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));
