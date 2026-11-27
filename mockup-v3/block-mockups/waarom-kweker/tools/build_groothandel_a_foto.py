@@ -6,7 +6,8 @@
 #      - from 1024 px: the text left and the field right, in one screen (a photo above the heading would push the heading and
 #        the action under the fold: 21:9 of 1324 px is 567 px).
 #   2. under 1024 px: variant C's calm bottom bar "Vraag een offerte aan" (the action leaves the first screen sooner here);
-#   3. the form: an error line now clears while typing, not on leaving the field (in A the line vanishes at the very moment
+#   3. (27 Nov, owner) "U koopt bij de kweker zelf." and the questions: heading over the block, content in two columns;
+#   4. the form: an error line now clears while typing, not on leaving the field (in A the line vanishes at the very moment
 #      of the next tap, the form jumps about 30 px and the tap on "Bezorgen in Nederland" misses).
 # The photo: img/hw-fable-veld.webp, our own field (the same shot as img/hero-field.jpg, 268 KB instead of 497 KB).
 # No new copy, no new facts (docs/groothandel-tekst-2026-11-26.md, docs/b2b-besluiten-2026-11-26.md).
@@ -45,6 +46,12 @@ HEAD = ('<section class="in gh-head ghf-head" aria-labelledby="h-gh">' + CRUMB
         + PHOTO + '</section>')
 s = s[:m.start()] + HEAD + s[m.end():]
 
+# ---------- 1b. the questions in two stacks of two (owner, 27 Nov: no empty area under the headings on the left) ----------
+fq = re.search(r'<div class="gh-r gh-faq">((?:<details>.*?</details>){4})</div>', s, flags=re.S)
+assert fq, 'the questions of variant A were not found'
+qs = re.findall(r'<details>.*?</details>', fq.group(1), flags=re.S)
+s = s[:fq.start()] + ('<div class="gh-r gh-faq ghf-faq"><div>' + ''.join(qs[:2]) + '</div><div>' + ''.join(qs[2:]) + '</div></div>') + s[fq.end():]
+
 # ---------- 2. the bottom bar under 1024 px (variant C's idea: one action, hidden at the head, the form and the footer) ----------
 ARROW = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" '
          'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
@@ -73,6 +80,18 @@ CSS = r'''
   .ghf-head .ghf-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:46% 55%}
   .ghm .ghf-head h1{font-size:clamp(38px,3.65vw,52px)}
 }
+/* "U koopt bij de kweker zelf." and the questions (owner, 27 Nov, marked on a screenshot: under these two headings the left
+   column was empty): from 861 px the heading spans the block and the content runs in two columns under it; the rows keep
+   their lines level across the two columns; the questions are two stacks, so opening one never moves the other */
+@media (min-width:861px){
+  .ghm :is(section[aria-labelledby="h-get"],section[aria-labelledby="h-faq"]) .gh-two{display:block}
+  .ghm :is(section[aria-labelledby="h-get"],section[aria-labelledby="h-faq"]) .gh-r{padding-top:0;margin-top:clamp(28px,3vw,44px)}
+  .ghm section[aria-labelledby="h-get"] .gh-dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:clamp(40px,5vw,96px)}
+  .ghm section[aria-labelledby="h-get"] .gh-dl > div:nth-child(3n){border-bottom:1px solid rgba(63,74,55,.2)}
+  .ghm .ghf-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,5vw,96px);align-items:start}
+}
+/* phone: one list again, no double line where the two stacks meet */
+@media (max-width:860px){ .ghm .ghf-faq > div:first-child details:last-child{border-bottom:0} }
 /* the bottom bar */
 .ghf-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));
   background:rgba(241,239,234,.88);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 -1px 0 rgba(63,74,55,.16);
