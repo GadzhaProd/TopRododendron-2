@@ -1,0 +1,122 @@
+/* ===== Groothandel, variant D: the compact page (owner, 27 Nov: "long, little text, scattered") =====
+   On top of tools/groothandel.css (variant A's base: type, hairline rows, the pill, the form). Built by tools/build_groothandel_d.py.
+   Four bands, each filling both sides by itself, 1 x --sec of air between them (A: 2 x):
+     1  the head: heading, line, action | our field
+     2  what you get: six rows          | how it works: four steps   (one table in two halves, the same hairline rows)
+     3  the seven varieties in a row, the large sizes and the link in one row under them
+     4  the request: intro and the questions | the form card
+   One heading size for the bands (--d-h2), so two headings can stand side by side without shouting. */
+.ghd{--d-h2:clamp(26px,2.5vw,36px);--d-line:rgba(63,74,55,.2);--d-gap:clamp(40px,5vw,96px);--d-band:calc(var(--sec) / 2)}
+.ghd h2{font-size:var(--d-h2);line-height:1.12}
+.ghd-band{padding-top:var(--d-band);padding-bottom:var(--d-band)}
+
+/* ---------- 1. the head (as groothandel-a-foto.html): phone and tablet the field first; from 1024 px the field beside the text ---------- */
+.ghd-head{display:grid;grid-template-columns:minmax(0,1fr);padding-bottom:var(--d-band)}
+.ghd-head .gh-crumb{order:0;margin-bottom:14px}
+.ghd-head .gh-crumb a{padding-inline:4px;margin-inline:-4px}
+.ghd-head .gh-photo{order:1;margin-top:0;aspect-ratio:16/9}
+.ghd-head .gh-photo img{object-position:50% 50%}
+.ghd-head .ghd-text{order:2;margin-top:clamp(24px,3.4vw,36px)}
+@media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} .ghd-head .gh-lead{margin-top:14px} .ghd-head .gh-cta{margin-top:22px} }
+@media (min-width:768px) and (max-width:1023px){ .ghd-head .gh-photo{aspect-ratio:2/1} }
+@media (min-width:1024px){
+  .ghd-head{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto;column-gap:clamp(40px,4.4vw,80px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
+  .ghd-head .gh-crumb{grid-column:1;grid-row:1;margin-bottom:clamp(22px,2.4vw,36px);align-self:start}
+  .ghd-head .ghd-text{grid-column:1;grid-row:2;margin-top:0}
+  .ghd-head .gh-photo{position:relative;grid-column:2;grid-row:1 / 3;aspect-ratio:auto;height:auto;min-height:clamp(340px,28vw,440px);align-self:stretch}
+  .ghd-head .gh-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:46% 55%}
+  .ghm .ghd-head h1{font-size:clamp(38px,3.65vw,52px)}
+}
+
+/* ---------- 2. what you get | how it works: two halves of one table ---------- */
+.ghd-duo{display:grid;grid-template-columns:minmax(0,1fr)}
+.ghd-duo h2 + *{margin-top:clamp(20px,2.2vw,28px)}
+.ghd-duo .ghd-steps{margin-bottom:0}
+.ghd-duo h2:nth-of-type(2){margin-top:clamp(44px,6vw,56px)}
+@media (min-width:1024px){
+  .ghd-duo{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto;column-gap:var(--d-gap)}
+  .ghd-duo h2{align-self:end}
+  .ghd-duo h2:nth-of-type(1){grid-area:1 / 1}
+  .ghd-duo .ghd-get{grid-area:2 / 1}
+  .ghd-duo h2:nth-of-type(2){grid-area:1 / 2;margin-top:0}
+  .ghd-duo .ghd-steps{grid-area:2 / 2}
+}
+/* the rows of both halves: the label in the soft ink, the value in the text's ink */
+.ghd .ghd-rows > *{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);column-gap:20px;padding:14px 0;border-top:1px solid var(--d-line)}
+.ghd .ghd-rows > *:last-child{border-bottom:1px solid var(--d-line)}
+.ghd-rows :is(dt,h3){font-size:var(--t-body);line-height:1.5;font-weight:400;color:#5f5e58}
+.ghd-rows :is(dd,p){font-size:var(--t-body);line-height:1.5;font-weight:500;color:#141413;text-wrap:pretty}
+.ghd-steps{counter-reset:st}
+.ghd-steps li{counter-increment:st}
+.ghd-steps h3::before{content:counter(st) ".\00a0";font-variant-numeric:tabular-nums}
+@media (max-width:420px){
+  .ghd .ghd-rows > *{grid-template-columns:minmax(0,1fr);row-gap:2px;padding:12px 0}
+  .ghd-rows :is(dt,h3){font-size:var(--t-small)}
+}
+/* from 1024 px the two halves end on one line: the four steps share the height of the six rows */
+@media (min-width:1024px){ .ghd-duo .ghd-rows{display:flex;flex-direction:column} .ghd-duo .ghd-rows > *{flex:1 0 auto} }
+
+/* ---------- 3. the varieties: heading and line, the seven in a row, then one row for the large sizes and the link ---------- */
+.ghd-var-top{display:grid;grid-template-columns:minmax(0,1fr);row-gap:14px}
+.ghd-var-top h2 span{display:block}
+.ghd-var-top p{font-size:var(--t-lead);line-height:1.55;color:#3d3c37;max-width:34em;text-wrap:pretty}
+@media (min-width:1024px){
+  .ghd-var-top{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--d-gap);align-items:end}
+}
+.ghd .ghd-sorts{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(28px,3vw,44px)}
+.ghd-sorts a{display:block;text-decoration:none;color:#141413}
+.ghd-sorts img{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#dfe2d8;transition:transform .4s}
+.ghd-sorts span{display:block;margin-top:12px;font-size:var(--t-small);line-height:1.35;font-weight:500;text-align:center;text-wrap:balance}
+@media (hover:hover){ .ghd-sorts a:hover img{transform:scale(1.03)} .ghd-sorts a:hover span{text-decoration:underline;text-underline-offset:3px} }
+.ghd-sorts .ghd-all{display:none}
+/* under 700 px: all seven in view (no row to swipe): two columns of small rows, the eighth cell is the link to all sizes */
+@media (max-width:699px){
+  .ghd .ghd-sorts{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:0;margin-top:22px}
+  .ghd-sorts li{border-top:1px solid var(--d-line)}
+  .ghd-sorts li:nth-last-child(-n+2){border-bottom:1px solid var(--d-line)}
+  .ghd .ghd-sorts a{display:flex;align-items:center;gap:10px;min-height:60px;padding:8px 0}
+  .ghd-sorts img{flex:none;width:40px;height:40px}
+  .ghd-sorts span{margin-top:0;text-align:left;font-size:var(--t-small);line-height:1.3}
+  .ghd-sorts .ghd-all{display:block}
+  .ghd-sorts .ghd-all a{font-weight:600}
+  .ghd-sorts .ghd-all span{font-weight:600}
+  .ghd-sorts .ghd-all svg{flex:none;width:16px;height:16px}
+  .ghd-big .gh-more{display:none}
+}
+.ghd-big{display:grid;grid-template-columns:minmax(0,1fr);row-gap:6px;margin-top:clamp(28px,3vw,44px);padding-top:clamp(16px,1.6vw,20px);border-top:1px solid var(--d-line)}
+.ghd-big h3{font-weight:400;color:#5f5e58}
+.ghd-big p{font-size:var(--t-body);line-height:1.55;font-weight:500;color:#141413;max-width:44em;text-wrap:pretty}
+.ghd-big .gh-more{margin-top:8px}
+@media (max-width:699px){ .ghd-big{margin-top:22px;border-top:0;padding-top:0} }
+@media (min-width:1024px){
+  .ghd-big{grid-template-columns:minmax(0,9.5em) minmax(0,1fr) auto;column-gap:20px;align-items:start}
+  .ghd-big .gh-more{margin-top:0;margin-left:clamp(20px,3vw,56px);white-space:nowrap}
+}
+
+/* ---------- 4. the request: the intro and the questions left, the form card right ---------- */
+.ghd-req{padding-bottom:var(--sec)}
+.ghd-ask{display:grid;grid-template-columns:minmax(0,1fr);row-gap:clamp(28px,3.4vw,40px)}
+.ghd-intro .gh-p{margin-top:clamp(14px,1.4vw,18px);max-width:36em}
+.ghd-intro .gh-tel{margin-top:clamp(14px,1.6vw,20px)}
+.ghd-formcard{padding:clamp(24px,2.6vw,38px)}
+.ghd-formcard .gh-f textarea{min-height:104px}
+@media (max-width:860px){ .ghd-formcard{padding:26px 20px 30px} }
+.ghd-qa h3{margin-bottom:12px;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
+.ghd-qa .gh-faq summary{padding-block:16px}
+@media (min-width:1024px){
+  .ghd-ask{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:var(--d-gap);row-gap:clamp(32px,3.4vw,48px)}
+  .ghd-intro{grid-area:1 / 1}
+  /* the questions end level with the form card */
+  .ghd-qa{grid-area:2 / 1;align-self:end}
+  .ghd-formcard{grid-area:1 / 2 / 3 / 3;align-self:start}
+}
+
+/* ---------- the bottom bar under 1024 px (as groothandel-a-foto.html) ---------- */
+.ghd-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(241,239,234,.88);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 -1px 0 rgba(63,74,55,.16);
+  transition:transform .35s cubic-bezier(.3,.7,.2,1),visibility 0s}
+.ghd-bar[data-off]{transform:translateY(105%);visibility:hidden;transition:transform .3s ease-in,visibility 0s .3s}
+@media (prefers-reduced-motion:reduce){ .ghd-bar,.ghd-bar[data-off]{transition:none} }
+@media (min-width:1024px){ .ghd-bar{display:none} }
+.ghd-bar-in{display:flex;justify-content:center}
+.ghd-bar .gh-btn{flex:1;min-width:0;max-width:420px;padding:0 16px}
