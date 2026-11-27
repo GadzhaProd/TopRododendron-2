@@ -1,0 +1,144 @@
+/* ===== The Groothandel page (plan 2.6, 27 Nov): the wholesale page in the new design =====
+   Copy: docs/groothandel-tekst-2026-11-26.md (Fable, final 27 Nov). Built by tools/build_groothandel.py from the main mockup
+   (header, cart, phone menu and footer from index.html). The same language as the homepage and the guarantee page: the head
+   of the guarantee page, the hairline rows of the variety pages and the homepage's professionals block, the steps of Hoe het
+   werkt, the glowing pill as the one action, the guarantee card's light for the form. */
+.ghm{background:var(--page);overflow-x:clip;color:var(--color-fg)}
+.ghm :where(h1,h2,h3,p,ol,ul,dl,dt,dd,figure,fieldset,legend){margin:0;padding:0;border:0;min-width:0}
+.ghm :where(ol,ul){list-style:none}
+.ghm ::selection{background:#d3dcc2;color:#141413}
+.ghm :is(a,button,summary,input,textarea):focus-visible{outline:2px solid var(--moss);outline-offset:3px}
+.ghm :where(p,dd,li) a{color:var(--color-fg);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(20,20,19,.35)}
+.ghm :where(p,dd,li) a:hover{text-decoration-color:currentColor}
+.ghm b{font-weight:600;color:var(--color-fg)}
+.ghm .nb{white-space:nowrap}
+.ghm h1{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;letter-spacing:-.018em;font-size:var(--t-display);line-height:1.04;text-wrap:balance}
+.ghm h1 span{display:block}
+.ghm h2{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto;font-weight:500;letter-spacing:-.014em;font-size:var(--t-h2);line-height:1.08;text-wrap:balance}
+.ghm h3{font-size:var(--t-body);line-height:1.4;font-weight:600;color:#141413}
+/* the rhythm of the homepage: one --sec inside each block, so 2 x --sec between one block's content and the next heading */
+.gh-sec{padding-top:var(--sec);padding-bottom:var(--sec)}
+
+/* ---------- the head: breadcrumb, heading, the line, the action, the facts; then our field ---------- */
+.gh-head{padding-top:calc(80px + clamp(36px,4.6vw,76px))}
+@media (max-width:767px){ .gh-head{padding-top:calc(64px + 32px)} }
+.gh-crumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:clamp(22px,2.4vw,36px);font-size:var(--t-small);color:var(--soft)}
+.gh-crumb a{display:inline-block;padding-block:13px;margin-block:-13px;color:var(--color-fg-2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(20,20,19,.3)}
+.gh-crumb [aria-current]{color:var(--color-fg)}
+.gh-lead{margin-top:clamp(18px,2vw,28px);max-width:44em;font-size:var(--t-lead);line-height:1.55;color:#3d3c37;text-wrap:pretty}
+.gh-facts{display:flex;flex-wrap:wrap;column-gap:10px;row-gap:4px;margin-top:clamp(26px,2.6vw,36px);font-size:var(--t-small);line-height:1.5;color:#5f5e58}
+.gh-facts li + li::before{content:"·";margin-right:10px;color:rgba(63,74,55,.45)}
+/* phone: the line wraps, so each fact gets its own dot (a wrapped line never starts with a stray separator) */
+@media (max-width:600px){ .gh-facts{column-gap:14px} .gh-facts li::before,.gh-facts li + li::before{content:"·";margin-right:6px;color:rgba(63,74,55,.45)} }
+.gh-photo{margin-top:clamp(40px,4.4vw,64px);border-radius:28px;overflow:hidden;aspect-ratio:21/9;background:#dfe2d8}
+.gh-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+@media (max-width:860px){ .gh-photo{aspect-ratio:4/3;border-radius:22px} }
+@media (max-width:640px){ .gh-photo{border-radius:20px} }
+
+/* the one action: the site's glowing pill (the buy button on the variety pages, the calculator, the homepage block) */
+.gh-cta{display:flex;flex-wrap:wrap;align-items:center;column-gap:24px;row-gap:14px;margin-top:clamp(26px,2.6vw,36px)}
+.gh-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border:0;border-radius:999px;color:#2f3829;font:inherit;font-size:var(--t-body);font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;
+  background:radial-gradient(ellipse 46% 160% at 6% 50%,#b3c39b 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e6dcb0 0%,transparent 72%),#d3ddc2;box-shadow:inset 0 0 0 1px rgba(63,74,55,.28);transition:background .3s,box-shadow .3s}
+.gh-btn svg{width:18px;height:18px;flex:none;transition:transform .3s}
+@media (hover:hover){
+  .gh-btn:hover{background:radial-gradient(ellipse 46% 160% at 6% 50%,#a9bb90 0%,transparent 72%),radial-gradient(ellipse 50% 170% at 98% 50%,#e0d5a4 0%,transparent 72%),#c8d3b6;box-shadow:inset 0 0 0 1px rgba(63,74,55,.5)}
+  .gh-btn:hover svg{transform:translateX(3px)}
+}
+.gh-btn[disabled]{cursor:progress;opacity:.75}
+.gh-tel{font-size:var(--t-body);line-height:1.5;color:#5f5e58}
+.ghm .gh-tel a{display:inline-block;padding-block:11px;margin-block:-11px;font-weight:500;text-decoration-color:rgba(63,74,55,.4);text-underline-offset:5px;white-space:nowrap}
+
+/* ---------- two columns from 861 px: the heading left, the content right (the homepage's professionals block) ---------- */
+@media (min-width:861px){
+  .gh-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(48px,7vw,128px);align-items:start}
+  .gh-two > .gh-r{padding-top:10px}
+}
+@media (max-width:860px){ .gh-two > .gh-r{margin-top:30px} }
+
+/* the rows: label in the soft ink, value in the text's ink (the variety pages' Kenmerken) */
+.gh-dl > div{display:grid;grid-template-columns:minmax(0,10em) minmax(0,1fr);column-gap:20px;padding:15px 0;border-top:1px solid rgba(63,74,55,.2)}
+.gh-dl > div:last-child{border-bottom:1px solid rgba(63,74,55,.2)}
+.gh-dl dt{font-size:var(--t-body);line-height:1.5;color:#5f5e58}
+.gh-dl dd{font-size:var(--t-body);line-height:1.5;font-weight:500;color:#141413;text-wrap:pretty}
+@media (max-width:420px){
+  .gh-dl > div{grid-template-columns:minmax(0,1fr);row-gap:2px;padding:13px 0}
+  .gh-dl dt{font-size:var(--t-small)}
+}
+
+/* ---------- the varieties: the line, seven round photos to their pages, the large sizes, the link to all sizes ---------- */
+.gh-p{font-size:var(--t-lead);line-height:1.55;color:#3d3c37;max-width:40em;text-wrap:pretty}
+.gh-two .gh-p{margin-top:clamp(16px,1.6vw,22px)}
+.gh-sorts{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(36px,3.6vw,52px)}
+.gh-sorts a{display:block;text-decoration:none;color:#141413}
+.gh-sorts img{display:block;width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#dfe2d8;transition:transform .4s}
+.gh-sorts span{display:block;margin-top:12px;font-size:var(--t-small);line-height:1.35;font-weight:500;text-align:center;text-wrap:balance}
+@media (hover:hover){ .gh-sorts a:hover img{transform:scale(1.03)} .gh-sorts a:hover span{text-decoration:underline;text-underline-offset:3px} }
+/* phone: a row to swipe, the next photo peeking */
+@media (max-width:860px){
+  .gh-sorts{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(-1 * var(--gut));padding:0 var(--gut) 6px;scrollbar-width:none}
+  .gh-sorts::-webkit-scrollbar{display:none}
+  .gh-sorts li{flex:0 0 104px;scroll-snap-align:start}
+}
+.gh-big{margin-top:clamp(28px,2.8vw,40px);padding-top:clamp(20px,2vw,26px);border-top:1px solid rgba(63,74,55,.2)}
+.gh-big p{margin-top:6px;font-size:var(--t-body);line-height:1.6;color:#3d3c37;max-width:38em;text-wrap:pretty}
+.gh-more{margin-top:clamp(22px,2.2vw,30px);font-size:var(--t-body)}
+.ghm .gh-more a{display:inline-flex;align-items:center;gap:8px;padding-block:12px;margin-block:-12px;font-weight:600;text-decoration:none}
+.gh-more svg{width:16px;height:16px;transition:transform .3s}
+@media (hover:hover){ .ghm .gh-more a:hover svg{transform:translateX(3px)} }
+
+/* ---------- the four steps (as Hoe het werkt on the homepage: the title with a hairline after it, the text under it) ---------- */
+.gh-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,2.4vw,40px);row-gap:28px;margin-top:clamp(36px,3.6vw,56px);counter-reset:st}
+.gh-steps h3{display:flex;align-items:center;gap:14px;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);letter-spacing:-.01em}
+.gh-steps h3::after{content:"";flex:1;height:1px;background:rgba(63,74,55,.25)}
+.gh-steps p{margin-top:12px;font-size:var(--t-body);line-height:1.55;color:#5f5e58;text-wrap:pretty}
+@media (max-width:1023px){ .gh-steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .gh-steps{grid-template-columns:minmax(0,1fr)} }
+
+/* ---------- the questions: one hairline list, each answer behind its question ---------- */
+.gh-faq details{border-top:1px solid rgba(63,74,55,.2)}
+.gh-faq details:last-child{border-bottom:1px solid rgba(63,74,55,.2)}
+.gh-faq summary{position:relative;display:block;padding:18px 40px 18px 0;font-size:var(--t-body);line-height:1.45;font-weight:600;color:#141413;cursor:pointer;list-style:none}
+.gh-faq summary::-webkit-details-marker{display:none}
+.gh-faq summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;margin-top:-7px;border-right:1.6px solid #3f4a37;border-bottom:1.6px solid #3f4a37;transform:rotate(45deg);transition:transform .25s}
+.gh-faq details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.gh-faq details p{padding:0 40px 20px 0;font-size:var(--t-body);line-height:1.6;color:#3d3c37;text-wrap:pretty}
+
+/* ---------- the request: the guarantee card's light; the intro left, the form right ---------- */
+.gh-card{position:relative;isolation:isolate;border-radius:28px;overflow:hidden;padding:clamp(40px,5vw,80px) clamp(28px,5vw,80px);
+  background:radial-gradient(ellipse 55% 60% at 0% 0%,rgba(183,198,160,.55) 0%,transparent 72%),radial-gradient(ellipse 50% 60% at 100% 100%,rgba(236,214,210,.5) 0%,transparent 72%),#e6e8e2}
+.gh-card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--gh-noise);background-size:220px 220px;opacity:.26;mix-blend-mode:soft-light}
+.gh-card > *{position:relative;z-index:1}
+@media (min-width:861px){ .gh-card.gh-two{column-gap:clamp(40px,5vw,96px)} }
+@media (max-width:860px){ .gh-card{border-radius:22px;padding:30px 22px 34px} }
+@media (max-width:640px){ .gh-card{border-radius:20px} }
+.gh-card .gh-p{margin-top:clamp(16px,1.6vw,22px)}
+.gh-card .gh-tel{margin-top:clamp(18px,1.8vw,24px)}
+.gh-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:20px}
+.gh-f{display:flex;flex-direction:column;min-width:0}
+.gh-f.w{grid-column:1 / -1}
+@media (max-width:560px){ .gh-form{grid-template-columns:minmax(0,1fr)} }
+.gh-f label,.gh-f legend{margin-bottom:8px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:#141413}
+.gh-f label i,.gh-f legend i{font-style:normal;font-weight:400;color:#5f5e58}
+.gh-f input,.gh-f textarea{width:100%;min-height:52px;padding:13px 16px;border:1px solid rgba(63,74,55,.28);border-radius:14px;background:rgba(255,255,255,.62);color:#141413;font:inherit;font-size:16px;line-height:1.45;transition:border-color .2s,background .2s}
+.gh-f textarea{min-height:120px;resize:vertical}
+.gh-f :is(input,textarea):hover{border-color:rgba(63,74,55,.45)}
+.gh-f :is(input,textarea):focus{background:#fff;border-color:#3f4a37;outline:2px solid rgba(63,74,55,.25);outline-offset:0}
+.gh-f [aria-invalid="true"]{border-color:#9b3b2f}
+.gh-hint{margin-top:8px;font-size:var(--t-small);line-height:1.45;color:#5f5e58}
+.gh-err{margin-top:8px;font-size:var(--t-small);line-height:1.45;font-weight:500;color:#9b3b2f}
+.gh-err:empty{display:none}
+/* bezorgen or afhalen: two pills (the substrate choice on the variety pages) */
+.gh-pick{display:flex;flex-wrap:wrap;gap:8px}
+.gh-pick label{position:relative;margin:0;font-weight:500}
+.gh-pick input{position:absolute;opacity:0;width:1px;height:1px}
+.gh-pick span{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.62);box-shadow:inset 0 0 0 1px rgba(63,74,55,.28);font-size:var(--t-body);color:#141413;cursor:pointer;transition:background .2s,box-shadow .2s}
+.gh-pick input:checked + span{background:#d3ddc2;box-shadow:inset 0 0 0 1.5px #3f4a37}
+.gh-pick input:focus-visible + span{outline:2px solid var(--moss);outline-offset:3px}
+.gh-pick[aria-invalid="true"] span{box-shadow:inset 0 0 0 1px #9b3b2f}
+.gh-send{grid-column:1 / -1;display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:4px}
+.gh-priv{font-size:var(--t-small);line-height:1.5;color:#5f5e58;max-width:42em}
+.gh-done{display:none}
+.gh-done h3{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);letter-spacing:-.01em}
+.gh-done p{margin-top:10px;font-size:var(--t-body);line-height:1.6;color:#3d3c37;max-width:38em}
+.gh-sent .gh-form{display:none}
+.gh-sent .gh-done{display:block}

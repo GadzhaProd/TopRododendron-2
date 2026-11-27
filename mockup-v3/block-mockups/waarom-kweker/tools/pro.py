@@ -4,12 +4,12 @@
 #
 # Copy: from the current site's /groothandel page (rhododendrons repo, app/groothandel/page.tsx), only what is safe:
 #   - who: "Hoveniers en tuinarchitecten", "Openbaar groen en gemeenten", "Vastgoed en wooncomplexen" (its three audiences);
-#   - "Vanaf 25 stuks scherpe partijprijzen" (its meta description) -> to be confirmed by the owner;
+#   - "Vanaf 25 stuks scherpe partijprijzen" (its meta description) -> confirmed for the owner by the project lead, 27 Nov;
 #   - "Wij rooien op uw leverdatum" and "eigen transport" (also on this page: Waarom wij, Hoe het werkt);
 #   - "zakelijk op factuur" (as in Hoe het werkt; "30 dagen, btw verlegd" is on the old page, to be confirmed).
 # Left out until the owner confirms them (plan 2.6, 3.11): the 12/22/30 % discounts, the quote within 24 hours, planting on
 # site, the guarantee for businesses ("bij correcte aanplant"), the project cases, NAK membership.
-# The button leads to /groothandel, like the menu item (the link targets are decided at the end).
+# The button leads to the Groothandel page, groothandel.html (tools/build_groothandel.py, 27 Nov).
 #
 # apply(html, variant) puts the section between Hoe het werkt and the footer. Both variants: the heading and the line on the
 # left, the facts as hairline rows (the variety pages' "Kenmerken") and the button on the right; on the phone one column.
@@ -23,13 +23,15 @@ import pathlib, re
 HEAD = '<h2 id="h-pro" class="pr-h">Voor hoveniers en projecten.</h2>'
 LEAD = ('<p class="pr-lead">Ook voor tuinarchitecten, gemeenten en projectontwikkelaars: per partij, '
         '<span class="nb">rechtstreeks van de kwekerij.</span></p>')
-FACTS = [('Partijprijs', 'Vanaf 25 planten, in een offerte op maat'),
-         ('Levering', 'Gerooid op uw leverdatum, met eigen transport'),
-         ('Betalen', 'Op factuur voor bedrijven')]
+# the rows in Fable's final wording (docs/groothandel-tekst-2026-11-26.md, section 7; the B2B answers of 27 Nov): the same words
+# as the Groothandel page and the homepage ("pas vlak daarvoor", "zakelijk op factuur")
+FACTS = [('Partij', 'Vanaf 25 planten, in een offerte op maat'),
+         ('Levering', 'Gerooid vlak voor de levering, bezorgd met eigen transport'),
+         ('Betalen', 'Zakelijk op factuur')]
 DL = '<dl class="pr-dl">' + ''.join(f'<div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in FACTS) + '</dl>'
 ARROW = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" '
          'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
-CTA = ('<div class="pr-cta"><a class="pr-btn" href="/groothandel">Vraag een offerte aan' + ARROW + '</a>'
+CTA = ('<div class="pr-cta"><a class="pr-btn" href="groothandel.html">Vraag een offerte aan' + ARROW + '</a>'
        '<p class="pr-tel">Of bel <a href="tel:+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a></p></div>')
 BODY = '<div class="pr-hd">' + HEAD + LEAD + '</div><div class="pr-bd">' + DL + CTA + '</div>'
 
