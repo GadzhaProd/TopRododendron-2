@@ -2,6 +2,7 @@
 # Copy: docs/groothandel-tekst-2026-11-26.md, Fable's final text (the B2B answers of 27 Nov by the project lead on the owner's
 # behalf; docs/b2b-besluiten-2026-11-26.md). The company owner still confirms the business guarantee wording (lawyer) and VAT
 # (accountant). Header, cart, phone menu and footer come from the main mockup (index.html), as on garantie.html.
+# The varieties heading names the plant (owner, 27 Nov: "Zeven soorten rhododendrons"; the other headings stay calm, Yoast SEO 92).
 # Blocks: head with our field; "U koopt bij de kweker zelf." (rows); the seven varieties and the large sizes; four steps;
 # questions; the request form (a mockup: it checks the fields and shows the confirmation, nothing is sent).
 # Usage: python3 tools/build_groothandel.py [dir]
@@ -48,7 +49,9 @@ SORTS_UL = ('<ul class="gh-sorts" aria-label="De zeven soorten">' + ''.join(
     for sl, n in SORTS) + '</ul>')
 MORE = ('<p class="gh-more"><a href="index.html#assortiment">Alle maten en prijzen<svg viewBox="0 0 24 24" aria-hidden="true">'
         '<path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>')
-VAR = ('<section class="gh-sec" aria-labelledby="h-var"><div class="in"><div class="gh-two"><div class="gh-l"><h2 id="h-var">Zeven soorten, van 40 tot 225&nbsp;cm.</h2>'
+# the heading spans the block (in the left column it ran to three lines), the line and the large sizes under it
+VAR = ('<section class="gh-sec" aria-labelledby="h-var"><div class="in"><h2 id="h-var" class="gh-hb"><span>Zeven soorten rhododendrons,</span> '
+       '<span>van 40 tot 225&nbsp;cm.</span></h2><div class="gh-two gh-two-t"><div class="gh-l">'
        '<p class="gh-p">Nova Zembla, Catawbiense Grandiflorum, Cunningham’s White, Catawbiense Boursault, Roseum Elegans, Ponticum en Ponticum Roseum. '
        'Alle planten groeien in de volle grond en wij leveren ze met kluit. Welke maten er zijn, verschilt per soort.</p></div>'
        '<div class="gh-r"><div class="gh-big"><h3>Grote maten</h3><p>Voor projecten die meteen volume vragen, hebben wij ook grote maten, '

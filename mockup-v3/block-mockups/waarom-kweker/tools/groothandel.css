@@ -79,6 +79,11 @@
   .gh-sorts::-webkit-scrollbar{display:none}
   .gh-sorts li{flex:0 0 104px;scroll-snap-align:start}
 }
+/* the varieties: the heading over the block, two lines from 861 px; the line and the large sizes start level under it */
+@media (min-width:861px){ .gh-hb span{display:block} .gh-two-t > .gh-r{padding-top:4px} }
+.gh-two-t{margin-top:clamp(20px,2.2vw,30px)}
+.gh-two-t .gh-p{margin-top:0}
+.gh-two-t .gh-big{margin-top:0}
 .gh-big{margin-top:clamp(28px,2.8vw,40px);padding-top:clamp(20px,2vw,26px);border-top:1px solid rgba(63,74,55,.2)}
 .gh-big p{margin-top:6px;font-size:var(--t-body);line-height:1.6;color:#3d3c37;max-width:38em;text-wrap:pretty}
 .gh-more{margin-top:clamp(22px,2.2vw,30px);font-size:var(--t-body)}

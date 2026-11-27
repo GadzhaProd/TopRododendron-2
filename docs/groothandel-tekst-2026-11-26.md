@@ -81,7 +81,7 @@
 
 ## 3. Сорта и размеры
 
-> ## Zeven soorten, van 40 tot 225 cm.
+> ## Zeven soorten rhododendrons, van 40 tot 225 cm.
 >
 > Nova Zembla, Catawbiense Grandiflorum, Cunningham's White, Catawbiense Boursault, Roseum Elegans, Ponticum en Ponticum Roseum. Alle planten groeien in de volle grond en wij leveren ze met kluit. Welke maten er zijn, verschilt per soort.
 >
@@ -91,7 +91,7 @@
 > [Alle maten en prijzen]
 
 Перевод:
-- Заголовок: «Семь сортов, от 40 до 225 см.»
+- Заголовок: «Семь сортов рододендронов, от 40 до 225 см.» (27.11: слово «rhododendrons» добавлено по решению руководителя проекта; остальные заголовки без изменений, Yoast SEO на собранной странице 92)
 - Текст: «(семь названий). Все растения растут в открытом грунте, и мы поставляем их с комом. Какие размеры есть, зависит от сорта.»
 - Подзаголовок «Крупные размеры»: «Для проектов, которым сразу нужен объём, у нас есть и крупные размеры, от 120 до 225 см. Их мы поставляем по запросу. Вы можете сами выбрать их на нашем поле.»
 - Ссылка: «Все размеры и цены» (в каталог; подпись та же, что на главной).
