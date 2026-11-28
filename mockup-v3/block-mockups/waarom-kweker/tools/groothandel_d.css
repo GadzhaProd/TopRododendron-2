@@ -102,7 +102,3 @@
 .ghd-bar-in{display:flex;justify-content:center}
 .ghd-bar .gh-btn{flex:1;min-width:0;max-width:420px;padding:0 16px}
 
-/* while the call card shows, the offer bar steps aside, so two actions never stack at the bottom of the phone */
-html.bpop-on .ghd-bar{transform:translateY(105%);visibility:hidden;transition:transform .15s ease-in,visibility 0s .15s}
-/* and comes back after the card has left (150 ms) */
-html:not(.bpop-on) .ghd-bar:not([data-off]){transition-delay:.15s}

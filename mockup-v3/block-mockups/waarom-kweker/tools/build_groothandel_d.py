@@ -152,10 +152,6 @@ rep('</head>', '<style id="groothandel-d-css">' + (D / 'tools' / 'groothandel_d.
 rep('</body>', JS + '</body>')
 rep('href="groothandel.html" aria-current="page"', 'href="groothandel-d.html" aria-current="page"', s.count('href="groothandel.html" aria-current="page"'))
 assert 'gen/veld-L2' not in MAIN
-# the call card with the phone and WhatsApp, as on the first version's product and wholesale pages (owner, 28 Nov)
-sys.path.insert(0, str(pathlib.Path(__file__).parent))
-import belpop
-s = belpop.apply(s, 'Vragen over een partij?', reach='#offerte', avoid='#offerte .ghd-formcard',
-                 wa='Hallo, ik heb een vraag over een partij rhododendrons.')
+# (the call card, tools/belpop.py, was removed on 28 Nov: the header already carries the contact; owner)
 (D / 'groothandel-d.html').write_text(s)
 print('ok', len(s))
