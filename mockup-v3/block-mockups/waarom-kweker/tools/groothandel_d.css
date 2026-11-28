@@ -120,3 +120,12 @@
 @media (min-width:1024px){ .ghd-bar{display:none} }
 .ghd-bar-in{display:flex;justify-content:center}
 .ghd-bar .gh-btn{flex:1;min-width:0;max-width:420px;padding:0 16px}
+
+/* ---------- the head as the homepage's hero (owner, 28 Nov): the truck photo, the text bottom-left as on the homepage ----------
+   The truck stands left of centre: on the phone the crop keeps the cab with its name plate; on desktop the scrim of the
+   homepage darkens the lower left under the text. The facts line small under the actions; air under the hero as between bands. */
+.ghd-hero-img{object-position:13% 50%}
+@media (min-width:1024px){ .ghd-hero-img{object-position:50% 46%} }
+.ghd-hero .hero-link{color:#fff}
+.ghd-hero-facts{margin:2px 0 0;font-size:var(--t-small);line-height:1.5;color:rgba(255,255,255,.78)}
+.ghd #hero + .ghd-band{padding-top:var(--sec)}

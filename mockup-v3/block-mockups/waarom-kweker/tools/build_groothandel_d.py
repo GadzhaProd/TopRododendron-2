@@ -1,7 +1,7 @@
 # Mockup tool (not site code): groothandel-d.html, variant D of the wholesale page: the compact page (owner, 27 Nov:
 # variant A reads long and scattered: six blocks of a heading and a few short lines, each in 2 x --sec of air).
 # Four bands, each filling both sides by itself, 1 x --sec between them:
-#   1  the head: heading, line, action, two facts | our field (phone: the field first)
+#   1  the head as the homepage's hero: the company's truck full-bleed, text and the white pill on it (owner, 28 Nov)
 #   2  "U koopt bij de kweker zelf." six rows     | "Van aanvraag tot levering, in vier stappen." four rows (one table, two halves)
 #   3  "Zeven soorten rhododendrons, van 40 tot 225 cm.": the seven in a row; the large sizes and "Alle maten en prijzen" in one row
 #   4  "Vraag een offerte aan.": the intro and the four questions | the form card
@@ -35,12 +35,37 @@ LEAD = part(r'<p class="gh-lead">.*?</p>')
 CTA = part(r'<div class="gh-cta">.*?</div>').replace('class="gh-cta"', 'class="gh-cta ghd-cta"')
 FACTS = ['Sinds 2001', '10.000 planten op voorraad']
 for f in FACTS: assert f in old, f
-HEAD = ('<section class="in gh-head ghd-head" aria-labelledby="h-gh">' + CRUMB
-        + '<div class="ghd-text">' + H1 + LEAD + CTA
-        + '<ul class="gh-facts" aria-label="In het kort">' + ''.join(f'<li>{f}</li>' for f in FACTS) + '</ul></div>'
-        # the text stays first in the source; CSS shows the photo first under 1024 px
-        + '<figure class="gh-photo"><img src="img/hw-fable-veld.webp" alt="Ons rhododendronveld in bloei" width="1800" height="1004" '
-          'fetchpriority="high" decoding="async"></figure></section>')
+# the head as the homepage's hero (owner, 28 Nov: "make the head like on the main page", with his own picture of the
+# company's truck, img/gh-truck.webp): the photo full-bleed under the header, the text bottom-left on a soft scrim, the white
+# pill and a text link. The homepage's own markup and classes, so its hero styles (Tailwind, hero-bottom-left, fase1b) apply.
+# Its "Bestellen" logic looks for the homepage button (href="#assortiment"); without it the header button simply shows.
+# the homepage H1 sets its lines by nowrap groups (.h1-g) in a flex row that is as wide as its widest group, so a lone word
+# would stand on its own line; here four groups: "Groothandel in / rhododendrons. / Rechtstreeks van / de kweker."
+def group(ws):
+    return '<span class="h1-g">' + ''.join(f'<span class="inline-block" style="margin-right:{0 if k == len(ws) - 1 else .26}em">{w}</span>' for k, w in enumerate(ws)) + '</span>'
+H1_IN = (group(['Groothandel', 'in']) + group(['rhododendrons.']) + '<span class="h1-br" aria-hidden="true"></span>'
+         + group(['Rechtstreeks', 'van']) + group(['de', 'kweker.']))
+ARR_W = ('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+         'stroke-linecap="round" stroke-linejoin="round" class="size-4 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden="true">'
+         '<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>')
+HEAD = ('<section id="hero" class="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden bg-black text-white on-dark tabp:justify-start split:justify-center ghd-hero" aria-labelledby="h-gh">'
+        '<div class="absolute inset-0"><img src="img/gh-truck.webp" alt="Vrachtwagen van Top Rhododendrons op een polderweg" width="2000" height="1116" '
+        'fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover ghd-hero-img">'
+        '<div class="pointer-events-none absolute inset-0 bg-black/10 split:hidden sc-veil"></div>'
+        '<div aria-hidden="true" class="hero-scrim hero-scrim-photo pointer-events-none absolute inset-0 hidden split:block"></div>'
+        '<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent tabp:hidden split:hidden h-[68%] from-black/90 via-black/72 sc-phone"></div>'
+        '<div class="pointer-events-none absolute inset-x-0 top-0 hidden h-[62%] bg-gradient-to-b from-black/80 via-black/45 to-transparent tabp:block sc-tab"></div></div>'
+        '<div class="relative w-full container-x pt-28 pb-7 shortphone:pb-5 tabp:pt-32 split:py-28">'
+        '<div class="flex max-w-4xl flex-col items-start gap-3 md:gap-5 tabp:max-w-[21.5rem] split:max-w-[36rem]">'
+        '<h1 id="h-gh" class="font-display text-balance text-[clamp(30px,8.4vw,38px)] font-medium leading-[0.98] tracking-[-0.04em] tabp:text-[36px] split:text-[clamp(38px,4.6vw,72px)]">'
+        '<span class="inline-flex flex-wrap">' + H1_IN + '</span></h1>'
+        '<p class="max-w-xl text-[15px] leading-relaxed text-white/90 shortphone:hidden md:text-lg split:text-[17px]">Voor hoveniers, tuinarchitecten, gemeenten '
+        'en projectontwikkelaars: rhododendrons per partij, <span class="nb">vers gerooid</span> en met kluit.</p>'
+        '<div class="mt-1 flex flex-wrap items-center gap-3 ghd-cta">'
+        '<a class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 select-none bg-white text-[#141414] hover:bg-white/90 h-12 text-[14px] rounded-ui group/btn px-5 split:h-14 split:px-8 split:text-[15px]" href="#offerte">Vraag een offerte aan' + ARR_W + '</a>'
+        '<a class="hero-link" href="tel:+31620104312"><span>Bel 06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</span></a></div>'
+        '<p class="ghd-hero-facts">Sinds 2001 · 10.000 planten op voorraad</p>'
+        '</div></div></section>')
 
 # ---------- 2. what you get | how it works ----------
 ROWS = [('Partij', 'Vanaf 25 planten krijgt u een partijprijs. Hoe groter de partij, hoe lager de prijs per plant.'),
