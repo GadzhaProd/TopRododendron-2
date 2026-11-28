@@ -6,32 +6,26 @@
 .ghd h2{font-size:var(--d-h2);line-height:1.12}
 .ghd-band{padding-top:var(--d-band);padding-bottom:var(--d-band)}
 
-/* ---------- 1. the head: phone heading, line, photo, action, facts; desktop heading, line | action, the photo large under them ---------- */
-.ghd-head{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"crumb" "h1" "lead" "photo" "cta" "facts";padding-bottom:var(--d-band)}
+/* ---------- 1. the head (owner, 28 Nov): the heading on top, the truck large under it, then the line and the action, on every
+   width in one column; no facts line ---------- */
+.ghd-head{display:grid;grid-template-columns:minmax(0,1fr);padding-bottom:var(--d-band)}
 .ghd-head > *{min-width:0}
-.ghd-head .gh-crumb{grid-area:crumb;margin-bottom:clamp(12px,2vw,28px)}
+.ghd-head .gh-crumb{margin-bottom:clamp(12px,2vw,24px)}
 .ghd-head .gh-crumb a{padding-inline:4px;margin-inline:-4px}
-.ghd-head h1{grid-area:h1}
-.ghd-head .gh-lead{grid-area:lead}
-.ghd-head .ghd-photo{grid-area:photo;margin-top:clamp(16px,3vw,32px);aspect-ratio:16/9;border-radius:22px}
+.ghd-head .ghd-photo{margin-top:clamp(18px,2.6vw,36px);aspect-ratio:16/9;border-radius:22px}
 .ghd-head .ghd-photo img{object-position:35% 55%}
-.ghd-head .gh-cta{grid-area:cta;margin-top:clamp(18px,3vw,30px)}
-.ghd-head .gh-facts{grid-area:facts;margin-top:18px}
-@media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} .ghd-head .gh-lead{margin-top:14px} }
+.ghd-head .gh-lead{margin-top:clamp(18px,2.4vw,32px);max-width:46em}
+.ghd-head .gh-cta{margin-top:clamp(18px,2.4vw,28px)}
+@media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} }
 @media (max-width:640px){ .ghd-head .ghd-photo{border-radius:20px} }
-/* small phones: the head button full width, the same shape as the bottom bar's; no dot before the first fact */
+/* small phones: the head button full width, the same shape as the bottom bar's */
 @media (max-width:560px){ .ghd-head .gh-cta .gh-btn{flex:1 1 100%;justify-content:center} }
-@media (max-width:600px){ .ghd .gh-facts li:first-child::before{content:none} }
 @media (min-width:768px) and (max-width:1023px){ .ghd-head .ghd-photo{aspect-ratio:2/1} }
 @media (min-width:1024px){
-  .ghd-head{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"crumb crumb" "h1 h1" "lead cta" "facts cta" "photo photo";column-gap:var(--d-gap);
-    padding-top:calc(80px + clamp(20px,1.8vw,30px))}
+  .ghd-head{padding-top:calc(80px + clamp(20px,1.8vw,30px))}
   .ghm .ghd-head h1{font-size:clamp(40px,4vw,60px)}
-  .ghd-head .gh-lead{max-width:46em}
-  .ghd-head .gh-cta{align-self:end;margin-top:0;justify-content:flex-end}
-  .ghd-head .gh-facts{margin-top:12px}
-  /* the photo large: the full width, 21:9 (the whole truck stays in the frame) */
-  .ghd-head .ghd-photo{margin-top:clamp(28px,2.8vw,40px);aspect-ratio:21/9;border-radius:28px}
+  /* the truck large across the width, 21:9 (the whole truck stays in the frame) */
+  .ghd-head .ghd-photo{aspect-ratio:21/9;border-radius:28px}
   .ghd-head .ghd-photo img{object-position:50% 52%}
 }
 

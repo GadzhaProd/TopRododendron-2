@@ -34,16 +34,16 @@ CRUMB = part(r'<nav class="gh-crumb".*?</nav>')
 H1 = part(r'<h1 id="h-gh">.*?</h1>')
 LEAD = part(r'<p class="gh-lead">.*?</p>')
 CTA = part(r'<div class="gh-cta">.*?</div>').replace('class="gh-cta"', 'class="gh-cta ghd-cta"')
-FACTS = ['Sinds 2001', '10.000 planten op voorraad']
-for f in FACTS: assert f in old, f
 # the head (owner, 28 Nov): A's own elements on the page's light ground, the company's truck as the photo (his picture,
 # img/gh-truck.webp). Phone: heading, line, photo, then the action and the facts (his order). Desktop: heading, the line with
 # the action beside it, then the photo large across the width (owner: "the photo is small on the computer").
-HEAD = ('<section class="in gh-head ghd-head" aria-labelledby="h-gh">' + CRUMB + H1 + LEAD
+# owner, 28 Nov: the heading on top, the photo under it, the line and the action under the photo; the facts line
+# ("Sinds 2001 · 10.000 planten op voorraad") dropped as superfluous here
+HEAD = ('<section class="in gh-head ghd-head" aria-labelledby="h-gh">' + CRUMB + H1
         + '<figure class="gh-photo ghd-photo"><img src="img/gh-truck.webp" srcset="img/gh-truck-800.webp 800w, img/gh-truck-1200.webp 1200w, img/gh-truck.webp 2000w" '
           'sizes="(min-width:1440px) 1325px, 92vw" alt="Vrachtwagen van Top Rhododendrons op een polderweg" '
           'width="2000" height="1116" fetchpriority="high" decoding="async"></figure>'
-        + CTA + '<ul class="gh-facts" aria-label="In het kort">' + ''.join(f'<li>{f}</li>' for f in FACTS) + '</ul></section>')
+        + LEAD + CTA + '</section>')
 
 # ---------- 2. what you get | how it works ----------
 ROWS = [('Partij', 'Vanaf 25 planten krijgt u een partijprijs. Hoe groter de partij, hoe lager de prijs per plant.'),
@@ -63,7 +63,7 @@ DUO = ('<section class="ghd-band" aria-labelledby="h-get"><div class="in">'
        '<dl class="ghd-get">' + ''.join(f'<div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in ROWS) + '</dl></div></section>'
        '<section class="ghd-band" aria-labelledby="h-st"><div class="in">'
        '<h2 id="h-st">Van aanvraag tot levering, in vier stappen.</h2>'
-       '<ol class="ghd-steps">' + ''.join(f'<li><h3><span>{k}</span>{t}</h3><p>{p}</p></li>' for k, (t, p) in enumerate(STEPS, 1)) + '</ol>'
+       '<ol class="ghd-steps">' + ''.join(f'<li><h3>{t}</h3><p>{p}</p></li>' for t, p in STEPS) + '</ol>'
        '</div></section>')
 
 # ---------- 3. the varieties: the names once, as the photo captions ----------

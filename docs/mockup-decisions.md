@@ -1610,4 +1610,5 @@ Owner: start with «Voor professionals» (2.4 «Bezoek de kwekerij» not as its 
   - copy: one "met kluit" (varieties line) and one "Wekerom" (step 4) less;
   - shared with A, B, C, A-foto: input type "text" (was the invalid "input"), field and pill borders at 50 % (3:1), the privacy link a taller tap area.
   Checked at 320–1920: no horizontal scroll, no errors; the form flow (empty, invalid, delivery, sent) at 1440 and 390.
+- Owner (28 Nov): drop the facts line under the line ("Sinds 2001 · 10.000 planten op voorraad"), superfluous here; the action on the right of the line was out of place: the heading on top, the photo under it, the line and the action under the photo; the numbers 1–4 of the steps removed. D's head is now one column on every width: crumb, H1, the truck (16:9 phone, 2:1 tablet, 21:9 desktop), the line, the action. Phone: the button's bottom at 665 px (390). Desktop: at 1440 x 900 the line and the button sit just under the first screen (photo 568 px). Checked at 320–1920: no horizontal scroll, no errors.
 
