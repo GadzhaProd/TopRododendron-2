@@ -34,6 +34,15 @@ CRUMB = part(r'<nav class="gh-crumb".*?</nav>')
 H1 = part(r'<h1 id="h-gh">.*?</h1>')
 LEAD = part(r'<p class="gh-lead">.*?</p>')
 CTA = part(r'<div class="gh-cta">.*?</div>').replace('class="gh-cta"', 'class="gh-cta ghd-cta"')
+# the phone line under the action (owner, 28 Nov: "the phone number looks wrong"): a quiet link with a phone icon instead of an
+# underlined number left under a full-width button; centred under the button on the phone, beside it on desktop
+PHONE_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 '
+              '19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6'
+              'l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.6" '
+              'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+_tel_old = re.search(r'<p class="gh-tel">Of bel <a href="tel:\+31620104312">06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</a></p>', CTA)
+assert _tel_old, CTA
+CTA = CTA.replace(_tel_old.group(0), '<a class="ghd-tel" href="tel:+31620104312">' + PHONE_ICON + '<span>Of bel <b>06&nbsp;20&nbsp;10&nbsp;43&nbsp;12</b></span></a>', 1)
 # the head (owner, 28 Nov): A's own elements on the page's light ground, the company's truck as the photo (his picture,
 # img/gh-truck.webp). Phone: heading, line, photo, then the action and the facts (his order). Desktop: heading, the line with
 # the action beside it, then the photo large across the width (owner: "the photo is small on the computer").

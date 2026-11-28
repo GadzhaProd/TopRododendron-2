@@ -25,6 +25,13 @@
   .ghd h2{font-size:clamp(18px,5.4vw,22px)}
 }
 @media (max-width:640px){ .ghd-head .ghd-photo{border-radius:20px} }
+/* the phone line: icon, a soft "Of bel" and the number, no underline, 48 px tap area; beside the button, centred under it on phones */
+.ghm .ghd-tel{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 4px;color:#5f5e58;font-size:var(--t-body);line-height:1.4;text-decoration:none;white-space:nowrap}
+.ghd-tel svg{flex:none;width:18px;height:18px;color:#3f4a37}
+.ghd-tel b{font-weight:600;color:#141413;letter-spacing:.01em}
+@media (hover:hover){ .ghm .ghd-tel:hover b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(63,74,55,.5)} }
+.ghm .ghd-tel:focus-visible{outline:2px solid #3f4a37;outline-offset:2px;border-radius:999px}
+@media (max-width:560px){ .ghd-head .gh-cta{row-gap:6px} .ghm .ghd-tel{width:100%;justify-content:center} }
 /* small phones: the head button full width, the same shape as the bottom bar's */
 @media (max-width:560px){ .ghd-head .gh-cta .gh-btn{flex:1 1 100%;justify-content:center} }
 @media (min-width:768px) and (max-width:1023px){ .ghd-head .ghd-photo{aspect-ratio:2/1} }
