@@ -121,11 +121,36 @@
 .ghd-bar-in{display:flex;justify-content:center}
 .ghd-bar .gh-btn{flex:1;min-width:0;max-width:420px;padding:0 16px}
 
-/* ---------- the head as the homepage's hero (owner, 28 Nov): the truck photo, the text bottom-left as on the homepage ----------
-   The truck stands left of centre: on the phone the crop keeps the cab with its name plate; on desktop the scrim of the
-   homepage darkens the lower left under the text. The facts line small under the actions; air under the hero as between bands. */
-.ghd-hero-img{object-position:13% 50%}
-@media (min-width:1024px){ .ghd-hero-img{object-position:50% 46%} }
+/* ---------- the head as the homepage's hero (owner, 28 Nov), with the truck ----------
+   The homepage puts its text bottom-left over the photo; the truck stands left of centre, so the text covered the cab (owner,
+   28 Nov). Here the text has its own dark field and never lies on the truck: desktop, the text left on the dark, the photo
+   right, fading into it, the whole truck in view; phone and tablet, the photo with the cab first, the text under it on the
+   dark. The homepage's markup and type stay; only the layout of the head changes. */
+.ghd-hero{--hd:#161a15;background:var(--hd)!important}
+.ghd-hero :is(.sc-veil,.hero-scrim,.sc-phone,.sc-tab){display:none!important}
 .ghd-hero .hero-link{color:#fff}
 .ghd-hero-facts{margin:2px 0 0;font-size:var(--t-small);line-height:1.5;color:rgba(255,255,255,.78)}
 .ghd #hero + .ghd-band{padding-top:var(--sec)}
+@media (min-width:1024px){
+  .ghd-hero{min-height:min(100svh,clamp(620px,52vw,820px))!important;justify-content:center!important}
+  /* the photo: the right 60 %, its left edge fading into the dark field */
+  .ghd-hero > .absolute.inset-0{left:40%!important}
+  .ghd-hero > .absolute.inset-0::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,var(--hd) 0%,rgba(22,26,21,.72) 9%,rgba(22,26,21,.28) 20%,rgba(22,26,21,0) 34%)}
+  .ghd-hero-img{object-position:12% 50%}
+  /* the text: within the dark field */
+  .ghd-hero .container-x{padding-top:calc(80px + 32px)!important;padding-bottom:48px!important}
+  .ghd-hero .container-x > div{max-width:calc(40vw - var(--gut) - 24px)!important}
+  #hero.ghd-hero h1{font-size:clamp(38px,3.7vw,58px)!important}
+}
+@media (max-width:1023px){
+  .ghd-hero{min-height:0!important;justify-content:flex-start!important}
+  /* the photo first: the cab with its name plate, its foot fading into the dark field under it */
+  .ghd-hero > .absolute.inset-0{position:relative!important;inset:auto!important;height:clamp(340px,60svh,560px)}
+  .ghd-hero > .absolute.inset-0::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;pointer-events:none;
+    background:linear-gradient(0deg,var(--hd) 0%,rgba(22,26,21,.55) 45%,rgba(22,26,21,0) 100%)}
+  .ghd-hero-img{object-position:13% 50%}
+  .ghd-hero .container-x{margin-top:-28px;padding-top:0!important;padding-bottom:40px!important}
+  .ghd-hero .container-x > div{max-width:none!important}
+}
+@media (min-width:640px) and (max-width:1023px){ .ghd-hero-img{object-position:22% 50%} }
