@@ -1,65 +1,53 @@
-/* ===== Groothandel, variant D: the compact page (owner, 27 Nov: "long, little text, scattered") =====
-   On top of tools/groothandel.css (variant A's base: type, hairline rows, the pill, the form). Built by tools/build_groothandel_d.py.
-   Four bands, each filling both sides by itself, 1 x --sec of air between them (A: 2 x):
-     1  the head: heading, line, action | our field
-     2  what you get: six rows          | how it works: four steps   (one table in two halves, the same hairline rows)
-     3  the seven varieties in a row, the large sizes and the link in one row under them
-     4  the request: intro and the questions | the form card
-   One heading size for the bands (--d-h2), so two headings can stand side by side without shouting. */
-.ghd{--d-h2:clamp(26px,2.5vw,36px);--d-line:rgba(63,74,55,.2);--d-gap:clamp(40px,5vw,96px);--d-band:calc(var(--sec) / 2)}
+/* ===== Groothandel, variant D (tools/build_groothandel_d.py), on top of tools/groothandel.css (variant A's base: type, rows, the pill, the form) =====
+   28 Nov (owner): one section after the other, each heading over its own content, the page read step by step; the photo large
+   on desktop. Sections: the head; what you get (3 x 2); four steps in a row; the varieties; the questions; the request.
+   One heading size for the sections (--d-h2); half the homepage's air between them. */
+.ghd{--d-h2:clamp(26px,2.6vw,38px);--d-line:rgba(63,74,55,.2);--d-gap:clamp(32px,4vw,72px);--d-band:calc(var(--sec) / 2)}
 .ghd h2{font-size:var(--d-h2);line-height:1.12}
 .ghd-band{padding-top:var(--d-band);padding-bottom:var(--d-band)}
 
-/* ---------- 1. the head (owner, 28 Nov): on the page's own light ground, no dark field; the company's truck as the photo.
-   Order on the phone: heading, line, photo, then the action and the facts. From 1024 px the text left, the photo right at the
-   height of the text (so no empty area beside it), the action under the line. ---------- */
-.ghd-head{display:grid;grid-template-columns:minmax(0,1fr);padding-bottom:var(--d-band)}
+/* ---------- 1. the head: phone heading, line, photo, action, facts; desktop heading, line | action, the photo large under them ---------- */
+.ghd-head{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"crumb" "h1" "lead" "photo" "cta" "facts";padding-bottom:var(--d-band)}
 .ghd-head > *{min-width:0}
-.ghd-head .gh-crumb{margin-bottom:clamp(18px,2vw,28px)}
+.ghd-head .gh-crumb{grid-area:crumb;margin-bottom:clamp(18px,2vw,28px)}
 .ghd-head .gh-crumb a{padding-inline:4px;margin-inline:-4px}
-.ghd-head .ghd-photo{margin-top:clamp(22px,3vw,32px);aspect-ratio:3/2;border-radius:22px}
+.ghd-head h1{grid-area:h1}
+.ghd-head .gh-lead{grid-area:lead}
+.ghd-head .ghd-photo{grid-area:photo;margin-top:clamp(22px,3vw,32px);aspect-ratio:3/2;border-radius:22px}
 .ghd-head .ghd-photo img{object-position:35% 55%}
-.ghd-head .gh-cta{margin-top:clamp(22px,3vw,30px)}
-.ghd-head .gh-facts{margin-top:18px}
+.ghd-head .gh-cta{grid-area:cta;margin-top:clamp(22px,3vw,30px)}
+.ghd-head .gh-facts{grid-area:facts;margin-top:18px}
 @media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} .ghd-head .gh-lead{margin-top:14px} }
 @media (max-width:640px){ .ghd-head .ghd-photo{border-radius:20px} }
 @media (min-width:768px) and (max-width:1023px){ .ghd-head .ghd-photo{aspect-ratio:2/1} }
 @media (min-width:1024px){
-  .ghd-head{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:clamp(40px,4.4vw,80px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
-  .ghd-head > :not(.ghd-photo){grid-column:1}
-  .ghd-head .gh-facts{align-self:start}
-  .ghd-head .ghd-photo{grid-column:2;grid-row:1 / -1;margin-top:0;aspect-ratio:auto;position:relative;min-height:clamp(340px,28vw,440px);align-self:stretch;border-radius:28px}
-  .ghd-head .ghd-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:30% 50%}
-  .ghm .ghd-head h1{font-size:clamp(38px,3.65vw,52px)}
+  .ghd-head{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"crumb crumb" "h1 h1" "lead cta" "facts cta" "photo photo";column-gap:var(--d-gap);
+    padding-top:calc(80px + clamp(24px,2.6vw,44px))}
+  .ghm .ghd-head h1{font-size:clamp(40px,4vw,60px)}
+  .ghd-head .gh-lead{max-width:46em}
+  .ghd-head .gh-cta{align-self:end;margin-top:0;justify-content:flex-end}
+  .ghd-head .gh-facts{margin-top:12px}
+  /* the photo large: the full width, 21:9 (the whole truck stays in the frame) */
+  .ghd-head .ghd-photo{margin-top:clamp(28px,2.8vw,40px);aspect-ratio:21/9;border-radius:28px}
+  .ghd-head .ghd-photo img{object-position:50% 52%}
 }
 
-/* ---------- 2. what you get | how it works: two halves of one table ---------- */
-.ghd-duo{display:grid;grid-template-columns:minmax(0,1fr)}
-.ghd-duo h2 + *{margin-top:clamp(20px,2.2vw,28px)}
-.ghd-duo .ghd-steps{margin-bottom:0}
-.ghd-duo h2:nth-of-type(2){margin-top:clamp(44px,6vw,56px)}
-@media (min-width:1024px){
-  .ghd-duo{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto;column-gap:var(--d-gap)}
-  .ghd-duo h2{align-self:end}
-  .ghd-duo h2:nth-of-type(1){grid-area:1 / 1}
-  .ghd-duo .ghd-get{grid-area:2 / 1}
-  .ghd-duo h2:nth-of-type(2){grid-area:1 / 2;margin-top:0}
-  .ghd-duo .ghd-steps{grid-area:2 / 2}
-}
-/* the rows of both halves: the label in the soft ink, the value in the text's ink */
-.ghd .ghd-rows > *{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);column-gap:20px;padding:14px 0;border-top:1px solid var(--d-line)}
-.ghd .ghd-rows > *:last-child{border-bottom:1px solid var(--d-line)}
-.ghd-rows :is(dt,h3){font-size:var(--t-body);line-height:1.5;font-weight:400;color:#5f5e58}
-.ghd-rows :is(dd,p){font-size:var(--t-body);line-height:1.5;font-weight:500;color:#141413;text-wrap:pretty}
-.ghd-steps{counter-reset:st}
-.ghd-steps li{counter-increment:st}
-.ghd-steps h3::before{content:counter(st) ".\00a0";font-variant-numeric:tabular-nums}
-@media (max-width:420px){
-  .ghd .ghd-rows > *{grid-template-columns:minmax(0,1fr);row-gap:2px;padding:12px 0}
-  .ghd-rows :is(dt,h3){font-size:var(--t-small)}
-}
-/* from 1024 px the two halves end on one line: the four steps share the height of the six rows */
-@media (min-width:1024px){ .ghd-duo .ghd-rows{display:flex;flex-direction:column} .ghd-duo .ghd-rows > *{flex:1 0 auto} }
+/* ---------- 2. what you get: six points, 3 x 2 on desktop, 2 columns on tablets, one on the phone; each a hairline, label over value ---------- */
+.ghd-get{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--d-gap);row-gap:0;margin:clamp(24px,2.6vw,36px) 0 0}
+.ghd-get > div{padding:16px 0 18px;border-top:1px solid var(--d-line)}
+.ghd-get dt{font-size:var(--t-small);line-height:1.4;color:#5f5e58}
+.ghd-get dd{margin:4px 0 0;font-size:var(--t-body);line-height:1.5;font-weight:500;color:#141413;text-wrap:pretty}
+@media (max-width:1023px){ .ghd-get{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .ghd-get{grid-template-columns:minmax(0,1fr)} .ghd-get > div:last-child{border-bottom:1px solid var(--d-line)} }
+
+/* ---------- the four steps in a row: number, title and a hairline after it, the text under it (as Hoe het werkt) ---------- */
+.ghd-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,2.4vw,40px);row-gap:26px;margin:clamp(24px,2.6vw,36px) 0 0;padding:0;list-style:none}
+.ghd-steps h3{display:flex;align-items:baseline;gap:10px;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);letter-spacing:-.01em;line-height:1.2}
+.ghd-steps h3 span{font-family:Manrope,system-ui,sans-serif;font-size:var(--t-small);font-weight:600;color:#3f4a37}
+.ghd-steps h3::after{content:"";flex:1;height:1px;background:rgba(63,74,55,.25);align-self:center}
+.ghd-steps p{margin-top:10px;font-size:var(--t-body);line-height:1.55;color:#5f5e58;text-wrap:pretty}
+@media (max-width:1023px){ .ghd-steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .ghd-steps{grid-template-columns:minmax(0,1fr)} }
 
 /* ---------- 3. the varieties: heading and line, the seven in a row, then one row for the large sizes and the link ---------- */
 .ghd-var-top{display:grid;grid-template-columns:minmax(0,1fr);row-gap:14px}
@@ -98,23 +86,18 @@
   .ghd-big .gh-more{margin-top:0;margin-left:clamp(20px,3vw,56px);white-space:nowrap}
 }
 
-/* ---------- 4. the request: the intro and the questions left, the form card right ---------- */
-.ghd-req{padding-bottom:var(--sec)}
-.ghd-ask{display:grid;grid-template-columns:minmax(0,1fr);row-gap:clamp(28px,3.4vw,40px)}
-.ghd-intro .gh-p{margin-top:clamp(14px,1.4vw,18px);max-width:36em}
-.ghd-intro .gh-tel{margin-top:clamp(14px,1.6vw,20px)}
-.ghd-formcard{padding:clamp(24px,2.6vw,38px)}
-.ghd-formcard .gh-f textarea{min-height:104px}
+
+/* ---------- the questions: two stacks of two on desktop, one list on the phone ---------- */
+.ghd-faq{margin-top:clamp(20px,2.2vw,30px)}
+@media (min-width:861px){ .ghd-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--d-gap);align-items:start} }
+@media (max-width:860px){ .ghd-faq > div:first-child details:last-child{border-bottom:0} }
+
+/* ---------- the request: its heading and line, then the form card across the width ---------- */
+.ghd-intro .gh-p{margin-top:clamp(12px,1.4vw,18px);max-width:52em}
+.ghd-intro .gh-tel{white-space:normal}
+.ghd-formcard{margin-top:clamp(22px,2.4vw,32px);padding:clamp(28px,3.2vw,48px) clamp(22px,3.2vw,48px)}
+@media (min-width:1024px){ .ghd-formcard .gh-form{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px} }
 @media (max-width:860px){ .ghd-formcard{padding:26px 20px 30px} }
-.ghd-qa h3{margin-bottom:12px;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);line-height:1.2;letter-spacing:-.01em}
-.ghd-qa .gh-faq summary{padding-block:16px}
-@media (min-width:1024px){
-  .ghd-ask{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:var(--d-gap);row-gap:clamp(32px,3.4vw,48px)}
-  .ghd-intro{grid-area:1 / 1}
-  /* the questions end level with the form card */
-  .ghd-qa{grid-area:2 / 1;align-self:end}
-  .ghd-formcard{grid-area:1 / 2 / 3 / 3;align-self:start}
-}
 
 /* ---------- the bottom bar under 1024 px (as groothandel-a-foto.html) ---------- */
 .ghd-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));
