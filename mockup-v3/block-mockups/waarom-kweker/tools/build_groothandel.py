@@ -79,7 +79,7 @@ FAQ = ('<section class="gh-sec" aria-labelledby="h-faq"><div class="in gh-two"><
        '<div class="gh-r gh-faq">' + ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in QA) + '</div></div></section>')
 
 
-def field(fid, label, kind='input', req=True, hint='', wide=False, attrs=''):
+def field(fid, label, kind='text', req=True, hint='', wide=False, attrs=''):
     opt = '' if req else ' <i>(optioneel)</i>'
     desc = (f'h-{fid} ' if hint else '') + f'e-{fid}'
     ctl = (f'<textarea id="{fid}" name="{fid}" rows="4"{" required" if req else ""} aria-describedby="{desc}"{attrs}></textarea>' if kind == 'textarea'

@@ -124,7 +124,7 @@
 @media (max-width:560px){ .gh-form{grid-template-columns:minmax(0,1fr)} }
 .gh-f label,.gh-f legend{margin-bottom:8px;font-size:var(--t-small);line-height:1.4;font-weight:600;color:#141413}
 .gh-f label i,.gh-f legend i{font-style:normal;font-weight:400;color:#5f5e58}
-.gh-f input,.gh-f textarea{width:100%;min-height:52px;padding:13px 16px;border:1px solid rgba(63,74,55,.28);border-radius:14px;background:rgba(255,255,255,.62);color:#141413;font:inherit;font-size:16px;line-height:1.45;transition:border-color .2s,background .2s}
+.gh-f input,.gh-f textarea{width:100%;min-height:52px;padding:13px 16px;border:1px solid rgba(63,74,55,.5);border-radius:14px;background:rgba(255,255,255,.62);color:#141413;font:inherit;font-size:16px;line-height:1.45;transition:border-color .2s,background .2s}
 .gh-f textarea{min-height:120px;resize:vertical}
 .gh-f :is(input,textarea):hover{border-color:rgba(63,74,55,.45)}
 .gh-f :is(input,textarea):focus{background:#fff;border-color:#3f4a37;outline:2px solid rgba(63,74,55,.25);outline-offset:0}
@@ -136,12 +136,13 @@
 .gh-pick{display:flex;flex-wrap:wrap;gap:8px}
 .gh-pick label{position:relative;margin:0;font-weight:500}
 .gh-pick input{position:absolute;opacity:0;width:1px;height:1px}
-.gh-pick span{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.62);box-shadow:inset 0 0 0 1px rgba(63,74,55,.28);font-size:var(--t-body);color:#141413;cursor:pointer;transition:background .2s,box-shadow .2s}
+.gh-pick span{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.62);box-shadow:inset 0 0 0 1px rgba(63,74,55,.5);font-size:var(--t-body);color:#141413;cursor:pointer;transition:background .2s,box-shadow .2s}
 .gh-pick input:checked + span{background:#d3ddc2;box-shadow:inset 0 0 0 1.5px #3f4a37}
 .gh-pick input:focus-visible + span{outline:2px solid var(--moss);outline-offset:3px}
 .gh-pick[aria-invalid="true"] span{box-shadow:inset 0 0 0 1px #9b3b2f}
 .gh-send{grid-column:1 / -1;display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:4px}
 .gh-priv{font-size:var(--t-small);line-height:1.5;color:#5f5e58;max-width:42em}
+.ghm .gh-priv a{display:inline-block;padding-block:12px;margin-block:-12px}
 .gh-done{display:none}
 .gh-done h3{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:var(--t-sub);letter-spacing:-.01em}
 .gh-done p{margin-top:10px;font-size:var(--t-body);line-height:1.6;color:#3d3c37;max-width:38em}

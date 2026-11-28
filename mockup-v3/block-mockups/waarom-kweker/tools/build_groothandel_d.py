@@ -40,7 +40,8 @@ for f in FACTS: assert f in old, f
 # img/gh-truck.webp). Phone: heading, line, photo, then the action and the facts (his order). Desktop: heading, the line with
 # the action beside it, then the photo large across the width (owner: "the photo is small on the computer").
 HEAD = ('<section class="in gh-head ghd-head" aria-labelledby="h-gh">' + CRUMB + H1 + LEAD
-        + '<figure class="gh-photo ghd-photo"><img src="img/gh-truck.webp" alt="Vrachtwagen van Top Rhododendrons op een polderweg" '
+        + '<figure class="gh-photo ghd-photo"><img src="img/gh-truck.webp" srcset="img/gh-truck-800.webp 800w, img/gh-truck-1200.webp 1200w, img/gh-truck.webp 2000w" '
+          'sizes="(min-width:1440px) 1325px, 92vw" alt="Vrachtwagen van Top Rhododendrons op een polderweg" '
           'width="2000" height="1116" fetchpriority="high" decoding="async"></figure>'
         + CTA + '<ul class="gh-facts" aria-label="In het kort">' + ''.join(f'<li>{f}</li>' for f in FACTS) + '</ul></section>')
 
@@ -54,7 +55,7 @@ ROWS = [('Partij', 'Vanaf 25 planten krijgt u een partijprijs. Hoe groter de par
 STEPS = [('Aanvragen', 'U stuurt ons de soorten, maten en aantallen, en de week waarin u de planten nodig heeft.'),
          ('Offerte', 'U krijgt binnen één werkdag een offerte met de prijs per soort en maat, exclusief btw.'),
          ('Afspreken', 'Na uw akkoord kiezen wij samen de dag van bezorgen of afhalen.'),
-         ('Ontvangen', 'Wij rooien vlak voor de levering. U krijgt de planten bezorgd, of u haalt ze af in Wekerom.')]
+         ('Ontvangen', 'Wij rooien vlak voor de levering. U krijgt de planten bezorgd, of u haalt ze zelf af.')]
 # one section after the other, each heading over its own content (owner, 28 Nov: the two tables side by side, different in
 # meaning, looked foreign; the page should read step by step): the six points as a grid of 3 x 2, the four steps in a row
 DUO = ('<section class="ghd-band" aria-labelledby="h-get"><div class="in">'
@@ -71,13 +72,14 @@ SORTS = [('nova-zembla', 'Nova Zembla'), ('catawbiense-grandiflorum', 'Catawbien
          ('ponticum-roseum', 'Ponticum Roseum')]
 ALL = 'Alle maten en prijzen'
 SORTS_UL = ('<ul class="ghd-sorts" aria-label="De zeven soorten">' + ''.join(
-    f'<li><a href="soort-{sl}.html"><img src="img/{sl}-sm.webp" alt="" width="900" height="900" loading="lazy" decoding="async"><span>{n}</span></a></li>'
+    f'<li><a href="soort-{sl}.html"><img src="img/{sl}-400.webp" srcset="img/{sl}-160.webp 160w, img/{sl}-400.webp 400w" '
+    f'sizes="(max-width:699px) 40px, 170px" alt="" width="400" height="400" loading="lazy" decoding="async"><span>{n}</span></a></li>'
     for sl, n in SORTS)
     # under 700 px the list is two columns; its eighth cell is the link to all sizes (the link in the row below is hidden there)
     + f'<li class="ghd-all"><a href="index.html#assortiment"><span>{ALL}</span>{ARROW}</a></li></ul>')
 VAR = ('<section class="ghd-band" aria-labelledby="h-var"><div class="in">'
        '<div class="ghd-var-top"><h2 id="h-var"><span>Zeven soorten rhododendrons,</span> <span>van 40 tot 225&nbsp;cm.</span></h2>'
-       '<p>Alle planten groeien in de volle grond en wij leveren ze met kluit. Welke maten er zijn, verschilt per soort.</p></div>'
+       '<p>Alle planten groeien in de volle grond. Welke maten er zijn, verschilt per soort.</p></div>'
        + SORTS_UL +
        '<div class="ghd-big"><h3>Grote maten</h3><p>Voor projecten die meteen volume vragen, hebben wij ook grote maten, '
        'van 120 tot 225&nbsp;cm. Die leveren wij op aanvraag. U kunt ze zelf uitzoeken op ons veld.</p>'
@@ -86,6 +88,17 @@ VAR = ('<section class="ghd-band" aria-labelledby="h-var"><div class="in">'
 
 # ---------- 4. the request: the intro and the questions left, A's form in the card right ----------
 FORMBOX = part(r'<div class="gh-r gh-req">.*?</form><div class="gh-done".*?</div></div>')
+# three columns on desktop (reviewer, 28 Nov): the telephone field moves after the varieties field so that the reading order
+# follows the layout (company, name, e-mail | varieties | telephone, delivery week | delivery or pick-up | send); the submit
+# button says "Verstuur aanvraag" (the heading above already says "Vraag een offerte aan.")
+_tel = re.search(r'<div class="gh-f" data-f="tel">.*?<p class="gh-err" id="e-tel"[^>]*></p></div>', FORMBOX, flags=re.S).group(0)
+FORMBOX = FORMBOX.replace(_tel, '', 1)
+_sv = re.search(r'<div class="gh-f w" data-f="soorten">.*?<p class="gh-err" id="e-soorten"[^>]*></p></div>', FORMBOX, flags=re.S).group(0)
+FORMBOX = FORMBOX.replace(_sv, _sv + _tel, 1)
+assert FORMBOX.count('data-f="tel"') == 1
+_btn = re.search(r'<button class="gh-btn" type="submit">Vraag een offerte aan', FORMBOX)
+assert _btn
+FORMBOX = FORMBOX.replace('<button class="gh-btn" type="submit">Vraag een offerte aan', '<button class="gh-btn" type="submit">Verstuur aanvraag', 1)
 QS = re.findall(r'<details>.*?</details>', part(r'<div class="gh-r gh-faq">.*?</div>'), flags=re.S)
 assert len(QS) == 4
 # the questions as their own section (two stacks of two), then the request: its heading and line over the form card
@@ -128,6 +141,7 @@ def rep(a, b, n=1):
     assert s.count(a) == n, (s.count(a), a[:70]); s = s.replace(a, b)
 
 
+s = s.replace("btn.firstChild.textContent='Vraag een offerte aan'", "btn.firstChild.textContent='Verstuur aanvraag'")
 rep('</head>', '<style id="groothandel-d-css">' + (D / 'tools' / 'groothandel_d.css').read_text() + '</style></head>')
 rep('</body>', JS + '</body>')
 rep('href="groothandel.html" aria-current="page"', 'href="groothandel-d.html" aria-current="page"', s.count('href="groothandel.html" aria-current="page"'))
