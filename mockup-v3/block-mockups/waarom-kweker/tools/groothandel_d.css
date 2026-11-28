@@ -10,21 +10,26 @@
 .ghd h2{font-size:var(--d-h2);line-height:1.12}
 .ghd-band{padding-top:var(--d-band);padding-bottom:var(--d-band)}
 
-/* ---------- 1. the head (as groothandel-a-foto.html): phone and tablet the field first; from 1024 px the field beside the text ---------- */
+/* ---------- 1. the head (owner, 28 Nov): on the page's own light ground, no dark field; the company's truck as the photo.
+   Order on the phone: heading, line, photo, then the action and the facts. From 1024 px the text left, the photo right at the
+   height of the text (so no empty area beside it), the action under the line. ---------- */
 .ghd-head{display:grid;grid-template-columns:minmax(0,1fr);padding-bottom:var(--d-band)}
-.ghd-head .gh-crumb{order:0;margin-bottom:14px}
+.ghd-head > *{min-width:0}
+.ghd-head .gh-crumb{margin-bottom:clamp(18px,2vw,28px)}
 .ghd-head .gh-crumb a{padding-inline:4px;margin-inline:-4px}
-.ghd-head .gh-photo{order:1;margin-top:0;aspect-ratio:16/9}
-.ghd-head .gh-photo img{object-position:50% 50%}
-.ghd-head .ghd-text{order:2;margin-top:clamp(24px,3.4vw,36px)}
-@media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} .ghd-head .gh-lead{margin-top:14px} .ghd-head .gh-cta{margin-top:22px} }
-@media (min-width:768px) and (max-width:1023px){ .ghd-head .gh-photo{aspect-ratio:2/1} }
+.ghd-head .ghd-photo{margin-top:clamp(22px,3vw,32px);aspect-ratio:3/2;border-radius:22px}
+.ghd-head .ghd-photo img{object-position:35% 55%}
+.ghd-head .gh-cta{margin-top:clamp(22px,3vw,30px)}
+.ghd-head .gh-facts{margin-top:18px}
+@media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} .ghd-head .gh-lead{margin-top:14px} }
+@media (max-width:640px){ .ghd-head .ghd-photo{border-radius:20px} }
+@media (min-width:768px) and (max-width:1023px){ .ghd-head .ghd-photo{aspect-ratio:2/1} }
 @media (min-width:1024px){
-  .ghd-head{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto;column-gap:clamp(40px,4.4vw,80px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
-  .ghd-head .gh-crumb{grid-column:1;grid-row:1;margin-bottom:clamp(22px,2.4vw,36px);align-self:start}
-  .ghd-head .ghd-text{grid-column:1;grid-row:2;margin-top:0}
-  .ghd-head .gh-photo{position:relative;grid-column:2;grid-row:1 / 3;aspect-ratio:auto;height:auto;min-height:clamp(340px,28vw,440px);align-self:stretch}
-  .ghd-head .gh-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:46% 55%}
+  .ghd-head{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:clamp(40px,4.4vw,80px);padding-top:calc(80px + clamp(28px,3.4vw,56px))}
+  .ghd-head > :not(.ghd-photo){grid-column:1}
+  .ghd-head .gh-facts{align-self:start}
+  .ghd-head .ghd-photo{grid-column:2;grid-row:1 / -1;margin-top:0;aspect-ratio:auto;position:relative;min-height:clamp(340px,28vw,440px);align-self:stretch;border-radius:28px}
+  .ghd-head .ghd-photo img{position:absolute;inset:0;width:100%;height:100%;object-position:30% 50%}
   .ghm .ghd-head h1{font-size:clamp(38px,3.65vw,52px)}
 }
 
@@ -120,37 +125,3 @@
 @media (min-width:1024px){ .ghd-bar{display:none} }
 .ghd-bar-in{display:flex;justify-content:center}
 .ghd-bar .gh-btn{flex:1;min-width:0;max-width:420px;padding:0 16px}
-
-/* ---------- the head as the homepage's hero (owner, 28 Nov), with the truck ----------
-   The homepage puts its text bottom-left over the photo; the truck stands left of centre, so the text covered the cab (owner,
-   28 Nov). Here the text has its own dark field and never lies on the truck: desktop, the text left on the dark, the photo
-   right, fading into it, the whole truck in view; phone and tablet, the photo with the cab first, the text under it on the
-   dark. The homepage's markup and type stay; only the layout of the head changes. */
-.ghd-hero{--hd:#161a15;background:var(--hd)!important}
-.ghd-hero :is(.sc-veil,.hero-scrim,.sc-phone,.sc-tab){display:none!important}
-.ghd-hero .hero-link{color:#fff}
-.ghd-hero-facts{margin:2px 0 0;font-size:var(--t-small);line-height:1.5;color:rgba(255,255,255,.78)}
-.ghd #hero + .ghd-band{padding-top:var(--sec)}
-@media (min-width:1024px){
-  .ghd-hero{min-height:min(100svh,clamp(620px,52vw,820px))!important;justify-content:center!important}
-  /* the photo: the right 60 %, its left edge fading into the dark field */
-  .ghd-hero > .absolute.inset-0{left:40%!important}
-  .ghd-hero > .absolute.inset-0::after{content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,var(--hd) 0%,rgba(22,26,21,.72) 9%,rgba(22,26,21,.28) 20%,rgba(22,26,21,0) 34%)}
-  .ghd-hero-img{object-position:12% 50%}
-  /* the text: within the dark field */
-  .ghd-hero .container-x{padding-top:calc(80px + 32px)!important;padding-bottom:48px!important}
-  .ghd-hero .container-x > div{max-width:calc(40vw - var(--gut) - 24px)!important}
-  #hero.ghd-hero h1{font-size:clamp(38px,3.7vw,58px)!important}
-}
-@media (max-width:1023px){
-  .ghd-hero{min-height:0!important;justify-content:flex-start!important}
-  /* the photo first: the cab with its name plate, its foot fading into the dark field under it */
-  .ghd-hero > .absolute.inset-0{position:relative!important;inset:auto!important;height:clamp(340px,60svh,560px)}
-  .ghd-hero > .absolute.inset-0::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;pointer-events:none;
-    background:linear-gradient(0deg,var(--hd) 0%,rgba(22,26,21,.55) 45%,rgba(22,26,21,0) 100%)}
-  .ghd-hero-img{object-position:13% 50%}
-  .ghd-hero .container-x{margin-top:-28px;padding-top:0!important;padding-bottom:40px!important}
-  .ghd-hero .container-x > div{max-width:none!important}
-}
-@media (min-width:640px) and (max-width:1023px){ .ghd-hero-img{object-position:22% 50%} }
