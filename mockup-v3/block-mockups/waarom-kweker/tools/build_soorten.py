@@ -6,6 +6,7 @@
 import re, pathlib, sys, html
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import soort
+import belpop
 D = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 s = (D / 'index.html').read_text()
 i = s.index('<main id="main"'); j = s.index('</main>') + len('</main>')
@@ -53,5 +54,8 @@ for slug in soort.SLUGS:
             bar = ('<div class="rvs" role="group" aria-label="Варианты страницы сорта"><i>Черновик</i>'
                    f'<a href="soort-{slug}.html">Сейчас (основной)</a><a href="soort-{slug}-galerij.html" aria-current="page">Галерея</a></div>')
             page = page.replace('<div id="root">', bar + '<div id="root">')
+        # the call card with the phone and WhatsApp (owner, 28 Nov; tools/belpop.py); one floating thing at a time: while the
+        # phone buy bar shows, the card waits (buying first)
+        page = belpop.apply(page, 'Vragen over deze soort?', avoid='.so-bar.is-on')
         (D / f'soort-{slug}{sfx}.html').write_text(page)
         print(f'soort-{slug}{sfx}.html', len(page))
