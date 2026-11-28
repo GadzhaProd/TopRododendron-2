@@ -82,6 +82,11 @@ BIG = ('<div class="ghd-big"><h3>Grote maten</h3><p>Voor projecten die meteen vo
        'van 120 tot 225&nbsp;cm. Die leveren wij op aanvraag. U kunt ze zelf uitzoeken op ons veld.</p></div>')
 assert SD.count('<div class="sd-ft">') == 1
 VAR = SD.replace('<div class="sd-ft">', BIG + '<div class="sd-ft">', 1)
+# no prices on the wholesale page (owner, 28 Nov): the cards keep the name, the bloom and the size line; the lot price is in the quote
+_n = VAR.count('<span class="sd-v">vanaf</span>')
+VAR = re.sub(r'<span class="sd-v">vanaf</span><b>[^<]*</b>', '', VAR)
+VAR = re.sub(r', vanaf € [0-9]+,[0-9]{2},', ',', VAR)
+assert _n == 7 and 'vanaf' not in VAR, (_n, VAR.count('vanaf'))
 
 # ---------- 4. the request: the intro and the questions left, A's form in the card right ----------
 FORMBOX = part(r'<div class="gh-r gh-req">.*?</form><div class="gh-done".*?</div></div>')
