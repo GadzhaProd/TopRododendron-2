@@ -40,8 +40,8 @@ CTA = part(r'<div class="gh-cta">.*?</div>').replace('class="gh-cta"', 'class="g
 # owner, 28 Nov: the heading on top, the photo under it, the line and the action under the photo; the facts line
 # ("Sinds 2001 · 10.000 planten op voorraad") dropped as superfluous here
 HEAD = ('<section class="in gh-head ghd-head" aria-labelledby="h-gh">' + CRUMB + H1
-        + '<figure class="gh-photo ghd-photo"><img src="img/gh-truck.webp" srcset="img/gh-truck-800.webp 800w, img/gh-truck-1200.webp 1200w, img/gh-truck.webp 2000w" '
-          'sizes="(min-width:1440px) 1325px, 92vw" alt="Vrachtwagen van Top Rhododendrons op een polderweg" '
+        # one plain src (the 2000 px file, sharp on desktop): the artifact viewer on the owner's phone did not load the srcset candidates (28 Nov)
+        + '<figure class="gh-photo ghd-photo"><img src="img/gh-truck.webp" alt="Vrachtwagen van Top Rhododendrons op een polderweg" '
           'width="2000" height="1116" fetchpriority="high" decoding="async"></figure>'
         + LEAD + CTA + '</section>')
 

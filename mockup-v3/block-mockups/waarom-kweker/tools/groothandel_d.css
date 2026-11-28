@@ -17,6 +17,13 @@
 .ghd-head .gh-lead{margin-top:clamp(18px,2.4vw,32px);max-width:46em}
 .ghd-head .gh-cta{margin-top:clamp(18px,2.4vw,28px)}
 @media (max-width:767px){ .ghd-head{padding-top:calc(64px + 18px)} }
+/* phone: the heading in two lines, one per sentence (owner, 28 Nov); the longer line is about 12.8 em, so the size follows the
+   column; the section headings step down so the heading stays the largest type */
+@media (max-width:767px){
+  .ghm .ghd-head h1{font-size:min(34px,calc((100vw - 2 * var(--gut)) / 13.1));letter-spacing:-.018em;line-height:1.08}
+  .ghm .ghd-head h1 span{white-space:nowrap}
+  .ghd h2{font-size:clamp(18px,5.4vw,22px)}
+}
 @media (max-width:640px){ .ghd-head .ghd-photo{border-radius:20px} }
 /* small phones: the head button full width, the same shape as the bottom bar's */
 @media (max-width:560px){ .ghd-head .gh-cta .gh-btn{flex:1 1 100%;justify-content:center} }
