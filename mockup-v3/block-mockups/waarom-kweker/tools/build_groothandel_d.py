@@ -155,6 +155,7 @@ assert 'gen/veld-L2' not in MAIN
 # the call card with the phone and WhatsApp, as on the first version's product and wholesale pages (owner, 28 Nov)
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import belpop
-s = belpop.apply(s, 'Vragen over een partij?', avoid='#offerte .ghd-formcard')
+s = belpop.apply(s, 'Vragen over een partij?', reach='#offerte', avoid='#offerte .ghd-formcard',
+                 wa='Hallo, ik heb een vraag over een partij rhododendrons.')
 (D / 'groothandel-d.html').write_text(s)
 print('ok', len(s))

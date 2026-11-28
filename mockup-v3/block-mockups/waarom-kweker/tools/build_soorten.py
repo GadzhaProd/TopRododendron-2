@@ -54,8 +54,9 @@ for slug in soort.SLUGS:
             bar = ('<div class="rvs" role="group" aria-label="Варианты страницы сорта"><i>Черновик</i>'
                    f'<a href="soort-{slug}.html">Сейчас (основной)</a><a href="soort-{slug}-galerij.html" aria-current="page">Галерея</a></div>')
             page = page.replace('<div id="root">', bar + '<div id="root">')
-        # the call card with the phone and WhatsApp (owner, 28 Nov; tools/belpop.py); one floating thing at a time: while the
-        # phone buy bar shows, the card waits (buying first)
-        page = belpop.apply(page, 'Vragen over deze soort?', avoid='.so-bar.is-on')
+        # the call card with the phone, WhatsApp and the hours (owner, 28 Nov; tools/belpop.py): after "Andere soorten" has come
+        # into view and on a scroll back up; one floating thing at a time: it waits while the buy bar or the real cart button shows
+        page = belpop.apply(page, 'Vragen over deze soort?', reach='[data-oth]', avoid='.so-bar.is-on', avoid_phone='.so-buy [data-add]',
+                            wa='Hallo, ik heb een vraag over ' + soort.BY[slug]['n'] + '.')
         (D / f'soort-{slug}{sfx}.html').write_text(page)
         print(f'soort-{slug}{sfx}.html', len(page))
