@@ -66,25 +66,22 @@ DUO = ('<section class="ghd-band" aria-labelledby="h-get"><div class="in">'
        '<ol class="ghd-steps">' + ''.join(f'<li><h3>{t}</h3><p>{p}</p></li>' for t, p in STEPS) + '</ol>'
        '</div></section>')
 
-# ---------- 3. the varieties: the names once, as the photo captions ----------
-SORTS = [('nova-zembla', 'Nova Zembla'), ('catawbiense-grandiflorum', 'Catawbiense Grandiflorum'), ('cunninghams-white', 'Cunningham’s White'),
-         ('catawbiense-boursault', 'Catawbiense Boursault'), ('roseum-elegans', 'Roseum Elegans'), ('ponticum', 'Ponticum'),
-         ('ponticum-roseum', 'Ponticum Roseum')]
-ALL = 'Alle maten en prijzen'
-SORTS_UL = ('<ul class="ghd-sorts" aria-label="De zeven soorten">' + ''.join(
-    f'<li><a href="soort-{sl}.html"><img src="img/{sl}-400.webp" srcset="img/{sl}-160.webp 160w, img/{sl}-400.webp 400w" '
-    f'sizes="(max-width:699px) 40px, 170px" alt="" width="400" height="400" loading="lazy" decoding="async"><span>{n}</span></a></li>'
-    for sl, n in SORTS)
-    # under 700 px the list is two columns; its eighth cell is the link to all sizes (the link in the row below is hidden there)
-    + f'<li class="ghd-all"><a href="index.html#assortiment"><span>{ALL}</span>{ARROW}</a></li></ul>')
-VAR = ('<section class="ghd-band" aria-labelledby="h-var"><div class="in">'
-       '<div class="ghd-var-top"><h2 id="h-var"><span>Zeven soorten rhododendrons,</span> <span>van 40 tot 225&nbsp;cm.</span></h2>'
-       '<p>Alle planten groeien in de volle grond. Welke maten er zijn, verschilt per soort.</p></div>'
-       + SORTS_UL +
-       '<div class="ghd-big"><h3>Grote maten</h3><p>Voor projecten die meteen volume vragen, hebben wij ook grote maten, '
-       'van 120 tot 225&nbsp;cm. Die leveren wij op aanvraag. U kunt ze zelf uitzoeken op ons veld.</p>'
-       f'<p class="gh-more"><a href="index.html#assortiment">{ALL}{ARROW}</a></p></div>'
-       '</div></section>')
+# ---------- 3. the varieties: the homepage's own assortment block (owner, 28 Nov: "as on the homepage, the cards in the
+# gradient"): its soft field, the seven cards with the portrait photos, bloom and "vanaf" price, the link to all sizes; here with
+# this page's heading and line, and the large sizes as one row above the link. (The small square thumbnails used before were
+# squeezed from portrait photos and looked stretched; they are gone.)
+_src = (D / 'index.html').read_text()
+_i = _src.index('<div id="assortiment">') + len('<div id="assortiment">'); _j = _src.index('</section>', _i) + len('</section>')
+SD = _src[_i:_j]
+_hd0 = SD.index('<h2 id="h-sd">'); _hd1 = SD.index('</p>', SD.index('<p class="sd-lead">', _hd0)) + len('</p>')
+SD = (SD[:_hd0] + '<h2 id="h-var"><span>Zeven soorten rhododendrons,</span> <span>van 40 tot 225&nbsp;cm.</span></h2>'
+      '<p class="sd-lead">Alle planten groeien in de volle grond. Welke maten er zijn, verschilt per soort.</p>' + SD[_hd1:])
+SD = SD.replace('<section class="sd" aria-labelledby="h-sd">', '<section class="sd ghd-sd" aria-labelledby="h-var">', 1)
+SD = SD.replace('href="/assortiment" data-page="Assortiment"', 'href="index.html#assortiment"', 1)
+BIG = ('<div class="ghd-big"><h3>Grote maten</h3><p>Voor projecten die meteen volume vragen, hebben wij ook grote maten, '
+       'van 120 tot 225&nbsp;cm. Die leveren wij op aanvraag. U kunt ze zelf uitzoeken op ons veld.</p></div>')
+assert SD.count('<div class="sd-ft">') == 1
+VAR = SD.replace('<div class="sd-ft">', BIG + '<div class="sd-ft">', 1)
 
 # ---------- 4. the request: the intro and the questions left, A's form in the card right ----------
 FORMBOX = part(r'<div class="gh-r gh-req">.*?</form><div class="gh-done".*?</div></div>')
